@@ -1,0 +1,25 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Simple Page"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "text",
+        "args": {
+          "text": "Hello World!"
+        }
+      }
+    }
+  }
+}

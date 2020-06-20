@@ -1,0 +1,51 @@
+import 'package:child_builder/child_builder.dart';
+import 'package:flutter/material.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_theme/json_theme.dart';
+
+class JsonFittedBoxBuilder extends JsonWidgetBuilder {
+  JsonFittedBoxBuilder({
+    this.alignment,
+    this.fit,
+  });
+
+  static const type = 'fitted_box';
+
+  final AlignmentGeometry alignment;
+  final BoxFit fit;
+
+  static JsonFittedBoxBuilder fromDynamic(dynamic map) {
+    JsonFittedBoxBuilder result;
+
+    if (map != null) {
+      result = JsonFittedBoxBuilder(
+        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
+        fit: ThemeDecoder.decodeBoxFit(map['fit']),
+      );
+    }
+
+    return result;
+  }
+
+  @override
+  Widget buildCustom({
+    ChildWidgetBuilder childBuilder,
+    @required BuildContext context,
+    @required JsonWidgetData data,
+    Key key,
+  }) {
+    assert(
+      data.children?.length == 1,
+      '[JsonFittedBoxBuilder] only supports exactly one child.',
+    );
+
+    return FittedBox(
+      alignment: alignment,
+      fit: fit,
+      child: data.children[0].build(
+        childBuilder: childBuilder,
+        context: context,
+      ),
+    );
+  }
+}
