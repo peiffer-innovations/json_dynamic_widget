@@ -5,6 +5,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [SingleChildScrollView] widget.  See the
+/// [fromDynamic] for the format.
 class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   JsonSingleChildScrollViewBuilder({
     this.controller,
@@ -26,6 +28,30 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   final bool reverse;
   final Axis scrollDirection;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "controller": <ScrollController>,
+  ///   "dragStartBehavior": <DragStartBehavior>,
+  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "physics": <ScrollPhysics>,
+  ///   "primary": <bool>,
+  ///   "reverse": <bool>,,
+  ///   "scrollDirection": <Axis>
+  /// }
+  /// ```
+  ///
+  /// As a note, the [ScrollController] cannot be decoded via JSON.  Instead,
+  /// the only way to bind those values to the builder is to use a function or a
+  /// variable reference via the [JsonWidgetRegistry].
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeAxis]
+  ///  * [ThemeDecoder.decodeDragStartBehavior]
+  ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
+  ///  * [ThemeDecoder.decodeScrollPhysics]
   static JsonSingleChildScrollViewBuilder fromDynamic(dynamic map) {
     JsonSingleChildScrollViewBuilder result;
 

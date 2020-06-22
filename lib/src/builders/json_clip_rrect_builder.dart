@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [ClipRRect] widget.  See the [fromDynamic] for the
+/// format.
 class JsonClipRRectBuilder extends JsonWidgetBuilder {
   JsonClipRRectBuilder({
     this.borderRadius,
@@ -14,6 +16,19 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   final BorderRadius borderRadius;
   final Clip clipBehavior;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "borderRadius": <BorderRadius>,
+  ///   "clip": <Clip>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeBorderRadius]
+  ///  * [ThemeDecoder.decodeClip]
   static JsonClipRRectBuilder fromDynamic(dynamic map) {
     JsonClipRRectBuilder result;
 

@@ -5,6 +5,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [Scaffold] widget.  See the [fromDynamic] for the
+/// format.
 class JsonScaffoldBuilder extends JsonWidgetBuilder {
   JsonScaffoldBuilder({
     this.appBar,
@@ -54,6 +56,40 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   final bool resizeToAvoidBottomInset;
   final bool resizeToAvoidBottomPadding;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "appBar": <JsonWidgetData>,
+  ///   "backgroundColor": <Color>,
+  ///   "body": <JsonWidgetData>,
+  ///   "bottomNavigationBar": <JsonWidgetData>,
+  ///   "bottomSheet": <JsonWidgetData>,
+  ///   "drawer": <JsonWidgetData>,
+  ///   "drawerDragStartBehavior": <DragStartBehavior>,
+  ///   "drawerEdgeDragWidth": <double>,
+  ///   "drawerEnableOpenDragGesture": <bool>,
+  ///   "drawerScrimColor": <Color>,
+  ///   "endDrawer": <JsonWidgetData>,
+  ///   "endDrawerEnableOpenDragGesture": <bool>,
+  ///   "extendBody": <bool>,
+  ///   "extendBodyBehindAppBar": <bool>,
+  ///   "floatingActionButton": <JsonWidgetData>,
+  ///   "floatingActionButtonAnimator": <FloatingActionButtonAnimator>,
+  ///   "floatingActionButtonLocation": <ActionButtonLocation>,
+  ///   "persistentFooterButtons": <JsonWidgetData[]>,
+  ///   "primary": <bool>,
+  ///   "resizeToAvoidBottomInset": <bool>,
+  ///   "resizeToAvoidBottomPadding": <bool>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [JsonWidgetData.fromDynamic]
+  ///  * [ThemeDecoder.decodeActionButtonLocation]
+  ///  * [ThemeDecoder.decodeDragStartBehavior]
+  ///  * [ThemeDecoder.decodeFloatingActionButtonAnimator]
   static JsonScaffoldBuilder fromDynamic(dynamic map) {
     JsonScaffoldBuilder result;
     if (map != null) {

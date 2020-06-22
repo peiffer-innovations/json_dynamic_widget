@@ -4,6 +4,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [Baseline] widget.  See the [fromDynamic] for the
+/// format.
 class JsonBaselineBuilder extends JsonWidgetBuilder {
   JsonBaselineBuilder({
     this.baseline,
@@ -15,6 +17,18 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
   final double baseline;
   final TextBaseline baselineType;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "baseline": <double>,
+  ///   "baselineType": <TextBaseline>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeTextBaseline]
   static JsonBaselineBuilder fromDynamic(dynamic map) {
     JsonBaselineBuilder result;
 

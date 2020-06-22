@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+/// Builder that can build an [AspectRatio] widget.  See the [fromDynamic] for
+/// the format.
 class JsonAspectRatioBuilder extends JsonWidgetBuilder {
   JsonAspectRatioBuilder({
     this.aspectRatio,
@@ -12,6 +14,14 @@ class JsonAspectRatioBuilder extends JsonWidgetBuilder {
 
   final double aspectRatio;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "aspectRatio": <double>
+  /// }
+  /// ```
   static JsonAspectRatioBuilder fromDynamic(dynamic map) {
     JsonAspectRatioBuilder result;
 

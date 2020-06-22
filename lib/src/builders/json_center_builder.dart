@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+/// Builder that can build an [Center] widget.  See the [fromDynamic] for the
+/// format.
 class JsonCenterBuilder extends JsonWidgetBuilder {
   JsonCenterBuilder({
     this.heightFactor,
@@ -14,6 +16,15 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
   final double heightFactor;
   final double widthFactor;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "heightFactor": <double>,
+  ///   "widthFactor": <double>
+  /// }
+  /// ```
   static JsonCenterBuilder fromDynamic(dynamic map) {
     JsonCenterBuilder result;
 

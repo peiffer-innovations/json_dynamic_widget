@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [ClipRect] widget.  See the [fromDynamic] for the
+/// format.
 class JsonClipRectBuilder extends JsonWidgetBuilder {
   JsonClipRectBuilder({
     this.clipBehavior,
@@ -12,6 +14,17 @@ class JsonClipRectBuilder extends JsonWidgetBuilder {
 
   final Clip clipBehavior;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "clip": <Clip>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeClip]
   static JsonClipRectBuilder fromDynamic(dynamic map) {
     JsonClipRectBuilder result;
 

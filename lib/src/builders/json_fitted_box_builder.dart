@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [FittedBox] widget.  See the [fromDynamic] for the
+/// format.
 class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   JsonFittedBoxBuilder({
     this.alignment,
@@ -14,6 +16,19 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   final AlignmentGeometry alignment;
   final BoxFit fit;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": <Alignment>,
+  ///   "fit": <BoxFit>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeAlignment]
+  ///  * [ThemeDecoder.decodeBoxFit]
   static JsonFittedBoxBuilder fromDynamic(dynamic map) {
     JsonFittedBoxBuilder result;
 

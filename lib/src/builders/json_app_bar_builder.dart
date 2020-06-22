@@ -4,6 +4,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [AppBar] widget.  See the [fromDynamic] for the
+/// format.
 class JsonAppBarBuilder extends JsonWidgetBuilder {
   JsonAppBarBuilder({
     this.actions,
@@ -49,6 +51,38 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   final double titleSpacing;
   final double toolbarOpacity;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "actions": <JsonWidgetData[]>,
+  ///   "actionsIconTheme": <IconThemeData>,
+  ///   "backgroundColor": <Color>,
+  ///   "bottom": <JsonWidgetData>,
+  ///   "bottomOpacity": <double>,
+  ///   "brightness": <Brightness>,
+  ///   "centerTitle": <bool>,
+  ///   "elevation": <double>,
+  ///   "excludeHeaderSemantics": <bool>,
+  ///   "flexibleSpace": <JsonWidgetData>,
+  ///   "iconTheme": <IconThemeData>,
+  ///   "leading": <bool>,
+  ///   "primary": <bool>,
+  ///   "shape": <ShapeBorder>,
+  ///   "textTheme": <TextTheme>,
+  ///   "title": <JsonWidgetData>,
+  ///   "titleSpacing": <double>,
+  ///   "toolbarOpacity": <double>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [JsonWidgetData.fromDynamic]
+  ///  * [ThemeDecoder.decodeBrightness]
+  ///  * [ThemeDecoder.decodeColor]
+  ///  * [ThemeDecoder.decodeIconThemeData]
+  ///  * [ThemeDecoder.decodeShapeBorder]
   static JsonAppBarBuilder fromDynamic(dynamic map) {
     JsonAppBarBuilder result;
 

@@ -18,10 +18,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-# dependency_overrides:
-#   json_theme:
-#     path: ../../json_theme
-
 flutter:
   uses-material-design: true
   assets:

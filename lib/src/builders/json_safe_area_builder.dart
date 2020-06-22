@@ -4,6 +4,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [SafeArea] widget.  See the [fromDynamic] for the
+/// format.
 class JsonSafeAreaBuilder extends JsonWidgetBuilder {
   JsonSafeAreaBuilder({
     this.bottom,
@@ -23,6 +25,22 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
   final bool right;
   final bool top;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": <bool>,
+  ///   "left": <bool>,
+  ///   "maintainBottomViewPadding": <bool>,
+  ///   "minimum": <EdgeInsetsGeometry>,
+  ///   "right": <bool>,
+  ///   "top": <bool>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   static JsonSafeAreaBuilder fromDynamic(dynamic map) {
     JsonSafeAreaBuilder result;
 

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+/// Builder that can build an [Positioned] widget.  See the [fromDynamic] for
+/// the format.
 class JsonPositionedBuilder extends JsonWidgetBuilder {
   JsonPositionedBuilder({
     this.bottom,
@@ -22,6 +24,19 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
   final double top;
   final double width;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "bottom": <double>,
+  ///   "height": <double>,
+  ///   "left": <double>,
+  ///   "right": <double>,
+  ///   "top": <double>,
+  ///   "width": <double>
+  /// }
+  /// ```
   static JsonPositionedBuilder fromDynamic(dynamic map) {
     JsonPositionedBuilder result;
 

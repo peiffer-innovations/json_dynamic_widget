@@ -4,6 +4,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [Card] widget.  See the [fromDynamic] for the
+/// format.
 class JsonCardBuilder extends JsonWidgetBuilder {
   JsonCardBuilder({
     this.borderOnForeground,
@@ -27,6 +29,26 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   final Color shadowColor;
   final ShapeBorder shape;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "borderOnForeground": <bool>,
+  ///   "clipBehavior": <Clip>,
+  ///   "color": <Color>,
+  ///   "elevation": <double>,
+  ///   "margin": <EdgeInsetsGeometry>,
+  ///   "semanticContainer": <bool>,
+  ///   "shadowColor": <Color>,
+  ///   "shape": <ShapeBorder>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeClip]
+  ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
+  ///  * [ThemeDecoder.decodeShapeBorder]
   static JsonCardBuilder fromDynamic(dynamic map) {
     JsonCardBuilder result;
     if (map != null) {

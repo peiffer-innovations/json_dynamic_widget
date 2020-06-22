@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [Column] widget.  See the [fromDynamic] for the
+/// format.
 class JsonColumnBuilder extends JsonWidgetBuilder {
   JsonColumnBuilder({
     this.crossAxisAlignment,
@@ -20,6 +22,25 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
   final TextBaseline textBaseline;
   final TextDirection textDirection;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "crossAxisAlignment": <CrossAxisAlignment>,
+  ///   "mainAxisAlignment": <MainAxisAlignment>,
+  ///   "mainAxisSize": <MainAxisSize>,
+  ///   "textBaseline": <TextBaseline>,
+  ///   "textDirection": <TextDirection>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeCrossAxisAlignment]
+  ///  * [ThemeDecoder.decodeMainAxisAlignment]
+  ///  * [ThemeDecoder.decodeMainAxisSize]
+  ///  * [ThemeDecoder.decodeTextBaseline]
+  ///  * [ThemeDecoder.decodeTextDirection]
   static JsonColumnBuilder fromDynamic(dynamic map) {
     JsonColumnBuilder result;
 

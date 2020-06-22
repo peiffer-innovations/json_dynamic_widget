@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [Stack] widget.  See the [fromDynamic] for the
+/// format.
 class JsonStackBuilder extends JsonWidgetBuilder {
   JsonStackBuilder({
     this.alignment,
@@ -18,6 +20,23 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   final Overflow overflow;
   final TextDirection textDirection;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": <Alignment>,
+  ///   "fit": <StackFit>,
+  ///   "overflow": <Overflow>,
+  ///   "textDirection": <TextDirection>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeAlignment]
+  ///  * [ThemeDecoder.decodeStackFit]
+  ///  * [ThemeDecoder.decodeOverflow]
+  ///  * [ThemeDecoder.decodeTextDirection]
   static JsonStackBuilder fromDynamic(dynamic map) {
     JsonStackBuilder result;
 

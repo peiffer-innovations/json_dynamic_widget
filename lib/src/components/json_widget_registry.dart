@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -44,6 +43,7 @@ class JsonWidgetRegistry {
     JsonContainerBuilder.type: JsonContainerBuilder.fromDynamic,
     JsonExpandedBuilder.type: JsonExpandedBuilder.fromDynamic,
     JsonFittedBoxBuilder.type: JsonFittedBoxBuilder.fromDynamic,
+    JsonFlatButtonBuilder.type: JsonFlatButtonBuilder.fromDynamic,
     JsonFlexibleBuilder.type: JsonFlexibleBuilder.fromDynamic,
     JsonIconBuilder.type: JsonIconBuilder.fromDynamic,
     JsonIndexedStackBuilder.type: JsonIndexedStackBuilder.fromDynamic,
@@ -51,6 +51,7 @@ class JsonWidgetRegistry {
     JsonOpacityBuilder.type: JsonOpacityBuilder.fromDynamic,
     JsonPaddingBuilder.type: JsonPaddingBuilder.fromDynamic,
     JsonPositionedBuilder.type: JsonPositionedBuilder.fromDynamic,
+    JsonRaisedButtonBuilder.type: JsonRaisedButtonBuilder.fromDynamic,
     JsonRowBuilder.type: JsonRowBuilder.fromDynamic,
     JsonSafeAreaBuilder.type: JsonSafeAreaBuilder.fromDynamic,
     JsonScaffoldBuilder.type: JsonScaffoldBuilder.fromDynamic,

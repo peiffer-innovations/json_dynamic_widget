@@ -4,6 +4,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [IndexedStack] widget.  See the [fromDynamic] for
+/// the format.
 class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   JsonIndexedStackBuilder({
     this.alignment,
@@ -19,6 +21,22 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   final StackFit sizing;
   final TextDirection textDirection;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": <Alignment>,
+  ///   "index": <int>,
+  ///   "sizing": <StackFit>,
+  ///   "textDirection": <TextDirection>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeAlignment]
+  ///  * [ThemeDecoder.decodeStackFit]
+  ///  * [ThemeDecoder.decodeTextDirection]
   static JsonIndexedStackBuilder fromDynamic(dynamic map) {
     JsonIndexedStackBuilder result;
 
