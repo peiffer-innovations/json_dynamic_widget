@@ -7,5 +7,10 @@ void main() {
 
     expect(type, 'clip_rrect');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonClipRRectBuilder,
+      true,
+    );
   });
 }

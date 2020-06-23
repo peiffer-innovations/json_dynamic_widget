@@ -7,5 +7,10 @@ void main() {
 
     expect(type, 'indexed_stack');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonIndexedStackBuilder,
+      true,
+    );
   });
 }

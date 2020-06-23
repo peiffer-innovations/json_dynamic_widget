@@ -1,6 +1,7 @@
 export 'src/builders/json_align_builder.dart';
 export 'src/builders/json_app_bar_builder.dart';
 export 'src/builders/json_aspect_ratio_builder.dart';
+export 'src/builders/json_asset_image_builder.dart';
 export 'src/builders/json_baseline_builder.dart';
 export 'src/builders/json_card_builder.dart';
 export 'src/builders/json_center_builder.dart';
@@ -12,9 +13,14 @@ export 'src/builders/json_expanded_builder.dart';
 export 'src/builders/json_fitted_box_builder.dart';
 export 'src/builders/json_flat_button_builder.dart';
 export 'src/builders/json_flexible_builder.dart';
+export 'src/builders/json_gesture_detector_builder.dart';
+export 'src/builders/json_hero_builder.dart';
 export 'src/builders/json_icon_builder.dart';
 export 'src/builders/json_indexed_stack_builder.dart';
+export 'src/builders/json_ink_well_builder.dart';
 export 'src/builders/json_material_builder.dart';
+export 'src/builders/json_memory_image_builder.dart';
+export 'src/builders/json_network_image_builder.dart';
 export 'src/builders/json_opacity_builder.dart';
 export 'src/builders/json_padding_builder.dart';
 export 'src/builders/json_positioned_builder.dart';
@@ -33,4 +39,7 @@ export 'src/components/json_widget_regex_helper.dart';
 export 'src/components/json_widget_registry.dart';
 export 'src/components/types.dart';
 
+export 'src/models/dynamic_params_result.dart';
 export 'src/models/json_widget_data.dart';
+
+export 'src/widgets/json_dynamic_widget.dart';

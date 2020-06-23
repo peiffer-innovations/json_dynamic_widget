@@ -7,5 +7,10 @@ void main() {
 
     expect(type, 'aspect_ratio');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonAspectRatioBuilder,
+      true,
+    );
   });
 }

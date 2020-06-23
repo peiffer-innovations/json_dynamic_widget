@@ -6,9 +6,11 @@ import 'package:meta/meta.dart';
 
 class JsonWidgetData extends JsonClass {
   JsonWidgetData({
+    dynamic args,
     @required this.builder,
     JsonWidgetData child,
     List<JsonWidgetData> children,
+    Set<String> dynamicKeys,
     this.id,
     this.registry,
     @required this.type,
@@ -18,13 +20,18 @@ class JsonWidgetData extends JsonClass {
           'A JsonWidgetData may either contain a [child] or an array of [children], but not both.',
         ),
         assert(type != null),
-        children = children ?? child == null ? null : [child];
+        _args = args,
+        children = children ?? child == null ? null : [child],
+        dynamicKeys = dynamicKeys ?? {};
 
   final JsonWidgetBuilder builder;
   final List<JsonWidgetData> children;
+  final Set<String> dynamicKeys;
   final String id;
   final JsonWidgetRegistry registry;
   final String type;
+
+  final dynamic _args;
 
   static JsonWidgetData fromDynamic(
     dynamic map, {
@@ -36,13 +43,17 @@ class JsonWidgetData extends JsonClass {
 
       var type = map['type'];
       var builder = registry.getWidgetBuilder(type);
+      var dynamicParamsResult = registry.processDynamicArgs(map['args'] ?? {});
+
       result = JsonWidgetData(
-        builder: builder(registry.processDynamicArgs(map['args'] ?? {})),
+        args: map['args'] ?? {},
+        builder: builder(dynamicParamsResult.values),
         child: JsonWidgetData.fromDynamic(map['child']),
         children: JsonClass.fromDynamicList(
           map['children'],
           JsonWidgetData.fromDynamic,
         ),
+        dynamicKeys: dynamicParamsResult.dynamicKeys,
         id: map['id'],
         registry: registry,
         type: type,
@@ -68,8 +79,27 @@ class JsonWidgetData extends JsonClass {
     );
   }
 
+  /// Recreates the data object based on the updated values and function
+  /// responces from the registry.  This should only be called within the
+  /// framework itself, external code should not need to call this.
+  JsonWidgetData recreate() {
+    var builder = registry.getWidgetBuilder(type);
+    var dynamicParamsResult = registry.processDynamicArgs(_args);
+
+    return JsonWidgetData(
+      args: _args,
+      builder: builder(dynamicParamsResult.values),
+      children: children,
+      dynamicKeys: dynamicParamsResult.dynamicKeys,
+      id: id,
+      registry: registry,
+      type: type,
+    );
+  }
+
   @override
   Map<String, dynamic> toJson() => JsonClass.removeNull({
+        'args': _args,
         'child': children?.length == 1 ? children[0].toJson() : null,
         'children': JsonClass.toJsonList(children),
         'id': id,

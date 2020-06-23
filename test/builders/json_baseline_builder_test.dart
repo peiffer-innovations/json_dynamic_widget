@@ -7,5 +7,10 @@ void main() {
 
     expect(type, 'baseline');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonBaselineBuilder,
+      true,
+    );
   });
 }

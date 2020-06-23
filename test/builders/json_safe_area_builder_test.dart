@@ -7,5 +7,10 @@ void main() {
 
     expect(type, 'safe_area');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonSafeAreaBuilder,
+      true,
+    );
   });
 }

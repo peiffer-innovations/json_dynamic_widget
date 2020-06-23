@@ -7,5 +7,10 @@ void main() {
 
     expect(type, 'material');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonMaterialBuilder,
+      true,
+    );
   });
 }

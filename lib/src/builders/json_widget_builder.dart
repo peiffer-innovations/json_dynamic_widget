@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,9 +20,60 @@ abstract class JsonWidgetBuilder {
     @required BuildContext context,
     @required JsonWidgetData data,
   }) {
+    Widget result;
+    if (data.dynamicKeys?.isNotEmpty == true) {
+      result = _JsonWidgetStateful(
+        childBuilder: childBuilder,
+        customBuilder: buildCustom,
+        data: data,
+      );
+    } else {
+      result = _JsonWidgetStateless(
+        childBuilder: childBuilder,
+        customBuilder: buildCustom,
+        data: data,
+      );
+    }
+
+    return result;
+  }
+
+  /// Custom builder that subclasses must override and implement to return the
+  /// actual [Widget] to be placed on the tree.
+  @visibleForOverriding
+  Widget buildCustom({
+    ChildWidgetBuilder childBuilder,
+    @required BuildContext context,
+    @required JsonWidgetData data,
+    Key key,
+  });
+}
+
+class _JsonWidgetStateless extends StatelessWidget {
+  _JsonWidgetStateless({
+    @required this.childBuilder,
+    @required this.customBuilder,
+    @required this.data,
+    Key key,
+  })  : assert(childBuilder != null),
+        assert(customBuilder != null),
+        assert(data != null),
+        super(key: key);
+
+  final ChildWidgetBuilder childBuilder;
+  final Widget Function({
+    ChildWidgetBuilder childBuilder,
+    @required BuildContext context,
+    @required JsonWidgetData data,
+    Key key,
+  }) customBuilder;
+  final JsonWidgetData data;
+
+  @override
+  Widget build(BuildContext context) {
     var key = data.id?.isNotEmpty == true ? ValueKey(data.id) : null;
 
-    var widget = buildCustom(
+    var widget = customBuilder(
       childBuilder: childBuilder,
       context: context,
       data: data,
@@ -33,14 +86,68 @@ abstract class JsonWidgetBuilder {
 
     return widget;
   }
+}
 
-  /// Custom builder that subclasses must override and implement to return the
-  /// actual [Widget] to be placed on the tree.
-  @visibleForOverriding
-  Widget buildCustom({
+class _JsonWidgetStateful extends StatefulWidget {
+  _JsonWidgetStateful({
+    @required this.childBuilder,
+    @required this.customBuilder,
+    @required this.data,
+    @required this.registry,
+    Key key,
+  })  : assert(childBuilder != null),
+        assert(customBuilder != null),
+        assert(data != null),
+        assert(registry != null),
+        super(key: key);
+
+  final ChildWidgetBuilder childBuilder;
+  final Widget Function({
     ChildWidgetBuilder childBuilder,
     @required BuildContext context,
     @required JsonWidgetData data,
     Key key,
-  });
+  }) customBuilder;
+  final JsonWidgetData data;
+  final JsonWidgetRegistry registry;
+
+  @override
+  _JsonWidgetStatefulState createState() => _JsonWidgetStatefulState();
+}
+
+class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
+  JsonWidgetData data;
+
+  StreamSubscription _subscription;
+
+  @override
+  void initState() {
+    super.initState();
+
+    data = widget.data;
+    _subscription = widget.registry.valueStream.listen((event) {
+      if (data.dynamicKeys?.contains(null) == true ||
+          data.dynamicKeys?.contains(event) == true) {
+        data = data.recreate();
+        if (mounted == true) {
+          setState(() {});
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    _subscription = null;
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => _JsonWidgetStateless(
+        childBuilder: widget.childBuilder,
+        customBuilder: widget.customBuilder,
+        data: data,
+      );
 }

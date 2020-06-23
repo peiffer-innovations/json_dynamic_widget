@@ -1,0 +1,222 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Asset Images Page"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "list_view",
+      "children": [{
+        "type": "hero",
+        "args": {
+          "tag": "image1"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "name": "assets/images/image1.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image2"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "name": "assets/images/image2.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image3"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image3.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image4"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image4.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image5"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image5.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image6"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image6.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image7"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image7.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image8"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image8.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image9"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image9.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image10"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image10.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image11"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image11.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image12"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image12.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image13"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image13.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image14"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image14.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image15"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image15.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image16"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image16.jpg"
+          }
+        }
+      }, {
+        "type": "hero",
+        "args": {
+          "tag": "image17"
+        },
+        "child": {
+          "type": "asset_image",
+          "args": {
+            "fit": "fitWidth",
+            "name": "assets/images/image17.jpg"
+          }
+        }
+      }]
+    }
+  }
+}

@@ -7,5 +7,9 @@ void main() {
 
     expect(type, 'row');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({}) is JsonRowBuilder,
+      true,
+    );
   });
 }

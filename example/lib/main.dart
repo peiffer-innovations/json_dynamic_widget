@@ -4,23 +4,41 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 import 'src/full_widget_page.dart';
 
 void main() {
-  runApp(const MyApp());
+  var navigatorKey = GlobalKey<NavigatorState>();
+
+  var registry = JsonWidgetRegistry.instance;
+  registry.setValue(
+    'navigateToImage',
+    () => navigatorKey.currentState.push(
+      MaterialPageRoute(
+        builder: (BuildContext context) {},
+      ),
+    ),
+  );
+
+  runApp(MyApp(
+    navigatorKey: navigatorKey,
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
+  MyApp({
     Key key,
-  }) : super(key: key);
+    @required this.navigatorKey,
+  })  : assert(navigatorKey != null),
+        super(key: key);
+
+  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: RootPage(),
+      navigatorKey: navigatorKey,
     );
   }
 }

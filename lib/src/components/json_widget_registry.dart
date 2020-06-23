@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:child_builder/child_builder.dart';
+import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -34,6 +36,7 @@ class JsonWidgetRegistry {
     JsonAlignBuilder.type: JsonAlignBuilder.fromDynamic,
     JsonAppBarBuilder.type: JsonAppBarBuilder.fromDynamic,
     JsonAspectRatioBuilder.type: JsonAspectRatioBuilder.fromDynamic,
+    JsonAssetImageBuilder.type: JsonAssetImageBuilder.fromDynamic,
     JsonBaselineBuilder.type: JsonBaselineBuilder.fromDynamic,
     JsonCardBuilder.type: JsonCardBuilder.fromDynamic,
     JsonCenterBuilder.type: JsonCenterBuilder.fromDynamic,
@@ -45,9 +48,14 @@ class JsonWidgetRegistry {
     JsonFittedBoxBuilder.type: JsonFittedBoxBuilder.fromDynamic,
     JsonFlatButtonBuilder.type: JsonFlatButtonBuilder.fromDynamic,
     JsonFlexibleBuilder.type: JsonFlexibleBuilder.fromDynamic,
+    JsonGestureDetectorBuilder.type: JsonGestureDetectorBuilder.fromDynamic,
+    JsonHeroBuilder.type: JsonHeroBuilder.fromDynamic,
     JsonIconBuilder.type: JsonIconBuilder.fromDynamic,
     JsonIndexedStackBuilder.type: JsonIndexedStackBuilder.fromDynamic,
+    JsonInkWellBuilder.type: JsonInkWellBuilder.fromDynamic,
     JsonMaterialBuilder.type: JsonMaterialBuilder.fromDynamic,
+    JsonMemoryImageBuilder.type: JsonMemoryImageBuilder.fromDynamic,
+    JsonNetworkImageBuilder.type: JsonNetworkImageBuilder.fromDynamic,
     JsonOpacityBuilder.type: JsonOpacityBuilder.fromDynamic,
     JsonPaddingBuilder.type: JsonPaddingBuilder.fromDynamic,
     JsonPositionedBuilder.type: JsonPositionedBuilder.fromDynamic,
@@ -64,16 +72,18 @@ class JsonWidgetRegistry {
   };
   final _values = <String, dynamic>{};
 
-  StreamController<void> _valueStreamController =
-      StreamController<void>.broadcast();
+  StreamController<String> _valueStreamController =
+      StreamController<String>.broadcast();
 
   /// Returns the [Stream] that an element can listen to in order to be notified
   /// when
-  Stream<void> get valueStream => _valueStreamController?.stream;
+  Stream<String> get valueStream => _valueStreamController?.stream;
 
   void clearValues() {
+    var keys = _values.keys;
     _values.clear();
-    _valueStreamController?.add(null);
+
+    keys?.forEach((element) => _valueStreamController?.add(element));
   }
 
   void dispose() {
@@ -115,7 +125,12 @@ class JsonWidgetRegistry {
     return builder;
   }
 
-  dynamic processDynamicArgs(dynamic args) {
+  DynamicParamsResult processDynamicArgs(
+    dynamic args, {
+    Set<String> dynamicKeys,
+  }) {
+    dynamicKeys ??= <String>{};
+
     dynamic result;
     if (args is String) {
       var parsed = JsonWidgetRegexHelper.parse(args);
@@ -127,7 +142,8 @@ class JsonWidgetRegistry {
           if (item.isFunction == true) {
             functionKey = item.key;
             functionArgs = [];
-          } else if (item.isVariable) {
+          } else if (item.isVariable == true) {
+            dynamicKeys.add(item.key);
             var value = getValue(item.key);
             functionArgs?.add(value);
 
@@ -147,18 +163,27 @@ class JsonWidgetRegistry {
     } else if (args is Iterable) {
       result = [];
       for (var value in args) {
-        result.add(processDynamicArgs(value));
+        result.add(processDynamicArgs(
+          value,
+          dynamicKeys: dynamicKeys,
+        ).values);
       }
     } else if (args is Map) {
       result = {};
       args.forEach((key, value) {
-        result[key] = processDynamicArgs(value);
+        result[key] = processDynamicArgs(
+          value,
+          dynamicKeys: dynamicKeys,
+        ).values;
       });
     } else {
       result = args;
     }
 
-    return result;
+    return DynamicParamsResult(
+      dynamicKeys: dynamicKeys,
+      values: result,
+    );
   }
 
   /// Registers the widget type with the registry to that [type] can be used in
@@ -189,7 +214,7 @@ class JsonWidgetRegistry {
     assert(key?.isNotEmpty == true);
 
     var result = _values.remove(key);
-    _valueStreamController?.add(null);
+    _valueStreamController?.add(key);
 
     return result;
   }
@@ -201,7 +226,7 @@ class JsonWidgetRegistry {
     assert(key?.isNotEmpty == true);
 
     _values[key] = value;
-    _valueStreamController?.add(null);
+    _valueStreamController?.add(key);
   }
 
   /// Removes a registered [type] from the custom registry and returns the

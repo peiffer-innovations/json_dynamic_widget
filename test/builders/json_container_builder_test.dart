@@ -7,5 +7,10 @@ void main() {
 
     expect(type, 'container');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonContainerBuilder,
+      true,
+    );
   });
 }
