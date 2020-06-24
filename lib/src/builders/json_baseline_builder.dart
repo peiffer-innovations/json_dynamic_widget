@@ -29,7 +29,10 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonBaselineBuilder fromDynamic(dynamic map) {
+  static JsonBaselineBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonBaselineBuilder result;
 
     if (map != null) {

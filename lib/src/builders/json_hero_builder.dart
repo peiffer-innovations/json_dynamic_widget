@@ -40,7 +40,10 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
   /// [HeroPlaceholderBuilder] cannot be decoded via JSON.  Instead, the only
   /// way to bind those values to the builder is to use a function or a variable
   /// reference via the [JsonWidgetRegistry].
-  static JsonHeroBuilder fromDynamic(dynamic map) {
+  static JsonHeroBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonHeroBuilder result;
 
     if (map != null) {

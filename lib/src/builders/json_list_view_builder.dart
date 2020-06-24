@@ -5,41 +5,59 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build an [SingleChildScrollView] widget.  See the
-/// [fromDynamic] for the format.
-class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
-  JsonSingleChildScrollViewBuilder({
+/// Builder that can build an [ListView] widget.  See the [fromDynamic] for the
+/// format.
+class JsonListViewBuilder extends JsonWidgetBuilder {
+  JsonListViewBuilder({
+    this.addAutomaticKeepAlives,
+    this.addRepaintBoundaries,
+    this.addSemanticIndexes,
+    this.cacheExtent,
     this.controller,
     this.dragStartBehavior,
+    this.itemExtent,
     this.padding,
     this.physics,
     this.primary,
     this.reverse,
     this.scrollDirection,
+    this.shrinkWrap,
   });
 
-  static const type = 'single_child_scroll_view';
+  static const type = 'list_view';
 
+  final bool addAutomaticKeepAlives;
+  final bool addRepaintBoundaries;
+  final bool addSemanticIndexes;
+  final double cacheExtent;
   final ScrollController controller;
   final DragStartBehavior dragStartBehavior;
+  final double itemExtent;
   final EdgeInsets padding;
   final ScrollPhysics physics;
   final bool primary;
   final bool reverse;
   final Axis scrollDirection;
+  final bool shrinkWrap;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
+  ///   "addAutomaticKeepAlives": <bool>,
+  ///   "addRepaintBoundaries": <bool>,
+  ///   "addSemanticIndexes": <bool>,
+  ///   "cacheExtent": <double>,
   ///   "controller": <ScrollController>,
   ///   "dragStartBehavior": <DragStartBehavior>,
+  ///   "itemExtent": <double>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "physics": <ScrollPhysics>,
   ///   "primary": <bool>,
-  ///   "reverse": <bool>,,
-  ///   "scrollDirection": <Axis>
+  ///   "reverse": <bool>,
+  ///   "scrollDirection": <Axis>,
+  ///   "shrinkWrap": <bool>
   /// }
   /// ```
   ///
@@ -52,26 +70,36 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeScrollPhysics]
-  static JsonSingleChildScrollViewBuilder fromDynamic(
+  static JsonListViewBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
   }) {
-    JsonSingleChildScrollViewBuilder result;
+    JsonListViewBuilder result;
 
     if (map != null) {
-      result = JsonSingleChildScrollViewBuilder(
+      result = JsonListViewBuilder(
+        addAutomaticKeepAlives: map['addAutomaticKeepAlives'] == null
+            ? true
+            : JsonClass.parseBool(map['addAutomaticKeepAlives']),
+        addRepaintBoundaries: map['addRepaintBoundaries'] == null
+            ? true
+            : JsonClass.parseBool(map['addRepaintBoundaries']),
+        addSemanticIndexes: map['addSemanticIndexes'] == null
+            ? true
+            : JsonClass.parseBool(map['addSemanticIndexes']),
+        cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
         controller: map['controller'],
-        dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
-              map['dragStartBehavior'],
-            ) ??
-            DragStartBehavior.start,
+        dragStartBehavior:
+            ThemeDecoder.decodeDragStartBehavior(map['dragStartBehavior']) ??
+                DragStartBehavior.start,
+        itemExtent: JsonClass.parseDouble(map['itemExtent']),
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
         physics: ThemeDecoder.decodeScrollPhysics(map['physics']),
-        primary:
-            map['primary'] == null ? null : JsonClass.parseBool(map['primary']),
+        primary: JsonClass.parseBool(map['primary']),
         reverse: JsonClass.parseBool(map['reverse']),
         scrollDirection:
             ThemeDecoder.decodeAxis(map['scrollDirection']) ?? Axis.vertical,
+        shrinkWrap: JsonClass.parseBool(map['shrinkWrap']),
       );
     }
 
@@ -85,20 +113,24 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonSingleChildScrollViewBuilder] only supports exactly one child.',
-    );
-
-    return SingleChildScrollView(
+    return ListView.builder(
+      addAutomaticKeepAlives: addAutomaticKeepAlives,
+      addRepaintBoundaries: addRepaintBoundaries,
+      addSemanticIndexes: addSemanticIndexes,
+      cacheExtent: cacheExtent,
       controller: controller,
       dragStartBehavior: dragStartBehavior,
+      itemCount: data.children?.length ?? 0,
+      itemExtent: itemExtent,
       padding: padding,
       physics: physics,
       primary: primary,
       reverse: reverse,
       scrollDirection: scrollDirection,
-      child: data.children[0].build(
+      semanticChildCount: data.children?.length ?? 0,
+      shrinkWrap: shrinkWrap,
+      itemBuilder: (BuildContext context, int index) =>
+          data.children[index].build(
         childBuilder: childBuilder,
         context: context,
       ),

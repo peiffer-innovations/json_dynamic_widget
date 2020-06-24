@@ -96,7 +96,10 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeInteractiveInkFeatureFactory]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonInkWellBuilder fromDynamic(dynamic map) {
+  static JsonInkWellBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonInkWellBuilder result;
 
     if (map != null) {
@@ -168,6 +171,10 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
       radius: radius,
       splashColor: splashColor,
       splashFactory: splashFactory,
+      child: data.children[0].build(
+        childBuilder: childBuilder,
+        context: context,
+      ),
     );
   }
 }

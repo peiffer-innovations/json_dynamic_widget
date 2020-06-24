@@ -32,7 +32,10 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
-  static JsonAlignBuilder fromDynamic(dynamic map) {
+  static JsonAlignBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonAlignBuilder result;
 
     if (map != null) {

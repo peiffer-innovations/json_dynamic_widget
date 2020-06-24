@@ -41,25 +41,27 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
-  static JsonSafeAreaBuilder fromDynamic(dynamic map) {
+  static JsonSafeAreaBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonSafeAreaBuilder result;
 
     if (map != null) {
       result = JsonSafeAreaBuilder(
-        bottom: map['bottom'] == null
+        bottom: map['bottom'] == true
             ? null
             : JsonClass.parseBool(
                 map['bottom'],
               ),
-        left: map['left'] == null ? null : JsonClass.parseBool(map['left']),
-        maintainBottomViewPadding: map['maintainBottomViewPadding'] == null
-            ? null
-            : JsonClass.parseBool(
-                map['maintainBottomViewPadding'],
-              ),
-        minimum: ThemeDecoder.decodeEdgeInsetsGeometry(map['minimum']),
-        right: map['right'] == null ? null : JsonClass.parseBool(map['right']),
-        top: map['top'] == null ? null : JsonClass.parseBool(map['top']),
+        left: map['left'] == null ? true : JsonClass.parseBool(map['left']),
+        maintainBottomViewPadding: JsonClass.parseBool(
+          map['maintainBottomViewPadding'],
+        ),
+        minimum: ThemeDecoder.decodeEdgeInsetsGeometry(map['minimum']) ??
+            EdgeInsets.zero,
+        right: map['right'] == null ? true : JsonClass.parseBool(map['right']),
+        top: map['top'] == null ? true : JsonClass.parseBool(map['top']),
       );
     }
 

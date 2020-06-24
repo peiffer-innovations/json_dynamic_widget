@@ -25,7 +25,10 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
   ///   "widthFactor": <double>
   /// }
   /// ```
-  static JsonCenterBuilder fromDynamic(dynamic map) {
+  static JsonCenterBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonCenterBuilder result;
 
     if (map != null) {

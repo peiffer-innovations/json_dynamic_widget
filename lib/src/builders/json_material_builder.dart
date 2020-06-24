@@ -8,6 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonMaterialBuilder extends JsonWidgetBuilder {
   JsonMaterialBuilder({
+    this.animationDuration,
     this.borderOnForeground,
     this.borderRadius,
     this.clipBehavior,
@@ -21,6 +22,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
 
   static const type = 'material';
 
+  final Duration animationDuration;
   final bool borderOnForeground;
   final BorderRadius borderRadius;
   final Clip clipBehavior;
@@ -36,6 +38,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
+  ///   "animationDuration": <int; millis>,
   ///   "borderOnForeground": <bool>,
   ///   "borderRadius": <BorderRadius>,
   ///   "clipBehavior": <Clip>,
@@ -55,21 +58,28 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMaterialType]
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeTextStyle]
-  static JsonMaterialBuilder fromDynamic(dynamic map) {
+  static JsonMaterialBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonMaterialBuilder result;
     if (map != null) {
       result = JsonMaterialBuilder(
+        animationDuration: JsonClass.parseDurationFromMillis(
+            map['animationDuration'], kThemeChangeDuration),
         borderOnForeground: map['borderOnForeground'] == null
-            ? null
+            ? true
             : JsonClass.parseBool(
                 map['borderOnForeground'],
               ),
         borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']),
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
+        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.none,
         color: ThemeDecoder.decodeColor(map['color']),
-        elevation: JsonClass.parseDouble(map['elevation']),
-        materialType: ThemeDecoder.decodeMaterialType(map['type']),
-        shadowColor: ThemeDecoder.decodeColor(map['color']),
+        elevation: JsonClass.parseDouble(map['elevation'], 0),
+        materialType:
+            ThemeDecoder.decodeMaterialType(map['type']) ?? MaterialType.canvas,
+        shadowColor:
+            ThemeDecoder.decodeColor(map['color']) ?? const Color(0xFF000000),
         shape: ThemeDecoder.decodeShapeBorder(map['shape']),
         textStyle: ThemeDecoder.decodeTextStyle(map['textStyle']),
       );
@@ -91,6 +101,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     );
 
     return Material(
+      animationDuration: animationDuration,
       borderOnForeground: borderOnForeground,
       borderRadius: borderRadius,
       clipBehavior: clipBehavior,

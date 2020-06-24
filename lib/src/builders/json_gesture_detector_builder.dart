@@ -143,15 +143,19 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeHitTestBehavior]
-  static JsonGestureDetectorBuilder fromDynamic(dynamic map) {
+  static JsonGestureDetectorBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonGestureDetectorBuilder result;
 
     if (map != null) {
       result = JsonGestureDetectorBuilder(
         behavior: ThemeDecoder.decodeHitTestBehavior(map['behavior']),
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
-          map['dragStartBehavior'],
-        ),
+              map['dragStartBehavior'],
+            ) ??
+            DragStartBehavior.start,
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
         onDoubleTap: map['onDoubleTap'],
         onForcePressEnd: map['onForcePressEnd'],
@@ -245,6 +249,10 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       onVerticalDragEnd: onVerticalDragEnd,
       onVerticalDragStart: onVerticalDragStart,
       onVerticalDragUpdate: onVerticalDragUpdate,
+      child: data.children[0].build(
+        childBuilder: childBuilder,
+        context: context,
+      ),
     );
   }
 }

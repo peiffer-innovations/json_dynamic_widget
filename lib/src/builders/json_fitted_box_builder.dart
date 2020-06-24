@@ -29,13 +29,17 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
   ///  * [ThemeDecoder.decodeBoxFit]
-  static JsonFittedBoxBuilder fromDynamic(dynamic map) {
+  static JsonFittedBoxBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonFittedBoxBuilder result;
 
     if (map != null) {
       result = JsonFittedBoxBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
-        fit: ThemeDecoder.decodeBoxFit(map['fit']),
+        alignment:
+            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
+        fit: ThemeDecoder.decodeBoxFit(map['fit']) ?? BoxFit.contain,
       );
     }
 

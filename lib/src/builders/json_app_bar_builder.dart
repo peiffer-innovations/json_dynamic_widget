@@ -27,7 +27,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
     this.title,
     this.titleSpacing,
     this.toolbarOpacity,
-  });
+  }) : super(preferredSizeWidget: true);
 
   static const type = 'app_bar';
 
@@ -83,14 +83,20 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeIconThemeData]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonAppBarBuilder fromDynamic(dynamic map) {
+  static JsonAppBarBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonAppBarBuilder result;
 
     if (map != null) {
       result = JsonAppBarBuilder(
         actions: JsonClass.fromDynamicList(
           map['actions'],
-          (map) => JsonWidgetData.fromDynamic(map),
+          (map) => JsonWidgetData.fromDynamic(
+            map,
+            registry: registry,
+          ),
         ),
         actionsIconTheme: ThemeDecoder.decodeIconThemeData(
           map['actionsIconTheme'],
@@ -99,7 +105,10 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
             ? true
             : JsonClass.parseBool(map['automaticallyImplyLeading']),
         backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
-        bottom: JsonWidgetData.fromDynamic(map['bottom']),
+        bottom: JsonWidgetData.fromDynamic(
+          map['bottom'],
+          registry: registry,
+        ),
         bottomOpacity: JsonClass.parseDouble(map['bottomOpacity'], 1.0),
         brightness: ThemeDecoder.decodeBrightness(map['brightness']),
         centerTitle: map['centerTitle'] == null
@@ -108,14 +117,23 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         elevation: JsonClass.parseDouble(map['elevation']),
         excludeHeaderSemantics:
             JsonClass.parseBool(map['excludeHeaderSemantics']),
-        flexibleSpace: JsonWidgetData.fromDynamic(map['flexibleSpace']),
+        flexibleSpace: JsonWidgetData.fromDynamic(
+          map['flexibleSpace'],
+          registry: registry,
+        ),
         iconTheme: ThemeDecoder.decodeIconThemeData(map['iconTheme']),
-        leading: JsonWidgetData.fromDynamic(map['leading']),
+        leading: JsonWidgetData.fromDynamic(
+          map['leading'],
+          registry: registry,
+        ),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
         shape: ThemeDecoder.decodeShapeBorder(map['shape']),
         textTheme: ThemeDecoder.decodeTextTheme(map['textTheme']),
-        title: JsonWidgetData.fromDynamic(map['title']),
+        title: JsonWidgetData.fromDynamic(
+          map['title'],
+          registry: registry,
+        ),
         titleSpacing: JsonClass.parseDouble(
           map['titleSpacing'],
           NavigationToolbar.kMiddleSpacing,

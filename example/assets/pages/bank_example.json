@@ -1,0 +1,251 @@
+{
+  "_credit": "https://dribbble.com/RikoSapto",
+  "type": "theme",
+  "args": {
+    "data": {
+      "backgroundColor": "#2c3ea4",
+      "primaryColor": "#2c3ea4",
+      "primaryColorBrightness": "dark",
+      "scaffoldBackgroundColor": "#2c3ea4"
+    }
+  },
+  "child": {
+    "type": "scaffold",
+    "args": {
+      "appBar": {
+        "type": "app_bar",
+        "args": {
+          "elevation": 0,
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Bank Example"
+            }
+          }
+        }
+      },
+      "body": {
+        "type": "single_child_scroll_view",
+        "child": {
+          "type": "container",
+          "args": {
+            "padding": {
+              "top": 20
+            },
+            "width": "infinity"
+          },
+          "child": {
+            "type": "column",
+            "args": {
+              "crossAxisAlignment": "center"
+            },
+            "children": [
+              {
+                "type": "dotted_border",
+                "args": {
+                  "color": "#fff",
+                  "dashPattern": [
+                    6,
+                    6
+                  ]
+                },
+                "child": {
+                  "type": "container",
+                  "args": {
+                    "height": 100,
+                    "margin": 8,
+                    "width": 100
+                  },
+                  "child": {
+                    "type": "clip_rrect",
+                    "args": {
+                      "borderRadius": {
+                        "type": "circular",
+                        "radius": 50
+                      }
+                    },
+                    "child": {
+                      "type": "asset_image",
+                      "args": {
+                        "name": "assets/images/profile.jpg"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "sized_box",
+                "args": {
+                  "height": 16.0
+                }
+              },
+              {
+                "type": "text",
+                "args": {
+                  "text": "Jane Doe",
+                  "style": {
+                    "color": "#fff",
+                    "fontSize": 18
+                  }
+                }
+              },
+              {
+                "type": "sized_box",
+                "args": {
+                  "height": 16.0
+                }
+              },
+              {
+                "type": "row",
+                "args": {
+                  "crossAxisAlignment": "end",
+                  "mainAxisSize": "min"
+                },
+                "children": [
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": {
+                        "bottom": 4
+                      }
+                    },
+                    "child": {
+                      "type": "text",
+                      "args": {
+                        "text": "$",
+                        "style": {
+                          "color": "#fff"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "sized_box",
+                    "args": {
+                      "width": 4
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "28,520",
+                      "style": {
+                        "color": "#fff",
+                        "fontSize": 24
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sized_box",
+                "args": {
+                  "height": 24
+                }
+              },
+              {
+                "type": "row",
+                "args": {
+                  "crossAxisAlignment": "center"
+                },
+                "children": [
+                  {
+                    "type": "container",
+                    "args": {
+                      "alignment": "center",
+                      "decoration": {
+                        "border": {
+                          "color": "#6d78b6",
+                          "width": 1
+                        },
+                        "shape": "circle"
+                      },
+                      "padding": 4
+                    },
+                    "child": {
+                      "type": "icon",
+                      "args": {
+                        "color": "#fff",
+                        "icon": {
+                          "codePoint": "0xe5db",
+                          "fontFamily": "MaterialIcons"
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "args": {
+                      "alignment": "center",
+                      "decoration": {
+                        "border": {
+                          "color": "#6d78b6",
+                          "width": 1
+                        },
+                        "shape": "circle"
+                      },
+                      "padding": 4
+                    },
+                    "child": {
+                      "type": "icon",
+                      "args": {
+                        "color": "#fff",
+                        "icon": {
+                          "codePoint": "0xe5d8",
+                          "fontFamily": "MaterialIcons"
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "sized_box",
+                "args": {
+                  "height": 24
+                }
+              },
+              {
+                "type": "row",
+                "args": {
+                  "width": 4
+                },
+                "children": [
+                  {
+                    "type": "padding",
+                    "args": {
+                      "padding": [
+                        16,
+                        8
+                      ]
+                    },
+                    "child": {
+                      "type": "material",
+                      "args": {
+                        "borderRadius": {
+                          "type": "circular",
+                          "radius": 8
+                        },
+                        "color": "#5871dd"
+                      },
+                      "child": {
+                        "type": "padding",
+                        "args": {
+                          "padding": 24
+                        },
+                        "child": {
+                          "type": "column",
+                          "children": []
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

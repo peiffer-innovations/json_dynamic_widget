@@ -40,7 +40,10 @@ class JsonIconBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeIconData]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonIconBuilder fromDynamic(dynamic map) {
+  static JsonIconBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonIconBuilder result;
 
     if (map != null) {

@@ -94,12 +94,16 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBlendMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeImageRepeat]
-  static JsonAssetImageBuilder fromDynamic(dynamic map) {
+  static JsonAssetImageBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonAssetImageBuilder result;
 
     if (map != null) {
       result = JsonAssetImageBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
+        alignment:
+            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
         cacheHeight: JsonClass.parseInt(map['cacheHeight']),
         cacheWidth: JsonClass.parseInt(map['cacheWidth']),
         centerSlice: ThemeDecoder.decodeRect(map['centerSlice']),
@@ -107,7 +111,8 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
         colorBlendMode: ThemeDecoder.decodeBlendMode(map['colorBlendMode']),
         errorBuilder: map['errorBuilder'],
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
-        filterQuality: ThemeDecoder.decodeFilterQuality(map['filterQuality']),
+        filterQuality: ThemeDecoder.decodeFilterQuality(map['filterQuality']) ??
+            FilterQuality.low,
         fit: ThemeDecoder.decodeBoxFit(map['fit']),
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
@@ -115,7 +120,8 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
         name: map['name'],
         package: map['package'],
-        repeat: ThemeDecoder.decodeImageRepeat(map['imageRepeat']),
+        repeat: ThemeDecoder.decodeImageRepeat(map['imageRepeat']) ??
+            ImageRepeat.noRepeat,
         scale: JsonClass.parseDouble(map['scale']),
         semanticLabel: map['semanticLabel'],
         width: JsonClass.parseDouble(map['width']),

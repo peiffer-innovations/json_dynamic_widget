@@ -41,7 +41,10 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMainAxisSize]
   ///  * [ThemeDecoder.decodeTextBaseline]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonColumnBuilder fromDynamic(dynamic map) {
+  static JsonColumnBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonColumnBuilder result;
 
     if (map != null) {

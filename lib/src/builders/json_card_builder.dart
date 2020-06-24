@@ -49,12 +49,15 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonCardBuilder fromDynamic(dynamic map) {
+  static JsonCardBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonCardBuilder result;
     if (map != null) {
       result = JsonCardBuilder(
         borderOnForeground: map['borderOnForeground'] == null
-            ? null
+            ? true
             : JsonClass.parseBool(
                 map['borderOnForeground'],
               ),
@@ -63,7 +66,7 @@ class JsonCardBuilder extends JsonWidgetBuilder {
         elevation: JsonClass.parseDouble(map['elevation']),
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(map['margin']),
         semanticContainer: map['semanticContainer'] == null
-            ? null
+            ? true
             : JsonClass.parseBool(
                 map['semanticContainer'],
               ),

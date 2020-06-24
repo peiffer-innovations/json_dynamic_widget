@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -20,6 +18,7 @@ class JsonWidgetRegistry {
   /// widget [builders], custom widget [functions], and widget [values].
   JsonWidgetRegistry({
     Map<String, JsonClassBuilder<JsonWidgetBuilder>> builders,
+    this.debugLabel,
     Map<String, JsonWidgetFunction> functions,
     Map<String, dynamic> values,
   }) {
@@ -28,11 +27,14 @@ class JsonWidgetRegistry {
     _values.addAll(values ?? {});
   }
 
-  static final JsonWidgetRegistry instance = JsonWidgetRegistry();
+  static final JsonWidgetRegistry instance = JsonWidgetRegistry(
+    debugLabel: 'default',
+  );
 
   final _customBuilders = <String, JsonClassBuilder<JsonWidgetBuilder>>{};
+  final String debugLabel;
   final _functions = <String, JsonWidgetFunction>{};
-  final _internalBuilders = <String, JsonClassBuilder<JsonWidgetBuilder>>{
+  final _internalBuilders = <String, JsonWidgetBuilderBuilder>{
     JsonAlignBuilder.type: JsonAlignBuilder.fromDynamic,
     JsonAppBarBuilder.type: JsonAppBarBuilder.fromDynamic,
     JsonAspectRatioBuilder.type: JsonAspectRatioBuilder.fromDynamic,
@@ -53,6 +55,8 @@ class JsonWidgetRegistry {
     JsonIconBuilder.type: JsonIconBuilder.fromDynamic,
     JsonIndexedStackBuilder.type: JsonIndexedStackBuilder.fromDynamic,
     JsonInkWellBuilder.type: JsonInkWellBuilder.fromDynamic,
+    JsonListTileBuilder.type: JsonListTileBuilder.fromDynamic,
+    JsonListViewBuilder.type: JsonListViewBuilder.fromDynamic,
     JsonMaterialBuilder.type: JsonMaterialBuilder.fromDynamic,
     JsonMemoryImageBuilder.type: JsonMemoryImageBuilder.fromDynamic,
     JsonNetworkImageBuilder.type: JsonNetworkImageBuilder.fromDynamic,
@@ -63,6 +67,7 @@ class JsonWidgetRegistry {
     JsonRowBuilder.type: JsonRowBuilder.fromDynamic,
     JsonSafeAreaBuilder.type: JsonSafeAreaBuilder.fromDynamic,
     JsonScaffoldBuilder.type: JsonScaffoldBuilder.fromDynamic,
+    JsonSetValueBuilder.type: JsonSetValueBuilder.fromDynamic,
     JsonSingleChildScrollViewBuilder.type:
         JsonSingleChildScrollViewBuilder.fromDynamic,
     JsonSizedBoxBuilder.type: JsonSizedBoxBuilder.fromDynamic,
@@ -111,10 +116,10 @@ class JsonWidgetRegistry {
   ///
   /// If no builder is registered for the given [type] then this will throw an
   /// [Exception].
-  JsonClassBuilder<JsonWidgetBuilder> getWidgetBuilder(String type) {
+  JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
     assert(type != null);
 
-    JsonClassBuilder<JsonWidgetBuilder> builder;
+    JsonWidgetBuilderBuilder builder;
 
     builder = _customBuilders[type] ?? _internalBuilders[type];
 
@@ -140,10 +145,13 @@ class JsonWidgetRegistry {
         List<dynamic> functionArgs;
         for (var item in parsed) {
           if (item.isFunction == true) {
+            dynamicKeys.add(null);
+
             functionKey = item.key;
             functionArgs = [];
           } else if (item.isVariable == true) {
             dynamicKeys.add(item.key);
+
             var value = getValue(item.key);
             functionArgs?.add(value);
 
@@ -170,12 +178,24 @@ class JsonWidgetRegistry {
       }
     } else if (args is Map) {
       result = {};
-      args.forEach((key, value) {
-        result[key] = processDynamicArgs(
-          value,
-          dynamicKeys: dynamicKeys,
-        ).values;
-      });
+
+      if (args['type'] != null &&
+          (args['child'] != null ||
+              args['children'] != null ||
+              args['args'] != null)) {
+        // The entry has a "type" and one of: "child", "children", "args".  This
+        // means the item is most like a JsonWidgetData class, so we should not
+        // process the args yet.  We should wait until the actual JsonWidgetData
+        // gets built.
+        result = args;
+      } else {
+        args.forEach((key, value) {
+          result[key] = processDynamicArgs(
+            value,
+            dynamicKeys: dynamicKeys,
+          ).values;
+        });
+      }
     } else {
       result = args;
     }
@@ -228,6 +248,9 @@ class JsonWidgetRegistry {
     _values[key] = value;
     _valueStreamController?.add(key);
   }
+
+  @override
+  String toString() => 'JsonWidgetRegistry{$debugLabel}';
 
   /// Removes a registered [type] from the custom registry and returns the
   /// associated builder, if one exists.  If the [type] is not registered then

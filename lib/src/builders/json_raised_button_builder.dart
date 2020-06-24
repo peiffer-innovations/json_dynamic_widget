@@ -114,7 +114,10 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeButtonTextTheme]
   ///  * [ThemeDecoder.decodeVisualDensity]
-  static JsonRaisedButtonBuilder fromDynamic(dynamic map) {
+  static JsonRaisedButtonBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonRaisedButtonBuilder result;
 
     if (map != null) {

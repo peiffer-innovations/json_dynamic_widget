@@ -22,12 +22,15 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
   ///   "flex": <double>
   /// }
   /// ```
-  static JsonExpandedBuilder fromDynamic(dynamic map) {
+  static JsonExpandedBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonExpandedBuilder result;
 
     if (map != null) {
       result = JsonExpandedBuilder(
-        flex: JsonClass.parseInt(map['flex']),
+        flex: JsonClass.parseInt(map['flex'], 1),
       );
     }
 

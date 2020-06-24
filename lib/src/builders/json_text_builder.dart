@@ -69,7 +69,10 @@ class JsonTextBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeTextHeightBehavior]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [ThemeDecoder.decodeTextWidthBasis]
-  static JsonTextBuilder fromDynamic(dynamic map) {
+  static JsonTextBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonTextBuilder result;
     if (map != null) {
       result = JsonTextBuilder(

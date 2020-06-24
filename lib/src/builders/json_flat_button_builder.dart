@@ -96,7 +96,10 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeButtonTextTheme]
   ///  * [ThemeDecoder.decodeVisualDensity]
-  static JsonFlatButtonBuilder fromDynamic(dynamic map) {
+  static JsonFlatButtonBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonFlatButtonBuilder result;
 
     if (map != null) {

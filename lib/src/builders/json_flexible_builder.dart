@@ -29,13 +29,16 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeFlexFit]
-  static JsonFlexibleBuilder fromDynamic(dynamic map) {
+  static JsonFlexibleBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonFlexibleBuilder result;
 
     if (map != null) {
       result = JsonFlexibleBuilder(
-        fit: ThemeDecoder.decodeFlexFit(map['fit']),
-        flex: JsonClass.parseInt(map['flex']),
+        fit: ThemeDecoder.decodeFlexFit(map['fit']) ?? FlexFit.loose,
+        flex: JsonClass.parseInt(map['flex'], 1),
       );
     }
 

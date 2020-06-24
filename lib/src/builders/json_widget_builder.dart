@@ -11,9 +11,15 @@ import 'package:meta/meta.dart';
 /// [JsonWidgetRegistry].
 @immutable
 abstract class JsonWidgetBuilder {
-  /// Builds the widget by optionally wrapping it in the [Theme] should one be
-  /// set.  Subclasses should not override this and should instead implement the
-  /// [buildCustom] function instead.
+  /// Constructs the builder by stating whether the widget being built is a
+  /// [PreferredSizeWidget] or not.
+  JsonWidgetBuilder({
+    this.preferredSizeWidget = false,
+  }) : assert(preferredSizeWidget != null);
+
+  final bool preferredSizeWidget;
+
+  /// Builds the widget.
   @nonVirtual
   Widget build({
     @required ChildWidgetBuilder childBuilder,
@@ -21,16 +27,17 @@ abstract class JsonWidgetBuilder {
     @required JsonWidgetData data,
   }) {
     Widget result;
-    if (data.dynamicKeys?.isNotEmpty == true) {
-      result = _JsonWidgetStateful(
+
+    if (preferredSizeWidget == true || data.dynamicKeys?.isNotEmpty != true) {
+      result = _buildWidget(
         childBuilder: childBuilder,
-        customBuilder: buildCustom,
+        context: context,
         data: data,
       );
     } else {
-      result = _JsonWidgetStateless(
+      result = _JsonWidgetStateful(
         childBuilder: childBuilder,
-        customBuilder: buildCustom,
+        customBuilder: _buildWidget,
         data: data,
       );
     }
@@ -47,33 +54,28 @@ abstract class JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   });
-}
 
-class _JsonWidgetStateless extends StatelessWidget {
-  _JsonWidgetStateless({
-    @required this.childBuilder,
-    @required this.customBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(childBuilder != null),
-        assert(customBuilder != null),
-        assert(data != null),
-        super(key: key);
+  /// Called when a JSON widget is removed from the tree due to a conditional.
+  /// Custom widgets may need to implement this to clean up values that may have
+  /// been placed on the [JsonWidgetRegistry] by the widget.
+  ///
+  /// If you override this, make sure to end your method with a call to
+  /// super.remove(data).
+  @mustCallSuper
+  void remove(JsonWidgetData data) {
+    for (var child in data.children ?? []) {
+      child.data.builder.remove(data: data);
+    }
+  }
 
-  final ChildWidgetBuilder childBuilder;
-  final Widget Function({
-    ChildWidgetBuilder childBuilder,
+  Widget _buildWidget({
+    @required ChildWidgetBuilder childBuilder,
     @required BuildContext context,
     @required JsonWidgetData data,
-    Key key,
-  }) customBuilder;
-  final JsonWidgetData data;
-
-  @override
-  Widget build(BuildContext context) {
+  }) {
     var key = data.id?.isNotEmpty == true ? ValueKey(data.id) : null;
 
-    var widget = customBuilder(
+    var widget = buildCustom(
       childBuilder: childBuilder,
       context: context,
       data: data,
@@ -93,23 +95,18 @@ class _JsonWidgetStateful extends StatefulWidget {
     @required this.childBuilder,
     @required this.customBuilder,
     @required this.data,
-    @required this.registry,
     Key key,
-  })  : assert(childBuilder != null),
-        assert(customBuilder != null),
+  })  : assert(customBuilder != null),
         assert(data != null),
-        assert(registry != null),
         super(key: key);
 
   final ChildWidgetBuilder childBuilder;
   final Widget Function({
-    ChildWidgetBuilder childBuilder,
+    @required ChildWidgetBuilder childBuilder,
     @required BuildContext context,
     @required JsonWidgetData data,
-    Key key,
   }) customBuilder;
   final JsonWidgetData data;
-  final JsonWidgetRegistry registry;
 
   @override
   _JsonWidgetStatefulState createState() => _JsonWidgetStatefulState();
@@ -125,7 +122,7 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
     super.initState();
 
     data = widget.data;
-    _subscription = widget.registry.valueStream.listen((event) {
+    _subscription = widget.data.registry.valueStream.listen((event) {
       if (data.dynamicKeys?.contains(null) == true ||
           data.dynamicKeys?.contains(event) == true) {
         data = data.recreate();
@@ -145,9 +142,9 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
   }
 
   @override
-  Widget build(BuildContext context) => _JsonWidgetStateless(
+  Widget build(BuildContext context) => widget.customBuilder(
         childBuilder: widget.childBuilder,
-        customBuilder: widget.customBuilder,
+        context: context,
         data: data,
       );
 }

@@ -62,7 +62,10 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMatrix4]
-  static JsonContainerBuilder fromDynamic(dynamic map) {
+  static JsonContainerBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonContainerBuilder result;
     if (map != null) {
       result = JsonContainerBuilder(
@@ -93,8 +96,8 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
     Key key,
   }) {
     assert(
-      data.children?.length == 1,
-      '[JsonContainerBuilder] only supports exactly one child.',
+      data.children?.length == 1 || data.children?.isNotEmpty != true,
+      '[JsonContainerBuilder] only supports zero or one child.',
     );
 
     return Container(
@@ -109,10 +112,12 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
       padding: padding,
       transform: transform,
       width: width,
-      child: data.children[0].build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
+      child: data.children?.length != 1
+          ? null
+          : data.children[0].build(
+              childBuilder: childBuilder,
+              context: context,
+            ),
     );
   }
 }

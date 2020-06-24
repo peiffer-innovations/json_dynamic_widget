@@ -1,1 +1,8 @@
-typedef JsonWidgetFunction = dynamic Function(Iterable<dynamic> args);
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+typedef JsonWidgetFunction = dynamic Function(List<dynamic> args);
+
+typedef JsonWidgetBuilderBuilder = JsonWidgetBuilder Function(
+  dynamic map, {
+  JsonWidgetRegistry registry,
+});

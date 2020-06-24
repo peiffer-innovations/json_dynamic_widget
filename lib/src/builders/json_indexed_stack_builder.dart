@@ -37,14 +37,18 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeAlignment]
   ///  * [ThemeDecoder.decodeStackFit]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonIndexedStackBuilder fromDynamic(dynamic map) {
+  static JsonIndexedStackBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonIndexedStackBuilder result;
 
     if (map != null) {
       result = JsonIndexedStackBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
-        index: JsonClass.parseInt(map['index']),
-        sizing: ThemeDecoder.decodeStackFit(map['sizing']),
+        alignment: ThemeDecoder.decodeAlignment(map['alignment']) ??
+            AlignmentDirectional.topStart,
+        index: JsonClass.parseInt(map['index'], 0),
+        sizing: ThemeDecoder.decodeStackFit(map['sizing']) ?? StackFit.loose,
         textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
       );
     }

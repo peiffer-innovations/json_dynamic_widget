@@ -41,7 +41,10 @@ class JsonRowBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMainAxisSize]
   ///  * [ThemeDecoder.decodeTextBaseline]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonRowBuilder fromDynamic(dynamic map) {
+  static JsonRowBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonRowBuilder result;
 
     if (map != null) {

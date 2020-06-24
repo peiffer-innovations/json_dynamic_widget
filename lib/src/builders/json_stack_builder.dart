@@ -37,14 +37,18 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeStackFit]
   ///  * [ThemeDecoder.decodeOverflow]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonStackBuilder fromDynamic(dynamic map) {
+  static JsonStackBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonStackBuilder result;
 
     if (map != null) {
       result = JsonStackBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
-        fit: ThemeDecoder.decodeStackFit(map['fit']),
-        overflow: ThemeDecoder.decodeOverflow(map['overflow']),
+        alignment: ThemeDecoder.decodeAlignment(map['alignment']) ??
+            AlignmentDirectional.topStart,
+        fit: ThemeDecoder.decodeStackFit(map['fit']) ?? StackFit.loose,
+        overflow: ThemeDecoder.decodeOverflow(map['overflow']) ?? Overflow.clip,
         textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
       );
     }

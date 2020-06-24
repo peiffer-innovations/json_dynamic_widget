@@ -37,7 +37,10 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
   ///   "width": <double>
   /// }
   /// ```
-  static JsonPositionedBuilder fromDynamic(dynamic map) {
+  static JsonPositionedBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonPositionedBuilder result;
 
     if (map != null) {

@@ -22,14 +22,17 @@ void main() {
         'twoPointFive': '{{twoPointFive}}',
         'constant': 'constant',
       }),
-      {
-        'one': 1,
-        'false': false,
-        'string': 'foo',
-        'true': true,
-        'twoPointFive': 2.5,
-        'constant': 'constant',
-      },
+      DynamicParamsResult(
+        dynamicKeys: {'one', 'false', 'string', 'true', 'twoPointFive'},
+        values: {
+          'one': 1,
+          'false': false,
+          'string': 'foo',
+          'true': true,
+          'twoPointFive': 2.5,
+          'constant': 'constant',
+        },
+      ),
     );
 
     expect(
@@ -41,14 +44,17 @@ void main() {
         '{{twoPointFive}}',
         'constant'
       ]),
-      [
-        1,
-        false,
-        'foo',
-        true,
-        2.5,
-        'constant',
-      ],
+      DynamicParamsResult(
+        dynamicKeys: {'one', 'false', 'string', 'true', 'twoPointFive'},
+        values: [
+          1,
+          false,
+          'foo',
+          true,
+          2.5,
+          'constant',
+        ],
+      ),
     );
     expect(
       registry.processDynamicArgs({
@@ -60,15 +66,18 @@ void main() {
           'twoPointFive': '{{twoPointFive}}'
         },
       }),
-      {
-        'nested': {
-          'one': 1,
-          'false': false,
-          'string': 'foo',
-          'true': true,
-          'twoPointFive': 2.5,
+      DynamicParamsResult(
+        dynamicKeys: {'one', 'false', 'string', 'true', 'twoPointFive'},
+        values: {
+          'nested': {
+            'one': 1,
+            'false': false,
+            'string': 'foo',
+            'true': true,
+            'twoPointFive': 2.5,
+          },
         },
-      },
+      ),
     );
   });
 
@@ -91,13 +100,31 @@ void main() {
       },
     );
 
-    expect(registry.processDynamicArgs('##test()##'), '');
+    expect(
+      registry.processDynamicArgs('##test()##'),
+      DynamicParamsResult(
+        dynamicKeys: {null},
+        values: '',
+      ),
+    );
     expect(result, '');
 
-    expect(registry.processDynamicArgs('##test({{one}})##'), '1');
+    expect(
+      registry.processDynamicArgs('##test({{one}})##'),
+      DynamicParamsResult(
+        dynamicKeys: {null, 'one'},
+        values: '1',
+      ),
+    );
     expect(result, '1');
 
-    expect(registry.processDynamicArgs('##test(foo)##'), 'foo');
+    expect(
+      registry.processDynamicArgs('##test(foo)##'),
+      DynamicParamsResult(
+        dynamicKeys: {null},
+        values: 'foo',
+      ),
+    );
     expect(result, 'foo');
 
     expect(
@@ -107,12 +134,15 @@ void main() {
           'bar': '{{twoPointFive}}',
         },
       }),
-      {
-        'nested': {
-          'foo': 'foo|1',
-          'bar': 2.5,
+      DynamicParamsResult(
+        dynamicKeys: {null, 'one', 'twoPointFive'},
+        values: {
+          'nested': {
+            'foo': 'foo|1',
+            'bar': 2.5,
+          },
         },
-      },
+      ),
     );
     expect(result, 'foo|1');
 
@@ -123,11 +153,14 @@ void main() {
               '##test( {{one}}, {{false}} ,  {{string}}, {{true}}, {{twoPointFive}}, constant  )##',
         },
       }),
-      {
-        'nested': {
-          'foo': '1|false|foo|true|2.5|constant',
+      DynamicParamsResult(
+        dynamicKeys: {null, 'one', 'false', 'string', 'true', 'twoPointFive'},
+        values: {
+          'nested': {
+            'foo': '1|false|foo|true|2.5|constant',
+          },
         },
-      },
+      ),
     );
     expect(result, '1|false|foo|true|2.5|constant');
 
@@ -139,13 +172,16 @@ void main() {
           '{{one}}',
         ],
       }),
-      {
-        'nested': [
-          'foo',
-          'cons tant|1|false|foo|true|2.5|constant',
-          1,
-        ],
-      },
+      DynamicParamsResult(
+        dynamicKeys: {null, 'one', 'false', 'string', 'true', 'twoPointFive'},
+        values: {
+          'nested': [
+            'foo',
+            'cons tant|1|false|foo|true|2.5|constant',
+            1,
+          ],
+        },
+      ),
     );
     expect(result, 'cons tant|1|false|foo|true|2.5|constant');
   });

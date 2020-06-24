@@ -25,7 +25,10 @@ class JsonPaddingBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
-  static JsonPaddingBuilder fromDynamic(dynamic map) {
+  static JsonPaddingBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonPaddingBuilder result;
 
     if (map != null) {

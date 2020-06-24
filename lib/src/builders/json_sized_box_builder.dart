@@ -25,7 +25,10 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
   ///   "width": <double>
   /// }
   /// ```
-  static JsonSizedBoxBuilder fromDynamic(dynamic map) {
+  static JsonSizedBoxBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonSizedBoxBuilder result;
     if (map != null) {
       result = JsonSizedBoxBuilder(
@@ -45,17 +48,19 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
     Key key,
   }) {
     assert(
-      data.children?.length == 1,
-      '[JsonSizedBoxBuilder] only supports exactly one child.',
+      data.children?.length == 1 || data.children?.isNotEmpty != true,
+      '[JsonSizedBoxBuilder] only supports zero or one child.',
     );
 
     return SizedBox(
       height: height,
       width: width,
-      child: data.children[0].build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
+      child: data.children?.length != 1
+          ? null
+          : data.children[0].build(
+              childBuilder: childBuilder,
+              context: context,
+            ),
     );
   }
 }

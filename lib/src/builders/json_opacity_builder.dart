@@ -25,14 +25,16 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
   ///   "opacity": <double>
   /// }
   /// ```
-  static JsonOpacityBuilder fromDynamic(dynamic map) {
+  static JsonOpacityBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonOpacityBuilder result;
 
     if (map != null) {
       result = JsonOpacityBuilder(
-        alwaysIncludeSemantics: map['alwaysIncludeSemantics'] == null
-            ? null
-            : JsonClass.parseBool(map['alwaysIncludeSemantics']),
+        alwaysIncludeSemantics:
+            JsonClass.parseBool(map['alwaysIncludeSemantics']),
         opacity: JsonClass.parseDouble(map['opacity']),
       );
     }

@@ -90,17 +90,34 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeActionButtonLocation]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeFloatingActionButtonAnimator]
-  static JsonScaffoldBuilder fromDynamic(dynamic map) {
+  static JsonScaffoldBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonScaffoldBuilder result;
     if (map != null) {
       result = JsonScaffoldBuilder(
-        appBar: JsonWidgetData.fromDynamic(map['appBar']),
+        appBar: JsonWidgetData.fromDynamic(
+          map['appBar'],
+          registry: registry,
+        ),
         backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
-        body: JsonWidgetData.fromDynamic(map['body']),
-        bottomNavigationBar:
-            JsonWidgetData.fromDynamic(map['bottomNavigationBar']),
-        bottomSheet: JsonWidgetData.fromDynamic(map['bottomSheet']),
-        drawer: JsonWidgetData.fromDynamic(map['drawer']),
+        body: JsonWidgetData.fromDynamic(
+          map['body'],
+          registry: registry,
+        ),
+        bottomNavigationBar: JsonWidgetData.fromDynamic(
+          map['bottomNavigationBar'],
+          registry: registry,
+        ),
+        bottomSheet: JsonWidgetData.fromDynamic(
+          map['bottomSheet'],
+          registry: registry,
+        ),
+        drawer: JsonWidgetData.fromDynamic(
+          map['drawer'],
+          registry: registry,
+        ),
         drawerDragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
                 map['drawerDragStartBehavior']) ??
             DragStartBehavior.start,
@@ -109,7 +126,10 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
             ? true
             : JsonClass.parseBool(map['drawerEnableOpenDragGesture']),
         drawerScrimColor: ThemeDecoder.decodeColor(map['drawerScrimColor']),
-        endDrawer: JsonWidgetData.fromDynamic(map['endDrawer']),
+        endDrawer: JsonWidgetData.fromDynamic(
+          map['endDrawer'],
+          registry: registry,
+        ),
         endDrawerEnableOpenDragGesture:
             map['endDrawerEnableOpenDragGesture'] == null
                 ? true
@@ -117,8 +137,10 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
         extendBody: JsonClass.parseBool(map['extendBody']),
         extendBodyBehindAppBar:
             JsonClass.parseBool(map['extendBodyBehindAppBar']),
-        floatingActionButton:
-            JsonWidgetData.fromDynamic(map['floatingActionButton']),
+        floatingActionButton: JsonWidgetData.fromDynamic(
+          map['floatingActionButton'],
+          registry: registry,
+        ),
         floatingActionButtonAnimator:
             ThemeDecoder.decodeFloatingActionButtonAnimator(
           map['floatingActionButtonAnimator'],
@@ -133,6 +155,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
                 map['persistentFooterButtons'],
                 (map) => JsonWidgetData.fromDynamic(
                   map['persistentFooterButtons'],
+                  registry: registry,
                 ),
               ),
         primary:

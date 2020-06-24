@@ -11,6 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  dotted_border: ^1.0.5
   json_dynamic_widget:
     path: ../
 
@@ -27,3 +28,4 @@ flutter:
   assets:
     - assets/images/
     - assets/pages/
+    - assets/widgets/

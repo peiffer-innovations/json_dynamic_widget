@@ -1,23 +1,74 @@
 import 'dart:convert';
 
+import 'package:example/src/dotted_border_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:logging/logging.dart';
 
 import 'src/full_widget_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Logger.root.onRecord.listen((record) {
+    debugPrint('${record.level.name}: ${record.time}: ${record.message}');
+  });
+
   var navigatorKey = GlobalKey<NavigatorState>();
+  var dataStr = await rootBundle.loadString('assets/pages/image_page.json');
+  var imagePageJson = json.decode(dataStr);
 
   var registry = JsonWidgetRegistry.instance;
-  registry.setValue(
-    'navigateToImage',
-    () => navigatorKey.currentState.push(
+  registry.registerCustomBuilder(
+    DottedBorderBuilder.type,
+    DottedBorderBuilder.fromDynamic,
+  );
+  registry.registerFunction('navigatePage', (args) async {
+    var jsonStr = await rootBundle.loadString('assets/pages/${args[0]}.json');
+    var jsonData = json.decode(jsonStr);
+    await navigatorKey.currentState.push(
       MaterialPageRoute(
-        builder: (BuildContext context) {},
+        builder: (BuildContext context) => FullWidgetPage(
+          data: JsonWidgetData.fromDynamic(
+            jsonData,
+            registry: registry,
+          ),
+        ),
       ),
-    ),
+    );
+  });
+  registry.registerFunction(
+    'getImageAsset',
+    (args) => 'assets/images/image${args[0]}.jpg',
+  );
+  registry.registerFunction(
+    'getImageId',
+    (args) => 'image${args[0]}',
+  );
+
+  registry.registerFunction(
+    'getImageNavigator',
+    (args) => () {
+      var registry = JsonWidgetRegistry(
+        debugLabel: 'ImagePage',
+        values: {
+          'imageAsset': 'assets/images/image${args[0]}.jpg',
+          'imageTag': 'image${args[0]}',
+        },
+      );
+
+      navigatorKey.currentState.push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => FullWidgetPage(
+            data: JsonWidgetData.fromDynamic(
+              imagePageJson,
+              registry: registry,
+            ),
+          ),
+        ),
+      );
+    },
   );
 
   runApp(MyApp(
@@ -49,6 +100,10 @@ class RootPage extends StatelessWidget {
   }) : super(key: key);
 
   static const _pages = [
+    'asset_images',
+    'bank_example',
+    'images',
+    'list_view',
     'simple_page',
   ];
 

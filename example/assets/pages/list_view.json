@@ -1,0 +1,410 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "List View"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "list_view",
+      "children": [{
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "One"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Two"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Three"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Four"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Five"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Six"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Seven"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Eight"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Nine"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Ten"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Eleven"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twelve"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirteen"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Fourteen"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Fifteen"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Sixteen"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Seventeen"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Eighteen"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Nineteen"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty One"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Two"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Three"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Four"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Five"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Six"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Seven"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Eight"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Twenty Nine"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty One"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Two"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Three"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Four"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Five"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Six"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Seven"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Eight"
+            }
+          }
+        }
+      }, {
+        "type": "list_tile",
+        "args": {
+          "title": {
+            "type": "text",
+            "args": {
+              "text": "Thirty Nine"
+            }
+          }
+        }
+      }]
+    }
+  }
+}

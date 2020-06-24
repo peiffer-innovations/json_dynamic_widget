@@ -94,7 +94,10 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBlendMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeImageRepeat]
-  static JsonMemoryImageBuilder fromDynamic(dynamic map) {
+  static JsonMemoryImageBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonMemoryImageBuilder result;
 
     if (map != null) {
@@ -104,7 +107,8 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
       }
 
       result = JsonMemoryImageBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
+        alignment:
+            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
         cacheHeight: JsonClass.parseInt(map['cacheHeight']),
         cacheWidth: JsonClass.parseInt(map['cacheWidth']),
         centerSlice: ThemeDecoder.decodeRect(map['centerSlice']),
@@ -112,15 +116,17 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
         colorBlendMode: ThemeDecoder.decodeBlendMode(map['colorBlendMode']),
         errorBuilder: map['errorBuilder'],
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
-        filterQuality: ThemeDecoder.decodeFilterQuality(map['filterQuality']),
+        filterQuality: ThemeDecoder.decodeFilterQuality(map['filterQuality']) ??
+            FilterQuality.low,
         fit: ThemeDecoder.decodeBoxFit(map['fit']),
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
         height: JsonClass.parseDouble(map['height']),
         image: image,
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
-        repeat: ThemeDecoder.decodeImageRepeat(map['imageRepeat']),
-        scale: JsonClass.parseDouble(map['scale']),
+        repeat: ThemeDecoder.decodeImageRepeat(map['imageRepeat']) ??
+            ImageRepeat.noRepeat,
+        scale: JsonClass.parseDouble(map['scale'], 1.0),
         semanticLabel: map['semanticLabel'],
         width: JsonClass.parseDouble(map['width']),
       );

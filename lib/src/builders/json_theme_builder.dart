@@ -29,7 +29,10 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeThemeData]
-  static JsonThemeBuilder fromDynamic(dynamic map) {
+  static JsonThemeBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonThemeBuilder result;
     if (map != null) {
       result = JsonThemeBuilder(
@@ -49,7 +52,7 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
     Key key,
   }) {
     assert(
-      data.children?.length != 1,
+      data.children?.length == 1,
       '[JsonThemeBuilder] only supports exactly one child.',
     );
 

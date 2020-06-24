@@ -100,12 +100,16 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBlendMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeImageRepeat]
-  static JsonNetworkImageBuilder fromDynamic(dynamic map) {
+  static JsonNetworkImageBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonNetworkImageBuilder result;
 
     if (map != null) {
       result = JsonNetworkImageBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
+        alignment:
+            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
         cacheHeight: JsonClass.parseInt(map['cacheHeight']),
         cacheWidth: JsonClass.parseInt(map['cacheWidth']),
         centerSlice: ThemeDecoder.decodeRect(map['centerSlice']),
@@ -113,7 +117,8 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
         colorBlendMode: ThemeDecoder.decodeBlendMode(map['colorBlendMode']),
         errorBuilder: map['errorBuilder'],
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
-        filterQuality: ThemeDecoder.decodeFilterQuality(map['filterQuality']),
+        filterQuality: ThemeDecoder.decodeFilterQuality(map['filterQuality']) ??
+            FilterQuality.low,
         fit: ThemeDecoder.decodeBoxFit(map['fit']),
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
@@ -123,8 +128,9 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
             : Map<String, String>.from(map['headers']),
         loadingBuilder: map['loadingBuilder'],
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
-        repeat: ThemeDecoder.decodeImageRepeat(map['imageRepeat']),
-        scale: JsonClass.parseDouble(map['scale']),
+        repeat: ThemeDecoder.decodeImageRepeat(map['imageRepeat']) ??
+            ImageRepeat.noRepeat,
+        scale: JsonClass.parseDouble(map['scale'], 1.0),
         semanticLabel: map['semanticLabel'],
         src: map['src'],
         width: JsonClass.parseDouble(map['width']),

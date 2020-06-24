@@ -18,6 +18,8 @@ export 'src/builders/json_hero_builder.dart';
 export 'src/builders/json_icon_builder.dart';
 export 'src/builders/json_indexed_stack_builder.dart';
 export 'src/builders/json_ink_well_builder.dart';
+export 'src/builders/json_list_tile_builder.dart';
+export 'src/builders/json_list_view_builder.dart';
 export 'src/builders/json_material_builder.dart';
 export 'src/builders/json_memory_image_builder.dart';
 export 'src/builders/json_network_image_builder.dart';
@@ -28,6 +30,7 @@ export 'src/builders/json_raised_button_builder.dart';
 export 'src/builders/json_row_builder.dart';
 export 'src/builders/json_safe_area_builder.dart';
 export 'src/builders/json_scaffold_builder.dart';
+export 'src/builders/json_set_value_builder.dart';
 export 'src/builders/json_single_child_scroll_view_builder.dart';
 export 'src/builders/json_sized_box_builder.dart';
 export 'src/builders/json_stack_builder.dart';
@@ -41,5 +44,4 @@ export 'src/components/types.dart';
 
 export 'src/models/dynamic_params_result.dart';
 export 'src/models/json_widget_data.dart';
-
-export 'src/widgets/json_dynamic_widget.dart';
+export 'src/models/json_widget_type.dart';

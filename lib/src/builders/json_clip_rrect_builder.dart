@@ -29,13 +29,18 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeBorderRadius]
   ///  * [ThemeDecoder.decodeClip]
-  static JsonClipRRectBuilder fromDynamic(dynamic map) {
+  static JsonClipRRectBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonClipRRectBuilder result;
 
     if (map != null) {
       result = JsonClipRRectBuilder(
-        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']),
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
+        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']) ??
+            BorderRadius.zero,
+        clipBehavior:
+            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.antiAlias,
       );
     }
 

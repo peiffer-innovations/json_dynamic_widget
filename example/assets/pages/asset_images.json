@@ -15,205 +15,530 @@
     "body": {
       "type": "list_view",
       "children": [{
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image1"
+          "index": 1
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "name": "assets/images/image1.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image2"
+          "index": 2
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "name": "assets/images/image2.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image3"
+          "index": 3
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image3.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image4"
+          "index": 4
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image4.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image5"
+          "index": 5
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image5.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image6"
+          "index": 6
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image6.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image7"
+          "index": 7
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image7.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image8"
+          "index": 8
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image8.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image9"
+          "index": 9
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image9.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image10"
+          "index": 10
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image10.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image11"
+          "index": 11
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image11.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image12"
+          "index": 12
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image12.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image13"
+          "index": 13
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image13.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image14"
+          "index": 14
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image14.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image15"
+          "index": 15
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image15.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image16"
+          "index": 16
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image16.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }, {
-        "type": "hero",
+        "type": "set_value",
         "args": {
-          "tag": "image17"
+          "index": 17
         },
         "child": {
-          "type": "asset_image",
+          "type": "ink_well",
           "args": {
-            "fit": "fitWidth",
-            "name": "assets/images/image17.jpg"
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
           }
         }
       }]

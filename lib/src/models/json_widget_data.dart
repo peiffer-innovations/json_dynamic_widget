@@ -2,6 +2,7 @@ import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
 
 class JsonWidgetData extends JsonClass {
@@ -21,8 +22,10 @@ class JsonWidgetData extends JsonClass {
         ),
         assert(type != null),
         _args = args,
-        children = children ?? child == null ? null : [child],
+        children = children ?? (child == null ? null : [child]),
         dynamicKeys = dynamicKeys ?? {};
+
+  static final Logger _logger = Logger('JsonWidgetData');
 
   final JsonWidgetBuilder builder;
   final List<JsonWidgetData> children;
@@ -45,19 +48,33 @@ class JsonWidgetData extends JsonClass {
       var builder = registry.getWidgetBuilder(type);
       var dynamicParamsResult = registry.processDynamicArgs(map['args'] ?? {});
 
-      result = JsonWidgetData(
-        args: map['args'] ?? {},
-        builder: builder(dynamicParamsResult.values),
-        child: JsonWidgetData.fromDynamic(map['child']),
-        children: JsonClass.fromDynamicList(
-          map['children'],
-          JsonWidgetData.fromDynamic,
-        ),
-        dynamicKeys: dynamicParamsResult.dynamicKeys,
-        id: map['id'],
-        registry: registry,
-        type: type,
-      );
+      try {
+        result = JsonWidgetData(
+          args: map['args'] ?? {},
+          builder: builder(
+            dynamicParamsResult.values,
+            registry: registry,
+          ),
+          child: JsonWidgetData.fromDynamic(
+            map['child'],
+            registry: registry,
+          ),
+          children: JsonClass.fromDynamicList(
+            map['children'],
+            (dynamic map) => JsonWidgetData.fromDynamic(
+              map,
+              registry: registry,
+            ),
+          ),
+          dynamicKeys: dynamicParamsResult.dynamicKeys,
+          id: map['id'],
+          registry: registry,
+          type: type,
+        );
+      } catch (e, stack) {
+        _logger.severe('Error parsing data:\n$map', stack);
+        rethrow;
+      }
     }
 
     return result;
@@ -88,7 +105,10 @@ class JsonWidgetData extends JsonClass {
 
     return JsonWidgetData(
       args: _args,
-      builder: builder(dynamicParamsResult.values),
+      builder: builder(
+        dynamicParamsResult.values,
+        registry: registry,
+      ),
       children: children,
       dynamicKeys: dynamicParamsResult.dynamicKeys,
       id: id,

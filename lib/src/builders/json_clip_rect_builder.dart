@@ -25,12 +25,16 @@ class JsonClipRectBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeClip]
-  static JsonClipRectBuilder fromDynamic(dynamic map) {
+  static JsonClipRectBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonClipRectBuilder result;
 
     if (map != null) {
       result = JsonClipRectBuilder(
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
+        clipBehavior:
+            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
       );
     }
 

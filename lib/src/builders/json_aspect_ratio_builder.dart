@@ -22,7 +22,10 @@ class JsonAspectRatioBuilder extends JsonWidgetBuilder {
   ///   "aspectRatio": <double>
   /// }
   /// ```
-  static JsonAspectRatioBuilder fromDynamic(dynamic map) {
+  static JsonAspectRatioBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry registry,
+  }) {
     JsonAspectRatioBuilder result;
 
     if (map != null) {
