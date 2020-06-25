@@ -15,13 +15,13 @@ class JsonTextBuilder extends JsonWidgetBuilder {
     this.softWrap,
     this.strutStyle,
     this.style,
-    @required this.text,
+    String text,
     this.textAlign,
     this.textDirection,
     this.textHeightBehavior,
     this.textScaleFactor,
     this.textWidthBasis,
-  }) : assert(text != null);
+  }) : text = text ?? '';
 
   static const type = 'text';
 

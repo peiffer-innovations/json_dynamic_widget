@@ -8,6 +8,7 @@ export 'src/builders/json_center_builder.dart';
 export 'src/builders/json_clip_rect_builder.dart';
 export 'src/builders/json_clip_rrect_builder.dart';
 export 'src/builders/json_column_builder.dart';
+export 'src/builders/json_conditional_builder.dart';
 export 'src/builders/json_container_builder.dart';
 export 'src/builders/json_expanded_builder.dart';
 export 'src/builders/json_fitted_box_builder.dart';

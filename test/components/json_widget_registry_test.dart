@@ -85,7 +85,7 @@ void main() {
     String result;
     var registry = JsonWidgetRegistry(
       functions: {
-        'test': (args) {
+        'test': ({args, registry}) {
           result = args?.toList()?.join('|');
 
           return result;

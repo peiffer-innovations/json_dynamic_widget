@@ -1,0 +1,17 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/builders/json_ignore_pointer_builder.dart';
+
+void main() {
+  test('type', () {
+    const type = JsonIgnorePointerBuilder.type;
+
+    expect(type, 'ignore_pointer');
+    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonIgnorePointerBuilder,
+      true,
+    );
+  });
+}

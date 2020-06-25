@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:meta/meta.dart';
 
 /// Registry for both the library provided as well as custom form builders that
 /// the application may provide.
@@ -20,12 +22,45 @@ class JsonWidgetRegistry {
     Map<String, JsonClassBuilder<JsonWidgetBuilder>> builders,
     this.debugLabel,
     Map<String, JsonWidgetFunction> functions,
+    this.navigatorKey,
     Map<String, dynamic> values,
   }) {
     _customBuilders.addAll(builders ?? {});
     _functions.addAll(functions ?? {});
     _values.addAll(values ?? {});
   }
+
+  /// Function key for the built in `navigate_named` function.  The
+  /// `navigate_named` function requires that the [navigatorKey] has been set on
+  /// the registry before it is used or an exception will be thrown.
+  ///
+  /// When called, the `navigate_named` function will push a named route using
+  /// the [navigatorKey].
+  ///
+  /// The `navigate_named` function one or two values on the `args` array:
+  ///  1. [String] -- The name of the route to push.
+  ///  2. [dynamic] -- <Optional> object to pass along as the route arguments.
+  static const fun_key_navigate_named = 'navigate_named';
+
+  /// Function key for the built in `navigate_pop` function.  The `navigate_pop`
+  /// function requires that the [navigatorKey] has been set on the registry
+  /// before it is used or an exception will be thrown.
+  ///
+  /// When called, the `navigate_pop` function will call to pop the current
+  /// route off the navigator stack.
+  ///
+  /// The `navigate_pop` accepts a single optional value in the `args` array:
+  ///  1. [dynamic] -- <Optional> pop result
+  static const fun_key_navigate_pop = 'navigate_pop';
+
+  /// Function key for the built in `set_value` function.  The `set_value`
+  /// function accepts a key and a value and then calls the [setValue] function
+  /// with those values.
+  ///
+  /// The `set_value` function takes two values in the `args` array:
+  ///  1. [String] -- the key to pass to [setValue].
+  ///  2. [dynamic] -- the value to pass to [setValue].
+  static const fun_key_set_value = 'set_value';
 
   static final JsonWidgetRegistry instance = JsonWidgetRegistry(
     debugLabel: 'default',
@@ -45,6 +80,7 @@ class JsonWidgetRegistry {
     JsonClipRectBuilder.type: JsonClipRectBuilder.fromDynamic,
     JsonClipRRectBuilder.type: JsonClipRRectBuilder.fromDynamic,
     JsonColumnBuilder.type: JsonColumnBuilder.fromDynamic,
+    JsonConditionalBuilder.type: JsonConditionalBuilder.fromDynamic,
     JsonContainerBuilder.type: JsonContainerBuilder.fromDynamic,
     JsonExpandedBuilder.type: JsonExpandedBuilder.fromDynamic,
     JsonFittedBoxBuilder.type: JsonFittedBoxBuilder.fromDynamic,
@@ -75,20 +111,68 @@ class JsonWidgetRegistry {
     JsonTextBuilder.type: JsonTextBuilder.fromDynamic,
     JsonThemeBuilder.type: JsonThemeBuilder.fromDynamic,
   };
+  final _internalFunctions = <String, JsonWidgetFunction>{
+    fun_key_navigate_named: ({
+      @required List<dynamic> args,
+      @required JsonWidgetRegistry registry,
+    }) {
+      assert(registry.navigatorKey != null);
+
+      return () => registry.navigatorKey.currentState.pushNamed(
+            args[0],
+            arguments: args.length >= 2 ? args[1] : null,
+          );
+    },
+    fun_key_navigate_pop: ({
+      @required List<dynamic> args,
+      @required JsonWidgetRegistry registry,
+    }) {
+      assert(registry.navigatorKey != null);
+
+      return () => registry.navigatorKey.currentState.pop(
+            args?.isNotEmpty == true ? args[0] : null,
+          );
+    },
+    fun_key_set_value: ({
+      @required List<dynamic> args,
+      @required JsonWidgetRegistry registry,
+    }) =>
+        () => registry.setValue(
+              args[0],
+              args[1],
+            ),
+  };
   final _values = <String, dynamic>{};
 
   StreamController<String> _valueStreamController =
       StreamController<String>.broadcast();
+
+  /// A navigator key that is required in order to use the
+  /// [fun_key_navigate_named] and [fun_key_navigate_pop] functions.  This holds
+  /// the navigator state that will be used to push the named route to the
+  /// stack.
+  ///
+  /// For the key to be useful, it must have been also passed to an object that
+  /// maintains a navigation stack, such as a [MaterialApp].  Example:
+  /// ```dart
+  /// MaterialApp(
+  ///   navigatorKey: navigatorKey
+  /// )
+  /// ```
+  GlobalKey<NavigatorState> navigatorKey;
+
+  /// Returns an unmodifiable reference to the internal set of values.
+  Map<String, dynamic> get values => Map.unmodifiable(_values);
 
   /// Returns the [Stream] that an element can listen to in order to be notified
   /// when
   Stream<String> get valueStream => _valueStreamController?.stream;
 
   void clearValues() {
-    var keys = _values.keys;
+    var keys = Set<String>.from(_values.keys);
     _values.clear();
 
-    keys?.forEach((element) => _valueStreamController?.add(element));
+    keys.forEach((element) => _valueStreamController?.add(element));
   }
 
   void dispose() {
@@ -100,12 +184,15 @@ class JsonWidgetRegistry {
     String key,
     Iterable<dynamic> args,
   ) {
-    var fun = _functions[key];
+    var fun = _functions[key] ?? _internalFunctions[key];
     if (fun == null) {
       throw Exception('No function named "$key" found in the registry.');
     }
 
-    return fun(args);
+    return fun(
+      args: args,
+      registry: this,
+    );
   }
 
   dynamic getValue(String key) => _values[key];
@@ -220,6 +307,18 @@ class JsonWidgetRegistry {
     _customBuilders[type] = builder;
   }
 
+  /// Registers the custom builders.  This is a convenience method that calls
+  /// [registerCustomBuilder] for each entry in [builders].
+  void registerCustomBuilders(
+    Map<String, JsonClassBuilder<JsonWidgetBuilder>> builders,
+  ) =>
+      builders?.forEach((key, value) => registerCustomBuilder(key, value));
+
+  /// Registers the [key] as function name with the registry to be used in
+  /// function bindings.  Functions registered by the application take
+  /// precidence over built in registered functions.  This allows the
+  /// application the ability to provide custom functions even for built in
+  /// [key]'s.
   void registerFunction(
     String key,
     JsonWidgetFunction fun,
@@ -230,6 +329,11 @@ class JsonWidgetRegistry {
     _functions[key] = fun;
   }
 
+  /// Registers the function bindings.  This is a convenience method that calls
+  /// [registerFunction] for each entry in [functions].
+  void registerFunctions(Map<String, JsonWidgetFunction> functions) =>
+      functions?.forEach((key, value) => registerFunction(key, value));
+
   dynamic removeValue(String key) {
     assert(key?.isNotEmpty == true);
 
@@ -239,14 +343,27 @@ class JsonWidgetRegistry {
     return result;
   }
 
+  /// Sets the [value] for the [key] on the registry.  If the [value] is [null],
+  /// this redirects to [removeValue].
+  ///
+  /// If the [value] is different than the current value for the [key] then this
+  /// will fire an event on the [valueStream] with the [key] so listeners can be
+  /// notified that it has changed.
   void setValue(
     String key,
     dynamic value,
   ) {
     assert(key?.isNotEmpty == true);
 
-    _values[key] = value;
-    _valueStreamController?.add(key);
+    if (value == null) {
+      removeValue(key);
+    } else {
+      var current = _values[key];
+      if (current != value) {
+        _values[key] = value;
+        _valueStreamController?.add(key);
+      }
+    }
   }
 
   @override

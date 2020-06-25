@@ -19,7 +19,10 @@ abstract class JsonWidgetBuilder {
 
   final bool preferredSizeWidget;
 
-  /// Builds the widget.
+  /// Builds the widget.  If there are dynamic keys on the [data] object, and
+  /// the widget is not a [PreferredSizeWidget], then the returned widget will
+  /// be wrapped by a stateful widget that will rebuild if any of the dynamic
+  /// args change in value.
   @nonVirtual
   Widget build({
     @required ChildWidgetBuilder childBuilder,
@@ -63,8 +66,8 @@ abstract class JsonWidgetBuilder {
   /// super.remove(data).
   @mustCallSuper
   void remove(JsonWidgetData data) {
-    for (var child in data.children ?? []) {
-      child.data.builder.remove(data: data);
+    for (var child in data.children ?? <JsonWidgetData>[]) {
+      child.builder.remove(data);
     }
   }
 
@@ -113,19 +116,17 @@ class _JsonWidgetStateful extends StatefulWidget {
 }
 
 class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
-  JsonWidgetData data;
-
+  JsonWidgetData _data;
   StreamSubscription _subscription;
 
   @override
   void initState() {
     super.initState();
 
-    data = widget.data;
+    _data = widget.data;
     _subscription = widget.data.registry.valueStream.listen((event) {
-      if (data.dynamicKeys?.contains(null) == true ||
-          data.dynamicKeys?.contains(event) == true) {
-        data = data.recreate();
+      if (_data.dynamicKeys?.contains(event) == true) {
+        _data = _data.recreate();
         if (mounted == true) {
           setState(() {});
         }
@@ -142,9 +143,9 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
   }
 
   @override
-  Widget build(BuildContext context) => widget.customBuilder(
+  Widget build(BuildContext context) => _data.builder.buildCustom(
         childBuilder: widget.childBuilder,
         context: context,
-        data: data,
+        data: _data,
       );
 }

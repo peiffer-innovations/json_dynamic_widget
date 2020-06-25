@@ -12,6 +12,7 @@ class JsonRowBuilder extends JsonWidgetBuilder {
     this.mainAxisSize,
     this.textBaseline,
     this.textDirection,
+    this.verticalDirection,
   });
 
   static const type = 'row';
@@ -21,6 +22,7 @@ class JsonRowBuilder extends JsonWidgetBuilder {
   final MainAxisSize mainAxisSize;
   final TextBaseline textBaseline;
   final TextDirection textDirection;
+  final VerticalDirection verticalDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -31,7 +33,8 @@ class JsonRowBuilder extends JsonWidgetBuilder {
   ///   "mainAxisAlignment": <MainAxisAlignment>,
   ///   "mainAxisSize": <MainAxisSize>,
   ///   "textBaseline": <TextBaseline>,
-  ///   "textDirection": <TextDirection>
+  ///   "textDirection": <TextDirection>,
+  ///   "verticalDirection": <VerticalDirection>
   /// }
   /// ```
   ///
@@ -41,6 +44,7 @@ class JsonRowBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMainAxisSize]
   ///  * [ThemeDecoder.decodeTextBaseline]
   ///  * [ThemeDecoder.decodeTextDirection]
+  ///  * [ThemeDecoder.decodeVerticalDirection]
   static JsonRowBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
@@ -52,15 +56,18 @@ class JsonRowBuilder extends JsonWidgetBuilder {
         crossAxisAlignment: ThemeDecoder.decodeCrossAxisAlignment(
               map['crossAxisAlignment'],
             ) ??
-            CrossAxisAlignment.start,
+            CrossAxisAlignment.center,
         mainAxisAlignment: ThemeDecoder.decodeMainAxisAlignment(
               map['mainAxisAlignment'],
             ) ??
             MainAxisAlignment.start,
         mainAxisSize: ThemeDecoder.decodeMainAxisSize(map['mainAxisSize']) ??
-            MainAxisSize.min,
+            MainAxisSize.max,
         textBaseline: ThemeDecoder.decodeTextBaseline(map['textBaseline']),
         textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        verticalDirection:
+            ThemeDecoder.decodeVerticalDirection(map['verticalDirection']) ??
+                VerticalDirection.down,
       );
     }
 
@@ -80,6 +87,7 @@ class JsonRowBuilder extends JsonWidgetBuilder {
       mainAxisSize: mainAxisSize,
       textBaseline: textBaseline,
       textDirection: textDirection,
+      verticalDirection: verticalDirection,
       children: [
         for (var child in data.children ?? [])
           child.build(

@@ -49,8 +49,8 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSafeAreaBuilder(
-        bottom: map['bottom'] == true
-            ? null
+        bottom: map['bottom'] == null
+            ? true
             : JsonClass.parseBool(
                 map['bottom'],
               ),

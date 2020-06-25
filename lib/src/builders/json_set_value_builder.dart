@@ -1,5 +1,6 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that sets a value (or group of values) to the [JsonWidgetRegistry].
@@ -26,6 +27,8 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
   /// Where the `key` is any arbitrary [String].  That `key` will be used as the
   /// `key` on [JsonWidgetRegistry.setValue] and the [dynamic] value will be
   /// used as the `value`.
+  ///
+  /// It's recommended against using
   static JsonSetValueBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
@@ -49,14 +52,16 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
     Key key,
   }) {
     assert(
-      data.children?.length == 1,
-      '[JsonSetValueBuilder] only supports exactly one child.',
+      data.children?.length == 1 || data.children?.isNotEmpty != true,
+      '[JsonSetValueBuilder] only supports zero or one child.',
     );
 
-    return data.children[0].build(
-      childBuilder: childBuilder,
-      context: context,
-    );
+    return data.children?.isNotEmpty == true
+        ? data.children[0].build(
+            childBuilder: childBuilder,
+            context: context,
+          )
+        : SizedBox();
   }
 
   @override

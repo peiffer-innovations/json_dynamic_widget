@@ -72,8 +72,11 @@ class JsonWidgetData extends JsonClass {
           type: type,
         );
       } catch (e, stack) {
-        _logger.severe('Error parsing data:\n$map', stack);
-        rethrow;
+        if (e is _HandledJsonWidgetException) {
+          rethrow;
+        }
+        _logger.severe('Error parsing data:\n$map', e, stack);
+        throw _HandledJsonWidgetException(e, stack);
       }
     }
 
@@ -125,4 +128,12 @@ class JsonWidgetData extends JsonClass {
         'id': id,
         'type': type,
       });
+}
+
+@immutable
+class _HandledJsonWidgetException implements Exception {
+  _HandledJsonWidgetException(this.e, this.stack);
+
+  final dynamic e;
+  final StackTrace stack;
 }

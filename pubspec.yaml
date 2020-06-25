@@ -15,17 +15,19 @@ dependencies:
     sdk: flutter
   child_builder: ^1.0.0+1
   json_class: ^1.0.3
-  json_conditional: ^1.0.0+1
-  json_theme: ^1.0.4
+  json_conditional: ^1.0.2
+  json_theme: ^1.0.7
   logging: ^0.11.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-dependency_overrides:
-  json_theme:
-    path: ../json_theme
+# dependency_overrides:
+#   json_conditional:
+#     path: ../json_conditional
+#   json_theme:
+#     path: ../json_theme
 
 flutter:
   uses-material-design: true
