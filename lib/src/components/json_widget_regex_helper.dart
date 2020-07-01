@@ -60,11 +60,13 @@ class JsonWidgetRegexHelper {
 @immutable
 class JsonWidgetParams {
   JsonWidgetParams({
+    this.isDeferred = false,
     this.isFunction = false,
     this.isVariable = false,
     @required this.key,
   }) : assert(key?.isNotEmpty == true);
 
+  final bool isDeferred;
   final bool isFunction;
   final bool isVariable;
   final String key;
@@ -74,6 +76,7 @@ class JsonWidgetParams {
     var result = false;
     if (other is JsonWidgetParams) {
       result = true;
+      result = result && isDeferred == other.isDeferred;
       result = result && isFunction == other.isFunction;
       result = result && isVariable == other.isVariable;
       result = result && key == other.key;
@@ -83,9 +86,9 @@ class JsonWidgetParams {
   }
 
   @override
-  int get hashCode => '$key.$isFunction.$isVariable'.hashCode;
+  int get hashCode => '$key.$isDeferred.$isFunction.$isVariable'.hashCode;
 
   @override
   String toString() =>
-      'JsonWidgetParams{isFunction: $isFunction, isVariable: $isVariable, key: "$key"}';
+      'JsonWidgetParams{isDeferred: $isDeferred, isFunction: $isFunction, isVariable: $isVariable, key: "$key"}';
 }

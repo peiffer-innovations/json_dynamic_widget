@@ -41,9 +41,15 @@ class JsonWidgetData extends JsonClass {
     JsonWidgetRegistry registry,
   }) {
     JsonWidgetData result;
-    if (map != null) {
-      registry ??= JsonWidgetRegistry.instance;
+    registry ??= JsonWidgetRegistry.instance;
 
+    if (map is String && map.startsWith('{{') && map.endsWith('}}')) {
+      var key = map.substring(2, map.length - 2).trim();
+      result = DeferredJsonWidgetData(
+        key: key,
+        registry: registry,
+      );
+    } else if (map != null) {
       var type = map['type'];
       var builder = registry.getWidgetBuilder(type);
       var dynamicParamsResult = registry.processDynamicArgs(map['args'] ?? {});

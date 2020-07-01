@@ -120,6 +120,7 @@ class RootPage extends StatelessWidget {
     'images',
     'list_view',
     'simple_page',
+    'theme',
   ];
 
   Future<void> _onPageSelected(BuildContext context, String themeId) async {

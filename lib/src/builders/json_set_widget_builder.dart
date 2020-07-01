@@ -5,37 +5,45 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that sets a value (or group of values) to the [JsonWidgetRegistry].
 /// This doesn't actually have a widget and instead simply returns the child's
 /// built widget.  See the [fromDynamic] for the format.
-class JsonSetValueBuilder extends JsonWidgetBuilder {
-  JsonSetValueBuilder({
-    this.values,
+class JsonSetWidgetBuilder extends JsonWidgetBuilder {
+  JsonSetWidgetBuilder({
+    this.widgets,
   });
 
-  static const type = 'set_value';
+  static const type = 'set_widget';
 
-  final dynamic values;
+  final Map<String, JsonWidgetData> widgets;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
-  ///   "<key>": <dynamic>
+  ///   "<key>": <JsonWidgetData>
   /// }
   /// ```
   ///
   /// Where the `key` is any arbitrary [String].  That `key` will be used as the
-  /// `key` on [JsonWidgetRegistry.setValue] and the [dynamic] value will be
-  /// used as the `value`.
-  static JsonSetValueBuilder fromDynamic(
+  /// `key` on [JsonWidgetRegistry.setValue] and the [JsonWidgetData] value
+  /// will be used as the `value`.
+  ///
+  /// See also:
+  ///  * [JsonWidgetData.fromDynamic]
+  static JsonSetWidgetBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
   }) {
-    JsonSetValueBuilder result;
+    JsonSetWidgetBuilder result;
 
     if (map != null) {
-      result = JsonSetValueBuilder(values: map);
+      var widgets = <String, JsonWidgetData>{};
+      map.forEach(
+        (key, value) => widgets[key] = JsonWidgetData.fromDynamic(value),
+      );
+
+      result = JsonSetWidgetBuilder(widgets: widgets);
       registry ??= JsonWidgetRegistry.instance;
-      result.values?.forEach((key, value) => registry.setValue(key, value));
+      result.widgets?.forEach((key, value) => registry.setValue(key, value));
     }
 
     return result;
@@ -50,7 +58,7 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
   }) {
     assert(
       data.children?.length == 1 || data.children?.isNotEmpty != true,
-      '[JsonSetValueBuilder] only supports zero or one child.',
+      '[JsonSetWidgetBuilder] only supports zero or one child.',
     );
 
     return data.children?.isNotEmpty == true
@@ -63,7 +71,7 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
 
   @override
   void remove(JsonWidgetData data) {
-    values?.forEach((key, _) => data.registry.removeValue(key));
+    widgets?.forEach((key, _) => data.registry.removeValue(key));
 
     super.remove(data);
   }

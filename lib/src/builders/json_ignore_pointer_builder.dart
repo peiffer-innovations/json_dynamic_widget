@@ -11,7 +11,7 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
     this.ignoringSemantics,
   });
 
-  static const type = 'align';
+  static const type = 'ignore_pointer';
 
   final bool ignoring;
   final bool ignoringSemantics;

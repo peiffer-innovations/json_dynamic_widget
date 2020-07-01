@@ -32,6 +32,7 @@ export 'src/builders/json_row_builder.dart';
 export 'src/builders/json_safe_area_builder.dart';
 export 'src/builders/json_scaffold_builder.dart';
 export 'src/builders/json_set_value_builder.dart';
+export 'src/builders/json_set_widget_builder.dart';
 export 'src/builders/json_single_child_scroll_view_builder.dart';
 export 'src/builders/json_sized_box_builder.dart';
 export 'src/builders/json_stack_builder.dart';
@@ -43,6 +44,7 @@ export 'src/components/json_widget_regex_helper.dart';
 export 'src/components/json_widget_registry.dart';
 export 'src/components/types.dart';
 
+export 'src/models/deferred_json_widget_data.dart';
 export 'src/models/dynamic_params_result.dart';
 export 'src/models/json_widget_data.dart';
 export 'src/models/json_widget_type.dart';

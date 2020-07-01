@@ -67,7 +67,7 @@ abstract class JsonWidgetBuilder {
   @mustCallSuper
   void remove(JsonWidgetData data) {
     for (var child in data.children ?? <JsonWidgetData>[]) {
-      child.builder.remove(data);
+      child.builder.remove(child);
     }
   }
 

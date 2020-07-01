@@ -136,6 +136,7 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
     _conditional = widget.conditional;
     _keys = widget.keys;
     _data = widget.data;
+    _onFalse = widget.onFalse;
     _subscription = widget.data.registry.valueStream.listen(
       _handleSubscription,
     );

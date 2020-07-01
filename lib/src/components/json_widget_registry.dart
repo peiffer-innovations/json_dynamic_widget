@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/builders/json_ignore_pointer_builder.dart';
 import 'package:meta/meta.dart';
 
 /// Registry for both the library provided as well as custom form builders that
@@ -89,6 +90,7 @@ class JsonWidgetRegistry {
     JsonGestureDetectorBuilder.type: JsonGestureDetectorBuilder.fromDynamic,
     JsonHeroBuilder.type: JsonHeroBuilder.fromDynamic,
     JsonIconBuilder.type: JsonIconBuilder.fromDynamic,
+    JsonIgnorePointerBuilder.type: JsonIgnorePointerBuilder.fromDynamic,
     JsonIndexedStackBuilder.type: JsonIndexedStackBuilder.fromDynamic,
     JsonInkWellBuilder.type: JsonInkWellBuilder.fromDynamic,
     JsonListTileBuilder.type: JsonListTileBuilder.fromDynamic,
@@ -104,6 +106,7 @@ class JsonWidgetRegistry {
     JsonSafeAreaBuilder.type: JsonSafeAreaBuilder.fromDynamic,
     JsonScaffoldBuilder.type: JsonScaffoldBuilder.fromDynamic,
     JsonSetValueBuilder.type: JsonSetValueBuilder.fromDynamic,
+    JsonSetWidgetBuilder.type: JsonSetWidgetBuilder.fromDynamic,
     JsonSingleChildScrollViewBuilder.type:
         JsonSingleChildScrollViewBuilder.fromDynamic,
     JsonSizedBoxBuilder.type: JsonSizedBoxBuilder.fromDynamic,

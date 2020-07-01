@@ -32,3 +32,10 @@ flutter:
     - assets/images/
     - assets/pages/
     - assets/widgets/
+  fonts:
+    - family: lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+    - family: metal
+      fonts:
+        - asset: assets/fonts/MetalMania-Regular.ttf
