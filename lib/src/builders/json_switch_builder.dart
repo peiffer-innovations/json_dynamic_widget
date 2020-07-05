@@ -1,45 +1,52 @@
 import 'package:child_builder/child_builder.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build an [Checkbox] widget.  See the [fromDynamic] for the
+/// Builder that can build an [Switch] widget.  See the [fromDynamic] for the
 /// format.
-class JsonCheckboxBuilder extends JsonWidgetBuilder {
-  JsonCheckboxBuilder({
+class JsonSwitchBuilder extends JsonWidgetBuilder {
+  JsonSwitchBuilder({
     this.activeColor,
+    this.activeTrackColor,
     this.autofocus,
     this.autovalidate,
-    this.checkColor,
+    this.dragStartBehavior,
     this.enabled,
     this.focusColor,
     this.focusNode,
     this.hoverColor,
+    this.inactiveThumbColor,
+    this.inactiveTrackColor,
     this.label,
     this.materialTapTargetSize,
     this.onChanged,
-    this.tristate,
+    this.trackColor,
     this.validator,
     this.value,
     this.visualDensity,
   });
 
-  static const type = 'checkbox';
+  static const type = 'switch';
 
   final Color activeColor;
+  final Color activeTrackColor;
   final bool autofocus;
   final bool autovalidate;
-  final Color checkColor;
+  final DragStartBehavior dragStartBehavior;
   final bool enabled;
   final Color focusColor;
   final FocusNode focusNode;
   final Color hoverColor;
+  final Color inactiveThumbColor;
+  final Color inactiveTrackColor;
   final String label;
   final MaterialTapTargetSize materialTapTargetSize;
   final ValueChanged<bool> onChanged;
-  final bool tristate;
+  final Color trackColor;
   final Validator validator;
   final bool value;
   final VisualDensity visualDensity;
@@ -50,55 +57,62 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "activeColor": <Color>,
+  ///   "activeTrackColor": <Color>,
   ///   "autofocus": <bool>,
   ///   "autovalidate": <bool>,
-  ///   "checkColor": <Color>,
+  ///   "dragStartBehavior": <DragStartBehavior>,
   ///   "enabled": <bool>,
   ///   "focusColor": <Color>,
   ///   "focusNode": <FocusNode>,
   ///   "hoverColor": <Color>,
+  ///   "inactiveThumbColor": <Color>,
+  ///   "inactiveTrackColor": <Color>,
   ///   "label": <String>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "onChanged": <ValueChanged<bool>>,
-  ///   "tristate": <bool>,
+  ///   "onChanged": <ValueCallback<bool>>,
+  ///   "trackColor": <Color>,
   ///   "validators": <ValueValidator[]>,
   ///   "value": <bool>,
   ///   "visualDensity": <VisualDensity>,
   /// }
   /// ```
   ///
-  /// As a note, the [FocusNode] and [ValueChanged<bool>] cannot be decoded via
-  /// JSON.  Instead, the only way to bind those values to the builder is to use
-  /// a function or a variable reference via the [JsonWidgetRegistry].
+  /// As a note, the [FocusNode] and the [ValueCallback<bool>] cannot be decoded
+  /// via JSON.  Instead, the only way to bind those values to the builder is to
+  /// use a function or a variable reference via the [JsonWidgetRegistry].
   ///
   /// See also:
   ///  * [buildCustom]
   ///  * [ThemeDecoder.decodeColor]
-  ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
+  ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
-  static JsonCheckboxBuilder fromDynamic(
+  static JsonSwitchBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
   }) {
-    JsonCheckboxBuilder result;
+    JsonSwitchBuilder result;
 
     if (map != null) {
-      result = JsonCheckboxBuilder(
+      result = JsonSwitchBuilder(
         activeColor: ThemeDecoder.decodeColor(map['activeColor']),
+        activeTrackColor: ThemeDecoder.decodeColor(map['activeTrackColor']),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidate: JsonClass.parseBool(map['autovalidate']),
-        checkColor: ThemeDecoder.decodeColor(map['checkColor']),
+        dragStartBehavior:
+            ThemeDecoder.decodeDragStartBehavior(map['dragStartBehavior']) ??
+                DragStartBehavior.start,
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         focusColor: ThemeDecoder.decodeColor(map['focusColor']),
         focusNode: map['focusNode'],
         hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
+        inactiveThumbColor: ThemeDecoder.decodeColor(map['inactiveThumbColor']),
+        inactiveTrackColor: ThemeDecoder.decodeColor(map['inactiveTrackColor']),
         label: map['label'],
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
             map['materialTapTargetSize']),
         onChanged: map['onChanged'],
-        tristate: JsonClass.parseBool(map['tristate']),
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
@@ -137,13 +151,13 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   }) {
     assert(
       data.children?.isNotEmpty != true,
-      '[JsonCheckboxBuilder] does not support children.',
+      '[JsonSwitchBuilder] does not support children.',
     );
 
     return FormField<bool>(
       autovalidate: autovalidate,
       enabled: enabled,
-      initialValue: value ?? tristate != true ? false : null,
+      initialValue: value,
       validator: validator == null
           ? null
           : (value) {
@@ -162,13 +176,16 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
       builder: (FormFieldState state) => MergeSemantics(
         child: Semantics(
           label: label ?? '',
-          child: Checkbox(
+          child: Switch(
             activeColor: activeColor,
+            activeTrackColor: activeTrackColor,
             autofocus: autofocus,
-            checkColor: checkColor,
+            dragStartBehavior: dragStartBehavior,
             focusColor: focusColor,
             focusNode: focusNode,
             hoverColor: hoverColor,
+            inactiveThumbColor: inactiveThumbColor,
+            inactiveTrackColor: inactiveTrackColor,
             materialTapTargetSize: materialTapTargetSize,
             onChanged: enabled != true
                 ? null
@@ -183,9 +200,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
                       data.registry.setValue(data.id, value);
                     }
                   },
-            tristate: tristate,
             value: state.value,
-            visualDensity: visualDensity,
           ),
         ),
       ),

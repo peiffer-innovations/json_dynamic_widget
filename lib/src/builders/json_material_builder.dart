@@ -14,10 +14,12 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     this.clipBehavior,
     this.color,
     this.elevation,
+    this.margin,
+    this.materialType,
+    this.padding,
     this.shadowColor,
     this.shape,
     this.textStyle,
-    this.materialType,
   });
 
   static const type = 'material';
@@ -28,10 +30,12 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   final Clip clipBehavior;
   final Color color;
   final double elevation;
+  final EdgeInsetsGeometry margin;
+  final MaterialType materialType;
+  final EdgeInsetsGeometry padding;
   final Color shadowColor;
   final ShapeBorder shape;
   final TextStyle textStyle;
-  final MaterialType materialType;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -44,7 +48,9 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///   "clipBehavior": <Clip>,
   ///   "color": <Color>,
   ///   "elevation": <double>,
+  ///   "margin": <EdgeInsetsGeometry>,
   ///   "materialType": <MaterialType>,
+  ///   "padding": <EdgeInsetsGeometry>,
   ///   "shadowColor": <Color>,
   ///   "shape": <ShapeBorder>,
   ///   "textStyle": <TextStyle>
@@ -55,6 +61,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBorderRadius]
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeColor]
+  ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMaterialType]
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeTextStyle]
@@ -76,8 +83,10 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
         clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.none,
         color: ThemeDecoder.decodeColor(map['color']),
         elevation: JsonClass.parseDouble(map['elevation'], 0),
+        margin: ThemeDecoder.decodeEdgeInsetsGeometry(map['margin']),
         materialType:
             ThemeDecoder.decodeMaterialType(map['type']) ?? MaterialType.canvas,
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
         shadowColor:
             ThemeDecoder.decodeColor(map['color']) ?? const Color(0xFF000000),
         shape: ThemeDecoder.decodeShapeBorder(map['shape']),
@@ -100,7 +109,12 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
       '[JsonMaterialBuilder] only supports exactly one child.',
     );
 
-    return Material(
+    var child = data.children[0].build(
+      childBuilder: childBuilder,
+      context: context,
+    );
+
+    Widget result = Material(
       animationDuration: animationDuration,
       borderOnForeground: borderOnForeground,
       borderRadius: borderRadius,
@@ -111,10 +125,21 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
       shape: shape,
       textStyle: textStyle,
       type: materialType,
-      child: data.children[0].build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
+      child: padding == null
+          ? child
+          : Padding(
+              padding: padding,
+              child: child,
+            ),
     );
+
+    if (margin != null) {
+      result = Padding(
+        padding: margin,
+        child: result,
+      );
+    }
+
+    return result;
   }
 }

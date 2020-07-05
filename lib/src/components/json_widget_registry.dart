@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/builders/json_ignore_pointer_builder.dart';
 import 'package:meta/meta.dart';
 
 /// Registry for both the library provided as well as custom form builders that
@@ -85,16 +84,20 @@ class JsonWidgetRegistry {
     JsonConditionalBuilder.type: JsonConditionalBuilder.fromDynamic,
     JsonContainerBuilder.type: JsonContainerBuilder.fromDynamic,
     JsonCupertinoSwitchBuilder.type: JsonCupertinoSwitchBuilder.fromDynamic,
+    JsonDropdownButtonFormFieldBuilder.type:
+        JsonDropdownButtonFormFieldBuilder.fromDynamic,
     JsonExpandedBuilder.type: JsonExpandedBuilder.fromDynamic,
     JsonFittedBoxBuilder.type: JsonFittedBoxBuilder.fromDynamic,
     JsonFlatButtonBuilder.type: JsonFlatButtonBuilder.fromDynamic,
     JsonFlexibleBuilder.type: JsonFlexibleBuilder.fromDynamic,
+    JsonFormBuilder.type: JsonFormBuilder.fromDynamic,
     JsonGestureDetectorBuilder.type: JsonGestureDetectorBuilder.fromDynamic,
     JsonHeroBuilder.type: JsonHeroBuilder.fromDynamic,
     JsonIconBuilder.type: JsonIconBuilder.fromDynamic,
     JsonIgnorePointerBuilder.type: JsonIgnorePointerBuilder.fromDynamic,
     JsonIndexedStackBuilder.type: JsonIndexedStackBuilder.fromDynamic,
     JsonInkWellBuilder.type: JsonInkWellBuilder.fromDynamic,
+    JsonInputErrorBuilder.type: JsonInputErrorBuilder.fromDynamic,
     JsonListTileBuilder.type: JsonListTileBuilder.fromDynamic,
     JsonListViewBuilder.type: JsonListViewBuilder.fromDynamic,
     JsonMaterialBuilder.type: JsonMaterialBuilder.fromDynamic,
@@ -107,6 +110,7 @@ class JsonWidgetRegistry {
     JsonRaisedButtonBuilder.type: JsonRaisedButtonBuilder.fromDynamic,
     JsonRowBuilder.type: JsonRowBuilder.fromDynamic,
     JsonSafeAreaBuilder.type: JsonSafeAreaBuilder.fromDynamic,
+    JsonSaveContextBuilder.type: JsonSaveContextBuilder.fromDynamic,
     JsonScaffoldBuilder.type: JsonScaffoldBuilder.fromDynamic,
     JsonSetValueBuilder.type: JsonSetValueBuilder.fromDynamic,
     JsonSetWidgetBuilder.type: JsonSetWidgetBuilder.fromDynamic,
@@ -114,7 +118,9 @@ class JsonWidgetRegistry {
         JsonSingleChildScrollViewBuilder.fromDynamic,
     JsonSizedBoxBuilder.type: JsonSizedBoxBuilder.fromDynamic,
     JsonStackBuilder.type: JsonStackBuilder.fromDynamic,
+    JsonSwitchBuilder.type: JsonSwitchBuilder.fromDynamic,
     JsonTextBuilder.type: JsonTextBuilder.fromDynamic,
+    JsonTextFormFieldBuilder.type: JsonTextFormFieldBuilder.fromDynamic,
     JsonThemeBuilder.type: JsonThemeBuilder.fromDynamic,
   };
   final _internalFunctions = <String, JsonWidgetFunction>{

@@ -42,6 +42,13 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
   }
 
   @override
+  void remove(JsonWidgetData data) {
+    values?.forEach((key, _) => data.registry.removeValue(key));
+
+    super.remove(data);
+  }
+
+  @override
   Widget buildCustom({
     ChildWidgetBuilder childBuilder,
     @required BuildContext context,
@@ -59,12 +66,5 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
             context: context,
           )
         : SizedBox();
-  }
-
-  @override
-  void remove(JsonWidgetData data) {
-    values?.forEach((key, _) => data.registry.removeValue(key));
-
-    super.remove(data);
   }
 }

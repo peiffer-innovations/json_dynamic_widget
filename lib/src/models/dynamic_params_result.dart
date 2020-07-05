@@ -1,4 +1,3 @@
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:meta/meta.dart';
 
 @immutable

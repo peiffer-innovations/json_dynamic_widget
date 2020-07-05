@@ -10,7 +10,7 @@
             "title": {
               "type": "text",
               "args": {
-                "text": "Simple Page"
+                "text": "Theme"
               }
             }
           }
@@ -60,6 +60,78 @@
                     "args": {
                       "text": "Cool Blue"
                     }
+                  }
+                }
+              }, {
+                "type": "positioned",
+                "args": {
+                  "bottom": 80,
+                  "left": 16,
+                  "right": 16,
+                  "top": 0
+                },
+                "child": {
+                  "type": "single_child_scroll_view",
+                  "args": {
+                    "padding": [16, 0]
+                  },
+                  "child": {
+                    "type": "column",
+                    "args": {
+                      "mainAxisSize": "min"
+                    },
+                    "children": [{
+                      "type": "checkbox"
+                    }, {
+                      "type": "sized_box",
+                      "args": {
+                        "height": 16.0
+                      }
+                    }, {
+                      "type": "row",
+                      "args": {
+                        "mainAxisAlignment": "spaceEvenly"
+                      },
+                      "children": [{
+                        "type": "radio",
+                        "args": {
+                          "groupValue": "false",
+                          "value": true
+                        },
+                        "id": "radio"
+                      }, {
+                        "type": "radio",
+                        "args": {
+                          "groupValue": "false",
+                          "value": false
+                        },
+                        "id": "radio"
+                      }]
+                    }, {
+                      "type": "text",
+                      "args": {
+                        "text": "Hello, World!"
+                      }
+                    }, {
+                      "type": "sized_box",
+                      "args": {
+                        "height": 16.0
+                      }
+                    }, {
+                      "type": "text_form_field",
+                      "args": {
+                        "decoration": {
+                          "hintText": "example@example.com",
+                          "labelText": "Email Address"
+                        }
+                      },
+                      "id": "text_form_field"
+                    }, {
+                      "type": "sized_box",
+                      "args": {
+                        "height": 16.0
+                      }
+                    }]
                   }
                 }
               }]

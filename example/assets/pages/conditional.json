@@ -7,7 +7,7 @@
         "title": {
           "type": "text",
           "args": {
-            "text": "Simple Page"
+            "text": "Conditional"
           }
         }
       }
@@ -24,14 +24,12 @@
           "args": {
             "mainAxisSize": "max"
           },
-          "children": [
-            {
+          "children": [{
               "type": "row",
               "args": {
                 "mainAxisAlignment": "spaceEvenly"
               },
-              "children": [
-                {
+              "children": [{
                   "type": "raised_button",
                   "args": {
                     "onPressed": "##set_value(button, 1)##"
@@ -74,8 +72,7 @@
               "args": {
                 "mainAxisAlignment": "spaceEvenly"
               },
-              "children": [
-                {
+              "children": [{
                   "type": "flat_button",
                   "args": {
                     "onPressed": "##set_value(button, 4)##"
@@ -122,8 +119,7 @@
                   "args": {
                     "mainAxisSize": "min"
                   },
-                  "children": [
-                    {
+                  "children": [{
                       "type": "text",
                       "args": {
                         "text": "{{button}}"
@@ -131,8 +127,7 @@
                     },
                     {
                       "type": "stack",
-                      "children": [
-                        {
+                      "children": [{
                           "type": "conditional",
                           "args": {
                             "conditional": {

@@ -3,13 +3,13 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonIgnorePointerBuilder.type;
+    const type = JsonTextFormFieldBuilder.type;
 
-    expect(type, 'ignore_pointer');
+    expect(type, 'text_form_field');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
-          is JsonIgnorePointerBuilder,
+          is JsonTextFormFieldBuilder,
       true,
     );
   });

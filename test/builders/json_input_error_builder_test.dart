@@ -3,13 +3,14 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonIgnorePointerBuilder.type;
+    const type = JsonInputErrorBuilder.type;
 
-    expect(type, 'ignore_pointer');
+    expect(type, 'input_error');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
-          is JsonIgnorePointerBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
+        'text': 'foo',
+      }) is JsonInputErrorBuilder,
       true,
     );
   });

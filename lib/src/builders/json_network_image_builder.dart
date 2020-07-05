@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:child_builder/child_builder.dart';
@@ -86,6 +85,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   ///   "width": <double>
   /// }
   /// ```
+  ///
   /// The "image" attribute can be either a base64 encoded String, or a
   /// [Uint8List] returned via a function or variable reference using the
   /// [JsonWidgetRegistry].

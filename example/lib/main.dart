@@ -50,14 +50,10 @@ void main() async {
       ),
     );
   });
-  registry.registerFunction(
-    'getImageAsset',
-    ({args, registry}) => 'assets/images/image${args[0]}.jpg',
-  );
-  registry.registerFunction(
-    'getImageId',
-    ({args, registry}) => 'image${args[0]}',
-  );
+  registry.registerFunctions({
+    'getImageAsset': ({args, registry}) => 'assets/images/image${args[0]}.jpg',
+    'getImageId': ({args, registry}) => 'image${args[0]}',
+  });
 
   registry.registerFunction(
     'getImageNavigator',
@@ -117,6 +113,7 @@ class RootPage extends StatelessWidget {
     'asset_images',
     'bank_example',
     'conditional',
+    'form',
     'images',
     'list_view',
     'simple_page',
