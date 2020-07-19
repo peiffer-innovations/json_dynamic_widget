@@ -127,8 +127,14 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
         hint: JsonWidgetData.fromDynamic(map['hint']),
         icon: JsonWidgetData.fromDynamic(map['icon']),
         items: map['items'],
-        iconDisabledColor: ThemeDecoder.decodeColor(map['iconDisabledColor']),
-        iconEnabledColor: ThemeDecoder.decodeColor(map['iconEnabledColor']),
+        iconDisabledColor: ThemeDecoder.decodeColor(
+          map['iconDisabledColor'],
+          validate: false,
+        ),
+        iconEnabledColor: ThemeDecoder.decodeColor(
+          map['iconEnabledColor'],
+          validate: false,
+        ),
         iconSize: JsonClass.parseDouble(map['iconSize'], 24.0),
         isDense:
             map['isDense'] == null ? true : JsonClass.parseBool(map['isDense']),
@@ -141,7 +147,10 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
-        style: ThemeDecoder.decodeTextStyle(map['style']),
+        style: ThemeDecoder.decodeTextStyle(
+          map['style'],
+          validate: false,
+        ),
         value: map['value'],
       );
     }

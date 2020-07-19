@@ -120,7 +120,7 @@ class _JsonFormWidgetState extends State<_JsonFormWidget> {
         key: _key,
         onChanged: widget.builder.onChanged,
         onWillPop: widget.builder.onWillPop,
-        child: widget.data.build(
+        child: widget.data.children[0].build(
           childBuilder: widget.childBuilder,
           context: context,
         ),

@@ -100,17 +100,24 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         ),
         actionsIconTheme: ThemeDecoder.decodeIconThemeData(
           map['actionsIconTheme'],
+          validate: false,
         ),
         automaticallyImplyLeading: map['automaticallyImplyLeading'] == null
             ? true
             : JsonClass.parseBool(map['automaticallyImplyLeading']),
-        backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
+        backgroundColor: ThemeDecoder.decodeColor(
+          map['backgroundColor'],
+          validate: false,
+        ),
         bottom: JsonWidgetData.fromDynamic(
           map['bottom'],
           registry: registry,
         ),
         bottomOpacity: JsonClass.parseDouble(map['bottomOpacity'], 1.0),
-        brightness: ThemeDecoder.decodeBrightness(map['brightness']),
+        brightness: ThemeDecoder.decodeBrightness(
+          map['brightness'],
+          validate: false,
+        ),
         centerTitle: map['centerTitle'] == null
             ? null
             : JsonClass.parseBool(map['centerTitle']),
@@ -121,15 +128,24 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['flexibleSpace'],
           registry: registry,
         ),
-        iconTheme: ThemeDecoder.decodeIconThemeData(map['iconTheme']),
+        iconTheme: ThemeDecoder.decodeIconThemeData(
+          map['iconTheme'],
+          validate: false,
+        ),
         leading: JsonWidgetData.fromDynamic(
           map['leading'],
           registry: registry,
         ),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
-        shape: ThemeDecoder.decodeShapeBorder(map['shape']),
-        textTheme: ThemeDecoder.decodeTextTheme(map['textTheme']),
+        shape: ThemeDecoder.decodeShapeBorder(
+          map['shape'],
+          validate: false,
+        ),
+        textTheme: ThemeDecoder.decodeTextTheme(
+          map['textTheme'],
+          validate: false,
+        ),
         title: JsonWidgetData.fromDynamic(
           map['title'],
           registry: registry,

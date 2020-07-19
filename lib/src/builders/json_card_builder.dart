@@ -61,17 +61,32 @@ class JsonCardBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(
                 map['borderOnForeground'],
               ),
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
-        color: ThemeDecoder.decodeColor(map['color']),
+        clipBehavior: ThemeDecoder.decodeClip(
+          map['clipBehavior'],
+          validate: false,
+        ),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(map['elevation']),
-        margin: ThemeDecoder.decodeEdgeInsetsGeometry(map['margin']),
+        margin: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['margin'],
+          validate: false,
+        ),
         semanticContainer: map['semanticContainer'] == null
             ? true
             : JsonClass.parseBool(
                 map['semanticContainer'],
               ),
-        shadowColor: ThemeDecoder.decodeColor(map['color']),
-        shape: ThemeDecoder.decodeShapeBorder(map['shape']),
+        shadowColor: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
+        shape: ThemeDecoder.decodeShapeBorder(
+          map['shape'],
+          validate: false,
+        ),
       );
     }
 

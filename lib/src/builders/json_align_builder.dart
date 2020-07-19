@@ -40,7 +40,10 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonAlignBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
+        alignment: ThemeDecoder.decodeAlignment(
+          map['alignment'],
+          validate: false,
+        ),
         heightFactor: JsonClass.parseDouble(map['heightFactor']),
         widthFactor: JsonClass.parseDouble(map['widthFactor']),
       );

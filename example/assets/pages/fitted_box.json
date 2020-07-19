@@ -1,0 +1,41 @@
+{
+  "_designCredit": "https://androidmonks.com/fittedbox-widget/",
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "FittedBox"
+          }
+        }
+      }
+    },
+    "backgroundColor": "#e0e0e0",
+    "body": {
+      "type": "list_view",
+      "children": [{
+        "type": "fitted_box",
+        "child": {
+          "type": "row",
+          "children": [{
+            "type": "container",
+            "child": {
+              "type": "network_image",
+              "args": {
+                "src": "https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              }
+            }
+          }, {
+            "type": "text",
+            "args": {
+              "text": "This is a sample text to understand FittedBox widget"
+            }
+          }]
+        }
+      }]
+    }
+  }
+}

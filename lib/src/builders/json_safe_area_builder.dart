@@ -58,7 +58,10 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
         maintainBottomViewPadding: JsonClass.parseBool(
           map['maintainBottomViewPadding'],
         ),
-        minimum: ThemeDecoder.decodeEdgeInsetsGeometry(map['minimum']) ??
+        minimum: ThemeDecoder.decodeEdgeInsetsGeometry(
+              map['minimum'],
+              validate: false,
+            ) ??
             EdgeInsets.zero,
         right: map['right'] == null ? true : JsonClass.parseBool(map['right']),
         top: map['top'] == null ? true : JsonClass.parseBool(map['top']),

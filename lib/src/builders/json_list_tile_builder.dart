@@ -41,7 +41,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "contentPadding": <EdgeInsetsGeometry>,
-  ///   "dense": <dense>,
+  ///   "dense": <bool>,
   ///   "enabled": <bool>,
   ///   "isThreeLine": <bool>,
   ///   "leading": <JsonWidgetData>,
@@ -69,8 +69,10 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonListTileBuilder(
-        contentPadding:
-            ThemeDecoder.decodeEdgeInsetsGeometry(map['contentPadding']),
+        contentPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['contentPadding'],
+          validate: false,
+        ),
         dense: JsonClass.parseBool(map['dense']),
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),

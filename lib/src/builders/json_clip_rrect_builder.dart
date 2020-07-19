@@ -22,7 +22,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "borderRadius": <BorderRadius>,
-  ///   "clip": <Clip>
+  ///   "clipBehavior": <Clip>
   /// }
   /// ```
   ///
@@ -37,10 +37,16 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonClipRRectBuilder(
-        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']) ??
+        borderRadius: ThemeDecoder.decodeBorderRadius(
+              map['borderRadius'],
+              validate: false,
+            ) ??
             BorderRadius.zero,
-        clipBehavior:
-            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.antiAlias,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.antiAlias,
       );
     }
 

@@ -1,0 +1,136 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Opacity"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "column",
+        "args": {
+          "mainAxisSize": "min"
+        },
+        "children": [{
+          "type": "opacity",
+          "args": {
+            "opacity": "0.1"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.1"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.2"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.2"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.3"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.3"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.4"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.4"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.5"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.5"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.6"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.6"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.7"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.7"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.8"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.8"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "0.9"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "0.9"
+            }
+          }
+        }, {
+          "type": "opacity",
+          "args": {
+            "opacity": "1.0"
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "1.0"
+            }
+          }
+        }]
+      }
+    }
+  }
+}

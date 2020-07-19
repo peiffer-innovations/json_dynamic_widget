@@ -105,19 +105,34 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonInkWellBuilder(
         autofocus: JsonClass.parseBool(map['autofocus']),
-        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']),
+        borderRadius: ThemeDecoder.decodeBorderRadius(
+          map['borderRadius'],
+          validate: false,
+        ),
         canRequestFocus: map['canRequestFocus'] == null
             ? true
             : JsonClass.parseBool(map['canRequestFocus']),
-        customBorder: ThemeDecoder.decodeShapeBorder(map['customBorder']),
+        customBorder: ThemeDecoder.decodeShapeBorder(
+          map['customBorder'],
+          validate: false,
+        ),
         enableFeedback: map['enableFeedback'] == null
             ? true
             : JsonClass.parseBool(map['enableFeedback']),
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
-        focusColor: ThemeDecoder.decodeColor(map['focusColor']),
+        focusColor: ThemeDecoder.decodeColor(
+          map['focusColor'],
+          validate: false,
+        ),
         focusNode: map['focusNode'],
-        highlightColor: ThemeDecoder.decodeColor(map['highlightColor']),
-        hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
+        highlightColor: ThemeDecoder.decodeColor(
+          map['highlightColor'],
+          validate: false,
+        ),
+        hoverColor: ThemeDecoder.decodeColor(
+          map['hoverColor'],
+          validate: false,
+        ),
         onDoubleTap: map['onDoubleTap'],
         onFocusChange: map['onFocusChange'],
         onHighlightChanged: map['onHighlightChanged'],
@@ -127,9 +142,13 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
         onTapCancel: map['onTapCancel'],
         onTapDown: map['onTapDown'],
         radius: JsonClass.parseDouble(map['radius']),
-        splashColor: ThemeDecoder.decodeColor(map['splashColor']),
+        splashColor: ThemeDecoder.decodeColor(
+          map['splashColor'],
+          validate: false,
+        ),
         splashFactory: ThemeDecoder.decodeInteractiveInkFeatureFactory(
           map['splashFactory'],
+          validate: false,
         ),
       );
     }

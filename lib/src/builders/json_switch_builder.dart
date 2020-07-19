@@ -95,29 +95,54 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSwitchBuilder(
-        activeColor: ThemeDecoder.decodeColor(map['activeColor']),
-        activeTrackColor: ThemeDecoder.decodeColor(map['activeTrackColor']),
+        activeColor: ThemeDecoder.decodeColor(
+          map['activeColor'],
+          validate: false,
+        ),
+        activeTrackColor: ThemeDecoder.decodeColor(
+          map['activeTrackColor'],
+          validate: false,
+        ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidate: JsonClass.parseBool(map['autovalidate']),
-        dragStartBehavior:
-            ThemeDecoder.decodeDragStartBehavior(map['dragStartBehavior']) ??
-                DragStartBehavior.start,
+        dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
+              map['dragStartBehavior'],
+              validate: false,
+            ) ??
+            DragStartBehavior.start,
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
-        focusColor: ThemeDecoder.decodeColor(map['focusColor']),
+        focusColor: ThemeDecoder.decodeColor(
+          map['focusColor'],
+          validate: false,
+        ),
         focusNode: map['focusNode'],
-        hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
-        inactiveThumbColor: ThemeDecoder.decodeColor(map['inactiveThumbColor']),
-        inactiveTrackColor: ThemeDecoder.decodeColor(map['inactiveTrackColor']),
+        hoverColor: ThemeDecoder.decodeColor(
+          map['hoverColor'],
+          validate: false,
+        ),
+        inactiveThumbColor: ThemeDecoder.decodeColor(
+          map['inactiveThumbColor'],
+          validate: false,
+        ),
+        inactiveTrackColor: ThemeDecoder.decodeColor(
+          map['inactiveTrackColor'],
+          validate: false,
+        ),
         label: map['label'],
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
-            map['materialTapTargetSize']),
+          map['materialTapTargetSize'],
+          validate: false,
+        ),
         onChanged: map['onChanged'],
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
-        value: map['value'] == null ? null : JsonClass.parseBool(map['value']),
-        visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
+        value: JsonClass.parseBool(map['value']),
+        visualDensity: ThemeDecoder.decodeVisualDensity(
+          map['visualDensity'],
+          validate: false,
+        ),
       );
     }
 

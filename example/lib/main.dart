@@ -29,11 +29,15 @@ void main() async {
   var registry = JsonWidgetRegistry.instance;
   registry.registerCustomBuilder(
     DottedBorderBuilder.type,
-    DottedBorderBuilder.fromDynamic,
+    JsonWidgetBuilderContainer(
+      builder: DottedBorderBuilder.fromDynamic,
+    ),
   );
   registry.registerCustomBuilder(
     SvgBuilder.type,
-    SvgBuilder.fromDynamic,
+    JsonWidgetBuilderContainer(
+      builder: SvgBuilder.fromDynamic,
+    ),
   );
 
   registry.registerFunction('navigatePage', ({args, registry}) async {
@@ -53,31 +57,34 @@ void main() async {
   registry.registerFunctions({
     'getImageAsset': ({args, registry}) => 'assets/images/image${args[0]}.jpg',
     'getImageId': ({args, registry}) => 'image${args[0]}',
-  });
+    'getImageNavigator': ({args, registry}) => () {
+          var registry = JsonWidgetRegistry(
+            debugLabel: 'ImagePage',
+            values: {
+              'imageAsset': 'assets/images/image${args[0]}.jpg',
+              'imageTag': 'image${args[0]}',
+            },
+          );
 
-  registry.registerFunction(
-    'getImageNavigator',
-    ({args, registry}) => () {
-      var registry = JsonWidgetRegistry(
-        debugLabel: 'ImagePage',
-        values: {
-          'imageAsset': 'assets/images/image${args[0]}.jpg',
-          'imageTag': 'image${args[0]}',
-        },
-      );
-
-      navigatorKey.currentState.push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => FullWidgetPage(
-            data: JsonWidgetData.fromDynamic(
-              imagePageJson,
-              registry: registry,
+          navigatorKey.currentState.push(
+            MaterialPageRoute(
+              builder: (BuildContext context) => FullWidgetPage(
+                data: JsonWidgetData.fromDynamic(
+                  imagePageJson,
+                  registry: registry,
+                ),
+              ),
             ),
-          ),
-        ),
-      );
-    },
-  );
+          );
+        },
+    'noop': ({args, registry}) => () {},
+    'validateForm': ({args, registry}) => () {
+          BuildContext context = registry.getValue(args[0]);
+
+          var valid = Form.of(context).validate();
+          registry.setValue('form_validation', valid);
+        },
+  });
 
   runApp(MyApp(
     navigatorKey: navigatorKey,
@@ -110,13 +117,28 @@ class RootPage extends StatelessWidget {
 
   static const _pages = [
     'align',
+    'aspect_ratio',
     'asset_images',
     'bank_example',
+    'baseline',
+    'card',
+    'center',
+    'checkbox',
+    'circular_progress_indicator',
+    'clip_rect',
     'conditional',
+    'cupertino_switch',
+    'fitted_box',
     'form',
+    'gestures',
     'images',
+    'indexed_stack',
+    'input_error',
+    'linear_progress_indicator',
     'list_view',
+    'opacity',
     'simple_page',
+    'switch',
     'theme',
   ];
 
@@ -124,6 +146,11 @@ class RootPage extends StatelessWidget {
     JsonWidgetRegistry.instance.clearValues();
     var pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
     var dataJson = json.decode(pageStr);
+
+    // This is put in to give credit for when designs from online were used in
+    // example files.  It's not actually a valid attribute to exist in the JSON
+    // so it needs to be removed before we create the widget.
+    dataJson.remove('_designCredit');
 
     var data = JsonWidgetData.fromDynamic(dataJson);
 

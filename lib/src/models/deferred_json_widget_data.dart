@@ -2,6 +2,10 @@ import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+/// A [JsonWidgetData] subclass that does not parse the JSON until the values
+/// are needed.  This is used internally by the library for when widgets are
+/// requested through a variable reference because the variable often won't
+/// exist until after the first pass of the widget tree processing is completed.
 class DeferredJsonWidgetData implements JsonWidgetData {
   DeferredJsonWidgetData({
     @required String key,
@@ -55,7 +59,6 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   JsonWidgetData recreate() => data.recreate();
 
   @override
-  // TODO: implement registry
   JsonWidgetRegistry get registry => _registry;
 
   @override

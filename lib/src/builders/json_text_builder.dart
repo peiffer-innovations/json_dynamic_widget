@@ -76,24 +76,44 @@ class JsonTextBuilder extends JsonWidgetBuilder {
     JsonTextBuilder result;
     if (map != null) {
       result = JsonTextBuilder(
-        locale: ThemeDecoder.decodeLocale(map['local']),
+        locale: ThemeDecoder.decodeLocale(
+          map['local'],
+          validate: false,
+        ),
         maxLines: JsonClass.parseInt(map['maxLines']),
-        overflow: ThemeDecoder.decodeTextOverflow(map['overflow']),
+        overflow: ThemeDecoder.decodeTextOverflow(
+          map['overflow'],
+          validate: false,
+        ),
         semanticsLabel: map['semanticsLabel'],
         softWrap: map['softWrap'] == null
             ? null
             : JsonClass.parseBool(map['softWrap']),
-        strutStyle: ThemeDecoder.decodeStrutStyle(map['strutStyle']),
-        style: ThemeDecoder.decodeTextStyle(map['style']),
+        strutStyle: ThemeDecoder.decodeStrutStyle(
+          map['strutStyle'],
+          validate: false,
+        ),
+        style: ThemeDecoder.decodeTextStyle(
+          map['style'],
+          validate: false,
+        ),
         text: map['text'],
-        textAlign: ThemeDecoder.decodeTextAlign(map['textAlign']),
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        textAlign: ThemeDecoder.decodeTextAlign(
+          map['textAlign'],
+          validate: false,
+        ),
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
         textHeightBehavior: ThemeDecoder.decodeTextHeightBehavior(
           map['textHeightBehavior'],
+          validate: false,
         ),
         textScaleFactor: JsonClass.parseDouble(map['textScaleFactor']),
         textWidthBasis: ThemeDecoder.decodeTextWidthBasis(
           map['textWidthBasis'],
+          validate: false,
         ),
       );
     }

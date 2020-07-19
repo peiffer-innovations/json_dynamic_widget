@@ -101,7 +101,10 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
           map['appBar'],
           registry: registry,
         ),
-        backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
+        backgroundColor: ThemeDecoder.decodeColor(
+          map['backgroundColor'],
+          validate: false,
+        ),
         body: JsonWidgetData.fromDynamic(
           map['body'],
           registry: registry,
@@ -119,13 +122,18 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
           registry: registry,
         ),
         drawerDragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
-                map['drawerDragStartBehavior']) ??
+              map['drawerDragStartBehavior'],
+              validate: false,
+            ) ??
             DragStartBehavior.start,
         drawerEdgeDragWidth: JsonClass.parseDouble(map['drawerEdgeDragWidth']),
         drawerEnableOpenDragGesture: map['drawerEnableOpenDragGesture'] == null
             ? true
             : JsonClass.parseBool(map['drawerEnableOpenDragGesture']),
-        drawerScrimColor: ThemeDecoder.decodeColor(map['drawerScrimColor']),
+        drawerScrimColor: ThemeDecoder.decodeColor(
+          map['drawerScrimColor'],
+          validate: false,
+        ),
         endDrawer: JsonWidgetData.fromDynamic(
           map['endDrawer'],
           registry: registry,
@@ -144,10 +152,12 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
         floatingActionButtonAnimator:
             ThemeDecoder.decodeFloatingActionButtonAnimator(
           map['floatingActionButtonAnimator'],
+          validate: false,
         ),
         floatingActionButtonLocation:
             ThemeDecoder.decodeFloatingActionButtonLocation(
           map['floatingActionButtonLocation'],
+          validate: false,
         ),
         persistentFooterButtons: map['persistentFooterButtons'] == null
             ? null

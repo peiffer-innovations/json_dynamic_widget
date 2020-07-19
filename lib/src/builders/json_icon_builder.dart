@@ -48,11 +48,20 @@ class JsonIconBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonIconBuilder(
-        color: ThemeDecoder.decodeColor(map['color']),
-        icon: ThemeDecoder.decodeIconData(map['icon']),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
+        icon: ThemeDecoder.decodeIconData(
+          map['icon'],
+          validate: false,
+        ),
         semanticLabel: map['semanticLabel'],
         size: JsonClass.parseDouble(map['size']),
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
       );
     }
 

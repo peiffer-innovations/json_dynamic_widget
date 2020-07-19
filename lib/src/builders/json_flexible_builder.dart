@@ -37,7 +37,11 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonFlexibleBuilder(
-        fit: ThemeDecoder.decodeFlexFit(map['fit']) ?? FlexFit.loose,
+        fit: ThemeDecoder.decodeFlexFit(
+              map['fit'],
+              validate: false,
+            ) ??
+            FlexFit.loose,
         flex: JsonClass.parseInt(map['flex'], 1),
       );
     }

@@ -69,18 +69,44 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
     JsonContainerBuilder result;
     if (map != null) {
       result = JsonContainerBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']),
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.none,
-        color: ThemeDecoder.decodeColor(map['color']),
-        constraints: ThemeDecoder.decodeBoxConstraints(map['constraints']),
-        decoration: ThemeDecoder.decodeBoxDecoration(map['decoration']),
+        alignment: ThemeDecoder.decodeAlignment(
+          map['alignment'],
+          validate: false,
+        ),
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.none,
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
+        constraints: ThemeDecoder.decodeBoxConstraints(
+          map['constraints'],
+          validate: false,
+        ),
+        decoration: ThemeDecoder.decodeBoxDecoration(
+          map['decoration'],
+          validate: false,
+        ),
         foregroundDecoration: ThemeDecoder.decodeBoxDecoration(
           map['foregroundDecoration'],
+          validate: false,
         ),
         height: JsonClass.parseDouble(map['height']),
-        margin: ThemeDecoder.decodeEdgeInsetsGeometry(map['margin']),
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
-        transform: ThemeDecoder.decodeMatrix4(map['matrix4']),
+        margin: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['margin'],
+          validate: false,
+        ),
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['padding'],
+          validate: false,
+        ),
+        transform: ThemeDecoder.decodeMatrix4(
+          map['matrix4'],
+          validate: false,
+        ),
         width: JsonClass.parseDouble(map['width']),
       );
     }

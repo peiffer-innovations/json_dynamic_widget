@@ -33,7 +33,10 @@ class JsonPaddingBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonPaddingBuilder(
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['padding'],
+          validate: false,
+        ),
       );
     }
 

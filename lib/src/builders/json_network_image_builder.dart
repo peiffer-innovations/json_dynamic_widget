@@ -108,18 +108,36 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonNetworkImageBuilder(
-        alignment:
-            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
+        alignment: ThemeDecoder.decodeAlignment(
+              map['alignment'],
+              validate: false,
+            ) ??
+            Alignment.center,
         cacheHeight: JsonClass.parseInt(map['cacheHeight']),
         cacheWidth: JsonClass.parseInt(map['cacheWidth']),
-        centerSlice: ThemeDecoder.decodeRect(map['centerSlice']),
-        color: ThemeDecoder.decodeColor(map['color']),
-        colorBlendMode: ThemeDecoder.decodeBlendMode(map['colorBlendMode']),
+        centerSlice: ThemeDecoder.decodeRect(
+          map['centerSlice'],
+          validate: false,
+        ),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
+        colorBlendMode: ThemeDecoder.decodeBlendMode(
+          map['colorBlendMode'],
+          validate: false,
+        ),
         errorBuilder: map['errorBuilder'],
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
-        filterQuality: ThemeDecoder.decodeFilterQuality(map['filterQuality']) ??
+        filterQuality: ThemeDecoder.decodeFilterQuality(
+              map['filterQuality'],
+              validate: false,
+            ) ??
             FilterQuality.low,
-        fit: ThemeDecoder.decodeBoxFit(map['fit']),
+        fit: ThemeDecoder.decodeBoxFit(
+          map['fit'],
+          validate: false,
+        ),
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
         height: JsonClass.parseDouble(map['height']),
@@ -128,7 +146,10 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
             : Map<String, String>.from(map['headers']),
         loadingBuilder: map['loadingBuilder'],
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
-        repeat: ThemeDecoder.decodeImageRepeat(map['imageRepeat']) ??
+        repeat: ThemeDecoder.decodeImageRepeat(
+              map['imageRepeat'],
+              validate: false,
+            ) ??
             ImageRepeat.noRepeat,
         scale: JsonClass.parseDouble(map['scale'], 1.0),
         semanticLabel: map['semanticLabel'],

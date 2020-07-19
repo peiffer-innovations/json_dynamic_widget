@@ -3,7 +3,12 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
+import 'package:json_dynamic_widget/src/schema/schemas/container_schema.dart';
+import 'package:json_dynamic_widget/src/schema/schemas/cupertino_switch_schema.dart';
 import 'package:meta/meta.dart';
+
+import '../schema/all.dart';
 
 /// Registry for both the library provided as well as custom form builders that
 /// the application may provide.
@@ -15,12 +20,17 @@ import 'package:meta/meta.dart';
 /// Applications wishing to provide their own widget builders must register them
 /// via the [registerCustomBuilder] function before they are needed by the form.
 /// This should typically happen within the `main` function of the application.
+///
+/// By default, JSON schema validation is enabled in DEBUG builds.  It is always
+/// disabled in RELEASE builds.  To disable validation even in DEBUG builds, set
+/// [disableValidation] to [true].
 class JsonWidgetRegistry {
   /// Constructs a one-off registry.  This accepts an optional group of custom
   /// widget [builders], custom widget [functions], and widget [values].
   JsonWidgetRegistry({
     Map<String, JsonClassBuilder<JsonWidgetBuilder>> builders,
     this.debugLabel,
+    this.disableValidation = false,
     Map<String, JsonWidgetFunction> functions,
     this.navigatorKey,
     Map<String, dynamic> values,
@@ -53,6 +63,14 @@ class JsonWidgetRegistry {
   ///  1. [dynamic] -- <Optional> pop result
   static const fun_key_navigate_pop = 'navigate_pop';
 
+  /// Function key for the built in `remove_value` function.  The `remove_value`
+  /// function accepts a key and a value and then calls the [removeValue]
+  /// function.
+  ///
+  /// The `remove_value` function takes one value in the `args` array:
+  ///  1. [String] -- the key to pass to [removeValue].
+  static const fun_key_remove_value = 'remove_value';
+
   /// Function key for the built in `set_value` function.  The `set_value`
   /// function accepts a key and a value and then calls the [setValue] function
   /// with those values.
@@ -66,62 +84,223 @@ class JsonWidgetRegistry {
     debugLabel: 'default',
   );
 
-  final _customBuilders = <String, JsonClassBuilder<JsonWidgetBuilder>>{};
+  final _customBuilders = <String, JsonWidgetBuilderContainer>{};
   final String debugLabel;
+  final bool disableValidation;
   final _functions = <String, JsonWidgetFunction>{};
-  final _internalBuilders = <String, JsonWidgetBuilderBuilder>{
-    JsonAlignBuilder.type: JsonAlignBuilder.fromDynamic,
-    JsonAppBarBuilder.type: JsonAppBarBuilder.fromDynamic,
-    JsonAspectRatioBuilder.type: JsonAspectRatioBuilder.fromDynamic,
-    JsonAssetImageBuilder.type: JsonAssetImageBuilder.fromDynamic,
-    JsonBaselineBuilder.type: JsonBaselineBuilder.fromDynamic,
-    JsonCardBuilder.type: JsonCardBuilder.fromDynamic,
-    JsonCenterBuilder.type: JsonCenterBuilder.fromDynamic,
-    JsonCheckboxBuilder.type: JsonCheckboxBuilder.fromDynamic,
-    JsonClipRectBuilder.type: JsonClipRectBuilder.fromDynamic,
-    JsonClipRRectBuilder.type: JsonClipRRectBuilder.fromDynamic,
-    JsonColumnBuilder.type: JsonColumnBuilder.fromDynamic,
-    JsonConditionalBuilder.type: JsonConditionalBuilder.fromDynamic,
-    JsonContainerBuilder.type: JsonContainerBuilder.fromDynamic,
-    JsonCupertinoSwitchBuilder.type: JsonCupertinoSwitchBuilder.fromDynamic,
-    JsonDropdownButtonFormFieldBuilder.type:
-        JsonDropdownButtonFormFieldBuilder.fromDynamic,
-    JsonExpandedBuilder.type: JsonExpandedBuilder.fromDynamic,
-    JsonFittedBoxBuilder.type: JsonFittedBoxBuilder.fromDynamic,
-    JsonFlatButtonBuilder.type: JsonFlatButtonBuilder.fromDynamic,
-    JsonFlexibleBuilder.type: JsonFlexibleBuilder.fromDynamic,
-    JsonFormBuilder.type: JsonFormBuilder.fromDynamic,
-    JsonGestureDetectorBuilder.type: JsonGestureDetectorBuilder.fromDynamic,
-    JsonHeroBuilder.type: JsonHeroBuilder.fromDynamic,
-    JsonIconBuilder.type: JsonIconBuilder.fromDynamic,
-    JsonIgnorePointerBuilder.type: JsonIgnorePointerBuilder.fromDynamic,
-    JsonIndexedStackBuilder.type: JsonIndexedStackBuilder.fromDynamic,
-    JsonInkWellBuilder.type: JsonInkWellBuilder.fromDynamic,
-    JsonInputErrorBuilder.type: JsonInputErrorBuilder.fromDynamic,
-    JsonListTileBuilder.type: JsonListTileBuilder.fromDynamic,
-    JsonListViewBuilder.type: JsonListViewBuilder.fromDynamic,
-    JsonMaterialBuilder.type: JsonMaterialBuilder.fromDynamic,
-    JsonMemoryImageBuilder.type: JsonMemoryImageBuilder.fromDynamic,
-    JsonNetworkImageBuilder.type: JsonNetworkImageBuilder.fromDynamic,
-    JsonOpacityBuilder.type: JsonOpacityBuilder.fromDynamic,
-    JsonPaddingBuilder.type: JsonPaddingBuilder.fromDynamic,
-    JsonPositionedBuilder.type: JsonPositionedBuilder.fromDynamic,
-    JsonRadioBuilder.type: JsonRadioBuilder.fromDynamic,
-    JsonRaisedButtonBuilder.type: JsonRaisedButtonBuilder.fromDynamic,
-    JsonRowBuilder.type: JsonRowBuilder.fromDynamic,
-    JsonSafeAreaBuilder.type: JsonSafeAreaBuilder.fromDynamic,
-    JsonSaveContextBuilder.type: JsonSaveContextBuilder.fromDynamic,
-    JsonScaffoldBuilder.type: JsonScaffoldBuilder.fromDynamic,
-    JsonSetValueBuilder.type: JsonSetValueBuilder.fromDynamic,
-    JsonSetWidgetBuilder.type: JsonSetWidgetBuilder.fromDynamic,
-    JsonSingleChildScrollViewBuilder.type:
-        JsonSingleChildScrollViewBuilder.fromDynamic,
-    JsonSizedBoxBuilder.type: JsonSizedBoxBuilder.fromDynamic,
-    JsonStackBuilder.type: JsonStackBuilder.fromDynamic,
-    JsonSwitchBuilder.type: JsonSwitchBuilder.fromDynamic,
-    JsonTextBuilder.type: JsonTextBuilder.fromDynamic,
-    JsonTextFormFieldBuilder.type: JsonTextFormFieldBuilder.fromDynamic,
-    JsonThemeBuilder.type: JsonThemeBuilder.fromDynamic,
+  final _internalBuilders = <String, JsonWidgetBuilderContainer>{
+    JsonAlignBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAlignBuilder.fromDynamic,
+      schemaId: AlignSchema.id,
+    ),
+    JsonAppBarBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAppBarBuilder.fromDynamic,
+      schemaId: AppBarSchema.id,
+    ),
+    JsonAspectRatioBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAspectRatioBuilder.fromDynamic,
+      schemaId: AspectRatioSchema.id,
+    ),
+    JsonAssetImageBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAssetImageBuilder.fromDynamic,
+      schemaId: AssetImageSchema.id,
+    ),
+    JsonBaselineBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonBaselineBuilder.fromDynamic,
+      schemaId: BaselineSchema.id,
+    ),
+    JsonButtonBarBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonButtonBarBuilder.fromDynamic,
+      schemaId: ButtonBarSchema.id,
+    ),
+    JsonCardBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonCardBuilder.fromDynamic,
+      schemaId: CardSchema.id,
+    ),
+    JsonCenterBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonCenterBuilder.fromDynamic,
+      schemaId: CenterSchema.id,
+    ),
+    JsonCheckboxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonCheckboxBuilder.fromDynamic,
+      schemaId: CheckboxSchema.id,
+    ),
+    JsonCircularProgressIndicatorBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonCircularProgressIndicatorBuilder.fromDynamic,
+      schemaId: CircularProgressIndicatorSchema.id,
+    ),
+    JsonClipRectBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonClipRectBuilder.fromDynamic,
+      schemaId: ClipRectSchema.id,
+    ),
+    JsonClipRRectBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonClipRRectBuilder.fromDynamic,
+      schemaId: ClipRRectSchema.id,
+    ),
+    JsonColumnBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonColumnBuilder.fromDynamic,
+      schemaId: ColumnSchema.id,
+    ),
+    JsonConditionalBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonConditionalBuilder.fromDynamic,
+      schemaId: ConditionalSchema.id,
+    ),
+    JsonContainerBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonContainerBuilder.fromDynamic,
+      schemaId: ContainerSchema.id,
+    ),
+    JsonCupertinoSwitchBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonCupertinoSwitchBuilder.fromDynamic,
+      schemaId: CupertinoSwitchSchema.id,
+    ),
+    JsonDropdownButtonFormFieldBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,
+      schemaId: DropdownButtonFormFieldSchema.id,
+    ),
+    JsonExpandedBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonExpandedBuilder.fromDynamic,
+      schemaId: ExpandedSchema.id,
+    ),
+    JsonFittedBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFittedBoxBuilder.fromDynamic,
+      schemaId: FittedBoxSchema.id,
+    ),
+    JsonFlatButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFlatButtonBuilder.fromDynamic,
+      schemaId: FlatButtonSchema.id,
+    ),
+    JsonFlexibleBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFlexibleBuilder.fromDynamic,
+      schemaId: FlexibleSchema.id,
+    ),
+    JsonFormBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFormBuilder.fromDynamic,
+      schemaId: FormSchema.id,
+    ),
+    JsonGestureDetectorBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonGestureDetectorBuilder.fromDynamic,
+      schemaId: GestureDetectorSchema.id,
+    ),
+    JsonHeroBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonHeroBuilder.fromDynamic,
+      schemaId: HeroSchema.id,
+    ),
+    JsonIconBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonIconBuilder.fromDynamic,
+      schemaId: IconSchema.id,
+    ),
+    JsonIgnorePointerBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonIgnorePointerBuilder.fromDynamic,
+      schemaId: IgnorePointerSchema.id,
+    ),
+    JsonIndexedStackBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonIndexedStackBuilder.fromDynamic,
+      schemaId: IndexedStackSchema.id,
+    ),
+    JsonInkWellBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonInkWellBuilder.fromDynamic,
+      schemaId: InkWellSchema.id,
+    ),
+    JsonInputErrorBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonInputErrorBuilder.fromDynamic,
+      schemaId: InputErrorSchema.id,
+    ),
+    JsonLinearProgressIndicatorBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonLinearProgressIndicatorBuilder.fromDynamic,
+      schemaId: LinearProgressIndicatorSchema.id,
+    ),
+    JsonListTileBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonListTileBuilder.fromDynamic,
+      schemaId: ListTileSchema.id,
+    ),
+    JsonListViewBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonListViewBuilder.fromDynamic,
+      schemaId: ListViewSchema.id,
+    ),
+    JsonMaterialBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonMaterialBuilder.fromDynamic,
+      schemaId: MaterialSchema.id,
+    ),
+    JsonMemoryImageBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonMemoryImageBuilder.fromDynamic,
+      schemaId: MemoryImageSchema.id,
+    ),
+    JsonNetworkImageBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonNetworkImageBuilder.fromDynamic,
+      schemaId: NetworkImageSchema.id,
+    ),
+    JsonOpacityBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonOpacityBuilder.fromDynamic,
+      schemaId: OpacitySchema.id,
+    ),
+    JsonPaddingBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonPaddingBuilder.fromDynamic,
+      schemaId: PaddingSchema.id,
+    ),
+    JsonPositionedBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonPositionedBuilder.fromDynamic,
+      schemaId: PositionedSchema.id,
+    ),
+    JsonRadioBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonRadioBuilder.fromDynamic,
+      schemaId: RadioSchema.id,
+    ),
+    JsonRaisedButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonRaisedButtonBuilder.fromDynamic,
+      schemaId: RaisedButtonSchema.id,
+    ),
+    JsonRowBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonRowBuilder.fromDynamic,
+      schemaId: RowSchema.id,
+    ),
+    JsonSafeAreaBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSafeAreaBuilder.fromDynamic,
+      schemaId: SafeAreaSchema.id,
+    ),
+    JsonSaveContextBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSaveContextBuilder.fromDynamic,
+      schemaId: SaveContextSchema.id,
+    ),
+    JsonScaffoldBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonScaffoldBuilder.fromDynamic,
+      schemaId: ScaffoldSchema.id,
+    ),
+    JsonSetValueBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSetValueBuilder.fromDynamic,
+      schemaId: SetValueSchema.id,
+    ),
+    JsonSetWidgetBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSetWidgetBuilder.fromDynamic,
+      schemaId: SetWidgetSchema.id,
+    ),
+    JsonSingleChildScrollViewBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSingleChildScrollViewBuilder.fromDynamic,
+      schemaId: SingleChildScrollViewSchema.id,
+    ),
+    JsonSizedBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSizedBoxBuilder.fromDynamic,
+      schemaId: SizedBoxSchema.id,
+    ),
+    JsonStackBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonStackBuilder.fromDynamic,
+      schemaId: StackSchema.id,
+    ),
+    JsonSwitchBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSwitchBuilder.fromDynamic,
+      schemaId: SwitchSchema.id,
+    ),
+    JsonTextBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonTextBuilder.fromDynamic,
+      schemaId: TextSchema.id,
+    ),
+    JsonTextFormFieldBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonTextFormFieldBuilder.fromDynamic,
+      schemaId: TextFormFieldSchema.id,
+    ),
+    JsonThemeBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonThemeBuilder.fromDynamic,
+      schemaId: ThemeSchema.id,
+    ),
   };
   final _internalFunctions = <String, JsonWidgetFunction>{
     fun_key_navigate_named: ({
@@ -145,6 +324,13 @@ class JsonWidgetRegistry {
             args?.isNotEmpty == true ? args[0] : null,
           );
     },
+    fun_key_remove_value: ({
+      @required List<dynamic> args,
+      @required JsonWidgetRegistry registry,
+    }) =>
+        () => registry.removeValue(
+              args[0],
+            ),
     fun_key_set_value: ({
       @required List<dynamic> args,
       @required JsonWidgetRegistry registry,
@@ -180,6 +366,7 @@ class JsonWidgetRegistry {
   /// when
   Stream<String> get valueStream => _valueStreamController?.stream;
 
+  /// Removes all variable values from the registry
   void clearValues() {
     var keys = Set<String>.from(_values.keys);
     _values.clear();
@@ -187,11 +374,16 @@ class JsonWidgetRegistry {
     keys.forEach((element) => _valueStreamController?.add(element));
   }
 
+  /// Disposes the registry.
   void dispose() {
     _valueStreamController?.close();
     _valueStreamController = null;
   }
 
+  /// Executes the dynamic function named [key].  This will first check  for a
+  /// custom dynamic function using the [key], and if none is found, this will
+  /// then check the internal functions.  If no function can be found in either
+  /// collection, this will throw an [Exception].
   dynamic execute(
     String key,
     Iterable<dynamic> args,
@@ -207,6 +399,8 @@ class JsonWidgetRegistry {
     );
   }
 
+  /// Returns the variable value for the given [key].  If a variable with named
+  /// [key] cannot be found, this will return [null].
   dynamic getValue(String key) => _values[key];
 
   /// Returns the builder for the requested [type].  This will first search the
@@ -218,9 +412,8 @@ class JsonWidgetRegistry {
   JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
     assert(type != null);
 
-    JsonWidgetBuilderBuilder builder;
-
-    builder = _customBuilders[type] ?? _internalBuilders[type];
+    var container = _customBuilders[type] ?? _internalBuilders[type];
+    var builder = container.builder;
 
     if (builder == null) {
       throw Exception('Builder requested for unknown type: $type');
@@ -229,6 +422,9 @@ class JsonWidgetRegistry {
     return builder;
   }
 
+  /// Processes any dynamic argument values from [args].  This will return a
+  /// metadata object with the results as well as a collection of dynamic
+  /// variable names that were encounted.
   DynamicParamsResult processDynamicArgs(
     dynamic args, {
     Set<String> dynamicKeys,
@@ -309,22 +505,25 @@ class JsonWidgetRegistry {
   /// custom forms.  Types registered by the application take precidence over
   /// built in registered builders.  This allows an application the ability to
   /// provide custom widgets even for built in form types.
+  ///
+  /// If the [container] has an associated schema id then in DEBUG builds, that
+  /// schema will be used to validate the attributes sent to the builder.
   void registerCustomBuilder(
     String type,
-    JsonClassBuilder<JsonWidgetBuilder> builder,
+    JsonWidgetBuilderContainer container,
   ) {
     assert(type != null);
-    assert(builder != null);
+    assert(container != null);
 
-    _customBuilders[type] = builder;
+    _customBuilders[type] = container;
   }
 
   /// Registers the custom builders.  This is a convenience method that calls
-  /// [registerCustomBuilder] for each entry in [builders].
+  /// [registerCustomBuilder] for each entry in [containers].
   void registerCustomBuilders(
-    Map<String, JsonClassBuilder<JsonWidgetBuilder>> builders,
+    Map<String, JsonWidgetBuilderContainer> containers,
   ) =>
-      builders?.forEach((key, value) => registerCustomBuilder(key, value));
+      containers?.forEach((key, value) => registerCustomBuilder(key, value));
 
   /// Registers the [key] as function name with the registry to be used in
   /// function bindings.  Functions registered by the application take
@@ -346,11 +545,19 @@ class JsonWidgetRegistry {
   void registerFunctions(Map<String, JsonWidgetFunction> functions) =>
       functions?.forEach((key, value) => registerFunction(key, value));
 
+  /// Removes the [key] from the registry.
+  ///
+  /// If, and only if, the [key] was registered on the registry will this fire
+  /// an event on the [valueStream] with the [key] so listeners can be notified
+  /// that the value has changed.
   dynamic removeValue(String key) {
     assert(key?.isNotEmpty == true);
 
+    var hasKey = _values.containsKey(key);
     var result = _values.remove(key);
-    _valueStreamController?.add(key);
+    if (hasKey == true) {
+      _valueStreamController?.add(key);
+    }
 
     return result;
   }
@@ -384,7 +591,7 @@ class JsonWidgetRegistry {
   /// Removes a registered [type] from the custom registry and returns the
   /// associated builder, if one exists.  If the [type] is not registered then
   /// this will [null].
-  JsonClassBuilder<JsonWidgetBuilder> unregisterCustomBuilder(String type) {
+  JsonWidgetBuilderContainer unregisterCustomBuilder(String type) {
     assert(type != null);
 
     return _customBuilders.remove(type);
@@ -394,5 +601,35 @@ class JsonWidgetRegistry {
     assert(key?.isNotEmpty == true);
 
     return _functions.remove(key);
+  }
+
+  /// Validates the builder against it's value.  This will only perform a
+  /// validation if a schema id is associated with builder.
+  ///
+  /// Because the validation is relatively expensive, the validation will only
+  /// happen in DEBUG builds.  It is disabled in RELEASE builds.  In RELEASE
+  /// builds this will always return [true].
+  bool validateBuilderSchema({
+    @required String type,
+    @required dynamic value,
+    bool validate = true,
+  }) {
+    var result = true;
+
+    assert(() {
+      if (disableValidation != true) {
+        var container = _customBuilders[type] ?? _internalBuilders[type];
+        if (container?.schemaId != null) {
+          result = SchemaValidator().validate(
+            schemaId: container.schemaId,
+            value: value,
+            validate: validate,
+          );
+        }
+      }
+      return true;
+    }());
+
+    return result;
   }
 }

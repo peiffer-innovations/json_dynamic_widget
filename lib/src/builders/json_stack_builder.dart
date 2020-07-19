@@ -45,11 +45,25 @@ class JsonStackBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonStackBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']) ??
+        alignment: ThemeDecoder.decodeAlignment(
+              map['alignment'],
+              validate: false,
+            ) ??
             AlignmentDirectional.topStart,
-        fit: ThemeDecoder.decodeStackFit(map['fit']) ?? StackFit.loose,
-        overflow: ThemeDecoder.decodeOverflow(map['overflow']) ?? Overflow.clip,
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        fit: ThemeDecoder.decodeStackFit(
+              map['fit'],
+              validate: false,
+            ) ??
+            StackFit.loose,
+        overflow: ThemeDecoder.decodeOverflow(
+              map['overflow'],
+              validate: false,
+            ) ??
+            Overflow.clip,
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
       );
     }
 

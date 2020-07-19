@@ -1,0 +1,45 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "CircularProgressIndicator"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "column",
+        "args": {
+          "mainAxisSize": "min"
+        },
+        "children": [{
+            "type": "circular_progress_indicator",
+            "args": {
+              "value": "0.25",
+              "valueColor": "#00f"
+            }
+          },
+          {
+            "type": "sized_box",
+            "args": {
+              "height": 16
+            }
+          },
+          {
+            "type": "circular_progress_indicator",
+            "args": {
+              "valueColor": "#0ff"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

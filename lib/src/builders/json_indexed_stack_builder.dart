@@ -45,11 +45,21 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonIndexedStackBuilder(
-        alignment: ThemeDecoder.decodeAlignment(map['alignment']) ??
+        alignment: ThemeDecoder.decodeAlignment(
+              map['alignment'],
+              validate: false,
+            ) ??
             AlignmentDirectional.topStart,
         index: JsonClass.parseInt(map['index'], 0),
-        sizing: ThemeDecoder.decodeStackFit(map['sizing']) ?? StackFit.loose,
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        sizing: ThemeDecoder.decodeStackFit(
+              map['sizing'],
+              validate: false,
+            ) ??
+            StackFit.loose,
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
       );
     }
 

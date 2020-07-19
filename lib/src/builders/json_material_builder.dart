@@ -79,18 +79,46 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(
                 map['borderOnForeground'],
               ),
-        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']),
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.none,
-        color: ThemeDecoder.decodeColor(map['color']),
+        borderRadius: ThemeDecoder.decodeBorderRadius(
+          map['borderRadius'],
+          validate: false,
+        ),
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.none,
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
         elevation: JsonClass.parseDouble(map['elevation'], 0),
-        margin: ThemeDecoder.decodeEdgeInsetsGeometry(map['margin']),
-        materialType:
-            ThemeDecoder.decodeMaterialType(map['type']) ?? MaterialType.canvas,
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
-        shadowColor:
-            ThemeDecoder.decodeColor(map['color']) ?? const Color(0xFF000000),
-        shape: ThemeDecoder.decodeShapeBorder(map['shape']),
-        textStyle: ThemeDecoder.decodeTextStyle(map['textStyle']),
+        margin: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['margin'],
+          validate: false,
+        ),
+        materialType: ThemeDecoder.decodeMaterialType(
+              map['type'],
+              validate: false,
+            ) ??
+            MaterialType.canvas,
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['padding'],
+          validate: false,
+        ),
+        shadowColor: ThemeDecoder.decodeColor(
+              map['color'],
+              validate: false,
+            ) ??
+            const Color(0xFF000000),
+        shape: ThemeDecoder.decodeShapeBorder(
+          map['shape'],
+          validate: false,
+        ),
+        textStyle: ThemeDecoder.decodeTextStyle(
+          map['textStyle'],
+          validate: false,
+        ),
       );
     }
 

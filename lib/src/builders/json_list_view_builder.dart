@@ -89,16 +89,27 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(map['addSemanticIndexes']),
         cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
         controller: map['controller'],
-        dragStartBehavior:
-            ThemeDecoder.decodeDragStartBehavior(map['dragStartBehavior']) ??
-                DragStartBehavior.start,
+        dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
+              map['dragStartBehavior'],
+              validate: false,
+            ) ??
+            DragStartBehavior.start,
         itemExtent: JsonClass.parseDouble(map['itemExtent']),
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
-        physics: ThemeDecoder.decodeScrollPhysics(map['physics']),
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['padding'],
+          validate: false,
+        ),
+        physics: ThemeDecoder.decodeScrollPhysics(
+          map['physics'],
+          validate: false,
+        ),
         primary: JsonClass.parseBool(map['primary']),
         reverse: JsonClass.parseBool(map['reverse']),
-        scrollDirection:
-            ThemeDecoder.decodeAxis(map['scrollDirection']) ?? Axis.vertical,
+        scrollDirection: ThemeDecoder.decodeAxis(
+              map['scrollDirection'],
+              validate: false,
+            ) ??
+            Axis.vertical,
         shrinkWrap: JsonClass.parseBool(map['shrinkWrap']),
       );
     }

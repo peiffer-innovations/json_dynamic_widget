@@ -107,7 +107,7 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   ///   "onHorizontalDragDown": <GestureDragDownCallback>,
   ///   "onHorizontalDragEnd": <GestureDragEndCallback>,
   ///   "onHorizontalDragStart": <GestureDragStartCallback>,
-  ///   "onHorizontalDragUpdate": <GestureDragUpdateCallback>
+  ///   "onHorizontalDragUpdate": <GestureDragUpdateCallback>,
   ///   "onLongPress": <GestureLongPressCallback>,
   ///   "onLongPressEnd": <GestureLongPressEndCallback>,
   ///   "onLongPressMoveUpdate": <GestureLongPressMoveUpdateCallback>,
@@ -151,9 +151,13 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonGestureDetectorBuilder(
-        behavior: ThemeDecoder.decodeHitTestBehavior(map['behavior']),
+        behavior: ThemeDecoder.decodeHitTestBehavior(
+          map['behavior'],
+          validate: false,
+        ),
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
+              validate: false,
             ) ??
             DragStartBehavior.start,
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),

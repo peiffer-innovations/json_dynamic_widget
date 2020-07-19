@@ -36,6 +36,24 @@ class JsonWidgetData extends JsonClass {
 
   final dynamic _args;
 
+  /// Decodes a JSON object into a dynamic widget.  The structure is the same
+  /// for all dynamic widgets with the exception of the `args` value.  The
+  /// `args` depends on the specific `type`.
+  ///
+  /// In the given JSON object, only the `child` or the `children` can be passed
+  /// in; not both.  From an implementation perspective, there is no difference
+  /// between passing in a `child` or a `children` with a single element, this
+  /// will treat both of those identically.
+  ///
+  /// ```json
+  /// {
+  ///   "type": <String>,
+  ///   "args": <dynamic>,
+  ///   "child": <JsonWidgetData>,
+  ///   "children": <JsonWidgetData[]>,
+  ///   "id": <String>
+  /// }
+  /// ```
   static JsonWidgetData fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
@@ -52,7 +70,19 @@ class JsonWidgetData extends JsonClass {
     } else if (map != null) {
       var type = map['type'];
       var builder = registry.getWidgetBuilder(type);
-      var dynamicParamsResult = registry.processDynamicArgs(map['args'] ?? {});
+      var args = map['args'];
+
+      // The validation needs to happen before we process the dynamic args or
+      // else there may be non-JSON compatible objects in the map which will
+      // always fail validation.
+      assert(registry.validateBuilderSchema(
+        type: type,
+        value: args,
+        validate: args == null ? false : true,
+      ));
+
+      var dynamicParamsResult =
+          registry.processDynamicArgs(args ?? <String, dynamic>{});
 
       try {
         result = JsonWidgetData(

@@ -1,0 +1,39 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "ClipRect"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "clip_rect",
+        "child": {
+          "type": "container",
+          "child": {
+            "type": "align",
+            "args": {
+              "alignment": "topLeft",
+              "heightFactor": 0.75,
+              "widthFactor": 0.75
+            },
+            "child": {
+              "type": "network_image",
+              "args": {
+                "src": "https://i.ibb.co/1vXpqVs/flutter-logo.jpg"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

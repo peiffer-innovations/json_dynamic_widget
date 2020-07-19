@@ -19,7 +19,7 @@ class JsonClipRectBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "clip": <Clip>
+  ///   "clipBehavior": <Clip>
   /// }
   /// ```
   ///
@@ -33,8 +33,11 @@ class JsonClipRectBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonClipRectBuilder(
-        clipBehavior:
-            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
       );
     }
 

@@ -129,10 +129,10 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "maxLines": <int>,
   ///   "minLines": <int>,
   ///   "obscureText": <bool>,
-  ///   "onChanged": <ValueChanged<String>>
+  ///   "onChanged": <ValueChanged<String>>,
   ///   "onEditingComplete": <VoidCallback>,
-  ///   "onFieldSubmitted": <ValueChanged<String>>
-  ///   "onSaved": <FormFieldSetter<String>>
+  ///   "onFieldSubmitted": <ValueChanged<String>>,
+  ///   "onSaved": <FormFieldSetter<String>>,
   ///   "onTap": <VoidCallback>,
   ///   "readOnly": <bool>,
   ///   "scrollPadding": <EdgeInsetsGeometry>,
@@ -184,8 +184,14 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         autovalidate: JsonClass.parseBool(map['autovalidate']),
         buildCounter: map['buildCounter'],
         controller: map['controller'],
-        cursorColor: ThemeDecoder.decodeColor(map['cursorColor']),
-        cursorRadius: ThemeDecoder.decodeRadius(map['cursorRadius']),
+        cursorColor: ThemeDecoder.decodeColor(
+          map['cursorColor'],
+          validate: false,
+        ),
+        cursorRadius: ThemeDecoder.decodeRadius(
+          map['cursorRadius'],
+          validate: false,
+        ),
         cursorWidth: JsonClass.parseDouble(map['cursorWidth'], 2),
         decoration: map['decoration'],
         enableInteractiveSelection: map['enableInteractiveSelection'] == null
@@ -200,9 +206,14 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         focusNode: map['focusNode'],
         initialValue: map['initialValue'],
         inputFormatters: map['inputFormatters'],
-        keyboardAppearance:
-            ThemeDecoder.decodeBrightness(map['keyboardBrightness']),
-        keyboardType: ThemeDecoder.decodeTextInputType(map['keyboardType']),
+        keyboardAppearance: ThemeDecoder.decodeBrightness(
+          map['keyboardBrightness'],
+          validate: false,
+        ),
+        keyboardType: ThemeDecoder.decodeTextInputType(
+          map['keyboardType'],
+          validate: false,
+        ),
         maxLength: JsonClass.parseInt(map['maxLength']),
         maxLengthEnforced: JsonClass.parseBool(map['maxLengthEnforced']),
         maxLines: JsonClass.parseInt(map['maxLines'], 1),
@@ -214,29 +225,60 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         onSaved: map['onSaved'],
         onTap: map['onTap'],
         readOnly: JsonClass.parseBool(map['readOnly']),
-        scrollPadding:
-            ThemeDecoder.decodeEdgeInsetsGeometry(map['scrollPadding']) ??
-                EdgeInsets.all(20.0),
-        scrollPhysics: ThemeDecoder.decodeScrollPhysics(map['scrollPhysics']),
-        showCursor: JsonClass.parseBool(map['showCursor']),
-        smartDashesType:
-            ThemeDecoder.decodeSmartDashesType(map['smartDashesType']),
-        smartQuotesType:
-            ThemeDecoder.decodeSmartQuotesType(map['smartQuotesType']),
-        strutStyle: ThemeDecoder.decodeStrutStyle(map['strutStyle']),
-        style: ThemeDecoder.decodeTextStyle(map['style']),
-        textAlign:
-            ThemeDecoder.decodeTextAlign(map['textAlign']) ?? TextAlign.start,
-        textAlignVertical:
-            ThemeDecoder.decodeTextAlignVertical(map['textAlignVertical']),
-        textCapitalization:
-            ThemeDecoder.decodeTextCapitalization(map['textCapitalization']) ??
-                TextCapitalization.none,
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
-        textInputAction:
-            ThemeDecoder.decodeTextInputAction(map['textInputAction']),
-        toolbarOptions:
-            ThemeDecoder.decodeToolbarOptions(map['toolbarOptions']),
+        scrollPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
+              map['scrollPadding'],
+              validate: false,
+            ) ??
+            EdgeInsets.all(20.0),
+        scrollPhysics: ThemeDecoder.decodeScrollPhysics(
+          map['scrollPhysics'],
+          validate: false,
+        ),
+        showCursor: map['showCursor'] == null
+            ? null
+            : JsonClass.parseBool(map['showCursor']),
+        smartDashesType: ThemeDecoder.decodeSmartDashesType(
+          map['smartDashesType'],
+          validate: false,
+        ),
+        smartQuotesType: ThemeDecoder.decodeSmartQuotesType(
+          map['smartQuotesType'],
+          validate: false,
+        ),
+        strutStyle: ThemeDecoder.decodeStrutStyle(
+          map['strutStyle'],
+          validate: false,
+        ),
+        style: ThemeDecoder.decodeTextStyle(
+          map['style'],
+          validate: false,
+        ),
+        textAlign: ThemeDecoder.decodeTextAlign(
+              map['textAlign'],
+              validate: false,
+            ) ??
+            TextAlign.start,
+        textAlignVertical: ThemeDecoder.decodeTextAlignVertical(
+          map['textAlignVertical'],
+          validate: false,
+        ),
+        textCapitalization: ThemeDecoder.decodeTextCapitalization(
+              map['textCapitalization'],
+              validate: false,
+            ) ??
+            TextCapitalization.none,
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
+        textInputAction: ThemeDecoder.decodeTextInputAction(
+          map['textInputAction'],
+          validate: false,
+        ),
+        toolbarOptions: ThemeDecoder.decodeToolbarOptions(
+          map['toolbarOptions'],
+          validate: false,
+        ),
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({

@@ -33,7 +33,10 @@ class SvgBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = SvgBuilder(
         asset: map['asset'],
-        color: ThemeDecoder.decodeColor(map['color']),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
         height: JsonClass.parseDouble(map['height']),
         url: map['url'],
         width: JsonClass.parseDouble(map['width']),

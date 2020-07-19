@@ -22,8 +22,8 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "isMaterialAppTheme": <bool>,
-  ///   "theme": <ThemeData>
+  ///   "data": <ThemeData>,
+  ///   "isMaterialAppTheme": <bool>
   /// }
   /// ```
   ///
@@ -37,7 +37,10 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonThemeBuilder(
         isMaterialAppTheme: JsonClass.parseBool(map['isMaterialAppTheme']),
-        theme: ThemeDecoder.decodeThemeData(map['data']),
+        theme: ThemeDecoder.decodeThemeData(
+          map['data'],
+          validate: false,
+        ),
       );
     }
 

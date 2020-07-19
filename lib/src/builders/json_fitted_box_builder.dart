@@ -37,9 +37,16 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonFittedBoxBuilder(
-        alignment:
-            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
-        fit: ThemeDecoder.decodeBoxFit(map['fit']) ?? BoxFit.contain,
+        alignment: ThemeDecoder.decodeAlignment(
+              map['alignment'],
+              validate: false,
+            ) ??
+            Alignment.center,
+        fit: ThemeDecoder.decodeBoxFit(
+              map['fit'],
+              validate: false,
+            ) ??
+            BoxFit.contain,
       );
     }
 

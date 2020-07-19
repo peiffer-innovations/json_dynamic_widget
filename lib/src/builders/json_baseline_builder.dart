@@ -38,7 +38,10 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonBaselineBuilder(
         baseline: JsonClass.parseDouble(map['baseline']),
-        baselineType: ThemeDecoder.decodeTextBaseline(map['baselineType']),
+        baselineType: ThemeDecoder.decodeTextBaseline(
+          map['baselineType'],
+          validate: false,
+        ),
       );
     }
 

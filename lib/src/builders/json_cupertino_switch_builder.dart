@@ -72,10 +72,15 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonCupertinoSwitchBuilder(
-        activeColor: ThemeDecoder.decodeColor(map['activeColor']),
+        activeColor: ThemeDecoder.decodeColor(
+          map['activeColor'],
+          validate: false,
+        ),
         autovalidate: JsonClass.parseBool(map['autovalidate']),
-        dragStartBehavior:
-            ThemeDecoder.decodeDragStartBehavior(map['dragStartBehavior']),
+        dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
+          map['dragStartBehavior'],
+          validate: false,
+        ),
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         label: map['label'],
@@ -83,8 +88,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
-        value: map['value'] == null ? null : JsonClass.parseBool(map['value']),
-        visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
+        value: JsonClass.parseBool(map['value']),
+        visualDensity: ThemeDecoder.decodeVisualDensity(
+          map['visualDensity'],
+          validate: false,
+        ),
       );
     }
 

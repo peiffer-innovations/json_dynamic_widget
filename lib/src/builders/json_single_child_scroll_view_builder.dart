@@ -63,15 +63,25 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
+              validate: false,
             ) ??
             DragStartBehavior.start,
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
-        physics: ThemeDecoder.decodeScrollPhysics(map['physics']),
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['padding'],
+          validate: false,
+        ),
+        physics: ThemeDecoder.decodeScrollPhysics(
+          map['physics'],
+          validate: false,
+        ),
         primary:
             map['primary'] == null ? null : JsonClass.parseBool(map['primary']),
         reverse: JsonClass.parseBool(map['reverse']),
-        scrollDirection:
-            ThemeDecoder.decodeAxis(map['scrollDirection']) ?? Axis.vertical,
+        scrollDirection: ThemeDecoder.decodeAxis(
+              map['scrollDirection'],
+              validate: false,
+            ) ??
+            Axis.vertical,
       );
     }
 

@@ -105,26 +105,71 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonFlatButtonBuilder(
         autofocus: JsonClass.parseBool(map['autofocus']),
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.none,
-        color: ThemeDecoder.decodeColor(map['color']),
-        colorBrightness: ThemeDecoder.decodeBrightness(map['colorBrightness']),
-        disabledColor: ThemeDecoder.decodeColor(map['disabledColor']),
-        disabledTextColor: ThemeDecoder.decodeColor(map['disabledTextColor']),
-        focusColor: ThemeDecoder.decodeColor(map['focusColor']),
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.none,
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
+        colorBrightness: ThemeDecoder.decodeBrightness(
+          map['colorBrightness'],
+          validate: false,
+        ),
+        disabledColor: ThemeDecoder.decodeColor(
+          map['disabledColor'],
+          validate: false,
+        ),
+        disabledTextColor: ThemeDecoder.decodeColor(
+          map['disabledTextColor'],
+          validate: false,
+        ),
+        focusColor: ThemeDecoder.decodeColor(
+          map['focusColor'],
+          validate: false,
+        ),
         focusNode: map['focusNode'],
-        highlightColor: ThemeDecoder.decodeColor(map['highlightColor']),
-        hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
+        highlightColor: ThemeDecoder.decodeColor(
+          map['highlightColor'],
+          validate: false,
+        ),
+        hoverColor: ThemeDecoder.decodeColor(
+          map['hoverColor'],
+          validate: false,
+        ),
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
-            map['materialTapTargetSize']),
+          map['materialTapTargetSize'],
+          validate: false,
+        ),
         onHighlightChanged: map['onHighlightChanged'],
         onPressed: map['onPressed'],
         onLongPress: map['onLongPress'],
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
-        shape: ThemeDecoder.decodeShapeBorder(map['shape']),
-        splashColor: ThemeDecoder.decodeColor(map['splashColor']),
-        textColor: ThemeDecoder.decodeColor(map['textColor']),
-        textTheme: ThemeDecoder.decodeButtonTextTheme(map['textTheme']),
-        visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['padding'],
+          validate: false,
+        ),
+        shape: ThemeDecoder.decodeShapeBorder(
+          map['shape'],
+          validate: false,
+        ),
+        splashColor: ThemeDecoder.decodeColor(
+          map['splashColor'],
+          validate: false,
+        ),
+        textColor: ThemeDecoder.decodeColor(
+          map['textColor'],
+          validate: false,
+        ),
+        textTheme: ThemeDecoder.decodeButtonTextTheme(
+          map['textTheme'],
+          validate: false,
+        ),
+        visualDensity: ThemeDecoder.decodeVisualDensity(
+          map['visualDensity'],
+          validate: false,
+        ),
       );
     }
 

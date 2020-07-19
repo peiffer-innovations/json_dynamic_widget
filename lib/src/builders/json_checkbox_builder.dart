@@ -85,25 +85,42 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonCheckboxBuilder(
-        activeColor: ThemeDecoder.decodeColor(map['activeColor']),
+        activeColor: ThemeDecoder.decodeColor(
+          map['activeColor'],
+          validate: false,
+        ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidate: JsonClass.parseBool(map['autovalidate']),
-        checkColor: ThemeDecoder.decodeColor(map['checkColor']),
+        checkColor: ThemeDecoder.decodeColor(
+          map['checkColor'],
+          validate: false,
+        ),
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
-        focusColor: ThemeDecoder.decodeColor(map['focusColor']),
+        focusColor: ThemeDecoder.decodeColor(
+          map['focusColor'],
+          validate: false,
+        ),
         focusNode: map['focusNode'],
-        hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
+        hoverColor: ThemeDecoder.decodeColor(
+          map['hoverColor'],
+          validate: false,
+        ),
         label: map['label'],
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
-            map['materialTapTargetSize']),
+          map['materialTapTargetSize'],
+          validate: false,
+        ),
         onChanged: map['onChanged'],
         tristate: JsonClass.parseBool(map['tristate']),
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
         value: map['value'] == null ? null : JsonClass.parseBool(map['value']),
-        visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
+        visualDensity: ThemeDecoder.decodeVisualDensity(
+          map['visualDensity'],
+          validate: false,
+        ),
       );
     }
 
@@ -140,10 +157,12 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
       '[JsonCheckboxBuilder] does not support children.',
     );
 
+    var initialValue = value ?? (tristate != true ? false : null);
+
     return FormField<bool>(
       autovalidate: autovalidate,
       enabled: enabled,
-      initialValue: value ?? tristate != true ? false : null,
+      initialValue: initialValue,
       validator: validator == null
           ? null
           : (value) {
