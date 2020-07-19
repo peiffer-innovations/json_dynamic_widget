@@ -1,0 +1,77 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Switch"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "column",
+        "args": {
+          "mainAxisSize": "min"
+        },
+        "children": [{
+          "type": "row",
+          "args": {
+            "mainAxisSize": "min"
+          },
+          "children": [{
+            "type": "switch",
+            "args": {
+              "label": "Checked",
+              "value": true
+            }
+          }, {
+            "type": "text",
+            "args": {
+              "text": "Checked"
+            }
+          }]
+        }, {
+          "type": "row",
+          "args": {
+            "mainAxisSize": "min"
+          },
+          "children": [{
+            "type": "switch",
+            "args": {
+              "label": "Not Checked",
+              "value": false
+            }
+          }, {
+            "type": "text",
+            "args": {
+              "text": "Not Checked"
+            }
+          }]
+        }, {
+          "type": "row",
+          "args": {
+            "mainAxisSize": "min"
+          },
+          "children": [{
+            "type": "switch",
+            "args": {
+              "enabled": false,
+              "label": "Disabled"
+            }
+          }, {
+            "type": "text",
+            "args": {
+              "text": "Disabled"
+            }
+          }]
+        }]
+      }
+    }
+  }
+}

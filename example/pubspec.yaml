@@ -1,0 +1,35 @@
+name: example
+description: Example app for the JsonDynamicWidget library
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dotted_border: ^1.0.5
+  json_dynamic_widget:
+    path: ../
+  websafe_svg: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/pages/
+    - assets/widgets/
+  fonts:
+    - family: lato
+      fonts:
+        - asset: assets/fonts/Lato-Regular.ttf
+    - family: metal
+      fonts:
+        - asset: assets/fonts/MetalMania-Regular.ttf

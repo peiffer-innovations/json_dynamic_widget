@@ -1,0 +1,25 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Center"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "circular_progress_indicator",
+        "args": {
+          "valueColor": "#f00"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Baseline"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "container",
+        "args": {
+          "alignment": "center"
+        },
+        "child": {
+          "type": "column",
+          "args": {
+            "mainAxisSize": "min"
+          },
+          "children": [{
+            "type": "container",
+            "args": {
+              "color": "#000",
+              "padding": [16, 0]
+            },
+            "child": {
+              "type": "baseline",
+              "args": {
+                "baseline": 20,
+                "baselineType": "alphabetic"
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "style": {
+                    "color": "#fff"
+                  },
+                  "text": "alphabetic\nThe quick brown fox jumps over the lazy dog"
+                }
+              }
+            }
+          }, {
+            "type": "sized_box",
+            "args": {
+              "height": 16
+            }
+          }, {
+            "type": "container",
+            "args": {
+              "color": "#000",
+              "padding": [16, 0]
+            },
+            "child": {
+              "type": "baseline",
+              "args": {
+                "baseline": 20,
+                "baselineType": "ideographic"
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "style": {
+                    "color": "#fff"
+                  },
+                  "text": "ideographic\nThe quick brown fox jumps over the lazy dog"
+                }
+              }
+            }
+          }]
+        }
+      }
+    }
+  }
+}

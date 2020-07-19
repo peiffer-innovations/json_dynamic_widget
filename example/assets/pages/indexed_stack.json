@@ -1,0 +1,101 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "IndexedStack"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "column",
+        "args": {
+          "mainAxisSize": "min"
+        },
+        "children": [{
+          "type": "row",
+          "args": {
+            "mainAxisSize": "min"
+          },
+          "children": [{
+            "type": "raised_button",
+            "args": {
+              "onPressed": "##set_value(index, 0)##"
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "One"
+              }
+            }
+          }, {
+            "type": "sized_box",
+            "args": {
+              "width": 16
+            }
+          }, {
+            "type": "raised_button",
+            "args": {
+              "onPressed": "##set_value(index, 1)##"
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "Two"
+              }
+            }
+          }, {
+            "type": "sized_box",
+            "args": {
+              "width": 16
+            }
+          }, {
+            "type": "raised_button",
+            "args": {
+              "onPressed": "##set_value(index, 2)##"
+            },
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "Three"
+              }
+            }
+          }]
+        }, {
+          "type": "sized_box",
+          "args": {
+            "height": "16"
+          }
+        }, {
+          "type": "indexed_stack",
+          "args": {
+            "index": "{{index}}"
+          },
+          "children": [{
+            "type": "text",
+            "args": {
+              "text": "one"
+            }
+          }, {
+            "type": "text",
+            "args": {
+              "text": "two"
+            }
+          }, {
+            "type": "text",
+            "args": {
+              "text": "three"
+            }
+          }]
+        }]
+      }
+    }
+  }
+}

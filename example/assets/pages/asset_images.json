@@ -1,0 +1,547 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Asset Images Page"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "list_view",
+      "children": [{
+        "type": "set_value",
+        "args": {
+          "index": 1
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 2
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 3
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 4
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 5
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 6
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 7
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 8
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 9
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 10
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 11
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 12
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 13
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 14
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 15
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 16
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }, {
+        "type": "set_value",
+        "args": {
+          "index": 17
+        },
+        "child": {
+          "type": "ink_well",
+          "args": {
+            "onTap": "##getImageNavigator({{index}})##"
+          },
+          "child": {
+            "type": "hero",
+            "args": {
+              "tag": "##getImageId({{index}})##"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "height": 200,
+                "padding": [16.0, 8.0]
+              },
+              "child": {
+                "type": "asset_image",
+                "args": {
+                  "fit": "fitHeight",
+                  "name": "##getImageAsset({{index}})##"
+                }
+              }
+            }
+          }
+        }
+      }]
+    }
+  }
+}

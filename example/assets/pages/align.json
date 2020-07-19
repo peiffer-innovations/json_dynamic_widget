@@ -1,0 +1,182 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Align"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "stack",
+      "children": [{
+        "type": "align",
+        "args": {
+          "alignment": "topLeft"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#ffcdd2",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "topLeft"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "topCenter"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#E1BEE7",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "topCenter"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "topRight"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#F8BBD0",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "topRight"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "centerLeft"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#D1C4E9",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "centerLeft"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "center"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#C5CAE9",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "center"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "centerRight"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#BBDEFB",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "centerRight"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "bottomLeft"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#B3E5FC",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "bottomLeft"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "bottomCenter"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#B2EBF2",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "bottomCenter"
+            }
+          }
+        }
+      }, {
+        "type": "align",
+        "args": {
+          "alignment": "bottomRight"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#B2DFDB",
+            "padding": 16
+          },
+          "child": {
+            "type": "text",
+            "args": {
+              "text": "bottomRight"
+            }
+          }
+        }
+      }]
+    }
+  }
+}
