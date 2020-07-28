@@ -33,7 +33,7 @@ Where the `child` and `children` are mutually exclusive.  From a purely technica
 
 See the documentation and / or example app for the currently supported widgets.  All built types are encoded using a lower-case and underscore separator as opposed to a camel case strategy.  For instance, a `ClipRect` will have a type of `clip_rect`.
 
-Once you have the JSON for a widget, you will use the `JsonWidgetData` to build the resulting Widget that can be added to the tree.  For performance reasons, the `JsonWidgetData` should be built once and then cached rather than created in each `build` cycle.
+Once you have the JSON for a widget, you will use the `JsonWidgetData` to build the resulting Widget that can be added to the tree.  For performance reasons, the `JsonWidgetData` should be instantiated once and then cached rather than created in each `build` cycle.
 
 **Example**
 ```dart
@@ -248,7 +248,7 @@ class SvgBuilder extends JsonWidgetBuilder {
 }
 ```
 
-Widget builders can also have well defined JSON schemas assocuated to them.  If a widget builder has an associated JSON schema then in DEBUG modes, the JSON for the widget will be processed through the schema validator before attempting to build the widget.  This can assist with debugging by catching JSON errors early.
+Widget builders can also have well defined JSON schemas associated to them.  If a widget builder has an associated JSON schema then in DEBUG modes, the JSON for the widget will be processed through the schema validator before attempting to build the widget.  This can assist with debugging by catching JSON errors early.
 
 An example schema for the `SvgWidgetBuilder` might look something like this:
 ```dart
