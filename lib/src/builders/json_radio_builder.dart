@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -21,7 +22,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     this.hoverColor,
     this.label,
     this.materialTapTargetSize,
+    this.mouseCursor,
     this.onChanged,
+    this.onSaved,
+    this.toggleable,
     this.validator,
     this.value,
     this.visualDensity,
@@ -39,7 +43,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   final Color hoverColor;
   final String label;
   final MaterialTapTargetSize materialTapTargetSize;
-  final ValueChanged<bool> onChanged;
+  final MouseCursor mouseCursor;
+  final ValueChanged<dynamic> onChanged;
+  final ValueChanged<dynamic> onSaved;
+  final bool toggleable;
   final Validator validator;
   final dynamic value;
   final VisualDensity visualDensity;
@@ -60,7 +67,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   ///   "hoverColor": <Color>,
   ///   "label": <String>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "onChanged": <ValueCallback<bool>>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "onChanged": <ValueCallback<dynamic>>,
+  ///   "onSaved": <ValueCallback<dynamic>>,
+  ///   "toggleable": <bool>,
   ///   "validators": <ValueValidators[]>,
   ///   "value": <dynamic>,
   ///   "visualDensity": <VisualDensity>,
@@ -107,7 +117,13 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
           map['materialTapTargetSize'],
           validate: false,
         ),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+          map['mouseCursor'],
+          validate: false,
+        ),
         onChanged: map['onChanged'],
+        onSaved: map['onSaved'],
+        toggleable: JsonClass.parseBool(map['toggleable']),
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
@@ -211,11 +227,12 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return FormField(
+    return FormField<dynamic>(
       autovalidate: widget.builder.autovalidate,
       enabled: widget.builder.enabled,
       initialValue: widget.builder.groupValue,
       key: _globalKey,
+      onSaved: widget.builder.onSaved,
       validator: widget.builder.validator == null
           ? null
           : (value) {
@@ -243,6 +260,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
             groupValue: state.value,
             hoverColor: widget.builder.hoverColor,
             materialTapTargetSize: widget.builder.materialTapTargetSize,
+            mouseCursor: widget.builder.mouseCursor,
             onChanged: widget.builder.enabled != true
                 ? null
                 : (value) {
@@ -256,6 +274,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
                       widget.data.registry.setValue(widget.data.id, value);
                     }
                   },
+            toggleable: widget.builder.toggleable,
             value: widget.builder.value,
             visualDensity: widget.builder.visualDensity,
           ),

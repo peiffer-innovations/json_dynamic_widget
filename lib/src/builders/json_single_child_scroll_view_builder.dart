@@ -9,6 +9,7 @@ import 'package:json_theme/json_theme.dart';
 /// [fromDynamic] for the format.
 class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   JsonSingleChildScrollViewBuilder({
+    this.clipBehavior,
     this.controller,
     this.dragStartBehavior,
     this.padding,
@@ -20,6 +21,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
 
   static const type = 'single_child_scroll_view';
 
+  final Clip clipBehavior;
   final ScrollController controller;
   final DragStartBehavior dragStartBehavior;
   final EdgeInsets padding;
@@ -33,6 +35,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
+  ///   "clipBehavior": <Clip>,
   ///   "controller": <ScrollController>,
   ///   "dragStartBehavior": <DragStartBehavior>,
   ///   "padding": <EdgeInsetsGeometry>,
@@ -60,6 +63,8 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSingleChildScrollViewBuilder(
+        clipBehavior:
+            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
@@ -101,6 +106,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     );
 
     return SingleChildScrollView(
+      clipBehavior: clipBehavior,
       controller: controller,
       dragStartBehavior: dragStartBehavior,
       padding: padding,

@@ -28,6 +28,7 @@ class NetworkImageSchema {
       'gaplessPlayback': SchemaHelper.boolSchema,
       'height': SchemaHelper.numberSchema,
       'headers': SchemaHelper.anySchema,
+      'isAntiAlias': SchemaHelper.boolSchema,
       'loadingBuilder': SchemaHelper.stringSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
       'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),

@@ -9,11 +9,15 @@ import 'package:json_theme/json_theme.dart';
 /// [fromDynamic] for the format.
 class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   JsonDropdownButtonFormFieldBuilder({
+    this.autofocus,
     this.autovalidate,
     this.decoration,
     this.disabledHint,
+    this.dropdownColor,
     this.elevation,
     this.enabled,
+    this.focusColor,
+    this.focusNode,
     this.hint,
     this.icon,
     this.iconSize,
@@ -34,11 +38,15 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
 
   static const type = 'dropdown_button_form_field';
 
+  final bool autofocus;
   final bool autovalidate;
   final dynamic decoration;
   final JsonWidgetData disabledHint;
+  final Color dropdownColor;
   final int elevation;
   final bool enabled;
+  final Color focusColor;
+  final FocusNode focusNode;
   final JsonWidgetData hint;
   final JsonWidgetData icon;
   final dynamic items;
@@ -61,11 +69,15 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
+  ///   "autofocus": <bool>,
   ///   "autovalidate": <bool>,
   ///   "decoration": <InputDecorationDecoder>,
   ///   "disabledHint": <JsonWidgetData>,
+  ///   "dropdownColor": <Color>,
   ///   "elevation": <int>,
   ///   "enabled": <bool>,
+  ///   "focusColor": <Color>,
+  ///   "focusNode": <FocusNode>,
   ///   "hint": <JsonWidgetData>,
   ///   "icon": <JsonWidgetData>,
   ///   "items": <String[] | Map<String, dynamic>>,
@@ -85,10 +97,10 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   /// }
   /// ```
   ///
-  /// As a note, the [ValueChanged], [FormFieldSetter], and [VoidCallback]
-  /// cannot be decoded via JSON.  Instead, the only way to bind those values to
-  /// the builder is to use a function or a variable reference via the
-  /// [JsonWidgetRegistry].
+  /// As a note, the [FocusNode], [ValueChanged], [FormFieldSetter], and
+  /// [VoidCallback] objects cannot be decoded via JSON.  Instead, the only way
+  /// to bind those values to the builder is to use a function or a variable
+  /// reference via the [JsonWidgetRegistry].
   ///
   /// The `selectedItemBuilder` can be a [DropdownButtonBuilder] or
   /// [JsonWidgetData].  The [DropdownButtonBuilder] cannot be decoded via JSON
@@ -118,9 +130,14 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonDropdownButtonFormFieldBuilder(
+        autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidate: JsonClass.parseBool(map['autovalidate']),
         decoration: map['decoration'],
         disabledHint: JsonWidgetData.fromDynamic(map['disabledHint']),
+        dropdownColor: ThemeDecoder.decodeColor(
+          map['dropdownColor'],
+          validate: false,
+        ),
         elevation: JsonClass.parseInt(map['elevation'], 8),
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
@@ -288,13 +305,17 @@ class _JsonDropdownButtonFormFieldWidgetState
 
   @override
   Widget build(BuildContext context) => DropdownButtonFormField(
+        autofocus: widget.builder.autofocus,
         autovalidate: widget.builder.autovalidate,
         decoration: _decoration ?? const InputDecoration(),
         disabledHint: widget.builder.disabledHint?.build(
           childBuilder: widget.childBuilder,
           context: context,
         ),
+        dropdownColor: widget.builder.dropdownColor,
         elevation: widget.builder.elevation,
+        focusColor: widget.builder.focusColor,
+        focusNode: widget.builder.focusNode,
         hint: widget.builder.hint?.build(
           childBuilder: widget.childBuilder,
           context: context,

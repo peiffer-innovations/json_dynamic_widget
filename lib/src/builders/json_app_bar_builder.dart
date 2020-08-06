@@ -22,10 +22,12 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
     this.iconTheme,
     this.leading,
     this.primary,
+    this.shadowColor,
     this.shape,
     this.textTheme,
     this.title,
     this.titleSpacing,
+    this.toolbarHeight,
     this.toolbarOpacity,
   }) : super(preferredSizeWidget: true);
 
@@ -45,10 +47,12 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   final IconThemeData iconTheme;
   final JsonWidgetData leading;
   final bool primary;
+  final Color shadowColor;
   final ShapeBorder shape;
   final TextTheme textTheme;
   final JsonWidgetData title;
   final double titleSpacing;
+  final double toolbarHeight;
   final double toolbarOpacity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -69,10 +73,12 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   ///   "iconTheme": <IconThemeData>,
   ///   "leading": <bool>,
   ///   "primary": <bool>,
+  ///   "shadowColor": <Color>,
   ///   "shape": <ShapeBorder>,
   ///   "textTheme": <TextTheme>,
   ///   "title": <JsonWidgetData>,
   ///   "titleSpacing": <double>,
+  ///   "toolbarHeight": <double>,
   ///   "toolbarOpacity": <double>
   /// }
   /// ```
@@ -138,6 +144,10 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         ),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
+        shadowColor: ThemeDecoder.decodeColor(
+          map['shadowColor'],
+          validate: false,
+        ),
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
           validate: false,
@@ -154,6 +164,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['titleSpacing'],
           NavigationToolbar.kMiddleSpacing,
         ),
+        toolbarHeight: JsonClass.parseDouble(map['toolbarHeight']),
         toolbarOpacity: JsonClass.parseDouble(map['toolbarOpacity'], 1.0),
       );
     }
@@ -205,6 +216,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         context: context,
       ),
       primary: primary,
+      shadowColor: shadowColor,
       shape: shape,
       textTheme: textTheme,
       title: title?.build(
@@ -212,6 +224,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         context: context,
       ),
       titleSpacing: titleSpacing,
+      toolbarHeight: toolbarHeight,
       toolbarOpacity: toolbarOpacity,
     );
   }

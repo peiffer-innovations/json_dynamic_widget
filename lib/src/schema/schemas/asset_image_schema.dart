@@ -26,6 +26,7 @@ class AssetImageSchema {
       'frameBuilder': SchemaHelper.stringSchema,
       'gaplessPlatback': SchemaHelper.boolSchema,
       'height': SchemaHelper.numberSchema,
+      'isAntiAlias': SchemaHelper.boolSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
       'name': SchemaHelper.stringSchema,
       'package': SchemaHelper.stringSchema,

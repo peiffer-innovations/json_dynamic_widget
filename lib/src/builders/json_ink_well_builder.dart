@@ -1,5 +1,6 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
@@ -18,6 +19,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
     this.focusNode,
     this.highlightColor,
     this.hoverColor,
+    this.mouseCursor,
     this.onDoubleTap,
     this.onFocusChange,
     this.onHighlightChanged,
@@ -43,6 +45,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   final FocusNode focusNode;
   final Color highlightColor;
   final Color hoverColor;
+  final MouseCursor mouseCursor;
   final GestureTapCallback onDoubleTap;
   final ValueChanged<bool> onFocusChange;
   final ValueChanged<bool> onHighlightChanged;
@@ -70,6 +73,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   ///   "focusNode": <FocusNode>,
   ///   "highlightColor": <Color>,
   ///   "hoverColor": <Color>,
+  ///   "mouseCursor": <MouseCursor>,
   ///   "onDoubleTap": <GestureTapCallback>,
   ///   "onFocusChange": <ValueChanged<bool>>,
   ///   "onHighlightChanged": <ValueChanged<bool>>,
@@ -95,6 +99,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBorderRadius]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeInteractiveInkFeatureFactory]
+  ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeShapeBorder]
   static JsonInkWellBuilder fromDynamic(
     dynamic map, {
@@ -131,6 +136,10 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
         ),
         hoverColor: ThemeDecoder.decodeColor(
           map['hoverColor'],
+          validate: false,
+        ),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+          map['mouseCursor'],
           validate: false,
         ),
         onDoubleTap: map['onDoubleTap'],
@@ -179,6 +188,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
       focusNode: focusNode,
       highlightColor: highlightColor,
       hoverColor: hoverColor,
+      mouseCursor: mouseCursor,
       onDoubleTap: onDoubleTap,
       onFocusChange: onFocusChange,
       onHighlightChanged: onHighlightChanged,

@@ -22,7 +22,9 @@ class CheckboxSchema {
       'label': SchemaHelper.stringSchema,
       'materialTapTargetSize':
           SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
+      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onChanged': SchemaHelper.stringSchema,
+      'onSaved': SchemaHelper.stringSchema,
       'tristate': SchemaHelper.boolSchema,
       'validators': {
         'type': 'array',

@@ -17,6 +17,7 @@ class FittedBoxSchema {
         'additionalProperties': false,
         'properties': {
           'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
+          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'fit': SchemaHelper.objectSchema(BoxFitSchema.id),
         },
       },

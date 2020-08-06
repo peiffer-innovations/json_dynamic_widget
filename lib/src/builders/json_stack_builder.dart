@@ -8,6 +8,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonStackBuilder extends JsonWidgetBuilder {
   JsonStackBuilder({
     this.alignment,
+    this.clipBehavior,
     this.fit,
     this.overflow,
     this.textDirection,
@@ -16,6 +17,7 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   static const type = 'stack';
 
   final AlignmentGeometry alignment;
+  final Clip clipBehavior;
   final StackFit fit;
   final Overflow overflow;
   final TextDirection textDirection;
@@ -26,6 +28,7 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "alignment": <Alignment>,
+  ///   "clipBehavior": <Clip>,
   ///   "fit": <StackFit>,
   ///   "overflow": <Overflow>,
   ///   "textDirection": <TextDirection>
@@ -34,6 +37,7 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
+  ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeStackFit]
   ///  * [ThemeDecoder.decodeOverflow]
   ///  * [ThemeDecoder.decodeTextDirection]
@@ -50,6 +54,11 @@ class JsonStackBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             AlignmentDirectional.topStart,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         fit: ThemeDecoder.decodeStackFit(
               map['fit'],
               validate: false,
@@ -79,6 +88,7 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   }) {
     return Stack(
       alignment: alignment,
+      clipBehavior: clipBehavior,
       fit: fit,
       overflow: overflow,
       textDirection: textDirection,

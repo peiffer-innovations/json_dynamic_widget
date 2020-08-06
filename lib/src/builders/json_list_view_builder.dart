@@ -16,6 +16,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
     this.controller,
     this.dragStartBehavior,
     this.itemExtent,
+    this.keyboardDismissBehavior,
     this.padding,
     this.physics,
     this.primary,
@@ -33,6 +34,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   final ScrollController controller;
   final DragStartBehavior dragStartBehavior;
   final double itemExtent;
+  final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
   final EdgeInsets padding;
   final ScrollPhysics physics;
   final bool primary;
@@ -52,6 +54,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   ///   "controller": <ScrollController>,
   ///   "dragStartBehavior": <DragStartBehavior>,
   ///   "itemExtent": <double>,
+  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "physics": <ScrollPhysics>,
   ///   "primary": <bool>,
@@ -95,6 +98,12 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
             ) ??
             DragStartBehavior.start,
         itemExtent: JsonClass.parseDouble(map['itemExtent']),
+        keyboardDismissBehavior:
+            ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+                  map['keyboardDismissBehavior'],
+                  validate: false,
+                ) ??
+                ScrollViewKeyboardDismissBehavior.manual,
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
@@ -133,6 +142,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       dragStartBehavior: dragStartBehavior,
       itemCount: data.children?.length ?? 0,
       itemExtent: itemExtent,
+      keyboardDismissBehavior: keyboardDismissBehavior,
       padding: padding,
       physics: physics,
       primary: primary,

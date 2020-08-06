@@ -9,6 +9,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   JsonLinearProgressIndicatorBuilder({
     this.backgroundColor,
+    this.minHeight,
     this.semanticsLabel,
     this.semanticsValue,
     this.value,
@@ -18,6 +19,7 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   static const type = 'linear_progress_indicator';
 
   final Color backgroundColor;
+  final double minHeight;
   final String semanticsLabel;
   final String semanticsValue;
   final double value;
@@ -28,11 +30,12 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   'backgroundColor': <Color>,
-  ///   'semanticsLabel': <String>,
-  ///   'semanticsValue': <String>,
-  ///   'value': <double>,
-  ///   'valueColor': <Animation<Color> | Color>
+  ///   "backgroundColor": <Color>,
+  ///   "minHeight": <double>,
+  ///   "semanticsLabel": <String>,
+  ///   "semanticsValue": <String>,
+  ///   "value": <double>,
+  ///   "valueColor": <Animation<Color> | Color>
   /// }
   /// ```
   ///
@@ -46,14 +49,21 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonLinearProgressIndicatorBuilder(
-        backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
+        backgroundColor: ThemeDecoder.decodeColor(
+          map['backgroundColor'],
+          validate: false,
+        ),
+        minHeight: JsonClass.parseDouble(map['minHeight']),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
         value: JsonClass.parseDouble(map['value']),
         valueColor: map['valueColor'] is Function
             ? map['valueColor']
             : AlwaysStoppedAnimation(
-                ThemeDecoder.decodeColor(map['valueColor']),
+                ThemeDecoder.decodeColor(
+                  map['valueColor'],
+                  validate: false,
+                ),
               ),
       );
     }
@@ -75,6 +85,7 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
 
     return LinearProgressIndicator(
       backgroundColor: backgroundColor,
+      minHeight: minHeight,
       semanticsLabel: semanticsLabel,
       semanticsValue: semanticsValue,
       value: value,

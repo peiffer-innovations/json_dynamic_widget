@@ -18,6 +18,7 @@ class CupertinoSwitchSchema {
       'enabled': SchemaHelper.boolSchema,
       'label': SchemaHelper.stringSchema,
       'onChanged': SchemaHelper.stringSchema,
+      'onSaved': SchemaHelper.stringSchema,
       'trackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'validators': {
         'type': 'array',

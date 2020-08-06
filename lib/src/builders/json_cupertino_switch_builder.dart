@@ -17,6 +17,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     this.enabled,
     this.label,
     this.onChanged,
+    this.onSaved,
     this.trackColor,
     this.validator,
     this.value,
@@ -31,6 +32,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   final bool enabled;
   final String label;
   final ValueChanged<bool> onChanged;
+  final ValueChanged<bool> onSaved;
   final Color trackColor;
   final Validator validator;
   final bool value;
@@ -47,6 +49,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   ///   "enabled": <bool>,
   ///   "label": <String>,
   ///   "onChanged": <ValueCallback<bool>>,
+  ///   "onSaved": <ValueCallback<bool>>,
   ///   "trackColor": <Color>,
   ///   "validators": <ValueValidator[]>,
   ///   "value": <bool>,
@@ -85,6 +88,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         label: map['label'],
         onChanged: map['onChanged'],
+        onSaved: map['onSaved'],
+        trackColor: ThemeDecoder.decodeColor(
+          map['trackColor'],
+          validate: false,
+        ),
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
@@ -133,6 +141,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
       autovalidate: autovalidate,
       enabled: enabled,
       initialValue: value,
+      onSaved: onSaved,
       validator: validator == null
           ? null
           : (value) {

@@ -28,6 +28,7 @@ class MemoryImageSchema {
       'gaplessPlayback': SchemaHelper.boolSchema,
       'height': SchemaHelper.numberSchema,
       'image': SchemaHelper.anySchema,
+      'isAntiAlias': SchemaHelper.boolSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
       'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),
       'scale': SchemaHelper.numberSchema,

@@ -12,6 +12,7 @@ class LinearProgressIndicatorSchema {
     'additionalProperties': false,
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'minHeight': SchemaHelper.numberSchema,
       'semanticsLabel': SchemaHelper.stringSchema,
       'semanticsValue': SchemaHelper.stringSchema,
       'value': SchemaHelper.numberSchema,

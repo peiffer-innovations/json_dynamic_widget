@@ -1,5 +1,6 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
@@ -25,6 +26,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
     this.hoverColor,
     this.hoverElevation,
     this.materialTapTargetSize,
+    this.mouseCursor,
     this.onHighlightChanged,
     this.onPressed,
     this.onLongPress,
@@ -55,6 +57,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
   final Color hoverColor;
   final double hoverElevation;
   final MaterialTapTargetSize materialTapTargetSize;
+  final MouseCursor mouseCursor;
   final ValueChanged<bool> onHighlightChanged;
   final VoidCallback onPressed;
   final VoidCallback onLongPress;
@@ -87,6 +90,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
   ///   "hoverColor": <Color>,
   ///   "hoverElevation": <double>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
   ///   "onHighlightChanged": <ValueCallback<bool>>,
   ///   "onPressed": <VoidCallback>,
   ///   "onLongPress": <VoidCallback>,
@@ -111,6 +115,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBoxDirection]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
+  ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeButtonTextTheme]
   ///  * [ThemeDecoder.decodeVisualDensity]
@@ -168,6 +173,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
           map['materialTapTargetSize'],
           validate: false,
         ),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(map['mouseCursor']),
         onHighlightChanged: map['onHighlightChanged'],
         onPressed: map['onPressed'],
         onLongPress: map['onLongPress'],
@@ -231,6 +237,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
       hoverColor: hoverColor,
       hoverElevation: hoverElevation,
       materialTapTargetSize: materialTapTargetSize,
+      mouseCursor: mouseCursor,
       onHighlightChanged: onHighlightChanged,
       onPressed: onPressed,
       onLongPress: onLongPress,

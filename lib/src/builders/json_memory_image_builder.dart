@@ -25,6 +25,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
     this.gaplessPlayback,
     this.height,
     @required this.image,
+    this.isAntiAlias,
     this.matchTextDirection,
     this.repeat,
     this.scale,
@@ -47,6 +48,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
   final ImageFrameBuilder frameBuilder;
   final bool gaplessPlayback;
   final double height;
+  final bool isAntiAlias;
   final Uint8List image;
   final bool matchTextDirection;
   final ImageRepeat repeat;
@@ -73,6 +75,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
   ///   "gaplessPlayback": <bool>,
   ///   "height": <double>,
   ///   "image": <String | Uint8List>,
+  ///   "isAntiAlias": <bool>,
   ///   "matchTextDirection": <bool>,
   ///   "repeat": <ImageRepeat>,
   ///   "scale": <double>,
@@ -140,6 +143,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
         height: JsonClass.parseDouble(map['height']),
+        isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
         image: image,
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
         repeat: ThemeDecoder.decodeImageRepeat(
@@ -183,6 +187,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
       frameBuilder: frameBuilder,
       gaplessPlayback: gaplessPlayback,
       height: height,
+      isAntiAlias: isAntiAlias,
       matchTextDirection: matchTextDirection,
       repeat: repeat,
       scale: scale,

@@ -14,11 +14,15 @@ dependencies:
   dotted_border: ^1.0.5
   json_dynamic_widget:
     path: ../
-  websafe_svg: ^1.1.0
+  websafe_svg: ^1.1.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+# dependency_overrides:
+#   websafe_svg:
+#     path: ../../websafe_svg
 
 flutter:
   uses-material-design: true

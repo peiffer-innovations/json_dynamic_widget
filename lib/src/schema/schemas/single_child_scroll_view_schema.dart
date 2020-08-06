@@ -16,6 +16,7 @@ class SingleChildScrollViewSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
+          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'controller': SchemaHelper.stringSchema,
           'dragStartBehavior':
               SchemaHelper.objectSchema(DragStartBehaviorSchema.id),

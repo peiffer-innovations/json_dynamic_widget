@@ -11,6 +11,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   JsonTextFormFieldBuilder({
     this.autocorrect,
+    this.autofillHints,
     this.autofocus,
     this.autovalidate,
     this.buildCounter,
@@ -33,6 +34,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.maxLines,
     this.minLines,
     this.obscureText,
+    this.obscuringCharacter,
     this.onChanged,
     this.onEditingComplete,
     this.onFieldSubmitted,
@@ -58,6 +60,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   static const type = 'text_form_field';
 
   final bool autocorrect;
+  final Iterable<String> autofillHints;
   final bool autofocus;
   final bool autovalidate;
   final InputCounterWidgetBuilder buildCounter;
@@ -80,6 +83,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final int maxLines;
   final int minLines;
   final bool obscureText;
+  final String obscuringCharacter;
   final ValueChanged<String> onChanged;
   final VoidCallback onEditingComplete;
   final ValueChanged<String> onFieldSubmitted;
@@ -107,6 +111,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "autocorrect": <bool>,
+  ///   "autofillHints": <List<String>>
   ///   "autofocus": <bool>
   ///   "autovalidate": <bool>,
   ///   "buildCounter": <InputCounterWidgetBuilder>,
@@ -129,6 +134,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "maxLines": <int>,
   ///   "minLines": <int>,
   ///   "obscureText": <bool>,
+  ///   "obscuringCharacter": <String>,
   ///   "onChanged": <ValueChanged<String>>,
   ///   "onEditingComplete": <VoidCallback>,
   ///   "onFieldSubmitted": <ValueChanged<String>>,
@@ -180,6 +186,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         autocorrect: map['autocorrect'] == null
             ? true
             : JsonClass.parseBool(map['autocorrect']),
+        autofillHints: map['autofillHints'] == null
+            ? null
+            : List<String>.from(map['autofillHints']),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidate: JsonClass.parseBool(map['autovalidate']),
         buildCounter: map['buildCounter'],
@@ -219,6 +228,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         maxLines: JsonClass.parseInt(map['maxLines'], 1),
         minLines: JsonClass.parseInt(map['minLines']),
         obscureText: JsonClass.parseBool(map['obscureText']),
+        obscuringCharacter: map['obscuringCharacter'] ?? '•',
         onChanged: map['onChanged'],
         onEditingComplete: map['onEditingComplete'],
         onFieldSubmitted: map['onFieldSubmitted'],
@@ -365,6 +375,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
   @override
   Widget build(BuildContext context) => TextFormField(
         autocorrect: widget.builder.autocorrect,
+        autofillHints: widget.builder.autofillHints,
         autofocus: widget.builder.autofocus,
         autovalidate: widget.builder.autovalidate,
         buildCounter: widget.builder.buildCounter,
@@ -386,6 +397,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         maxLengthEnforced: widget.builder.maxLengthEnforced,
         maxLines: widget.builder.maxLines,
         minLines: widget.builder.minLines,
+        obscuringCharacter: widget.builder.obscuringCharacter,
         obscureText: widget.builder.obscureText,
         onChanged: widget.builder.enabled != true
             ? null

@@ -8,12 +8,14 @@ import 'package:json_theme/json_theme.dart';
 class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   JsonFittedBoxBuilder({
     this.alignment,
+    this.clipBehavior,
     this.fit,
   });
 
   static const type = 'fitted_box';
 
   final AlignmentGeometry alignment;
+  final Clip clipBehavior;
   final BoxFit fit;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -22,12 +24,14 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "alignment": <Alignment>,
+  ///   "clipBehavior": <Clip>,
   ///   "fit": <BoxFit>
   /// }
   /// ```
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
+  ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeBoxFit]
   static JsonFittedBoxBuilder fromDynamic(
     dynamic map, {
@@ -42,6 +46,11 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         fit: ThemeDecoder.decodeBoxFit(
               map['fit'],
               validate: false,
@@ -67,6 +76,7 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
 
     return FittedBox(
       alignment: alignment,
+      clipBehavior: clipBehavior,
       fit: fit,
       child: data.children[0].build(
         childBuilder: childBuilder,

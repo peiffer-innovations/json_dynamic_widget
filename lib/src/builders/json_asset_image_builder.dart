@@ -21,6 +21,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
     this.frameBuilder,
     this.gaplessPlayback,
     this.height,
+    this.isAntiAlias,
     this.matchTextDirection,
     @required this.name,
     this.package,
@@ -45,6 +46,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   final ImageFrameBuilder frameBuilder;
   final bool gaplessPlayback;
   final double height;
+  final bool isAntiAlias;
   final bool matchTextDirection;
   final String name;
   final String package;
@@ -71,6 +73,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   ///   "frameBuilder": <ImageFrameBuilder>,
   ///   "gaplessPlayback": <bool>,
   ///   "height": <double>,
+  ///   "isAntiAlias": <bool>,
   ///   "matchTextDirection": <bool>,
   ///   "name": <String>,
   ///   "package": <String>,
@@ -132,6 +135,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
         height: JsonClass.parseDouble(map['height']),
+        isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
         name: map['name'],
         package: map['package'],
@@ -176,6 +180,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
       frameBuilder: frameBuilder,
       gaplessPlayback: gaplessPlayback,
       height: height,
+      isAntiAlias: isAntiAlias,
       matchTextDirection: matchTextDirection,
       package: package,
       repeat: repeat,

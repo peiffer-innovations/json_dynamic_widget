@@ -21,6 +21,7 @@ class InkWellSchema {
       'focusNode': SchemaHelper.stringSchema,
       'highlightColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onDoubleTap': SchemaHelper.stringSchema,
       'onFocusChange': SchemaHelper.stringSchema,
       'onHighlightChanged': SchemaHelper.stringSchema,

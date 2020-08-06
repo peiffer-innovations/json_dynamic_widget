@@ -1,5 +1,6 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
@@ -19,6 +20,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
     this.highlightColor,
     this.hoverColor,
     this.materialTapTargetSize,
+    this.mouseCursor,
     this.onHighlightChanged,
     this.onPressed,
     this.onLongPress,
@@ -43,6 +45,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   final Color highlightColor;
   final Color hoverColor;
   final MaterialTapTargetSize materialTapTargetSize;
+  final MouseCursor mouseCursor;
   final ValueChanged<bool> onHighlightChanged;
   final VoidCallback onPressed;
   final VoidCallback onLongPress;
@@ -69,6 +72,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   ///   "highlightColor": <Color>,
   ///   "hoverColor": <Color>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
   ///   "onHighlightChanged": <ValueChanged<bool>>,
   ///   "onPressed": <VoidCallback>,
   ///   "onLongPress": <VoidCallback>,
@@ -93,6 +97,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBoxDirection]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
+  ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeButtonTextTheme]
   ///  * [ThemeDecoder.decodeVisualDensity]
@@ -141,6 +146,10 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
         ),
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
           map['materialTapTargetSize'],
+          validate: false,
+        ),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+          map['mouseCursor'],
           validate: false,
         ),
         onHighlightChanged: map['onHighlightChanged'],
@@ -200,6 +209,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
       highlightColor: highlightColor,
       hoverColor: hoverColor,
       materialTapTargetSize: materialTapTargetSize,
+      mouseCursor: mouseCursor,
       onHighlightChanged: onHighlightChanged,
       onPressed: onPressed,
       onLongPress: onLongPress,

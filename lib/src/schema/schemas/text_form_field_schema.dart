@@ -12,6 +12,12 @@ class TextFormFieldSchema {
     'additionalProperties': false,
     'properties': {
       'autocorrect': SchemaHelper.boolSchema,
+      'autofillHints': {
+        'type': 'array',
+        'items': {
+          'type': 'string',
+        },
+      },
       'autofocus': SchemaHelper.boolSchema,
       'autovalidate': SchemaHelper.boolSchema,
       'buildCounter': SchemaHelper.stringSchema,
@@ -34,6 +40,7 @@ class TextFormFieldSchema {
       'maxLines': SchemaHelper.numberSchema,
       'minLines': SchemaHelper.numberSchema,
       'obscureText': SchemaHelper.boolSchema,
+      'obscuringCharacter': SchemaHelper.stringSchema,
       'onChanged': SchemaHelper.stringSchema,
       'onEditingComplete': SchemaHelper.stringSchema,
       'onFieldSubmitted': SchemaHelper.stringSchema,

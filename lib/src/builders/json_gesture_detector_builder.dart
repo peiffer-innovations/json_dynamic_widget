@@ -35,6 +35,12 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     this.onScaleEnd,
     this.onScaleStart,
     this.onScaleUpdate,
+    this.onSecondaryLongPress,
+    this.onSecondaryLongPressEnd,
+    this.onSecondaryLongPressMoveUpdate,
+    this.onSecondaryLongPressStart,
+    this.onSecondaryLongPressUp,
+    this.onSecondaryTap,
     this.onSecondaryTapCancel,
     this.onSecondaryTapDown,
     this.onSecondaryTapUp,
@@ -77,6 +83,12 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   final GestureScaleEndCallback onScaleEnd;
   final GestureScaleStartCallback onScaleStart;
   final GestureScaleUpdateCallback onScaleUpdate;
+  final GestureLongPressCallback onSecondaryLongPress;
+  final GestureLongPressEndCallback onSecondaryLongPressEnd;
+  final GestureLongPressMoveUpdateCallback onSecondaryLongPressMoveUpdate;
+  final GestureLongPressStartCallback onSecondaryLongPressStart;
+  final GestureLongPressUpCallback onSecondaryLongPressUp;
+  final GestureTapCallback onSecondaryTap;
   final GestureTapCancelCallback onSecondaryTapCancel;
   final GestureTapDownCallback onSecondaryTapDown;
   final GestureTapUpCallback onSecondaryTapUp;
@@ -121,6 +133,12 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   ///   "onScaleEnd": <GestureScaleEndCallback>,
   ///   "onScaleStart": <GestureScaleStartCallback>,
   ///   "onScaleUpdate": <GestureScaleUpdateCallback>,
+  ///   "onSecondaryLongPress": <GestureLongPressCallback>,
+  ///   "onSecondaryLongPressEnd": <GestureLongPressEndCallback>,
+  ///   "onSecondaryLongPressMoveUpdate": <GestureLongPressMoveUpdateCallback>,
+  ///   "onSecondaryLongPressStart": <GestureLongPressStartCallback>,
+  ///   "onSecondaryLongPressUp": <GestureLongPressUpCallback>,
+  ///   "onSecondaryTap": <GestureTapCallback>,
   ///   "onSecondaryTapCancel": <GestureTapCancelCallback>,
   ///   "onSecondaryTapDown": <GestureTapDownCallback>,
   ///   "onSecondaryTapUp": <GestureTapUpCallback>,
@@ -184,6 +202,12 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
         onScaleEnd: map['onScaleEnd'],
         onScaleStart: map['onScaleStart'],
         onScaleUpdate: map['onScaleUpdate'],
+        onSecondaryLongPress: map['onSecondaryLongPress'],
+        onSecondaryLongPressEnd: map['onSecondaryLongPressEnd'],
+        onSecondaryLongPressMoveUpdate: map['onSecondaryLongPressMoveUpdate'],
+        onSecondaryLongPressStart: map['onSecondaryLongPressStart'],
+        onSecondaryLongPressUp: map['onSecondaryLongPressUp'],
+        onSecondaryTap: map['onSecondaryTap'],
         onSecondaryTapCancel: map['onSecondaryTapChannel'],
         onSecondaryTapDown: map['onSecondartyTapDown'],
         onSecondaryTapUp: map['onSecondaryTapUp'],
@@ -241,6 +265,12 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       onScaleEnd: onScaleEnd,
       onScaleStart: onScaleStart,
       onScaleUpdate: onScaleUpdate,
+      onSecondaryLongPress: onSecondaryLongPress,
+      onSecondaryLongPressEnd: onSecondaryLongPressEnd,
+      onSecondaryLongPressMoveUpdate: onSecondaryLongPressMoveUpdate,
+      onSecondaryLongPressStart: onSecondaryLongPressStart,
+      onSecondaryLongPressUp: onSecondaryLongPressUp,
+      onSecondaryTap: onSecondaryTap,
       onSecondaryTapCancel: onSecondaryTapCancel,
       onSecondaryTapDown: onSecondaryTapDown,
       onSecondaryTapUp: onSecondaryTapUp,

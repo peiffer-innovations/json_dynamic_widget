@@ -24,6 +24,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
     this.gaplessPlayback,
     this.height,
     this.headers,
+    this.isAntiAlias,
     this.loadingBuilder,
     this.matchTextDirection,
     this.repeat,
@@ -49,6 +50,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   final bool gaplessPlayback;
   final Map<String, String> headers;
   final double height;
+  final bool isAntiAlias;
   final ImageLoadingBuilder loadingBuilder;
   final bool matchTextDirection;
   final ImageRepeat repeat;
@@ -76,6 +78,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   ///   "gaplessPlayback": <bool>,
   ///   "height": <double>,
   ///   "headers": <<Map<String, String>>
+  ///   "isAntiAlias": <bool>,
   ///   "loadingBuilder": <ImageLoadingBuilder>,
   ///   "matchTextDirection": <bool>,
   ///   "repeat": <ImageRepeat>,
@@ -144,6 +147,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
         headers: map['headers'] == null
             ? null
             : Map<String, String>.from(map['headers']),
+        isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
         loadingBuilder: map['loadingBuilder'],
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
         repeat: ThemeDecoder.decodeImageRepeat(
@@ -189,6 +193,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
       gaplessPlayback: gaplessPlayback,
       headers: headers,
       height: height,
+      isAntiAlias: isAntiAlias,
       loadingBuilder: loadingBuilder,
       matchTextDirection: matchTextDirection,
       repeat: repeat,

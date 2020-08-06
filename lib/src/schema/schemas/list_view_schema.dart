@@ -24,6 +24,9 @@ class ListViewSchema {
           'dragStartBehavior':
               SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
           'itemExtent': SchemaHelper.numberSchema,
+          'keyboardDismissBehavior': SchemaHelper.objectSchema(
+            ScrollViewKeyboardDismissBehaviorSchema.id,
+          ),
           'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
           'primary': SchemaHelper.boolSchema,

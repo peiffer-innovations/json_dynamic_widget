@@ -27,8 +27,10 @@ class RaisedButtonSchema {
       'highlightElevation': SchemaHelper.numberSchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hoverElevation': SchemaHelper.numberSchema,
-      'materialTapTargetSize':
-          SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
+      'materialTapTargetSize': SchemaHelper.objectSchema(
+        MaterialTapTargetSizeSchema.id,
+      ),
+      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onHighlightChanged': SchemaHelper.stringSchema,
       'onPressed': SchemaHelper.stringSchema,
       'onLongPress': SchemaHelper.stringSchema,

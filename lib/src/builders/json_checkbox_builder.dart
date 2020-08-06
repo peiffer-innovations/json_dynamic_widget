@@ -1,5 +1,6 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -19,7 +20,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.hoverColor,
     this.label,
     this.materialTapTargetSize,
+    this.mouseCursor,
     this.onChanged,
+    this.onSaved,
     this.tristate,
     this.validator,
     this.value,
@@ -38,7 +41,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   final Color hoverColor;
   final String label;
   final MaterialTapTargetSize materialTapTargetSize;
+  final MouseCursor mouseCursor;
   final ValueChanged<bool> onChanged;
+  final ValueChanged<bool> onSaved;
   final bool tristate;
   final Validator validator;
   final bool value;
@@ -59,7 +64,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///   "hoverColor": <Color>,
   ///   "label": <String>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
   ///   "onChanged": <ValueChanged<bool>>,
+  ///   "onSaved": <ValueChanged<onSaved>>,
   ///   "tristate": <bool>,
   ///   "validators": <ValueValidator[]>,
   ///   "value": <bool>,
@@ -75,6 +82,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///  * [buildCustom]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
+  ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
   static JsonCheckboxBuilder fromDynamic(
@@ -111,7 +119,12 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
           map['materialTapTargetSize'],
           validate: false,
         ),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+          map['mouseCursor'],
+          validate: false,
+        ),
         onChanged: map['onChanged'],
+        onSaved: map['onSaved'],
         tristate: JsonClass.parseBool(map['tristate']),
         validator: map['validators'] == null
             ? null
@@ -163,6 +176,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
       autovalidate: autovalidate,
       enabled: enabled,
       initialValue: initialValue,
+      onSaved: onSaved,
       validator: validator == null
           ? null
           : (value) {
@@ -189,6 +203,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
             focusNode: focusNode,
             hoverColor: hoverColor,
             materialTapTargetSize: materialTapTargetSize,
+            mouseCursor: mouseCursor,
             onChanged: enabled != true
                 ? null
                 : (value) {

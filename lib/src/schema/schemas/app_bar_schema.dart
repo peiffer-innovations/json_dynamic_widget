@@ -25,10 +25,12 @@ class AppBarSchema {
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'leading': SchemaHelper.boolSchema,
       'primary': SchemaHelper.boolSchema,
+      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
       'textTheme': SchemaHelper.objectSchema(TextThemeSchema.id),
       'title': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'titleSpacing': SchemaHelper.numberSchema,
+      'toolbarHeight': SchemaHelper.numberSchema,
       'toolbarOpacity': SchemaHelper.numberSchema,
     },
   };

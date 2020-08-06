@@ -21,9 +21,13 @@ class RadioSchema {
       'groupValue': SchemaHelper.anySchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'label': SchemaHelper.stringSchema,
-      'materialTapTargetSize':
-          SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
+      'materialTapTargetSize': SchemaHelper.objectSchema(
+        MaterialTapTargetSizeSchema.id,
+      ),
+      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onChanged': SchemaHelper.stringSchema,
+      'onSaved': SchemaHelper.stringSchema,
+      'toggleable': SchemaHelper.boolSchema,
       'validators': SchemaHelper.anySchema,
       'value': SchemaHelper.anySchema,
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),

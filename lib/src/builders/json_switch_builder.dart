@@ -1,6 +1,7 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -11,6 +12,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonSwitchBuilder extends JsonWidgetBuilder {
   JsonSwitchBuilder({
     this.activeColor,
+    this.activeThumbImage,
     this.activeTrackColor,
     this.autofocus,
     this.autovalidate,
@@ -20,10 +22,15 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     this.focusNode,
     this.hoverColor,
     this.inactiveThumbColor,
+    this.inactiveThumbImage,
     this.inactiveTrackColor,
     this.label,
     this.materialTapTargetSize,
+    this.mouseCursor,
+    this.onActiveThumbImageError,
     this.onChanged,
+    this.onInactiveThumbImageError,
+    this.onSaved,
     this.trackColor,
     this.validator,
     this.value,
@@ -33,6 +40,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   static const type = 'switch';
 
   final Color activeColor;
+  final ImageProvider<dynamic> activeThumbImage;
   final Color activeTrackColor;
   final bool autofocus;
   final bool autovalidate;
@@ -42,10 +50,15 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   final FocusNode focusNode;
   final Color hoverColor;
   final Color inactiveThumbColor;
+  final ImageProvider<dynamic> inactiveThumbImage;
   final Color inactiveTrackColor;
   final String label;
   final MaterialTapTargetSize materialTapTargetSize;
+  final MouseCursor mouseCursor;
+  final ImageErrorListener onActiveThumbImageError;
   final ValueChanged<bool> onChanged;
+  final ImageErrorListener onInactiveThumbImageError;
+  final ValueChanged<bool> onSaved;
   final Color trackColor;
   final Validator validator;
   final bool value;
@@ -69,7 +82,11 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   ///   "inactiveTrackColor": <Color>,
   ///   "label": <String>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "mouseCursor": <MouseCursor>,
+  ///   "onActiveThumbImageError": <ImageErrorListener>,
   ///   "onChanged": <ValueCallback<bool>>,
+  ///   "onInctiveThumbImageError": <ImageErrorListener>,
+  ///   "onSaved": <ValueCallback<bool>>,
   ///   "trackColor": <Color>,
   ///   "validators": <ValueValidator[]>,
   ///   "value": <bool>,
@@ -85,6 +102,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   ///  * [buildCustom]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
+  ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
   static JsonSwitchBuilder fromDynamic(
@@ -134,7 +152,14 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
           map['materialTapTargetSize'],
           validate: false,
         ),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+          map['mouseCursor'],
+          validate: false,
+        ),
+        onActiveThumbImageError: map['onActiveThumbImageError'],
         onChanged: map['onChanged'],
+        onInactiveThumbImageError: map['onInactiveThumbImageError'],
+        onSaved: map['onSaved'],
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
@@ -198,11 +223,13 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
 
               return error;
             },
+      onSaved: onSaved,
       builder: (FormFieldState state) => MergeSemantics(
         child: Semantics(
           label: label ?? '',
           child: Switch(
             activeColor: activeColor,
+            activeThumbImage: activeThumbImage,
             activeTrackColor: activeTrackColor,
             autofocus: autofocus,
             dragStartBehavior: dragStartBehavior,
@@ -210,8 +237,11 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
             focusNode: focusNode,
             hoverColor: hoverColor,
             inactiveThumbColor: inactiveThumbColor,
+            inactiveThumbImage: inactiveThumbImage,
             inactiveTrackColor: inactiveTrackColor,
             materialTapTargetSize: materialTapTargetSize,
+            mouseCursor: mouseCursor,
+            onActiveThumbImageError: onActiveThumbImageError,
             onChanged: enabled != true
                 ? null
                 : (value) {
@@ -225,6 +255,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
                       data.registry.setValue(data.id, value);
                     }
                   },
+            onInactiveThumbImageError: onInactiveThumbImageError,
             value: state.value,
           ),
         ),

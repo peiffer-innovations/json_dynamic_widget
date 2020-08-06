@@ -23,6 +23,7 @@ class FlatButtonSchema {
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'materialTapTargetSize':
           SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
+      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onHighlightChanged': SchemaHelper.stringSchema,
       'onPressed': SchemaHelper.stringSchema,
       'onLongPress': SchemaHelper.stringSchema,
