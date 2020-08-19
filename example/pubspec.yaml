@@ -15,6 +15,7 @@ dependencies:
   json_dynamic_widget:
     path: ../
   websafe_svg: ^1.1.1
+  json_theme: ^1.2.1
 
 dev_dependencies:
   flutter_test:
