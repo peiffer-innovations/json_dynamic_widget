@@ -1,0 +1,25 @@
+{
+    "type": "scaffold",
+    "args": {
+        "appBar": {
+            "type": "app_bar",
+            "args": {
+                "title": {
+                    "type": "text",
+                    "args": {
+                        "text": "SVG"
+                    }
+                }
+            }
+        },
+        "body": {
+            "type": "center",
+            "child": {
+                "type": "svg",
+                "args": {
+                    "url": "https://dev.w3.org/SVG/tools/svgweb/samples/svg-files/debian.svg"
+                }
+            }
+        }
+    }
+}
