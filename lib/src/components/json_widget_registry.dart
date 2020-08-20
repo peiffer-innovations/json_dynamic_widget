@@ -129,6 +129,10 @@ class JsonWidgetRegistry {
       builder: JsonCircularProgressIndicatorBuilder.fromDynamic,
       schemaId: CircularProgressIndicatorSchema.id,
     ),
+    JsonClipOvalBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonClipOvalBuilder.fromDynamic,
+      schemaId: ClipOvalSchema.id,
+    ),
     JsonClipRectBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonClipRectBuilder.fromDynamic,
       schemaId: ClipRectSchema.id,
