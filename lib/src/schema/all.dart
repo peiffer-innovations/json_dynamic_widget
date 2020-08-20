@@ -8,6 +8,7 @@ export 'schemas/card_schema.dart';
 export 'schemas/center_schema.dart';
 export 'schemas/checkbox_schema.dart';
 export 'schemas/circular_progress_indicator_schema.dart';
+export 'schemas/clip_oval_schema.dart';
 export 'schemas/clip_rect_schema.dart';
 export 'schemas/clip_rrect_schema.dart';
 export 'schemas/column_schema.dart';
