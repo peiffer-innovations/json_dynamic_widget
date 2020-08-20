@@ -54,8 +54,8 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
     );
 
     return DottedBorder(
-      borderType: BorderType.Circle,
-      color: color,
+      borderType: BorderType.Rect,
+      color: color ?? Colors.black,
       dashPattern: dashPattern,
       child: data.children[0].build(
         childBuilder: childBuilder,
