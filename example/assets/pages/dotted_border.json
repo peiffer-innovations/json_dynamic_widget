@@ -1,0 +1,36 @@
+{
+    "type": "scaffold",
+    "args": {
+        "appBar": {
+            "type": "app_bar",
+            "args": {
+                "title": {
+                    "type": "text",
+                    "args": {
+                        "text": "Dotted Border"
+                    }
+                }
+            }
+        },
+        "body": {
+            "type": "center",
+            "child": {
+                "type": "dotted_border",
+                "args": {
+                    "dashPattern": [
+                        6,
+                        3,
+                        2,
+                        3
+                    ]
+                },
+                "child": {
+                    "type": "text",
+                    "args": {
+                        "text": "This is a random widget"
+                    }
+                }
+            }
+        }
+    }
+}
