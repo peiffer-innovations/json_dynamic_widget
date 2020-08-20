@@ -8,6 +8,7 @@ export 'src/builders/json_card_builder.dart';
 export 'src/builders/json_center_builder.dart';
 export 'src/builders/json_checkbox_builder.dart';
 export 'src/builders/json_circular_progress_indicator_builder.dart';
+export 'src/builders/json_clip_oval_builder.dart';
 export 'src/builders/json_clip_rect_builder.dart';
 export 'src/builders/json_clip_rrect_builder.dart';
 export 'src/builders/json_column_builder.dart';
