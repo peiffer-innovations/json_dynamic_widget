@@ -125,7 +125,7 @@ class RootPage extends StatelessWidget {
     'center',
     'checkbox',
     'circular_progress_indicator',
-    'clip_rect',
+    'clips',
     'conditional',
     'cupertino_switch',
     'fitted_box',
