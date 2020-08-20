@@ -1,0 +1,84 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Clips"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "list_view",
+      "children": [
+        {
+          "type": "list_tile",
+          "args": {
+            "title": {
+              "type": "center",
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "ClipRect"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "center",
+          "child": {
+            "type": "clip_rect",
+            "child": {
+              "type": "container",
+              "child": {
+                "type": "align",
+                "args": {
+                  "alignment": "topLeft",
+                  "heightFactor": 0.75,
+                  "widthFactor": 0.75
+                },
+                "child": {
+                  "type": "network_image",
+                  "args": {
+                    "src": "https://i.ibb.co/1vXpqVs/flutter-logo.jpg"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "list_tile",
+          "args": {
+            "title": {
+              "type": "center",
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "ClipOval"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "center",
+          "child": {
+            "type": "clip_oval",
+            "child": {
+              "type": "network_image",
+              "args": {
+                "src": "https://i.ibb.co/1vXpqVs/flutter-logo.jpg"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
