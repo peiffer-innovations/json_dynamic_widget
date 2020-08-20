@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:example/src/custom_schemas/dotted_border_schema.dart';
 import 'package:example/src/custom_schemas/svg_schema.dart';
 import 'package:example/src/dotted_border_builder.dart';
 import 'package:example/src/svg_builder.dart';
@@ -31,18 +32,22 @@ void main() async {
   // This is needed to adding custom schema validations
   var schemaCache = SchemaCache();
   schemaCache.addSchema(SvgSchema.id, SvgSchema.schema);
+  schemaCache.addSchema(DottedBorderSchema.id, DottedBorderSchema.schema);
 
   var registry = JsonWidgetRegistry.instance;
   registry.registerCustomBuilder(
     DottedBorderBuilder.type,
     JsonWidgetBuilderContainer(
       builder: DottedBorderBuilder.fromDynamic,
+      schemaId: DottedBorderSchema.id,
     ),
   );
   registry.registerCustomBuilder(
     SvgBuilder.type,
     JsonWidgetBuilderContainer(
-        builder: SvgBuilder.fromDynamic, schemaId: SvgSchema.id),
+      builder: SvgBuilder.fromDynamic,
+      schemaId: SvgSchema.id,
+    ),
   );
 
   registry.registerFunction('navigatePage', ({args, registry}) async {
@@ -133,6 +138,7 @@ class RootPage extends StatelessWidget {
     'clip_rect',
     'conditional',
     'cupertino_switch',
+    'dotted_border',
     'fitted_box',
     'form',
     'gestures',
