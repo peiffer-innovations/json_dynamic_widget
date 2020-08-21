@@ -138,7 +138,6 @@ class RootPage extends StatelessWidget {
     'clip_rect',
     'conditional',
     'cupertino_switch',
-    'dotted_border',
     'fitted_box',
     'form',
     'gestures',
@@ -149,7 +148,6 @@ class RootPage extends StatelessWidget {
     'list_view',
     'opacity',
     'simple_page',
-    'svg',
     'switch',
     'theme',
   ];
