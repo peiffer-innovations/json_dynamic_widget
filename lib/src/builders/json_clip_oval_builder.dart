@@ -6,7 +6,9 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ClipOval] widget.  See the [fromDynamic] for the
 /// format.
 class JsonClipOvalBuilder extends JsonWidgetBuilder {
-  JsonClipOvalBuilder({this.clipBehavior});
+  JsonClipOvalBuilder({
+    this.clipBehavior,
+  });
 
   static const type = 'clip_oval';
 

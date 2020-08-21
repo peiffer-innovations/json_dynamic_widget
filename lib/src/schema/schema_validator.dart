@@ -30,6 +30,7 @@ class SchemaValidator {
         CircularProgressIndicatorSchema.id,
         CircularProgressIndicatorSchema.schema,
       );
+      cache.addSchema(ClipOvalSchema.id, ClipOvalSchema.schema);
       cache.addSchema(ClipRectSchema.id, ClipRectSchema.schema);
       cache.addSchema(ClipRRectSchema.id, ClipRRectSchema.schema);
       cache.addSchema(ColumnSchema.id, ColumnSchema.schema);
