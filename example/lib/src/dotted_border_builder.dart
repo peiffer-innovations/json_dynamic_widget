@@ -25,9 +25,10 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = DottedBorderBuilder(
         color: ThemeDecoder.decodeColor(
-          map['color'],
-          validate: false,
-        ),
+              map['color'],
+              validate: false,
+            ) ??
+            Colors.black,
         dashPattern: map['dashPattern'] == null
             ? null
             : List<double>.from(
@@ -54,8 +55,8 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
     );
 
     return DottedBorder(
-      borderType: BorderType.Rect,
-      color: color ?? Colors.black,
+      borderType: BorderType.Circle,
+      color: color,
       dashPattern: dashPattern,
       child: data.children[0].build(
         childBuilder: childBuilder,
