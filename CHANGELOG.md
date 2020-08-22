@@ -1,3 +1,8 @@
+## [1.0.1+1] - August 22nd, 2020
+
+* Updates to the example app only
+
+
 ## [1.0.1] - August 6th, 2020
 
 * Updated with attributes from Flutter 1.20.0
