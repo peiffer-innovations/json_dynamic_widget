@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:example/src/custom_schemas/dotted_border_schema.dart';
+import 'package:example/src/custom_schemas/svg_schema.dart';
 import 'package:example/src/dotted_border_builder.dart';
 import 'package:example/src/svg_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_theme/json_theme_schemas.dart';
 import 'package:logging/logging.dart';
 
 import 'src/full_widget_page.dart';
@@ -26,17 +29,24 @@ void main() async {
   var dataStr = await rootBundle.loadString('assets/pages/image_page.json');
   var imagePageJson = json.decode(dataStr);
 
+  // This is needed to adding custom schema validations
+  var schemaCache = SchemaCache();
+  schemaCache.addSchema(SvgSchema.id, SvgSchema.schema);
+  schemaCache.addSchema(DottedBorderSchema.id, DottedBorderSchema.schema);
+
   var registry = JsonWidgetRegistry.instance;
   registry.registerCustomBuilder(
     DottedBorderBuilder.type,
     JsonWidgetBuilderContainer(
       builder: DottedBorderBuilder.fromDynamic,
+      schemaId: DottedBorderSchema.id,
     ),
   );
   registry.registerCustomBuilder(
     SvgBuilder.type,
     JsonWidgetBuilderContainer(
       builder: SvgBuilder.fromDynamic,
+      schemaId: SvgSchema.id,
     ),
   );
 
