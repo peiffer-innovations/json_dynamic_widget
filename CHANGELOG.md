@@ -1,3 +1,8 @@
+## [1.0.3] - August 22nd, 2020
+
+* Added `ClipOval` support
+
+
 ## [1.0.2] - August 22nd, 2020
 
 * Dependency updates
