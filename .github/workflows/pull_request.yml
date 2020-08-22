@@ -2,24 +2,25 @@ name: Flutter Pull Request Checker
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     container:
-      image:  google/dart:latest
+      image: google/dart:latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Install dependencies
-      run: flutter packages get
-    - name: Dart Analyzer
-      run: dartanalyzer lib
-    - name: Code Format
-      run: dartfmt --set-exit-if-changed -w lib test
-    - name: Run tests
-      run: flutter test
-
+      - uses: actions/checkout@v2
+      - name: Publish
+        uses: sakebook/actions-flutter-pub-publisher@v1.3.1
+        with:
+          credential: ${{ secrets.CREDENTIAL_JSON }}
+          dry_run: true
+          flutter_package: true
+          skip_test: false
+      - name: Dart Analyzer
+        run: dartanalyzer lib
+      - name: Code Format
+        run: dartfmt --set-exit-if-changed -w lib test
