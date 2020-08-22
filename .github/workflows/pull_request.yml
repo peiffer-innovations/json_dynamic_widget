@@ -9,15 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: cirrusci/flutter:stable
+      image: google/dart:latest
 
     steps:
       - uses: actions/checkout@v2
-      - name: Get dependencies
-        run: flutter packages get
-      - name: Dart Analyzer
-        run: dartanalyzer lib
-      - name: Code Format
-        run: dartfmt --set-exit-if-changed -w lib test
-      - name: Get dependencies
-        run: flutter test
+      - name: Validate
+        uses: peiffer-innovations/actions-flutter-validate@v1.0.0
+        with:
+          flutter_package: true
