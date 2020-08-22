@@ -9,20 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: google/dart:latest
+      image: cirrusci/flutter:stable
 
     steps:
       - uses: actions/checkout@v2
-      - name: Publish
-        uses: sakebook/actions-flutter-pub-publisher@v1.3.1
-        with:
-          credential: ${{ secrets.CREDENTIAL_JSON }}
-          dry_run: true
-          flutter_package: true
-          skip_test: false
       - name: Get dependencies
         run: flutter packages get
       - name: Dart Analyzer
         run: dartanalyzer lib
       - name: Code Format
         run: dartfmt --set-exit-if-changed -w lib test
+      - name: Get dependencies
+        run: flutter test
