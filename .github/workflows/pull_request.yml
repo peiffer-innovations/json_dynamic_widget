@@ -20,6 +20,8 @@ jobs:
           dry_run: true
           flutter_package: true
           skip_test: false
+      - name: Get dependencies
+        run: flutter packages get
       - name: Dart Analyzer
         run: dartanalyzer lib
       - name: Code Format
