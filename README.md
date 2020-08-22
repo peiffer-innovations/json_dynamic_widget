@@ -303,3 +303,4 @@ Once the widget is registered, you can safely use the registry to build the widg
   }
 }
 ```
+
