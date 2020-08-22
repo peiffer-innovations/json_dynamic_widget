@@ -1,3 +1,8 @@
+## [1.0.2] - August 22nd, 2020
+
+* Dependency updates
+
+
 ## [1.0.1+1] - August 22nd, 2020
 
 * Updates to the example app only

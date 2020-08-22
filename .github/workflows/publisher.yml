@@ -13,9 +13,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: Validate
+        uses: peiffer-innovations/actions-flutter-validate@v1.0.1
+        with:
+          flutter_package: true
       - name: Publish
         uses: sakebook/actions-flutter-pub-publisher@v1.3.1
         with:
           credential: ${{ secrets.CREDENTIAL_JSON }}
           flutter_package: true
-          skip_test: false
+          skip_test: true
