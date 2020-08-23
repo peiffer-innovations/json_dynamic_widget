@@ -1,0 +1,50 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "AnimatedOpacity"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "customOpacity": 1.0
+      },
+      "child": {
+        "type": "animated_opacity",
+        "args": {
+          "duration": 1000,
+          "opacity": "{{customOpacity}}"
+        },
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#FF0000"
+          }
+        }
+      }
+    },
+    "floatingActionButton": {
+      "type": "raised_button",
+      "args": {
+        "onPressed": "##set_value(customOpacity, 0)##"
+      },
+      "child": {
+        "type": "icon",
+        "args": {
+          "icon": {
+            "codePoint": 57369,
+            "fontFamily": "MaterialIcons"
+          }
+        }
+      }
+    }
+  }
+}
