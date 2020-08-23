@@ -157,6 +157,10 @@ class JsonWidgetRegistry {
       builder: JsonCupertinoSwitchBuilder.fromDynamic,
       schemaId: CupertinoSwitchSchema.id,
     ),
+    JsonDecoratedBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonDecoratedBoxBuilder.fromDynamic,
+      schemaId: DecoratedBoxSchema.id,
+    ),
     JsonDropdownButtonFormFieldBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,
       schemaId: DropdownButtonFormFieldSchema.id,

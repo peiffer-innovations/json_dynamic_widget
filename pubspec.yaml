@@ -18,7 +18,7 @@ dependencies:
   json_class: ^1.0.6
   json_conditional: ^1.0.3
   json_schema: ^2.2.1
-  json_theme: ^1.2.2
+  json_theme: ^1.2.3
   logging: ^0.11.4
   meta: ^1.1.8
 
