@@ -1,0 +1,38 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "DecoratedBox"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "decorated_box",
+        "args": {
+          "decoration": {
+            "border": {
+              "color": "#6d78b6",
+              "width": 1
+            },
+            "shape": "rectangle"
+          },
+          "position": "foreground"
+        },
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "This is a random widget"
+          }
+        }
+      }
+    }
+  }
+}
