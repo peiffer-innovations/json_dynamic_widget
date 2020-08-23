@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+/// Builder that can build an [DecoratedBox] widget.  See the [fromDynamic] for the
+/// format.
 class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
   JsonDecoratedBoxBuilder({
     @required this.decoration,
@@ -13,6 +15,19 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
   final BoxDecoration decoration;
   final DecorationPosition position;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "decoration": <BoxDecoration>,
+  ///   "position": <DecorationPosition>
+  /// }
+  /// ```
+  ///
+  /// See also:
+  ///  * [ThemeDecoder.decodeBoxDecoration]
+  ///  * [ThemeDecoder.decodeDecorationPosition]
   static JsonDecoratedBoxBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
