@@ -10,6 +10,10 @@ class AnimatedOpacitySchema {
     'type': 'object',
     'title': 'AnimatedOpacityBuilder',
     'additionalProperties': false,
+    'required': [
+      'duration',
+      'opacity',
+    ],
     'properties': {
       'alwaysIncludeSemantics': SchemaHelper.boolSchema,
       'curve': SchemaHelper.stringSchema,
