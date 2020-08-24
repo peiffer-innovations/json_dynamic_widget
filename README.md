@@ -150,6 +150,11 @@ A variable can be used in any of the `child` / `children` / `args` values and fo
 
 Widgets that accept user input will assign that user input to a variable named the value inside of the `id` option, if an `id` exists.  This allows widgets the ability to listen to input value updates.
 
+The built in variables are defined below:
+
+Variable Name    | Example | Description
+-----------------|---------|------------
+`*curve_name*_curve` | <ul><li>`{{linear_curve}}`</li><li>`{{bounce_in_curve}}`</li></ul> | Provides a `const` instance of any of the [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html#constants) const values. The name of the Curve constant should be transformed into snake_case.
 
 ## Dynamic Functions
 
