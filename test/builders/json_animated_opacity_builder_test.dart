@@ -8,12 +8,17 @@ void main() {
     expect(type, 'animated_opacity');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
     expect(
+<<<<<<< HEAD
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'duration': 1000,
           'opacity': 1,
         },
       ) is JsonAnimatedOpacityBuilder,
+=======
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
+          is JsonAnimatedOpacityBuilder,
+>>>>>>> f50cbc3... Added docs and tests for AnimatedOpacity
       true,
     );
   });
