@@ -95,10 +95,10 @@ class _JsonAnimatedOpacity extends StatefulWidget {
   final JsonWidgetData data;
 
   @override
-  __JsonAnimatedOpacityState createState() => __JsonAnimatedOpacityState();
+  _JsonAnimatedOpacityState createState() => _JsonAnimatedOpacityState();
 }
 
-class __JsonAnimatedOpacityState extends State<_JsonAnimatedOpacity> {
+class _JsonAnimatedOpacityState extends State<_JsonAnimatedOpacity> {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
