@@ -32,12 +32,12 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
               map['alwaysIncludeSemantics'],
             ) ??
             false,
-        curve: map['curve'],
+        curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
         ),
         onEnd: map['onEnd'],
-        opacity: JsonClass.parseDouble(map['opacity'], 1.0),
+        opacity: JsonClass.parseDouble(map['opacity']),
       );
     }
 
@@ -85,7 +85,9 @@ class __JsonAnimatedOpacityState extends State<_JsonAnimatedOpacity> {
   Widget build(BuildContext context) {
     return AnimatedOpacity(
       alwaysIncludeSemantics: widget.builder.alwaysIncludeSemantics,
-      duration: Duration(seconds: 1),
+      curve: widget.builder.curve,
+      duration: widget.builder.duration,
+      onEnd: widget.builder.onEnd,
       opacity: widget.builder.opacity,
       child: widget.data.children[0].build(
         childBuilder: widget.childBuilder,
