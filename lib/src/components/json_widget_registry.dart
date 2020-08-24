@@ -354,7 +354,7 @@ class JsonWidgetRegistry {
             ),
   };
   final _internalValues = <String, dynamic>{}..addAll(
-      CurvesValues.translation,
+      CurvesValues.values,
     );
   final _values = <String, dynamic>{};
 
