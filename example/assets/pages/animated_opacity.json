@@ -15,11 +15,12 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customOpacity": 1.0
+        "customOpacity": 1
       },
       "child": {
         "type": "animated_opacity",
         "args": {
+          "curve": "{{slow_middle_curve}}",
           "duration": 1000,
           "opacity": "{{customOpacity}}"
         },
@@ -37,12 +38,9 @@
         "onPressed": "##set_value(customOpacity, 0)##"
       },
       "child": {
-        "type": "icon",
+        "type": "text",
         "args": {
-          "icon": {
-            "codePoint": 57369,
-            "fontFamily": "MaterialIcons"
-          }
+          "text": "Press Me!"
         }
       }
     }
