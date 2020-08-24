@@ -1,3 +1,4 @@
+import 'package:flutter/animation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -184,5 +185,43 @@ void main() {
       ),
     );
     expect(result, 'cons tant|1|false|foo|true|2.5|constant');
+  });
+
+  test('internal variable', () {
+    /// This registry is overriding the built-in value of
+    /// `bounce_in_curve`
+    var registry = JsonWidgetRegistry(
+      values: {
+        'bounce_in_curve': Curves.bounceInOut,
+      },
+    );
+
+    expect(
+      registry.processDynamicArgs(
+        {
+          'bounce_in_curve': '{{bounce_in_curve}}',
+        },
+      ),
+      DynamicParamsResult(
+        dynamicKeys: {'bounce_in_curve'},
+        values: {
+          'bounce_in_curve': Curves.bounceInOut,
+        },
+      ),
+    );
+
+    expect(
+      registry.processDynamicArgs(
+        {
+          'decelerate_curve': '{{decelerate_curve}}',
+        },
+      ),
+      DynamicParamsResult(
+        dynamicKeys: {'decelerate_curve'},
+        values: {
+          'decelerate_curve': Curves.decelerate,
+        },
+      ),
+    );
   });
 }
