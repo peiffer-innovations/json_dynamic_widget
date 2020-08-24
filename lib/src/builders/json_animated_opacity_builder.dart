@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+/// Builder that can build a [JsonAnimatedOpacityBuilder] widget.
+/// See the [fromDynamic] for the format.
 class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
   JsonAnimatedOpacityBuilder({
     this.alwaysIncludeSemantics,
@@ -20,6 +22,22 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
   final VoidCallback onEnd;
   final double opacity;
 
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "alwaysIncludeSemantics": <bool>,
+  ///   "curve": <Curve>,
+  ///   "duration": <int; millis>,
+  ///   "onEnd": <VoidCallback>,
+  ///   "opacity": <double>,
+  /// }
+  /// ```
+  ///
+  /// As a note, the [Curve] and [VoidCallback] cannot be decoded via JSON.
+  /// Instead, the only way to bind those values to the builder is to use a
+  /// function or a variable reference via the [JsonWidgetRegistry].
   static JsonAnimatedOpacityBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
