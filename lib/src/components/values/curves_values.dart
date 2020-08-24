@@ -44,7 +44,7 @@ class CurvesValues {
   static const curves_key_linear_to_ease_out = 'linear_to_ease_out_curve';
   static const curves_key_slow_middle = 'slow_middle_curve';
 
-  static const translation = {
+  static const values = {
     curves_key_bounce_in: Curves.bounceIn,
     curves_key_bounce_in_out: Curves.bounceInOut,
     curves_key_bounce_out: Curves.bounceOut,
