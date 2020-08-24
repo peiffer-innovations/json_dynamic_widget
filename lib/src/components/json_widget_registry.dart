@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/components/values/values.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:json_dynamic_widget/src/schema/schemas/container_schema.dart';
 import 'package:json_dynamic_widget/src/schema/schemas/cupertino_switch_schema.dart';
@@ -352,6 +353,9 @@ class JsonWidgetRegistry {
               args[1],
             ),
   };
+  final _internalValues = <String, dynamic>{}..addAll(
+      CurvesValues.translation,
+    );
   final _values = <String, dynamic>{};
 
   StreamController<String> _valueStreamController =
@@ -411,9 +415,11 @@ class JsonWidgetRegistry {
     );
   }
 
-  /// Returns the variable value for the given [key].  If a variable with named
-  /// [key] cannot be found, this will return [null].
-  dynamic getValue(String key) => _values[key];
+  /// Returns the variable value for the given [key].This will first check for
+  /// a custom dynamic value using the [key], and if none is found, this will
+  /// then check the internal values. If a variable with named [key] cannot be
+  /// found, this will return [null].
+  dynamic getValue(String key) => _values[key] ?? _internalValues[key];
 
   /// Returns the builder for the requested [type].  This will first search the
   /// registered custom builders, then if no builder is found, this will then
