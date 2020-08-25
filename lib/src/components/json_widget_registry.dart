@@ -129,6 +129,10 @@ class JsonWidgetRegistry {
       builder: JsonCircularProgressIndicatorBuilder.fromDynamic,
       schemaId: CircularProgressIndicatorSchema.id,
     ),
+    JsonClipOvalBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonClipOvalBuilder.fromDynamic,
+      schemaId: ClipOvalSchema.id,
+    ),
     JsonClipRectBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonClipRectBuilder.fromDynamic,
       schemaId: ClipRectSchema.id,
@@ -152,6 +156,10 @@ class JsonWidgetRegistry {
     JsonCupertinoSwitchBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonCupertinoSwitchBuilder.fromDynamic,
       schemaId: CupertinoSwitchSchema.id,
+    ),
+    JsonDecoratedBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonDecoratedBoxBuilder.fromDynamic,
+      schemaId: DecoratedBoxSchema.id,
     ),
     JsonDropdownButtonFormFieldBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,

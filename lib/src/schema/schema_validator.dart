@@ -30,12 +30,14 @@ class SchemaValidator {
         CircularProgressIndicatorSchema.id,
         CircularProgressIndicatorSchema.schema,
       );
+      cache.addSchema(ClipOvalSchema.id, ClipOvalSchema.schema);
       cache.addSchema(ClipRectSchema.id, ClipRectSchema.schema);
       cache.addSchema(ClipRRectSchema.id, ClipRRectSchema.schema);
       cache.addSchema(ColumnSchema.id, ColumnSchema.schema);
       cache.addSchema(ConditionalSchema.id, ConditionalSchema.schema);
       cache.addSchema(ContainerSchema.id, ContainerSchema.schema);
       cache.addSchema(CupertinoSwitchSchema.id, CupertinoSwitchSchema.schema);
+      cache.addSchema(DecoratedBoxSchema.id, DecoratedBoxSchema.schema);
       cache.addSchema(
         DropdownButtonFormFieldSchema.id,
         DropdownButtonFormFieldSchema.schema,

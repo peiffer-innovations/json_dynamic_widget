@@ -1,3 +1,10 @@
+## [1.0.3] - August 23nd, 2020
+
+* Added `ClipOval` support
+* Added `DecoratedBox` support
+* Update the `json_theme` version to ^1.2.3
+
+
 ## [1.0.2] - August 22nd, 2020
 
 * Dependency updates
