@@ -3,17 +3,17 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonAnimatedOpacityBuilder.type;
+    const type = JsonAnimatedAlignBuilder.type;
 
-    expect(type, 'animated_opacity');
+    expect(type, 'animated_align');
     expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
+          'alignment': 'bottomLeft',
           'duration': 1000,
-          'opacity': 1,
         },
-      ) is JsonAnimatedOpacityBuilder,
+      ) is JsonAnimatedAlignBuilder,
       true,
     );
   });
