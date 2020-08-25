@@ -12,7 +12,8 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
     this.curve,
     @required this.duration,
     this.onEnd,
-  });
+  })  : assert(alignment != null),
+        assert(duration != null);
 
   static const type = 'animated_align';
 
