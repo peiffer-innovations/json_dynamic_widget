@@ -12,7 +12,8 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
     @required this.duration,
     this.onEnd,
     @required this.opacity,
-  });
+  })  : assert(duration != null),
+        assert(opacity != null);
 
   static const type = 'animated_opacity';
 
