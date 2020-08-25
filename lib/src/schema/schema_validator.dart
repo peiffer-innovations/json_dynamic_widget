@@ -18,6 +18,7 @@ class SchemaValidator {
       var cache = SchemaCache();
 
       cache.addSchema(AlignSchema.id, AlignSchema.schema);
+      cache.addSchema(AnimatedAlignSchema.id, AnimatedAlignSchema.schema);
       cache.addSchema(AnimatedOpacitySchema.id, AnimatedOpacitySchema.schema);
       cache.addSchema(AppBarSchema.id, AppBarSchema.schema);
       cache.addSchema(AspectRatioSchema.id, AspectRatioSchema.schema);

@@ -1,4 +1,5 @@
 export 'src/builders/json_align_builder.dart';
+export 'src/builders/json_animated_align_builder.dart';
 export 'src/builders/json_animated_opacity_builder.dart';
 export 'src/builders/json_app_bar_builder.dart';
 export 'src/builders/json_aspect_ratio_builder.dart';

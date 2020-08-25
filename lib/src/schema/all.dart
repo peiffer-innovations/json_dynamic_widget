@@ -1,4 +1,5 @@
 export 'schemas/align_schema.dart';
+export 'schemas/animated_align_schema.dart';
 export 'schemas/animated_opacity_schema.dart';
 export 'schemas/app_bar_schema.dart';
 export 'schemas/aspect_ratio_schema.dart';
