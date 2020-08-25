@@ -4,7 +4,11 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+<<<<<<< HEAD
 /// Builder that can build an [AnimatedAlign] widget.
+=======
+/// Builder that can build a [JsonAnimatedAlignBuilder] widget.
+>>>>>>> b92bdc5... Added AnimatedAlign initial builder and schema
 /// See the [fromDynamic] for the format.
 class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   JsonAnimatedAlignBuilder({
@@ -12,8 +16,12 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
     this.curve,
     @required this.duration,
     this.onEnd,
+<<<<<<< HEAD
   })  : assert(alignment != null),
         assert(duration != null);
+=======
+  });
+>>>>>>> b92bdc5... Added AnimatedAlign initial builder and schema
 
   static const type = 'animated_align';
 
