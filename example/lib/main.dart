@@ -34,7 +34,10 @@ void main() async {
   schemaCache.addSchema(SvgSchema.id, SvgSchema.schema);
   schemaCache.addSchema(DottedBorderSchema.id, DottedBorderSchema.schema);
 
-  var registry = JsonWidgetRegistry.instance;
+  var registry = JsonWidgetRegistry(
+    debugLabel: 'Disabled Validation',
+    disableValidation: true,
+  );
   registry.registerCustomBuilder(
     DottedBorderBuilder.type,
     JsonWidgetBuilderContainer(
@@ -108,6 +111,7 @@ void main() async {
 
   runApp(MyApp(
     navigatorKey: navigatorKey,
+    registry: registry,
   ));
 }
 
@@ -115,15 +119,19 @@ class MyApp extends StatelessWidget {
   MyApp({
     Key key,
     @required this.navigatorKey,
+    @required this.registry,
   })  : assert(navigatorKey != null),
         super(key: key);
 
   final GlobalKey<NavigatorState> navigatorKey;
+  final JsonWidgetRegistry registry;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: RootPage(),
+      home: RootPage(
+        registry: registry,
+      ),
       navigatorKey: navigatorKey,
       theme: ThemeData.light(),
     );
@@ -133,7 +141,10 @@ class MyApp extends StatelessWidget {
 class RootPage extends StatelessWidget {
   const RootPage({
     Key key,
+    @required this.registry,
   }) : super(key: key);
+
+  final JsonWidgetRegistry registry;
 
   static const _pages = [
     'align',
@@ -175,7 +186,7 @@ class RootPage extends StatelessWidget {
   ];
 
   Future<void> _onPageSelected(BuildContext context, String themeId) async {
-    JsonWidgetRegistry.instance.clearValues();
+    registry.clearValues();
     var pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
     var dataJson = json.decode(pageStr);
 
@@ -184,7 +195,10 @@ class RootPage extends StatelessWidget {
     // so it needs to be removed before we create the widget.
     dataJson.remove('_designCredit');
 
-    var data = JsonWidgetData.fromDynamic(dataJson);
+    var data = JsonWidgetData.fromDynamic(
+      dataJson,
+      registry: registry,
+    );
 
     await Navigator.of(context).push(
       MaterialPageRoute(
