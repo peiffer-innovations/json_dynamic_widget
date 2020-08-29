@@ -15,7 +15,7 @@ class AnimatedAlignSchema {
       'duration',
     ],
     'properties': {
-      'alignment': SchemaHelper.stringSchema,
+      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'curve': SchemaHelper.stringSchema,
       'duration': SchemaHelper.numberSchema,
       'onEnd': SchemaHelper.stringSchema,
