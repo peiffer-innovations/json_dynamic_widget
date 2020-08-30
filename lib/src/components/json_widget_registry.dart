@@ -102,6 +102,10 @@ class JsonWidgetRegistry {
       builder: JsonAnimatedOpacityBuilder.fromDynamic,
       schemaId: AnimatedOpacitySchema.id,
     ),
+    JsonAnimatedPaddingBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedPaddingBuilder.fromDynamic,
+      schemaId: AnimatedPaddingSchema.id,
+    ),
     JsonAppBarBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonAppBarBuilder.fromDynamic,
       schemaId: AppBarSchema.id,
