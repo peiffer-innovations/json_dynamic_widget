@@ -1,5 +1,6 @@
 export 'schemas/align_schema.dart';
 export 'schemas/animated_align_schema.dart';
+export 'schemas/animated_default_text_style_schema.dart';
 export 'schemas/animated_opacity_schema.dart';
 export 'schemas/animated_padding_schema.dart';
 export 'schemas/app_bar_schema.dart';

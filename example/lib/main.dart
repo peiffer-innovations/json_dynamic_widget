@@ -94,6 +94,14 @@ void main() async {
           var valid = Form.of(context).validate();
           registry.setValue('form_validation', valid);
         },
+    'updateCustomTextStyle': ({args, registry}) => () {
+          registry.setValue(
+            'customTextStyle',
+            TextStyle(
+              color: Colors.black,
+            ),
+          );
+        },
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -130,6 +138,7 @@ class RootPage extends StatelessWidget {
   static const _pages = [
     'align',
     'animated_align',
+    'animated_default_text_style',
     'animated_opacity',
     'animated_padding',
     'aspect_ratio',
