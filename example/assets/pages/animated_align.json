@@ -20,8 +20,8 @@
       "child": {
         "type": "animated_align",
         "args": {
-          "duration": 1000,
-          "alignment": "{{customAlign}}"
+          "alignment": "{{customAlign}}",
+          "duration": 1000
         },
         "child": {
           "type": "container",
