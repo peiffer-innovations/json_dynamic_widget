@@ -96,6 +96,8 @@ void main() async {
         },
   });
 
+  registry.setValue('customRect', Rect.largest);
+
   runApp(MyApp(
     navigatorKey: navigatorKey,
   ));
@@ -145,6 +147,8 @@ class RootPage extends StatelessWidget {
     'images',
     'indexed_stack',
     'input_error',
+    'issue_10',
+    'issue_11',
     'linear_progress_indicator',
     'list_view',
     'opacity',
