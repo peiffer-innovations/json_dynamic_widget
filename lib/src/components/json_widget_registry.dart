@@ -98,6 +98,10 @@ class JsonWidgetRegistry {
       builder: JsonAnimatedAlignBuilder.fromDynamic,
       schemaId: AnimatedAlignSchema.id,
     ),
+    JsonAnimatedDefaultTextStyleBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedDefaultTextStyleBuilder.fromDynamic,
+      schemaId: AnimatedDefaultTextStyleSchema.id,
+    ),
     JsonAnimatedOpacityBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonAnimatedOpacityBuilder.fromDynamic,
       schemaId: AnimatedOpacitySchema.id,
@@ -599,7 +603,6 @@ class JsonWidgetRegistry {
     dynamic value,
   ) {
     assert(key?.isNotEmpty == true);
-
     if (value == null) {
       removeValue(key);
     } else {
