@@ -19,10 +19,16 @@ class SchemaValidator {
 
       cache.addSchema(AlignSchema.id, AlignSchema.schema);
       cache.addSchema(AnimatedAlignSchema.id, AnimatedAlignSchema.schema);
-      cache.addSchema(AnimatedDefaultTextStyleSchema.id,
-          AnimatedDefaultTextStyleSchema.schema);
+      cache.addSchema(
+        AnimatedDefaultTextStyleSchema.id,
+        AnimatedDefaultTextStyleSchema.schema,
+      );
       cache.addSchema(AnimatedOpacitySchema.id, AnimatedOpacitySchema.schema);
       cache.addSchema(AnimatedPaddingSchema.id, AnimatedPaddingSchema.schema);
+      cache.addSchema(
+        AnimatedPhysicalModelSchema.id,
+        AnimatedPhysicalModelSchema.schema,
+      );
       cache.addSchema(AppBarSchema.id, AppBarSchema.schema);
       cache.addSchema(AspectRatioSchema.id, AspectRatioSchema.schema);
       cache.addSchema(AssetImageSchema.id, AssetImageSchema.schema);
