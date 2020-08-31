@@ -114,6 +114,10 @@ class JsonWidgetRegistry {
       builder: JsonAnimatedPhysicalModelBuilder.fromDynamic,
       schemaId: AnimatedPhysicalModelSchema.id,
     ),
+    JsonAnimatedPositionedBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedPositionedBuilder.fromDynamic,
+      schemaId: AnimatedPositionedSchema.id,
+    ),
     JsonAppBarBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonAppBarBuilder.fromDynamic,
       schemaId: AppBarSchema.id,

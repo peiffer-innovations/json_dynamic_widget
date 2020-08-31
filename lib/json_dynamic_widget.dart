@@ -4,6 +4,7 @@ export 'src/builders/json_animated_default_text_style_builder.dart';
 export 'src/builders/json_animated_opacity_builder.dart';
 export 'src/builders/json_animated_padding_builder.dart';
 export 'src/builders/json_animated_physical_model_builder.dart';
+export 'src/builders/json_animated_positioned_builder.dart';
 export 'src/builders/json_app_bar_builder.dart';
 export 'src/builders/json_aspect_ratio_builder.dart';
 export 'src/builders/json_asset_image_builder.dart';

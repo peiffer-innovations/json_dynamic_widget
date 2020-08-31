@@ -142,6 +142,7 @@ class RootPage extends StatelessWidget {
     'animated_opacity',
     'animated_padding',
     'animated_physical_model',
+    'animated_positioned',
     'aspect_ratio',
     'asset_images',
     'bank_example',
