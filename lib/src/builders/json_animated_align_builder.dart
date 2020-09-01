@@ -4,7 +4,7 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build a [JsonAnimatedAlignBuilder] widget.
+/// Builder that can build an [AnimatedAlign] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   JsonAnimatedAlignBuilder({
