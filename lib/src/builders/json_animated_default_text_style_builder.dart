@@ -4,7 +4,7 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build a [JsonAnimatedDefaultTextStyleBuilder] widget.
+/// Builder that can build an [AnimatedDefaultTextStyle] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
   JsonAnimatedDefaultTextStyleBuilder({

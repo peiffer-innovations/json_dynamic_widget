@@ -4,7 +4,7 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build a [JsonAnimatedPhysicalModelBuilder] widget.
+/// Builder that can build an [AnimatedPhysicalModel] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
   JsonAnimatedPhysicalModelBuilder({

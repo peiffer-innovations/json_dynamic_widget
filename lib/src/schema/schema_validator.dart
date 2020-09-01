@@ -53,6 +53,7 @@ class SchemaValidator {
       cache.addSchema(ContainerSchema.id, ContainerSchema.schema);
       cache.addSchema(CupertinoSwitchSchema.id, CupertinoSwitchSchema.schema);
       cache.addSchema(DecoratedBoxSchema.id, DecoratedBoxSchema.schema);
+      cache.addSchema(DirectionalitySchema.id, DirectionalitySchema.schema);
       cache.addSchema(
         DropdownButtonFormFieldSchema.id,
         DropdownButtonFormFieldSchema.schema,
