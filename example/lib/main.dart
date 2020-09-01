@@ -155,6 +155,7 @@ class RootPage extends StatelessWidget {
     'conditional',
     'cupertino_switch',
     'decorated_box',
+    'directionality',
     'fitted_box',
     'form',
     'gestures',
