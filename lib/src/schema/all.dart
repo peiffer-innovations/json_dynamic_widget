@@ -22,6 +22,7 @@ export 'schemas/conditional_schema.dart';
 export 'schemas/container_schema.dart';
 export 'schemas/cupertino_switch_schema.dart';
 export 'schemas/decorated_box_schema.dart';
+export 'schemas/directionality_schema.dart';
 export 'schemas/dropdown_button_form_field_schema.dart';
 export 'schemas/expanded_schema.dart';
 export 'schemas/fitted_box_schema.dart';
