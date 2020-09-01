@@ -4,6 +4,7 @@ export 'schemas/animated_default_text_style_schema.dart';
 export 'schemas/animated_opacity_schema.dart';
 export 'schemas/animated_padding_schema.dart';
 export 'schemas/animated_physical_model_schema.dart';
+export 'schemas/animated_positioned_directional_schema.dart';
 export 'schemas/animated_positioned_schema.dart';
 export 'schemas/app_bar_schema.dart';
 export 'schemas/aspect_ratio_schema.dart';

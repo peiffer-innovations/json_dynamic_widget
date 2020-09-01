@@ -30,6 +30,10 @@ class SchemaValidator {
         AnimatedPhysicalModelSchema.schema,
       );
       cache.addSchema(
+        AnimatedPositionedDirectionalSchema.id,
+        AnimatedPositionedDirectionalSchema.schema,
+      );
+      cache.addSchema(
         AnimatedPositionedSchema.id,
         AnimatedPositionedSchema.schema,
       );
