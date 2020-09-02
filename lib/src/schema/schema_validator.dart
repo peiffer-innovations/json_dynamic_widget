@@ -37,6 +37,10 @@ class SchemaValidator {
         AnimatedPositionedSchema.id,
         AnimatedPositionedSchema.schema,
       );
+      cache.addSchema(
+        AnimatedThemeSchema.id,
+        AnimatedThemeSchema.schema,
+      );
       cache.addSchema(AppBarSchema.id, AppBarSchema.schema);
       cache.addSchema(AspectRatioSchema.id, AspectRatioSchema.schema);
       cache.addSchema(AssetImageSchema.id, AssetImageSchema.schema);
