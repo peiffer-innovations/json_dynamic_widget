@@ -7,7 +7,7 @@
         "title": {
           "type": "text",
           "args": {
-            "text": "AnimatedPositioned"
+            "text": "AnimatedPositionedDirectional"
           }
         }
       }
