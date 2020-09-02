@@ -1,0 +1,34 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Example"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "customPadding": 16
+      },
+      "child": {
+        "type": "flat_button",
+        "args": {
+          "padding": "{{customPadding}}"
+        },
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Random Text"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,3 +1,8 @@
+## [1.0.5] - September 1st, 2020
+
+* Updated `json_theme` version to fix issues #12.
+
+
 ## [1.0.4] - August 30th, 2020
 
 * Updated `json_theme` version to fix issues #10 and #11.
