@@ -122,6 +122,10 @@ class JsonWidgetRegistry {
       builder: JsonAnimatedPositionedDirectionalBuilder.fromDynamic,
       schemaId: AnimatedPositionedDirectionalSchema.id,
     ),
+    JsonAnimatedThemeBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedThemeBuilder.fromDynamic,
+      schemaId: AnimatedThemeSchema.id,
+    ),
     JsonAppBarBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonAppBarBuilder.fromDynamic,
       schemaId: AppBarSchema.id,
