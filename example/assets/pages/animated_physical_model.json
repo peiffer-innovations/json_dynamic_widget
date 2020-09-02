@@ -37,10 +37,7 @@
               "type": "animated_physical_model",
               "args": {
                 "animateColor": true,
-                "borderRadius": {
-                  "type": "circular",
-                  "radius": 10
-                },
+                "borderRadius": "{{customBorderRadius}}",
                 "color": "{{customColor}}",
                 "duration": 1000,
                 "elevation": "{{customElevation}}",
