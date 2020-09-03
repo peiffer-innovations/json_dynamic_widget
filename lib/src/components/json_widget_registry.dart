@@ -346,6 +346,10 @@ class JsonWidgetRegistry {
       builder: JsonTextFormFieldBuilder.fromDynamic,
       schemaId: TextFormFieldSchema.id,
     ),
+    JsonTweenAnimationBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonTweenAnimationBuilder.fromDynamic,
+      schemaId: TweenAnimationSchema.id,
+    ),
     JsonThemeBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonThemeBuilder.fromDynamic,
       schemaId: ThemeSchema.id,

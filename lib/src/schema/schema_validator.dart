@@ -113,6 +113,7 @@ class SchemaValidator {
       cache.addSchema(TextFormFieldSchema.id, TextFormFieldSchema.schema);
       cache.addSchema(TextSchema.id, TextSchema.schema);
       cache.addSchema(ThemeSchema.id, ThemeSchema.schema);
+      cache.addSchema(TweenAnimationSchema.id, TweenAnimationSchema.schema);
 
       return true;
     }());

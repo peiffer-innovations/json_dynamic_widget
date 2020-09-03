@@ -63,6 +63,7 @@ export 'src/builders/json_switch_builder.dart';
 export 'src/builders/json_text_builder.dart';
 export 'src/builders/json_text_form_field_builder.dart';
 export 'src/builders/json_theme_builder.dart';
+export 'src/builders/json_tween_animation_builder.dart';
 export 'src/builders/json_widget_builder.dart';
 
 export 'src/components/json_widget_regex_helper.dart';
