@@ -102,6 +102,21 @@ void main() async {
             ),
           );
         },
+    'getCustomTweenBuilder': ({args, registry}) =>
+        (BuildContext context, dynamic size, Widget child) {
+          return IconButton(
+            icon: child,
+            iconSize: size,
+            onPressed: () {
+              var _current = registry.getValue('customSize');
+              var _size = _current == 50.0 ? 100.0 : 50.0;
+              registry.setValue('customSize', _size);
+            },
+          );
+        },
+    'getCustomTween': ({args, registry}) {
+      return Tween<double>(begin: 0, end: args[0]);
+    }
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -174,6 +189,7 @@ class RootPage extends StatelessWidget {
     'simple_page',
     'switch',
     'theme',
+    'tween_animation',
   ];
 
   Future<void> _onPageSelected(BuildContext context, String themeId) async {

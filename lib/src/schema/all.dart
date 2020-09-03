@@ -64,3 +64,4 @@ export 'schemas/switch_schema.dart';
 export 'schemas/text_form_field_schema.dart';
 export 'schemas/text_schema.dart';
 export 'schemas/theme_schema.dart';
+export 'schemas/tween_animation_schema.dart';
