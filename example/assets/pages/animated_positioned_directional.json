@@ -1,0 +1,59 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "AnimatedPositionedDirectional"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "customWidth": 100
+      },
+      "child": {
+        "type": "stack",
+        "children": [
+          {
+            "type": "directionality",
+            "args": {
+              "textDirection": "rtl"
+            },
+            "child": {
+              "type": "animated_positioned_directional",
+              "args": {
+                "duration": 1000,
+                "start": 100,
+                "width": "{{customWidth}}"
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "Hi! This should be a very very long message with right to left text direction."
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "floatingActionButton": {
+      "type": "raised_button",
+      "args": {
+        "onPressed": "##set_value(customWidth, 200)##"
+      },
+      "child": {
+        "type": "text",
+        "args": {
+          "text": "Press Me!"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Directionality"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "directionality",
+        "args": {
+          "textDirection": "rtl"
+        },
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "This is\na random widget."
+          }
+        }
+      }
+    }
+  }
+}

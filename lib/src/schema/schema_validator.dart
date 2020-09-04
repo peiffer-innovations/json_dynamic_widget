@@ -18,6 +18,34 @@ class SchemaValidator {
       var cache = SchemaCache();
 
       cache.addSchema(AlignSchema.id, AlignSchema.schema);
+      cache.addSchema(AnimatedAlignSchema.id, AnimatedAlignSchema.schema);
+      cache.addSchema(
+        AnimatedContainerSchema.id,
+        AnimatedContainerSchema.schema,
+      );
+      cache.addSchema(
+        AnimatedCrossFadeSchema.id,
+        AnimatedCrossFadeSchema.schema,
+      );
+      cache.addSchema(
+        AnimatedDefaultTextStyleSchema.id,
+        AnimatedDefaultTextStyleSchema.schema,
+      );
+      cache.addSchema(AnimatedOpacitySchema.id, AnimatedOpacitySchema.schema);
+      cache.addSchema(AnimatedPaddingSchema.id, AnimatedPaddingSchema.schema);
+      cache.addSchema(
+          AnimatedPhysicalModelSchema.id, AnimatedPhysicalModelSchema.schema);
+      cache.addSchema(
+        AnimatedPositionedDirectionalSchema.id,
+        AnimatedPositionedDirectionalSchema.schema,
+      );
+      cache.addSchema(
+        AnimatedPositionedSchema.id,
+        AnimatedPositionedSchema.schema,
+      );
+      cache.addSchema(AnimatedSizeSchema.id, AnimatedSizeSchema.schema);
+      cache.addSchema(AnimatedSwitcherSchema.id, AnimatedSwitcherSchema.schema);
+      cache.addSchema(AnimatedThemeSchema.id, AnimatedThemeSchema.schema);
       cache.addSchema(AppBarSchema.id, AppBarSchema.schema);
       cache.addSchema(AspectRatioSchema.id, AspectRatioSchema.schema);
       cache.addSchema(AssetImageSchema.id, AssetImageSchema.schema);
@@ -38,6 +66,7 @@ class SchemaValidator {
       cache.addSchema(ContainerSchema.id, ContainerSchema.schema);
       cache.addSchema(CupertinoSwitchSchema.id, CupertinoSwitchSchema.schema);
       cache.addSchema(DecoratedBoxSchema.id, DecoratedBoxSchema.schema);
+      cache.addSchema(DirectionalitySchema.id, DirectionalitySchema.schema);
       cache.addSchema(
         DropdownButtonFormFieldSchema.id,
         DropdownButtonFormFieldSchema.schema,
@@ -85,6 +114,7 @@ class SchemaValidator {
       cache.addSchema(TextFormFieldSchema.id, TextFormFieldSchema.schema);
       cache.addSchema(TextSchema.id, TextSchema.schema);
       cache.addSchema(ThemeSchema.id, ThemeSchema.schema);
+      cache.addSchema(TweenAnimationSchema.id, TweenAnimationSchema.schema);
 
       return true;
     }());

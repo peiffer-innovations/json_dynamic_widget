@@ -1,0 +1,62 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "AnimatedCrossFade"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "customCrossFadeState": "showFirst"
+      },
+      "child": {
+        "type": "center",
+        "child": {
+          "type": "animated_cross_fade",
+          "args": {
+            "crossFadeState": "{{customCrossFadeState}}",
+            "duration": 1000
+          },
+          "children": [
+            {
+              "type": "container",
+              "args": {
+                "color": "#FF0000",
+                "height": 100,
+                "width": 100
+              }
+            },
+            {
+              "type": "container",
+              "args": {
+                "color": "#FFF000",
+                "height": 100,
+                "width": 100
+              }
+            }
+          ]
+        }
+      }
+    },
+    "floatingActionButton": {
+      "type": "raised_button",
+      "args": {
+        "onPressed": "##set_value(customCrossFadeState, showSecond)##"
+      },
+      "child": {
+        "type": "text",
+        "args": {
+          "text": "Press Me!"
+        }
+      }
+    }
+  }
+}

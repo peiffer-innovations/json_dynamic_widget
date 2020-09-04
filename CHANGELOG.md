@@ -1,3 +1,9 @@
+## [1.1.0] - September 4th, 2020
+
+* Added all `ImplicitlyAnimatedWidget` widgets support.
+* Added `Directionality` widget support.
+
+
 ## [1.0.6] - September 1st, 2020
 
 * Updated `json_theme` version because Flutter 1.21 was going to break things
