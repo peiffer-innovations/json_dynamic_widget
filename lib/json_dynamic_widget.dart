@@ -1,5 +1,6 @@
 export 'src/builders/json_align_builder.dart';
 export 'src/builders/json_animated_align_builder.dart';
+export 'src/builders/json_animated_container_builder.dart';
 export 'src/builders/json_animated_cross_fade_builder.dart';
 export 'src/builders/json_animated_default_text_style_builder.dart';
 export 'src/builders/json_animated_opacity_builder.dart';
