@@ -1,0 +1,124 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Aspect Ratio"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "container",
+        "args": {
+          "alignment": "center",
+          "width": 100
+        },
+        "child": {
+          "type": "column",
+          "args": {
+            "mainAxisSize": "min"
+          },
+          "children": [{
+            "type": "aspect_ratio",
+            "args": {
+              "aspectRatio": 1
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "alignment": "center",
+                "color": "#ffcdd2",
+                "padding": 16
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "1x1"
+                }
+              }
+            }
+          }, {
+            "type": "sized_box",
+            "args": {
+              "height": 16
+            }
+          }, {
+            "type": "aspect_ratio",
+            "args": {
+              "aspectRatio": 1.33
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "alignment": "center",
+                "color": "#E1BEE7",
+                "padding": 16
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "4x3"
+                }
+              }
+            }
+          }, {
+            "type": "sized_box",
+            "args": {
+              "height": 16
+            }
+          }, {
+            "type": "aspect_ratio",
+            "args": {
+              "aspectRatio": 1.778
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "alignment": "center",
+                "color": "#F8BBD0",
+                "padding": 16
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "16x9"
+                }
+              }
+            }
+          }, {
+            "type": "sized_box",
+            "args": {
+              "height": 16
+            }
+          }, {
+            "type": "aspect_ratio",
+            "args": {
+              "aspectRatio": 2
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "alignment": "center",
+                "color": "#D1C4E9",
+                "padding": 16
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "2x1"
+                }
+              }
+            }
+          }]
+        }
+      }
+    }
+  }
+}

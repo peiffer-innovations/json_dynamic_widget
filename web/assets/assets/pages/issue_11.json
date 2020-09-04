@@ -1,0 +1,23 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Asset Images Page"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "asset_image",
+      "args": {
+        "centerSlice": "{{customRect}}",
+        "name": "##getImageAsset(1)##"
+      }
+    }
+  }
+}

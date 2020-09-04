@@ -1,0 +1,188 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Form"
+          }
+        }
+      }
+    },
+    "backgroundColor": "#e0e0e0",
+    "body": {
+      "type": "safe_area",
+      "args": {
+        "bottom": true
+      },
+      "child": {
+        "type": "form",
+        "child": {
+          "type": "single_child_scroll_view",
+          "args": {
+            "padding": [
+              16,
+              0
+            ]
+          },
+          "child": {
+            "type": "container",
+            "args": {
+              "alignment": "topCenter",
+              "width": "infinity"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "constraints": {
+                  "maxWidth": 450
+                }
+              },
+              "child": {
+                "type": "column",
+                "args": {
+                  "mainAxisSize": "min"
+                },
+                "children": [{
+                  "type": "sized_box",
+                  "args": {
+                    "height": 16
+                  }
+                }, {
+                  "type": "sized_box",
+                  "args": {
+                    "height": 8
+                  }
+                }, {
+                  "type": "material",
+                  "args": {
+                    "borderRadius": 16,
+                    "color": "#fff",
+                    "elevation": 4,
+                    "margin": [
+                      0,
+                      8
+                    ],
+                    "padding": 16
+                  },
+                  "child": {
+                    "type": "column",
+                    "args": {
+                      "mainAxisSize": "min"
+                    },
+                    "children": [{
+                      "type": "row",
+                      "children": [{
+                        "type": "flexible",
+                        "child": {
+                          "type": "text_form_field",
+                          "args": {
+                            "decoration": {
+                              "hintText": "John",
+                              "labelText": "First Name"
+                            },
+                            "validators": [{
+                              "type": "required"
+                            }]
+                          }
+                        }
+                      }, {
+                        "type": "sized_box",
+                        "args": {
+                          "width": 16
+                        }
+                      }, {
+                        "type": "flexible",
+                        "child": {
+                          "type": "text_form_field",
+                          "args": {
+                            "decoration": {
+                              "hintText": "Doe",
+                              "labelText": "Last Name"
+                            },
+                            "validators": [{
+                              "type": "required"
+                            }]
+                          }
+                        }
+                      }]
+                    }, {
+                      "type": "sized_box",
+                      "args": {
+                        "height": 16
+                      }
+                    }, {
+                      "type": "text_form_field",
+                      "args": {
+                        "decoration": {
+                          "hintText": "name@example.com",
+                          "labelText": "Email Address"
+                        },
+                        "validators": [{
+                            "type": "required"
+                          },
+                          {
+                            "type": "email"
+                          }
+                        ]
+                      }
+                    }, {
+                      "type": "sized_box",
+                      "args": {
+                        "height": 16
+                      }
+                    }, {
+                      "type": "dropdown_button_form_field",
+                      "args": {
+                        "decoration": {
+                          "labelText": "Email Type"
+                        },
+                        "items": [
+                          "Home",
+                          "Other",
+                          "Work"
+                        ],
+                        "validators": [{
+                          "type": "required"
+                        }]
+                      }
+                    }]
+                  }
+                }, {
+                  "type": "raised_button",
+                  "args": {
+                    "color": "#4a95ec",
+                    "colorBrightness": "dark",
+                    "onPressed": "##validateForm(form_context)##"
+                  },
+                  "child": {
+                    "type": "container",
+                    "args": {
+                      "alignment": "center",
+                      "width": "infinity"
+                    },
+                    "child": {
+                      "type": "save_context",
+                      "args": {
+                        "key": "form_context"
+                      },
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "Submit"
+                        }
+                      }
+                    }
+                  }
+                }]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

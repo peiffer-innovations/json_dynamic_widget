@@ -1,0 +1,189 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Conditional"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "safe_area",
+      "child": {
+        "type": "padding",
+        "args": {
+          "padding": 16
+        },
+        "child": {
+          "type": "column",
+          "args": {
+            "mainAxisSize": "max"
+          },
+          "children": [{
+              "type": "row",
+              "args": {
+                "mainAxisAlignment": "spaceEvenly"
+              },
+              "children": [{
+                  "type": "raised_button",
+                  "args": {
+                    "onPressed": "##set_value(button, 1)##"
+                  },
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "One"
+                    }
+                  }
+                },
+                {
+                  "type": "raised_button",
+                  "args": {
+                    "onPressed": "##set_value(button, 2)##"
+                  },
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Two"
+                    }
+                  }
+                },
+                {
+                  "type": "raised_button",
+                  "args": {
+                    "onPressed": "##set_value(button, 3)##"
+                  },
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Three"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "row",
+              "args": {
+                "mainAxisAlignment": "spaceEvenly"
+              },
+              "children": [{
+                  "type": "flat_button",
+                  "args": {
+                    "onPressed": "##set_value(button, 4)##"
+                  },
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Four"
+                    }
+                  }
+                },
+                {
+                  "type": "flat_button",
+                  "args": {
+                    "onPressed": "##set_value(button, 5)##"
+                  },
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Five"
+                    }
+                  }
+                },
+                {
+                  "type": "flat_button",
+                  "args": {
+                    "onPressed": "##set_value(button, 6)##"
+                  },
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Six"
+                    }
+                  }
+                }
+              ]
+            },
+            {
+              "type": "expanded",
+              "child": {
+                "type": "center",
+                "child": {
+                  "type": "column",
+                  "args": {
+                    "mainAxisSize": "min"
+                  },
+                  "children": [{
+                      "type": "text",
+                      "args": {
+                        "text": "{{button}}"
+                      }
+                    },
+                    {
+                      "type": "stack",
+                      "children": [{
+                          "type": "conditional",
+                          "args": {
+                            "conditional": {
+                              "values": {
+                                "button": "1"
+                              }
+                            }
+                          },
+                          "child": {
+                            "type": "text",
+                            "args": {
+                              "text": "You hit the button One"
+                            }
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "args": {
+                            "conditional": {
+                              "values": {
+                                "button": "2"
+                              }
+                            }
+                          },
+                          "child": {
+                            "type": "text",
+                            "args": {
+                              "text": "You hit the button Two"
+                            }
+                          }
+                        },
+                        {
+                          "type": "conditional",
+                          "args": {
+                            "conditional": {
+                              "values": {
+                                "button": "3"
+                              }
+                            }
+                          },
+                          "child": {
+                            "type": "text",
+                            "args": {
+                              "text": "You hit the button Three"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
