@@ -20,6 +20,10 @@ class SchemaValidator {
       cache.addSchema(AlignSchema.id, AlignSchema.schema);
       cache.addSchema(AnimatedAlignSchema.id, AnimatedAlignSchema.schema);
       cache.addSchema(
+        AnimatedCrossFadeSchema.id,
+        AnimatedCrossFadeSchema.schema,
+      );
+      cache.addSchema(
         AnimatedDefaultTextStyleSchema.id,
         AnimatedDefaultTextStyleSchema.schema,
       );
