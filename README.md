@@ -2,12 +2,18 @@
 
 ## Table of Contents
 
+* [Live Example](#live-example)
 * [Introduction](#introduction)
 * [Understanding the Registry](#understanding-the-registry)
 * [Built In Widgets](#built-in-widgets)
 * [Using Variables](#using-variables)
 * [Dynamic Functions](#dynamic-functions)
 * [Creating Custom Widgets](#creating-custom-widgets)
+
+
+## Live Example
+
+* [Web](https://peiffer-innovations.github.io/json_dynamic_widget/web/index.html#/)
 
 
 ## Introduction

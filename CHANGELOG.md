@@ -1,3 +1,10 @@
+## [1.0.6] - September 1st, 2020
+
+* Updated `json_theme` version because Flutter 1.21 was going to break things
+* Added example for `macos`
+* Added example for `web`
+
+
 ## [1.0.5] - September 1st, 2020
 
 * Updated `json_theme` version to fix issues #12.
