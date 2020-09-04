@@ -98,6 +98,10 @@ class JsonWidgetRegistry {
       builder: JsonAnimatedAlignBuilder.fromDynamic,
       schemaId: AnimatedAlignSchema.id,
     ),
+    JsonAnimatedCrossFadeBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedCrossFadeBuilder.fromDynamic,
+      schemaId: AnimatedCrossFadeSchema.id,
+    ),
     JsonAnimatedDefaultTextStyleBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonAnimatedDefaultTextStyleBuilder.fromDynamic,
       schemaId: AnimatedDefaultTextStyleSchema.id,

@@ -153,6 +153,7 @@ class RootPage extends StatelessWidget {
   static const _pages = [
     'align',
     'animated_align',
+    'animated_cross_fade',
     'animated_default_text_style',
     'animated_opacity',
     'animated_padding',
