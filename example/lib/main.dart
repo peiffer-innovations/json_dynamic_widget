@@ -116,7 +116,11 @@ void main() async {
         },
     'getCustomTween': ({args, registry}) {
       return Tween<double>(begin: 0, end: args[0]);
-    }
+    },
+    'setWidgetByKey': ({args, registry}) => () {
+          var _replace = registry.getValue(args[1]);
+          registry.setValue(args[0], _replace);
+        },
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -161,6 +165,7 @@ class RootPage extends StatelessWidget {
     'animated_positioned',
     'animated_positioned_directional',
     'animated_size',
+    'animated_switcher',
     'animated_theme',
     'aspect_ratio',
     'asset_images',

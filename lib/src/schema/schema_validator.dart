@@ -30,9 +30,7 @@ class SchemaValidator {
       cache.addSchema(AnimatedOpacitySchema.id, AnimatedOpacitySchema.schema);
       cache.addSchema(AnimatedPaddingSchema.id, AnimatedPaddingSchema.schema);
       cache.addSchema(
-        AnimatedPhysicalModelSchema.id,
-        AnimatedPhysicalModelSchema.schema,
-      );
+          AnimatedPhysicalModelSchema.id, AnimatedPhysicalModelSchema.schema);
       cache.addSchema(
         AnimatedPositionedDirectionalSchema.id,
         AnimatedPositionedDirectionalSchema.schema,
@@ -41,14 +39,9 @@ class SchemaValidator {
         AnimatedPositionedSchema.id,
         AnimatedPositionedSchema.schema,
       );
-      cache.addSchema(
-        AnimatedSizeSchema.id,
-        AnimatedSizeSchema.schema,
-      );
-      cache.addSchema(
-        AnimatedThemeSchema.id,
-        AnimatedThemeSchema.schema,
-      );
+      cache.addSchema(AnimatedSizeSchema.id, AnimatedSizeSchema.schema);
+      cache.addSchema(AnimatedSwitcherSchema.id, AnimatedSwitcherSchema.schema);
+      cache.addSchema(AnimatedThemeSchema.id, AnimatedThemeSchema.schema);
       cache.addSchema(AppBarSchema.id, AppBarSchema.schema);
       cache.addSchema(AspectRatioSchema.id, AspectRatioSchema.schema);
       cache.addSchema(AssetImageSchema.id, AssetImageSchema.schema);

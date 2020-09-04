@@ -1,0 +1,61 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "AnimatedSwitcher"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_widget",
+      "args": {
+        "customFirstText": {
+          "type": "text",
+          "args": {
+            "text": "1",
+            "style": {
+              "fontSize": 64
+            }
+          }
+        },
+        "customSecondText": {
+          "type": "text",
+          "args": {
+            "text": "2",
+            "style": {
+              "fontSize": 64
+            }
+          }
+        }
+      },
+      "child": {
+        "type": "center",
+        "child": {
+          "type": "animated_switcher",
+          "args": {
+            "child": "{{customFirstText}}",
+            "duration": 1000
+          }
+        }
+      }
+    },
+    "floatingActionButton": {
+      "type": "raised_button",
+      "args": {
+        "onPressed": "##setWidgetByKey(customFirstText, customSecondText)##"
+      },
+      "child": {
+        "type": "text",
+        "args": {
+          "text": "Press Me!"
+        }
+      }
+    }
+  }
+}
