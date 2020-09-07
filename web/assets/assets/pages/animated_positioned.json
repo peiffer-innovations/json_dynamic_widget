@@ -1,0 +1,53 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "AnimatedPositioned"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "customHeight": 40
+      },
+      "child": {
+        "type": "stack",
+        "children": [
+          {
+            "type": "animated_positioned",
+            "args": {
+              "duration": 1000,
+              "height": "{{customHeight}}"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "color": "#FF0000",
+                "width": 100
+              }
+            }
+          }
+        ]
+      }
+    },
+    "floatingActionButton": {
+      "type": "raised_button",
+      "args": {
+        "onPressed": "##set_value(customHeight, 100)##"
+      },
+      "child": {
+        "type": "text",
+        "args": {
+          "text": "Press Me!"
+        }
+      }
+    }
+  }
+}
