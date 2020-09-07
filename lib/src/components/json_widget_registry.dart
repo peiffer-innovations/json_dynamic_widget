@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/components/values/values.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:json_dynamic_widget/src/schema/schemas/container_schema.dart';
 import 'package:json_dynamic_widget/src/schema/schemas/cupertino_switch_schema.dart';
@@ -93,6 +94,54 @@ class JsonWidgetRegistry {
       builder: JsonAlignBuilder.fromDynamic,
       schemaId: AlignSchema.id,
     ),
+    JsonAnimatedAlignBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedAlignBuilder.fromDynamic,
+      schemaId: AnimatedAlignSchema.id,
+    ),
+    JsonAnimatedContainerBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedContainerBuilder.fromDynamic,
+      schemaId: AnimatedContainerSchema.id,
+    ),
+    JsonAnimatedCrossFadeBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedCrossFadeBuilder.fromDynamic,
+      schemaId: AnimatedCrossFadeSchema.id,
+    ),
+    JsonAnimatedDefaultTextStyleBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedDefaultTextStyleBuilder.fromDynamic,
+      schemaId: AnimatedDefaultTextStyleSchema.id,
+    ),
+    JsonAnimatedOpacityBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedOpacityBuilder.fromDynamic,
+      schemaId: AnimatedOpacitySchema.id,
+    ),
+    JsonAnimatedPaddingBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedPaddingBuilder.fromDynamic,
+      schemaId: AnimatedPaddingSchema.id,
+    ),
+    JsonAnimatedPhysicalModelBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedPhysicalModelBuilder.fromDynamic,
+      schemaId: AnimatedPhysicalModelSchema.id,
+    ),
+    JsonAnimatedPositionedBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedPositionedBuilder.fromDynamic,
+      schemaId: AnimatedPositionedSchema.id,
+    ),
+    JsonAnimatedPositionedDirectionalBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedPositionedDirectionalBuilder.fromDynamic,
+      schemaId: AnimatedPositionedDirectionalSchema.id,
+    ),
+    JsonAnimatedSizeBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedSizeBuilder.fromDynamic,
+      schemaId: AnimatedSizeSchema.id,
+    ),
+    JsonAnimatedSwitcherBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedSwitcherBuilder.fromDynamic,
+      schemaId: AnimatedSwitcherSchema.id,
+    ),
+    JsonAnimatedThemeBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonAnimatedThemeBuilder.fromDynamic,
+      schemaId: AnimatedThemeSchema.id,
+    ),
     JsonAppBarBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonAppBarBuilder.fromDynamic,
       schemaId: AppBarSchema.id,
@@ -160,6 +209,10 @@ class JsonWidgetRegistry {
     JsonDecoratedBoxBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonDecoratedBoxBuilder.fromDynamic,
       schemaId: DecoratedBoxSchema.id,
+    ),
+    JsonDirectionalityBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonDirectionalityBuilder.fromDynamic,
+      schemaId: DirectionalitySchema.id,
     ),
     JsonDropdownButtonFormFieldBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,
@@ -305,6 +358,10 @@ class JsonWidgetRegistry {
       builder: JsonTextFormFieldBuilder.fromDynamic,
       schemaId: TextFormFieldSchema.id,
     ),
+    JsonTweenAnimationBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonTweenAnimationBuilder.fromDynamic,
+      schemaId: TweenAnimationSchema.id,
+    ),
     JsonThemeBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonThemeBuilder.fromDynamic,
       schemaId: ThemeSchema.id,
@@ -348,6 +405,9 @@ class JsonWidgetRegistry {
               args[1],
             ),
   };
+  final _internalValues = <String, dynamic>{}..addAll(
+      CurvesValues.values,
+    );
   final _values = <String, dynamic>{};
 
   StreamController<String> _valueStreamController =
@@ -407,9 +467,11 @@ class JsonWidgetRegistry {
     );
   }
 
-  /// Returns the variable value for the given [key].  If a variable with named
-  /// [key] cannot be found, this will return [null].
-  dynamic getValue(String key) => _values[key];
+  /// Returns the variable value for the given [key].This will first check for
+  /// a custom dynamic value using the [key], and if none is found, this will
+  /// then check the internal values. If a variable with named [key] cannot be
+  /// found, this will return [null].
+  dynamic getValue(String key) => _values[key] ?? _internalValues[key];
 
   /// Returns the builder for the requested [type].  This will first search the
   /// registered custom builders, then if no builder is found, this will then
@@ -581,7 +643,6 @@ class JsonWidgetRegistry {
     dynamic value,
   ) {
     assert(key?.isNotEmpty == true);
-
     if (value == null) {
       removeValue(key);
     } else {

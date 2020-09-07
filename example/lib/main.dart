@@ -94,6 +94,33 @@ void main() async {
           var valid = Form.of(context).validate();
           registry.setValue('form_validation', valid);
         },
+    'updateCustomTextStyle': ({args, registry}) => () {
+          registry.setValue(
+            'customTextStyle',
+            TextStyle(
+              color: Colors.black,
+            ),
+          );
+        },
+    'getCustomTweenBuilder': ({args, registry}) =>
+        (BuildContext context, dynamic size, Widget child) {
+          return IconButton(
+            icon: child,
+            iconSize: size,
+            onPressed: () {
+              var _current = registry.getValue('customSize');
+              var _size = _current == 50.0 ? 100.0 : 50.0;
+              registry.setValue('customSize', _size);
+            },
+          );
+        },
+    'getCustomTween': ({args, registry}) {
+      return Tween<double>(begin: 0, end: args[0]);
+    },
+    'setWidgetByKey': ({args, registry}) => () {
+          var _replace = registry.getValue(args[1]);
+          registry.setValue(args[0], _replace);
+        },
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -129,6 +156,18 @@ class RootPage extends StatelessWidget {
 
   static const _pages = [
     'align',
+    'animated_align',
+    'animated_container',
+    'animated_cross_fade',
+    'animated_default_text_style',
+    'animated_opacity',
+    'animated_padding',
+    'animated_physical_model',
+    'animated_positioned',
+    'animated_positioned_directional',
+    'animated_size',
+    'animated_switcher',
+    'animated_theme',
     'aspect_ratio',
     'asset_images',
     'bank_example',
@@ -141,6 +180,7 @@ class RootPage extends StatelessWidget {
     'conditional',
     'cupertino_switch',
     'decorated_box',
+    'directionality',
     'fitted_box',
     'form',
     'gestures',
@@ -156,6 +196,7 @@ class RootPage extends StatelessWidget {
     'simple_page',
     'switch',
     'theme',
+    'tween_animation',
   ];
 
   Future<void> _onPageSelected(BuildContext context, String themeId) async {
