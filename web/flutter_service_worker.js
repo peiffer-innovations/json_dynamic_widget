@@ -5,13 +5,13 @@ const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "index.html": "9e655c2a10bad2d6247703c1a29199e5",
 "/": "9e655c2a10bad2d6247703c1a29199e5",
-"main.dart.js": "89d8a5d1c0eabbf56a426161e3f1907c",
+"main.dart.js": "732dc465e165bf19e5a633bb74de39b4",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "assets/AssetManifest.json": "522bce206e3dc904e2ad7a30e548f023",
-"assets/NOTICES": "3e155ebf42e806849df434d3cf444540",
+"assets/NOTICES": "126779e16ca6d7b8b7db6c64cc2f611e",
 "assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
 "assets/fonts/MaterialIcons-Regular.otf": "a68d2a28c526b3b070aefca4bac93d25",
 "assets/assets/images/visa.svg": "45180370eb48dfdbdf59b3be4a3c0b59",
@@ -95,8 +95,8 @@ const CORE = [
 self.addEventListener("install", (event) => {
   return event.waitUntil(
     caches.open(TEMP).then((cache) => {
-      return cache.addAll(
-        CORE.map((value) => new Request(value + '?revision=' + RESOURCES[value], {'cache': 'reload'})));
+      // Provide a 'reload' param to ensure the latest version is downloaded.
+      return cache.addAll(CORE.map((value) => new Request(value, {'cache': 'reload'})));
     })
   );
 });
