@@ -1,3 +1,8 @@
+## [1.1.1] - September 11th, 2020
+
+* Added example for `linux`
+
+
 ## [1.1.0] - September 4th, 2020
 
 * Added all `ImplicitlyAnimatedWidget` widgets support.
