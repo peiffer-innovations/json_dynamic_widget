@@ -10,7 +10,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
     this.alignment,
     this.clipBehavior,
     this.fit,
-    this.overflow,
     this.textDirection,
   });
 
@@ -19,7 +18,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   final AlignmentGeometry alignment;
   final Clip clipBehavior;
   final StackFit fit;
-  final Overflow overflow;
   final TextDirection textDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -30,7 +28,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   ///   "alignment": <Alignment>,
   ///   "clipBehavior": <Clip>,
   ///   "fit": <StackFit>,
-  ///   "overflow": <Overflow>,
   ///   "textDirection": <TextDirection>
   /// }
   /// ```
@@ -39,7 +36,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeAlignment]
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeStackFit]
-  ///  * [ThemeDecoder.decodeOverflow]
   ///  * [ThemeDecoder.decodeTextDirection]
   static JsonStackBuilder fromDynamic(
     dynamic map, {
@@ -64,11 +60,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             StackFit.loose,
-        overflow: ThemeDecoder.decodeOverflow(
-              map['overflow'],
-              validate: false,
-            ) ??
-            Overflow.clip,
         textDirection: ThemeDecoder.decodeTextDirection(
           map['textDirection'],
           validate: false,
@@ -90,7 +81,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
       alignment: alignment,
       clipBehavior: clipBehavior,
       fit: fit,
-      overflow: overflow,
       textDirection: textDirection,
       children: [
         for (var child in data.children ?? [])

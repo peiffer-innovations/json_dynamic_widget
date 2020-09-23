@@ -1,3 +1,8 @@
+## [1.1.2] - September 22nd, 2020
+
+* Upgradind to latest `json_theme` before the next Flutter release breaks us
+
+
 ## [1.1.1] - September 11th, 2020
 
 * Added example for `linux`
