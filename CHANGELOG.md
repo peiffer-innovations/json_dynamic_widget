@@ -1,6 +1,11 @@
+## [1.1.3] - October 3rd, 2020
+
+* Fixed deprecated warnings caused by Flutter 1.22
+
+
 ## [1.1.2] - September 22nd, 2020
 
-* Upgradind to latest `json_theme` before the next Flutter release breaks us
+* Upgraded to latest `json_theme` before the next Flutter release breaks us
 
 
 ## [1.1.1] - September 11th, 2020

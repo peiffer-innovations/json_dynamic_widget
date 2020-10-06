@@ -173,7 +173,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     var initialValue = value ?? (tristate != true ? false : null);
 
     return FormField<bool>(
-      autovalidate: autovalidate,
+      autovalidateMode: autovalidate == true
+          ? AutovalidateMode.always
+          : AutovalidateMode.disabled,
       enabled: enabled,
       initialValue: initialValue,
       onSaved: onSaved,

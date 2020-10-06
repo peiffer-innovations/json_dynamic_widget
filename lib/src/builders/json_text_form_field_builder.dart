@@ -377,7 +377,9 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         autocorrect: widget.builder.autocorrect,
         autofillHints: widget.builder.autofillHints,
         autofocus: widget.builder.autofocus,
-        autovalidate: widget.builder.autovalidate,
+        autovalidateMode: widget.builder.autovalidate == true
+            ? AutovalidateMode.always
+            : AutovalidateMode.disabled,
         buildCounter: widget.builder.buildCounter,
         controller: widget.builder.controller,
         cursorColor: widget.builder.cursorColor,

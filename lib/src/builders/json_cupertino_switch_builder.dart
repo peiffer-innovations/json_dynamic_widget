@@ -138,7 +138,9 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     );
 
     return FormField<bool>(
-      autovalidate: autovalidate,
+      autovalidateMode: autovalidate == true
+          ? AutovalidateMode.always
+          : AutovalidateMode.disabled,
       enabled: enabled,
       initialValue: value,
       onSaved: onSaved,

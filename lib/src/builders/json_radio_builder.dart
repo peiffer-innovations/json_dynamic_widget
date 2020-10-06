@@ -228,7 +228,9 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
   @override
   Widget build(BuildContext context) {
     return FormField<dynamic>(
-      autovalidate: widget.builder.autovalidate,
+      autovalidateMode: widget.builder.autovalidate
+          ? AutovalidateMode.always
+          : AutovalidateMode.disabled,
       enabled: widget.builder.enabled,
       initialValue: widget.builder.groupValue,
       key: _globalKey,

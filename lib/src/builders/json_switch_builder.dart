@@ -205,7 +205,9 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     );
 
     return FormField<bool>(
-      autovalidate: autovalidate,
+      autovalidateMode: autovalidate == true
+          ? AutovalidateMode.always
+          : AutovalidateMode.disabled,
       enabled: enabled,
       initialValue: value,
       validator: validator == null

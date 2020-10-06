@@ -116,7 +116,9 @@ class _JsonFormWidgetState extends State<_JsonFormWidget> {
 
   @override
   Widget build(BuildContext context) => Form(
-        autovalidate: widget.builder.autovalidate,
+        autovalidateMode: widget.builder.autovalidate == true
+            ? AutovalidateMode.always
+            : AutovalidateMode.disabled,
         key: _key,
         onChanged: widget.builder.onChanged,
         onWillPop: widget.builder.onWillPop,
