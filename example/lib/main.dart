@@ -121,6 +121,16 @@ void main() async {
           var _replace = registry.getValue(args[1]);
           registry.setValue(args[0], _replace);
         },
+    'materialCallback': ({args, registry}) => (Set<MaterialState> states) {
+          const interactiveStates = <MaterialState>{
+            MaterialState.pressed,
+            MaterialState.focused,
+          };
+          if (states.any(interactiveStates.contains)) {
+            return Colors.blue;
+          }
+          return Colors.red;
+        }
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -172,6 +182,7 @@ class RootPage extends StatelessWidget {
     'asset_images',
     'bank_example',
     'baseline',
+    'buttons',
     'card',
     'center',
     'checkbox',

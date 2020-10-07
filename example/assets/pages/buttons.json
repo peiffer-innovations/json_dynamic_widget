@@ -1,0 +1,33 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Buttons"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "elevated_button",
+        "args": {
+          "style": {
+            "foregroundColor": "##materialCallback()##"
+          }
+        },
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
+        }
+      }
+    }
+  }
+}
