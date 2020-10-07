@@ -30,6 +30,7 @@ export 'schemas/cupertino_switch_schema.dart';
 export 'schemas/decorated_box_schema.dart';
 export 'schemas/directionality_schema.dart';
 export 'schemas/dropdown_button_form_field_schema.dart';
+export 'schemas/elevated_button_schema.dart';
 export 'schemas/expanded_schema.dart';
 export 'schemas/fitted_box_schema.dart';
 export 'schemas/flat_button_schema.dart';

@@ -218,6 +218,10 @@ class JsonWidgetRegistry {
       builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,
       schemaId: DropdownButtonFormFieldSchema.id,
     ),
+    JsonElevatedButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonElevatedButtonBuilder.fromDynamic,
+      schemaId: ElevatedButtonSchema.id,
+    ),
     JsonExpandedBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonExpandedBuilder.fromDynamic,
       schemaId: ExpandedSchema.id,

@@ -71,6 +71,7 @@ class SchemaValidator {
         DropdownButtonFormFieldSchema.id,
         DropdownButtonFormFieldSchema.schema,
       );
+      cache.addSchema(ElevatedButtonSchema.id, ElevatedButtonSchema.schema);
       cache.addSchema(ExpandedSchema.id, ExpandedSchema.schema);
       cache.addSchema(FittedBoxSchema.id, FittedBoxSchema.schema);
       cache.addSchema(FlatButtonSchema.id, FlatButtonSchema.schema);
