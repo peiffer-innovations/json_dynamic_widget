@@ -11,6 +11,11 @@ class ElevatedButtonSchema {
     'title': 'ElevatedButton',
     'additionalProperties': false,
     'properties': {
+      'autofocus': SchemaHelper.boolSchema,
+      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
+      'focusNode': SchemaHelper.stringSchema,
+      'onLongPress': SchemaHelper.stringSchema,
+      'onPressed': SchemaHelper.stringSchema,
       'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
     }
   };
