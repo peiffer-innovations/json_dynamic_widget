@@ -130,6 +130,10 @@ void main() async {
             return Colors.blue;
           }
           return Colors.red;
+        },
+    'simplePrintMessage': ({args, registry}) => () {
+          // ignore: avoid_print
+          print('This is a simple print message');
         }
   });
 
