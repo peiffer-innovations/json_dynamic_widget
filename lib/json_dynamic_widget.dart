@@ -65,6 +65,7 @@ export 'src/builders/json_sized_box_builder.dart';
 export 'src/builders/json_stack_builder.dart';
 export 'src/builders/json_switch_builder.dart';
 export 'src/builders/json_text_builder.dart';
+export 'src/builders/json_text_button_builder.dart';
 export 'src/builders/json_text_form_field_builder.dart';
 export 'src/builders/json_theme_builder.dart';
 export 'src/builders/json_tween_animation_builder.dart';

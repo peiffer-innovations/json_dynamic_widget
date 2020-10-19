@@ -65,6 +65,7 @@ export 'schemas/single_child_scroll_view_schema.dart';
 export 'schemas/sized_box_schema.dart';
 export 'schemas/stack_schema.dart';
 export 'schemas/switch_schema.dart';
+export 'schemas/text_button_schema.dart';
 export 'schemas/text_form_field_schema.dart';
 export 'schemas/text_schema.dart';
 export 'schemas/theme_schema.dart';

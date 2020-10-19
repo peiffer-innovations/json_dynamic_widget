@@ -112,6 +112,7 @@ class SchemaValidator {
       cache.addSchema(SizedBoxSchema.id, SizedBoxSchema.schema);
       cache.addSchema(StackSchema.id, StackSchema.schema);
       cache.addSchema(SwitchSchema.id, SwitchSchema.schema);
+      cache.addSchema(TextButtonSchema.id, TextButtonSchema.schema);
       cache.addSchema(TextFormFieldSchema.id, TextFormFieldSchema.schema);
       cache.addSchema(TextSchema.id, TextSchema.schema);
       cache.addSchema(ThemeSchema.id, ThemeSchema.schema);

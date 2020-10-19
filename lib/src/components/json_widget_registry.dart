@@ -358,6 +358,10 @@ class JsonWidgetRegistry {
       builder: JsonTextBuilder.fromDynamic,
       schemaId: TextSchema.id,
     ),
+    JsonTextButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonTextButtonBuilder.fromDynamic,
+      schemaId: TextButtonSchema.id,
+    ),
     JsonTextFormFieldBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonTextFormFieldBuilder.fromDynamic,
       schemaId: TextFormFieldSchema.id,
