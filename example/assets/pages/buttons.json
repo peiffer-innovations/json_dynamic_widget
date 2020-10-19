@@ -13,22 +13,51 @@
       }
     },
     "body": {
-      "type": "center",
-      "child": {
-        "type": "elevated_button",
-        "args": {
-          "onLongPress": "##simplePrintMessage()##",
-          "style": {
-            "foregroundColor": "##materialCallback()##"
+      "type": "column",
+      "children": [
+        {
+          "type": "expanded",
+          "child": {
+            "type": "center",
+            "child": {
+              "type": "elevated_button",
+              "args": {
+                "onLongPress": "##simplePrintMessage()##",
+                "style": {
+                  "foregroundColor": "##materialCallback()##"
+                }
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "ElevatedButton"
+                }
+              }
+            }
           }
         },
-        "child": {
-          "type": "text",
-          "args": {
-            "text": "Press Me!"
+        {
+          "type": "expanded",
+          "child": {
+            "type": "center",
+            "child": {
+              "type": "text_button",
+              "args": {
+                "onLongPress": "##simplePrintMessage()##",
+                "style": {
+                  "foregroundColor": "##materialCallback()##"
+                }
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "TextButton"
+                }
+              }
+            }
           }
         }
-      }
+      ]
     }
   }
 }
