@@ -76,6 +76,10 @@ class SchemaValidator {
       cache.addSchema(FittedBoxSchema.id, FittedBoxSchema.schema);
       cache.addSchema(FlatButtonSchema.id, FlatButtonSchema.schema);
       cache.addSchema(FlexibleSchema.id, FlexibleSchema.schema);
+      cache.addSchema(
+        FloatingActionButtonSchema.id,
+        FloatingActionButtonSchema.schema,
+      );
       cache.addSchema(FormSchema.id, FormSchema.schema);
       cache.addSchema(GestureDetectorSchema.id, GestureDetectorSchema.schema);
       cache.addSchema(HeroSchema.id, HeroSchema.schema);

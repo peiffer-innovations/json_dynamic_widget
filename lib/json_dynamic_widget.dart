@@ -35,6 +35,7 @@ export 'src/builders/json_expanded_builder.dart';
 export 'src/builders/json_fitted_box_builder.dart';
 export 'src/builders/json_flat_button_builder.dart';
 export 'src/builders/json_flexible_builder.dart';
+export 'src/builders/json_floating_action_button_builder.dart';
 export 'src/builders/json_form_builder.dart';
 export 'src/builders/json_gesture_detector_builder.dart';
 export 'src/builders/json_hero_builder.dart';

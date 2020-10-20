@@ -238,6 +238,10 @@ class JsonWidgetRegistry {
       builder: JsonFlexibleBuilder.fromDynamic,
       schemaId: FlexibleSchema.id,
     ),
+    JsonFloatingActionButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFloatingActionButtonBuilder.fromDynamic,
+      schemaId: FloatingActionButtonSchema.id,
+    ),
     JsonFormBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonFormBuilder.fromDynamic,
       schemaId: FormSchema.id,

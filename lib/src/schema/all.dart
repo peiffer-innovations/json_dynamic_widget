@@ -35,6 +35,7 @@ export 'schemas/expanded_schema.dart';
 export 'schemas/fitted_box_schema.dart';
 export 'schemas/flat_button_schema.dart';
 export 'schemas/flexible_schema.dart';
+export 'schemas/floating_action_button_schema.dart';
 export 'schemas/form_schema.dart';
 export 'schemas/gesture_detector_schema.dart';
 export 'schemas/hero_schema.dart';
