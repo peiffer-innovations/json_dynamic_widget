@@ -51,6 +51,7 @@ export 'schemas/material_schema.dart';
 export 'schemas/memory_image_schema.dart';
 export 'schemas/network_image_schema.dart';
 export 'schemas/opacity_schema.dart';
+export 'schemas/outlined_button_schema.dart';
 export 'schemas/padding_schema.dart';
 export 'schemas/positioned_schema.dart';
 export 'schemas/radio_schema.dart';

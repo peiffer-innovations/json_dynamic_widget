@@ -298,6 +298,10 @@ class JsonWidgetRegistry {
       builder: JsonOpacityBuilder.fromDynamic,
       schemaId: OpacitySchema.id,
     ),
+    JsonOutlinedButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonOutlinedButtonBuilder.fromDynamic,
+      schemaId: OutlinedButtonSchema.id,
+    ),
     JsonPaddingBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonPaddingBuilder.fromDynamic,
       schemaId: PaddingSchema.id,

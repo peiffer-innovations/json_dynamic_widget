@@ -95,6 +95,7 @@ class SchemaValidator {
       cache.addSchema(MemoryImageSchema.id, MemoryImageSchema.schema);
       cache.addSchema(NetworkImageSchema.id, NetworkImageSchema.schema);
       cache.addSchema(OpacitySchema.id, OpacitySchema.schema);
+      cache.addSchema(OutlinedButtonSchema.id, OutlinedButtonSchema.schema);
       cache.addSchema(PaddingSchema.id, PaddingSchema.schema);
       cache.addSchema(PositionedSchema.id, PositionedSchema.schema);
       cache.addSchema(RadioSchema.id, RadioSchema.schema);

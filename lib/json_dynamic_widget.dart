@@ -50,6 +50,7 @@ export 'src/builders/json_material_builder.dart';
 export 'src/builders/json_memory_image_builder.dart';
 export 'src/builders/json_network_image_builder.dart';
 export 'src/builders/json_opacity_builder.dart';
+export 'src/builders/json_outlined_button_builder.dart';
 export 'src/builders/json_padding_builder.dart';
 export 'src/builders/json_positioned_builder.dart';
 export 'src/builders/json_radio_builder.dart';
