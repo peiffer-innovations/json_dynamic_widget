@@ -56,6 +56,27 @@
               }
             }
           }
+        },
+        {
+          "type": "expanded",
+          "child": {
+            "type": "center",
+            "child": {
+              "type": "outlined_button",
+              "args": {
+                "onLongPress": "##simplePrintMessage()##",
+                "style": {
+                  "foregroundColor": "##materialCallback()##"
+                }
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "OutlinedButton"
+                }
+              }
+            }
+          }
         }
       ]
     }
