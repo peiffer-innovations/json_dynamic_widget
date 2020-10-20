@@ -79,6 +79,22 @@
           }
         }
       ]
+    },
+    "floatingActionButton": {
+      "type": "floating_action_button",
+      "args": {
+        "onPressed": "##simplePrintMessage()##"
+      },
+      "child": {
+        "type": "icon",
+        "args": {
+          "icon": {
+            "codePoint": 57369,
+            "fontFamily": "MaterialIcons"
+          },
+          "size": 50
+        }
+      }
     }
   }
 }
