@@ -149,6 +149,11 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
+    assert(
+      data.children?.length == 1,
+      '[JsonTextButtonBuilder] only supports exactly one child.',
+    );
+
     return TextButton(
       autofocus: autofocus,
       clipBehavior: clipBehavior,

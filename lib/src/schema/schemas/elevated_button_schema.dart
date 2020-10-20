@@ -8,7 +8,7 @@ class ElevatedButtonSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
     'type': 'object',
-    'title': 'ElevatedButton',
+    'title': 'ElevatedButtonBuilder',
     'additionalProperties': false,
     'properties': {
       'autofocus': SchemaHelper.boolSchema,

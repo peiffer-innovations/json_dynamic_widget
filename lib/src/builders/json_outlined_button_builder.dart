@@ -149,6 +149,11 @@ class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
+    assert(
+      data.children?.length == 1,
+      '[JsonOutlinedButtonBuilder] only supports exactly one child.',
+    );
+
     return OutlinedButton(
       autofocus: autofocus,
       clipBehavior: clipBehavior,

@@ -149,6 +149,11 @@ class JsonElevatedButtonBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
+    assert(
+      data.children?.length == 1,
+      '[JsonElevatedButtonBuilder] only supports exactly one child.',
+    );
+
     return ElevatedButton(
       autofocus: autofocus,
       clipBehavior: clipBehavior,
