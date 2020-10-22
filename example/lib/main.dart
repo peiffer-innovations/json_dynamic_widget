@@ -198,6 +198,7 @@ class RootPage extends StatelessWidget {
     'directionality',
     'fitted_box',
     'form',
+    'fractional_translation',
     'gestures',
     'images',
     'indexed_stack',
