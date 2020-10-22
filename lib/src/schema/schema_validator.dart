@@ -85,6 +85,10 @@ class SchemaValidator {
         FractionalTranslationSchema.id,
         FractionalTranslationSchema.schema,
       );
+      cache.addSchema(
+        FractionallySizedBoxSchema.id,
+        FractionallySizedBoxSchema.schema,
+      );
       cache.addSchema(GestureDetectorSchema.id, GestureDetectorSchema.schema);
       cache.addSchema(HeroSchema.id, HeroSchema.schema);
       cache.addSchema(IconSchema.id, IconSchema.schema);

@@ -38,6 +38,7 @@ export 'schemas/flexible_schema.dart';
 export 'schemas/floating_action_button_schema.dart';
 export 'schemas/form_schema.dart';
 export 'schemas/fractional_translation_schema.dart';
+export 'schemas/fractionally_sized_box_schema.dart';
 export 'schemas/gesture_detector_schema.dart';
 export 'schemas/hero_schema.dart';
 export 'schemas/icon_schema.dart';
