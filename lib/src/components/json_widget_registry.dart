@@ -246,6 +246,10 @@ class JsonWidgetRegistry {
       builder: JsonFormBuilder.fromDynamic,
       schemaId: FormSchema.id,
     ),
+    JsonFractionalTranslationBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFractionalTranslationBuilder.fromDynamic,
+      schemaId: FractionalTranslationSchema.id,
+    ),
     JsonGestureDetectorBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonGestureDetectorBuilder.fromDynamic,
       schemaId: GestureDetectorSchema.id,
