@@ -18,7 +18,9 @@ class AnimatedAlignSchema {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'curve': SchemaHelper.stringSchema,
       'duration': SchemaHelper.numberSchema,
+      'heightFactor': SchemaHelper.numberSchema,
       'onEnd': SchemaHelper.stringSchema,
+      'widthFactor': SchemaHelper.numberSchema,
     },
   };
 }

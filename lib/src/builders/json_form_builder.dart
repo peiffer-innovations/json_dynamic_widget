@@ -2,19 +2,20 @@ import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Form] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFormBuilder extends JsonWidgetBuilder {
   JsonFormBuilder({
-    this.autovalidate,
+    this.autovalidateMode,
     this.onChanged,
     this.onWillPop,
   });
 
   static const type = 'form';
 
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final VoidCallback onChanged;
   final WillPopCallback onWillPop;
 
@@ -23,7 +24,7 @@ class JsonFormBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "autovalidate": <bool>,
+  ///   "autovalidateMode": <AutovalidateMode>,
   ///   "onChanged": <VoidCallback>,
   ///   "onWillPop": <WillPopCallback>
   /// }
@@ -35,6 +36,7 @@ class JsonFormBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [buildCustom]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
   static JsonFormBuilder fromDynamic(
     dynamic map, {
     JsonWidgetRegistry registry,
@@ -43,7 +45,11 @@ class JsonFormBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonFormBuilder(
-        autovalidate: JsonClass.parseBool(map['autovalidate']),
+        autovalidateMode: map['autovalidate'] == null
+            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            : JsonClass.parseBool(map['autovalidate']) == true
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
         onChanged: map['onChanged'],
         onWillPop: map['onWillPop'],
       );
@@ -116,9 +122,7 @@ class _JsonFormWidgetState extends State<_JsonFormWidget> {
 
   @override
   Widget build(BuildContext context) => Form(
-        autovalidateMode: widget.builder.autovalidate == true
-            ? AutovalidateMode.always
-            : AutovalidateMode.disabled,
+        autovalidateMode: widget.builder.autovalidateMode,
         key: _key,
         onChanged: widget.builder.onChanged,
         onWillPop: widget.builder.onWillPop,

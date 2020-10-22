@@ -17,6 +17,9 @@ class FormSchema {
         'type': 'object',
         'properties': {
           'autovalidate': SchemaHelper.boolSchema,
+          'autovalidateMode': SchemaHelper.objectSchema(
+            AutovalidateModeSchema.id,
+          ),
           'onChanged': SchemaHelper.stringSchema,
           'onWillPop': SchemaHelper.stringSchema,
         },

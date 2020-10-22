@@ -18,6 +18,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
     this.margin,
     this.padding,
     this.transform,
+    this.transformAlignment,
     this.width,
   });
 
@@ -33,6 +34,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
   final EdgeInsets margin;
   final EdgeInsets padding;
   final Matrix4 transform;
+  final AlignmentGeometry transformAlignment;
   final double width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -50,6 +52,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
   ///   "margin": <EdgeInsetsGeometry>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "transform": <Matrix4>,
+  ///   "transformAlignment": <TransformAlignment>,
   ///   "width": <double>
   /// }
   /// ```
@@ -107,6 +110,10 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
           map['matrix4'],
           validate: false,
         ),
+        transformAlignment: ThemeDecoder.decodeAlignment(
+          map['transformAlignment'],
+          validate: false,
+        ),
         width: JsonClass.parseDouble(map['width']),
       );
     }
@@ -137,6 +144,8 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
       margin: margin,
       padding: padding,
       transform: transform,
+      // TODO: 1.24
+      // transformAlignment: transformAlignment,
       width: width,
       child: data.children?.length != 1
           ? null
