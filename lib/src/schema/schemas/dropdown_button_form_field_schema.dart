@@ -14,6 +14,7 @@ class DropdownButtonFormFieldSchema {
     'properties': {
       'autofocus': SchemaHelper.boolSchema,
       'autovalidate': SchemaHelper.boolSchema,
+      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'decoration': SchemaHelper.anySchema,
       'disabledHint': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'dropdownColor': SchemaHelper.objectSchema(ColorSchema.id),

@@ -24,6 +24,7 @@ class AppBarSchema {
       'flexibleSpace': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'leading': SchemaHelper.boolSchema,
+      'leadingWidth': SchemaHelper.numberSchema,
       'primary': SchemaHelper.boolSchema,
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),

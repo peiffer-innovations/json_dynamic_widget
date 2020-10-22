@@ -16,6 +16,7 @@ class SwitchSchema {
       'activeTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'autofocus': SchemaHelper.boolSchema,
       'autovalidate': SchemaHelper.boolSchema,
+      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'dragStartBehavior':
           SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
       'enabled': SchemaHelper.boolSchema,

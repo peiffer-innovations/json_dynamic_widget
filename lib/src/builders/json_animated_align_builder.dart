@@ -11,7 +11,9 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
     @required this.alignment,
     this.curve,
     @required this.duration,
+    this.heightFactor,
     this.onEnd,
+    this.widthFactor,
   })  : assert(alignment != null),
         assert(duration != null);
 
@@ -20,7 +22,9 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   final AlignmentGeometry alignment;
   final Curve curve;
   final Duration duration;
+  final double heightFactor;
   final VoidCallback onEnd;
+  final double widthFactor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -30,7 +34,9 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   ///   "alignment": <AlignmentGeometry>,
   ///   "curve": <Curve>,
   ///   "duration": <int; millis>,
+  ///   "heightFactor": <double>,
   ///   "onEnd": <VoidCallback>,
+  ///   "widthFactor": <double>
   /// }
   /// ```
   ///
@@ -53,7 +59,9 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
         ),
+        heightFactor: JsonClass.parseDouble(map['heightFactor']),
         onEnd: map['onEnd'],
+        widthFactor: JsonClass.parseDouble(map['widthFactor']),
       );
     }
 
@@ -103,7 +111,9 @@ class _JsonAnimatedAlignState extends State<_JsonAnimatedAlign> {
       alignment: widget.builder.alignment,
       curve: widget.builder.curve,
       duration: widget.builder.duration,
+      heightFactor: widget.builder.heightFactor,
       onEnd: widget.builder.onEnd,
+      widthFactor: widget.builder.widthFactor,
       child: widget.data.children[0].build(
         childBuilder: widget.childBuilder,
         context: context,

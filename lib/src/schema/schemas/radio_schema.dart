@@ -13,6 +13,7 @@ class RadioSchema {
     'properties': {
       'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
       'autovalidate': SchemaHelper.boolSchema,
+      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'autofocus': SchemaHelper.boolSchema,
       'checkColor': SchemaHelper.objectSchema(ColorSchema.id),
       'enabled': SchemaHelper.boolSchema,

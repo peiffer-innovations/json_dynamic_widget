@@ -22,8 +22,10 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
     this.onLongPress,
     this.onTap,
     this.selected,
+    this.selectedTileColor,
     this.shape,
     this.subtitle,
+    this.tileColor,
     this.title,
     this.trailing,
     this.visualDensity,
@@ -44,8 +46,10 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   final VoidCallback onLongPress;
   final VoidCallback onTap;
   final bool selected;
+  final Color selectedTileColor;
   final ShapeBorder shape;
   final JsonWidgetData subtitle;
+  final Color tileColor;
   final JsonWidgetData title;
   final JsonWidgetData trailing;
   final VisualDensity visualDensity;
@@ -70,6 +74,8 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   ///   "selected": <bool>,
   ///   "shape": <ShapeBorder>,
   ///   "subtitle": <JsonWidgetData>,
+  ///   "selectedTileColor": <Color>,
+  ///   "tileColor": <Color>,
   ///   "title": <JsonWidgetData>,
   ///   "trailing": <JsonWidgetData>,
   ///   "visualDensity": <VisualDensity>
@@ -127,6 +133,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
         onLongPress: map['onLongPress'],
         onTap: map['onTap'],
         selected: JsonClass.parseBool(map['selected']),
+        selectedTileColor: ThemeDecoder.decodeColor(map['selectedTileColor']),
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
           validate: false,
@@ -135,6 +142,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['subtitle'],
           registry: registry,
         ),
+        tileColor: ThemeDecoder.decodeColor(map['tileColor']),
         title: JsonWidgetData.fromDynamic(
           map['title'],
           registry: registry,
@@ -177,11 +185,13 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
       onLongPress: onLongPress,
       onTap: onTap,
       selected: selected,
+      selectedTileColor: selectedTileColor,
       shape: shape,
       subtitle: subtitle?.build(
         childBuilder: childBuilder,
         context: context,
       ),
+      tileColor: tileColor,
       title: title?.build(
         childBuilder: childBuilder,
         context: context,

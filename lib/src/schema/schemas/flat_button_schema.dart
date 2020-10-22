@@ -19,10 +19,12 @@ class FlatButtonSchema {
       'disabledTextColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusNode': SchemaHelper.stringSchema,
+      'height': SchemaHelper.numberSchema,
       'highlightColor': SchemaHelper.objectSchema(ColorSchema.id),
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'materialTapTargetSize':
           SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
+      'minWidth': SchemaHelper.numberSchema,
       'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onHighlightChanged': SchemaHelper.stringSchema,
       'onPressed': SchemaHelper.stringSchema,

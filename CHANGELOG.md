@@ -1,6 +1,6 @@
-## [1.1.3] - October 3rd, 2020
+## [1.1.3] - October 21st, 2020
 
-* Fixed deprecated warnings caused by Flutter 1.22
+* Updated with attributes from Flutter 1.22
 
 
 ## [1.1.2] - September 22nd, 2020

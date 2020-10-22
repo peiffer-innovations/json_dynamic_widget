@@ -20,6 +20,7 @@ class ListViewSchema {
           'addRepaintBoundaries': SchemaHelper.boolSchema,
           'addSemanticIndexes': SchemaHelper.boolSchema,
           'cacheExtent': SchemaHelper.numberSchema,
+          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'controller': SchemaHelper.stringSchema,
           'dragStartBehavior':
               SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
@@ -30,6 +31,7 @@ class ListViewSchema {
           'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
           'primary': SchemaHelper.boolSchema,
+          'restorationId': SchemaHelper.stringSchema,
           'reverse': SchemaHelper.boolSchema,
           'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),
           'shrinkWrap': SchemaHelper.boolSchema,

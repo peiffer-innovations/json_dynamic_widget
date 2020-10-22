@@ -13,6 +13,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
     this.addRepaintBoundaries,
     this.addSemanticIndexes,
     this.cacheExtent,
+    this.clipBehavior,
     this.controller,
     this.dragStartBehavior,
     this.itemExtent,
@@ -20,6 +21,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
     this.padding,
     this.physics,
     this.primary,
+    this.restorationId,
     this.reverse,
     this.scrollDirection,
     this.shrinkWrap,
@@ -31,6 +33,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   final bool addRepaintBoundaries;
   final bool addSemanticIndexes;
   final double cacheExtent;
+  final Clip clipBehavior;
   final ScrollController controller;
   final DragStartBehavior dragStartBehavior;
   final double itemExtent;
@@ -38,6 +41,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   final EdgeInsets padding;
   final ScrollPhysics physics;
   final bool primary;
+  final String restorationId;
   final bool reverse;
   final Axis scrollDirection;
   final bool shrinkWrap;
@@ -51,6 +55,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   ///   "addRepaintBoundaries": <bool>,
   ///   "addSemanticIndexes": <bool>,
   ///   "cacheExtent": <double>,
+  ///   "clipBehavior": <Clip>,
   ///   "controller": <ScrollController>,
   ///   "dragStartBehavior": <DragStartBehavior>,
   ///   "itemExtent": <double>,
@@ -58,6 +63,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "physics": <ScrollPhysics>,
   ///   "primary": <bool>,
+  ///   "restorationId": <String>,
   ///   "reverse": <bool>,
   ///   "scrollDirection": <Axis>,
   ///   "shrinkWrap": <bool>
@@ -70,6 +76,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeAxis]
+  ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeScrollPhysics]
@@ -91,6 +98,11 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
             ? true
             : JsonClass.parseBool(map['addSemanticIndexes']),
         cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
@@ -113,6 +125,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         primary: JsonClass.parseBool(map['primary']),
+        restorationId: map['restorationId'],
         reverse: JsonClass.parseBool(map['reverse']),
         scrollDirection: ThemeDecoder.decodeAxis(
               map['scrollDirection'],
@@ -138,6 +151,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       addRepaintBoundaries: addRepaintBoundaries,
       addSemanticIndexes: addSemanticIndexes,
       cacheExtent: cacheExtent,
+      clipBehavior: clipBehavior,
       controller: controller,
       dragStartBehavior: dragStartBehavior,
       itemCount: data.children?.length ?? 0,
@@ -146,6 +160,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       padding: padding,
       physics: physics,
       primary: primary,
+      restorationId: restorationId,
       reverse: reverse,
       scrollDirection: scrollDirection,
       semanticChildCount: data.children?.length ?? 0,

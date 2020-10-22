@@ -21,6 +21,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
     this.flexibleSpace,
     this.iconTheme,
     this.leading,
+    this.leadingWidth,
     this.primary,
     this.shadowColor,
     this.shape,
@@ -46,6 +47,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   final JsonWidgetData flexibleSpace;
   final IconThemeData iconTheme;
   final JsonWidgetData leading;
+  final double leadingWidth;
   final bool primary;
   final Color shadowColor;
   final ShapeBorder shape;
@@ -72,6 +74,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   ///   "flexibleSpace": <JsonWidgetData>,
   ///   "iconTheme": <IconThemeData>,
   ///   "leading": <bool>,
+  ///   "leadingWidth": <double>,
   ///   "primary": <bool>,
   ///   "shadowColor": <Color>,
   ///   "shape": <ShapeBorder>,
@@ -142,6 +145,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['leading'],
           registry: registry,
         ),
+        leadingWidth: JsonClass.parseDouble(map['leadingWidth']),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
         shadowColor: ThemeDecoder.decodeColor(
@@ -215,6 +219,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         childBuilder: childBuilder,
         context: context,
       ),
+      leadingWidth: leadingWidth,
       primary: primary,
       shadowColor: shadowColor,
       shape: shape,

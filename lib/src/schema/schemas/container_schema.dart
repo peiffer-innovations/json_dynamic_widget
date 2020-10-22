@@ -27,6 +27,7 @@ class ContainerSchema {
           'margin': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'transform': SchemaHelper.objectSchema(Matrix4Schema.id),
+          'transformAlignment': SchemaHelper.objectSchema(AlignmentSchema.id),
           'width': SchemaHelper.numberSchema,
         },
       },
