@@ -13,6 +13,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     this.dragStartBehavior,
     this.excludeFromSemantics,
     this.onDoubleTap,
+    this.onDoubleTapCancel,
+    this.onDoubleTapDown,
     this.onForcePressEnd,
     this.onForcePressPeak,
     this.onForcePressStart,
@@ -48,6 +50,9 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     this.onTapCancel,
     this.onTapDown,
     this.onTapUp,
+    this.onTertiaryTapCancel,
+    this.onTertiaryTapDown,
+    this.onTertiaryTapUp,
     this.onVerticalDragCancel,
     this.onVerticalDragDown,
     this.onVerticalDragEnd,
@@ -61,6 +66,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   final DragStartBehavior dragStartBehavior;
   final bool excludeFromSemantics;
   final GestureDoubleTapCallback onDoubleTap;
+  final GestureTapCancelCallback onDoubleTapCancel;
+  final GestureTapDownCallback onDoubleTapDown;
   final GestureForcePressEndCallback onForcePressEnd;
   final GestureForcePressPeakCallback onForcePressPeak;
   final GestureForcePressStartCallback onForcePressStart;
@@ -96,6 +103,9 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   final GestureTapCancelCallback onTapCancel;
   final GestureTapDownCallback onTapDown;
   final GestureTapUpCallback onTapUp;
+  final GestureTapCancelCallback onTertiaryTapCancel;
+  final GestureTapDownCallback onTertiaryTapDown;
+  final GestureTapUpCallback onTertiaryTapUp;
   final GestureDragCancelCallback onVerticalDragCancel;
   final GestureDragDownCallback onVerticalDragDown;
   final GestureDragEndCallback onVerticalDragEnd;
@@ -111,6 +121,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   ///   "dragStartBehavior": <DragStartBehavior>,
   ///   "excludeFromSemantics": <bool>
   ///   "onDoubleTap": <GestureDoubleTapCallback>,
+  ///   "onDoubleTapCancel": <GestureTapCancelCallback>,
+  ///   "onDoubleTapDown": <GestureTapDownCallback>,
   ///   "onForcePressEnd": <GestureForcePressEndCallback>,
   ///   "onForcePressPeak": <GestureForcePressPeakCallback>,
   ///   "onForcePressStart": <GestureForcePressStartCallback>,
@@ -146,6 +158,9 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   ///   "onTapCancel": <GestureTapCancelCallback>,
   ///   "onTapDown": <GestureTapDownCallback>,
   ///   "onTapUp": <GestureTapUpCallback>,
+  ///   "onTertiaryTapCancel": <GestureTapCancelCallback>,
+  ///   "onTertiaryTapDown": <GestureTapDownCallback>,
+  ///   "onTertiaryTapUp": <GestureTapUpCallback>,
   ///   "onVerticalDragCancel": <GestureDragCancelCallback>,
   ///   "onVerticalDragDown": <GestureDragDownCallback>,
   ///   "onVerticalDragEnd": <GestureDragEndCallback>,
@@ -180,6 +195,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
             DragStartBehavior.start,
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
         onDoubleTap: map['onDoubleTap'],
+        onDoubleTapCancel: map['onDoubleTapCancel'],
+        onDoubleTapDown: map['onDoubleTapDown'],
         onForcePressEnd: map['onForcePressEnd'],
         onForcePressPeak: map['onForcePressPeak'],
         onForcePressStart: map['onForcePressStart'],
@@ -215,6 +232,9 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
         onTapCancel: map['onTapCancel'],
         onTapDown: map['onTapDown'],
         onTapUp: map['onTapUp'],
+        onTertiaryTapCancel: map['onTertiaryTapCancel'],
+        onTertiaryTapDown: map['onTertiaryTapDown'],
+        onTertiaryTapUp: map['onTertiaryTapUp'],
         onVerticalDragCancel: map['onVerticalDragCancel'],
         onVerticalDragDown: map['onVerticalDragDown'],
         onVerticalDragEnd: map['onVerticalDragEnd'],
@@ -243,6 +263,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       dragStartBehavior: dragStartBehavior,
       excludeFromSemantics: excludeFromSemantics,
       onDoubleTap: onDoubleTap,
+      onDoubleTapCancel: onDoubleTapCancel,
+      onDoubleTapDown: onDoubleTapDown,
       onForcePressEnd: onForcePressEnd,
       onForcePressPeak: onForcePressPeak,
       onForcePressStart: onForcePressStart,
@@ -278,6 +300,9 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       onTapCancel: onTapCancel,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
+      onTertiaryTapCancel: onTertiaryTapCancel,
+      onTertiaryTapDown: onTertiaryTapDown,
+      onTertiaryTapUp: onTertiaryTapUp,
       onVerticalDragCancel: onVerticalDragCancel,
       onVerticalDragDown: onVerticalDragDown,
       onVerticalDragEnd: onVerticalDragEnd,

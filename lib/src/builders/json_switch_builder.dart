@@ -15,7 +15,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     this.activeThumbImage,
     this.activeTrackColor,
     this.autofocus,
-    this.autovalidate,
+    this.autovalidateMode,
     this.dragStartBehavior,
     this.enabled,
     this.focusColor,
@@ -43,7 +43,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   final ImageProvider<dynamic> activeThumbImage;
   final Color activeTrackColor;
   final bool autofocus;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final DragStartBehavior dragStartBehavior;
   final bool enabled;
   final Color focusColor;
@@ -72,7 +72,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   ///   "activeColor": <Color>,
   ///   "activeTrackColor": <Color>,
   ///   "autofocus": <bool>,
-  ///   "autovalidate": <bool>,
+  ///   "autovalidateMode": <AutovalidateMode>,
   ///   "dragStartBehavior": <DragStartBehavior>,
   ///   "enabled": <bool>,
   ///   "focusColor": <Color>,
@@ -100,6 +100,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [buildCustom]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeMouseCursor]
@@ -122,7 +123,11 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
-        autovalidate: JsonClass.parseBool(map['autovalidate']),
+        autovalidateMode: map['autovalidate'] == null
+            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            : JsonClass.parseBool(map['autovalidate']) == true
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
               validate: false,
@@ -205,7 +210,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     );
 
     return FormField<bool>(
-      autovalidate: autovalidate,
+      autovalidateMode: autovalidateMode,
       enabled: enabled,
       initialValue: value,
       validator: validator == null

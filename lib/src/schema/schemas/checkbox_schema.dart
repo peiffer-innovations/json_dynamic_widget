@@ -14,6 +14,7 @@ class CheckboxSchema {
       'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
       'autofocus': SchemaHelper.boolSchema,
       'autovalidate': SchemaHelper.boolSchema,
+      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'checkColor': SchemaHelper.objectSchema(ColorSchema.id),
       'enabled': SchemaHelper.boolSchema,
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),

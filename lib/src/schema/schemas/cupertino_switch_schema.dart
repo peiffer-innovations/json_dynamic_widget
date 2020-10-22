@@ -13,6 +13,7 @@ class CupertinoSwitchSchema {
     'properties': {
       'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
       'autovalidate': SchemaHelper.boolSchema,
+      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'dragStartBehavior':
           SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
       'enabled': SchemaHelper.boolSchema,

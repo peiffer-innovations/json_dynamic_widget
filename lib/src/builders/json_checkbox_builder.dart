@@ -12,7 +12,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   JsonCheckboxBuilder({
     this.activeColor,
     this.autofocus,
-    this.autovalidate,
+    this.autovalidateMode,
     this.checkColor,
     this.enabled,
     this.focusColor,
@@ -33,7 +33,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
 
   final Color activeColor;
   final bool autofocus;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final Color checkColor;
   final bool enabled;
   final Color focusColor;
@@ -56,7 +56,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   /// {
   ///   "activeColor": <Color>,
   ///   "autofocus": <bool>,
-  ///   "autovalidate": <bool>,
+  ///   "autovalidateMode": <AutovalidateMode>,
   ///   "checkColor": <Color>,
   ///   "enabled": <bool>,
   ///   "focusColor": <Color>,
@@ -80,6 +80,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [buildCustom]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
   ///  * [ThemeDecoder.decodeMouseCursor]
@@ -98,7 +99,11 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
-        autovalidate: JsonClass.parseBool(map['autovalidate']),
+        autovalidateMode: map['autovalidate'] == null
+            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            : JsonClass.parseBool(map['autovalidate']) == true
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
         checkColor: ThemeDecoder.decodeColor(
           map['checkColor'],
           validate: false,
@@ -173,7 +178,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     var initialValue = value ?? (tristate != true ? false : null);
 
     return FormField<bool>(
-      autovalidate: autovalidate,
+      autovalidateMode: autovalidateMode,
       enabled: enabled,
       initialValue: initialValue,
       onSaved: onSaved,

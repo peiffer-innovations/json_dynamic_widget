@@ -14,7 +14,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   JsonRadioBuilder({
     this.activeColor,
     this.autofocus,
-    this.autovalidate,
+    this.autovalidateMode,
     this.enabled,
     this.focusColor,
     this.focusNode,
@@ -35,7 +35,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
 
   final Color activeColor;
   final bool autofocus;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final bool enabled;
   final Color focusColor;
   final FocusNode focusNode;
@@ -57,7 +57,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "activeColor": <Color>,
-  ///   "autovalidate": <bool>,
+  ///   "autovalidateMode": <AutovalidateMode>,
   ///   "autofocus": <bool>,
   ///   "checkColor": <Color>,
   ///   "enabled": <bool>,
@@ -83,6 +83,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [buildCustom]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
   ///  * [ThemeDecoder.decodeVisualDensity]
@@ -100,7 +101,11 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
-        autovalidate: JsonClass.parseBool(map['autovalidate']),
+        autovalidateMode: map['autovalidate'] == null
+            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            : JsonClass.parseBool(map['autovalidate']) == true
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         focusColor: ThemeDecoder.decodeColor(
@@ -228,7 +233,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
   @override
   Widget build(BuildContext context) {
     return FormField<dynamic>(
-      autovalidate: widget.builder.autovalidate,
+      autovalidateMode: widget.builder.autovalidateMode,
       enabled: widget.builder.enabled,
       initialValue: widget.builder.groupValue,
       key: _globalKey,

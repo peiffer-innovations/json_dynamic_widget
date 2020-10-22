@@ -23,6 +23,7 @@ class SingleChildScrollViewSchema {
           'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
           'primary': SchemaHelper.boolSchema,
+          'restorationId': SchemaHelper.stringSchema,
           'reverse': SchemaHelper.boolSchema,
           'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),
         },

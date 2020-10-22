@@ -13,10 +13,11 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.autocorrect,
     this.autofillHints,
     this.autofocus,
-    this.autovalidate,
+    this.autovalidateMode,
     this.buildCounter,
     this.controller,
     this.cursorColor,
+    this.cursorHeight,
     this.cursorRadius,
     this.cursorWidth,
     this.decoration,
@@ -62,10 +63,11 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final bool autocorrect;
   final Iterable<String> autofillHints;
   final bool autofocus;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final InputCounterWidgetBuilder buildCounter;
   final TextEditingController controller;
   final Color cursorColor;
+  final double cursorHeight;
   final Radius cursorRadius;
   final double cursorWidth;
   final dynamic decoration;
@@ -113,10 +115,11 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "autocorrect": <bool>,
   ///   "autofillHints": <List<String>>
   ///   "autofocus": <bool>
-  ///   "autovalidate": <bool>,
+  ///   "autovalidateMode": <AutovalidateMode>,
   ///   "buildCounter": <InputCounterWidgetBuilder>,
   ///   "controller": <TextEditingController>,
   ///   "cursorColor": <Color>,
+  ///   "cursorHeight": <double>,
   ///   "cursorRadius": <Radius>,
   ///   "cursorWidth": <double>,
   ///   "decoration": <InputDecorationDecoder>,
@@ -161,6 +164,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [buildCustom]
   ///  * [InputDecorationDecoder.fromDynamic]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
   ///  * [ThemeDecoder.decodeBrightness]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
@@ -190,13 +194,18 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
             ? null
             : List<String>.from(map['autofillHints']),
         autofocus: JsonClass.parseBool(map['autofocus']),
-        autovalidate: JsonClass.parseBool(map['autovalidate']),
+        autovalidateMode: map['autovalidate'] == null
+            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            : JsonClass.parseBool(map['autovalidate']) == true
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
         buildCounter: map['buildCounter'],
         controller: map['controller'],
         cursorColor: ThemeDecoder.decodeColor(
           map['cursorColor'],
           validate: false,
         ),
+        cursorHeight: JsonClass.parseDouble(map['cursorHeight']),
         cursorRadius: ThemeDecoder.decodeRadius(
           map['cursorRadius'],
           validate: false,
@@ -377,10 +386,11 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         autocorrect: widget.builder.autocorrect,
         autofillHints: widget.builder.autofillHints,
         autofocus: widget.builder.autofocus,
-        autovalidate: widget.builder.autovalidate,
+        autovalidateMode: widget.builder.autovalidateMode,
         buildCounter: widget.builder.buildCounter,
         controller: widget.builder.controller,
         cursorColor: widget.builder.cursorColor,
+        cursorHeight: widget.builder.cursorHeight,
         cursorRadius: widget.builder.cursorRadius,
         cursorWidth: widget.builder.cursorWidth,
         decoration: _decoration ?? const InputDecoration(),

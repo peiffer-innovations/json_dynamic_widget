@@ -12,7 +12,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   JsonCupertinoSwitchBuilder({
     this.activeColor,
-    this.autovalidate,
+    this.autovalidateMode,
     this.dragStartBehavior,
     this.enabled,
     this.label,
@@ -27,7 +27,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   static const type = 'cupertino_switch';
 
   final Color activeColor;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final DragStartBehavior dragStartBehavior;
   final bool enabled;
   final String label;
@@ -44,7 +44,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "activeColor": <Color>,
-  ///   "autovalidate": <bool>,
+  ///   "autovalidatMode": <AutovalidateMode>,
   ///   "dragStartBehavior": <DragStartBehavior>,
   ///   "enabled": <bool>,
   ///   "label": <String>,
@@ -63,6 +63,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [buildCustom]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeVisualDensity]
@@ -79,7 +80,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
           map['activeColor'],
           validate: false,
         ),
-        autovalidate: JsonClass.parseBool(map['autovalidate']),
+        autovalidateMode: map['autovalidate'] == null
+            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            : JsonClass.parseBool(map['autovalidate']) == true
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
           map['dragStartBehavior'],
           validate: false,
@@ -138,7 +143,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     );
 
     return FormField<bool>(
-      autovalidate: autovalidate,
+      autovalidateMode: autovalidateMode,
       enabled: enabled,
       initialValue: value,
       onSaved: onSaved,

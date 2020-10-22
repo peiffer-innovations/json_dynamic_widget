@@ -17,9 +17,11 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
     this.disabledTextColor,
     this.focusColor,
     this.focusNode,
+    this.height,
     this.highlightColor,
     this.hoverColor,
     this.materialTapTargetSize,
+    this.minWidth,
     this.mouseCursor,
     this.onHighlightChanged,
     this.onPressed,
@@ -42,9 +44,11 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   final Color disabledTextColor;
   final Color focusColor;
   final FocusNode focusNode;
+  final double height;
   final Color highlightColor;
   final Color hoverColor;
   final MaterialTapTargetSize materialTapTargetSize;
+  final double minWidth;
   final MouseCursor mouseCursor;
   final ValueChanged<bool> onHighlightChanged;
   final VoidCallback onPressed;
@@ -69,9 +73,11 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   ///   "disabledTextColor": <Color>,
   ///   "focusColor": <Color>,
   ///   "focusNode": <FocusNode>,
+  ///   "height": <double>,
   ///   "highlightColor": <Color>,
   ///   "hoverColor": <Color>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
+  ///   "minWidth": <double>,
   ///   "mouseCursor": <MouseCursor>,
   ///   "onHighlightChanged": <ValueChanged<bool>>,
   ///   "onPressed": <VoidCallback>,
@@ -136,6 +142,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         focusNode: map['focusNode'],
+        height: JsonClass.parseDouble(map['height']),
         highlightColor: ThemeDecoder.decodeColor(
           map['highlightColor'],
           validate: false,
@@ -148,6 +155,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
           map['materialTapTargetSize'],
           validate: false,
         ),
+        minWidth: JsonClass.parseDouble(map['minWidth']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
           validate: false,
@@ -206,9 +214,11 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
       disabledTextColor: disabledTextColor,
       focusColor: focusColor,
       focusNode: focusNode,
+      height: height,
       highlightColor: highlightColor,
       hoverColor: hoverColor,
       materialTapTargetSize: materialTapTargetSize,
+      minWidth: minWidth,
       mouseCursor: mouseCursor,
       onHighlightChanged: onHighlightChanged,
       onPressed: onPressed,

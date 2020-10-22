@@ -15,6 +15,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     this.padding,
     this.physics,
     this.primary,
+    this.restorationId,
     this.reverse,
     this.scrollDirection,
   });
@@ -27,6 +28,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   final EdgeInsets padding;
   final ScrollPhysics physics;
   final bool primary;
+  final String restorationId;
   final bool reverse;
   final Axis scrollDirection;
 
@@ -41,6 +43,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "physics": <ScrollPhysics>,
   ///   "primary": <bool>,
+  ///   "restorationId": <String>,
   ///   "reverse": <bool>,,
   ///   "scrollDirection": <Axis>
   /// }
@@ -81,6 +84,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
         ),
         primary:
             map['primary'] == null ? null : JsonClass.parseBool(map['primary']),
+        restorationId: map['restorationId'],
         reverse: JsonClass.parseBool(map['reverse']),
         scrollDirection: ThemeDecoder.decodeAxis(
               map['scrollDirection'],
@@ -112,6 +116,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
       padding: padding,
       physics: physics,
       primary: primary,
+      restorationId: restorationId,
       reverse: reverse,
       scrollDirection: scrollDirection,
       child: data.children[0].build(

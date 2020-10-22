@@ -10,7 +10,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   JsonDropdownButtonFormFieldBuilder({
     this.autofocus,
-    this.autovalidate,
+    this.autovalidateMode,
     this.decoration,
     this.disabledHint,
     this.dropdownColor,
@@ -39,7 +39,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   static const type = 'dropdown_button_form_field';
 
   final bool autofocus;
-  final bool autovalidate;
+  final AutovalidateMode autovalidateMode;
   final dynamic decoration;
   final JsonWidgetData disabledHint;
   final Color dropdownColor;
@@ -70,7 +70,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "autofocus": <bool>,
-  ///   "autovalidate": <bool>,
+  ///   "autovalidateMode": <AutovalidateMode>,
   ///   "decoration": <InputDecorationDecoder>,
   ///   "disabledHint": <JsonWidgetData>,
   ///   "dropdownColor": <Color>,
@@ -119,6 +119,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [buildCustom]
   ///  * [InputDecorationDecoder.fromDynamic]
   ///  * [JsonWidgetData.fromDynamic]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [Validator]
@@ -131,7 +132,11 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonDropdownButtonFormFieldBuilder(
         autofocus: JsonClass.parseBool(map['autofocus']),
-        autovalidate: JsonClass.parseBool(map['autovalidate']),
+        autovalidateMode: map['autovalidate'] == null
+            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            : JsonClass.parseBool(map['autovalidate']) == true
+                ? AutovalidateMode.always
+                : AutovalidateMode.disabled,
         decoration: map['decoration'],
         disabledHint: JsonWidgetData.fromDynamic(map['disabledHint']),
         dropdownColor: ThemeDecoder.decodeColor(
@@ -306,7 +311,7 @@ class _JsonDropdownButtonFormFieldWidgetState
   @override
   Widget build(BuildContext context) => DropdownButtonFormField(
         autofocus: widget.builder.autofocus,
-        autovalidate: widget.builder.autovalidate,
+        autovalidateMode: widget.builder.autovalidateMode,
         decoration: _decoration ?? const InputDecoration(),
         disabledHint: widget.builder.disabledHint?.build(
           childBuilder: widget.childBuilder,
