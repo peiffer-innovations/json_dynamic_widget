@@ -282,6 +282,10 @@ class JsonWidgetRegistry {
       builder: JsonInputErrorBuilder.fromDynamic,
       schemaId: InputErrorSchema.id,
     ),
+    JsonInteractiveViewerBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonInteractiveViewerBuilder.fromDynamic,
+      schemaId: InteractiveViewerSchema.id,
+    ),
     JsonIntrinsicHeightBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonIntrinsicHeightBuilder.fromDynamic,
       schemaId: IntrinsicHeightSchema.id,

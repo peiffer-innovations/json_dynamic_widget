@@ -46,6 +46,7 @@ export 'schemas/ignore_pointer_schema.dart';
 export 'schemas/indexed_stack_schema.dart';
 export 'schemas/ink_well_schema.dart';
 export 'schemas/input_error_schema.dart';
+export 'schemas/interactive_viewer_schema.dart';
 export 'schemas/intrinsic_height_schema.dart';
 export 'schemas/json_widget_data_schema.dart';
 export 'schemas/linear_progress_indicator_schema.dart';

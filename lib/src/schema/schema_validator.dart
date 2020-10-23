@@ -97,6 +97,10 @@ class SchemaValidator {
       cache.addSchema(InkWellSchema.id, InkWellSchema.schema);
       cache.addSchema(InputErrorSchema.id, InputErrorSchema.schema);
       cache.addSchema(
+        InteractiveViewerSchema.id,
+        InteractiveViewerSchema.schema,
+      );
+      cache.addSchema(
         IntrinsicHeightSchema.id,
         IntrinsicHeightSchema.schema,
       );
