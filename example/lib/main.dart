@@ -204,6 +204,7 @@ class RootPage extends StatelessWidget {
     'images',
     'indexed_stack',
     'input_error',
+    'intrinsic_height',
     'issue_10',
     'issue_11',
     'issue_12',
