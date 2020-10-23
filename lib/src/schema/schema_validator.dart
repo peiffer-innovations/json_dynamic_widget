@@ -96,6 +96,10 @@ class SchemaValidator {
       cache.addSchema(IndexedStackSchema.id, IndexedStackSchema.schema);
       cache.addSchema(InkWellSchema.id, InkWellSchema.schema);
       cache.addSchema(InputErrorSchema.id, InputErrorSchema.schema);
+      cache.addSchema(
+        IntrinsicHeightSchema.id,
+        IntrinsicHeightSchema.schema,
+      );
       cache.addSchema(JsonWidgetDataSchema.id, JsonWidgetDataSchema.schema);
       cache.addSchema(
         LinearProgressIndicatorSchema.id,

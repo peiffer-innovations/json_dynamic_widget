@@ -46,6 +46,7 @@ export 'src/builders/json_ignore_pointer_builder.dart';
 export 'src/builders/json_indexed_stack_builder.dart';
 export 'src/builders/json_ink_well_builder.dart';
 export 'src/builders/json_input_error_builder.dart';
+export 'src/builders/json_intrinsic_height_builder.dart';
 export 'src/builders/json_linear_progress_indicator_builder.dart';
 export 'src/builders/json_list_tile_builder.dart';
 export 'src/builders/json_list_view_builder.dart';
