@@ -109,11 +109,11 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
       var textStyleCallback = tempMap.remove('textStyle');
 
       result = JsonTextButtonBuilder(
-        autofocus: map['autofocus'] != null
-            ? JsonClass.parseBool(
+        autofocus: map['autofocus'] == null
+            ? false
+            : JsonClass.parseBool(
                 map['autofocus'],
-              )
-            : false,
+              ),
         backgroundColorCallback: backgroundColorCallback,
         clipBehavior: ThemeDecoder.decodeClip(
               map['clipBehavior'],
