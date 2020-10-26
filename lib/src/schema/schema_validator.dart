@@ -108,6 +108,10 @@ class SchemaValidator {
         IntrinsicWidthSchema.id,
         IntrinsicWidthSchema.schema,
       );
+      cache.addSchema(
+        LimitedBoxSchema.id,
+        LimitedBoxSchema.schema,
+      );
       cache.addSchema(JsonWidgetDataSchema.id, JsonWidgetDataSchema.schema);
       cache.addSchema(
         LinearProgressIndicatorSchema.id,

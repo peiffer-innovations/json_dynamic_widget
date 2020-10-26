@@ -50,6 +50,7 @@ export 'schemas/interactive_viewer_schema.dart';
 export 'schemas/intrinsic_height_schema.dart';
 export 'schemas/intrinsic_width_schema.dart';
 export 'schemas/json_widget_data_schema.dart';
+export 'schemas/limited_box_schema.dart';
 export 'schemas/linear_progress_indicator_schema.dart';
 export 'schemas/list_tile_schema.dart';
 export 'schemas/list_view_schema.dart';
