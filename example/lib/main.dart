@@ -210,6 +210,7 @@ class RootPage extends StatelessWidget {
     'issue_10',
     'issue_11',
     'issue_12',
+    'limited_box',
     'linear_progress_indicator',
     'list_view',
     'opacity',
