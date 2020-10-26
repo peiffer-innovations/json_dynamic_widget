@@ -206,6 +206,7 @@ class RootPage extends StatelessWidget {
     'input_error',
     'interactive_viewer',
     'intrinsic_height',
+    'intrinsic_width',
     'issue_10',
     'issue_11',
     'issue_12',
