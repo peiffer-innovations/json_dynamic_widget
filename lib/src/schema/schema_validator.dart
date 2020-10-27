@@ -104,14 +104,8 @@ class SchemaValidator {
         IntrinsicHeightSchema.id,
         IntrinsicHeightSchema.schema,
       );
-      cache.addSchema(
-        IntrinsicWidthSchema.id,
-        IntrinsicWidthSchema.schema,
-      );
-      cache.addSchema(
-        LimitedBoxSchema.id,
-        LimitedBoxSchema.schema,
-      );
+      cache.addSchema(IntrinsicWidthSchema.id, IntrinsicWidthSchema.schema);
+      cache.addSchema(LimitedBoxSchema.id, LimitedBoxSchema.schema);
       cache.addSchema(JsonWidgetDataSchema.id, JsonWidgetDataSchema.schema);
       cache.addSchema(
         LinearProgressIndicatorSchema.id,
@@ -122,6 +116,7 @@ class SchemaValidator {
       cache.addSchema(MaterialSchema.id, MaterialSchema.schema);
       cache.addSchema(MemoryImageSchema.id, MemoryImageSchema.schema);
       cache.addSchema(NetworkImageSchema.id, NetworkImageSchema.schema);
+      cache.addSchema(OffstageSchema.id, OffstageSchema.schema);
       cache.addSchema(OpacitySchema.id, OpacitySchema.schema);
       cache.addSchema(OutlinedButtonSchema.id, OutlinedButtonSchema.schema);
       cache.addSchema(PaddingSchema.id, PaddingSchema.schema);

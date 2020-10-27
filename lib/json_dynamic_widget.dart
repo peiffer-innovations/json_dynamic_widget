@@ -56,6 +56,7 @@ export 'src/builders/json_list_view_builder.dart';
 export 'src/builders/json_material_builder.dart';
 export 'src/builders/json_memory_image_builder.dart';
 export 'src/builders/json_network_image_builder.dart';
+export 'src/builders/json_offstage_builder.dart';
 export 'src/builders/json_opacity_builder.dart';
 export 'src/builders/json_outlined_button_builder.dart';
 export 'src/builders/json_padding_builder.dart';

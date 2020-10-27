@@ -322,6 +322,10 @@ class JsonWidgetRegistry {
       builder: JsonNetworkImageBuilder.fromDynamic,
       schemaId: NetworkImageSchema.id,
     ),
+    JsonOffstageBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonOffstageBuilder.fromDynamic,
+      schemaId: OffstageSchema.id,
+    ),
     JsonOpacityBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonOpacityBuilder.fromDynamic,
       schemaId: OpacitySchema.id,
@@ -559,7 +563,6 @@ class JsonWidgetRegistry {
 
             var value = getValue(item.key);
             functionArgs?.add(value);
-
             result = value;
           } else {
             functionArgs?.add(item.key);
