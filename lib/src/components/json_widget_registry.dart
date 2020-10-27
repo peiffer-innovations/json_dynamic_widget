@@ -334,6 +334,10 @@ class JsonWidgetRegistry {
       builder: JsonOutlinedButtonBuilder.fromDynamic,
       schemaId: OutlinedButtonSchema.id,
     ),
+    JsonOverflowBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonOverflowBoxBuilder.fromDynamic,
+      schemaId: OverflowBoxSchema.id,
+    ),
     JsonPaddingBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonPaddingBuilder.fromDynamic,
       schemaId: PaddingSchema.id,
