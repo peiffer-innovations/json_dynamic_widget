@@ -134,6 +134,10 @@ void main() async {
     'simplePrintMessage': ({args, registry}) => () {
           // ignore: avoid_print
           print('This is a simple print message');
+        },
+    'negateBool': ({args, registry}) => () {
+          bool value = registry.getValue(args[0]);
+          registry.setValue(args[0], !value);
         }
   });
 
@@ -213,6 +217,7 @@ class RootPage extends StatelessWidget {
     'limited_box',
     'linear_progress_indicator',
     'list_view',
+    'offstage',
     'opacity',
     'simple_page',
     'switch',
