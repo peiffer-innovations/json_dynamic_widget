@@ -219,6 +219,7 @@ class RootPage extends StatelessWidget {
     'list_view',
     'offstage',
     'opacity',
+    'overflow_box',
     'simple_page',
     'switch',
     'theme',
