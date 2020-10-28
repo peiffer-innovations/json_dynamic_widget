@@ -220,6 +220,7 @@ class RootPage extends StatelessWidget {
     'offstage',
     'opacity',
     'overflow_box',
+    'placeholder',
     'simple_page',
     'switch',
     'theme',
