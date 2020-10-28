@@ -121,6 +121,7 @@ class SchemaValidator {
       cache.addSchema(OutlinedButtonSchema.id, OutlinedButtonSchema.schema);
       cache.addSchema(OverflowBoxSchema.id, OverflowBoxSchema.schema);
       cache.addSchema(PaddingSchema.id, PaddingSchema.schema);
+      cache.addSchema(PlaceholderSchema.id, PlaceholderSchema.schema);
       cache.addSchema(PositionedSchema.id, PositionedSchema.schema);
       cache.addSchema(RadioSchema.id, RadioSchema.schema);
       cache.addSchema(RaisedButtonSchema.id, RaisedButtonSchema.schema);

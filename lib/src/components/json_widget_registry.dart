@@ -342,6 +342,10 @@ class JsonWidgetRegistry {
       builder: JsonPaddingBuilder.fromDynamic,
       schemaId: PaddingSchema.id,
     ),
+    JsonPlaceholderBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonPlaceholderBuilder.fromDynamic,
+      schemaId: PlaceholderSchema.id,
+    ),
     JsonPositionedBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonPositionedBuilder.fromDynamic,
       schemaId: PositionedSchema.id,

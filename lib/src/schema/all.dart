@@ -62,6 +62,7 @@ export 'schemas/opacity_schema.dart';
 export 'schemas/outlined_button_schema.dart';
 export 'schemas/overflow_box_schema.dart';
 export 'schemas/padding_schema.dart';
+export 'schemas/placeholder_schema.dart';
 export 'schemas/positioned_schema.dart';
 export 'schemas/radio_schema.dart';
 export 'schemas/raised_button_schema.dart';
