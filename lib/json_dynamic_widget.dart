@@ -62,6 +62,7 @@ export 'src/builders/json_outlined_button_builder.dart';
 export 'src/builders/json_overflow_box_builder.dart';
 export 'src/builders/json_padding_builder.dart';
 export 'src/builders/json_placeholder_builder.dart';
+export 'src/builders/json_popup_menu_button_builder.dart';
 export 'src/builders/json_positioned_builder.dart';
 export 'src/builders/json_radio_builder.dart';
 export 'src/builders/json_raised_button_builder.dart';

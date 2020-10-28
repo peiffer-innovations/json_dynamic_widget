@@ -346,6 +346,10 @@ class JsonWidgetRegistry {
       builder: JsonPlaceholderBuilder.fromDynamic,
       schemaId: PlaceholderSchema.id,
     ),
+    JsonPopupMenuButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonPopupMenuButtonBuilder.fromDynamic,
+      schemaId: PopupMenuButtonSchema.id,
+    ),
     JsonPositionedBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonPositionedBuilder.fromDynamic,
       schemaId: PositionedSchema.id,
