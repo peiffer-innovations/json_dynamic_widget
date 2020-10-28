@@ -132,13 +132,32 @@ void main() async {
           return Colors.red;
         },
     'simplePrintMessage': ({args, registry}) => () {
+          var message = 'This is a simple print message';
+          if (args?.isEmpty == false) {
+            for (var arg in args) {
+              message += ' $arg';
+            }
+          }
           // ignore: avoid_print
-          print('This is a simple print message');
+          print(message);
         },
     'negateBool': ({args, registry}) => () {
           bool value = registry.getValue(args[0]);
           registry.setValue(args[0], !value);
-        }
+        },
+    'buildPopupMenu': ({args, registry}) {
+      const choices = ['First', 'Second', 'Third'];
+      return (BuildContext context) {
+        return choices
+            .map(
+              (choice) => PopupMenuItem(
+                value: choice,
+                child: Text(choice),
+              ),
+            )
+            .toList();
+      };
+    },
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -221,6 +240,7 @@ class RootPage extends StatelessWidget {
     'opacity',
     'overflow_box',
     'placeholder',
+    'popup_menu_button',
     'simple_page',
     'switch',
     'theme',
