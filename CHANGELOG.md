@@ -1,3 +1,7 @@
+## [1.2.0] - October 29th, 2020
+
+* Added support for widgets from Flutter 1.22 and previous versions: `ElevatedButton`, `FloatingActionButton`, `FractionalTranslation`, `FractionallySizedBox`, `InteractiveViewer`, `IntrinsicHeight`, `IntrinsicWidth`, `LimitedBox`, `Offstage`, `OutlinedButton`, `OverflowBox`, `Placeholder`, `PopupMenuButton` and `TextButton`.
+
 ## [1.1.3] - October 21st, 2020
 
 * Updated with attributes from Flutter 1.22
