@@ -16,8 +16,8 @@
       "type": "interactive_viewer",
       "args": {
         "boundaryMargin": 20.0,
-        "minScale": 0.1,
-        "maxScale": 1.6
+        "maxScale": 1.6,
+        "minScale": 0.1
       },
       "child": {
         "type": "container",

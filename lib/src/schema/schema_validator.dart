@@ -100,10 +100,7 @@ class SchemaValidator {
         InteractiveViewerSchema.id,
         InteractiveViewerSchema.schema,
       );
-      cache.addSchema(
-        IntrinsicHeightSchema.id,
-        IntrinsicHeightSchema.schema,
-      );
+      cache.addSchema(IntrinsicHeightSchema.id, IntrinsicHeightSchema.schema);
       cache.addSchema(IntrinsicWidthSchema.id, IntrinsicWidthSchema.schema);
       cache.addSchema(LimitedBoxSchema.id, LimitedBoxSchema.schema);
       cache.addSchema(JsonWidgetDataSchema.id, JsonWidgetDataSchema.schema);

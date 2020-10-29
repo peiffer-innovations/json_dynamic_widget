@@ -4,7 +4,7 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build an [TextButton] widget.  See the [fromDynamic] for
+/// Builder that can build a [TextButton] widget.  See the [fromDynamic] for
 /// the format.
 class JsonTextButtonBuilder extends JsonWidgetBuilder {
   JsonTextButtonBuilder({
@@ -81,8 +81,7 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   /// [Function(Set<MaterialState>)] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to
   /// the builder is to use a function or a variable reference via the
-  /// [JsonWidgetRegistry].for the first two, and only by using a function
-  /// reference for the last one.
+  /// [JsonWidgetRegistry].
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeClip]
@@ -145,8 +144,8 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   @override
   Widget buildCustom({
     childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
+    @required BuildContext context,
+    @required JsonWidgetData data,
     Key key,
   }) {
     assert(

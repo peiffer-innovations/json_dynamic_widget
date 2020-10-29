@@ -18,7 +18,7 @@
         {
           "type": "limited_box",
           "args": {
-            "maxHeight": 200
+            "maxHeight": 200.0
           },
           "child": {
             "type": "container",

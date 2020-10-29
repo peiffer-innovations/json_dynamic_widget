@@ -5,7 +5,7 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build an [FloatingActionButton] widget.
+/// Builder that can build a [FloatingActionButton] widget.
 /// See the [fromDynamic] for the format.
 class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   JsonFloatingActionButtonBuilder({
