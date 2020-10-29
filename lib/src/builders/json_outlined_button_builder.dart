@@ -81,7 +81,7 @@ class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
   /// [Function(Set<MaterialState>)] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to
   /// the builder is to use a function or a variable reference via the
-  /// [JsonWidgetRegistry].for the first two, and only by using a function
+  /// [JsonWidgetRegistry] for the first two, and only by using a function
   /// reference for the last one.
   ///
   /// See also:

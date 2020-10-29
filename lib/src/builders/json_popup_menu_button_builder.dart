@@ -60,6 +60,12 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   /// }
   /// ```
   ///
+  /// As a note, the [PopupMenuItemBuilder<T>], [PopupMenuCanceled] and
+  /// [PopupMenuItemSelected<T>] cannot b eecoded via JSON.
+  /// Instead, the only way to bind those values to the
+  /// builder is to use a function or a variable reference via the
+  /// [JsonWidgetRegistry].
+  ///
   /// See also:
   ///  * [JsonWidgetData.fromDynamic]
   ///  * [ThemeDecoder.decodeColor]
