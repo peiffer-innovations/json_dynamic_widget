@@ -121,6 +121,43 @@ void main() async {
           var _replace = registry.getValue(args[1]);
           registry.setValue(args[0], _replace);
         },
+    'materialCallback': ({args, registry}) => (Set<MaterialState> states) {
+          const interactiveStates = <MaterialState>{
+            MaterialState.pressed,
+            MaterialState.focused,
+          };
+          if (states.any(interactiveStates.contains)) {
+            return Colors.blue;
+          }
+          return Colors.red;
+        },
+    'simplePrintMessage': ({args, registry}) => () {
+          var message = 'This is a simple print message';
+          if (args?.isEmpty == false) {
+            for (var arg in args) {
+              message += ' $arg';
+            }
+          }
+          // ignore: avoid_print
+          print(message);
+        },
+    'negateBool': ({args, registry}) => () {
+          bool value = registry.getValue(args[0]);
+          registry.setValue(args[0], !value);
+        },
+    'buildPopupMenu': ({args, registry}) {
+      const choices = ['First', 'Second', 'Third'];
+      return (BuildContext context) {
+        return choices
+            .map(
+              (choice) => PopupMenuItem(
+                value: choice,
+                child: Text(choice),
+              ),
+            )
+            .toList();
+      };
+    },
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -172,6 +209,7 @@ class RootPage extends StatelessWidget {
     'asset_images',
     'bank_example',
     'baseline',
+    'buttons',
     'card',
     'center',
     'checkbox',
@@ -183,16 +221,26 @@ class RootPage extends StatelessWidget {
     'directionality',
     'fitted_box',
     'form',
+    'fractional_translation',
+    'fractionally_sized_box',
     'gestures',
     'images',
     'indexed_stack',
     'input_error',
+    'interactive_viewer',
+    'intrinsic_height',
+    'intrinsic_width',
     'issue_10',
     'issue_11',
     'issue_12',
+    'limited_box',
     'linear_progress_indicator',
     'list_view',
+    'offstage',
     'opacity',
+    'overflow_box',
+    'placeholder',
+    'popup_menu_button',
     'simple_page',
     'switch',
     'theme',

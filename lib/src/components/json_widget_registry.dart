@@ -218,6 +218,10 @@ class JsonWidgetRegistry {
       builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,
       schemaId: DropdownButtonFormFieldSchema.id,
     ),
+    JsonElevatedButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonElevatedButtonBuilder.fromDynamic,
+      schemaId: ElevatedButtonSchema.id,
+    ),
     JsonExpandedBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonExpandedBuilder.fromDynamic,
       schemaId: ExpandedSchema.id,
@@ -234,9 +238,21 @@ class JsonWidgetRegistry {
       builder: JsonFlexibleBuilder.fromDynamic,
       schemaId: FlexibleSchema.id,
     ),
+    JsonFloatingActionButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFloatingActionButtonBuilder.fromDynamic,
+      schemaId: FloatingActionButtonSchema.id,
+    ),
     JsonFormBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonFormBuilder.fromDynamic,
       schemaId: FormSchema.id,
+    ),
+    JsonFractionalTranslationBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFractionalTranslationBuilder.fromDynamic,
+      schemaId: FractionalTranslationSchema.id,
+    ),
+    JsonFractionallySizedBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonFractionallySizedBoxBuilder.fromDynamic,
+      schemaId: FractionallySizedBoxSchema.id,
     ),
     JsonGestureDetectorBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonGestureDetectorBuilder.fromDynamic,
@@ -266,6 +282,22 @@ class JsonWidgetRegistry {
       builder: JsonInputErrorBuilder.fromDynamic,
       schemaId: InputErrorSchema.id,
     ),
+    JsonInteractiveViewerBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonInteractiveViewerBuilder.fromDynamic,
+      schemaId: InteractiveViewerSchema.id,
+    ),
+    JsonIntrinsicHeightBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonIntrinsicHeightBuilder.fromDynamic,
+      schemaId: IntrinsicHeightSchema.id,
+    ),
+    JsonIntrinsicWidthBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonIntrinsicWidthBuilder.fromDynamic,
+      schemaId: IntrinsicWidthSchema.id,
+    ),
+    JsonLimitedBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonLimitedBoxBuilder.fromDynamic,
+      schemaId: LimitedBoxSchema.id,
+    ),
     JsonLinearProgressIndicatorBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonLinearProgressIndicatorBuilder.fromDynamic,
       schemaId: LinearProgressIndicatorSchema.id,
@@ -290,13 +322,33 @@ class JsonWidgetRegistry {
       builder: JsonNetworkImageBuilder.fromDynamic,
       schemaId: NetworkImageSchema.id,
     ),
+    JsonOffstageBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonOffstageBuilder.fromDynamic,
+      schemaId: OffstageSchema.id,
+    ),
     JsonOpacityBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonOpacityBuilder.fromDynamic,
       schemaId: OpacitySchema.id,
     ),
+    JsonOutlinedButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonOutlinedButtonBuilder.fromDynamic,
+      schemaId: OutlinedButtonSchema.id,
+    ),
+    JsonOverflowBoxBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonOverflowBoxBuilder.fromDynamic,
+      schemaId: OverflowBoxSchema.id,
+    ),
     JsonPaddingBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonPaddingBuilder.fromDynamic,
       schemaId: PaddingSchema.id,
+    ),
+    JsonPlaceholderBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonPlaceholderBuilder.fromDynamic,
+      schemaId: PlaceholderSchema.id,
+    ),
+    JsonPopupMenuButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonPopupMenuButtonBuilder.fromDynamic,
+      schemaId: PopupMenuButtonSchema.id,
     ),
     JsonPositionedBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonPositionedBuilder.fromDynamic,
@@ -353,6 +405,10 @@ class JsonWidgetRegistry {
     JsonTextBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonTextBuilder.fromDynamic,
       schemaId: TextSchema.id,
+    ),
+    JsonTextButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonTextButtonBuilder.fromDynamic,
+      schemaId: TextButtonSchema.id,
     ),
     JsonTextFormFieldBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonTextFormFieldBuilder.fromDynamic,
@@ -519,7 +575,6 @@ class JsonWidgetRegistry {
 
             var value = getValue(item.key);
             functionArgs?.add(value);
-
             result = value;
           } else {
             functionArgs?.add(item.key);

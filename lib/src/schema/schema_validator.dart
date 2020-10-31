@@ -71,11 +71,24 @@ class SchemaValidator {
         DropdownButtonFormFieldSchema.id,
         DropdownButtonFormFieldSchema.schema,
       );
+      cache.addSchema(ElevatedButtonSchema.id, ElevatedButtonSchema.schema);
       cache.addSchema(ExpandedSchema.id, ExpandedSchema.schema);
       cache.addSchema(FittedBoxSchema.id, FittedBoxSchema.schema);
       cache.addSchema(FlatButtonSchema.id, FlatButtonSchema.schema);
       cache.addSchema(FlexibleSchema.id, FlexibleSchema.schema);
+      cache.addSchema(
+        FloatingActionButtonSchema.id,
+        FloatingActionButtonSchema.schema,
+      );
       cache.addSchema(FormSchema.id, FormSchema.schema);
+      cache.addSchema(
+        FractionalTranslationSchema.id,
+        FractionalTranslationSchema.schema,
+      );
+      cache.addSchema(
+        FractionallySizedBoxSchema.id,
+        FractionallySizedBoxSchema.schema,
+      );
       cache.addSchema(GestureDetectorSchema.id, GestureDetectorSchema.schema);
       cache.addSchema(HeroSchema.id, HeroSchema.schema);
       cache.addSchema(IconSchema.id, IconSchema.schema);
@@ -83,6 +96,13 @@ class SchemaValidator {
       cache.addSchema(IndexedStackSchema.id, IndexedStackSchema.schema);
       cache.addSchema(InkWellSchema.id, InkWellSchema.schema);
       cache.addSchema(InputErrorSchema.id, InputErrorSchema.schema);
+      cache.addSchema(
+        InteractiveViewerSchema.id,
+        InteractiveViewerSchema.schema,
+      );
+      cache.addSchema(IntrinsicHeightSchema.id, IntrinsicHeightSchema.schema);
+      cache.addSchema(IntrinsicWidthSchema.id, IntrinsicWidthSchema.schema);
+      cache.addSchema(LimitedBoxSchema.id, LimitedBoxSchema.schema);
       cache.addSchema(JsonWidgetDataSchema.id, JsonWidgetDataSchema.schema);
       cache.addSchema(
         LinearProgressIndicatorSchema.id,
@@ -93,8 +113,13 @@ class SchemaValidator {
       cache.addSchema(MaterialSchema.id, MaterialSchema.schema);
       cache.addSchema(MemoryImageSchema.id, MemoryImageSchema.schema);
       cache.addSchema(NetworkImageSchema.id, NetworkImageSchema.schema);
+      cache.addSchema(OffstageSchema.id, OffstageSchema.schema);
       cache.addSchema(OpacitySchema.id, OpacitySchema.schema);
+      cache.addSchema(OutlinedButtonSchema.id, OutlinedButtonSchema.schema);
+      cache.addSchema(OverflowBoxSchema.id, OverflowBoxSchema.schema);
       cache.addSchema(PaddingSchema.id, PaddingSchema.schema);
+      cache.addSchema(PlaceholderSchema.id, PlaceholderSchema.schema);
+      cache.addSchema(PopupMenuButtonSchema.id, PopupMenuButtonSchema.schema);
       cache.addSchema(PositionedSchema.id, PositionedSchema.schema);
       cache.addSchema(RadioSchema.id, RadioSchema.schema);
       cache.addSchema(RaisedButtonSchema.id, RaisedButtonSchema.schema);
@@ -111,6 +136,7 @@ class SchemaValidator {
       cache.addSchema(SizedBoxSchema.id, SizedBoxSchema.schema);
       cache.addSchema(StackSchema.id, StackSchema.schema);
       cache.addSchema(SwitchSchema.id, SwitchSchema.schema);
+      cache.addSchema(TextButtonSchema.id, TextButtonSchema.schema);
       cache.addSchema(TextFormFieldSchema.id, TextFormFieldSchema.schema);
       cache.addSchema(TextSchema.id, TextSchema.schema);
       cache.addSchema(ThemeSchema.id, ThemeSchema.schema);

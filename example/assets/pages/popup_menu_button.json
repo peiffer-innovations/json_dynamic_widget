@@ -1,0 +1,38 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "actions": [
+          {
+            "type": "popup_menu_button",
+            "args": {
+              "itemBuilder": "##buildPopupMenu()##",
+              "onCanceled": "##simplePrintMessage(CANCELED)##"
+            },
+            "child": {
+              "type": "icon",
+              "args": {
+                "icon": {
+                  "codePoint": 57369,
+                  "fontFamily": "MaterialIcons"
+                },
+                "size": 50
+              }
+            }
+          }
+        ],
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "PopupMenuButton"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "container"
+    }
+  }
+}

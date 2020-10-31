@@ -1,0 +1,31 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "FractionalTranslation"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "fractional_translation",
+      "args": {
+        "translation": {
+          "dx": 0.1,
+          "dy": 0.1
+        }
+      },
+      "child": {
+        "type": "text",
+        "args": {
+          "text": "Fractional Translation Demo"
+        }
+      }
+    }
+  }
+}
