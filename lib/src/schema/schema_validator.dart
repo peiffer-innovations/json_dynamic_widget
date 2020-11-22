@@ -6,7 +6,7 @@ import 'package:json_schema/json_schema.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 import 'package:meta/meta.dart';
 
-import 'all.dart';
+import 'json_dynamic_widget_schemas.dart';
 
 /// Schema validator that can validate the JSON Theme objects while also being
 /// able to be extended to also perform validation against schemas that include
@@ -17,130 +17,9 @@ class SchemaValidator {
     assert(() {
       var cache = SchemaCache();
 
-      cache.addSchema(AlignSchema.id, AlignSchema.schema);
-      cache.addSchema(AnimatedAlignSchema.id, AnimatedAlignSchema.schema);
-      cache.addSchema(
-        AnimatedContainerSchema.id,
-        AnimatedContainerSchema.schema,
+      JsonDynamicWidgetSchemas.all.forEach(
+        (id, schema) => cache.addSchema(id, schema),
       );
-      cache.addSchema(
-        AnimatedCrossFadeSchema.id,
-        AnimatedCrossFadeSchema.schema,
-      );
-      cache.addSchema(
-        AnimatedDefaultTextStyleSchema.id,
-        AnimatedDefaultTextStyleSchema.schema,
-      );
-      cache.addSchema(AnimatedOpacitySchema.id, AnimatedOpacitySchema.schema);
-      cache.addSchema(AnimatedPaddingSchema.id, AnimatedPaddingSchema.schema);
-      cache.addSchema(
-          AnimatedPhysicalModelSchema.id, AnimatedPhysicalModelSchema.schema);
-      cache.addSchema(
-        AnimatedPositionedDirectionalSchema.id,
-        AnimatedPositionedDirectionalSchema.schema,
-      );
-      cache.addSchema(
-        AnimatedPositionedSchema.id,
-        AnimatedPositionedSchema.schema,
-      );
-      cache.addSchema(AnimatedSizeSchema.id, AnimatedSizeSchema.schema);
-      cache.addSchema(AnimatedSwitcherSchema.id, AnimatedSwitcherSchema.schema);
-      cache.addSchema(AnimatedThemeSchema.id, AnimatedThemeSchema.schema);
-      cache.addSchema(AppBarSchema.id, AppBarSchema.schema);
-      cache.addSchema(AspectRatioSchema.id, AspectRatioSchema.schema);
-      cache.addSchema(AssetImageSchema.id, AssetImageSchema.schema);
-      cache.addSchema(BaselineSchema.id, BaselineSchema.schema);
-      cache.addSchema(ButtonBarSchema.id, ButtonBarSchema.schema);
-      cache.addSchema(CardSchema.id, CardSchema.schema);
-      cache.addSchema(CenterSchema.id, CenterSchema.schema);
-      cache.addSchema(CheckboxSchema.id, CheckboxSchema.schema);
-      cache.addSchema(
-        CircularProgressIndicatorSchema.id,
-        CircularProgressIndicatorSchema.schema,
-      );
-      cache.addSchema(ClipOvalSchema.id, ClipOvalSchema.schema);
-      cache.addSchema(ClipRectSchema.id, ClipRectSchema.schema);
-      cache.addSchema(ClipRRectSchema.id, ClipRRectSchema.schema);
-      cache.addSchema(ColumnSchema.id, ColumnSchema.schema);
-      cache.addSchema(ConditionalSchema.id, ConditionalSchema.schema);
-      cache.addSchema(ContainerSchema.id, ContainerSchema.schema);
-      cache.addSchema(CupertinoSwitchSchema.id, CupertinoSwitchSchema.schema);
-      cache.addSchema(DecoratedBoxSchema.id, DecoratedBoxSchema.schema);
-      cache.addSchema(DirectionalitySchema.id, DirectionalitySchema.schema);
-      cache.addSchema(
-        DropdownButtonFormFieldSchema.id,
-        DropdownButtonFormFieldSchema.schema,
-      );
-      cache.addSchema(ElevatedButtonSchema.id, ElevatedButtonSchema.schema);
-      cache.addSchema(ExpandedSchema.id, ExpandedSchema.schema);
-      cache.addSchema(FittedBoxSchema.id, FittedBoxSchema.schema);
-      cache.addSchema(FlatButtonSchema.id, FlatButtonSchema.schema);
-      cache.addSchema(FlexibleSchema.id, FlexibleSchema.schema);
-      cache.addSchema(
-        FloatingActionButtonSchema.id,
-        FloatingActionButtonSchema.schema,
-      );
-      cache.addSchema(FormSchema.id, FormSchema.schema);
-      cache.addSchema(
-        FractionalTranslationSchema.id,
-        FractionalTranslationSchema.schema,
-      );
-      cache.addSchema(
-        FractionallySizedBoxSchema.id,
-        FractionallySizedBoxSchema.schema,
-      );
-      cache.addSchema(GestureDetectorSchema.id, GestureDetectorSchema.schema);
-      cache.addSchema(HeroSchema.id, HeroSchema.schema);
-      cache.addSchema(IconSchema.id, IconSchema.schema);
-      cache.addSchema(IgnorePointerSchema.id, IgnorePointerSchema.schema);
-      cache.addSchema(IndexedStackSchema.id, IndexedStackSchema.schema);
-      cache.addSchema(InkWellSchema.id, InkWellSchema.schema);
-      cache.addSchema(InputErrorSchema.id, InputErrorSchema.schema);
-      cache.addSchema(
-        InteractiveViewerSchema.id,
-        InteractiveViewerSchema.schema,
-      );
-      cache.addSchema(IntrinsicHeightSchema.id, IntrinsicHeightSchema.schema);
-      cache.addSchema(IntrinsicWidthSchema.id, IntrinsicWidthSchema.schema);
-      cache.addSchema(LimitedBoxSchema.id, LimitedBoxSchema.schema);
-      cache.addSchema(JsonWidgetDataSchema.id, JsonWidgetDataSchema.schema);
-      cache.addSchema(
-        LinearProgressIndicatorSchema.id,
-        LinearProgressIndicatorSchema.schema,
-      );
-      cache.addSchema(ListTileSchema.id, ListTileSchema.schema);
-      cache.addSchema(ListViewSchema.id, ListViewSchema.schema);
-      cache.addSchema(MaterialSchema.id, MaterialSchema.schema);
-      cache.addSchema(MemoryImageSchema.id, MemoryImageSchema.schema);
-      cache.addSchema(NetworkImageSchema.id, NetworkImageSchema.schema);
-      cache.addSchema(OffstageSchema.id, OffstageSchema.schema);
-      cache.addSchema(OpacitySchema.id, OpacitySchema.schema);
-      cache.addSchema(OutlinedButtonSchema.id, OutlinedButtonSchema.schema);
-      cache.addSchema(OverflowBoxSchema.id, OverflowBoxSchema.schema);
-      cache.addSchema(PaddingSchema.id, PaddingSchema.schema);
-      cache.addSchema(PlaceholderSchema.id, PlaceholderSchema.schema);
-      cache.addSchema(PopupMenuButtonSchema.id, PopupMenuButtonSchema.schema);
-      cache.addSchema(PositionedSchema.id, PositionedSchema.schema);
-      cache.addSchema(RadioSchema.id, RadioSchema.schema);
-      cache.addSchema(RaisedButtonSchema.id, RaisedButtonSchema.schema);
-      cache.addSchema(RowSchema.id, RowSchema.schema);
-      cache.addSchema(SafeAreaSchema.id, SafeAreaSchema.schema);
-      cache.addSchema(SaveContextSchema.id, SaveContextSchema.schema);
-      cache.addSchema(ScaffoldSchema.id, ScaffoldSchema.schema);
-      cache.addSchema(SetValueSchema.id, SetValueSchema.schema);
-      cache.addSchema(SetWidgetSchema.id, SetWidgetSchema.schema);
-      cache.addSchema(
-        SingleChildScrollViewSchema.id,
-        SingleChildScrollViewSchema.schema,
-      );
-      cache.addSchema(SizedBoxSchema.id, SizedBoxSchema.schema);
-      cache.addSchema(StackSchema.id, StackSchema.schema);
-      cache.addSchema(SwitchSchema.id, SwitchSchema.schema);
-      cache.addSchema(TextButtonSchema.id, TextButtonSchema.schema);
-      cache.addSchema(TextFormFieldSchema.id, TextFormFieldSchema.schema);
-      cache.addSchema(TextSchema.id, TextSchema.schema);
-      cache.addSchema(ThemeSchema.id, ThemeSchema.schema);
-      cache.addSchema(TweenAnimationSchema.id, TweenAnimationSchema.schema);
 
       return true;
     }());
