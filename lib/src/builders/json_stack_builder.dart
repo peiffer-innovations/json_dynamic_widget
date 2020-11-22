@@ -19,6 +19,8 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   final AlignmentGeometry alignment;
   final Clip clipBehavior;
   final StackFit fit;
+
+  // ignore: deprecated_member_use
   final Overflow overflow;
   final TextDirection textDirection;
 
@@ -88,6 +90,7 @@ class JsonStackBuilder extends JsonWidgetBuilder {
       alignment: alignment,
       clipBehavior: clipBehavior,
       fit: fit,
+      // ignore: deprecated_member_use
       overflow: overflow,
       textDirection: textDirection,
       children: [

@@ -15,7 +15,6 @@ class PopupMenuButtonSchema {
       'itemBuilder',
     ],
     'properties': {
-      'captureInheritedThemes': SchemaHelper.boolSchema,
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'enabled': SchemaHelper.boolSchema,

@@ -1,3 +1,7 @@
+## [1.2.0+1] - November 22nd, 2020
+
+* Added example alternative to reported [Issue #20](https://github.com/peiffer-innovations/json_dynamic_widget/issues/20).
+
 ## [1.2.0] - October 29th, 2020
 
 * Added support for widgets from Flutter 1.22 and previous versions: `ElevatedButton`, `FloatingActionButton`, `FractionalTranslation`, `FractionallySizedBox`, `InteractiveViewer`, `IntrinsicHeight`, `IntrinsicWidth`, `LimitedBox`, `Offstage`, `OutlinedButton`, `OverflowBox`, `Placeholder`, `PopupMenuButton` and `TextButton`.

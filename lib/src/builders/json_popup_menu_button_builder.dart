@@ -8,7 +8,6 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   JsonPopupMenuButtonBuilder({
-    this.captureInheritedThemes,
     this.color,
     this.elevation,
     this.enabled,
@@ -25,7 +24,6 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
 
   static const type = 'popup_menu_button';
 
-  final bool captureInheritedThemes;
   final Color color;
   final double elevation;
   final bool enabled;
@@ -44,7 +42,6 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "captureInheritedThemes": <bool>,
   ///   "color": <Color>,
   ///   "elevation": <double>,
   ///   "enabled": <bool>,
@@ -80,11 +77,6 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonPopupMenuButtonBuilder(
-        captureInheritedThemes: map['captureInheritedThemes'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['captureInheritedThemes'],
-              ),
         color: ThemeDecoder.decodeColor(
           map['color'],
           validate: false,
@@ -140,7 +132,6 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     );
 
     return PopupMenuButton(
-      captureInheritedThemes: captureInheritedThemes,
       color: color,
       elevation: elevation,
       enabled: enabled,

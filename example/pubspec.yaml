@@ -1,7 +1,7 @@
 name: example
 description: Example app for the JsonDynamicWidget library
 
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -9,9 +9,9 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  dotted_border: ^1.0.5
   flutter:
     sdk: flutter
-  dotted_border: ^1.0.5
   json_dynamic_widget:
     path: ../
   websafe_svg: ^1.1.1
