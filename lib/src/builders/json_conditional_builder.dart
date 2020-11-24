@@ -154,7 +154,7 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
     if (_keys.contains(event) == true) {
       _data = _data.recreate();
 
-      JsonConditionalBuilder builder = _data.builder;
+      JsonConditionalBuilder builder = _data.builder();
       _conditional = builder.conditional;
       _keys = builder.keys;
       _onFalse = builder.onFalse;
@@ -173,14 +173,16 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
 
     Widget child;
     if (result == true) {
-      _onFalse?.builder?.remove(_onFalse);
+      if (_onFalse?.builder != null) {
+        _onFalse.builder().remove(_onFalse);
+      }
 
       child = onTrue.build(
         childBuilder: widget.childBuilder,
         context: context,
       );
     } else {
-      onTrue.builder.remove(onTrue);
+      onTrue.builder().remove(onTrue);
       child = _onFalse?.build(
             childBuilder: widget.childBuilder,
             context: context,

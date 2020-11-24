@@ -10,3 +10,7 @@ typedef JsonWidgetBuilderBuilder = JsonWidgetBuilder Function(
   dynamic map, {
   JsonWidgetRegistry registry,
 });
+
+typedef DeferredBuilder = JsonWidgetBuilder Function(
+  JsonWidgetBuilderBuilder builder,
+);

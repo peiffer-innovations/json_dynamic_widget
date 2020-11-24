@@ -67,7 +67,7 @@ abstract class JsonWidgetBuilder {
   @mustCallSuper
   void remove(JsonWidgetData data) {
     for (var child in data.children ?? <JsonWidgetData>[]) {
-      child.builder.remove(child);
+      child.builder().remove(child);
     }
   }
 
@@ -124,6 +124,7 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
     super.initState();
 
     _data = widget.data;
+
     _subscription = widget.data.registry.valueStream.listen((event) {
       if (_data.dynamicKeys?.contains(event) == true) {
         _data = _data.recreate();
@@ -143,7 +144,7 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
   }
 
   @override
-  Widget build(BuildContext context) => _data.builder.buildCustom(
+  Widget build(BuildContext context) => _data.builder().buildCustom(
         childBuilder: widget.childBuilder,
         context: context,
         data: _data,

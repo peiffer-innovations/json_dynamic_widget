@@ -21,7 +21,10 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   JsonWidgetData _data;
 
   @override
-  JsonWidgetBuilder get builder => data.builder;
+  JsonWidgetBuilder get args => data.args;
+
+  @override
+  JsonWidgetBuilder Function() get builder => data.builder;
 
   @override
   List<JsonWidgetData> get children => data.children;
@@ -29,8 +32,10 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   JsonWidgetData get data {
     if (_data == null) {
       var data = _registry.getValue(_key);
-      assert(data is JsonWidgetData,
-          'Unable to find JsonWidgetData for [$_key] on the registry');
+      assert(
+        data is JsonWidgetData,
+        'Unable to find JsonWidgetData for [$_key] on the registry',
+      );
 
       // It's an error for two exact JsonWidgetData objects to be in two places
       // on the tree.  To avoid that, we recreate the data object to effectively
@@ -53,6 +58,26 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       data.build(
         childBuilder: childBuilder,
         context: context,
+      );
+
+  @override
+  JsonWidgetData copyWith({
+    dynamic args,
+    JsonWidgetBuilder builder,
+    List<JsonWidgetData> children,
+    Set<String> dynamicKeys,
+    String id,
+    JsonWidgetRegistry registry,
+    String type,
+  }) =>
+      JsonWidgetData(
+        args: args ?? this.args,
+        builder: builder ?? this.builder,
+        children: children ?? this.children,
+        dynamicKeys: dynamicKeys ?? this.dynamicKeys,
+        id: id ?? this.id,
+        registry: registry ?? this.registry,
+        type: type ?? this.type,
       );
 
   @override

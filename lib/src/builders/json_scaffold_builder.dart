@@ -56,8 +56,11 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   final bool resizeToAvoidBottomInset;
   final bool resizeToAvoidBottomPadding;
 
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
+  /// Builds the builder from a Map-like dynamic structure.  The scaffold is a
+  /// special case that uses `child` as an alias for the `body` attribute.  This
+  /// preserves the tree-like structure of the dynamic widgets internally but
+  /// allows developers to use the more common terms.  This expects the JSON
+  /// format to be of the following structure:
   ///
   /// ```json
   /// {
@@ -190,9 +193,14 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     Key key,
   }) {
     assert(
-      data.children?.isNotEmpty != true,
-      '[JsonScaffoldBuilder] does not support children.',
+      data.children?.isNotEmpty != true || body == null,
+      '[JsonScaffoldBuilder] uses the child property as an alias for body, so it supports exactly one child.',
     );
+
+    var theBody = body;
+    if (theBody == null && data.children?.length == 1) {
+      theBody = data.children[0];
+    }
 
     return Scaffold(
       appBar: appBar?.build(
@@ -200,7 +208,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
         context: context,
       ),
       backgroundColor: backgroundColor,
-      body: body?.build(childBuilder: childBuilder, context: context),
+      body: theBody?.build(childBuilder: childBuilder, context: context),
       bottomNavigationBar: bottomNavigationBar?.build(
         childBuilder: childBuilder,
         context: context,

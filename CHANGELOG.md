@@ -1,3 +1,9 @@
+## [1.2.1] - November 24th, 2020
+
+* Minor updates to ensure every widget has an id.
+* Better handling of building with variable references that are inlined.
+
+
 ## [1.2.0+2] - November 22nd, 2020
 
 * Minor refator to allow easy access to all supported widget's schemas.

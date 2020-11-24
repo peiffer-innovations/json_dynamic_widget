@@ -88,4 +88,8 @@ class JsonDynamicWidgetSchemas {
     ThemeSchema.id: ThemeSchema.schema,
     TweenAnimationSchema.id: TweenAnimationSchema.schema,
   });
+
+  static Map<String, dynamic> lookup(String key) =>
+      all[key] ??
+      all['https://peifferinnovations.com/json_dynamic_widget/schemas/$key'];
 }
