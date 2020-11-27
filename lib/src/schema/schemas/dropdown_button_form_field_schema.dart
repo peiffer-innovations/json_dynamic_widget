@@ -3,11 +3,13 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class DropdownButtonFormFieldSchema {
   static const id =
-      'https://peifferinnovations.com/json_dynamic_widget/schemas/dropdown_button_form_field';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/dropdown_button_form_field.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/material/DropdownButtonFormField-class.html',
     'type': 'object',
     'title': 'DropdownButtonFormFieldBuilder',
     'additionalProperties': false,

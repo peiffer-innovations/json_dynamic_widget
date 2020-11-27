@@ -2,11 +2,13 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class CupertinoSwitchSchema {
   static const id =
-      'https://peifferinnovations.com/json_dynamic_widget/schemas/cupertino_switch';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/cupertino_switch.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html',
     'type': 'object',
     'title': 'CupertinoSwitchBuilder',
     'additionalProperties': false,

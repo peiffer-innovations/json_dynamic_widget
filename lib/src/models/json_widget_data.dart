@@ -193,10 +193,9 @@ class JsonWidgetData extends JsonClass {
   @override
   Map<String, dynamic> toJson() => JsonClass.removeNull({
         'type': type,
-        'args': args,
-        'child': children?.length == 1 ? children[0].toJson() : null,
-        'children': JsonClass.toJsonList(children),
         'id': id,
+        'args': args,
+        'children': JsonClass.toJsonList(children),
       });
 }
 

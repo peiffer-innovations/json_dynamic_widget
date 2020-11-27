@@ -1,3 +1,8 @@
+## [1.2.1+1] - November 26th, 2020
+
+* Added `$comment` with links to the dartdocs for each supported schema.
+
+
 ## [1.2.1] - November 24th, 2020
 
 * Minor updates to ensure every widget has an id.

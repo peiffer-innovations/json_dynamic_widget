@@ -64,6 +64,14 @@ class JsonWidgetRegistry {
   ///  1. [dynamic] -- <Optional> pop result
   static const fun_key_navigate_pop = 'navigate_pop';
 
+  /// Function key for the built in `noop` function.  The `noop` function does
+  /// nothing and exists mostly to assist with testing UI elements that need a
+  /// function but don't actually care what the function does (such as ensuring
+  /// buttons look correct when enabled).
+  ///
+  /// The `noop` takes no values in the `args` array.
+  static const fun_key_noop = 'noop';
+
   /// Function key for the built in `remove_value` function.  The `remove_value`
   /// function accepts a key and a value and then calls the [removeValue]
   /// function.
@@ -445,6 +453,10 @@ class JsonWidgetRegistry {
             args?.isNotEmpty == true ? args[0] : null,
           );
     },
+    fun_key_noop: ({
+      @required List<dynamic> args,
+      @required JsonWidgetRegistry registry,
+    }) {},
     fun_key_remove_value: ({
       @required List<dynamic> args,
       @required JsonWidgetRegistry registry,

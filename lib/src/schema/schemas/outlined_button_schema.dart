@@ -2,11 +2,13 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 class OutlinedButtonSchema {
   static const id =
-      'https://peifferinnovations.com/json_dynamic_widget/schemas/outlined_button';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/outlined_button.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
+    r'$comment':
+        'https://api.flutter.dev/flutter/material/OutlinedButton-class.html',
     'type': 'object',
     'title': 'OutlinedButtonBuilder',
     'additionalProperties': false,

@@ -91,5 +91,5 @@ class JsonDynamicWidgetSchemas {
 
   static Map<String, dynamic> lookup(String key) =>
       all[key] ??
-      all['https://peifferinnovations.com/json_dynamic_widget/schemas/$key'];
+      all['https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/$key.json'];
 }
