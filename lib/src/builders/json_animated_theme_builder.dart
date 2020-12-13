@@ -11,7 +11,6 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
     this.curve,
     @required this.data,
     this.duration,
-    this.isMaterialAppTheme,
     this.onEnd,
   }) : assert(data != null);
 
@@ -20,7 +19,6 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
   final Curve curve;
   final ThemeData data;
   final Duration duration;
-  final bool isMaterialAppTheme;
   final VoidCallback onEnd;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -31,7 +29,6 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
   ///   "curve": <Curve>,
   ///   "data": <ThemeData>,
   ///   "duration": <int; millis>,
-  ///   "isMaterialAppTheme": <bool>,
   ///   "onEnd": <VoidCallback>,
   /// }
   /// ```
@@ -56,10 +53,6 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
               map['duration'],
             ) ??
             kThemeAnimationDuration,
-        isMaterialAppTheme: JsonClass.parseBool(
-              map['isMaterialAppTheme'],
-            ) ??
-            false,
         onEnd: map['onEnd'],
       );
     }
@@ -110,7 +103,6 @@ class _JsonAnimatedThemeState extends State<_JsonAnimatedTheme> {
       curve: widget.builder.curve,
       data: widget.builder.data,
       duration: widget.builder.duration,
-      isMaterialAppTheme: widget.builder.isMaterialAppTheme,
       onEnd: widget.builder.onEnd,
       child: widget.data.children[0].build(
         childBuilder: widget.childBuilder,

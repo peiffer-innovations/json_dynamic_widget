@@ -1,3 +1,8 @@
+## [1.2.2] - December 13th, 2020
+
+* Removed "isMaterialAppTheme" as it was removed in Flutter 1.25.
+
+
 ## [1.2.1+1] - November 26th, 2020
 
 * Added `$comment` with links to the dartdocs for each supported schema.

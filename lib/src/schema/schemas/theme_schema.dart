@@ -13,7 +13,6 @@ class ThemeSchema {
     'additionalProperties': false,
     'properties': {
       'data': SchemaHelper.objectSchema(ThemeDataSchema.id),
-      'isMaterialAppTheme': SchemaHelper.boolSchema,
     }
   };
 }

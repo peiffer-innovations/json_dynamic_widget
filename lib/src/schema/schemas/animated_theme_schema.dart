@@ -19,7 +19,6 @@ class AnimatedThemeSchema {
       'curve': SchemaHelper.stringSchema,
       'data': SchemaHelper.objectSchema(ThemeDataSchema.id),
       'duration': SchemaHelper.numberSchema,
-      'isMaterialAppTheme': SchemaHelper.boolSchema,
       'onEnd': SchemaHelper.stringSchema,
     },
   };
