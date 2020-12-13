@@ -1,3 +1,8 @@
+## [1.3.0] - December 13th, 2020
+
+* Updated dependencies
+
+
 ## [1.2.2] - December 13th, 2020
 
 * Removed "isMaterialAppTheme" as it was removed in Flutter 1.25.
