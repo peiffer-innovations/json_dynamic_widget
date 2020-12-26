@@ -1,0 +1,52 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "OverflowBox"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "container",
+      "args": {
+        "color": "#FF0000",
+        "height": 200.0,
+        "width": 200.0
+      },
+      "child": {
+        "type": "align",
+        "args": {
+          "alignment": "bottomRight"
+        },
+        "child": {
+          "type": "sized_box",
+          "args": {
+            "height": 10.0,
+            "width": 20.0
+          },
+          "child": {
+            "type": "overflow_box",
+            "args": {
+              "minWidth": 0.0,
+              "maxWidth": 100.0,
+              "minHeight": 0.0,
+              "maxHeight": 50.0
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "color": "#000"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

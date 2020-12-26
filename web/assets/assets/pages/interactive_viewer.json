@@ -1,0 +1,30 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "InteractiveViewer"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "interactive_viewer",
+      "args": {
+        "boundaryMargin": 20.0,
+        "maxScale": 1.6,
+        "minScale": 0.1
+      },
+      "child": {
+        "type": "container",
+        "args": {
+          "color": "#000"
+        }
+      }
+    }
+  }
+}

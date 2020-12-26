@@ -1,0 +1,33 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "LimitedBox"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "list_view",
+      "children": [
+        {
+          "type": "limited_box",
+          "args": {
+            "maxHeight": 200.0
+          },
+          "child": {
+            "type": "container",
+            "args": {
+              "color": "#000"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

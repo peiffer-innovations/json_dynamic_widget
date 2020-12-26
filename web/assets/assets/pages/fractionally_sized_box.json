@@ -1,0 +1,34 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "FractionallySizedBox"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "container",
+      "args": {
+        "alignment": "center"
+      },
+      "child": {
+        "type": "fractionally_sized_box",
+        "args": {
+          "widthFactor": 0.7
+        },
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Fractional Sized Box Demo"
+          }
+        }
+      }
+    }
+  }
+}
