@@ -13,8 +13,9 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
     this.right,
     this.top,
     this.width,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'positioned';
 
   final double bottom;
@@ -64,19 +65,17 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonPositionedBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Positioned(
       bottom: bottom,
       height: height,
+      key: key,
       left: left,
       right: right,
       top: top,
       width: width,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

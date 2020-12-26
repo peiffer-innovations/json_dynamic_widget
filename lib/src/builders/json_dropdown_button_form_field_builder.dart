@@ -34,8 +34,9 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     this.validator,
     this.style,
     this.value,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'dropdown_button_form_field';
 
   final bool autofocus;
@@ -205,15 +206,11 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonDropdownButtonFormFieldBuilder] does not support children.',
-    );
-
     return _JsonDropdownButtonFormFieldWidget(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
     );
   }
 }

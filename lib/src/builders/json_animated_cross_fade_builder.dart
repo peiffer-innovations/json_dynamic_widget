@@ -19,8 +19,10 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
     this.secondCurve,
     this.sizeCurve,
   })  : assert(crossFadeState != null),
-        assert(duration != null);
+        assert(duration != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 2;
   static const type = 'animated_cross_fade';
 
   final AlignmentGeometry alignment;
@@ -92,6 +94,8 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
+    var firstChild = getChild(data, index: 0);
+    var secondChild = getChild(data, index: 1);
     assert(
       data.children?.length == 2,
       '[JsonAnimatedCrossFadeBuilder] only supports exactly two children.',
@@ -101,6 +105,9 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      firstChild: firstChild,
+      key: key,
+      secondChild: secondChild,
     );
   }
 }
@@ -110,12 +117,18 @@ class _JsonAnimatedCrossFade extends StatefulWidget {
     @required this.builder,
     @required this.childBuilder,
     @required this.data,
+    @required this.firstChild,
+    Key key,
+    @required this.secondChild,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedCrossFadeBuilder builder;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
+  final JsonWidgetData firstChild;
+  final JsonWidgetData secondChild;
 
   @override
   _JsonAnimatedCrossFadeState createState() => _JsonAnimatedCrossFadeState();
@@ -133,11 +146,11 @@ class _JsonAnimatedCrossFadeState extends State<_JsonAnimatedCrossFade> {
       reverseDuration: widget.builder.reverseDuration,
       secondCurve: widget.builder.secondCurve,
       sizeCurve: widget.builder.sizeCurve,
-      firstChild: widget.data.children[0].build(
+      firstChild: widget.firstChild.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),
-      secondChild: widget.data.children[1].build(
+      secondChild: widget.secondChild.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

@@ -18,7 +18,9 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
     this.mainAxisSize,
     this.overflowButtonSpacing,
     this.overflowDirection,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = -1;
 
   static const type = 'button_bar';
 
@@ -98,12 +100,13 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
       buttonMinWidth: buttonMinWidth,
       buttonPadding: buttonPadding,
       buttonTextTheme: buttonTextTheme,
+      key: key,
       layoutBehavior: layoutBehavior,
       mainAxisSize: mainAxisSize,
       overflowButtonSpacing: overflowButtonSpacing,
       overflowDirection: overflowDirection,
       children: [
-        for (var child in data.children ?? [])
+        for (var child in data.children ?? <JsonWidgetData>[])
           child.build(
             context: context,
             childBuilder: childBuilder,

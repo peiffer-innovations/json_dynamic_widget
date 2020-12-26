@@ -25,8 +25,9 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
     this.reverse,
     this.scrollDirection,
     this.shrinkWrap,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = -1;
   static const type = 'list_view';
 
   final bool addAutomaticKeepAlives;
@@ -156,6 +157,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       dragStartBehavior: dragStartBehavior,
       itemCount: data.children?.length ?? 0,
       itemExtent: itemExtent,
+      key: key,
       keyboardDismissBehavior: keyboardDismissBehavior,
       padding: padding,
       physics: physics,
@@ -165,11 +167,13 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       scrollDirection: scrollDirection,
       semanticChildCount: data.children?.length ?? 0,
       shrinkWrap: shrinkWrap,
-      itemBuilder: (BuildContext context, int index) =>
-          data.children[index].build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
+      itemBuilder: (BuildContext context, int index) {
+        var w = data.children[index].build(
+          childBuilder: childBuilder,
+          context: context,
+        );
+        return w;
+      },
     );
   }
 }

@@ -16,8 +16,10 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
     this.start,
     this.top,
     this.width,
-  }) : assert(duration != null);
+  })  : assert(duration != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_positioned_directional';
 
   final double bottom;
@@ -82,15 +84,14 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedPositionedDirectionalBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedPositionedDirectional(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -98,12 +99,17 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedPositionedDirectional extends StatefulWidget {
   _JsonAnimatedPositionedDirectional({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedPositionedDirectionalBuilder builder;
+  final JsonWidgetData child;
+
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -126,7 +132,7 @@ class _JsonAnimatedPositionedDirectionalState
       start: widget.builder.start,
       top: widget.builder.top,
       width: widget.builder.width,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

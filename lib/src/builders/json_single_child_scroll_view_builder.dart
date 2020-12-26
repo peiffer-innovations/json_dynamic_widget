@@ -18,8 +18,9 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     this.restorationId,
     this.reverse,
     this.scrollDirection,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'single_child_scroll_view';
 
   final Clip clipBehavior;
@@ -104,22 +105,20 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonSingleChildScrollViewBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return SingleChildScrollView(
       clipBehavior: clipBehavior,
       controller: controller,
       dragStartBehavior: dragStartBehavior,
+      key: key,
       padding: padding,
       physics: physics,
       primary: primary,
       restorationId: restorationId,
       reverse: reverse,
       scrollDirection: scrollDirection,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

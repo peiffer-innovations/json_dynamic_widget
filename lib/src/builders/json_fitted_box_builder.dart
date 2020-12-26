@@ -10,8 +10,9 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
     this.alignment,
     this.clipBehavior,
     this.fit,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'fitted_box';
 
   final AlignmentGeometry alignment;
@@ -69,16 +70,14 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonFittedBoxBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return FittedBox(
       alignment: alignment,
       clipBehavior: clipBehavior,
       fit: fit,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

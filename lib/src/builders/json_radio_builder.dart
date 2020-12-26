@@ -9,7 +9,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Radio]   See the [fromDynamic] for the
-/// format.
+/// format. Unlike other form fields, this requires the `id` for the radio
+/// variable to be inside of the `args`.  This is because no two widgets can
+/// share the same overall id.
 class JsonRadioBuilder extends JsonWidgetBuilder {
   JsonRadioBuilder({
     this.activeColor,
@@ -20,6 +22,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     this.focusNode,
     this.groupValue,
     this.hoverColor,
+    this.id,
     this.label,
     this.materialTapTargetSize,
     this.mouseCursor,
@@ -29,8 +32,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     this.validator,
     this.value,
     this.visualDensity,
-  });
+  })  : assert(id?.isNotEmpty == true),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'radio';
 
   final Color activeColor;
@@ -41,6 +46,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   final FocusNode focusNode;
   final dynamic groupValue;
   final Color hoverColor;
+  final String id;
   final String label;
   final MaterialTapTargetSize materialTapTargetSize;
   final MouseCursor mouseCursor;
@@ -65,6 +71,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   ///   "focusNode": <FocusNode>,
   ///   "groupValue": <dynamic>,
   ///   "hoverColor": <Color>,
+  ///   "id": <String>,
   ///   "label": <String>,
   ///   "materialTapTargetSize": <MaterialTapTargetSize>,
   ///   "mouseCursor": <MouseCursor>,
@@ -118,6 +125,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
           map['hoverColor'],
           validate: false,
         ),
+        id: map['id'],
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
           map['materialTapTargetSize'],
           validate: false,
@@ -147,8 +155,8 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    if (data.id?.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
+    if (id?.isNotEmpty == true) {
+      data.registry.removeValue(id);
     }
 
     super.remove(data);
@@ -171,10 +179,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonRadioBuilder] does not support children.',
-    );
+    var child = getChild(data);
     assert(
       data.id?.isNotEmpty == true,
       '[JsonRadioBuilder] requires a non-empty id',
@@ -184,18 +189,23 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
 
 class _JsonRadioWidget extends StatefulWidget {
   _JsonRadioWidget({
-    this.builder,
-    this.childBuilder,
-    this.data,
-  });
+    @required this.builder,
+    @required this.child,
+    @required this.childBuilder,
+    @required this.data,
+    Key key,
+  }) : super(key: key);
 
   final JsonRadioBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -212,10 +222,10 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
     super.initState();
 
     _subscriptions.add(widget.data.registry.valueStream.listen((event) {
-      if (event == widget.data.id) {
+      if (event == widget.builder.id) {
         if (mounted == true) {
           _globalKey.currentState.didChange(
-            widget.data.registry.getValue(widget.data.id),
+            widget.data.registry.getValue(widget.builder.id),
           );
         }
       }
@@ -249,7 +259,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
 
               if (widget.data.id?.isNotEmpty == true) {
                 widget.data.registry
-                    .setValue('${widget.data.id}.error', error ?? '');
+                    .setValue('${widget.builder.id}.error', error ?? '');
               }
 
               return error;
@@ -275,8 +285,8 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
 
                     state.didChange(value);
 
-                    if (widget.data.id?.isNotEmpty == true) {
-                      widget.data.registry.setValue(widget.data.id, value);
+                    if (widget.builder.id?.isNotEmpty == true) {
+                      widget.data.registry.setValue(widget.builder.id, value);
                     }
                   },
             toggleable: widget.builder.toggleable,

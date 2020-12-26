@@ -35,8 +35,9 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     this.validator,
     this.value,
     this.visualDensity,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'switch';
 
   final Color activeColor;
@@ -204,15 +205,11 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonSwitchBuilder] does not support children.',
-    );
-
     return FormField<bool>(
       autovalidateMode: autovalidateMode,
       enabled: enabled,
       initialValue: value,
+      key: key,
       validator: validator == null
           ? null
           : (value) {

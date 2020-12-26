@@ -13,8 +13,10 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
     this.onEnd,
     @required this.padding,
   })  : assert(duration != null),
-        assert(padding != null);
+        assert(padding != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_padding';
 
   final Curve curve;
@@ -67,15 +69,14 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedPaddingBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedPadding(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -83,12 +84,16 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedPadding extends StatefulWidget {
   _JsonAnimatedPadding({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedPaddingBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -104,7 +109,7 @@ class _JsonAnimatedPaddingState extends State<_JsonAnimatedPadding> {
       duration: widget.builder.duration,
       onEnd: widget.builder.onEnd,
       padding: widget.builder.padding,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

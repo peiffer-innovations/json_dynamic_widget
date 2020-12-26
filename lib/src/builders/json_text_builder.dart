@@ -21,8 +21,10 @@ class JsonTextBuilder extends JsonWidgetBuilder {
     this.textHeightBehavior,
     this.textScaleFactor,
     this.textWidthBasis,
-  }) : text = text ?? '';
+  })  : text = text ?? '',
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'text';
 
   final Locale locale;
@@ -128,13 +130,9 @@ class JsonTextBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonTextBuilder] does not support children.',
-    );
-
     return Text(
       text,
+      key: key,
       locale: locale,
       maxLines: maxLines,
       overflow: overflow,

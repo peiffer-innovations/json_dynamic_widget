@@ -31,8 +31,9 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
     this.radius,
     this.splashColor,
     this.splashFactory,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'ink_well';
 
   final bool autofocus;
@@ -172,10 +173,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonInkWellBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return InkWell(
       autofocus: autofocus,
@@ -188,6 +186,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
       focusNode: focusNode,
       highlightColor: highlightColor,
       hoverColor: hoverColor,
+      key: key,
       mouseCursor: mouseCursor,
       onDoubleTap: onDoubleTap,
       onFocusChange: onFocusChange,
@@ -200,7 +199,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
       radius: radius,
       splashColor: splashColor,
       splashFactory: splashFactory,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

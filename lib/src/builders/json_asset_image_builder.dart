@@ -29,7 +29,10 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
     this.scale,
     this.semanticLabel,
     this.width,
-  }) : assert(name?.isNotEmpty == true);
+  })  : assert(name?.isNotEmpty == true),
+        super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 0;
 
   static const type = 'asset_image';
 
@@ -160,11 +163,6 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonAssetImageBuilder] does not support children.',
-    );
-
     return Image.asset(
       name,
       alignment: alignment,
@@ -181,6 +179,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
       gaplessPlayback: gaplessPlayback,
       height: height,
       isAntiAlias: isAntiAlias,
+      key: key,
       matchTextDirection: matchTextDirection,
       package: package,
       repeat: repeat,

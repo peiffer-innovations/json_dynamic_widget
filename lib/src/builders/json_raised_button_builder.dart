@@ -36,8 +36,9 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
     this.textColor,
     this.textTheme,
     this.visualDensity,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'raised_button';
 
   final Duration animationDuration;
@@ -214,10 +215,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonRaisedButtonBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return RaisedButton(
       animationDuration: animationDuration,
@@ -236,6 +234,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
       highlightElevation: highlightElevation,
       hoverColor: hoverColor,
       hoverElevation: hoverElevation,
+      key: key,
       materialTapTargetSize: materialTapTargetSize,
       mouseCursor: mouseCursor,
       onHighlightChanged: onHighlightChanged,
@@ -247,7 +246,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
       textColor: textColor,
       textTheme: textTheme,
       visualDensity: visualDensity,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

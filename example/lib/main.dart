@@ -26,8 +26,6 @@ void main() async {
   });
 
   var navigatorKey = GlobalKey<NavigatorState>();
-  var dataStr = await rootBundle.loadString('assets/pages/image_page.json');
-  var imagePageJson = json.decode(dataStr);
 
   // This is needed to adding custom schema validations
   var schemaCache = SchemaCache();
@@ -67,8 +65,12 @@ void main() async {
   registry.registerFunctions({
     'getImageAsset': ({args, registry}) => 'assets/images/image${args[0]}.jpg',
     'getImageId': ({args, registry}) => 'image${args[0]}',
-    'getImageNavigator': ({args, registry}) => () {
-          var registry = JsonWidgetRegistry(
+    'getImageNavigator': ({args, registry}) => () async {
+          registry.setValue('index', args[0]);
+          var dataStr =
+              await rootBundle.loadString('assets/pages/image_page.json');
+          final imagePageJson = Map.unmodifiable(json.decode(dataStr));
+          var imgRegistry = JsonWidgetRegistry(
             debugLabel: 'ImagePage',
             values: {
               'imageAsset': 'assets/images/image${args[0]}.jpg',
@@ -76,12 +78,12 @@ void main() async {
             },
           );
 
-          navigatorKey.currentState.push(
+          await navigatorKey.currentState.push(
             MaterialPageRoute(
               builder: (BuildContext context) => FullWidgetPage(
                 data: JsonWidgetData.fromDynamic(
                   imagePageJson,
-                  registry: registry,
+                  registry: imgRegistry,
                 ),
               ),
             ),

@@ -12,8 +12,9 @@ class JsonStackBuilder extends JsonWidgetBuilder {
     this.fit,
     this.overflow,
     this.textDirection,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = -1;
   static const type = 'stack';
 
   final AlignmentGeometry alignment;
@@ -90,6 +91,7 @@ class JsonStackBuilder extends JsonWidgetBuilder {
       alignment: alignment,
       clipBehavior: clipBehavior,
       fit: fit,
+      key: key,
       // ignore: deprecated_member_use
       overflow: overflow,
       textDirection: textDirection,

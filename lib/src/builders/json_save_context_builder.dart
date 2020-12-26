@@ -8,8 +8,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 class JsonSaveContextBuilder extends JsonWidgetBuilder {
   JsonSaveContextBuilder({
     this.key,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = -1;
   static const type = 'save_context';
 
   final String key;
@@ -54,6 +55,7 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
     );
   }
 }
@@ -63,8 +65,10 @@ class _JsonSaveContextWidget extends StatefulWidget {
     @required this.builder,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonSaveContextBuilder builder;
   final ChildWidgetBuilder childBuilder;

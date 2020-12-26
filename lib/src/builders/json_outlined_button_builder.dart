@@ -25,8 +25,9 @@ class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
     this.sideCallback,
     this.style,
     this.textStyleCallback,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'outlined_button';
 
   final bool autofocus;
@@ -148,15 +149,13 @@ class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonOutlinedButtonBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return OutlinedButton(
       autofocus: autofocus,
       clipBehavior: clipBehavior,
       focusNode: focusNode,
+      key: key,
       onLongPress: onLongPress,
       onPressed: onPressed,
       style: ButtonStyle(
@@ -220,7 +219,7 @@ class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
             : null,
         visualDensity: style.visualDensity,
       ),
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

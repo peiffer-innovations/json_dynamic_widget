@@ -58,8 +58,9 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     this.onVerticalDragEnd,
     this.onVerticalDragStart,
     this.onVerticalDragUpdate,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'gesture_detector';
 
   final HitTestBehavior behavior;
@@ -253,15 +254,13 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonGestureDetectorBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return GestureDetector(
       behavior: behavior,
       dragStartBehavior: dragStartBehavior,
       excludeFromSemantics: excludeFromSemantics,
+      key: key,
       onDoubleTap: onDoubleTap,
       onDoubleTapCancel: onDoubleTapCancel,
       onDoubleTapDown: onDoubleTapDown,
@@ -308,7 +307,7 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       onVerticalDragEnd: onVerticalDragEnd,
       onVerticalDragStart: onVerticalDragStart,
       onVerticalDragUpdate: onVerticalDragUpdate,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

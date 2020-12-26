@@ -13,8 +13,9 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
     this.maxWidth,
     this.minHeight,
     this.minWidth,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'overflow_box';
 
   final AlignmentGeometry alignment;
@@ -75,18 +76,16 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonOverflowBoxBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return OverflowBox(
       alignment: alignment,
+      key: key,
       maxHeight: maxHeight,
       maxWidth: maxWidth,
       minHeight: minHeight,
       minWidth: minWidth,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

@@ -583,7 +583,9 @@ class JsonWidgetRegistry {
             functionKey = item.key;
             functionArgs = [];
           } else if (item.isVariable == true) {
-            dynamicKeys.add(item.key);
+            if (item.isStatic != true) {
+              dynamicKeys.add(item.key);
+            }
 
             var value = getValue(item.key);
             functionArgs?.add(value);

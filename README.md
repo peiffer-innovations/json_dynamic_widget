@@ -178,7 +178,16 @@ Widget Builders | Example Location
 
 ## Using Variables
 
-Variables can be defined on the `JsonWidgetRegistry` that is used to render the dynamic widgets.  Within the JSON, the template engine uses the mustache format for variable references.  Example: `{{variableName}}`.
+Variables can be defined on the `JsonWidgetRegistry` that is used to render the dynamic widgets.  Within the JSON, the template engine uses a format similar to the mustache format for variable references.
+
+Variable references can be static (read only once) or dynamic (will rebuild whenever the underlying value changes).  To use the static reference, prefix it with an exclamation point (`!`).
+
+Examples:
+```
+{{dynamicVariavle}}
+
+!{{staticVariable}}
+```
 
 A variable can be used in any of the `child` / `children` / `args` values and for certain types of properties, a variable reference iw the only way to actually assign that value.
 
@@ -186,9 +195,9 @@ Widgets that accept user input will assign that user input to a variable named t
 
 The built in variables are defined below:
 
-Variable Name    | Example | Description
------------------|---------|------------
-`*curve_name*_curve` | <ul><li>`{{linear_curve}}`</li><li>`{{bounce_in_curve}}`</li></ul> | Provides a `const` instance of any of the [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html#constants) const values. The name of the Curve constant should be transformed into snake_case.
+Variable Name        | Example | Description
+---------------------|---------|------------
+`${curveName}_curve` | <ul><li>`{{linear_curve}}`</li><li>`{{bounce_in_curve}}`</li></ul> | Provides a `const` instance of any of the [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html#constants) const values. The name of the Curve constant should be transformed into snake_case.
 
 ## Dynamic Functions
 

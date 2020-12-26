@@ -8,8 +8,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 class JsonExpandedBuilder extends JsonWidgetBuilder {
   JsonExpandedBuilder({
     this.flex,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'expanded';
 
   final int flex;
@@ -44,14 +45,12 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonExpandedBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Expanded(
       flex: flex,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

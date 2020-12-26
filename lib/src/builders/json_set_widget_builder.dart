@@ -8,8 +8,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 class JsonSetWidgetBuilder extends JsonWidgetBuilder {
   JsonSetWidgetBuilder({
     this.widgets,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = -1;
   static const type = 'set_widget';
 
   final Map<String, JsonWidgetData> widgets;
@@ -66,7 +67,7 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
             childBuilder: childBuilder,
             context: context,
           )
-        : SizedBox();
+        : SizedBox(key: key);
   }
 
   @override

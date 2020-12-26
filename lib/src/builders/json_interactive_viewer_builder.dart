@@ -19,8 +19,9 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
     this.panEnabled,
     this.scaleEnabled,
     this.transformationController,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'interactive_viewer';
 
   final bool alignPanAxis;
@@ -120,15 +121,13 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonInteractiveViewerBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return InteractiveViewer(
       alignPanAxis: alignPanAxis,
       boundaryMargin: boundaryMargin,
       constrained: constrained,
+      key: key,
       maxScale: maxScale,
       minScale: minScale,
       onInteractionEnd: onInteractionEnd,
@@ -137,7 +136,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
       panEnabled: panEnabled,
       scaleEnabled: scaleEnabled,
       transformationController: transformationController,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

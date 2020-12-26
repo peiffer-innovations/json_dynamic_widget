@@ -11,8 +11,9 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
     this.alignment,
     this.heightFactor,
     this.widthFactor,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'fractionally_sized_box';
 
   final AlignmentGeometry alignment;
@@ -64,16 +65,14 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonFractionallySizedBoxBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return FractionallySizedBox(
       alignment: alignment,
       heightFactor: heightFactor,
+      key: key,
       widthFactor: widthFactor,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

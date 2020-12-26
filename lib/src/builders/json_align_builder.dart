@@ -11,8 +11,9 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
     this.alignment,
     this.heightFactor,
     this.widthFactor,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'align';
 
   final AlignmentGeometry alignment;
@@ -59,16 +60,14 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAlignBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Align(
       alignment: alignment,
       heightFactor: heightFactor,
+      key: key,
       widthFactor: widthFactor,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

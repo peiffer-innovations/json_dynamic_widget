@@ -9,8 +9,9 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
   JsonSizedBoxBuilder({
     this.height,
     this.width,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'sized_box';
 
   final double height;
@@ -47,17 +48,15 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1 || data.children?.isNotEmpty != true,
-      '[JsonSizedBoxBuilder] only supports zero or one child.',
-    );
+    var child = getChild(data);
 
     return SizedBox(
       height: height,
+      key: key,
       width: width,
       child: data.children?.length != 1
           ? null
-          : data.children[0].build(
+          : child.build(
               childBuilder: childBuilder,
               context: context,
             ),

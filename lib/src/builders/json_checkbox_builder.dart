@@ -27,7 +27,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.validator,
     this.value,
     this.visualDensity,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 0;
 
   static const type = 'checkbox';
 
@@ -170,11 +172,6 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonCheckboxBuilder] does not support children.',
-    );
-
     var initialValue = value ?? (tristate != true ? false : null);
 
     return FormField<bool>(
@@ -207,6 +204,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
             focusColor: focusColor,
             focusNode: focusNode,
             hoverColor: hoverColor,
+            key: key,
             materialTapTargetSize: materialTapTargetSize,
             mouseCursor: mouseCursor,
             onChanged: enabled != true

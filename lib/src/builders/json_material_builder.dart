@@ -20,8 +20,9 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     this.shadowColor,
     this.shape,
     this.textStyle,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'material';
 
   final Duration animationDuration;
@@ -132,12 +133,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonMaterialBuilder] only supports exactly one child.',
-    );
-
-    var child = data.children[0].build(
+    var child = getChild(data).build(
       childBuilder: childBuilder,
       context: context,
     );
@@ -149,6 +145,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
       clipBehavior: clipBehavior,
       color: color,
       elevation: elevation,
+      key: key,
       shadowColor: shadowColor,
       shape: shape,
       textStyle: textStyle,

@@ -19,8 +19,10 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
     this.textHeightBehavior,
     this.textWidthBasis,
   })  : assert(duration != null),
-        assert(style != null);
+        assert(style != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_default_text_style';
 
   final Curve curve;
@@ -114,15 +116,14 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedDefaultTextStyleBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedDefaultTextStyle(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -130,12 +131,16 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedDefaultTextStyle extends StatefulWidget {
   _JsonAnimatedDefaultTextStyle({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedDefaultTextStyleBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -159,7 +164,7 @@ class _JsonAnimatedDefaultTextStyleState
       textAlign: widget.builder.textAlign,
       textHeightBehavior: widget.builder.textHeightBehavior,
       textWidthBasis: widget.builder.textWidthBasis,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

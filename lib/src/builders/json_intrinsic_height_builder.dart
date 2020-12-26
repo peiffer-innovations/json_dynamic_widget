@@ -5,8 +5,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [IntrinsicHeight] widget.  See the [fromDynamic] for the
 /// format.
 class JsonIntrinsicHeightBuilder extends JsonWidgetBuilder {
-  JsonIntrinsicHeightBuilder();
+  JsonIntrinsicHeightBuilder()
+      : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'intrinsic_height';
 
   /// Builds the builder from a Map-like dynamic structure.  This expects an
@@ -31,13 +33,11 @@ class JsonIntrinsicHeightBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonIntrinsicHeightBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return IntrinsicHeight(
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

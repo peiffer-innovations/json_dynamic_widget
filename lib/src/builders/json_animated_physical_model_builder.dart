@@ -23,8 +23,10 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
         assert(duration != null),
         assert(elevation != null),
         assert(shadowColor != null),
-        assert(shape != null);
+        assert(shape != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_physical_model';
 
   final bool animateColor;
@@ -118,15 +120,14 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedPhysicalModelBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedPhysicalModel(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -134,12 +135,16 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedPhysicalModel extends StatefulWidget {
   _JsonAnimatedPhysicalModel({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedPhysicalModelBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -164,7 +169,7 @@ class _JsonAnimatedPhysicalModelState
       onEnd: widget.builder.onEnd,
       shadowColor: widget.builder.shadowColor,
       shape: widget.builder.shape,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

@@ -4,9 +4,10 @@ import 'package:meta/meta.dart';
 class JsonWidgetRegexHelper {
   JsonWidgetRegexHelper._();
 
+  static final dynamicVarRegex = RegExp(r'^\{\{\s*\S*\s*\}\}$');
   static final functionRegex = RegExp(r'^##(\S*)\s*(\(.*\))##$');
-  static final paramsRegex = RegExp(r'(\{{0,2}[^,\{\(\)\}]*\}{0,2})');
-  static final varRegex = RegExp(r'^\{\{\s*\S*\s*\}\}$');
+  static final paramsRegex = RegExp(r'(\!?{{0,2}[^,\{\(\)\}]*\}{0,2})');
+  static final varRegex = RegExp(r'^!?\{\{\s*\S*\s*\}\}$');
 
   static List<JsonWidgetParams> parse(String data) {
     List<JsonWidgetParams> params;
@@ -26,7 +27,15 @@ class JsonWidgetRegexHelper {
         for (var match in matches) {
           var group = match.group(0);
           if (group?.trim()?.isNotEmpty == true) {
-            if (group.startsWith('{{') && group.endsWith('}}')) {
+            if (group.startsWith('!{{') && group.endsWith('}}')) {
+              params.add(
+                JsonWidgetParams(
+                  isStatic: true,
+                  isVariable: true,
+                  key: group.substring(3, group.length - 2).trim(),
+                ),
+              );
+            } else if (group.startsWith('{{') && group.endsWith('}}')) {
               params.add(
                 JsonWidgetParams(
                   isVariable: true,
@@ -43,8 +52,11 @@ class JsonWidgetRegexHelper {
         if (group?.isNotEmpty == true) {
           params.add(
             JsonWidgetParams(
+              isStatic: group.startsWith('!'),
               isVariable: true,
-              key: group.substring(2, group.length - 2).trim(),
+              key: group
+                  .substring(group.startsWith('!') ? 3 : 2, group.length - 2)
+                  .trim(),
             ),
           );
         } else {
@@ -62,12 +74,14 @@ class JsonWidgetParams {
   JsonWidgetParams({
     this.isDeferred = false,
     this.isFunction = false,
+    this.isStatic = false,
     this.isVariable = false,
     @required this.key,
   }) : assert(key?.isNotEmpty == true);
 
   final bool isDeferred;
   final bool isFunction;
+  final bool isStatic;
   final bool isVariable;
   final String key;
 
@@ -78,6 +92,7 @@ class JsonWidgetParams {
       result = true;
       result = result && isDeferred == other.isDeferred;
       result = result && isFunction == other.isFunction;
+      result = result && isStatic == other.isStatic;
       result = result && isVariable == other.isVariable;
       result = result && key == other.key;
     }
@@ -86,9 +101,10 @@ class JsonWidgetParams {
   }
 
   @override
-  int get hashCode => '$key.$isDeferred.$isFunction.$isVariable'.hashCode;
+  int get hashCode =>
+      '$key.$isDeferred.$isFunction.$isStatic.$isVariable'.hashCode;
 
   @override
   String toString() =>
-      'JsonWidgetParams{isDeferred: $isDeferred, isFunction: $isFunction, isVariable: $isVariable, key: "$key"}';
+      'JsonWidgetParams{isDeferred: $isDeferred, isFunction: $isFunction, isStatic: $isStatic, isVariable: $isVariable, key: "$key"}';
 }

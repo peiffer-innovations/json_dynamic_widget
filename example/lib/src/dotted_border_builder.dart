@@ -9,8 +9,10 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
   DottedBorderBuilder({
     this.color,
     @required this.dashPattern,
-  }) : assert(dashPattern != null);
+  })  : assert(dashPattern != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'dotted_border';
 
   final Color color;
@@ -49,16 +51,13 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[DottedBorderBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return DottedBorder(
       borderType: BorderType.Circle,
       color: color,
       dashPattern: dashPattern,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

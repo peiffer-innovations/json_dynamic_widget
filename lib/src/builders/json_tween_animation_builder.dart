@@ -14,8 +14,10 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
     @required this.tween,
   })  : assert(builder != null),
         assert(duration != null),
-        assert(tween != null);
+        assert(tween != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'tween_animation';
 
   final ValueWidgetBuilder builder;
@@ -78,6 +80,7 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
     );
   }
 }
@@ -87,8 +90,10 @@ class _JsonTweenAnimation extends StatefulWidget {
     @required this.builder,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonTweenAnimationBuilder builder;
   final ChildWidgetBuilder childBuilder;

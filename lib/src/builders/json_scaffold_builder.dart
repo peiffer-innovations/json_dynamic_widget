@@ -30,8 +30,9 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     this.primary,
     this.resizeToAvoidBottomInset,
     this.resizeToAvoidBottomPadding,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'scaffold';
 
   final JsonWidgetData appBar;
@@ -192,15 +193,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true || body == null,
-      '[JsonScaffoldBuilder] uses the child property as an alias for body, so it supports exactly one child.',
-    );
-
-    var theBody = body;
-    if (theBody == null && data.children?.length == 1) {
-      theBody = data.children[0];
-    }
+    var theBody = body ?? getChild(data);
 
     return Scaffold(
       appBar: appBar?.build(
@@ -238,6 +231,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
       ),
       floatingActionButtonAnimator: floatingActionButtonAnimator,
       floatingActionButtonLocation: floatingActionButtonLocation,
+      key: key,
       persistentFooterButtons: persistentFooterButtons == null
           ? null
           : [

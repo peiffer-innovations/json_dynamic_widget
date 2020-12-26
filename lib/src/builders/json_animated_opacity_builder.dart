@@ -13,8 +13,10 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
     this.onEnd,
     @required this.opacity,
   })  : assert(duration != null),
-        assert(opacity != null);
+        assert(opacity != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_opacity';
 
   final bool alwaysIncludeSemantics;
@@ -70,15 +72,14 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedOpacityBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedOpacity(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -86,12 +87,16 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedOpacity extends StatefulWidget {
   _JsonAnimatedOpacity({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedOpacityBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -108,7 +113,7 @@ class _JsonAnimatedOpacityState extends State<_JsonAnimatedOpacity> {
       duration: widget.builder.duration,
       onEnd: widget.builder.onEnd,
       opacity: widget.builder.opacity,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

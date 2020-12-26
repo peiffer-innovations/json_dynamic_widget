@@ -13,8 +13,10 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
     @required this.duration,
     this.reverseDuration,
     this.vsync,
-  }) : assert(duration != null);
+  })  : assert(duration != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_size';
 
   final AlignmentGeometry alignment;
@@ -74,15 +76,14 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedSizeBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedSize(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -90,12 +91,16 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedSize extends StatefulWidget {
   _JsonAnimatedSize({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedSizeBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -117,7 +122,7 @@ class _JsonAnimatedSizeState extends State<_JsonAnimatedSize> {
       duration: widget.builder.duration,
       reverseDuration: widget.builder.reverseDuration,
       vsync: widget.builder.vsync,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),
@@ -135,7 +140,7 @@ class _JsonAnimatedSizeStateTicker extends State<_JsonAnimatedSize>
       duration: widget.builder.duration,
       reverseDuration: widget.builder.reverseDuration,
       vsync: this,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

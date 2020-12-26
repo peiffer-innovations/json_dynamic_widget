@@ -12,8 +12,9 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
     this.index,
     this.sizing,
     this.textDirection,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = -1;
   static const type = 'indexed_stack';
 
   final AlignmentGeometry alignment;
@@ -76,10 +77,11 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
     return IndexedStack(
       alignment: alignment,
       index: index,
+      key: key,
       textDirection: textDirection,
       sizing: sizing,
       children: [
-        for (var child in data.children ?? [])
+        for (var child in data.children ?? <JsonWidgetData>[])
           child.build(
             context: context,
             childBuilder: childBuilder,

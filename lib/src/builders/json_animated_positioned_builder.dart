@@ -16,8 +16,10 @@ class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
     this.right,
     this.top,
     this.width,
-  }) : assert(duration != null);
+  })  : assert(duration != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_positioned';
 
   final double bottom;
@@ -82,15 +84,14 @@ class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedPositionedBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedPositioned(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -98,12 +99,16 @@ class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedPositioned extends StatefulWidget {
   _JsonAnimatedPositioned({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedPositionedBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -124,7 +129,7 @@ class _JsonAnimatedPositionedState extends State<_JsonAnimatedPositioned> {
       right: widget.builder.right,
       top: widget.builder.top,
       width: widget.builder.top,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

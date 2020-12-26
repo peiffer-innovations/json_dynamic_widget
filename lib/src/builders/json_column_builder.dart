@@ -13,7 +13,9 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
     this.textBaseline,
     this.textDirection,
     this.verticalDirection,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = -1;
 
   static const type = 'column';
 
@@ -96,13 +98,14 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
   }) {
     return Column(
       crossAxisAlignment: crossAxisAlignment,
+      key: key,
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       textBaseline: textBaseline,
       textDirection: textDirection,
       verticalDirection: verticalDirection,
       children: [
-        for (var child in data.children ?? [])
+        for (var child in data.children ?? <JsonWidgetData>[])
           child.build(
             context: context,
             childBuilder: childBuilder,

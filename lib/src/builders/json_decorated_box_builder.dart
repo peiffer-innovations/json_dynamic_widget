@@ -8,8 +8,10 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
   JsonDecoratedBoxBuilder({
     @required this.decoration,
     this.position,
-  }) : assert(decoration != null);
+  })  : assert(decoration != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'decorated_box';
 
   final BoxDecoration decoration;
@@ -58,15 +60,13 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonDecoratedBoxBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return DecoratedBox(
       decoration: decoration,
+      key: key,
       position: position,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

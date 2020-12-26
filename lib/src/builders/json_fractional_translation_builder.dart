@@ -10,8 +10,10 @@ class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
   JsonFractionalTranslationBuilder({
     this.transformHitTests,
     @required this.translation,
-  }) : assert(translation != null);
+  })  : assert(translation != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'fractional_translation';
 
   final bool transformHitTests;
@@ -59,15 +61,13 @@ class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonFractionalTranslationBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return FractionalTranslation(
+      key: key,
       transformHitTests: transformHitTests,
       translation: translation,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

@@ -52,20 +52,6 @@ void main() {
   });
 
   test('simple param', () {
-    var parsed = JsonWidgetRegexHelper.parse('{{foo}}');
-
-    expect(
-      parsed,
-      [
-        JsonWidgetParams(
-          isVariable: true,
-          key: 'foo',
-        ),
-      ],
-    );
-  });
-
-  test('simple param', () {
     expect(
       JsonWidgetRegexHelper.parse('{{foo}}'),
       [
@@ -79,6 +65,26 @@ void main() {
       JsonWidgetRegexHelper.parse('{{  foo  }}'),
       [
         JsonWidgetParams(
+          isVariable: true,
+          key: 'foo',
+        ),
+      ],
+    );
+    expect(
+      JsonWidgetRegexHelper.parse('!{{foo}}'),
+      [
+        JsonWidgetParams(
+          isStatic: true,
+          isVariable: true,
+          key: 'foo',
+        ),
+      ],
+    );
+    expect(
+      JsonWidgetRegexHelper.parse('!{{  foo  }}'),
+      [
+        JsonWidgetParams(
+          isStatic: true,
           isVariable: true,
           key: 'foo',
         ),

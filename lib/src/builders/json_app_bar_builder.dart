@@ -30,8 +30,12 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
     this.titleSpacing,
     this.toolbarHeight,
     this.toolbarOpacity,
-  }) : super(preferredSizeWidget: true);
+  }) : super(
+          numSupportedChildren: kNumSupportedChildren,
+          preferredSizeWidget: true,
+        );
 
+  static const kNumSupportedChildren = 0;
   static const type = 'app_bar';
 
   final List<JsonWidgetData> actions;
@@ -215,6 +219,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         context: context,
       ),
       iconTheme: iconTheme,
+      key: key,
       leading: leading?.build(
         childBuilder: childBuilder,
         context: context,

@@ -22,6 +22,7 @@ class RadioSchema {
       'focusNode': SchemaHelper.stringSchema,
       'groupValue': SchemaHelper.anySchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'id': SchemaHelper.stringSchema,
       'label': SchemaHelper.stringSchema,
       'materialTapTargetSize': SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,

@@ -7,8 +7,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 class JsonInputErrorBuilder extends JsonWidgetBuilder {
   JsonInputErrorBuilder({
     this.text,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'input_error';
 
   final String text;
@@ -42,12 +43,9 @@ class JsonInputErrorBuilder extends JsonWidgetBuilder {
     @required BuildContext context,
     @required JsonWidgetData data,
     Key key,
-  }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonInputErrorBuilder] does not support children.',
-    );
-
-    return InputError(error: text);
-  }
+  }) =>
+      InputError(
+        error: text,
+        key: key,
+      );
 }

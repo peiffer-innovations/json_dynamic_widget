@@ -1,7 +1,8 @@
+import 'dart:async';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:meta/meta.dart';
 
-typedef JsonWidgetFunction = dynamic Function({
+typedef JsonWidgetFunction = FutureOr<dynamic> Function({
   @required List<dynamic> args,
   @required JsonWidgetRegistry registry,
 });

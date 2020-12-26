@@ -8,7 +8,9 @@ import 'package:json_theme/json_theme.dart';
 class JsonClipRectBuilder extends JsonWidgetBuilder {
   JsonClipRectBuilder({
     this.clipBehavior,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 1;
 
   static const type = 'clip_rect';
 
@@ -51,14 +53,12 @@ class JsonClipRectBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonClipRectBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return ClipRect(
       clipBehavior: clipBehavior,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

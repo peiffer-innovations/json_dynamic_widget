@@ -15,8 +15,10 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
     this.onEnd,
     this.widthFactor,
   })  : assert(alignment != null),
-        assert(duration != null);
+        assert(duration != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_align';
 
   final AlignmentGeometry alignment;
@@ -75,15 +77,14 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedAlignBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedAlign(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -91,12 +92,16 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedAlign extends StatefulWidget {
   _JsonAnimatedAlign({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedAlignBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -114,7 +119,7 @@ class _JsonAnimatedAlignState extends State<_JsonAnimatedAlign> {
       heightFactor: widget.builder.heightFactor,
       onEnd: widget.builder.onEnd,
       widthFactor: widget.builder.widthFactor,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

@@ -14,7 +14,9 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
     this.strokeWidth,
     this.value,
     this.valueColor,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 0;
 
   static const type = 'circular_progress_indicator';
 
@@ -72,13 +74,9 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonCircularProgressIndicatorBuilder] does not support children.',
-    );
-
     return CircularProgressIndicator(
       backgroundColor: backgroundColor,
+      key: key,
       semanticsLabel: semanticsLabel,
       semanticsValue: semanticsValue,
       strokeWidth: strokeWidth,

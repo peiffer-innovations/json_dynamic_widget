@@ -1,3 +1,11 @@
+## [1.4.0] - December 26th, 2020
+
+* Added in the concept of `static` vs `dynamic` variables; earlier all were always `dynamic`.
+* Updated to be more forgiving on widget children requirements.
+* Updated to use all `id` values on the base widgets as the value for a `ValueKey`.
+* **BREAKING**: Moved the `id` entry for `radio` from the base widget to the `args`.
+
+
 ## [1.3.0] - December 13th, 2020
 
 * Updated dependencies

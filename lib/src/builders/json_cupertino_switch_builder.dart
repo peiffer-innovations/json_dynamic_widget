@@ -22,8 +22,9 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     this.validator,
     this.value,
     this.visualDensity,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'cupertino_switch';
 
   final Color activeColor;
@@ -137,15 +138,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonCupertinoSwitchBuilder] does not support children.',
-    );
-
     return FormField<bool>(
       autovalidateMode: autovalidateMode,
       enabled: enabled,
       initialValue: value,
+      key: key,
       onSaved: onSaved,
       validator: validator == null
           ? null

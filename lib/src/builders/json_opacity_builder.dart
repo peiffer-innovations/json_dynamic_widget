@@ -9,8 +9,9 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
   JsonOpacityBuilder({
     this.alwaysIncludeSemantics,
     this.opacity,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'opacity';
 
   final bool alwaysIncludeSemantics;
@@ -49,15 +50,13 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonOpacityBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Opacity(
       alwaysIncludeSemantics: alwaysIncludeSemantics,
+      key: key,
       opacity: opacity,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

@@ -8,8 +8,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 class JsonOffstageBuilder extends JsonWidgetBuilder {
   JsonOffstageBuilder({
     this.offstage,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'offstage';
 
   final bool offstage;
@@ -48,14 +49,12 @@ class JsonOffstageBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonOffstageBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Offstage(
+      key: key,
       offstage: offstage,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

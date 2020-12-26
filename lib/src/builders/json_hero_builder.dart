@@ -12,8 +12,10 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
     this.placeholderBuilder,
     @required this.tag,
     this.transitionOnUserGestures,
-  }) : assert(tag != null);
+  })  : assert(tag != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'hero';
 
   final CreateRectTween createRectTween;
@@ -66,18 +68,16 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonHeroBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Hero(
       createRectTween: createRectTween,
       flightShuttleBuilder: flightShuttleBuilder,
+      key: key,
       placeholderBuilder: placeholderBuilder,
       tag: tag,
       transitionOnUserGestures: transitionOnUserGestures,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

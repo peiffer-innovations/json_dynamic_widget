@@ -31,8 +31,10 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
     this.scale,
     this.semanticLabel,
     this.width,
-  }) : assert(image != null);
+  })  : assert(image != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'memory_image';
 
   final Alignment alignment;
@@ -167,11 +169,6 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonMemoryImageBuilder] does not support children.',
-    );
-
     return Image.memory(
       image,
       alignment: alignment,
@@ -188,6 +185,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
       gaplessPlayback: gaplessPlayback,
       height: height,
       isAntiAlias: isAntiAlias,
+      key: key,
       matchTextDirection: matchTextDirection,
       repeat: repeat,
       scale: scale,

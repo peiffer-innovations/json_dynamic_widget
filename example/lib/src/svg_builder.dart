@@ -14,8 +14,10 @@ class SvgBuilder extends JsonWidgetBuilder {
     this.url,
     this.width,
   })  : assert(asset == null || url == null),
-        assert(asset != null || url != null);
+        assert(asset != null || url != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'svg';
 
   final String asset;

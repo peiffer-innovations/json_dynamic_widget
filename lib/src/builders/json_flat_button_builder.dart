@@ -32,8 +32,9 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
     this.textColor,
     this.textTheme,
     this.visualDensity,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'flat_button';
 
   final bool autofocus;
@@ -200,10 +201,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonFlatButtonBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return FlatButton(
       autofocus: autofocus,
@@ -217,6 +215,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
       height: height,
       highlightColor: highlightColor,
       hoverColor: hoverColor,
+      key: key,
       materialTapTargetSize: materialTapTargetSize,
       minWidth: minWidth,
       mouseCursor: mouseCursor,
@@ -229,7 +228,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
       textColor: textColor,
       textTheme: textTheme,
       visualDensity: visualDensity,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

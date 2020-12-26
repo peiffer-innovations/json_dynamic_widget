@@ -32,8 +32,10 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
     this.semanticLabel,
     @required this.src,
     this.width,
-  }) : assert(src?.isNotEmpty == true);
+  })  : assert(src?.isNotEmpty == true),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'network_image';
 
   final Alignment alignment;
@@ -172,11 +174,6 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonNetworkImageBuilder] does not support children.',
-    );
-
     return Image.network(
       src,
       alignment: alignment,
@@ -194,6 +191,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
       headers: headers,
       height: height,
       isAntiAlias: isAntiAlias,
+      key: key,
       loadingBuilder: loadingBuilder,
       matchTextDirection: matchTextDirection,
       repeat: repeat,

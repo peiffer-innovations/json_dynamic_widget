@@ -8,8 +8,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 class JsonAspectRatioBuilder extends JsonWidgetBuilder {
   JsonAspectRatioBuilder({
     this.aspectRatio,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'aspect_ratio';
 
   final double aspectRatio;
@@ -44,14 +45,12 @@ class JsonAspectRatioBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAspectRatioBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return AspectRatio(
       aspectRatio: aspectRatio,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

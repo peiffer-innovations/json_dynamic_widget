@@ -4,6 +4,7 @@ import 'package:child_builder/child_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
 
 /// Builder that builds dynamic widgets from JSON or other Map-like structures.
@@ -15,9 +16,24 @@ abstract class JsonWidgetBuilder {
   /// [PreferredSizeWidget] or not.
   JsonWidgetBuilder({
     this.preferredSizeWidget = false,
-  }) : assert(preferredSizeWidget != null);
+    @required this.numSupportedChildren,
+  })  : assert(numSupportedChildren != null),
+        assert(numSupportedChildren >= -1),
+        assert(preferredSizeWidget != null);
+
+  static final JsonWidgetData kDefaultChild = JsonWidgetData(
+    args: const {},
+    builder: () => JsonSizedBoxBuilder(),
+    child: null,
+    dynamicKeys: const {},
+    registry: JsonWidgetRegistry.instance,
+    type: JsonSizedBoxBuilder.type,
+  );
+
+  static final Logger _logger = Logger('JsonWidgetBuilder');
 
   final bool preferredSizeWidget;
+  final int numSupportedChildren;
 
   /// Builds the widget.  If there are dynamic keys on the [data] object, and
   /// the widget is not a [PreferredSizeWidget], then the returned widget will
@@ -42,6 +58,9 @@ abstract class JsonWidgetBuilder {
         childBuilder: childBuilder,
         customBuilder: _buildWidget,
         data: data,
+        key: data.id == null
+            ? null
+            : ValueKey('json_widget_stateful.${data.id}'),
       );
     }
 
@@ -57,6 +76,22 @@ abstract class JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   });
+
+  /// Returns a non-null child for widgets that must always have child widgets.
+  /// This allows the widget to be built and rendered even if the child is
+  /// missing.
+  @protected
+  JsonWidgetData getChild(JsonWidgetData data, {int index = 0}) {
+    JsonWidgetData child;
+
+    if (data?.children?.isNotEmpty == true && data.children.length > index) {
+      child = data.children[index];
+    } else {
+      child = kDefaultChild;
+    }
+
+    return child;
+  }
 
   /// Called when a JSON widget is removed from the tree due to a conditional.
   /// Custom widgets may need to implement this to clean up values that may have
@@ -78,12 +113,16 @@ abstract class JsonWidgetBuilder {
   }) {
     var key = data.id?.isNotEmpty == true ? ValueKey(data.id) : null;
 
-    var widget = buildCustom(
-      childBuilder: childBuilder,
-      context: context,
-      data: data,
-      key: key,
-    );
+    var widget = runZonedGuarded(() {
+      return buildCustom(
+        childBuilder: childBuilder,
+        context: context,
+        data: data,
+        key: key,
+      );
+    }, (e, stack) {
+      _logger.severe('[ERROR]: Unable to build widget', e, stack);
+    });
 
     if (childBuilder != null) {
       widget = childBuilder(context, widget);
@@ -116,6 +155,8 @@ class _JsonWidgetStateful extends StatefulWidget {
 }
 
 class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
+  static final Logger _logger = Logger('_JsonWidgetStatefulState');
+
   JsonWidgetData _data;
   StreamSubscription _subscription;
 
@@ -144,9 +185,21 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
   }
 
   @override
-  Widget build(BuildContext context) => _data.builder().buildCustom(
-        childBuilder: widget.childBuilder,
-        context: context,
-        data: _data,
-      );
+  Widget build(BuildContext context) {
+    var sub = runZonedGuarded(
+        () => _data.builder().buildCustom(
+              childBuilder: widget.childBuilder,
+              context: context,
+              data: _data,
+              key: _data.id == null ? null : ValueKey(_data.id),
+            ), (e, stack) {
+      _logger.severe('Error building widget: [${_data.type}].', e, stack);
+    });
+
+    if (widget.childBuilder != null) {
+      sub = widget.childBuilder(context, sub);
+    }
+
+    return sub;
+  }
 }

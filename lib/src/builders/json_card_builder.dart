@@ -16,7 +16,9 @@ class JsonCardBuilder extends JsonWidgetBuilder {
     this.semanticContainer,
     this.shadowColor,
     this.shape,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 1;
 
   static const type = 'card';
 
@@ -100,21 +102,19 @@ class JsonCardBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonCardBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Card(
       borderOnForeground: borderOnForeground,
       clipBehavior: clipBehavior,
       color: color,
       elevation: elevation,
+      key: key,
       margin: margin,
       semanticContainer: semanticContainer,
       shadowColor: shadowColor,
       shape: shape,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

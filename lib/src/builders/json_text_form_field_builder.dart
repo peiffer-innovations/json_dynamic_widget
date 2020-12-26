@@ -56,8 +56,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.textInputAction,
     this.toolbarOptions,
     this.validator,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'text_form_field';
 
   final bool autocorrect;
@@ -334,15 +335,11 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonTextFormFieldBuilder] does not support children.',
-    );
-
     return _JsonTextFormFieldWidget(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
     );
   }
 }
@@ -404,6 +401,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         keyboardAppearance: widget.builder.keyboardAppearance,
         keyboardType: widget.builder.keyboardType,
         maxLength: widget.builder.maxLength,
+        // ignore: deprecated_member_use
         maxLengthEnforced: widget.builder.maxLengthEnforced,
         maxLines: widget.builder.maxLines,
         minLines: widget.builder.minLines,

@@ -14,8 +14,9 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
     this.semanticsValue,
     this.value,
     this.valueColor,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'linear_progress_indicator';
 
   final Color backgroundColor;
@@ -78,13 +79,9 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonLinearProgressIndicatorBuilder] does not support children.',
-    );
-
     return LinearProgressIndicator(
       backgroundColor: backgroundColor,
+      key: key,
       minHeight: minHeight,
       semanticsLabel: semanticsLabel,
       semanticsValue: semanticsValue,

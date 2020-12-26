@@ -9,8 +9,9 @@ class JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
   JsonIntrinsicWidthBuilder({
     this.stepHeight,
     this.stepWidth,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'intrinsic_width';
 
   final double stepHeight;
@@ -52,15 +53,13 @@ class JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonIntrinsicWidthBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return IntrinsicWidth(
+      key: key,
       stepHeight: stepHeight,
       stepWidth: stepWidth,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

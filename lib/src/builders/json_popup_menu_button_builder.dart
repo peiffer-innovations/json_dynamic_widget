@@ -20,8 +20,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     this.padding,
     this.shape,
     this.tooltip,
-  }) : assert(itemBuilder != null);
+  })  : assert(itemBuilder != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'popup_menu_button';
 
   final Color color;
@@ -125,11 +127,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      (data.children?.length == 1 && icon == null) ||
-          (data.children?.isNotEmpty != true && icon != null),
-      '[JsonPopupMenuButtonBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return PopupMenuButton(
       color: color,
@@ -141,13 +139,14 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
       ),
       initialValue: initialValue,
       itemBuilder: itemBuilder,
+      key: key,
       offset: offset,
       onCanceled: onCanceled,
       onSelected: onSelected,
       padding: padding,
       shape: shape,
       tooltip: tooltip,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

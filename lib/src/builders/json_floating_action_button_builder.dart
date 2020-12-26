@@ -30,8 +30,9 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
     this.shape,
     this.splashColor,
     this.tooltip,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'floating_action_button';
 
   final bool autofocus;
@@ -185,10 +186,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonFloatingActionButtonBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return FloatingActionButton(
       autofocus: autofocus,
@@ -205,6 +203,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
       hoverColor: hoverColor,
       hoverElevation: hoverElevation,
       isExtended: isExtended,
+      key: key,
       materialTapTargetSize: materialTapTargetSize,
       mini: mini,
       mouseCursor: mouseCursor,
@@ -212,7 +211,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
       shape: shape,
       splashColor: splashColor,
       tooltip: tooltip,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

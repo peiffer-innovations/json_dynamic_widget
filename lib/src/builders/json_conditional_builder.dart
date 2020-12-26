@@ -15,8 +15,10 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
     @required this.keys,
     this.onFalse,
   })  : assert(keys != null),
-        assert(conditional != null);
+        assert(conditional != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'conditional';
 
   final Conditional conditional;
@@ -86,11 +88,6 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonConditionalBuilder] only supports exactly one child.',
-    );
-
     return _ConditionalWidget(
       childBuilder: childBuilder,
       conditional: conditional,
@@ -169,7 +166,9 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
   Widget build(BuildContext context) {
     var result = _conditional.evaluate(_data.registry.values);
 
-    var onTrue = _data.children[0];
+    var onTrue = _data.children?.isNotEmpty == true
+        ? _data.children[0]
+        : JsonWidgetBuilder.kDefaultChild;
 
     Widget child;
     if (result == true) {

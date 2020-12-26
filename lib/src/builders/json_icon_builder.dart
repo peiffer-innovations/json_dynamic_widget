@@ -13,8 +13,9 @@ class JsonIconBuilder extends JsonWidgetBuilder {
     this.semanticLabel,
     this.size,
     this.textDirection,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'icon';
 
   final Color color;
@@ -75,14 +76,10 @@ class JsonIconBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[JsonIconBuilder] does not support children.',
-    );
-
     return Icon(
       icon,
       color: color,
+      key: key,
       semanticLabel: semanticLabel,
       size: size,
       textDirection: textDirection,

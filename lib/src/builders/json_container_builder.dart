@@ -20,8 +20,9 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
     this.transform,
     this.transformAlignment,
     this.width,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'container';
 
   final Alignment alignment;
@@ -128,10 +129,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1 || data.children?.isNotEmpty != true,
-      '[JsonContainerBuilder] only supports zero or one child.',
-    );
+    var child = getChild(data);
 
     return Container(
       alignment: alignment,
@@ -141,6 +139,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
       decoration: decoration,
       foregroundDecoration: foregroundDecoration,
       height: height,
+      key: key,
       margin: margin,
       padding: padding,
       transform: transform,
@@ -149,7 +148,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
       width: width,
       child: data.children?.length != 1
           ? null
-          : data.children[0].build(
+          : child.build(
               childBuilder: childBuilder,
               context: context,
             ),

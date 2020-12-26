@@ -8,8 +8,9 @@ import 'package:json_theme/json_theme.dart';
 class JsonThemeBuilder extends JsonWidgetBuilder {
   JsonThemeBuilder({
     this.theme,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'theme';
 
   final ThemeData theme;
@@ -50,15 +51,13 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonThemeBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Theme(
       data: theme,
       child: Builder(
-        builder: (BuildContext context) => data.children[0].build(
+        key: key,
+        builder: (BuildContext context) => child.build(
           childBuilder: childBuilder,
           context: context,
         ),

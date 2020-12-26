@@ -11,8 +11,9 @@ class JsonFormBuilder extends JsonWidgetBuilder {
     this.autovalidateMode,
     this.onChanged,
     this.onWillPop,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'form';
 
   final AutovalidateMode autovalidateMode;
@@ -69,15 +70,14 @@ class JsonFormBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonFormBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonFormWidget(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -85,12 +85,16 @@ class JsonFormBuilder extends JsonWidgetBuilder {
 class _JsonFormWidget extends StatefulWidget {
   _JsonFormWidget({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonFormBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -126,7 +130,7 @@ class _JsonFormWidgetState extends State<_JsonFormWidget> {
         key: _key,
         onChanged: widget.builder.onChanged,
         onWillPop: widget.builder.onWillPop,
-        child: widget.data.children[0].build(
+        child: widget.child.build(
           childBuilder: widget.childBuilder,
           context: context,
         ),

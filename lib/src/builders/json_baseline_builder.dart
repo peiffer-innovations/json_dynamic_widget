@@ -10,7 +10,9 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
   JsonBaselineBuilder({
     this.baseline,
     this.baselineType,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 0;
 
   static const type = 'baseline';
 
@@ -55,15 +57,13 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonBaselineBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Baseline(
       baseline: baseline,
       baselineType: baselineType,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

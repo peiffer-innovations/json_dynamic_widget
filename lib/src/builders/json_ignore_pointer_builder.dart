@@ -9,8 +9,9 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
   JsonIgnorePointerBuilder({
     this.ignoring,
     this.ignoringSemantics,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'ignore_pointer';
 
   final bool ignoring;
@@ -52,15 +53,13 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonIgnorePointerBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return IgnorePointer(
       ignoring: ignoring,
       ignoringSemantics: ignoringSemantics,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

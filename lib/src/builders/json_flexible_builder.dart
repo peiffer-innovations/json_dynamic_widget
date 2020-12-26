@@ -10,8 +10,9 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
   JsonFlexibleBuilder({
     this.fit,
     this.flex,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'flexible';
 
   final FlexFit fit;
@@ -56,15 +57,13 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonFlexibleBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Flexible(
       fit: fit,
       flex: flex,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

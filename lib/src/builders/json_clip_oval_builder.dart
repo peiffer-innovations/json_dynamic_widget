@@ -8,7 +8,9 @@ import 'package:json_theme/json_theme.dart';
 class JsonClipOvalBuilder extends JsonWidgetBuilder {
   JsonClipOvalBuilder({
     this.clipBehavior,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 1;
 
   static const type = 'clip_oval';
 
@@ -50,14 +52,12 @@ class JsonClipOvalBuilder extends JsonWidgetBuilder {
       @required BuildContext context,
       @required JsonWidgetData data,
       Key key}) {
-    assert(
-      data.children?.length == 1,
-      '[JsonClipOvalBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return ClipOval(
       clipBehavior: clipBehavior,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

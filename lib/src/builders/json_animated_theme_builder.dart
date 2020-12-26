@@ -12,8 +12,10 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
     @required this.data,
     this.duration,
     this.onEnd,
-  }) : assert(data != null);
+  })  : assert(data != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_theme';
 
   final Curve curve;
@@ -67,15 +69,14 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedThemeBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedTheme(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -83,12 +84,16 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedTheme extends StatefulWidget {
   _JsonAnimatedTheme({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedThemeBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -104,7 +109,7 @@ class _JsonAnimatedThemeState extends State<_JsonAnimatedTheme> {
       data: widget.builder.data,
       duration: widget.builder.duration,
       onEnd: widget.builder.onEnd,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

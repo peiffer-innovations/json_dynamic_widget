@@ -8,8 +8,10 @@ import 'package:json_theme/json_theme.dart';
 class JsonPaddingBuilder extends JsonWidgetBuilder {
   JsonPaddingBuilder({
     @required this.padding,
-  }) : assert(padding != null);
+  })  : assert(padding != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'padding';
 
   final EdgeInsets padding;
@@ -50,14 +52,12 @@ class JsonPaddingBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonPaddingBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Padding(
+      key: key,
       padding: padding,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

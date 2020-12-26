@@ -13,8 +13,9 @@ class JsonRowBuilder extends JsonWidgetBuilder {
     this.textBaseline,
     this.textDirection,
     this.verticalDirection,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = -1;
   static const type = 'row';
 
   final CrossAxisAlignment crossAxisAlignment;
@@ -96,13 +97,14 @@ class JsonRowBuilder extends JsonWidgetBuilder {
   }) {
     return Row(
       crossAxisAlignment: crossAxisAlignment,
+      key: key,
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       textBaseline: textBaseline,
       textDirection: textDirection,
       verticalDirection: verticalDirection,
       children: [
-        for (var child in data.children ?? [])
+        for (var child in data.children ?? <JsonWidgetData>[])
           child.build(
             childBuilder: childBuilder,
             context: context,

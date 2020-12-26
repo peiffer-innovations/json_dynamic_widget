@@ -29,8 +29,9 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
     this.title,
     this.trailing,
     this.visualDensity,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'list_tile';
 
   final bool autofocus;
@@ -177,6 +178,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
       focusNode: focusNode,
       hoverColor: hoverColor,
       isThreeLine: isThreeLine,
+      key: key,
       leading: leading?.build(
         childBuilder: childBuilder,
         context: context,

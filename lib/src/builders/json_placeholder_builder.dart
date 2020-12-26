@@ -12,8 +12,9 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
     this.fallbackHeight,
     this.fallbackWidth,
     this.strokeWidth,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'placeholder';
 
   final Color color;
@@ -73,15 +74,11 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.isEmpty != false,
-      '[JsonPlaceholderBuilder] does not support children',
-    );
-
     return Placeholder(
       color: color,
       fallbackHeight: fallbackHeight,
       fallbackWidth: fallbackWidth,
+      key: key,
       strokeWidth: strokeWidth,
     );
   }

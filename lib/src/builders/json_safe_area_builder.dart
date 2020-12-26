@@ -14,8 +14,9 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
     this.minimum,
     this.right,
     this.top,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'safe_area';
 
   final bool bottom;
@@ -78,19 +79,17 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonSafeAreaBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return SafeArea(
       bottom: bottom,
+      key: key,
       left: left,
       maintainBottomViewPadding: maintainBottomViewPadding,
       minimum: minimum,
       right: right,
       top: top,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

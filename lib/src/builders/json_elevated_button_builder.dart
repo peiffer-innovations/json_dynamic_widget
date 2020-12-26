@@ -25,8 +25,9 @@ class JsonElevatedButtonBuilder extends JsonWidgetBuilder {
     this.sideCallback,
     this.style,
     this.textStyleCallback,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'elevated_button';
 
   final bool autofocus;
@@ -148,15 +149,13 @@ class JsonElevatedButtonBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonElevatedButtonBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return ElevatedButton(
       autofocus: autofocus,
       clipBehavior: clipBehavior,
       focusNode: focusNode,
+      key: key,
       onLongPress: onLongPress,
       onPressed: onPressed,
       style: ButtonStyle(
@@ -220,7 +219,7 @@ class JsonElevatedButtonBuilder extends JsonWidgetBuilder {
             : null,
         visualDensity: style.visualDensity,
       ),
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

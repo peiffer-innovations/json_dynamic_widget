@@ -9,7 +9,9 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
   JsonCenterBuilder({
     this.heightFactor,
     this.widthFactor,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = 1;
 
   static const type = 'center';
 
@@ -48,15 +50,13 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonCenterBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return Center(
       heightFactor: heightFactor,
+      key: key,
       widthFactor: widthFactor,
-      child: data.children[0].build(
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

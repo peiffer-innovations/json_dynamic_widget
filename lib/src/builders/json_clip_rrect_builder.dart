@@ -9,8 +9,9 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   JsonClipRRectBuilder({
     this.borderRadius,
     this.clipBehavior,
-  });
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'clip_rrect';
 
   final BorderRadius borderRadius;
@@ -60,15 +61,13 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
     @required JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonClipRRectBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return ClipRRect(
       borderRadius: borderRadius,
       clipBehavior: clipBehavior,
-      child: data.children[0].build(
+      key: key,
+      child: child.build(
         childBuilder: childBuilder,
         context: context,
       ),

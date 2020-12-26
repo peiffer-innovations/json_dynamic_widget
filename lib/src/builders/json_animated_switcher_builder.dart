@@ -7,24 +7,30 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// See the [fromDynamic] for the format.
 class JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
   JsonAnimatedSwitcherBuilder({
-    @required this.child,
+    @required JsonWidgetData child,
     @required this.duration,
     this.layoutBuilder,
     this.reverseDuration,
     this.switchInCurve,
     this.switchOutCurve,
     this.transitionBuilder,
-  }) : assert(duration != null);
+  })  : assert(duration != null),
+        _child = child,
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 0;
   static const type = 'animated_switcher';
 
-  final JsonWidgetData child;
+  final JsonWidgetData _child;
   final Duration duration;
   final AnimatedSwitcherLayoutBuilder layoutBuilder;
   final Duration reverseDuration;
   final Curve switchInCurve;
   final Curve switchOutCurve;
   final AnimatedSwitcherTransitionBuilder transitionBuilder;
+
+  /// Returns an always non-null child.
+  JsonWidgetData get child => _child ?? JsonWidgetBuilder.kDefaultChild;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -89,6 +95,7 @@ class JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
     );
   }
 }
@@ -98,8 +105,10 @@ class _JsonAnimatedSwitcher extends StatefulWidget {
     @required this.builder,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedSwitcherBuilder builder;
   final ChildWidgetBuilder childBuilder;
@@ -119,10 +128,7 @@ class _JsonAnimatedSwitcherState extends State<_JsonAnimatedSwitcher> {
       switchInCurve: widget.builder.switchInCurve,
       switchOutCurve: widget.builder.switchOutCurve,
       transitionBuilder: widget.builder.transitionBuilder,
-      child: Container(
-        key: GlobalKey(),
-        child: widget.builder.child.build(context: context),
-      ),
+      child: widget.builder.child.build(context: context),
     );
   }
 }

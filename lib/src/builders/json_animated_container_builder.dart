@@ -21,8 +21,10 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
     this.padding,
     this.transform,
     this.width,
-  }) : assert(duration != null);
+  })  : assert(duration != null),
+        super(numSupportedChildren: kNumSupportedChildren);
 
+  static const kNumSupportedChildren = 1;
   static const type = 'animated_container';
 
   final AlignmentGeometry alignment;
@@ -123,15 +125,14 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
     JsonWidgetData data,
     Key key,
   }) {
-    assert(
-      data.children?.length == 1,
-      '[JsonAnimatedContainerBuilder] only supports exactly one child.',
-    );
+    var child = getChild(data);
 
     return _JsonAnimatedContainer(
       builder: this,
       childBuilder: childBuilder,
       data: data,
+      key: key,
+      child: child,
     );
   }
 }
@@ -139,12 +140,16 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
 class _JsonAnimatedContainer extends StatefulWidget {
   _JsonAnimatedContainer({
     @required this.builder,
+    @required this.child,
     @required this.childBuilder,
     @required this.data,
+    Key key,
   })  : assert(builder != null),
-        assert(data != null);
+        assert(data != null),
+        super(key: key);
 
   final JsonAnimatedContainerBuilder builder;
+  final JsonWidgetData child;
   final ChildWidgetBuilder childBuilder;
   final JsonWidgetData data;
 
@@ -169,7 +174,7 @@ class _JsonAnimatedContainerState extends State<_JsonAnimatedContainer> {
       padding: widget.builder.padding,
       transform: widget.builder.transform,
       width: widget.builder.width,
-      child: widget.data.children[0].build(
+      child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),
