@@ -1,3 +1,8 @@
+## [1.4.0+1] - December 26th, 2020
+
+* Ignore deprecated Flat / Raised button errors so the framework can continue to support them.
+
+
 ## [1.4.0] - December 26th, 2020
 
 * Added in the concept of `static` vs `dynamic` variables; earlier all were always `dynamic`.

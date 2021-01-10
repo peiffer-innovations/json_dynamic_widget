@@ -5,6 +5,8 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
+// ignore_for_file: deprecated_member_use
+
 /// Builder that can build an [RaisedButton] widget.  See the [fromDynamic] for
 /// the format.
 class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
