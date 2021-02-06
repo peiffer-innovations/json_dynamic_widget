@@ -41,7 +41,7 @@ class RaisedButtonSchema {
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textColor': SchemaHelper.objectSchema(ColorSchema.id),
       'textTheme': SchemaHelper.objectSchema(ButtonTextThemeSchema.id),
-      'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id)
+      'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };
 }

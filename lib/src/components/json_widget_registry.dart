@@ -274,6 +274,10 @@ class JsonWidgetRegistry {
       builder: JsonIconBuilder.fromDynamic,
       schemaId: IconSchema.id,
     ),
+    JsonIconButtonBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonIconButtonBuilder.fromDynamic,
+      schemaId: IconButtonSchema.id,
+    ),
     JsonIgnorePointerBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonIgnorePointerBuilder.fromDynamic,
       schemaId: IgnorePointerSchema.id,

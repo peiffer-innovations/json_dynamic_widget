@@ -46,6 +46,7 @@ class JsonDynamicWidgetSchemas {
     FractionallySizedBoxSchema.id: FractionallySizedBoxSchema.schema,
     GestureDetectorSchema.id: GestureDetectorSchema.schema,
     HeroSchema.id: HeroSchema.schema,
+    IconButtonSchema.id: IconButtonSchema.schema,
     IconSchema.id: IconSchema.schema,
     IgnorePointerSchema.id: IgnorePointerSchema.schema,
     IndexedStackSchema.id: IndexedStackSchema.schema,

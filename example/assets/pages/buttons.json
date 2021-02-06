@@ -77,6 +77,33 @@
               }
             }
           }
+        },
+        {
+          "type": "expanded",
+          "child": {
+            "type": "center",
+            "child": {
+              "type": "icon_button",
+              "args": {
+                "icon": {
+                  "type": "icon",
+                  "args": {
+                    "icon": {
+                      "codePoint": 58712,
+                      "fontFamily": "MaterialIcons"
+                    }
+                  }
+                },
+                "onPressed": "##simplePrintMessage()##"
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "OutlinedButton"
+                }
+              }
+            }
+          }
         }
       ]
     },

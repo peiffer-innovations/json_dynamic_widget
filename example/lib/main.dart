@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:example/src/custom_schemas/dotted_border_schema.dart';
 import 'package:example/src/custom_schemas/svg_schema.dart';
 import 'package:example/src/dotted_border_builder.dart';
+import 'package:example/src/issue_24_page.dart';
 import 'package:example/src/svg_builder.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -193,65 +194,73 @@ class RootPage extends StatelessWidget {
     Key key,
   }) : super(key: key);
 
-  static const _pages = [
-    'align',
-    'animated_align',
-    'animated_container',
-    'animated_cross_fade',
-    'animated_default_text_style',
-    'animated_opacity',
-    'animated_padding',
-    'animated_physical_model',
-    'animated_positioned',
-    'animated_positioned_directional',
-    'animated_size',
-    'animated_switcher',
-    'animated_theme',
-    'aspect_ratio',
-    'asset_images',
-    'bank_example',
-    'baseline',
-    'buttons',
-    'card',
-    'center',
-    'checkbox',
-    'circular_progress_indicator',
-    'clips',
-    'conditional',
-    'cupertino_switch',
-    'decorated_box',
-    'directionality',
-    'fitted_box',
-    'form',
-    'fractional_translation',
-    'fractionally_sized_box',
-    'gestures',
-    'images',
-    'indexed_stack',
-    'input_error',
-    'interactive_viewer',
-    'intrinsic_height',
-    'intrinsic_width',
-    'issue_10',
-    'issue_11',
-    'issue_12',
-    'issue_20_list',
-    'issue_20_single',
-    'limited_box',
-    'linear_progress_indicator',
-    'list_view',
-    'offstage',
-    'opacity',
-    'overflow_box',
-    'placeholder',
-    'popup_menu_button',
-    'simple_page',
-    'switch',
-    'theme',
-    'tween_animation',
-  ];
+  static final _pages = {
+    'align': _onPageSelected,
+    'animated_align': _onPageSelected,
+    'animated_container': _onPageSelected,
+    'animated_cross_fade': _onPageSelected,
+    'animated_default_text_style': _onPageSelected,
+    'animated_opacity': _onPageSelected,
+    'animated_padding': _onPageSelected,
+    'animated_physical_model': _onPageSelected,
+    'animated_positioned': _onPageSelected,
+    'animated_positioned_directional': _onPageSelected,
+    'animated_size': _onPageSelected,
+    'animated_switcher': _onPageSelected,
+    'animated_theme': _onPageSelected,
+    'aspect_ratio': _onPageSelected,
+    'asset_images': _onPageSelected,
+    'bank_example': _onPageSelected,
+    'baseline': _onPageSelected,
+    'buttons': _onPageSelected,
+    'card': _onPageSelected,
+    'center': _onPageSelected,
+    'checkbox': _onPageSelected,
+    'circular_progress_indicator': _onPageSelected,
+    'clips': _onPageSelected,
+    'conditional': _onPageSelected,
+    'cupertino_switch': _onPageSelected,
+    'decorated_box': _onPageSelected,
+    'directionality': _onPageSelected,
+    'fitted_box': _onPageSelected,
+    'form': _onPageSelected,
+    'fractional_translation': _onPageSelected,
+    'fractionally_sized_box': _onPageSelected,
+    'gestures': _onPageSelected,
+    'images': _onPageSelected,
+    'indexed_stack': _onPageSelected,
+    'input_error': _onPageSelected,
+    'interactive_viewer': _onPageSelected,
+    'intrinsic_height': _onPageSelected,
+    'intrinsic_width': _onPageSelected,
+    'issue_10': _onPageSelected,
+    'issue_11': _onPageSelected,
+    'issue_12': _onPageSelected,
+    'issue_20_list': _onPageSelected,
+    'issue_20_single': _onPageSelected,
+    'issue_24': (context, _) async => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => Issue24Page(),
+          ),
+        ),
+    'limited_box': _onPageSelected,
+    'linear_progress_indicator': _onPageSelected,
+    'list_view': _onPageSelected,
+    'offstage': _onPageSelected,
+    'opacity': _onPageSelected,
+    'overflow_box': _onPageSelected,
+    'placeholder': _onPageSelected,
+    'popup_menu_button': _onPageSelected,
+    'simple_page': _onPageSelected,
+    'switch': _onPageSelected,
+    'theme': _onPageSelected,
+    'tween_animation': _onPageSelected,
+  };
 
-  Future<void> _onPageSelected(BuildContext context, String themeId) async {
+  static Future<void> _onPageSelected(
+    BuildContext context,
+    String themeId,
+  ) async {
     JsonWidgetRegistry.instance.clearValues();
     var pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
     var dataJson = json.decode(pageStr);
@@ -274,6 +283,9 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var names = _pages.keys.toList();
+    names.sort();
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Select Widget / Page'),
@@ -281,8 +293,8 @@ class RootPage extends StatelessWidget {
       body: ListView.builder(
         itemCount: _pages.length,
         itemBuilder: (BuildContext context, int index) => ListTile(
-          title: Text(_pages[index]),
-          onTap: () => _onPageSelected(context, _pages[index]),
+          title: Text(names[index]),
+          onTap: () => _pages[names[index]](context, names[index]),
         ),
       ),
     );

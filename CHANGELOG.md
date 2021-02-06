@@ -1,3 +1,8 @@
+## [1.4.1] - February, 6th 2021
+
+* Added support for `IconButton`.
+
+
 ## [1.4.0+1] - December 26th, 2020
 
 * Ignore deprecated Flat / Raised button errors so the framework can continue to support them.

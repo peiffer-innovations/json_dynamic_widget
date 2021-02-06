@@ -42,6 +42,7 @@ export 'src/builders/json_fractionally_sized_box_builder.dart';
 export 'src/builders/json_gesture_detector_builder.dart';
 export 'src/builders/json_hero_builder.dart';
 export 'src/builders/json_icon_builder.dart';
+export 'src/builders/json_icon_button_builder.dart';
 export 'src/builders/json_ignore_pointer_builder.dart';
 export 'src/builders/json_indexed_stack_builder.dart';
 export 'src/builders/json_ink_well_builder.dart';
