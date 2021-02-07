@@ -4,15 +4,15 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "4b6db237b3514a88107a422469adfb0f",
-"index.html": "a82abbb6113c6449380815a70a1a3592",
-"/": "a82abbb6113c6449380815a70a1a3592",
-"main.dart.js": "fb8b019ac4ed95422eb68ff63c24c8fc",
+"index.html": "88beff0d5152d00f8744018fe8ae9a3f",
+"/": "88beff0d5152d00f8744018fe8ae9a3f",
+"main.dart.js": "289423d7819b5cb3de739374c96624d5",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
-"assets/AssetManifest.json": "c251072d90922d43533b8d2a78396518",
-"assets/NOTICES": "865c4bd3a0be1a89c6ca6116df5c2844",
+"assets/AssetManifest.json": "74a70c85b5fbdacc295770b7118c21f5",
+"assets/NOTICES": "bbcef09747921daa33d7023f4d346896",
 "assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
 "assets/fonts/MaterialIcons-Regular.otf": "1288c9e28052e028aba623321f7826ac",
 "assets/assets/images/visa.svg": "45180370eb48dfdbdf59b3be4a3c0b59",
@@ -71,7 +71,6 @@ const RESOURCES = {
 "assets/assets/pages/directionality.json": "6835c8e2dd7c38f2851732b53e51c6ec",
 "assets/assets/pages/animated_switcher.json": "9e08303fe8f252f217e06c41b79d723a",
 "assets/assets/pages/clips.json": "6475dfb17f85b218e76183a83a293069",
-"assets/assets/pages/radio.json": "2eb9a65fcc9b8de02a9a048828b3bd30",
 "assets/assets/pages/issue_20_single.json": "31d96ed15fca633d7aa220197c102060",
 "assets/assets/pages/issue_11.json": "314308857d863065aed0aebb2907e4e8",
 "assets/assets/pages/asset_images.json": "39a8f965d7439e229de7731893dc54de",
@@ -87,12 +86,13 @@ const RESOURCES = {
 "assets/assets/pages/animated_cross_fade.json": "bd47018b8ca3f4cd5d48695c0e86cc32",
 "assets/assets/pages/form.json": "5cec2875b2162e52ade426b73de3f8b1",
 "assets/assets/pages/list_view.json": "ffc64a252307dd45c79d9c9c6bb61eaa",
-"assets/assets/pages/buttons.json": "3d5111eb96c4c983d151c1afa97cb330",
+"assets/assets/pages/buttons.json": "c1ce198ea60bd01341f8fc1a9263230f",
 "assets/assets/pages/fitted_box.json": "99c069d207b4253f3193e5365b8d32ed",
 "assets/assets/pages/gestures.json": "3323d8abcf022fc28584227db8cbb937",
 "assets/assets/pages/input_error.json": "0c2394bf170ae3e93fd44a7bf1975d4b",
 "assets/assets/pages/center.json": "b9fae0ffc52b196ed2a8107113d2e794",
-"assets/assets/pages/popup_menu_button.json": "12a875f9c7aa3569e1bb2b1f515d6cb1"
+"assets/assets/pages/popup_menu_button.json": "12a875f9c7aa3569e1bb2b1f515d6cb1",
+"assets/assets/widgets/issue_24.json": "ce819747a12097fcf29f1d6545ae5a61"
 };
 
 // The application shell files that are downloaded before a service worker can
@@ -236,7 +236,7 @@ async function downloadOffline() {
     }
     currentContent[key] = true;
   }
-  for (var resourceKey in Object.keys(RESOURCES)) {
+  for (var resourceKey of Object.keys(RESOURCES)) {
     if (!currentContent[resourceKey]) {
       resources.push(resourceKey);
     }
