@@ -9,7 +9,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonContainerBuilder extends JsonWidgetBuilder {
   JsonContainerBuilder({
     this.alignment,
-    this.clipBehavior,
+    required this.clipBehavior,
     this.color,
     this.constraints,
     this.decoration,
@@ -25,18 +25,18 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'container';
 
-  final Alignment alignment;
+  final Alignment? alignment;
   final Clip clipBehavior;
-  final Color color;
-  final BoxConstraints constraints;
-  final BoxDecoration decoration;
-  final BoxDecoration foregroundDecoration;
-  final double height;
-  final EdgeInsets margin;
-  final EdgeInsets padding;
-  final Matrix4 transform;
-  final AlignmentGeometry transformAlignment;
-  final double width;
+  final Color? color;
+  final BoxConstraints? constraints;
+  final BoxDecoration? decoration;
+  final BoxDecoration? foregroundDecoration;
+  final double? height;
+  final EdgeInsets? margin;
+  final EdgeInsets? padding;
+  final Matrix4? transform;
+  final AlignmentGeometry? transformAlignment;
+  final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -66,11 +66,11 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMatrix4]
-  static JsonContainerBuilder fromDynamic(
+  static JsonContainerBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonContainerBuilder result;
+    JsonContainerBuilder? result;
     if (map != null) {
       result = JsonContainerBuilder(
         alignment: ThemeDecoder.decodeAlignment(
@@ -102,11 +102,11 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,
-        ),
+        ) as EdgeInsets?,
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
-        ),
+        ) as EdgeInsets?,
         transform: ThemeDecoder.decodeMatrix4(
           map['matrix4'],
           validate: false,
@@ -124,10 +124,10 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

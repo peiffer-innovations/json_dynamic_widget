@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
   JsonFractionallySizedBoxBuilder({
-    this.alignment,
+    required this.alignment,
     this.heightFactor,
     this.widthFactor,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -17,8 +17,8 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
   static const type = 'fractionally_sized_box';
 
   final AlignmentGeometry alignment;
-  final double heightFactor;
-  final double widthFactor;
+  final double? heightFactor;
+  final double? widthFactor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -33,11 +33,11 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
-  static JsonFractionallySizedBoxBuilder fromDynamic(
+  static JsonFractionallySizedBoxBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonFractionallySizedBoxBuilder result;
+    JsonFractionallySizedBoxBuilder? result;
 
     if (map != null) {
       result = JsonFractionallySizedBoxBuilder(
@@ -60,10 +60,10 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

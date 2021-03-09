@@ -9,27 +9,27 @@ import 'package:json_theme/json_theme.dart';
 /// [fromDynamic] for the format.
 class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   JsonSingleChildScrollViewBuilder({
-    this.clipBehavior,
+    required this.clipBehavior,
     this.controller,
-    this.dragStartBehavior,
+    required this.dragStartBehavior,
     this.padding,
     this.physics,
     this.primary,
     this.restorationId,
-    this.reverse,
-    this.scrollDirection,
+    required this.reverse,
+    required this.scrollDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'single_child_scroll_view';
 
   final Clip clipBehavior;
-  final ScrollController controller;
+  final ScrollController? controller;
   final DragStartBehavior dragStartBehavior;
-  final EdgeInsets padding;
-  final ScrollPhysics physics;
-  final bool primary;
-  final String restorationId;
+  final EdgeInsets? padding;
+  final ScrollPhysics? physics;
+  final bool? primary;
+  final String? restorationId;
   final bool reverse;
   final Axis scrollDirection;
 
@@ -59,11 +59,11 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeScrollPhysics]
-  static JsonSingleChildScrollViewBuilder fromDynamic(
+  static JsonSingleChildScrollViewBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonSingleChildScrollViewBuilder result;
+    JsonSingleChildScrollViewBuilder? result;
 
     if (map != null) {
       result = JsonSingleChildScrollViewBuilder(
@@ -78,7 +78,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
-        ),
+        ) as EdgeInsets?,
         physics: ThemeDecoder.decodeScrollPhysics(
           map['physics'],
           validate: false,
@@ -100,10 +100,10 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

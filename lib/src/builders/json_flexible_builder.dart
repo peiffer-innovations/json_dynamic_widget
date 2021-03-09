@@ -8,8 +8,8 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonFlexibleBuilder extends JsonWidgetBuilder {
   JsonFlexibleBuilder({
-    this.fit,
-    this.flex,
+    required this.fit,
+    required this.flex,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -30,11 +30,11 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeFlexFit]
-  static JsonFlexibleBuilder fromDynamic(
+  static JsonFlexibleBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonFlexibleBuilder result;
+    JsonFlexibleBuilder? result;
 
     if (map != null) {
       result = JsonFlexibleBuilder(
@@ -43,7 +43,7 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             FlexFit.loose,
-        flex: JsonClass.parseInt(map['flex'], 1),
+        flex: JsonClass.parseInt(map['flex'], 1)!,
       );
     }
 
@@ -52,10 +52,10 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

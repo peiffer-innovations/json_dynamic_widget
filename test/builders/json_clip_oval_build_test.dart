@@ -6,7 +6,10 @@ void main() {
     const type = JsonClipOvalBuilder.type;
 
     expect(type, 'clip_oval');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonClipOvalBuilder,

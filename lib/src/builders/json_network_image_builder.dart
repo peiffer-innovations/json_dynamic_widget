@@ -10,56 +10,56 @@ import 'package:json_theme/json_theme.dart';
 /// [fromDynamic] for the format.
 class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   JsonNetworkImageBuilder({
-    this.alignment,
+    required this.alignment,
     this.cacheHeight,
     this.cacheWidth,
     this.centerSlice,
     this.color,
     this.colorBlendMode,
     this.errorBuilder,
-    this.excludeFromSemantics,
-    this.filterQuality,
+    required this.excludeFromSemantics,
+    required this.filterQuality,
     this.fit,
     this.frameBuilder,
-    this.gaplessPlayback,
+    required this.gaplessPlayback,
     this.height,
     this.headers,
-    this.isAntiAlias,
+    required this.isAntiAlias,
     this.loadingBuilder,
-    this.matchTextDirection,
-    this.repeat,
-    this.scale,
+    required this.matchTextDirection,
+    required this.repeat,
+    required this.scale,
     this.semanticLabel,
-    @required this.src,
+    required this.src,
     this.width,
-  })  : assert(src?.isNotEmpty == true),
+  })  : assert(src.isNotEmpty == true),
         super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 0;
   static const type = 'network_image';
 
   final Alignment alignment;
-  final int cacheHeight;
-  final int cacheWidth;
-  final Rect centerSlice;
-  final Color color;
-  final BlendMode colorBlendMode;
-  final ImageErrorWidgetBuilder errorBuilder;
+  final int? cacheHeight;
+  final int? cacheWidth;
+  final Rect? centerSlice;
+  final Color? color;
+  final BlendMode? colorBlendMode;
+  final ImageErrorWidgetBuilder? errorBuilder;
   final bool excludeFromSemantics;
   final FilterQuality filterQuality;
-  final BoxFit fit;
-  final ImageFrameBuilder frameBuilder;
+  final BoxFit? fit;
+  final ImageFrameBuilder? frameBuilder;
   final bool gaplessPlayback;
-  final Map<String, String> headers;
-  final double height;
+  final Map<String, String>? headers;
+  final double? height;
   final bool isAntiAlias;
-  final ImageLoadingBuilder loadingBuilder;
+  final ImageLoadingBuilder? loadingBuilder;
   final bool matchTextDirection;
   final ImageRepeat repeat;
   final double scale;
-  final String semanticLabel;
+  final String? semanticLabel;
   final String src;
-  final double width;
+  final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -105,11 +105,11 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBlendMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeImageRepeat]
-  static JsonNetworkImageBuilder fromDynamic(
+  static JsonNetworkImageBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonNetworkImageBuilder result;
+    JsonNetworkImageBuilder? result;
 
     if (map != null) {
       result = JsonNetworkImageBuilder(
@@ -157,7 +157,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             ImageRepeat.noRepeat,
-        scale: JsonClass.parseDouble(map['scale'], 1.0),
+        scale: JsonClass.parseDouble(map['scale'], 1.0)!,
         semanticLabel: map['semanticLabel'],
         src: map['src'],
         width: JsonClass.parseDouble(map['width']),
@@ -169,10 +169,10 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return Image.network(
       src,

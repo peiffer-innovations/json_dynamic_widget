@@ -9,7 +9,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonIconBuilder extends JsonWidgetBuilder {
   JsonIconBuilder({
     this.color,
-    @required this.icon,
+    required this.icon,
     this.semanticLabel,
     this.size,
     this.textDirection,
@@ -18,11 +18,11 @@ class JsonIconBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'icon';
 
-  final Color color;
-  final IconData icon;
-  final String semanticLabel;
-  final double size;
-  final TextDirection textDirection;
+  final Color? color;
+  final IconData? icon;
+  final String? semanticLabel;
+  final double? size;
+  final TextDirection? textDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -41,11 +41,11 @@ class JsonIconBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeIconData]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonIconBuilder fromDynamic(
+  static JsonIconBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonIconBuilder result;
+    JsonIconBuilder? result;
 
     if (map != null) {
       result = JsonIconBuilder(
@@ -71,10 +71,10 @@ class JsonIconBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return Icon(
       icon,

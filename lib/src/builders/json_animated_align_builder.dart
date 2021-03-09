@@ -8,25 +8,23 @@ import 'package:json_theme/json_theme.dart';
 /// See the [fromDynamic] for the format.
 class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   JsonAnimatedAlignBuilder({
-    @required this.alignment,
+    required this.alignment,
     this.curve,
-    @required this.duration,
+    required this.duration,
     this.heightFactor,
     this.onEnd,
     this.widthFactor,
-  })  : assert(alignment != null),
-        assert(duration != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'animated_align';
 
   final AlignmentGeometry alignment;
-  final Curve curve;
+  final Curve? curve;
   final Duration duration;
-  final double heightFactor;
-  final VoidCallback onEnd;
-  final double widthFactor;
+  final double? heightFactor;
+  final VoidCallback? onEnd;
+  final double? widthFactor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -45,22 +43,22 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   /// As a note, the [Curve] and [VoidCallback] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to the builder is to use a
   /// function or a variable reference via the [JsonWidgetRegistry].
-  static JsonAnimatedAlignBuilder fromDynamic(
+  static JsonAnimatedAlignBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedAlignBuilder result;
+    JsonAnimatedAlignBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedAlignBuilder(
         alignment: ThemeDecoder.decodeAlignment(
           map['alignment'],
           validate: false,
-        ),
+        )!,
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         heightFactor: JsonClass.parseDouble(map['heightFactor']),
         onEnd: map['onEnd'],
         widthFactor: JsonClass.parseDouble(map['widthFactor']),
@@ -72,10 +70,10 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -91,18 +89,16 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedAlign extends StatefulWidget {
   _JsonAnimatedAlign({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonAnimatedAlignBuilder builder;
-  final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final JsonWidgetData? child;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -114,12 +110,12 @@ class _JsonAnimatedAlignState extends State<_JsonAnimatedAlign> {
   Widget build(BuildContext context) {
     return AnimatedAlign(
       alignment: widget.builder.alignment,
-      curve: widget.builder.curve,
+      curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       heightFactor: widget.builder.heightFactor,
       onEnd: widget.builder.onEnd,
       widthFactor: widget.builder.widthFactor,
-      child: widget.child.build(
+      child: widget.child!.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_schema2/json_schema2.dart';
 import 'package:json_theme/json_theme_schemas.dart';
-import 'package:meta/meta.dart';
 
 import 'json_dynamic_widget_schemas.dart';
 
@@ -42,8 +41,8 @@ class SchemaValidator {
   /// optimization can be overridden by setting [debugOnly] to [false].
   bool validate({
     bool debugOnly = true,
-    @required String schemaId,
-    @required dynamic value,
+    required String? schemaId,
+    required dynamic value,
     bool validate = true,
   }) {
     var result = true;
@@ -51,7 +50,7 @@ class SchemaValidator {
       if (debugOnly == true) {
         assert(() {
           result = _validate(
-            schemaId: schemaId,
+            schemaId: schemaId!,
             value: value,
           );
 
@@ -59,7 +58,7 @@ class SchemaValidator {
         }());
       } else {
         result = _validate(
-          schemaId: schemaId,
+          schemaId: schemaId!,
           value: value,
         );
       }
@@ -69,11 +68,11 @@ class SchemaValidator {
   }
 
   bool _validate({
-    @required String schemaId,
-    @required dynamic value,
+    required String schemaId,
+    required dynamic value,
   }) {
     var result = true;
-    RefProvider refProvider;
+    RefProvider? refProvider;
     refProvider = (String ref) {
       var schema = SchemaCache().getSchema(ref);
       if (schema == null) {
@@ -98,7 +97,7 @@ class SchemaValidator {
         : value;
 
     var errors = jsonSchema.validateWithErrors(processedValue);
-    if (errors?.isNotEmpty == true) {
+    if (errors.isNotEmpty == true) {
       result = false;
       var errorStr =
           'Value: ${json.encode(value)}\n\nSchema Error: $schemaId\n';

@@ -4,10 +4,10 @@ import 'package:meta/meta.dart';
 class DynamicParamsResult {
   const DynamicParamsResult({
     this.dynamicKeys,
-    @required this.values,
+    required this.values,
   });
 
-  final Set<String> dynamicKeys;
+  final Set<String>? dynamicKeys;
   final dynamic values;
 
   @override

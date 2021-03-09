@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 class InputError extends StatefulWidget {
   InputError({
     this.error,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
-  final String error;
+  final String? error;
 
   @override
   _InputErrorState createState() => _InputErrorState();
 }
 
 class _InputErrorState extends State<InputError> {
-  String _error;
+  String? _error;
 
   @override
   void initState() {
@@ -52,7 +52,7 @@ class _InputErrorState extends State<InputError> {
             _error ?? '',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.caption.copyWith(color: theme.errorColor),
+            style: theme.textTheme.caption!.copyWith(color: theme.errorColor),
           ),
         ),
       ),

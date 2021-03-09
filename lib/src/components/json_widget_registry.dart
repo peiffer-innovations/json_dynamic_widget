@@ -7,7 +7,6 @@ import 'package:json_dynamic_widget/src/components/values/values.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:json_dynamic_widget/src/schema/schemas/container_schema.dart';
 import 'package:json_dynamic_widget/src/schema/schemas/cupertino_switch_schema.dart';
-import 'package:meta/meta.dart';
 
 import '../schema/all.dart';
 
@@ -29,14 +28,15 @@ class JsonWidgetRegistry {
   /// Constructs a one-off registry.  This accepts an optional group of custom
   /// widget [builders], custom widget [functions], and widget [values].
   JsonWidgetRegistry({
-    Map<String, JsonClassBuilder<JsonWidgetBuilder>> builders,
+    Map<String, JsonClassBuilder<JsonWidgetBuilder>>? builders,
     this.debugLabel,
     this.disableValidation = false,
-    Map<String, JsonWidgetFunction> functions,
+    Map<String, JsonWidgetFunction>? functions,
     this.navigatorKey,
-    Map<String, dynamic> values,
+    Map<String, dynamic>? values,
   }) {
-    _customBuilders.addAll(builders ?? {});
+    _customBuilders
+        .addAll(builders as Map<String, JsonWidgetBuilderContainer>? ?? {});
     _functions.addAll(functions ?? {});
     _values.addAll(values ?? {});
   }
@@ -94,7 +94,7 @@ class JsonWidgetRegistry {
   );
 
   final _customBuilders = <String, JsonWidgetBuilderContainer>{};
-  final String debugLabel;
+  final String? debugLabel;
   final bool disableValidation;
   final _functions = <String, JsonWidgetFunction>{};
   final _internalBuilders = <String, JsonWidgetBuilderContainer>{
@@ -437,52 +437,52 @@ class JsonWidgetRegistry {
   };
   final _internalFunctions = <String, JsonWidgetFunction>{
     fun_key_navigate_named: ({
-      @required List<dynamic> args,
-      @required JsonWidgetRegistry registry,
+      required List<dynamic>? args,
+      required JsonWidgetRegistry registry,
     }) {
       assert(registry.navigatorKey != null);
 
-      return () => registry.navigatorKey.currentState.pushNamed(
-            args[0],
+      return () => registry.navigatorKey!.currentState!.pushNamed(
+            args![0],
             arguments: args.length >= 2 ? args[1] : null,
           );
     },
     fun_key_navigate_pop: ({
-      @required List<dynamic> args,
-      @required JsonWidgetRegistry registry,
+      required List<dynamic>? args,
+      required JsonWidgetRegistry registry,
     }) {
       assert(registry.navigatorKey != null);
 
-      return () => registry.navigatorKey.currentState.pop(
-            args?.isNotEmpty == true ? args[0] : null,
+      return () => registry.navigatorKey!.currentState!.pop(
+            args?.isNotEmpty == true ? args![0] : null,
           );
     },
     fun_key_noop: ({
-      @required List<dynamic> args,
-      @required JsonWidgetRegistry registry,
+      required List<dynamic>? args,
+      required JsonWidgetRegistry registry,
     }) {},
     fun_key_remove_value: ({
-      @required List<dynamic> args,
-      @required JsonWidgetRegistry registry,
+      required List<dynamic>? args,
+      required JsonWidgetRegistry registry,
     }) =>
         () => registry.removeValue(
-              args[0],
+              args![0],
             ),
     fun_key_set_value: ({
-      @required List<dynamic> args,
-      @required JsonWidgetRegistry registry,
+      required List<dynamic>? args,
+      required JsonWidgetRegistry registry,
     }) =>
         () => registry.setValue(
-              args[0],
+              args![0],
               args[1],
             ),
   };
   final _internalValues = <String, dynamic>{}..addAll(
       CurvesValues.values,
     );
-  final _values = <String, dynamic>{};
+  final _values = <String?, dynamic>{};
 
-  StreamController<String> _valueStreamController =
+  StreamController<String>? _valueStreamController =
       StreamController<String>.broadcast();
 
   /// A navigator key that is required in order to use the
@@ -497,14 +497,14 @@ class JsonWidgetRegistry {
   ///   navigatorKey: navigatorKey
   /// )
   /// ```
-  GlobalKey<NavigatorState> navigatorKey;
+  GlobalKey<NavigatorState>? navigatorKey;
 
   /// Returns an unmodifiable reference to the internal set of values.
   Map<String, dynamic> get values => Map.unmodifiable(_values);
 
   /// Returns the [Stream] that an element can listen to in order to be notified
   /// when
-  Stream<String> get valueStream => _valueStreamController?.stream;
+  Stream<String?> get valueStream => _valueStreamController!.stream;
 
   /// Removes all variable values from the registry
   void clearValues() {
@@ -525,16 +525,16 @@ class JsonWidgetRegistry {
   /// then check the internal functions.  If no function can be found in either
   /// collection, this will throw an [Exception].
   dynamic execute(
-    String key,
-    Iterable<dynamic> args,
+    String? key,
+    Iterable<dynamic>? args,
   ) {
-    var fun = _functions[key] ?? _internalFunctions[key];
+    var fun = _functions[key!] ?? _internalFunctions[key];
     if (fun == null) {
       throw Exception('No function named "$key" found in the registry.');
     }
 
     return fun(
-      args: args,
+      args: args as List<dynamic>?,
       registry: this,
     );
   }
@@ -543,7 +543,7 @@ class JsonWidgetRegistry {
   /// a custom dynamic value using the [key], and if none is found, this will
   /// then check the internal values. If a variable with named [key] cannot be
   /// found, this will return [null].
-  dynamic getValue(String key) => _values[key] ?? _internalValues[key];
+  dynamic getValue(String? key) => _values[key] ?? _internalValues[key!];
 
   /// Returns the builder for the requested [type].  This will first search the
   /// registered custom builders, then if no builder is found, this will then
@@ -552,14 +552,8 @@ class JsonWidgetRegistry {
   /// If no builder is registered for the given [type] then this will throw an
   /// [Exception].
   JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
-    assert(type != null);
-
-    var container = _customBuilders[type] ?? _internalBuilders[type];
+    var container = _customBuilders[type] ?? _internalBuilders[type]!;
     var builder = container.builder;
-
-    if (builder == null) {
-      throw Exception('Builder requested for unknown type: $type');
-    }
 
     return builder;
   }
@@ -569,7 +563,7 @@ class JsonWidgetRegistry {
   /// variable names that were encounted.
   DynamicParamsResult processDynamicArgs(
     dynamic args, {
-    Set<String> dynamicKeys,
+    Set<String>? dynamicKeys,
   }) {
     dynamicKeys ??= <String>{};
 
@@ -578,17 +572,17 @@ class JsonWidgetRegistry {
       var parsed = JsonWidgetRegexHelper.parse(args);
 
       if (parsed?.isNotEmpty == true) {
-        String functionKey;
-        List<dynamic> functionArgs;
-        for (var item in parsed) {
+        String? functionKey;
+        List<dynamic>? functionArgs;
+        for (var item in parsed!) {
           if (item.isFunction == true) {
-            dynamicKeys.add(null);
+            dynamicKeys.add('__FUNCTION__');
 
             functionKey = item.key;
             functionArgs = [];
           } else if (item.isVariable == true) {
             if (item.isStatic != true) {
-              dynamicKeys.add(item.key);
+              dynamicKeys.add(item.key!);
             }
 
             var value = getValue(item.key);
@@ -654,19 +648,15 @@ class JsonWidgetRegistry {
   void registerCustomBuilder(
     String type,
     JsonWidgetBuilderContainer container,
-  ) {
-    assert(type != null);
-    assert(container != null);
-
-    _customBuilders[type] = container;
-  }
+  ) =>
+      _customBuilders[type] = container;
 
   /// Registers the custom builders.  This is a convenience method that calls
   /// [registerCustomBuilder] for each entry in [containers].
   void registerCustomBuilders(
     Map<String, JsonWidgetBuilderContainer> containers,
   ) =>
-      containers?.forEach((key, value) => registerCustomBuilder(key, value));
+      containers.forEach((key, value) => registerCustomBuilder(key, value));
 
   /// Registers the [key] as function name with the registry to be used in
   /// function bindings.  Functions registered by the application take
@@ -677,8 +667,7 @@ class JsonWidgetRegistry {
     String key,
     JsonWidgetFunction fun,
   ) {
-    assert(key?.isNotEmpty == true);
-    assert(fun != null);
+    assert(key.isNotEmpty == true);
 
     _functions[key] = fun;
   }
@@ -686,7 +675,7 @@ class JsonWidgetRegistry {
   /// Registers the function bindings.  This is a convenience method that calls
   /// [registerFunction] for each entry in [functions].
   void registerFunctions(Map<String, JsonWidgetFunction> functions) =>
-      functions?.forEach((key, value) => registerFunction(key, value));
+      functions.forEach((key, value) => registerFunction(key, value));
 
   /// Removes the [key] from the registry.
   ///
@@ -694,7 +683,7 @@ class JsonWidgetRegistry {
   /// an event on the [valueStream] with the [key] so listeners can be notified
   /// that the value has changed.
   dynamic removeValue(String key) {
-    assert(key?.isNotEmpty == true);
+    assert(key.isNotEmpty == true);
 
     var hasKey = _values.containsKey(key);
     var result = _values.remove(key);
@@ -715,7 +704,7 @@ class JsonWidgetRegistry {
     String key,
     dynamic value,
   ) {
-    assert(key?.isNotEmpty == true);
+    assert(key.isNotEmpty == true);
     if (value == null) {
       removeValue(key);
     } else {
@@ -733,14 +722,11 @@ class JsonWidgetRegistry {
   /// Removes a registered [type] from the custom registry and returns the
   /// associated builder, if one exists.  If the [type] is not registered then
   /// this will [null].
-  JsonWidgetBuilderContainer unregisterCustomBuilder(String type) {
-    assert(type != null);
+  JsonWidgetBuilderContainer? unregisterCustomBuilder(String type) =>
+      _customBuilders.remove(type);
 
-    return _customBuilders.remove(type);
-  }
-
-  JsonWidgetFunction unregisterFunction(String key) {
-    assert(key?.isNotEmpty == true);
+  JsonWidgetFunction? unregisterFunction(String key) {
+    assert(key.isNotEmpty == true);
 
     return _functions.remove(key);
   }
@@ -752,8 +738,8 @@ class JsonWidgetRegistry {
   /// happen in DEBUG builds.  It is disabled in RELEASE builds.  In RELEASE
   /// builds this will always return [true].
   bool validateBuilderSchema({
-    @required String type,
-    @required dynamic value,
+    required String type,
+    required dynamic value,
     bool validate = true,
   }) {
     var result = true;
@@ -763,7 +749,7 @@ class JsonWidgetRegistry {
         var container = _customBuilders[type] ?? _internalBuilders[type];
         if (container?.schemaId != null) {
           result = SchemaValidator().validate(
-            schemaId: container.schemaId,
+            schemaId: container!.schemaId,
             value: value,
             validate: validate,
           );

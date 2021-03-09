@@ -31,11 +31,11 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
   /// Where the `key` is any arbitrary [String].  That `key` will be used as the
   /// `key` on [JsonWidgetRegistry.setValue] and the [dynamic] value will be
   /// used as the `value`.
-  static JsonSetValueBuilder fromDynamic(
+  static JsonSetValueBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonSetValueBuilder result;
+    JsonSetValueBuilder? result;
 
     if (map != null) {
       result = JsonSetValueBuilder(values: map);
@@ -55,10 +55,10 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     assert(
       data.children?.length == 1 || data.children?.isNotEmpty != true,
@@ -66,10 +66,10 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
     );
     values?.forEach((key, value) => data.registry.setValue(key, value));
 
-    var child = data.children?.isNotEmpty == true ? data.children[0] : null;
+    var child = data.children?.isNotEmpty == true ? data.children![0] : null;
     child = child?.recreate();
 
-    return child.build(
+    return child?.build(
           childBuilder: childBuilder,
           context: context,
         ) ??

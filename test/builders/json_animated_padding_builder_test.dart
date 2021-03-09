@@ -7,7 +7,10 @@ void main() {
     const type = JsonAnimatedPaddingBuilder.type;
 
     expect(type, 'animated_padding');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {

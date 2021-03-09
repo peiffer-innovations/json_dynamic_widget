@@ -6,7 +6,10 @@ void main() {
     const type = JsonRaisedButtonBuilder.type;
 
     expect(type, 'raised_button');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonRaisedButtonBuilder,

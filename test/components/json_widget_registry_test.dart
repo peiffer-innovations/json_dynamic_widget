@@ -83,11 +83,11 @@ void main() {
   });
 
   test('function', () {
-    String result;
+    String? result;
     var registry = JsonWidgetRegistry(
       functions: {
-        'test': ({args, registry}) {
-          result = args?.toList()?.join('|');
+        'test': ({args, required registry}) {
+          result = args?.toList().join('|');
 
           return result;
         }
@@ -104,7 +104,7 @@ void main() {
     expect(
       registry.processDynamicArgs('##test()##'),
       DynamicParamsResult(
-        dynamicKeys: {null},
+        dynamicKeys: {'__FUNCTION__'},
         values: '',
       ),
     );
@@ -113,7 +113,7 @@ void main() {
     expect(
       registry.processDynamicArgs('##test({{one}})##'),
       DynamicParamsResult(
-        dynamicKeys: {null, 'one'},
+        dynamicKeys: {'__FUNCTION__', 'one'},
         values: '1',
       ),
     );
@@ -122,7 +122,7 @@ void main() {
     expect(
       registry.processDynamicArgs('##test(foo)##'),
       DynamicParamsResult(
-        dynamicKeys: {null},
+        dynamicKeys: {'__FUNCTION__'},
         values: 'foo',
       ),
     );
@@ -136,7 +136,7 @@ void main() {
         },
       }),
       DynamicParamsResult(
-        dynamicKeys: {null, 'one', 'twoPointFive'},
+        dynamicKeys: {'__FUNCTION__', 'one', 'twoPointFive'},
         values: {
           'nested': {
             'foo': 'foo|1',
@@ -155,7 +155,14 @@ void main() {
         },
       }),
       DynamicParamsResult(
-        dynamicKeys: {null, 'one', 'false', 'string', 'true', 'twoPointFive'},
+        dynamicKeys: {
+          '__FUNCTION__',
+          'one',
+          'false',
+          'string',
+          'true',
+          'twoPointFive'
+        },
         values: {
           'nested': {
             'foo': '1|false|foo|true|2.5|constant',
@@ -174,7 +181,14 @@ void main() {
         ],
       }),
       DynamicParamsResult(
-        dynamicKeys: {null, 'one', 'false', 'string', 'true', 'twoPointFive'},
+        dynamicKeys: {
+          '__FUNCTION__',
+          'one',
+          'false',
+          'string',
+          'true',
+          'twoPointFive'
+        },
         values: {
           'nested': [
             'foo',

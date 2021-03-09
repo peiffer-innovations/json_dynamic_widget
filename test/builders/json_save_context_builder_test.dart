@@ -6,7 +6,10 @@ void main() {
     const type = JsonSaveContextBuilder.type;
 
     expect(type, 'save_context');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSaveContextBuilder,

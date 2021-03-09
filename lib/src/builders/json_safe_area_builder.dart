@@ -8,12 +8,12 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonSafeAreaBuilder extends JsonWidgetBuilder {
   JsonSafeAreaBuilder({
-    this.bottom,
-    this.left,
-    this.maintainBottomViewPadding,
-    this.minimum,
-    this.right,
-    this.top,
+    required this.bottom,
+    required this.left,
+    required this.maintainBottomViewPadding,
+    required this.minimum,
+    required this.right,
+    required this.top,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -42,11 +42,11 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
-  static JsonSafeAreaBuilder fromDynamic(
+  static JsonSafeAreaBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonSafeAreaBuilder result;
+    JsonSafeAreaBuilder? result;
 
     if (map != null) {
       result = JsonSafeAreaBuilder(
@@ -62,7 +62,7 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
         minimum: ThemeDecoder.decodeEdgeInsetsGeometry(
               map['minimum'],
               validate: false,
-            ) ??
+            ) as EdgeInsets? ??
             EdgeInsets.zero,
         right: map['right'] == null ? true : JsonClass.parseBool(map['right']),
         top: map['top'] == null ? true : JsonClass.parseBool(map['top']),
@@ -74,10 +74,10 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

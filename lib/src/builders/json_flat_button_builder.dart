@@ -11,8 +11,8 @@ import 'package:json_theme/json_theme.dart';
 /// the format.
 class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   JsonFlatButtonBuilder({
-    this.autofocus,
-    this.clipBehavior,
+    required this.autofocus,
+    required this.clipBehavior,
     this.color,
     this.colorBrightness,
     this.disabledColor,
@@ -41,27 +41,27 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
 
   final bool autofocus;
   final Clip clipBehavior;
-  final Color color;
-  final Brightness colorBrightness;
-  final Color disabledColor;
-  final Color disabledTextColor;
-  final Color focusColor;
-  final FocusNode focusNode;
-  final double height;
-  final Color highlightColor;
-  final Color hoverColor;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final double minWidth;
-  final MouseCursor mouseCursor;
-  final ValueChanged<bool> onHighlightChanged;
-  final VoidCallback onPressed;
-  final VoidCallback onLongPress;
-  final EdgeInsets padding;
-  final ShapeBorder shape;
-  final Color splashColor;
-  final Color textColor;
-  final ButtonTextTheme textTheme;
-  final VisualDensity visualDensity;
+  final Color? color;
+  final Brightness? colorBrightness;
+  final Color? disabledColor;
+  final Color? disabledTextColor;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final double? height;
+  final Color? highlightColor;
+  final Color? hoverColor;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final double? minWidth;
+  final MouseCursor? mouseCursor;
+  final ValueChanged<bool>? onHighlightChanged;
+  final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
+  final EdgeInsets? padding;
+  final ShapeBorder? shape;
+  final Color? splashColor;
+  final Color? textColor;
+  final ButtonTextTheme? textTheme;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -110,11 +110,11 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeButtonTextTheme]
   ///  * [ThemeDecoder.decodeVisualDensity]
-  static JsonFlatButtonBuilder fromDynamic(
+  static JsonFlatButtonBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonFlatButtonBuilder result;
+    JsonFlatButtonBuilder? result;
 
     if (map != null) {
       result = JsonFlatButtonBuilder(
@@ -169,7 +169,7 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
-        ),
+        ) as EdgeInsets?,
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
           validate: false,
@@ -198,10 +198,10 @@ class JsonFlatButtonBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

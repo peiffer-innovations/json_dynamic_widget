@@ -6,7 +6,10 @@ void main() {
     const type = JsonAnimatedCrossFadeBuilder.type;
 
     expect(type, 'animated_cross_fade');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {

@@ -7,9 +7,8 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonDirectionalityBuilder extends JsonWidgetBuilder {
   JsonDirectionalityBuilder({
-    @required this.textDirection,
-  })  : assert(textDirection != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.textDirection,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'directionality';
@@ -27,18 +26,18 @@ class JsonDirectionalityBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonDirectionalityBuilder fromDynamic(
+  static JsonDirectionalityBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonDirectionalityBuilder result;
+    JsonDirectionalityBuilder? result;
 
     if (map != null) {
       result = JsonDirectionalityBuilder(
         textDirection: ThemeDecoder.decodeTextDirection(
           map['textDirection'],
           validate: false,
-        ),
+        )!,
       );
     }
 
@@ -47,10 +46,10 @@ class JsonDirectionalityBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

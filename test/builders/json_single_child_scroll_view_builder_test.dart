@@ -6,7 +6,10 @@ void main() {
     const type = JsonSingleChildScrollViewBuilder.type;
 
     expect(type, 'single_child_scroll_view');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSingleChildScrollViewBuilder,

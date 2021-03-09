@@ -6,7 +6,10 @@ void main() {
     const type = JsonGestureDetectorBuilder.type;
 
     expect(type, 'gesture_detector');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonGestureDetectorBuilder,

@@ -10,32 +10,32 @@ import 'package:json_theme/json_theme.dart';
 /// the format.
 class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   JsonTextFormFieldBuilder({
-    this.autocorrect,
+    required this.autocorrect,
     this.autofillHints,
-    this.autofocus,
+    required this.autofocus,
     this.autovalidateMode,
     this.buildCounter,
     this.controller,
     this.cursorColor,
     this.cursorHeight,
     this.cursorRadius,
-    this.cursorWidth,
+    required this.cursorWidth,
     this.decoration,
-    this.enableInteractiveSelection,
-    this.enableSuggestions,
+    required this.enableInteractiveSelection,
+    required this.enableSuggestions,
     this.enabled,
-    this.expands,
+    required this.expands,
     this.focusNode,
     this.initialValue,
     this.inputFormatters,
     this.keyboardAppearance,
     this.keyboardType,
     this.maxLength,
-    this.maxLengthEnforced,
+    this.maxLengthEnforcement,
     this.maxLines,
     this.minLines,
     this.obscureText,
-    this.obscuringCharacter,
+    required this.obscuringCharacter,
     this.onChanged,
     this.onEditingComplete,
     this.onFieldSubmitted,
@@ -44,6 +44,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.readOnly,
     this.scrollPadding,
     this.scrollPhysics,
+    this.selectionControls,
     this.showCursor,
     this.smartDashesType,
     this.smartQuotesType,
@@ -62,51 +63,52 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   static const type = 'text_form_field';
 
   final bool autocorrect;
-  final Iterable<String> autofillHints;
+  final Iterable<String>? autofillHints;
   final bool autofocus;
-  final AutovalidateMode autovalidateMode;
-  final InputCounterWidgetBuilder buildCounter;
-  final TextEditingController controller;
-  final Color cursorColor;
-  final double cursorHeight;
-  final Radius cursorRadius;
+  final AutovalidateMode? autovalidateMode;
+  final InputCounterWidgetBuilder? buildCounter;
+  final TextEditingController? controller;
+  final Color? cursorColor;
+  final double? cursorHeight;
+  final Radius? cursorRadius;
   final double cursorWidth;
   final dynamic decoration;
   final bool enableInteractiveSelection;
   final bool enableSuggestions;
-  final bool enabled;
+  final bool? enabled;
   final bool expands;
-  final FocusNode focusNode;
-  final String initialValue;
-  final List<TextInputFormatter> inputFormatters;
-  final Brightness keyboardAppearance;
-  final TextInputType keyboardType;
-  final int maxLength;
-  final bool maxLengthEnforced;
-  final int maxLines;
-  final int minLines;
-  final bool obscureText;
+  final FocusNode? focusNode;
+  final String? initialValue;
+  final List<TextInputFormatter>? inputFormatters;
+  final Brightness? keyboardAppearance;
+  final TextInputType? keyboardType;
+  final int? maxLength;
+  final MaxLengthEnforcement? maxLengthEnforcement;
+  final int? maxLines;
+  final int? minLines;
+  final bool? obscureText;
   final String obscuringCharacter;
-  final ValueChanged<String> onChanged;
-  final VoidCallback onEditingComplete;
-  final ValueChanged<String> onFieldSubmitted;
-  final FormFieldSetter<String> onSaved;
-  final VoidCallback onTap;
-  final bool readOnly;
-  final EdgeInsetsGeometry scrollPadding;
-  final ScrollPhysics scrollPhysics;
-  final bool showCursor;
-  final SmartDashesType smartDashesType;
-  final SmartQuotesType smartQuotesType;
-  final StrutStyle strutStyle;
-  final TextStyle style;
-  final TextAlign textAlign;
-  final TextAlignVertical textAlignVertical;
-  final TextCapitalization textCapitalization;
-  final TextDirection textDirection;
-  final TextInputAction textInputAction;
-  final ToolbarOptions toolbarOptions;
-  final Validator validator;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onEditingComplete;
+  final ValueChanged<String>? onFieldSubmitted;
+  final FormFieldSetter<String>? onSaved;
+  final VoidCallback? onTap;
+  final bool? readOnly;
+  final EdgeInsetsGeometry? scrollPadding;
+  final ScrollPhysics? scrollPhysics;
+  final TextSelectionControls? selectionControls;
+  final bool? showCursor;
+  final SmartDashesType? smartDashesType;
+  final SmartQuotesType? smartQuotesType;
+  final StrutStyle? strutStyle;
+  final TextStyle? style;
+  final TextAlign? textAlign;
+  final TextAlignVertical? textAlignVertical;
+  final TextCapitalization? textCapitalization;
+  final TextDirection? textDirection;
+  final TextInputAction? textInputAction;
+  final ToolbarOptions? toolbarOptions;
+  final Validator? validator;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -147,6 +149,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "readOnly": <bool>,
   ///   "scrollPadding": <EdgeInsetsGeometry>,
   ///   "scrollPhysics": <ScrollPhysics>,
+  ///   "selectionControls": <TextSelectionControls>,
   ///   "showCursor": <bool>,
   ///   "smartDashesType": <SmartDashesType>,
   ///   "smartQuotesType": <SmartQuotesType>,
@@ -162,6 +165,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   /// }
   /// ```
   ///
+  /// Note: The [TextSelectionControls] cannot be decoded and can only be
+  /// utilized if passed in as a variable reference.
+  ///
   /// See also:
   ///  * [buildCustom]
   ///  * [InputDecorationDecoder.fromDynamic]
@@ -169,8 +175,10 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBrightness]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
+  ///  * [ThemeDecoder.decodeMaxLengthEnforcement]
   ///  * [ThemeDecoder.decodeRadius]
   ///  * [ThemeDecoder.decodeScrollPhysics]
+  ///  * [ThemeDecoder.decodeTextSelectionControls]
   ///  * [ThemeDecoder.decodeSmartDashesType]
   ///  * [ThemeDecoder.decodeSmartQuotesType]
   ///  * [ThemeDecoder.decodeTextAlign]
@@ -181,11 +189,11 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [ThemeDecoder.decodeToolbarOptions]
   ///  * [Validator]
-  static JsonTextFormFieldBuilder fromDynamic(
+  static JsonTextFormFieldBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonTextFormFieldBuilder result;
+    JsonTextFormFieldBuilder? result;
     if (map != null) {
       result = JsonTextFormFieldBuilder(
         autocorrect: map['autocorrect'] == null
@@ -211,7 +219,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['cursorRadius'],
           validate: false,
         ),
-        cursorWidth: JsonClass.parseDouble(map['cursorWidth'], 2),
+        cursorWidth: JsonClass.parseDouble(map['cursorWidth'], 2)!,
         decoration: map['decoration'],
         enableInteractiveSelection: map['enableInteractiveSelection'] == null
             ? true
@@ -234,7 +242,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         maxLength: JsonClass.parseInt(map['maxLength']),
-        maxLengthEnforced: JsonClass.parseBool(map['maxLengthEnforced']),
+        maxLengthEnforcement: ThemeDecoder.decodeMaxLengthEnforcement(
+          map['maxLengthEnforcement'],
+        ),
         maxLines: JsonClass.parseInt(map['maxLines'], 1),
         minLines: JsonClass.parseInt(map['minLines']),
         obscureText: JsonClass.parseBool(map['obscureText']),
@@ -254,6 +264,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['scrollPhysics'],
           validate: false,
         ),
+        selectionControls: map['selectionControls'],
         showCursor: map['showCursor'] == null
             ? null
             : JsonClass.parseBool(map['showCursor']),
@@ -314,7 +325,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    if (data.id?.isNotEmpty == true) {
+    if (data.id.isNotEmpty == true) {
       data.registry.removeValue(data.id);
     }
 
@@ -330,10 +341,10 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   /// empty string will be used to represent no error message.
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return _JsonTextFormFieldWidget(
       builder: this,
@@ -346,14 +357,14 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
 
 class _JsonTextFormFieldWidget extends StatefulWidget {
   _JsonTextFormFieldWidget({
-    this.builder,
+    required this.builder,
     this.childBuilder,
-    this.data,
-    Key key,
+    required this.data,
+    Key? key,
   }) : super(key: key);
 
   final JsonTextFormFieldBuilder builder;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -362,7 +373,7 @@ class _JsonTextFormFieldWidget extends StatefulWidget {
 }
 
 class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
-  InputDecoration _decoration;
+  InputDecoration? _decoration;
 
   @override
   void initState() {
@@ -401,20 +412,19 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         keyboardAppearance: widget.builder.keyboardAppearance,
         keyboardType: widget.builder.keyboardType,
         maxLength: widget.builder.maxLength,
-        // ignore: deprecated_member_use
-        maxLengthEnforced: widget.builder.maxLengthEnforced,
+        maxLengthEnforcement: widget.builder.maxLengthEnforcement,
         maxLines: widget.builder.maxLines,
         minLines: widget.builder.minLines,
         obscuringCharacter: widget.builder.obscuringCharacter,
-        obscureText: widget.builder.obscureText,
+        obscureText: widget.builder.obscureText ?? false,
         onChanged: widget.builder.enabled != true
             ? null
             : (value) {
                 if (widget.builder.onChanged != null) {
-                  widget.builder.onChanged(value);
+                  widget.builder.onChanged!(value);
                 }
 
-                if (widget.data.id?.isNotEmpty == true) {
+                if (widget.data.id.isNotEmpty == true) {
                   widget.data.registry.setValue(widget.data.id, value);
                 }
               },
@@ -422,33 +432,33 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         onFieldSubmitted: widget.builder.onFieldSubmitted,
         onSaved: widget.builder.onSaved,
         onTap: widget.builder.onTap,
-        readOnly: widget.builder.readOnly,
-        scrollPadding: widget.builder.scrollPadding,
+        readOnly: widget.builder.readOnly ?? false,
+        scrollPadding: widget.builder.scrollPadding as EdgeInsets,
         scrollPhysics: widget.builder.scrollPhysics,
+        selectionControls: widget.builder.selectionControls,
         showCursor: widget.builder.showCursor,
         smartDashesType: widget.builder.smartDashesType,
         smartQuotesType: widget.builder.smartQuotesType,
         strutStyle: widget.builder.strutStyle,
         style: widget.builder.style,
-        textAlign: widget.builder.textAlign,
+        textAlign: widget.builder.textAlign ?? TextAlign.start,
         textAlignVertical: widget.builder.textAlignVertical,
-        textCapitalization: widget.builder.textCapitalization,
+        textCapitalization:
+            widget.builder.textCapitalization ?? TextCapitalization.none,
         textDirection: widget.builder.textDirection,
         textInputAction: widget.builder.textInputAction,
         toolbarOptions: widget.builder.toolbarOptions,
         validator: widget.builder.validator == null
             ? null
             : (value) {
-                var error = widget.builder.validator.validate(
+                var error = widget.builder.validator!.validate(
                   context: context,
                   label: _decoration?.labelText ?? '',
                   value: value?.toString(),
                 );
 
-                if (widget.data.id?.isNotEmpty == true) {
-                  widget.data.registry
-                      .setValue('${widget.data.id}.error', error ?? '');
-                }
+                widget.data.registry
+                    .setValue('${widget.data.id}.error', error ?? '');
 
                 return error;
               },

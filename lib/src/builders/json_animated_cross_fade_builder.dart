@@ -11,28 +11,26 @@ import 'package:json_theme/json_theme.dart';
 class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
   JsonAnimatedCrossFadeBuilder({
     this.alignment,
-    @required this.crossFadeState,
-    @required this.duration,
+    required this.crossFadeState,
+    required this.duration,
     this.firstCurve,
     this.layoutBuilder,
     this.reverseDuration,
     this.secondCurve,
     this.sizeCurve,
-  })  : assert(crossFadeState != null),
-        assert(duration != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 2;
   static const type = 'animated_cross_fade';
 
-  final AlignmentGeometry alignment;
+  final AlignmentGeometry? alignment;
   final CrossFadeState crossFadeState;
   final Duration duration;
-  final Curve firstCurve;
-  final AnimatedCrossFadeBuilder layoutBuilder;
-  final Duration reverseDuration;
-  final Curve secondCurve;
-  final Curve sizeCurve;
+  final Curve? firstCurve;
+  final AnimatedCrossFadeBuilder? layoutBuilder;
+  final Duration? reverseDuration;
+  final Curve? secondCurve;
+  final Curve? sizeCurve;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -53,11 +51,11 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
   /// As a note, the [Curve] and [AnimatedCrossFadeBuilder] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to the builder is to use a
   /// function or a variable reference via the [JsonWidgetRegistry].
-  static JsonAnimatedCrossFadeBuilder fromDynamic(
+  static JsonAnimatedCrossFadeBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedCrossFadeBuilder result;
+    JsonAnimatedCrossFadeBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedCrossFadeBuilder(
@@ -69,10 +67,10 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
         crossFadeState: ThemeDecoder.decodeCrossFadeState(
           map['crossFadeState'],
           validate: false,
-        ),
+        )!,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         firstCurve: map['firstCurve'] ?? Curves.linear,
         layoutBuilder:
             map['layoutBuilder'] ?? AnimatedCrossFade.defaultLayoutBuilder,
@@ -89,10 +87,10 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var firstChild = getChild(data, index: 0);
     var secondChild = getChild(data, index: 1);
@@ -114,21 +112,19 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedCrossFade extends StatefulWidget {
   _JsonAnimatedCrossFade({
-    @required this.builder,
-    @required this.childBuilder,
-    @required this.data,
-    @required this.firstChild,
-    Key key,
-    @required this.secondChild,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.childBuilder,
+    required this.data,
+    required this.firstChild,
+    Key? key,
+    required this.secondChild,
+  }) : super(key: key);
 
   final JsonAnimatedCrossFadeBuilder builder;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
-  final JsonWidgetData firstChild;
-  final JsonWidgetData secondChild;
+  final JsonWidgetData? firstChild;
+  final JsonWidgetData? secondChild;
 
   @override
   _JsonAnimatedCrossFadeState createState() => _JsonAnimatedCrossFadeState();
@@ -138,19 +134,20 @@ class _JsonAnimatedCrossFadeState extends State<_JsonAnimatedCrossFade> {
   @override
   Widget build(BuildContext context) {
     return AnimatedCrossFade(
-      alignment: widget.builder.alignment,
+      alignment: widget.builder.alignment ?? Alignment.topCenter,
       crossFadeState: widget.builder.crossFadeState,
       duration: widget.builder.duration,
-      firstCurve: widget.builder.firstCurve,
-      layoutBuilder: widget.builder.layoutBuilder,
+      firstCurve: widget.builder.firstCurve ?? Curves.linear,
+      layoutBuilder: widget.builder.layoutBuilder ??
+          AnimatedCrossFade.defaultLayoutBuilder,
       reverseDuration: widget.builder.reverseDuration,
-      secondCurve: widget.builder.secondCurve,
-      sizeCurve: widget.builder.sizeCurve,
-      firstChild: widget.firstChild.build(
+      secondCurve: widget.builder.secondCurve ?? Curves.linear,
+      sizeCurve: widget.builder.sizeCurve ?? Curves.linear,
+      firstChild: widget.firstChild!.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),
-      secondChild: widget.secondChild.build(
+      secondChild: widget.secondChild!.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

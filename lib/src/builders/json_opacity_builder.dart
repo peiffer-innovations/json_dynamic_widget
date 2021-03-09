@@ -7,8 +7,8 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// format.
 class JsonOpacityBuilder extends JsonWidgetBuilder {
   JsonOpacityBuilder({
-    this.alwaysIncludeSemantics,
-    this.opacity,
+    required this.alwaysIncludeSemantics,
+    required this.opacity,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -26,17 +26,17 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
   ///   "opacity": <double>
   /// }
   /// ```
-  static JsonOpacityBuilder fromDynamic(
+  static JsonOpacityBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonOpacityBuilder result;
+    JsonOpacityBuilder? result;
 
     if (map != null) {
       result = JsonOpacityBuilder(
         alwaysIncludeSemantics:
             JsonClass.parseBool(map['alwaysIncludeSemantics']),
-        opacity: JsonClass.parseDouble(map['opacity']),
+        opacity: JsonClass.parseDouble(map['opacity'], 1.0)!,
       );
     }
 
@@ -45,10 +45,10 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

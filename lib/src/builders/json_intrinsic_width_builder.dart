@@ -14,8 +14,8 @@ class JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'intrinsic_width';
 
-  final double stepHeight;
-  final double stepWidth;
+  final double? stepHeight;
+  final double? stepWidth;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -26,11 +26,11 @@ class JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
   ///   "stepWidth": <double>
   /// }
   /// ```
-  static JsonIntrinsicWidthBuilder fromDynamic(
+  static JsonIntrinsicWidthBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonIntrinsicWidthBuilder result;
+    JsonIntrinsicWidthBuilder? result;
 
     if (map != null) {
       result = JsonIntrinsicWidthBuilder(
@@ -48,10 +48,10 @@ class JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

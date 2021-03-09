@@ -6,7 +6,10 @@ void main() {
     const type = JsonOutlinedButtonBuilder.type;
 
     expect(type, 'outlined_button');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonOutlinedButtonBuilder,

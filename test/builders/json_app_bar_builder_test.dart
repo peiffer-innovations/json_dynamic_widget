@@ -6,7 +6,10 @@ void main() {
     const type = JsonAppBarBuilder.type;
 
     expect(type, 'app_bar');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonAppBarBuilder,

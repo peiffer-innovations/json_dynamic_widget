@@ -5,10 +5,10 @@ class JsonWidgetType {
   const JsonWidgetType(
     this.code, {
     this.skipDeepArgs,
-  }) : assert(code != null);
+  });
 
   final String code;
-  final Set<String> skipDeepArgs;
+  final Set<String>? skipDeepArgs;
 
   @override
   bool operator ==(other) {

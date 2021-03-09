@@ -17,6 +17,7 @@ class AnimatedSizeSchema {
     ],
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
+      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
       'curve': SchemaHelper.stringSchema,
       'duration': SchemaHelper.numberSchema,
       'reverseDuration': SchemaHelper.numberSchema,

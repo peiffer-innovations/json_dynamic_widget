@@ -8,10 +8,10 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonPlaceholderBuilder extends JsonWidgetBuilder {
   JsonPlaceholderBuilder({
-    this.color,
-    this.fallbackHeight,
-    this.fallbackWidth,
-    this.strokeWidth,
+    required this.color,
+    required this.fallbackHeight,
+    required this.fallbackWidth,
+    required this.strokeWidth,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 0;
@@ -36,11 +36,11 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeColor]
-  static JsonPlaceholderBuilder fromDynamic(
+  static JsonPlaceholderBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonPlaceholderBuilder result;
+    JsonPlaceholderBuilder? result;
 
     if (map != null) {
       result = JsonPlaceholderBuilder(
@@ -52,15 +52,15 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
         fallbackHeight: JsonClass.parseDouble(
           map['fallbackHeight'],
           400.0,
-        ),
+        )!,
         fallbackWidth: JsonClass.parseDouble(
           map['fallbackWidth'],
           400.0,
-        ),
+        )!,
         strokeWidth: JsonClass.parseDouble(
           map['strokeWidth'],
           2.0,
-        ),
+        )!,
       );
     }
 
@@ -69,10 +69,10 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return Placeholder(
       color: color,

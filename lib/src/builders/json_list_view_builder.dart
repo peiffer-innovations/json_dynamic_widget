@@ -9,22 +9,22 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonListViewBuilder extends JsonWidgetBuilder {
   JsonListViewBuilder({
-    this.addAutomaticKeepAlives,
-    this.addRepaintBoundaries,
-    this.addSemanticIndexes,
+    required this.addAutomaticKeepAlives,
+    required this.addRepaintBoundaries,
+    required this.addSemanticIndexes,
     this.cacheExtent,
-    this.clipBehavior,
+    required this.clipBehavior,
     this.controller,
-    this.dragStartBehavior,
+    required this.dragStartBehavior,
     this.itemExtent,
-    this.keyboardDismissBehavior,
+    required this.keyboardDismissBehavior,
     this.padding,
     this.physics,
-    this.primary,
+    required this.primary,
     this.restorationId,
-    this.reverse,
-    this.scrollDirection,
-    this.shrinkWrap,
+    required this.reverse,
+    required this.scrollDirection,
+    required this.shrinkWrap,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = -1;
@@ -33,16 +33,16 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   final bool addAutomaticKeepAlives;
   final bool addRepaintBoundaries;
   final bool addSemanticIndexes;
-  final double cacheExtent;
+  final double? cacheExtent;
   final Clip clipBehavior;
-  final ScrollController controller;
+  final ScrollController? controller;
   final DragStartBehavior dragStartBehavior;
-  final double itemExtent;
+  final double? itemExtent;
   final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
-  final EdgeInsets padding;
-  final ScrollPhysics physics;
+  final EdgeInsets? padding;
+  final ScrollPhysics? physics;
   final bool primary;
-  final String restorationId;
+  final String? restorationId;
   final bool reverse;
   final Axis scrollDirection;
   final bool shrinkWrap;
@@ -81,11 +81,11 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeScrollPhysics]
-  static JsonListViewBuilder fromDynamic(
+  static JsonListViewBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonListViewBuilder result;
+    JsonListViewBuilder? result;
 
     if (map != null) {
       result = JsonListViewBuilder(
@@ -120,7 +120,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
-        ),
+        ) as EdgeInsets?,
         physics: ThemeDecoder.decodeScrollPhysics(
           map['physics'],
           validate: false,
@@ -142,10 +142,10 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return ListView.builder(
       addAutomaticKeepAlives: addAutomaticKeepAlives,
@@ -168,7 +168,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       semanticChildCount: data.children?.length ?? 0,
       shrinkWrap: shrinkWrap,
       itemBuilder: (BuildContext context, int index) {
-        var w = data.children[index].build(
+        var w = data.children![index].build(
           childBuilder: childBuilder,
           context: context,
         );

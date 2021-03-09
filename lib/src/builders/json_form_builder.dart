@@ -16,9 +16,9 @@ class JsonFormBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'form';
 
-  final AutovalidateMode autovalidateMode;
-  final VoidCallback onChanged;
-  final WillPopCallback onWillPop;
+  final AutovalidateMode? autovalidateMode;
+  final VoidCallback? onChanged;
+  final WillPopCallback? onWillPop;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -38,11 +38,11 @@ class JsonFormBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [buildCustom]
   ///  * [ThemeDecoder.decodeAutovalidateMode]
-  static JsonFormBuilder fromDynamic(
+  static JsonFormBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonFormBuilder result;
+    JsonFormBuilder? result;
 
     if (map != null) {
       result = JsonFormBuilder(
@@ -65,10 +65,10 @@ class JsonFormBuilder extends JsonWidgetBuilder {
   /// state.
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -84,18 +84,16 @@ class JsonFormBuilder extends JsonWidgetBuilder {
 
 class _JsonFormWidget extends StatefulWidget {
   _JsonFormWidget({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonFormBuilder builder;
-  final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final JsonWidgetData? child;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -103,25 +101,21 @@ class _JsonFormWidget extends StatefulWidget {
 }
 
 class _JsonFormWidgetState extends State<_JsonFormWidget> {
-  GlobalKey<FormState> _key;
+  GlobalKey<FormState>? _key;
 
   @override
   void initState() {
     super.initState();
 
-    if (widget.data.id?.isNotEmpty == true) {
-      _key = GlobalKey<FormState>();
-      widget.data.registry.setValue('${widget.data.id}.key', _key);
-    }
+    _key = GlobalKey<FormState>();
+    widget.data.registry.setValue('${widget.data.id}.key', _key);
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    if (widget.data.id?.isNotEmpty == true) {
-      widget.data.registry.removeValue('${widget.data.id}.key');
-    }
+    widget.data.registry.removeValue('${widget.data.id}.key');
   }
 
   @override
@@ -130,7 +124,7 @@ class _JsonFormWidgetState extends State<_JsonFormWidget> {
         key: _key,
         onChanged: widget.builder.onChanged,
         onWillPop: widget.builder.onWillPop,
-        child: widget.child.build(
+        child: widget.child!.build(
           childBuilder: widget.childBuilder,
           context: context,
         ),

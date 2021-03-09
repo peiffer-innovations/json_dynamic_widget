@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonClipOvalBuilder extends JsonWidgetBuilder {
   JsonClipOvalBuilder({
-    this.clipBehavior,
+    required this.clipBehavior,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -27,11 +27,11 @@ class JsonClipOvalBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeClip]
-  static JsonClipOvalBuilder fromDynamic(
+  static JsonClipOvalBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonClipOvalBuilder result;
+    JsonClipOvalBuilder? result;
 
     if (map != null) {
       result = JsonClipOvalBuilder(
@@ -48,10 +48,10 @@ class JsonClipOvalBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom(
-      {ChildWidgetBuilder childBuilder,
-      @required BuildContext context,
-      @required JsonWidgetData data,
-      Key key}) {
+      {ChildWidgetBuilder? childBuilder,
+      required BuildContext context,
+      required JsonWidgetData data,
+      Key? key}) {
     var child = getChild(data);
 
     return ClipOval(

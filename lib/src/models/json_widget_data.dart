@@ -9,29 +9,28 @@ import 'package:uuid/uuid.dart';
 class JsonWidgetData extends JsonClass {
   JsonWidgetData({
     dynamic args,
-    @required this.builder,
-    JsonWidgetData child,
-    List<JsonWidgetData> children,
-    Set<String> dynamicKeys,
-    String id,
-    this.registry,
-    @required this.type,
-  })  : assert(builder != null),
-        assert(
+    required this.builder,
+    JsonWidgetData? child,
+    List<JsonWidgetData>? children,
+    Set<String>? dynamicKeys,
+    String? id,
+    JsonWidgetRegistry? registry,
+    required this.type,
+  })   : assert(
           child == null || children?.isNotEmpty != true,
           'A JsonWidgetData may either contain a [child] or an array of [children], but not both.',
         ),
-        assert(type != null),
         args = args,
         children = children ?? (child == null ? null : [child]),
-        dynamicKeys = dynamicKeys ?? {},
-        id = id ?? Uuid().v4();
+        dynamicKeys = dynamicKeys ?? <String>{},
+        id = id ?? Uuid().v4(),
+        registry = registry ?? JsonWidgetRegistry.instance;
 
   static final Logger _logger = Logger('JsonWidgetData');
 
   final dynamic args;
   final JsonWidgetBuilder Function() builder;
-  final List<JsonWidgetData> children;
+  final List<JsonWidgetData>? children;
   final Set<String> dynamicKeys;
   final String id;
   final JsonWidgetRegistry registry;
@@ -55,28 +54,28 @@ class JsonWidgetData extends JsonClass {
   ///   "id": <String>
   /// }
   /// ```
-  static JsonWidgetData fromDynamic(
+  static JsonWidgetData? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonWidgetData result;
-    registry ??= JsonWidgetRegistry.instance;
+    JsonWidgetData? result;
+    var innerRegistry = registry ?? JsonWidgetRegistry.instance;
 
     if (map is String && map.startsWith('{{') && map.endsWith('}}')) {
       var key = map.substring(2, map.length - 2).trim();
       result = DeferredJsonWidgetData(
         key: key,
-        registry: registry,
+        registry: innerRegistry,
       );
     } else if (map != null) {
       var type = map['type'];
-      var builder = registry.getWidgetBuilder(type);
+      var builder = innerRegistry.getWidgetBuilder(type);
       var args = map['args'];
 
       // The validation needs to happen before we process the dynamic args or
       // else there may be non-JSON compatible objects in the map which will
       // always fail validation.
-      assert(registry.validateBuilderSchema(
+      assert(innerRegistry.validateBuilderSchema(
         type: type,
         value: args,
         validate: args == null ? false : true,
@@ -96,16 +95,18 @@ class JsonWidgetData extends JsonClass {
       }
 
       var dynamicParamsResult =
-          registry.processDynamicArgs(args ?? <String, dynamic>{});
+          innerRegistry.processDynamicArgs(args ?? <String, dynamic>{});
 
       try {
         result = JsonWidgetData(
           args: map['args'] ?? {},
           builder: () {
             return builder(
-              registry.processDynamicArgs(args ?? <String, dynamic>{})?.values,
+              innerRegistry
+                  .processDynamicArgs(args ?? <String, dynamic>{})
+                  .values,
               registry: registry,
-            );
+            )!;
           },
           child: child,
           children: JsonClass.fromDynamicList(
@@ -113,11 +114,11 @@ class JsonWidgetData extends JsonClass {
             (dynamic map) => JsonWidgetData.fromDynamic(
               map,
               registry: registry,
-            ),
+            )!,
           ),
           dynamicKeys: dynamicParamsResult.dynamicKeys,
           id: map['id'],
-          registry: registry,
+          registry: innerRegistry,
           type: type,
         );
       } catch (e, stack) {
@@ -136,11 +137,9 @@ class JsonWidgetData extends JsonClass {
   /// This is the equilivant of calling: [builder.build] and padding this in as
   /// the [data] parameter.
   Widget build({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
   }) {
-    assert(context != null);
-
     return builder().build(
       childBuilder: childBuilder,
       context: context,
@@ -150,16 +149,16 @@ class JsonWidgetData extends JsonClass {
 
   JsonWidgetData copyWith({
     dynamic args,
-    JsonWidgetBuilder builder,
-    List<JsonWidgetData> children,
-    Set<String> dynamicKeys,
-    String id,
-    JsonWidgetRegistry registry,
-    String type,
+    JsonWidgetBuilder? builder,
+    List<JsonWidgetData>? children,
+    Set<String>? dynamicKeys,
+    String? id,
+    JsonWidgetRegistry? registry,
+    String? type,
   }) =>
       JsonWidgetData(
         args: args ?? this.args,
-        builder: builder ?? this.builder,
+        builder: builder as JsonWidgetBuilder Function()? ?? this.builder,
         children: children ?? this.children,
         dynamicKeys: dynamicKeys ?? this.dynamicKeys,
         id: id ?? this.id,
@@ -178,9 +177,9 @@ class JsonWidgetData extends JsonClass {
       args: args,
       builder: () {
         return builder(
-          registry.processDynamicArgs(args ?? <String, dynamic>{})?.values,
+          registry.processDynamicArgs(args ?? <String, dynamic>{}).values,
           registry: registry,
-        );
+        )!;
       },
       children: children,
       dynamicKeys: dynamicParamsResult.dynamicKeys,

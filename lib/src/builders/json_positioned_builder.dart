@@ -18,12 +18,12 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'positioned';
 
-  final double bottom;
-  final double height;
-  final double left;
-  final double right;
-  final double top;
-  final double width;
+  final double? bottom;
+  final double? height;
+  final double? left;
+  final double? right;
+  final double? top;
+  final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -38,11 +38,11 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
   ///   "width": <double>
   /// }
   /// ```
-  static JsonPositionedBuilder fromDynamic(
+  static JsonPositionedBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonPositionedBuilder result;
+    JsonPositionedBuilder? result;
 
     if (map != null) {
       result = JsonPositionedBuilder(
@@ -60,10 +60,10 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

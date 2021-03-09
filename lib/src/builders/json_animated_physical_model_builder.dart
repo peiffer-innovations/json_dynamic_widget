@@ -12,32 +12,27 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
     this.animateShadowColor,
     this.borderRadius,
     this.clipBehavior,
-    @required this.color,
+    required this.color,
     this.curve,
-    @required this.duration,
-    @required this.elevation,
+    required this.duration,
+    required this.elevation,
     this.onEnd,
-    @required this.shadowColor,
-    @required this.shape,
-  })  : assert(color != null),
-        assert(duration != null),
-        assert(elevation != null),
-        assert(shadowColor != null),
-        assert(shape != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.shadowColor,
+    required this.shape,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'animated_physical_model';
 
-  final bool animateColor;
-  final bool animateShadowColor;
-  final BorderRadius borderRadius;
-  final Clip clipBehavior;
+  final bool? animateColor;
+  final bool? animateShadowColor;
+  final BorderRadius? borderRadius;
+  final Clip? clipBehavior;
   final Color color;
-  final Curve curve;
+  final Curve? curve;
   final Duration duration;
   final double elevation;
-  final VoidCallback onEnd;
+  final VoidCallback? onEnd;
   final Color shadowColor;
   final BoxShape shape;
 
@@ -66,22 +61,20 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeBoxShape]
-  static JsonAnimatedPhysicalModelBuilder fromDynamic(
+  static JsonAnimatedPhysicalModelBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedPhysicalModelBuilder result;
+    JsonAnimatedPhysicalModelBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedPhysicalModelBuilder(
         animateColor: JsonClass.parseBool(
-              map['animateColor'],
-            ) ??
-            true,
+          map['animateColor'] ?? true,
+        ),
         animateShadowColor: JsonClass.parseBool(
-              map['animateShadowColor'],
-            ) ??
-            true,
+          map['animateShadowColor'] ?? true,
+        ),
         borderRadius: ThemeDecoder.decodeBorderRadius(
               map['borderRadius'],
             ) ??
@@ -92,21 +85,21 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
             Clip.none,
         color: ThemeDecoder.decodeColor(
           map['color'],
-        ),
+        )!,
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         elevation: JsonClass.parseDouble(
           map['elevation'],
-        ),
+        )!,
         onEnd: map['onEnd'],
         shadowColor: ThemeDecoder.decodeColor(
           map['shadowColor'],
-        ),
+        )!,
         shape: ThemeDecoder.decodeBoxShape(
           map['shape'],
-        ),
+        )!,
       );
     }
 
@@ -115,10 +108,10 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -134,18 +127,16 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedPhysicalModel extends StatefulWidget {
   _JsonAnimatedPhysicalModel({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonAnimatedPhysicalModelBuilder builder;
-  final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final JsonWidgetData? child;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -158,18 +149,18 @@ class _JsonAnimatedPhysicalModelState
   @override
   Widget build(BuildContext context) {
     return AnimatedPhysicalModel(
-      animateColor: widget.builder.animateColor,
-      animateShadowColor: widget.builder.animateShadowColor,
-      borderRadius: widget.builder.borderRadius,
-      clipBehavior: widget.builder.clipBehavior,
+      animateColor: widget.builder.animateColor ?? true,
+      animateShadowColor: widget.builder.animateShadowColor ?? true,
+      borderRadius: widget.builder.borderRadius ?? BorderRadius.zero,
+      clipBehavior: widget.builder.clipBehavior ?? Clip.none,
       color: widget.builder.color,
-      curve: widget.builder.curve,
+      curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       elevation: widget.builder.elevation,
       onEnd: widget.builder.onEnd,
       shadowColor: widget.builder.shadowColor,
       shape: widget.builder.shape,
-      child: widget.child.build(
+      child: widget.child!.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

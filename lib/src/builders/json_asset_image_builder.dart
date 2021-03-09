@@ -8,28 +8,28 @@ import 'package:json_theme/json_theme.dart';
 /// [fromDynamic] for the format.
 class JsonAssetImageBuilder extends JsonWidgetBuilder {
   JsonAssetImageBuilder({
-    this.alignment,
+    required this.alignment,
     this.cacheHeight,
     this.cacheWidth,
     this.centerSlice,
     this.color,
     this.colorBlendMode,
     this.errorBuilder,
-    this.excludeFromSemantics,
-    this.filterQuality,
+    required this.excludeFromSemantics,
+    required this.filterQuality,
     this.fit,
     this.frameBuilder,
-    this.gaplessPlayback,
+    required this.gaplessPlayback,
     this.height,
-    this.isAntiAlias,
-    this.matchTextDirection,
-    @required this.name,
+    required this.isAntiAlias,
+    required this.matchTextDirection,
+    required this.name,
     this.package,
-    this.repeat,
+    required this.repeat,
     this.scale,
     this.semanticLabel,
     this.width,
-  })  : assert(name?.isNotEmpty == true),
+  })  : assert(name.isNotEmpty == true),
         super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 0;
@@ -37,26 +37,26 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   static const type = 'asset_image';
 
   final Alignment alignment;
-  final int cacheHeight;
-  final int cacheWidth;
-  final Rect centerSlice;
-  final Color color;
-  final BlendMode colorBlendMode;
-  final ImageErrorWidgetBuilder errorBuilder;
+  final int? cacheHeight;
+  final int? cacheWidth;
+  final Rect? centerSlice;
+  final Color? color;
+  final BlendMode? colorBlendMode;
+  final ImageErrorWidgetBuilder? errorBuilder;
   final bool excludeFromSemantics;
   final FilterQuality filterQuality;
-  final BoxFit fit;
-  final ImageFrameBuilder frameBuilder;
+  final BoxFit? fit;
+  final ImageFrameBuilder? frameBuilder;
   final bool gaplessPlayback;
-  final double height;
+  final double? height;
   final bool isAntiAlias;
   final bool matchTextDirection;
   final String name;
-  final String package;
+  final String? package;
   final ImageRepeat repeat;
-  final double scale;
-  final String semanticLabel;
-  final double width;
+  final double? scale;
+  final String? semanticLabel;
+  final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -97,11 +97,11 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeBlendMode]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeImageRepeat]
-  static JsonAssetImageBuilder fromDynamic(
+  static JsonAssetImageBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAssetImageBuilder result;
+    JsonAssetImageBuilder? result;
 
     if (map != null) {
       result = JsonAssetImageBuilder(
@@ -158,10 +158,10 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return Image.asset(
       name,

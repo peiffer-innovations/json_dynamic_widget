@@ -6,7 +6,10 @@ void main() {
     const type = JsonLimitedBoxBuilder.type;
 
     expect(type, 'limited_box');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonLimitedBoxBuilder,

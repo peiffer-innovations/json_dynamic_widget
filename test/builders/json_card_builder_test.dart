@@ -6,7 +6,10 @@ void main() {
     const type = JsonCardBuilder.type;
 
     expect(type, 'card');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({}) is JsonCardBuilder,
       true,

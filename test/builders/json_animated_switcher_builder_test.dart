@@ -6,18 +6,21 @@ void main() {
     const type = JsonAnimatedSwitcherBuilder.type;
 
     expect(type, 'animated_switcher');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'child': JsonWidgetData(
             builder: () =>
-                JsonWidgetRegistry.instance.getWidgetBuilder('center')({}),
+                JsonWidgetRegistry.instance.getWidgetBuilder('center')({})!,
             type: type,
           ),
           'duration': 1000,
         },
-      ) is JsonAnimatedSwitcherBuilder,
+      )! is JsonAnimatedSwitcherBuilder,
       true,
     );
   });

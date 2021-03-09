@@ -8,9 +8,9 @@ import 'package:json_theme/json_theme.dart';
 /// the format.
 class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   JsonIndexedStackBuilder({
-    this.alignment,
+    required this.alignment,
     this.index,
-    this.sizing,
+    required this.sizing,
     this.textDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -18,9 +18,9 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   static const type = 'indexed_stack';
 
   final AlignmentGeometry alignment;
-  final int index;
+  final int? index;
   final StackFit sizing;
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -38,11 +38,11 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeAlignment]
   ///  * [ThemeDecoder.decodeStackFit]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonIndexedStackBuilder fromDynamic(
+  static JsonIndexedStackBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonIndexedStackBuilder result;
+    JsonIndexedStackBuilder? result;
 
     if (map != null) {
       result = JsonIndexedStackBuilder(
@@ -69,10 +69,10 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    @required ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return IndexedStack(
       alignment: alignment,

@@ -9,19 +9,19 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonListTileBuilder extends JsonWidgetBuilder {
   JsonListTileBuilder({
-    this.autofocus,
+    required this.autofocus,
     this.contentPadding,
     this.dense,
-    this.enabled,
+    required this.enabled,
     this.focusColor,
     this.focusNode,
     this.hoverColor,
-    this.isThreeLine,
+    required this.isThreeLine,
     this.leading,
     this.mouseCursor,
     this.onLongPress,
     this.onTap,
-    this.selected,
+    required this.selected,
     this.selectedTileColor,
     this.shape,
     this.subtitle,
@@ -35,25 +35,25 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   static const type = 'list_tile';
 
   final bool autofocus;
-  final EdgeInsetsGeometry contentPadding;
-  final bool dense;
+  final EdgeInsetsGeometry? contentPadding;
+  final bool? dense;
   final bool enabled;
-  final Color focusColor;
-  final FocusNode focusNode;
-  final Color hoverColor;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final Color? hoverColor;
   final bool isThreeLine;
-  final JsonWidgetData leading;
-  final MouseCursor mouseCursor;
-  final VoidCallback onLongPress;
-  final VoidCallback onTap;
+  final JsonWidgetData? leading;
+  final MouseCursor? mouseCursor;
+  final VoidCallback? onLongPress;
+  final VoidCallback? onTap;
   final bool selected;
-  final Color selectedTileColor;
-  final ShapeBorder shape;
-  final JsonWidgetData subtitle;
-  final Color tileColor;
-  final JsonWidgetData title;
-  final JsonWidgetData trailing;
-  final VisualDensity visualDensity;
+  final Color? selectedTileColor;
+  final ShapeBorder? shape;
+  final JsonWidgetData? subtitle;
+  final Color? tileColor;
+  final JsonWidgetData? title;
+  final JsonWidgetData? trailing;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -94,11 +94,11 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeVisualDensity]
-  static JsonListTileBuilder fromDynamic(
+  static JsonListTileBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonListTileBuilder result;
+    JsonListTileBuilder? result;
 
     if (map != null) {
       result = JsonListTileBuilder(
@@ -164,10 +164,10 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return ListTile(
       autofocus: autofocus,

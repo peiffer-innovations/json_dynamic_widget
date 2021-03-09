@@ -8,14 +8,14 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonMaterialBuilder extends JsonWidgetBuilder {
   JsonMaterialBuilder({
-    this.animationDuration,
-    this.borderOnForeground,
+    required this.animationDuration,
+    required this.borderOnForeground,
     this.borderRadius,
-    this.clipBehavior,
+    required this.clipBehavior,
     this.color,
-    this.elevation,
+    required this.elevation,
     this.margin,
-    this.materialType,
+    required this.materialType,
     this.padding,
     this.shadowColor,
     this.shape,
@@ -27,16 +27,16 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
 
   final Duration animationDuration;
   final bool borderOnForeground;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final Clip clipBehavior;
-  final Color color;
+  final Color? color;
   final double elevation;
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? margin;
   final MaterialType materialType;
-  final EdgeInsetsGeometry padding;
-  final Color shadowColor;
-  final ShapeBorder shape;
-  final TextStyle textStyle;
+  final EdgeInsetsGeometry? padding;
+  final Color? shadowColor;
+  final ShapeBorder? shape;
+  final TextStyle? textStyle;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -66,15 +66,15 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMaterialType]
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeTextStyle]
-  static JsonMaterialBuilder fromDynamic(
+  static JsonMaterialBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonMaterialBuilder result;
+    JsonMaterialBuilder? result;
     if (map != null) {
       result = JsonMaterialBuilder(
         animationDuration: JsonClass.parseDurationFromMillis(
-            map['animationDuration'], kThemeChangeDuration),
+            map['animationDuration'], kThemeChangeDuration)!,
         borderOnForeground: map['borderOnForeground'] == null
             ? true
             : JsonClass.parseBool(
@@ -93,7 +93,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(map['elevation'], 0),
+        elevation: JsonClass.parseDouble(map['elevation'], 0)!,
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,
@@ -128,10 +128,10 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data).build(
       childBuilder: childBuilder,
@@ -153,14 +153,14 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
       child: padding == null
           ? child
           : Padding(
-              padding: padding,
+              padding: padding!,
               child: child,
             ),
     );
 
     if (margin != null) {
       result = Padding(
-        padding: margin,
+        padding: margin!,
         child: result,
       );
     }

@@ -9,21 +9,21 @@ import 'package:json_theme/json_theme.dart';
 /// the format.
 class JsonIconButtonBuilder extends JsonWidgetBuilder {
   JsonIconButtonBuilder({
-    this.alignment,
-    this.autofocus,
+    required this.alignment,
+    required this.autofocus,
     this.color,
     this.constraints,
     this.disabledColor,
-    this.enableFeedback,
+    required this.enableFeedback,
     this.focusColor,
     this.focusNode,
     this.highlightColor,
     this.hoverColor,
     this.icon,
-    this.iconSize,
-    this.mouseCursor,
+    required this.iconSize,
+    required this.mouseCursor,
     this.onPressed,
-    this.padding,
+    required this.padding,
     this.splashColor,
     this.splashRadius,
     this.tooltip,
@@ -35,23 +35,23 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
 
   final Alignment alignment;
   final bool autofocus;
-  final Color color;
-  final BoxConstraints constraints;
-  final Color disabledColor;
+  final Color? color;
+  final BoxConstraints? constraints;
+  final Color? disabledColor;
   final bool enableFeedback;
-  final Color focusColor;
-  final FocusNode focusNode;
-  final Color highlightColor;
-  final Color hoverColor;
-  final JsonWidgetData icon;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final Color? highlightColor;
+  final Color? hoverColor;
+  final JsonWidgetData? icon;
   final double iconSize;
   final MouseCursor mouseCursor;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final EdgeInsetsGeometry padding;
-  final Color splashColor;
-  final double splashRadius;
-  final String tooltip;
-  final VisualDensity visualDensity;
+  final Color? splashColor;
+  final double? splashRadius;
+  final String? tooltip;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -94,11 +94,11 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeVisualDensity]
-  static JsonIconButtonBuilder fromDynamic(
+  static JsonIconButtonBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonIconButtonBuilder result;
+    JsonIconButtonBuilder? result;
 
     if (map != null) {
       result = JsonIconButtonBuilder(
@@ -116,7 +116,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
         highlightColor: ThemeDecoder.decodeColor(map['highlightColor']),
         hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
         icon: JsonWidgetData.fromDynamic(map['icon']),
-        iconSize: JsonClass.parseDouble(map['iconSize'], 24.0),
+        iconSize: JsonClass.parseDouble(map['iconSize'], 24.0)!,
         mouseCursor: ThemeDecoder.decodeMouseCursor(map['mouseCursor']) ??
             SystemMouseCursors.click,
         onPressed: map['onPressed'],
@@ -134,10 +134,10 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var theIcon = icon ?? getChild(data);
 
@@ -152,7 +152,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
       focusNode: focusNode,
       highlightColor: highlightColor,
       hoverColor: hoverColor,
-      icon: theIcon?.build(childBuilder: childBuilder, context: context),
+      icon: theIcon.build(childBuilder: childBuilder, context: context),
       iconSize: iconSize,
       key: key,
       mouseCursor: mouseCursor,

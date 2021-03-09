@@ -13,7 +13,7 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = -1;
   static const type = 'save_context';
 
-  final String key;
+  final String? key;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -26,11 +26,11 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
   ///
   /// Where the value of the `key` attribute is the key used on the
   /// [JsonWidgetRegistry.setValue] to store the current [BuildContext].
-  static JsonSaveContextBuilder fromDynamic(
+  static JsonSaveContextBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonSaveContextBuilder result;
+    JsonSaveContextBuilder? result;
 
     if (map != null) {
       result = JsonSaveContextBuilder(key: map['key']);
@@ -41,10 +41,10 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     assert(
       data.children?.length == 1 || data.children?.isNotEmpty != true,
@@ -62,16 +62,14 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
 
 class _JsonSaveContextWidget extends StatefulWidget {
   _JsonSaveContextWidget({
-    @required this.builder,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonSaveContextBuilder builder;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -81,7 +79,7 @@ class _JsonSaveContextWidget extends StatefulWidget {
 class _JsonSaveContextWidgetState extends State<_JsonSaveContextWidget> {
   @override
   void dispose() {
-    widget.data.registry.removeValue(widget.builder.key);
+    widget.data.registry.removeValue(widget.builder.key!);
 
     super.dispose();
   }
@@ -89,9 +87,9 @@ class _JsonSaveContextWidgetState extends State<_JsonSaveContextWidget> {
   @override
   Widget build(BuildContext context) => Builder(
         builder: (BuildContext context) {
-          widget.data.registry.setValue(widget.builder.key, context);
+          widget.data.registry.setValue(widget.builder.key!, context);
           return widget.data.children?.isNotEmpty == true
-              ? widget.data.children[0].build(
+              ? widget.data.children![0].build(
                   childBuilder: widget.childBuilder,
                   context: context,
                 )

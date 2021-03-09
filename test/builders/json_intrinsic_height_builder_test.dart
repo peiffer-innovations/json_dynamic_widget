@@ -6,7 +6,10 @@ void main() {
     const type = JsonIntrinsicHeightBuilder.type;
 
     expect(type, 'intrinsic_height');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonIntrinsicHeightBuilder,

@@ -13,7 +13,7 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = -1;
   static const type = 'set_widget';
 
-  final Map<String, JsonWidgetData> widgets;
+  final Map<String, JsonWidgetData?>? widgets;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -30,21 +30,23 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [JsonWidgetData.fromDynamic]
-  static JsonSetWidgetBuilder fromDynamic(
+  static JsonSetWidgetBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonSetWidgetBuilder result;
+    JsonSetWidgetBuilder? result;
+    var innerRegistry = registry ?? JsonWidgetRegistry.instance;
 
     if (map != null) {
-      var widgets = <String, JsonWidgetData>{};
+      var widgets = <String, JsonWidgetData?>{};
       map.forEach(
         (key, value) => widgets[key] = JsonWidgetData.fromDynamic(value),
       );
 
       result = JsonSetWidgetBuilder(widgets: widgets);
       registry ??= JsonWidgetRegistry.instance;
-      result.widgets?.forEach((key, value) => registry.setValue(key, value));
+      result.widgets
+          ?.forEach((key, value) => innerRegistry.setValue(key, value));
     }
 
     return result;
@@ -52,10 +54,10 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     assert(
       data.children?.length == 1 || data.children?.isNotEmpty != true,
@@ -63,7 +65,7 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
     );
 
     return data.children?.isNotEmpty == true
-        ? data.children[0].build(
+        ? data.children![0].build(
             childBuilder: childBuilder,
             context: context,
           )

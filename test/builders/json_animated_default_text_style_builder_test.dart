@@ -6,7 +6,10 @@ void main() {
     const type = JsonAnimatedDefaultTextStyleBuilder.type;
 
     expect(type, 'animated_default_text_style');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {

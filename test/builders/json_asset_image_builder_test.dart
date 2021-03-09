@@ -6,7 +6,10 @@ void main() {
     const type = JsonAssetImageBuilder.type;
 
     expect(type, 'asset_image');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'name': 'image.png',

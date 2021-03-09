@@ -6,7 +6,10 @@ void main() {
     const type = JsonIconBuilder.type;
 
     expect(type, 'icon');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({}) is JsonIconBuilder,
       true,

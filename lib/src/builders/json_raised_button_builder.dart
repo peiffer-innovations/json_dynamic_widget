@@ -12,8 +12,8 @@ import 'package:json_theme/json_theme.dart';
 class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
   JsonRaisedButtonBuilder({
     this.animationDuration,
-    this.autofocus,
-    this.clipBehavior,
+    required this.autofocus,
+    required this.clipBehavior,
     this.color,
     this.colorBrightness,
     this.disabledColor,
@@ -43,33 +43,33 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'raised_button';
 
-  final Duration animationDuration;
+  final Duration? animationDuration;
   final bool autofocus;
   final Clip clipBehavior;
-  final Color color;
-  final Brightness colorBrightness;
-  final Color disabledColor;
-  final double disabledElevation;
-  final Color disabledTextColor;
-  final double elevation;
-  final Color focusColor;
-  final double focusElevation;
-  final FocusNode focusNode;
-  final Color highlightColor;
-  final double highlightElevation;
-  final Color hoverColor;
-  final double hoverElevation;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final MouseCursor mouseCursor;
-  final ValueChanged<bool> onHighlightChanged;
-  final VoidCallback onPressed;
-  final VoidCallback onLongPress;
-  final EdgeInsets padding;
-  final ShapeBorder shape;
-  final Color splashColor;
-  final Color textColor;
-  final ButtonTextTheme textTheme;
-  final VisualDensity visualDensity;
+  final Color? color;
+  final Brightness? colorBrightness;
+  final Color? disabledColor;
+  final double? disabledElevation;
+  final Color? disabledTextColor;
+  final double? elevation;
+  final Color? focusColor;
+  final double? focusElevation;
+  final FocusNode? focusNode;
+  final Color? highlightColor;
+  final double? highlightElevation;
+  final Color? hoverColor;
+  final double? hoverElevation;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final MouseCursor? mouseCursor;
+  final ValueChanged<bool>? onHighlightChanged;
+  final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
+  final EdgeInsets? padding;
+  final ShapeBorder? shape;
+  final Color? splashColor;
+  final Color? textColor;
+  final ButtonTextTheme? textTheme;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -122,11 +122,11 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeButtonTextTheme]
   ///  * [ThemeDecoder.decodeVisualDensity]
-  static JsonRaisedButtonBuilder fromDynamic(
+  static JsonRaisedButtonBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonRaisedButtonBuilder result;
+    JsonRaisedButtonBuilder? result;
 
     if (map != null) {
       result = JsonRaisedButtonBuilder(
@@ -183,7 +183,7 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
-        ),
+        ) as EdgeInsets?,
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
           validate: false,
@@ -212,10 +212,10 @@ class JsonRaisedButtonBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

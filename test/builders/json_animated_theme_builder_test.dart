@@ -6,7 +6,10 @@ void main() {
     const type = JsonAnimatedThemeBuilder.type;
 
     expect(type, 'animated_theme');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {

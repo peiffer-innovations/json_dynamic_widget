@@ -12,7 +12,7 @@ class JsonInputErrorBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'input_error';
 
-  final String text;
+  final String? text;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -22,11 +22,11 @@ class JsonInputErrorBuilder extends JsonWidgetBuilder {
   ///   "text": <String>
   /// }
   /// ```
-  static JsonInputErrorBuilder fromDynamic(
+  static JsonInputErrorBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonInputErrorBuilder result;
+    JsonInputErrorBuilder? result;
 
     if (map != null) {
       result = JsonInputErrorBuilder(
@@ -39,10 +39,10 @@ class JsonInputErrorBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) =>
       InputError(
         error: text,

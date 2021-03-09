@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
   JsonOverflowBoxBuilder({
-    this.alignment,
+    required this.alignment,
     this.maxHeight,
     this.maxWidth,
     this.minHeight,
@@ -19,10 +19,10 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
   static const type = 'overflow_box';
 
   final AlignmentGeometry alignment;
-  final double maxHeight;
-  final double maxWidth;
-  final double minHeight;
-  final double minWidth;
+  final double? maxHeight;
+  final double? maxWidth;
+  final double? minHeight;
+  final double? minWidth;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -39,11 +39,11 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
-  static JsonOverflowBoxBuilder fromDynamic(
+  static JsonOverflowBoxBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonOverflowBoxBuilder result;
+    JsonOverflowBoxBuilder? result;
 
     if (map != null) {
       result = JsonOverflowBoxBuilder(
@@ -71,10 +71,10 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

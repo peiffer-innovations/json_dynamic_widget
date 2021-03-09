@@ -14,7 +14,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     this.activeColor,
     this.autovalidateMode,
     this.dragStartBehavior,
-    this.enabled,
+    required this.enabled,
     this.label,
     this.onChanged,
     this.onSaved,
@@ -27,17 +27,17 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'cupertino_switch';
 
-  final Color activeColor;
-  final AutovalidateMode autovalidateMode;
-  final DragStartBehavior dragStartBehavior;
+  final Color? activeColor;
+  final AutovalidateMode? autovalidateMode;
+  final DragStartBehavior? dragStartBehavior;
   final bool enabled;
-  final String label;
-  final ValueChanged<bool> onChanged;
-  final ValueChanged<bool> onSaved;
-  final Color trackColor;
-  final Validator validator;
-  final bool value;
-  final VisualDensity visualDensity;
+  final String? label;
+  final ValueChanged<bool>? onChanged;
+  final ValueChanged<bool?>? onSaved;
+  final Color? trackColor;
+  final Validator? validator;
+  final bool? value;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -69,11 +69,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
-  static JsonCupertinoSwitchBuilder fromDynamic(
+  static JsonCupertinoSwitchBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonCupertinoSwitchBuilder result;
+    JsonCupertinoSwitchBuilder? result;
 
     if (map != null) {
       result = JsonCupertinoSwitchBuilder(
@@ -117,9 +117,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    if (data.id?.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
-    }
+    data.registry.removeValue(data.id);
 
     super.remove(data);
   }
@@ -133,10 +131,10 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   /// empty string will be used to represent no error message.
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return FormField<bool>(
       autovalidateMode: autovalidateMode,
@@ -147,13 +145,13 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
       validator: validator == null
           ? null
           : (value) {
-              var error = validator.validate(
+              var error = validator!.validate(
                 context: context,
                 label: label ?? '',
                 value: value?.toString(),
               );
 
-              if (data.id?.isNotEmpty == true) {
+              if (data.id.isNotEmpty == true) {
                 data.registry.setValue('${data.id}.error', error ?? '');
               }
 
@@ -169,12 +167,12 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
                 ? null
                 : (value) {
                     if (onChanged != null) {
-                      onChanged(value);
+                      onChanged!(value);
                     }
 
                     state.didChange(value);
 
-                    if (data.id?.isNotEmpty == true) {
+                    if (data.id.isNotEmpty == true) {
                       data.registry.setValue(data.id, value);
                     }
                   },

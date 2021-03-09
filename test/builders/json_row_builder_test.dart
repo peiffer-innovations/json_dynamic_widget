@@ -6,7 +6,10 @@ void main() {
     const type = JsonRowBuilder.type;
 
     expect(type, 'row');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({}) is JsonRowBuilder,
       true,

@@ -10,17 +10,16 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
     this.createRectTween,
     this.flightShuttleBuilder,
     this.placeholderBuilder,
-    @required this.tag,
-    this.transitionOnUserGestures,
-  })  : assert(tag != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.tag,
+    required this.transitionOnUserGestures,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'hero';
 
-  final CreateRectTween createRectTween;
-  final HeroFlightShuttleBuilder flightShuttleBuilder;
-  final HeroPlaceholderBuilder placeholderBuilder;
+  final CreateRectTween? createRectTween;
+  final HeroFlightShuttleBuilder? flightShuttleBuilder;
+  final HeroPlaceholderBuilder? placeholderBuilder;
   final Object tag;
   final bool transitionOnUserGestures;
 
@@ -41,11 +40,11 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
   /// [HeroPlaceholderBuilder] cannot be decoded via JSON.  Instead, the only
   /// way to bind those values to the builder is to use a function or a variable
   /// reference via the [JsonWidgetRegistry].
-  static JsonHeroBuilder fromDynamic(
+  static JsonHeroBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonHeroBuilder result;
+    JsonHeroBuilder? result;
 
     if (map != null) {
       result = JsonHeroBuilder(
@@ -63,10 +62,10 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

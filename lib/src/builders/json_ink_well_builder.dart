@@ -9,12 +9,12 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonInkWellBuilder extends JsonWidgetBuilder {
   JsonInkWellBuilder({
-    this.autofocus,
+    required this.autofocus,
     this.borderRadius,
-    this.canRequestFocus,
+    required this.canRequestFocus,
     this.customBorder,
     this.enableFeedback,
-    this.excludeFromSemantics,
+    required this.excludeFromSemantics,
     this.focusColor,
     this.focusNode,
     this.highlightColor,
@@ -37,27 +37,27 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   static const type = 'ink_well';
 
   final bool autofocus;
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final bool canRequestFocus;
-  final ShapeBorder customBorder;
-  final bool enableFeedback;
+  final ShapeBorder? customBorder;
+  final bool? enableFeedback;
   final bool excludeFromSemantics;
-  final Color focusColor;
-  final FocusNode focusNode;
-  final Color highlightColor;
-  final Color hoverColor;
-  final MouseCursor mouseCursor;
-  final GestureTapCallback onDoubleTap;
-  final ValueChanged<bool> onFocusChange;
-  final ValueChanged<bool> onHighlightChanged;
-  final ValueChanged<bool> onHover;
-  final GestureLongPressCallback onLongPress;
-  final GestureTapCallback onTap;
-  final GestureTapCancelCallback onTapCancel;
-  final GestureTapDownCallback onTapDown;
-  final double radius;
-  final Color splashColor;
-  final InteractiveInkFeatureFactory splashFactory;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final Color? highlightColor;
+  final Color? hoverColor;
+  final MouseCursor? mouseCursor;
+  final GestureTapCallback? onDoubleTap;
+  final ValueChanged<bool>? onFocusChange;
+  final ValueChanged<bool>? onHighlightChanged;
+  final ValueChanged<bool>? onHover;
+  final GestureLongPressCallback? onLongPress;
+  final GestureTapCallback? onTap;
+  final GestureTapCancelCallback? onTapCancel;
+  final GestureTapDownCallback? onTapDown;
+  final double? radius;
+  final Color? splashColor;
+  final InteractiveInkFeatureFactory? splashFactory;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -102,11 +102,11 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeInteractiveInkFeatureFactory]
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonInkWellBuilder fromDynamic(
+  static JsonInkWellBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonInkWellBuilder result;
+    JsonInkWellBuilder? result;
 
     if (map != null) {
       result = JsonInkWellBuilder(
@@ -168,10 +168,10 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

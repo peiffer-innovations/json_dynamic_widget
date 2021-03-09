@@ -6,7 +6,10 @@ void main() {
     const type = JsonTextBuilder.type;
 
     expect(type, 'text');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'text': 'foo',

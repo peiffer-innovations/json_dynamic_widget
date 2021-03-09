@@ -10,26 +10,26 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   JsonAppBarBuilder({
     this.actions,
     this.actionsIconTheme,
-    this.automaticallyImplyLeading,
+    required this.automaticallyImplyLeading,
     this.backgroundColor,
     this.bottom,
-    this.bottomOpacity,
+    required this.bottomOpacity,
     this.brightness,
     this.centerTitle,
     this.elevation,
-    this.excludeHeaderSemantics,
+    required this.excludeHeaderSemantics,
     this.flexibleSpace,
     this.iconTheme,
     this.leading,
     this.leadingWidth,
-    this.primary,
+    required this.primary,
     this.shadowColor,
     this.shape,
     this.textTheme,
     this.title,
     this.titleSpacing,
     this.toolbarHeight,
-    this.toolbarOpacity,
+    required this.toolbarOpacity,
   }) : super(
           numSupportedChildren: kNumSupportedChildren,
           preferredSizeWidget: true,
@@ -38,27 +38,27 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'app_bar';
 
-  final List<JsonWidgetData> actions;
-  final IconThemeData actionsIconTheme;
+  final List<JsonWidgetData>? actions;
+  final IconThemeData? actionsIconTheme;
   final bool automaticallyImplyLeading;
-  final Color backgroundColor;
-  final JsonWidgetData bottom;
+  final Color? backgroundColor;
+  final JsonWidgetData? bottom;
   final double bottomOpacity;
-  final Brightness brightness;
-  final bool centerTitle;
-  final double elevation;
+  final Brightness? brightness;
+  final bool? centerTitle;
+  final double? elevation;
   final bool excludeHeaderSemantics;
-  final JsonWidgetData flexibleSpace;
-  final IconThemeData iconTheme;
-  final JsonWidgetData leading;
-  final double leadingWidth;
+  final JsonWidgetData? flexibleSpace;
+  final IconThemeData? iconTheme;
+  final JsonWidgetData? leading;
+  final double? leadingWidth;
   final bool primary;
-  final Color shadowColor;
-  final ShapeBorder shape;
-  final TextTheme textTheme;
-  final JsonWidgetData title;
-  final double titleSpacing;
-  final double toolbarHeight;
+  final Color? shadowColor;
+  final ShapeBorder? shape;
+  final TextTheme? textTheme;
+  final JsonWidgetData? title;
+  final double? titleSpacing;
+  final double? toolbarHeight;
   final double toolbarOpacity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -96,11 +96,11 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeIconThemeData]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonAppBarBuilder fromDynamic(
+  static JsonAppBarBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAppBarBuilder result;
+    JsonAppBarBuilder? result;
 
     if (map != null) {
       result = JsonAppBarBuilder(
@@ -109,7 +109,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           (map) => JsonWidgetData.fromDynamic(
             map,
             registry: registry,
-          ),
+          )!,
         ),
         actionsIconTheme: ThemeDecoder.decodeIconThemeData(
           map['actionsIconTheme'],
@@ -126,7 +126,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['bottom'],
           registry: registry,
         ),
-        bottomOpacity: JsonClass.parseDouble(map['bottomOpacity'], 1.0),
+        bottomOpacity: JsonClass.parseDouble(map['bottomOpacity'], 1.0)!,
         brightness: ThemeDecoder.decodeBrightness(
           map['brightness'],
           validate: false,
@@ -173,7 +173,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           NavigationToolbar.kMiddleSpacing,
         ),
         toolbarHeight: JsonClass.parseDouble(map['toolbarHeight']),
-        toolbarOpacity: JsonClass.parseDouble(map['toolbarOpacity'], 1.0),
+        toolbarOpacity: JsonClass.parseDouble(map['toolbarOpacity'], 1.0)!,
       );
     }
 
@@ -182,10 +182,10 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     assert(
       data.children?.isNotEmpty != true,
@@ -196,7 +196,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
       actions: actions == null
           ? null
           : [
-              for (var data in actions)
+              for (var data in actions!)
                 data.build(
                   childBuilder: childBuilder,
                   context: context,
@@ -208,7 +208,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
       bottom: bottom?.build(
         childBuilder: childBuilder,
         context: context,
-      ),
+      ) as PreferredSizeWidget?,
       bottomOpacity: bottomOpacity,
       brightness: brightness,
       centerTitle: centerTitle,

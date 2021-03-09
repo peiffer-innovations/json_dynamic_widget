@@ -7,23 +7,20 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// See the [fromDynamic] for the format.
 class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
   JsonTweenAnimationBuilder({
-    @required this.builder,
+    required this.builder,
     this.curve,
-    @required this.duration,
+    required this.duration,
     this.onEnd,
-    @required this.tween,
-  })  : assert(builder != null),
-        assert(duration != null),
-        assert(tween != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.tween,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'tween_animation';
 
   final ValueWidgetBuilder builder;
-  final Curve curve;
+  final Curve? curve;
   final Duration duration;
-  final VoidCallback onEnd;
+  final VoidCallback? onEnd;
   final Tween tween;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -43,11 +40,11 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
   /// Instead, the only way to bind those values to the builder is to use a
   /// function or a variable reference via the [JsonWidgetRegistry]. The [Tween] can only be
   /// bound through a function reference.
-  static JsonTweenAnimationBuilder fromDynamic(
+  static JsonTweenAnimationBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonTweenAnimationBuilder result;
+    JsonTweenAnimationBuilder? result;
 
     if (map != null) {
       result = JsonTweenAnimationBuilder(
@@ -55,7 +52,7 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         onEnd: map['onEnd'],
         tween: map['tween'],
       );
@@ -66,10 +63,10 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     assert(
       data.children?.length == 1 || data.children?.isNotEmpty != true,
@@ -87,16 +84,14 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
 
 class _JsonTweenAnimation extends StatefulWidget {
   _JsonTweenAnimation({
-    @required this.builder,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonTweenAnimationBuilder builder;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -105,19 +100,17 @@ class _JsonTweenAnimation extends StatefulWidget {
 
 class _JsonTweenAnimationState extends State<_JsonTweenAnimation> {
   @override
-  Widget build(BuildContext context) {
-    return TweenAnimationBuilder(
-      builder: widget.builder.builder,
-      curve: widget.builder.curve,
-      duration: widget.builder.duration,
-      onEnd: widget.builder.onEnd,
-      tween: widget.builder.tween,
-      child: widget.data.children?.length != 1
-          ? null
-          : widget.data.children[0].build(
-              childBuilder: widget.childBuilder,
-              context: context,
-            ),
-    );
-  }
+  Widget build(BuildContext context) => TweenAnimationBuilder(
+        builder: widget.builder.builder,
+        curve: widget.builder.curve ?? Curves.linear,
+        duration: widget.builder.duration,
+        onEnd: widget.builder.onEnd,
+        tween: widget.builder.tween,
+        child: widget.data.children?.length != 1
+            ? null
+            : widget.data.children![0].build(
+                childBuilder: widget.childBuilder,
+                context: context,
+              ),
+      );
 }

@@ -6,7 +6,10 @@ void main() {
     const type = JsonFloatingActionButtonBuilder.type;
 
     expect(type, 'floating_action_button');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonFloatingActionButtonBuilder,

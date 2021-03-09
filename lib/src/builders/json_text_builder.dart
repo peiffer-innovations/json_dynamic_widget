@@ -15,7 +15,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
     this.softWrap,
     this.strutStyle,
     this.style,
-    String text,
+    String? text,
     this.textAlign,
     this.textDirection,
     this.textHeightBehavior,
@@ -27,19 +27,19 @@ class JsonTextBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'text';
 
-  final Locale locale;
-  final int maxLines;
-  final TextOverflow overflow;
-  final String semanticsLabel;
-  final bool softWrap;
-  final StrutStyle strutStyle;
-  final TextStyle style;
+  final Locale? locale;
+  final int? maxLines;
+  final TextOverflow? overflow;
+  final String? semanticsLabel;
+  final bool? softWrap;
+  final StrutStyle? strutStyle;
+  final TextStyle? style;
   final String text;
-  final TextAlign textAlign;
-  final TextDirection textDirection;
-  final TextHeightBehavior textHeightBehavior;
-  final double textScaleFactor;
-  final TextWidthBasis textWidthBasis;
+  final TextAlign? textAlign;
+  final TextDirection? textDirection;
+  final TextHeightBehavior? textHeightBehavior;
+  final double? textScaleFactor;
+  final TextWidthBasis? textWidthBasis;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -71,11 +71,11 @@ class JsonTextBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeTextHeightBehavior]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [ThemeDecoder.decodeTextWidthBasis]
-  static JsonTextBuilder fromDynamic(
+  static JsonTextBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonTextBuilder result;
+    JsonTextBuilder? result;
     if (map != null) {
       result = JsonTextBuilder(
         locale: ThemeDecoder.decodeLocale(
@@ -125,26 +125,25 @@ class JsonTextBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
-  }) {
-    return Text(
-      text,
-      key: key,
-      locale: locale,
-      maxLines: maxLines,
-      overflow: overflow,
-      semanticsLabel: semanticsLabel,
-      softWrap: softWrap,
-      strutStyle: strutStyle,
-      style: style,
-      textAlign: textAlign,
-      textDirection: textDirection,
-      textHeightBehavior: textHeightBehavior,
-      textScaleFactor: textScaleFactor,
-      textWidthBasis: textWidthBasis,
-    );
-  }
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  }) =>
+      Text(
+        text,
+        key: key,
+        locale: locale,
+        maxLines: maxLines,
+        overflow: overflow,
+        semanticsLabel: semanticsLabel,
+        softWrap: softWrap,
+        strutStyle: strutStyle,
+        style: style,
+        textAlign: textAlign,
+        textDirection: textDirection,
+        textHeightBehavior: textHeightBehavior,
+        textScaleFactor: textScaleFactor,
+        textWidthBasis: textWidthBasis,
+      );
 }

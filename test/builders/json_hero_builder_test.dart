@@ -6,7 +6,10 @@ void main() {
     const type = JsonHeroBuilder.type;
 
     expect(type, 'hero');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'tag': 'tag',

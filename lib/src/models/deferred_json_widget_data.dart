@@ -8,34 +8,34 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// exist until after the first pass of the widget tree processing is completed.
 class DeferredJsonWidgetData implements JsonWidgetData {
   DeferredJsonWidgetData({
-    @required String key,
-    @required JsonWidgetRegistry registry,
-  })  : assert(key != null),
-        assert(registry != null),
-        _key = key,
+    required String key,
+    required JsonWidgetRegistry registry,
+  })   : _key = key,
         _registry = registry;
 
   final String _key;
   final JsonWidgetRegistry _registry;
 
-  JsonWidgetData _data;
+  JsonWidgetData? _data;
 
   @override
-  JsonWidgetBuilder get args => data.args;
+  JsonWidgetBuilder? get args => data.args;
 
   @override
   JsonWidgetBuilder Function() get builder => data.builder;
 
   @override
-  List<JsonWidgetData> get children => data.children;
+  List<JsonWidgetData>? get children => data.children;
 
   JsonWidgetData get data {
     if (_data == null) {
       var data = _registry.getValue(_key);
-      assert(
-        data is JsonWidgetData,
-        'Unable to find JsonWidgetData for [$_key] on the registry',
-      );
+
+      if (data is! JsonWidgetData) {
+        throw Exception(
+          'Unable to find JsonWidgetData for [$_key] on the registry',
+        );
+      }
 
       // It's an error for two exact JsonWidgetData objects to be in two places
       // on the tree.  To avoid that, we recreate the data object to effectively
@@ -44,7 +44,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       // rather than the outdated ones it might have been set up with.
       _data = data.recreate();
     }
-    return _data;
+    return _data!;
   }
 
   @override
@@ -54,7 +54,10 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   String get id => data.id;
 
   @override
-  Widget build({ChildWidgetBuilder childBuilder, BuildContext context}) =>
+  Widget build({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+  }) =>
       data.build(
         childBuilder: childBuilder,
         context: context,
@@ -63,16 +66,16 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   @override
   JsonWidgetData copyWith({
     dynamic args,
-    JsonWidgetBuilder builder,
-    List<JsonWidgetData> children,
-    Set<String> dynamicKeys,
-    String id,
-    JsonWidgetRegistry registry,
-    String type,
+    JsonWidgetBuilder? builder,
+    List<JsonWidgetData>? children,
+    Set<String>? dynamicKeys,
+    String? id,
+    JsonWidgetRegistry? registry,
+    String? type,
   }) =>
       JsonWidgetData(
         args: args ?? this.args,
-        builder: builder ?? this.builder,
+        builder: builder as JsonWidgetBuilder Function()? ?? this.builder,
         children: children ?? this.children,
         dynamicKeys: dynamicKeys ?? this.dynamicKeys,
         id: id ?? this.id,

@@ -14,10 +14,10 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     this.activeColor,
     this.activeThumbImage,
     this.activeTrackColor,
-    this.autofocus,
+    required this.autofocus,
     this.autovalidateMode,
-    this.dragStartBehavior,
-    this.enabled,
+    required this.dragStartBehavior,
+    required this.enabled,
     this.focusColor,
     this.focusNode,
     this.hoverColor,
@@ -40,30 +40,30 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'switch';
 
-  final Color activeColor;
-  final ImageProvider<dynamic> activeThumbImage;
-  final Color activeTrackColor;
+  final Color? activeColor;
+  final ImageProvider<dynamic>? activeThumbImage;
+  final Color? activeTrackColor;
   final bool autofocus;
-  final AutovalidateMode autovalidateMode;
+  final AutovalidateMode? autovalidateMode;
   final DragStartBehavior dragStartBehavior;
   final bool enabled;
-  final Color focusColor;
-  final FocusNode focusNode;
-  final Color hoverColor;
-  final Color inactiveThumbColor;
-  final ImageProvider<dynamic> inactiveThumbImage;
-  final Color inactiveTrackColor;
-  final String label;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final MouseCursor mouseCursor;
-  final ImageErrorListener onActiveThumbImageError;
-  final ValueChanged<bool> onChanged;
-  final ImageErrorListener onInactiveThumbImageError;
-  final ValueChanged<bool> onSaved;
-  final Color trackColor;
-  final Validator validator;
-  final bool value;
-  final VisualDensity visualDensity;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final Color? hoverColor;
+  final Color? inactiveThumbColor;
+  final ImageProvider<dynamic>? inactiveThumbImage;
+  final Color? inactiveTrackColor;
+  final String? label;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final MouseCursor? mouseCursor;
+  final ImageErrorListener? onActiveThumbImageError;
+  final ValueChanged<bool>? onChanged;
+  final ImageErrorListener? onInactiveThumbImageError;
+  final ValueChanged<bool?>? onSaved;
+  final Color? trackColor;
+  final Validator? validator;
+  final bool? value;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -107,11 +107,11 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
-  static JsonSwitchBuilder fromDynamic(
+  static JsonSwitchBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonSwitchBuilder result;
+    JsonSwitchBuilder? result;
 
     if (map != null) {
       result = JsonSwitchBuilder(
@@ -184,7 +184,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    if (data.id?.isNotEmpty == true) {
+    if (data.id.isNotEmpty == true) {
       data.registry.removeValue(data.id);
     }
 
@@ -200,10 +200,10 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   /// empty string will be used to represent no error message.
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return FormField<bool>(
       autovalidateMode: autovalidateMode,
@@ -213,13 +213,13 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
       validator: validator == null
           ? null
           : (value) {
-              var error = validator.validate(
+              var error = validator!.validate(
                 context: context,
                 label: label ?? '',
                 value: value?.toString(),
               );
 
-              if (data.id?.isNotEmpty == true) {
+              if (data.id.isNotEmpty == true) {
                 data.registry.setValue('${data.id}.error', error ?? '');
               }
 
@@ -231,7 +231,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
           label: label ?? '',
           child: Switch(
             activeColor: activeColor,
-            activeThumbImage: activeThumbImage,
+            activeThumbImage: activeThumbImage as ImageProvider<Object>?,
             activeTrackColor: activeTrackColor,
             autofocus: autofocus,
             dragStartBehavior: dragStartBehavior,
@@ -239,7 +239,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
             focusNode: focusNode,
             hoverColor: hoverColor,
             inactiveThumbColor: inactiveThumbColor,
-            inactiveThumbImage: inactiveThumbImage,
+            inactiveThumbImage: inactiveThumbImage as ImageProvider<Object>?,
             inactiveTrackColor: inactiveTrackColor,
             materialTapTargetSize: materialTapTargetSize,
             mouseCursor: mouseCursor,
@@ -248,12 +248,12 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
                 ? null
                 : (value) {
                     if (onChanged != null) {
-                      onChanged(value);
+                      onChanged!(value);
                     }
 
                     state.didChange(value);
 
-                    if (data.id?.isNotEmpty == true) {
+                    if (data.id.isNotEmpty == true) {
                       data.registry.setValue(data.id, value);
                     }
                   },

@@ -6,7 +6,10 @@ void main() {
     const type = JsonSwitchBuilder.type;
 
     expect(type, 'switch');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSwitchBuilder,

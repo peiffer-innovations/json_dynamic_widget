@@ -39,30 +39,30 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'dropdown_button_form_field';
 
-  final bool autofocus;
-  final AutovalidateMode autovalidateMode;
+  final bool? autofocus;
+  final AutovalidateMode? autovalidateMode;
   final dynamic decoration;
-  final JsonWidgetData disabledHint;
-  final Color dropdownColor;
-  final int elevation;
-  final bool enabled;
-  final Color focusColor;
-  final FocusNode focusNode;
-  final JsonWidgetData hint;
-  final JsonWidgetData icon;
+  final JsonWidgetData? disabledHint;
+  final Color? dropdownColor;
+  final int? elevation;
+  final bool? enabled;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final JsonWidgetData? hint;
+  final JsonWidgetData? icon;
   final dynamic items;
-  final Color iconDisabledColor;
-  final double iconSize;
-  final Color iconEnabledColor;
-  final bool isDense;
-  final bool isExpanded;
-  final double itemHeight;
-  final ValueChanged onChanged;
-  final FormFieldSetter onSaved;
-  final VoidCallback onTap;
+  final Color? iconDisabledColor;
+  final double? iconSize;
+  final Color? iconEnabledColor;
+  final bool? isDense;
+  final bool? isExpanded;
+  final double? itemHeight;
+  final ValueChanged? onChanged;
+  final FormFieldSetter? onSaved;
+  final VoidCallback? onTap;
   final dynamic selectedItemBuilder;
-  final Validator validator;
-  final TextStyle style;
+  final Validator? validator;
+  final TextStyle? style;
   final dynamic value;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -124,11 +124,11 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [Validator]
-  static JsonDropdownButtonFormFieldBuilder fromDynamic(
+  static JsonDropdownButtonFormFieldBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonDropdownButtonFormFieldBuilder result;
+    JsonDropdownButtonFormFieldBuilder? result;
 
     if (map != null) {
       result = JsonDropdownButtonFormFieldBuilder(
@@ -185,7 +185,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    if (data.id?.isNotEmpty == true) {
+    if (data.id.isNotEmpty == true) {
       data.registry.removeValue(data.id);
     }
 
@@ -201,10 +201,10 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   /// empty string will be used to represent no error message.
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return _JsonDropdownButtonFormFieldWidget(
       builder: this,
@@ -217,14 +217,14 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
 
 class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
   _JsonDropdownButtonFormFieldWidget({
-    this.builder,
+    required this.builder,
     this.childBuilder,
-    this.data,
-    Key key,
+    required this.data,
+    Key? key,
   }) : super(key: key);
 
   final JsonDropdownButtonFormFieldBuilder builder;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -234,9 +234,9 @@ class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
 
 class _JsonDropdownButtonFormFieldWidgetState
     extends State<_JsonDropdownButtonFormFieldWidget> {
-  InputDecoration _decoration;
-  List<DropdownMenuItem> _items;
-  DropdownButtonBuilder _selectedItemBuilder;
+  InputDecoration? _decoration;
+  List<DropdownMenuItem>? _items;
+  DropdownButtonBuilder? _selectedItemBuilder;
   dynamic _value;
 
   @override
@@ -307,7 +307,7 @@ class _JsonDropdownButtonFormFieldWidgetState
 
   @override
   Widget build(BuildContext context) => DropdownButtonFormField(
-        autofocus: widget.builder.autofocus,
+        autofocus: widget.builder.autofocus ?? false,
         autovalidateMode: widget.builder.autovalidateMode,
         decoration: _decoration ?? const InputDecoration(),
         disabledHint: widget.builder.disabledHint?.build(
@@ -315,7 +315,7 @@ class _JsonDropdownButtonFormFieldWidgetState
           context: context,
         ),
         dropdownColor: widget.builder.dropdownColor,
-        elevation: widget.builder.elevation,
+        elevation: widget.builder.elevation ?? 8,
         focusColor: widget.builder.focusColor,
         focusNode: widget.builder.focusNode,
         hint: widget.builder.hint?.build(
@@ -329,22 +329,22 @@ class _JsonDropdownButtonFormFieldWidgetState
         items: _items,
         iconDisabledColor: widget.builder.iconDisabledColor,
         iconEnabledColor: widget.builder.iconEnabledColor,
-        iconSize: widget.builder.iconSize,
-        isDense: widget.builder.isDense,
-        isExpanded: widget.builder.isExpanded,
+        iconSize: widget.builder.iconSize ?? 24,
+        isDense: widget.builder.isDense ?? true,
+        isExpanded: widget.builder.isExpanded ?? false,
         itemHeight: widget.builder.itemHeight,
         onChanged: widget.builder.enabled != true
             ? null
-            : (value) {
+            : (dynamic value) {
                 if (widget.builder.onChanged != null) {
-                  widget.builder.onChanged(value);
+                  widget.builder.onChanged!(value);
                 }
                 _value = value;
                 if (mounted == true) {
                   setState(() {});
                 }
 
-                if (widget.data.id?.isNotEmpty == true) {
+                if (widget.data.id.isNotEmpty == true) {
                   widget.data.registry.setValue(
                     widget.data.id,
                     value,
@@ -356,14 +356,14 @@ class _JsonDropdownButtonFormFieldWidgetState
         selectedItemBuilder: _selectedItemBuilder,
         validator: widget.builder.validator == null
             ? null
-            : (value) {
-                var error = widget.builder.validator.validate(
+            : (dynamic value) {
+                var error = widget.builder.validator!.validate(
                   context: context,
                   label: _decoration?.labelText ?? '',
                   value: value?.toString(),
                 );
 
-                if (widget.data.id?.isNotEmpty == true) {
+                if (widget.data.id.isNotEmpty == true) {
                   widget.data.registry
                       .setValue('${widget.data.id}.error', error ?? '');
                 }

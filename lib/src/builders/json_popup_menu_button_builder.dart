@@ -10,34 +10,33 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   JsonPopupMenuButtonBuilder({
     this.color,
     this.elevation,
-    this.enabled,
+    required this.enabled,
     this.icon,
     this.initialValue,
-    @required this.itemBuilder,
-    this.offset,
+    required this.itemBuilder,
+    required this.offset,
     this.onCanceled,
     this.onSelected,
-    this.padding,
+    required this.padding,
     this.shape,
     this.tooltip,
-  })  : assert(itemBuilder != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 0;
   static const type = 'popup_menu_button';
 
-  final Color color;
-  final double elevation;
+  final Color? color;
+  final double? elevation;
   final bool enabled;
-  final JsonWidgetData icon;
+  final JsonWidgetData? icon;
   final dynamic initialValue;
   final PopupMenuItemBuilder itemBuilder;
   final Offset offset;
-  final PopupMenuCanceled onCanceled;
-  final PopupMenuItemSelected onSelected;
+  final PopupMenuCanceled? onCanceled;
+  final PopupMenuItemSelected? onSelected;
   final EdgeInsetsGeometry padding;
-  final ShapeBorder shape;
-  final String tooltip;
+  final ShapeBorder? shape;
+  final String? tooltip;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -71,11 +70,11 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeOffset]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonPopupMenuButtonBuilder fromDynamic(
+  static JsonPopupMenuButtonBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonPopupMenuButtonBuilder result;
+    JsonPopupMenuButtonBuilder? result;
 
     if (map != null) {
       result = JsonPopupMenuButtonBuilder(
@@ -122,10 +121,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

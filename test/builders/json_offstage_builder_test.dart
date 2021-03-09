@@ -6,7 +6,10 @@ void main() {
     const type = JsonOffstageBuilder.type;
 
     expect(type, 'offstage');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonOffstageBuilder,

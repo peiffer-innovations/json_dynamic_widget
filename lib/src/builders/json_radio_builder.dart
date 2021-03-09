@@ -15,9 +15,9 @@ import 'package:json_theme/json_theme.dart';
 class JsonRadioBuilder extends JsonWidgetBuilder {
   JsonRadioBuilder({
     this.activeColor,
-    this.autofocus,
+    required this.autofocus,
     this.autovalidateMode,
-    this.enabled,
+    required this.enabled,
     this.focusColor,
     this.focusNode,
     this.groupValue,
@@ -28,7 +28,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     this.mouseCursor,
     this.onChanged,
     this.onSaved,
-    this.toggleable,
+    required this.toggleable,
     this.validator,
     this.value,
     this.visualDensity,
@@ -38,24 +38,24 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'radio';
 
-  final Color activeColor;
+  final Color? activeColor;
   final bool autofocus;
-  final AutovalidateMode autovalidateMode;
+  final AutovalidateMode? autovalidateMode;
   final bool enabled;
-  final Color focusColor;
-  final FocusNode focusNode;
+  final Color? focusColor;
+  final FocusNode? focusNode;
   final dynamic groupValue;
-  final Color hoverColor;
-  final String id;
-  final String label;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final MouseCursor mouseCursor;
-  final ValueChanged<dynamic> onChanged;
-  final ValueChanged<dynamic> onSaved;
+  final Color? hoverColor;
+  final String? id;
+  final String? label;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final MouseCursor? mouseCursor;
+  final ValueChanged<dynamic>? onChanged;
+  final ValueChanged<dynamic>? onSaved;
   final bool toggleable;
-  final Validator validator;
+  final Validator? validator;
   final dynamic value;
-  final VisualDensity visualDensity;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -95,11 +95,11 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
-  static JsonRadioBuilder fromDynamic(
+  static JsonRadioBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonRadioBuilder result;
+    JsonRadioBuilder? result;
 
     if (map != null) {
       result = JsonRadioBuilder(
@@ -156,7 +156,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   @override
   void remove(JsonWidgetData data) {
     if (id?.isNotEmpty == true) {
-      data.registry.removeValue(id);
+      data.registry.removeValue(id!);
     }
 
     super.remove(data);
@@ -174,16 +174,12 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   /// properly select / de-select.
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
-    assert(
-      data.id?.isNotEmpty == true,
-      '[JsonRadioBuilder] requires a non-empty id',
-    );
 
     return _JsonRadioWidget(
       builder: this,
@@ -197,16 +193,16 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
 
 class _JsonRadioWidget extends StatefulWidget {
   _JsonRadioWidget({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
   }) : super(key: key);
 
   final JsonRadioBuilder builder;
-  final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final JsonWidgetData? child;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -224,7 +220,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
     _subscriptions.add(widget.data.registry.valueStream.listen((event) {
       if (event == widget.builder.id) {
         if (mounted == true) {
-          _globalKey.currentState.didChange(
+          _globalKey.currentState!.didChange(
             widget.data.registry.getValue(widget.builder.id),
           );
         }
@@ -251,13 +247,13 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
       validator: widget.builder.validator == null
           ? null
           : (value) {
-              var error = widget.builder.validator.validate(
+              var error = widget.builder.validator!.validate(
                 context: context,
                 label: widget.builder.label ?? '',
                 value: value?.toString(),
               );
 
-              if (widget.data.id?.isNotEmpty == true) {
+              if (widget.data.id.isNotEmpty == true) {
                 widget.data.registry
                     .setValue('${widget.builder.id}.error', error ?? '');
               }
@@ -280,13 +276,13 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
                 ? null
                 : (value) {
                     if (widget.builder.onChanged != null) {
-                      widget.builder.onChanged(value);
+                      widget.builder.onChanged!(value);
                     }
 
                     state.didChange(value);
 
                     if (widget.builder.id?.isNotEmpty == true) {
-                      widget.data.registry.setValue(widget.builder.id, value);
+                      widget.data.registry.setValue(widget.builder.id!, value);
                     }
                   },
             toggleable: widget.builder.toggleable,

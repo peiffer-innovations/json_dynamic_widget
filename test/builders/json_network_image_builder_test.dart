@@ -6,7 +6,10 @@ void main() {
     const type = JsonNetworkImageBuilder.type;
 
     expect(type, 'network_image');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'src': 'http://github.com',

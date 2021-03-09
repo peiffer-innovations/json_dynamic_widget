@@ -6,7 +6,10 @@ void main() {
     const type = JsonMemoryImageBuilder.type;
 
     expect(type, 'memory_image');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'image': 'aGVsbG8=',

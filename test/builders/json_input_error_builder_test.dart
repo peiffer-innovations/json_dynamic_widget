@@ -6,7 +6,10 @@ void main() {
     const type = JsonInputErrorBuilder.type;
 
     expect(type, 'input_error');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'text': 'foo',

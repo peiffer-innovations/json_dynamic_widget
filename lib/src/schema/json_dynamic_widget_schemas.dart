@@ -90,7 +90,7 @@ class JsonDynamicWidgetSchemas {
     TweenAnimationSchema.id: TweenAnimationSchema.schema,
   });
 
-  static Map<String, dynamic> lookup(String key) =>
+  static Map<String, dynamic>? lookup(String key) =>
       all[key] ??
       all['https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/$key.json'];
 }

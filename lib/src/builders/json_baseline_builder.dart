@@ -8,8 +8,8 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonBaselineBuilder extends JsonWidgetBuilder {
   JsonBaselineBuilder({
-    this.baseline,
-    this.baselineType,
+    required this.baseline,
+    required this.baselineType,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 0;
@@ -31,19 +31,20 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonBaselineBuilder fromDynamic(
+  static JsonBaselineBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonBaselineBuilder result;
+    JsonBaselineBuilder? result;
 
     if (map != null) {
       result = JsonBaselineBuilder(
-        baseline: JsonClass.parseDouble(map['baseline']),
+        baseline: JsonClass.parseDouble(map['baseline'], 0)!,
         baselineType: ThemeDecoder.decodeTextBaseline(
-          map['baselineType'],
-          validate: false,
-        ),
+              map['baselineType'],
+              validate: false,
+            ) ??
+            TextBaseline.alphabetic,
       );
     }
 
@@ -52,10 +53,10 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

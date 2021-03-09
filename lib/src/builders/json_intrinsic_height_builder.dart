@@ -13,11 +13,11 @@ class JsonIntrinsicHeightBuilder extends JsonWidgetBuilder {
 
   /// Builds the builder from a Map-like dynamic structure.  This expects an
   /// empty JSON.
-  static JsonIntrinsicHeightBuilder fromDynamic(
+  static JsonIntrinsicHeightBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonIntrinsicHeightBuilder result;
+    JsonIntrinsicHeightBuilder? result;
 
     if (map != null) {
       result = JsonIntrinsicHeightBuilder();
@@ -28,10 +28,10 @@ class JsonIntrinsicHeightBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

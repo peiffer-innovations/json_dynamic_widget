@@ -14,8 +14,8 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'sized_box';
 
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -26,11 +26,11 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
   ///   "width": <double>
   /// }
   /// ```
-  static JsonSizedBoxBuilder fromDynamic(
+  static JsonSizedBoxBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonSizedBoxBuilder result;
+    JsonSizedBoxBuilder? result;
     if (map != null) {
       result = JsonSizedBoxBuilder(
         height: JsonClass.parseDouble(map['height']),
@@ -43,10 +43,10 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

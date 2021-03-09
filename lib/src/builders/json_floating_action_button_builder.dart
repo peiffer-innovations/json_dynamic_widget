@@ -9,9 +9,9 @@ import 'package:json_theme/json_theme.dart';
 /// See the [fromDynamic] for the format.
 class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   JsonFloatingActionButtonBuilder({
-    this.autofocus,
+    required this.autofocus,
     this.backgroundColor,
-    this.clipBehavior,
+    required this.clipBehavior,
     this.disabledElevation,
     this.elevation,
     this.focusColor,
@@ -22,9 +22,9 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
     this.highlightElevation,
     this.hoverColor,
     this.hoverElevation,
-    this.isExtended,
+    required this.isExtended,
     this.materialTapTargetSize,
-    this.mini,
+    required this.mini,
     this.mouseCursor,
     this.onPressed,
     this.shape,
@@ -36,26 +36,26 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   static const type = 'floating_action_button';
 
   final bool autofocus;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final Clip clipBehavior;
-  final double disabledElevation;
-  final double elevation;
-  final Color focusColor;
-  final double focusElevation;
-  final FocusNode focusNode;
-  final Color foregroundColor;
-  final Object heroTag;
-  final double highlightElevation;
-  final Color hoverColor;
-  final double hoverElevation;
+  final double? disabledElevation;
+  final double? elevation;
+  final Color? focusColor;
+  final double? focusElevation;
+  final FocusNode? focusNode;
+  final Color? foregroundColor;
+  final Object? heroTag;
+  final double? highlightElevation;
+  final Color? hoverColor;
+  final double? hoverElevation;
   final bool isExtended;
-  final MaterialTapTargetSize materialTapTargetSize;
+  final MaterialTapTargetSize? materialTapTargetSize;
   final bool mini;
-  final MouseCursor mouseCursor;
-  final VoidCallback onPressed;
-  final ShapeBorder shape;
-  final Color splashColor;
-  final String tooltip;
+  final MouseCursor? mouseCursor;
+  final VoidCallback? onPressed;
+  final ShapeBorder? shape;
+  final Color? splashColor;
+  final String? tooltip;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -97,18 +97,17 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonFloatingActionButtonBuilder fromDynamic(
+  static JsonFloatingActionButtonBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonFloatingActionButtonBuilder result;
+    JsonFloatingActionButtonBuilder? result;
 
     if (map != null) {
       result = JsonFloatingActionButtonBuilder(
         autofocus: JsonClass.parseBool(
-              map['autofocus'],
-            ) ??
-            false,
+          map['autofocus'],
+        ),
         backgroundColor: ThemeDecoder.decodeColor(
           map['backgroundColor'],
           validate: false,
@@ -151,14 +150,13 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
           map['hoverElevation'],
         ),
         isExtended: JsonClass.parseBool(
-              map['isExtended'],
-            ) ??
-            false,
+          map['isExtended'],
+        ),
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
           map['materialTapTargetSize'],
           validate: false,
         ),
-        mini: JsonClass.parseBool(map['mini']) ?? false,
+        mini: JsonClass.parseBool(map['mini']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
           validate: false,
@@ -181,10 +179,10 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

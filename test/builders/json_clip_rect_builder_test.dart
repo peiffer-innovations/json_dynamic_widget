@@ -6,7 +6,10 @@ void main() {
     const type = JsonClipRectBuilder.type;
 
     expect(type, 'clip_rect');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonClipRectBuilder,

@@ -7,7 +7,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// format.
 class JsonOffstageBuilder extends JsonWidgetBuilder {
   JsonOffstageBuilder({
-    this.offstage,
+    required this.offstage,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -23,11 +23,11 @@ class JsonOffstageBuilder extends JsonWidgetBuilder {
   ///   "offstage": <bool>
   /// }
   /// ```
-  static JsonOffstageBuilder fromDynamic(
+  static JsonOffstageBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonOffstageBuilder result;
+    JsonOffstageBuilder? result;
 
     if (map != null) {
       result = JsonOffstageBuilder(
@@ -44,10 +44,10 @@ class JsonOffstageBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

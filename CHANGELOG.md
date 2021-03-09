@@ -1,3 +1,8 @@
+## [2.0.0] - March, 8th 2021
+
+* Null Safety
+
+
 ## [1.4.1] - February, 6th 2021
 
 * Added support for `IconButton`.

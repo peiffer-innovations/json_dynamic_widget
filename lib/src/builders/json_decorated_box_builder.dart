@@ -1,3 +1,4 @@
+import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
@@ -6,10 +7,9 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
   JsonDecoratedBoxBuilder({
-    @required this.decoration,
-    this.position,
-  })  : assert(decoration != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.decoration,
+    required this.position,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'decorated_box';
@@ -30,18 +30,18 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeBoxDecoration]
   ///  * [ThemeDecoder.decodeDecorationPosition]
-  static JsonDecoratedBoxBuilder fromDynamic(
+  static JsonDecoratedBoxBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonDecoratedBoxBuilder result;
+    JsonDecoratedBoxBuilder? result;
 
     if (map != null) {
       result = JsonDecoratedBoxBuilder(
         decoration: ThemeDecoder.decodeBoxDecoration(
           map['decoration'],
           validate: false,
-        ),
+        )!,
         position: ThemeDecoder.decodeDecorationPosition(
               map['position'],
               validate: false,
@@ -55,10 +55,10 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

@@ -7,7 +7,10 @@ void main() {
     const type = JsonPopupMenuButtonBuilder.type;
 
     expect(type, 'popup_menu_button');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {

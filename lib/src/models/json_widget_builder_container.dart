@@ -1,7 +1,5 @@
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme_schemas.dart';
-import 'package:meta/meta.dart';
 
 /// Container for a [JsonWidgetBuilder] builder as well as an associated schema
 /// id.  The schema id will be used to validate the JSON args against the
@@ -9,17 +7,17 @@ import 'package:meta/meta.dart';
 /// performed against the JSON for this particular builder.
 class JsonWidgetBuilderContainer {
   JsonWidgetBuilderContainer({
-    @required this.builder,
+    required this.builder,
     this.schemaId,
-  }) : assert(builder != null);
+  });
 
   /// The builder that will create the [JsonWidgetBuilder] from JSON.
-  final JsonClassBuilder<JsonWidgetBuilder> builder;
+  final JsonWidgetBuilderBuilder builder;
 
   /// Optional [schemaId].  Either the schema must be registered against the
   /// [SchemaCache] or an error will happen when the validation is attempted.
   ///
   /// This can technically be any string, but it is customary to use a URI for
   /// improved tooling support.
-  final String schemaId;
+  final String? schemaId;
 }

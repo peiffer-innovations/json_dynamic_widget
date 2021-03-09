@@ -6,7 +6,10 @@ void main() {
     const type = JsonRadioBuilder.type;
 
     expect(type, 'radio');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({'id': 'foo'})
           is JsonRadioBuilder,

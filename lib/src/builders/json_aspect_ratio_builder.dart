@@ -7,7 +7,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// the format.
 class JsonAspectRatioBuilder extends JsonWidgetBuilder {
   JsonAspectRatioBuilder({
-    this.aspectRatio,
+    required this.aspectRatio,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -23,15 +23,15 @@ class JsonAspectRatioBuilder extends JsonWidgetBuilder {
   ///   "aspectRatio": <double>
   /// }
   /// ```
-  static JsonAspectRatioBuilder fromDynamic(
+  static JsonAspectRatioBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAspectRatioBuilder result;
+    JsonAspectRatioBuilder? result;
 
     if (map != null) {
       result = JsonAspectRatioBuilder(
-        aspectRatio: JsonClass.parseDouble(map['aspectRatio']),
+        aspectRatio: JsonClass.parseDouble(map['aspectRatio'], 1.0)!,
       );
     }
 
@@ -40,10 +40,10 @@ class JsonAspectRatioBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

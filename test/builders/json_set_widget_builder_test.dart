@@ -6,7 +6,10 @@ void main() {
     const type = JsonSetWidgetBuilder.type;
 
     expect(type, 'set_widget');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSetWidgetBuilder,

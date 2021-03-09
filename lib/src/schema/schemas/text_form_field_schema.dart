@@ -40,7 +40,8 @@ class TextFormFieldSchema {
       'keyboardAppearance': SchemaHelper.objectSchema(BrightnessSchema.id),
       'keyboardType': SchemaHelper.objectSchema(TextInputTypeSchema.id),
       'maxLength': SchemaHelper.numberSchema,
-      'maxLengthEnforced': SchemaHelper.boolSchema,
+      'maxLengthEnforcement':
+          SchemaHelper.objectSchema(MaxLengthEnforcementSchema.id),
       'maxLines': SchemaHelper.numberSchema,
       'minLines': SchemaHelper.numberSchema,
       'obscureText': SchemaHelper.boolSchema,
@@ -53,6 +54,7 @@ class TextFormFieldSchema {
       'readOnly': SchemaHelper.boolSchema,
       'scrollPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'scrollPhysics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
+      'selectionControls': SchemaHelper.stringSchema,
       'showCursor': SchemaHelper.boolSchema,
       'smartDashesType': SchemaHelper.objectSchema(SmartDashesTypeSchema.id),
       'smartQuotesType': SchemaHelper.objectSchema(SmartQuotesTypeSchema.id),

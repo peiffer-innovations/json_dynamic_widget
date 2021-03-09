@@ -7,12 +7,12 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonColumnBuilder extends JsonWidgetBuilder {
   JsonColumnBuilder({
-    this.crossAxisAlignment,
-    this.mainAxisAlignment,
-    this.mainAxisSize,
+    required this.crossAxisAlignment,
+    required this.mainAxisAlignment,
+    required this.mainAxisSize,
     this.textBaseline,
     this.textDirection,
-    this.verticalDirection,
+    required this.verticalDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = -1;
@@ -22,8 +22,8 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;
   final MainAxisSize mainAxisSize;
-  final TextBaseline textBaseline;
-  final TextDirection textDirection;
+  final TextBaseline? textBaseline;
+  final TextDirection? textDirection;
   final VerticalDirection verticalDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -47,11 +47,11 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeTextBaseline]
   ///  * [ThemeDecoder.decodeTextDirection]
   ///  * [ThemeDecoder.decodeVerticalDirection]
-  static JsonColumnBuilder fromDynamic(
+  static JsonColumnBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonColumnBuilder result;
+    JsonColumnBuilder? result;
 
     if (map != null) {
       result = JsonColumnBuilder(
@@ -91,10 +91,10 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    @required ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return Column(
       crossAxisAlignment: crossAxisAlignment,

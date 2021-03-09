@@ -6,7 +6,10 @@ void main() {
     const type = JsonConditionalBuilder.type;
 
     expect(type, 'conditional');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'conditional': {'values': {}}

@@ -7,7 +7,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// the format.
 class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
   JsonIgnorePointerBuilder({
-    this.ignoring,
+    required this.ignoring,
     this.ignoringSemantics,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -15,7 +15,7 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
   static const type = 'ignore_pointer';
 
   final bool ignoring;
-  final bool ignoringSemantics;
+  final bool? ignoringSemantics;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -26,11 +26,11 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
   ///   "ignoringSemantics": <bool>
   /// }
   /// ```
-  static JsonIgnorePointerBuilder fromDynamic(
+  static JsonIgnorePointerBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonIgnorePointerBuilder result;
+    JsonIgnorePointerBuilder? result;
 
     if (map != null) {
       result = JsonIgnorePointerBuilder(
@@ -48,10 +48,10 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

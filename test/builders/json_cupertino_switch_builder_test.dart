@@ -6,7 +6,10 @@ void main() {
     const type = JsonCupertinoSwitchBuilder.type;
 
     expect(type, 'cupertino_switch');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonCupertinoSwitchBuilder,

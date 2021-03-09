@@ -15,8 +15,8 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
 
   static const type = 'center';
 
-  final double heightFactor;
-  final double widthFactor;
+  final double? heightFactor;
+  final double? widthFactor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -27,11 +27,11 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
   ///   "widthFactor": <double>
   /// }
   /// ```
-  static JsonCenterBuilder fromDynamic(
+  static JsonCenterBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonCenterBuilder result;
+    JsonCenterBuilder? result;
 
     if (map != null) {
       result = JsonCenterBuilder(
@@ -45,10 +45,10 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

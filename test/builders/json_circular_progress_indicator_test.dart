@@ -6,7 +6,10 @@ void main() {
     const type = JsonCircularProgressIndicatorBuilder.type;
 
     expect(type, 'circular_progress_indicator');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonCircularProgressIndicatorBuilder,

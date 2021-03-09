@@ -6,7 +6,10 @@ void main() {
     const type = JsonScaffoldBuilder.type;
 
     expect(type, 'scaffold');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonScaffoldBuilder,

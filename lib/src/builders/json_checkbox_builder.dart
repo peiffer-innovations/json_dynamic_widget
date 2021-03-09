@@ -11,10 +11,10 @@ import 'package:json_theme/json_theme.dart';
 class JsonCheckboxBuilder extends JsonWidgetBuilder {
   JsonCheckboxBuilder({
     this.activeColor,
-    this.autofocus,
+    required this.autofocus,
     this.autovalidateMode,
     this.checkColor,
-    this.enabled,
+    required this.enabled,
     this.focusColor,
     this.focusNode,
     this.hoverColor,
@@ -23,7 +23,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.mouseCursor,
     this.onChanged,
     this.onSaved,
-    this.tristate,
+    required this.tristate,
     this.validator,
     this.value,
     this.visualDensity,
@@ -33,23 +33,23 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
 
   static const type = 'checkbox';
 
-  final Color activeColor;
+  final Color? activeColor;
   final bool autofocus;
-  final AutovalidateMode autovalidateMode;
-  final Color checkColor;
+  final AutovalidateMode? autovalidateMode;
+  final Color? checkColor;
   final bool enabled;
-  final Color focusColor;
-  final FocusNode focusNode;
-  final Color hoverColor;
-  final String label;
-  final MaterialTapTargetSize materialTapTargetSize;
-  final MouseCursor mouseCursor;
-  final ValueChanged<bool> onChanged;
-  final ValueChanged<bool> onSaved;
+  final Color? focusColor;
+  final FocusNode? focusNode;
+  final Color? hoverColor;
+  final String? label;
+  final MaterialTapTargetSize? materialTapTargetSize;
+  final MouseCursor? mouseCursor;
+  final ValueChanged<bool?>? onChanged;
+  final ValueChanged<bool?>? onSaved;
   final bool tristate;
-  final Validator validator;
-  final bool value;
-  final VisualDensity visualDensity;
+  final Validator? validator;
+  final bool? value;
+  final VisualDensity? visualDensity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -88,11 +88,11 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
-  static JsonCheckboxBuilder fromDynamic(
+  static JsonCheckboxBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonCheckboxBuilder result;
+    JsonCheckboxBuilder? result;
 
     if (map != null) {
       result = JsonCheckboxBuilder(
@@ -151,9 +151,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    if (data.id?.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
-    }
+    data.registry.removeValue(data.id);
 
     super.remove(data);
   }
@@ -167,10 +165,10 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   /// empty string will be used to represent no error message.
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var initialValue = value ?? (tristate != true ? false : null);
 
@@ -182,15 +180,13 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
       validator: validator == null
           ? null
           : (value) {
-              var error = validator.validate(
+              var error = validator!.validate(
                 context: context,
                 label: label ?? '',
                 value: value?.toString(),
               );
 
-              if (data.id?.isNotEmpty == true) {
-                data.registry.setValue('${data.id}.error', error ?? '');
-              }
+              data.registry.setValue('${data.id}.error', error ?? '');
 
               return error;
             },
@@ -211,14 +207,12 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
                 ? null
                 : (value) {
                     if (onChanged != null) {
-                      onChanged(value);
+                      onChanged!(value);
                     }
 
                     state.didChange(value);
 
-                    if (data.id?.isNotEmpty == true) {
-                      data.registry.setValue(data.id, value);
-                    }
+                    data.registry.setValue(data.id, value);
                   },
             tristate: tristate,
             value: state.value,

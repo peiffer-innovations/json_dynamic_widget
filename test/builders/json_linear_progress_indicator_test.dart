@@ -6,7 +6,10 @@ void main() {
     const type = JsonLinearProgressIndicatorBuilder.type;
 
     expect(type, 'linear_progress_indicator');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonLinearProgressIndicatorBuilder,

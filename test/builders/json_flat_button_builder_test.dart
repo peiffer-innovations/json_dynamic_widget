@@ -6,7 +6,10 @@ void main() {
     const type = JsonFlatButtonBuilder.type;
 
     expect(type, 'flat_button');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonFlatButtonBuilder,

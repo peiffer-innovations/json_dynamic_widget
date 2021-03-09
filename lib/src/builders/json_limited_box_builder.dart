@@ -7,8 +7,8 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// format.
 class JsonLimitedBoxBuilder extends JsonWidgetBuilder {
   JsonLimitedBoxBuilder({
-    this.maxHeight,
-    this.maxWidth,
+    required this.maxHeight,
+    required this.maxWidth,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -26,11 +26,11 @@ class JsonLimitedBoxBuilder extends JsonWidgetBuilder {
   ///   "maxWidth": <double>
   /// }
   /// ```
-  static JsonLimitedBoxBuilder fromDynamic(
+  static JsonLimitedBoxBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonLimitedBoxBuilder result;
+    JsonLimitedBoxBuilder? result;
 
     if (map != null) {
       result = JsonLimitedBoxBuilder(
@@ -50,10 +50,10 @@ class JsonLimitedBoxBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

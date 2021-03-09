@@ -9,19 +9,17 @@ import 'package:json_theme/json_theme.dart';
 class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
   JsonAnimatedPaddingBuilder({
     this.curve,
-    @required this.duration,
+    required this.duration,
     this.onEnd,
-    @required this.padding,
-  })  : assert(duration != null),
-        assert(padding != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.padding,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'animated_padding';
 
-  final Curve curve;
+  final Curve? curve;
   final Duration duration;
-  final VoidCallback onEnd;
+  final VoidCallback? onEnd;
   final EdgeInsetsGeometry padding;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -39,23 +37,23 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
   /// As a note, the [Curve] and [VoidCallback] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to the builder is to use a
   /// function or a variable reference via the [JsonWidgetRegistry].
-  static JsonAnimatedPaddingBuilder fromDynamic(
+  static JsonAnimatedPaddingBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedPaddingBuilder result;
+    JsonAnimatedPaddingBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedPaddingBuilder(
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         onEnd: map['onEnd'],
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
-        ),
+        )!,
       );
     }
 
@@ -64,10 +62,10 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -83,18 +81,16 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedPadding extends StatefulWidget {
   _JsonAnimatedPadding({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonAnimatedPaddingBuilder builder;
   final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -105,7 +101,7 @@ class _JsonAnimatedPaddingState extends State<_JsonAnimatedPadding> {
   @override
   Widget build(BuildContext context) {
     return AnimatedPadding(
-      curve: widget.builder.curve,
+      curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       onEnd: widget.builder.onEnd,
       padding: widget.builder.padding,

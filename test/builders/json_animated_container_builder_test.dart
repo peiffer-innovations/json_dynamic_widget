@@ -6,7 +6,10 @@ void main() {
     const type = JsonAnimatedContainerBuilder.type;
 
     expect(type, 'animated_container');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {

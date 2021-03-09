@@ -7,9 +7,9 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   JsonFittedBoxBuilder({
-    this.alignment,
-    this.clipBehavior,
-    this.fit,
+    required this.alignment,
+    required this.clipBehavior,
+    required this.fit,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -34,11 +34,11 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeAlignment]
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeBoxFit]
-  static JsonFittedBoxBuilder fromDynamic(
+  static JsonFittedBoxBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonFittedBoxBuilder result;
+    JsonFittedBoxBuilder? result;
 
     if (map != null) {
       result = JsonFittedBoxBuilder(
@@ -65,10 +65,10 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

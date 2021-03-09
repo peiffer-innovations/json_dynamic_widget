@@ -6,7 +6,10 @@ void main() {
     const type = JsonCenterBuilder.type;
 
     expect(type, 'center');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonCenterBuilder,

@@ -8,10 +8,9 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
   JsonFractionalTranslationBuilder({
-    this.transformHitTests,
-    @required this.translation,
-  })  : assert(translation != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.transformHitTests,
+    required this.translation,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'fractional_translation';
@@ -31,11 +30,11 @@ class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeOffset]
-  static JsonFractionalTranslationBuilder fromDynamic(
+  static JsonFractionalTranslationBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonFractionalTranslationBuilder result;
+    JsonFractionalTranslationBuilder? result;
 
     if (map != null) {
       result = JsonFractionalTranslationBuilder(
@@ -47,7 +46,7 @@ class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
         translation: ThemeDecoder.decodeOffset(
           map['translation'],
           validate: false,
-        ),
+        )!,
       );
     }
 
@@ -56,10 +55,10 @@ class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

@@ -8,12 +8,12 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonCardBuilder extends JsonWidgetBuilder {
   JsonCardBuilder({
-    this.borderOnForeground,
+    required this.borderOnForeground,
     this.clipBehavior,
     this.color,
     this.elevation,
     this.margin,
-    this.semanticContainer,
+    required this.semanticContainer,
     this.shadowColor,
     this.shape,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -23,13 +23,13 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   static const type = 'card';
 
   final bool borderOnForeground;
-  final Clip clipBehavior;
-  final Color color;
-  final double elevation;
-  final EdgeInsetsGeometry margin;
+  final Clip? clipBehavior;
+  final Color? color;
+  final double? elevation;
+  final EdgeInsetsGeometry? margin;
   final bool semanticContainer;
-  final Color shadowColor;
-  final ShapeBorder shape;
+  final Color? shadowColor;
+  final ShapeBorder? shape;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -51,11 +51,11 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeShapeBorder]
-  static JsonCardBuilder fromDynamic(
+  static JsonCardBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonCardBuilder result;
+    JsonCardBuilder? result;
     if (map != null) {
       result = JsonCardBuilder(
         borderOnForeground: map['borderOnForeground'] == null
@@ -97,10 +97,10 @@ class JsonCardBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

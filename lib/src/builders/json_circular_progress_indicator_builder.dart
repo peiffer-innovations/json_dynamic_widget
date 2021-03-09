@@ -11,7 +11,7 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
     this.backgroundColor,
     this.semanticsLabel,
     this.semanticsValue,
-    this.strokeWidth,
+    required this.strokeWidth,
     this.value,
     this.valueColor,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -20,12 +20,12 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
 
   static const type = 'circular_progress_indicator';
 
-  final Color backgroundColor;
-  final String semanticsLabel;
-  final String semanticsValue;
+  final Color? backgroundColor;
+  final String? semanticsLabel;
+  final String? semanticsValue;
   final double strokeWidth;
-  final double value;
-  final Animation<Color> valueColor;
+  final double? value;
+  final Animation<Color>? valueColor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -43,24 +43,26 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonCircularProgressIndicatorBuilder fromDynamic(
+  static JsonCircularProgressIndicatorBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonCircularProgressIndicatorBuilder result;
+    JsonCircularProgressIndicatorBuilder? result;
 
     if (map != null) {
       result = JsonCircularProgressIndicatorBuilder(
         backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
-        strokeWidth: JsonClass.parseDouble(map['strokeWidth'], 4.0),
+        strokeWidth: JsonClass.parseDouble(map['strokeWidth'], 4.0)!,
         value: JsonClass.parseDouble(map['value']),
-        valueColor: map['valueColor'] is Function
-            ? map['valueColor']
-            : AlwaysStoppedAnimation(
-                ThemeDecoder.decodeColor(map['valueColor']),
-              ),
+        valueColor: map['valueColor'] == null
+            ? null
+            : map['valueColor'] is Animation
+                ? map['valueColor']
+                : AlwaysStoppedAnimation(
+                    ThemeDecoder.decodeColor(map['valueColor'])!,
+                  ),
       );
     }
 
@@ -69,10 +71,10 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return CircularProgressIndicator(
       backgroundColor: backgroundColor,

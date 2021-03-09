@@ -8,9 +8,9 @@ import 'package:json_theme/json_theme.dart';
 /// the format.
 class JsonTextButtonBuilder extends JsonWidgetBuilder {
   JsonTextButtonBuilder({
-    this.autofocus,
+    required this.autofocus,
     this.backgroundColorCallback,
-    this.clipBehavior,
+    required this.clipBehavior,
     this.elevationCallback,
     this.focusNode,
     this.foregroundColorCallback,
@@ -31,22 +31,22 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   static const type = 'text_button';
 
   final bool autofocus;
-  final MaterialColor Function(Set<MaterialState>) backgroundColorCallback;
+  final MaterialColor Function(Set<MaterialState>)? backgroundColorCallback;
   final Clip clipBehavior;
-  final double Function(Set<MaterialState>) elevationCallback;
-  final FocusNode focusNode;
-  final MaterialColor Function(Set<MaterialState>) foregroundColorCallback;
-  final Size Function(Set<MaterialState>) minimumSizeCallback;
-  final MouseCursor Function(Set<MaterialState>) mouseCursorCallback;
-  final VoidCallback onLongPress;
-  final VoidCallback onPressed;
-  final MaterialColor Function(Set<MaterialState>) overlayColorCallback;
-  final EdgeInsetsGeometry Function(Set<MaterialState>) paddingCallback;
-  final MaterialColor Function(Set<MaterialState>) shadowColorCallback;
-  final OutlinedBorder Function(Set<MaterialState>) shapeCallback;
-  final BorderSide Function(Set<MaterialState>) sideCallback;
-  final ButtonStyle style;
-  final TextStyle Function(Set<MaterialState>) textStyleCallback;
+  final double Function(Set<MaterialState>)? elevationCallback;
+  final FocusNode? focusNode;
+  final MaterialColor Function(Set<MaterialState>)? foregroundColorCallback;
+  final Size Function(Set<MaterialState>)? minimumSizeCallback;
+  final MouseCursor Function(Set<MaterialState>)? mouseCursorCallback;
+  final VoidCallback? onLongPress;
+  final VoidCallback? onPressed;
+  final MaterialColor Function(Set<MaterialState>)? overlayColorCallback;
+  final EdgeInsetsGeometry Function(Set<MaterialState>)? paddingCallback;
+  final MaterialColor Function(Set<MaterialState>)? shadowColorCallback;
+  final OutlinedBorder Function(Set<MaterialState>)? shapeCallback;
+  final BorderSide Function(Set<MaterialState>)? sideCallback;
+  final ButtonStyle? style;
+  final TextStyle Function(Set<MaterialState>)? textStyleCallback;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -87,11 +87,11 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeButtonStyle]
-  static JsonTextButtonBuilder fromDynamic(
+  static JsonTextButtonBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonTextButtonBuilder result;
+    JsonTextButtonBuilder? result;
 
     if (map != null) {
       var tempMap = Map.from(map['style'] ?? {});
@@ -145,9 +145,9 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   @override
   Widget buildCustom({
     childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -159,65 +159,65 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
       onLongPress: onLongPress,
       onPressed: onPressed,
       style: ButtonStyle(
-        animationDuration: style.animationDuration,
+        animationDuration: style!.animationDuration,
         backgroundColor: backgroundColorCallback != null
             ? MaterialStateProperty.resolveWith(
-                backgroundColorCallback,
+                backgroundColorCallback!,
               )
             : null,
         elevation: elevationCallback != null
             ? MaterialStateProperty.resolveWith(
-                elevationCallback,
+                elevationCallback!,
               )
             : null,
-        enableFeedback: style.enableFeedback,
+        enableFeedback: style!.enableFeedback,
         foregroundColor: foregroundColorCallback != null
             ? MaterialStateProperty.resolveWith(
-                foregroundColorCallback,
+                foregroundColorCallback!,
               )
             : null,
         minimumSize: minimumSizeCallback != null
             ? MaterialStateProperty.resolveWith(
-                minimumSizeCallback,
+                minimumSizeCallback!,
               )
             : null,
         mouseCursor: mouseCursorCallback != null
             ? MaterialStateProperty.resolveWith(
-                mouseCursorCallback,
+                mouseCursorCallback!,
               )
             : null,
         overlayColor: overlayColorCallback != null
             ? MaterialStateProperty.resolveWith(
-                overlayColorCallback,
+                overlayColorCallback!,
               )
             : null,
         padding: paddingCallback != null
             ? MaterialStateProperty.resolveWith(
-                paddingCallback,
+                paddingCallback!,
               )
             : null,
         shadowColor: shadowColorCallback != null
             ? MaterialStateProperty.resolveWith(
-                shadowColorCallback,
+                shadowColorCallback!,
               )
             : null,
         shape: shapeCallback != null
             ? MaterialStateProperty.resolveWith(
-                shapeCallback,
+                shapeCallback!,
               )
             : null,
         side: sideCallback != null
             ? MaterialStateProperty.resolveWith(
-                sideCallback,
+                sideCallback!,
               )
             : null,
-        tapTargetSize: style.tapTargetSize,
+        tapTargetSize: style!.tapTargetSize,
         textStyle: textStyleCallback != null
             ? MaterialStateProperty.resolveWith(
-                textStyleCallback,
+                textStyleCallback!,
               )
             : null,
-        visualDensity: style.visualDensity,
+        visualDensity: style!.visualDensity,
       ),
       child: child.build(
         childBuilder: childBuilder,

@@ -11,19 +11,17 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// See the [fromDynamic] for the format.
 class JsonConditionalBuilder extends JsonWidgetBuilder {
   JsonConditionalBuilder({
-    @required this.conditional,
-    @required this.keys,
+    required this.conditional,
+    required this.keys,
     this.onFalse,
-  })  : assert(keys != null),
-        assert(conditional != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'conditional';
 
   final Conditional conditional;
   final Set<String> keys;
-  final JsonWidgetData onFalse;
+  final JsonWidgetData? onFalse;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -47,14 +45,14 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
   ///  * [Conditional.fromDynamic]
   ///  * [EvaluationMode.fromCode]
   ///  * [JsonWidgetData.fromDynamic]
-  static JsonConditionalBuilder fromDynamic(
+  static JsonConditionalBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonConditionalBuilder result;
+    JsonConditionalBuilder? result;
 
     if (map != null) {
-      var conditional = Conditional.fromDynamic(map['conditional']);
+      var conditional = Conditional.fromDynamic(map['conditional'])!;
       var keys = <String>{};
       _appendKeys(conditional, keys);
 
@@ -83,10 +81,10 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return _ConditionalWidget(
       childBuilder: childBuilder,
@@ -101,30 +99,29 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
 class _ConditionalWidget extends StatefulWidget {
   _ConditionalWidget({
     this.childBuilder,
-    @required this.conditional,
-    @required this.data,
-    Key key,
-    @required this.keys,
+    required this.conditional,
+    required this.data,
+    Key? key,
+    required this.keys,
     this.onFalse,
-  })  : assert(data != null),
-        super(key: key);
+  }) : super(key: key);
 
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final Conditional conditional;
   final JsonWidgetData data;
   final Set<String> keys;
-  final JsonWidgetData onFalse;
+  final JsonWidgetData? onFalse;
 
   @override
   _ConditionalWidgetState createState() => _ConditionalWidgetState();
 }
 
 class _ConditionalWidgetState extends State<_ConditionalWidget> {
-  Conditional _conditional;
-  JsonWidgetData _data;
-  Set<String> _keys;
-  JsonWidgetData _onFalse;
-  StreamSubscription<String> _subscription;
+  late Conditional _conditional;
+  late JsonWidgetData _data;
+  late Set<String> _keys;
+  JsonWidgetData? _onFalse;
+  StreamSubscription<String?>? _subscription;
 
   @override
   void initState() {
@@ -147,11 +144,11 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
     super.dispose();
   }
 
-  void _handleSubscription(String event) {
+  void _handleSubscription(String? event) {
     if (_keys.contains(event) == true) {
       _data = _data.recreate();
 
-      JsonConditionalBuilder builder = _data.builder();
+      var builder = _data.builder() as JsonConditionalBuilder;
       _conditional = builder.conditional;
       _keys = builder.keys;
       _onFalse = builder.onFalse;
@@ -167,13 +164,13 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
     var result = _conditional.evaluate(_data.registry.values);
 
     var onTrue = _data.children?.isNotEmpty == true
-        ? _data.children[0]
+        ? _data.children![0]
         : JsonWidgetBuilder.kDefaultChild;
 
-    Widget child;
+    Widget? child;
     if (result == true) {
       if (_onFalse?.builder != null) {
-        _onFalse.builder().remove(_onFalse);
+        _onFalse!.builder().remove(_onFalse!);
       }
 
       child = onTrue.build(

@@ -6,7 +6,10 @@ void main() {
     const type = JsonMaterialBuilder.type;
 
     expect(type, 'material');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonMaterialBuilder,

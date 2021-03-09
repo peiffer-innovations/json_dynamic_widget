@@ -16,10 +16,8 @@ abstract class JsonWidgetBuilder {
   /// [PreferredSizeWidget] or not.
   JsonWidgetBuilder({
     this.preferredSizeWidget = false,
-    @required this.numSupportedChildren,
-  })  : assert(numSupportedChildren != null),
-        assert(numSupportedChildren >= -1),
-        assert(preferredSizeWidget != null);
+    required this.numSupportedChildren,
+  }) : assert(numSupportedChildren >= -1);
 
   static final JsonWidgetData kDefaultChild = JsonWidgetData(
     args: const {},
@@ -41,13 +39,13 @@ abstract class JsonWidgetBuilder {
   /// args change in value.
   @nonVirtual
   Widget build({
-    @required ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
+    required ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
   }) {
-    Widget result;
+    late Widget result;
 
-    if (preferredSizeWidget == true || data.dynamicKeys?.isNotEmpty != true) {
+    if (preferredSizeWidget == true || data.dynamicKeys.isNotEmpty != true) {
       result = _buildWidget(
         childBuilder: childBuilder,
         context: context,
@@ -58,9 +56,7 @@ abstract class JsonWidgetBuilder {
         childBuilder: childBuilder,
         customBuilder: _buildWidget,
         data: data,
-        key: data.id == null
-            ? null
-            : ValueKey('json_widget_stateful.${data.id}'),
+        key: ValueKey('json_widget_stateful.${data.id}'),
       );
     }
 
@@ -71,21 +67,21 @@ abstract class JsonWidgetBuilder {
   /// actual [Widget] to be placed on the tree.
   @visibleForOverriding
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   });
 
   /// Returns a non-null child for widgets that must always have child widgets.
   /// This allows the widget to be built and rendered even if the child is
   /// missing.
   @protected
-  JsonWidgetData getChild(JsonWidgetData data, {int index = 0}) {
-    JsonWidgetData child;
+  JsonWidgetData getChild(JsonWidgetData? data, {int index = 0}) {
+    late JsonWidgetData child;
 
-    if (data?.children?.isNotEmpty == true && data.children.length > index) {
-      child = data.children[index];
+    if (data?.children?.isNotEmpty == true && data!.children!.length > index) {
+      child = data.children![index];
     } else {
       child = kDefaultChild;
     }
@@ -107,11 +103,11 @@ abstract class JsonWidgetBuilder {
   }
 
   Widget _buildWidget({
-    @required ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
+    required ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
   }) {
-    var key = data.id?.isNotEmpty == true ? ValueKey(data.id) : null;
+    var key = ValueKey(data.id);
 
     var widget = runZonedGuarded(() {
       return buildCustom(
@@ -124,6 +120,10 @@ abstract class JsonWidgetBuilder {
       _logger.severe('[ERROR]: Unable to build widget', e, stack);
     });
 
+    if (widget == null) {
+      throw Exception('[ERROR]: Unable to build widget');
+    }
+
     if (childBuilder != null) {
       widget = childBuilder(context, widget);
     }
@@ -134,19 +134,17 @@ abstract class JsonWidgetBuilder {
 
 class _JsonWidgetStateful extends StatefulWidget {
   _JsonWidgetStateful({
-    @required this.childBuilder,
-    @required this.customBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(customBuilder != null),
-        assert(data != null),
-        super(key: key);
+    required this.childBuilder,
+    required this.customBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
-  final ChildWidgetBuilder childBuilder;
-  final Widget Function({
-    @required ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
+  final ChildWidgetBuilder? childBuilder;
+  final Widget? Function({
+    required ChildWidgetBuilder childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
   }) customBuilder;
   final JsonWidgetData data;
 
@@ -157,8 +155,8 @@ class _JsonWidgetStateful extends StatefulWidget {
 class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
   static final Logger _logger = Logger('_JsonWidgetStatefulState');
 
-  JsonWidgetData _data;
-  StreamSubscription _subscription;
+  late JsonWidgetData _data;
+  StreamSubscription? _subscription;
 
   @override
   void initState() {
@@ -167,7 +165,7 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
     _data = widget.data;
 
     _subscription = widget.data.registry.valueStream.listen((event) {
-      if (_data.dynamicKeys?.contains(event) == true) {
+      if (_data.dynamicKeys.contains(event) == true) {
         _data = _data.recreate();
         if (mounted == true) {
           setState(() {});
@@ -187,19 +185,19 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
   @override
   Widget build(BuildContext context) {
     var sub = runZonedGuarded(
-        () => _data.builder().buildCustom(
+        (() => _data.builder().buildCustom(
               childBuilder: widget.childBuilder,
               context: context,
               data: _data,
-              key: _data.id == null ? null : ValueKey(_data.id),
-            ), (e, stack) {
+              key: ValueKey(_data.id),
+            )), (e, stack) {
       _logger.severe('Error building widget: [${_data.type}].', e, stack);
     });
 
     if (widget.childBuilder != null) {
-      sub = widget.childBuilder(context, sub);
+      sub = widget.childBuilder!(context, sub!);
     }
 
-    return sub;
+    return sub!;
   }
 }

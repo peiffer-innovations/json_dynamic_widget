@@ -6,7 +6,10 @@ void main() {
     const type = JsonColumnBuilder.type;
 
     expect(type, 'column');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonColumnBuilder,

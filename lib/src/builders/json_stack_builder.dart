@@ -7,10 +7,9 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonStackBuilder extends JsonWidgetBuilder {
   JsonStackBuilder({
-    this.alignment,
-    this.clipBehavior,
-    this.fit,
-    this.overflow,
+    required this.alignment,
+    required this.clipBehavior,
+    required this.fit,
     this.textDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -21,9 +20,7 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   final Clip clipBehavior;
   final StackFit fit;
 
-  // ignore: deprecated_member_use
-  final Overflow overflow;
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -33,7 +30,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   ///   "alignment": <Alignment>,
   ///   "clipBehavior": <Clip>,
   ///   "fit": <StackFit>,
-  ///   "overflow": <Overflow>,
   ///   "textDirection": <TextDirection>
   /// }
   /// ```
@@ -43,11 +39,11 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeStackFit]
   ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonStackBuilder fromDynamic(
+  static JsonStackBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonStackBuilder result;
+    JsonStackBuilder? result;
 
     if (map != null) {
       result = JsonStackBuilder(
@@ -66,10 +62,6 @@ class JsonStackBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             StackFit.loose,
-        overflow: ThemeDecoder.decodeOverflow(
-          map['overflow'],
-          validate: false,
-        ),
         textDirection: ThemeDecoder.decodeTextDirection(
           map['textDirection'],
           validate: false,
@@ -82,21 +74,19 @@ class JsonStackBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    @required ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return Stack(
       alignment: alignment,
       clipBehavior: clipBehavior,
       fit: fit,
       key: key,
-      // ignore: deprecated_member_use
-      overflow: overflow,
       textDirection: textDirection,
       children: [
-        for (var child in data.children ?? [])
+        for (var child in data.children ?? <JsonWidgetData>[])
           child.build(
             context: context,
             childBuilder: childBuilder,

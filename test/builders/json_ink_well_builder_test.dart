@@ -6,7 +6,10 @@ void main() {
     const type = JsonInkWellBuilder.type;
 
     expect(type, 'ink_well');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonInkWellBuilder,

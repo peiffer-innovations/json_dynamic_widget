@@ -15,19 +15,19 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     this.bottomNavigationBar,
     this.bottomSheet,
     this.drawer,
-    this.drawerDragStartBehavior,
+    required this.drawerDragStartBehavior,
     this.drawerEdgeDragWidth,
-    this.drawerEnableOpenDragGesture,
+    required this.drawerEnableOpenDragGesture,
     this.drawerScrimColor,
     this.endDrawer,
-    this.endDrawerEnableOpenDragGesture,
-    this.extendBody,
-    this.extendBodyBehindAppBar,
+    required this.endDrawerEnableOpenDragGesture,
+    required this.extendBody,
+    required this.extendBodyBehindAppBar,
     this.floatingActionButton,
     this.floatingActionButtonAnimator,
     this.floatingActionButtonLocation,
     this.persistentFooterButtons,
-    this.primary,
+    required this.primary,
     this.resizeToAvoidBottomInset,
     this.resizeToAvoidBottomPadding,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -35,27 +35,27 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'scaffold';
 
-  final JsonWidgetData appBar;
-  final Color backgroundColor;
-  final JsonWidgetData body;
-  final JsonWidgetData bottomNavigationBar;
-  final JsonWidgetData bottomSheet;
-  final JsonWidgetData drawer;
+  final JsonWidgetData? appBar;
+  final Color? backgroundColor;
+  final JsonWidgetData? body;
+  final JsonWidgetData? bottomNavigationBar;
+  final JsonWidgetData? bottomSheet;
+  final JsonWidgetData? drawer;
   final DragStartBehavior drawerDragStartBehavior;
-  final double drawerEdgeDragWidth;
+  final double? drawerEdgeDragWidth;
   final bool drawerEnableOpenDragGesture;
-  final Color drawerScrimColor;
-  final JsonWidgetData endDrawer;
+  final Color? drawerScrimColor;
+  final JsonWidgetData? endDrawer;
   final bool endDrawerEnableOpenDragGesture;
   final bool extendBody;
   final bool extendBodyBehindAppBar;
-  final JsonWidgetData floatingActionButton;
-  final FloatingActionButtonAnimator floatingActionButtonAnimator;
-  final FloatingActionButtonLocation floatingActionButtonLocation;
-  final List<JsonWidgetData> persistentFooterButtons;
+  final JsonWidgetData? floatingActionButton;
+  final FloatingActionButtonAnimator? floatingActionButtonAnimator;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final List<JsonWidgetData>? persistentFooterButtons;
   final bool primary;
-  final bool resizeToAvoidBottomInset;
-  final bool resizeToAvoidBottomPadding;
+  final bool? resizeToAvoidBottomInset;
+  final bool? resizeToAvoidBottomPadding;
 
   /// Builds the builder from a Map-like dynamic structure.  The scaffold is a
   /// special case that uses `child` as an alias for the `body` attribute.  This
@@ -94,11 +94,11 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeActionButtonLocation]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeFloatingActionButtonAnimator]
-  static JsonScaffoldBuilder fromDynamic(
+  static JsonScaffoldBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonScaffoldBuilder result;
+    JsonScaffoldBuilder? result;
     if (map != null) {
       result = JsonScaffoldBuilder(
         appBar: JsonWidgetData.fromDynamic(
@@ -170,7 +170,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
                 (map) => JsonWidgetData.fromDynamic(
                   map['persistentFooterButtons'],
                   registry: registry,
-                ),
+                )!,
               ),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
@@ -188,10 +188,10 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var theBody = body ?? getChild(data);
 
@@ -199,9 +199,9 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
       appBar: appBar?.build(
         childBuilder: childBuilder,
         context: context,
-      ),
+      ) as PreferredSizeWidget?,
       backgroundColor: backgroundColor,
-      body: theBody?.build(childBuilder: childBuilder, context: context),
+      body: theBody.build(childBuilder: childBuilder, context: context),
       bottomNavigationBar: bottomNavigationBar?.build(
         childBuilder: childBuilder,
         context: context,
@@ -235,7 +235,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
       persistentFooterButtons: persistentFooterButtons == null
           ? null
           : [
-              for (var data in persistentFooterButtons)
+              for (var data in persistentFooterButtons!)
                 data.build(
                   childBuilder: childBuilder,
                   context: context,
@@ -243,7 +243,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
             ],
       primary: primary,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
+      // resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
     );
   }
 }

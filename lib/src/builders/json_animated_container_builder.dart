@@ -13,7 +13,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
     this.constraints,
     this.curve,
     this.decoration,
-    @required this.duration,
+    required this.duration,
     this.foregroundDecoration,
     this.height,
     this.margin,
@@ -21,25 +21,24 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
     this.padding,
     this.transform,
     this.width,
-  })  : assert(duration != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'animated_container';
 
-  final AlignmentGeometry alignment;
-  final Color color;
-  final BoxConstraints constraints;
-  final Curve curve;
-  final BoxDecoration decoration;
+  final AlignmentGeometry? alignment;
+  final Color? color;
+  final BoxConstraints? constraints;
+  final Curve? curve;
+  final BoxDecoration? decoration;
   final Duration duration;
-  final BoxDecoration foregroundDecoration;
-  final double height;
-  final EdgeInsetsGeometry margin;
-  final VoidCallback onEnd;
-  final EdgeInsetsGeometry padding;
-  final Matrix4 transform;
-  final double width;
+  final BoxDecoration? foregroundDecoration;
+  final double? height;
+  final EdgeInsetsGeometry? margin;
+  final VoidCallback? onEnd;
+  final EdgeInsetsGeometry? padding;
+  final Matrix4? transform;
+  final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -65,11 +64,11 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   /// As a note, the [Curve] and [VoidCallback] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to the builder is to use a
   /// function or a variable reference via the [JsonWidgetRegistry].
-  static JsonAnimatedContainerBuilder fromDynamic(
+  static JsonAnimatedContainerBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedContainerBuilder result;
+    JsonAnimatedContainerBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedContainerBuilder(
@@ -92,7 +91,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
         ),
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         foregroundDecoration: ThemeDecoder.decodeBoxDecoration(
           map['foregroundDecoration'],
           validate: false,
@@ -120,10 +119,10 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -139,18 +138,16 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedContainer extends StatefulWidget {
   _JsonAnimatedContainer({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonAnimatedContainerBuilder builder;
-  final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final JsonWidgetData? child;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -164,7 +161,7 @@ class _JsonAnimatedContainerState extends State<_JsonAnimatedContainer> {
       alignment: widget.builder.alignment,
       color: widget.builder.color,
       constraints: widget.builder.constraints,
-      curve: widget.builder.curve,
+      curve: widget.builder.curve ?? Curves.linear,
       decoration: widget.builder.decoration,
       duration: widget.builder.duration,
       foregroundDecoration: widget.builder.foregroundDecoration,
@@ -174,7 +171,7 @@ class _JsonAnimatedContainerState extends State<_JsonAnimatedContainer> {
       padding: widget.builder.padding,
       transform: widget.builder.transform,
       width: widget.builder.width,
-      child: widget.child.build(
+      child: widget.child!.build(
         childBuilder: widget.childBuilder,
         context: context,
       ),

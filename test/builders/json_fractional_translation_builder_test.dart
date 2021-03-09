@@ -6,7 +6,10 @@ void main() {
     const type = JsonFractionalTranslationBuilder.type;
 
     expect(type, 'fractional_translation');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'translation': {

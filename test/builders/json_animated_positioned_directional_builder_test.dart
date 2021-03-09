@@ -6,7 +6,10 @@ void main() {
     const type = JsonAnimatedPositionedDirectionalBuilder.type;
 
     expect(type, 'animated_positioned_directional');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {

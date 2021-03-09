@@ -9,28 +9,27 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
   JsonAnimatedPositionedDirectionalBuilder({
     this.bottom,
     this.curve,
-    @required this.duration,
+    required this.duration,
     this.end,
     this.height,
     this.onEnd,
     this.start,
     this.top,
     this.width,
-  })  : assert(duration != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'animated_positioned_directional';
 
-  final double bottom;
-  final Curve curve;
+  final double? bottom;
+  final Curve? curve;
   final Duration duration;
-  final double end;
-  final double height;
-  final VoidCallback onEnd;
-  final double start;
-  final double top;
-  final double width;
+  final double? end;
+  final double? height;
+  final VoidCallback? onEnd;
+  final double? start;
+  final double? top;
+  final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -52,11 +51,11 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
   /// As a note, the [Curve] and [VoidCallback] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to the builder is to use a
   /// function or a variable reference via the [JsonWidgetRegistry].
-  static JsonAnimatedPositionedDirectionalBuilder fromDynamic(
+  static JsonAnimatedPositionedDirectionalBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedPositionedDirectionalBuilder result;
+    JsonAnimatedPositionedDirectionalBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedPositionedDirectionalBuilder(
@@ -64,7 +63,7 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         end: JsonClass.parseDouble(map['end']),
         height: JsonClass.parseDouble(map['height']),
         onEnd: map['onEnd'],
@@ -79,10 +78,10 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -98,19 +97,17 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedPositionedDirectional extends StatefulWidget {
   _JsonAnimatedPositionedDirectional({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonAnimatedPositionedDirectionalBuilder builder;
   final JsonWidgetData child;
 
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -124,7 +121,7 @@ class _JsonAnimatedPositionedDirectionalState
   Widget build(BuildContext context) {
     return AnimatedPositionedDirectional(
       bottom: widget.builder.bottom,
-      curve: widget.builder.curve,
+      curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       end: widget.builder.end,
       height: widget.builder.height,

@@ -7,7 +7,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// format.
 class JsonExpandedBuilder extends JsonWidgetBuilder {
   JsonExpandedBuilder({
-    this.flex,
+    required this.flex,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -23,15 +23,15 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
   ///   "flex": <double>
   /// }
   /// ```
-  static JsonExpandedBuilder fromDynamic(
+  static JsonExpandedBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonExpandedBuilder result;
+    JsonExpandedBuilder? result;
 
     if (map != null) {
       result = JsonExpandedBuilder(
-        flex: JsonClass.parseInt(map['flex'], 1),
+        flex: JsonClass.parseInt(map['flex'], 1)!,
       );
     }
 
@@ -40,10 +40,10 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

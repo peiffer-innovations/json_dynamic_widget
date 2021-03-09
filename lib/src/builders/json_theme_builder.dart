@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonThemeBuilder extends JsonWidgetBuilder {
   JsonThemeBuilder({
-    this.theme,
+    required this.theme,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -27,17 +27,18 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeThemeData]
-  static JsonThemeBuilder fromDynamic(
+  static JsonThemeBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonThemeBuilder result;
+    JsonThemeBuilder? result;
     if (map != null) {
       result = JsonThemeBuilder(
         theme: ThemeDecoder.decodeThemeData(
-          map['data'],
-          validate: false,
-        ),
+              map['data'],
+              validate: false,
+            ) ??
+            ThemeData(),
       );
     }
 
@@ -46,10 +47,10 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

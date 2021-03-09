@@ -16,9 +16,9 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'align';
 
-  final AlignmentGeometry alignment;
-  final double heightFactor;
-  final double widthFactor;
+  final AlignmentGeometry? alignment;
+  final double? heightFactor;
+  final double? widthFactor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -33,11 +33,11 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
-  static JsonAlignBuilder fromDynamic(
+  static JsonAlignBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAlignBuilder result;
+    JsonAlignBuilder? result;
 
     if (map != null) {
       result = JsonAlignBuilder(
@@ -55,15 +55,15 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
     return Align(
-      alignment: alignment,
+      alignment: alignment!,
       heightFactor: heightFactor,
       key: key,
       widthFactor: widthFactor,

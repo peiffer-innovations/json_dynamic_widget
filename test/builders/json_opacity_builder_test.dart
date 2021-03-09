@@ -6,7 +6,10 @@ void main() {
     const type = JsonOpacityBuilder.type;
 
     expect(type, 'opacity');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonOpacityBuilder,

@@ -8,16 +8,16 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   JsonInteractiveViewerBuilder({
-    this.alignPanAxis,
-    this.boundaryMargin,
-    this.constrained,
-    this.maxScale,
-    this.minScale,
+    required this.alignPanAxis,
+    required this.boundaryMargin,
+    required this.constrained,
+    required this.maxScale,
+    required this.minScale,
     this.onInteractionEnd,
     this.onInteractionStart,
     this.onInteractionUpdate,
-    this.panEnabled,
-    this.scaleEnabled,
+    required this.panEnabled,
+    required this.scaleEnabled,
     this.transformationController,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -29,12 +29,12 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   final bool constrained;
   final double maxScale;
   final double minScale;
-  final GestureScaleEndCallback onInteractionEnd;
-  final GestureScaleStartCallback onInteractionStart;
-  final GestureScaleUpdateCallback onInteractionUpdate;
+  final GestureScaleEndCallback? onInteractionEnd;
+  final GestureScaleStartCallback? onInteractionStart;
+  final GestureScaleUpdateCallback? onInteractionUpdate;
   final bool panEnabled;
   final bool scaleEnabled;
-  final TransformationController transformationController;
+  final TransformationController? transformationController;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -63,11 +63,11 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
-  static JsonInteractiveViewerBuilder fromDynamic(
+  static JsonInteractiveViewerBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonInteractiveViewerBuilder result;
+    JsonInteractiveViewerBuilder? result;
 
     if (map != null) {
       result = JsonInteractiveViewerBuilder(
@@ -79,7 +79,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
         boundaryMargin: ThemeDecoder.decodeEdgeInsetsGeometry(
               map['boundaryMargin'],
               validate: false,
-            ) ??
+            ) as EdgeInsets? ??
             EdgeInsets.zero,
         constrained: map['constrained'] == null
             ? true
@@ -89,11 +89,11 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
         maxScale: JsonClass.parseDouble(
           map['maxScale'],
           2.5,
-        ),
+        )!,
         minScale: JsonClass.parseDouble(
           map['minScale'],
           0.8,
-        ),
+        )!,
         onInteractionEnd: map['onInteractionEnd'],
         onInteractionStart: map['onInteractionStart'],
         onInteractionUpdate: map['onInteractionUpdate'],
@@ -116,10 +116,10 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

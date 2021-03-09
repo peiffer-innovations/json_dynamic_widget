@@ -8,13 +8,13 @@ import 'package:json_theme/json_theme.dart';
 class JsonClipRRectBuilder extends JsonWidgetBuilder {
   JsonClipRRectBuilder({
     this.borderRadius,
-    this.clipBehavior,
+    required this.clipBehavior,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'clip_rrect';
 
-  final BorderRadius borderRadius;
+  final BorderRadius? borderRadius;
   final Clip clipBehavior;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -30,11 +30,11 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeBorderRadius]
   ///  * [ThemeDecoder.decodeClip]
-  static JsonClipRRectBuilder fromDynamic(
+  static JsonClipRRectBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonClipRRectBuilder result;
+    JsonClipRRectBuilder? result;
 
     if (map != null) {
       result = JsonClipRRectBuilder(
@@ -56,10 +56,10 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

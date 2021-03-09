@@ -10,8 +10,8 @@ import 'package:json_theme/json_theme.dart';
 class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   JsonGestureDetectorBuilder({
     this.behavior,
-    this.dragStartBehavior,
-    this.excludeFromSemantics,
+    required this.dragStartBehavior,
+    required this.excludeFromSemantics,
     this.onDoubleTap,
     this.onDoubleTapCancel,
     this.onDoubleTapDown,
@@ -63,55 +63,55 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'gesture_detector';
 
-  final HitTestBehavior behavior;
+  final HitTestBehavior? behavior;
   final DragStartBehavior dragStartBehavior;
   final bool excludeFromSemantics;
-  final GestureDoubleTapCallback onDoubleTap;
-  final GestureTapCancelCallback onDoubleTapCancel;
-  final GestureTapDownCallback onDoubleTapDown;
-  final GestureForcePressEndCallback onForcePressEnd;
-  final GestureForcePressPeakCallback onForcePressPeak;
-  final GestureForcePressStartCallback onForcePressStart;
-  final GestureForcePressUpdateCallback onForcePressUpdate;
-  final GestureDragCancelCallback onHorizontalDragCancel;
-  final GestureDragDownCallback onHorizontalDragDown;
-  final GestureDragEndCallback onHorizontalDragEnd;
-  final GestureDragStartCallback onHorizontalDragStart;
-  final GestureDragUpdateCallback onHorizontalDragUpdate;
-  final GestureLongPressCallback onLongPress;
-  final GestureLongPressEndCallback onLongPressEnd;
-  final GestureLongPressMoveUpdateCallback onLongPressMoveUpdate;
-  final GestureLongPressStartCallback onLongPressStart;
-  final GestureLongPressUpCallback onLongPressUp;
-  final GestureDragCancelCallback onPanCancel;
-  final GestureDragDownCallback onPanDown;
-  final GestureDragEndCallback onPanEnd;
-  final GestureDragStartCallback onPanStart;
-  final GestureDragUpdateCallback onPanUpdate;
-  final GestureScaleEndCallback onScaleEnd;
-  final GestureScaleStartCallback onScaleStart;
-  final GestureScaleUpdateCallback onScaleUpdate;
-  final GestureLongPressCallback onSecondaryLongPress;
-  final GestureLongPressEndCallback onSecondaryLongPressEnd;
-  final GestureLongPressMoveUpdateCallback onSecondaryLongPressMoveUpdate;
-  final GestureLongPressStartCallback onSecondaryLongPressStart;
-  final GestureLongPressUpCallback onSecondaryLongPressUp;
-  final GestureTapCallback onSecondaryTap;
-  final GestureTapCancelCallback onSecondaryTapCancel;
-  final GestureTapDownCallback onSecondaryTapDown;
-  final GestureTapUpCallback onSecondaryTapUp;
-  final GestureTapCallback onTap;
-  final GestureTapCancelCallback onTapCancel;
-  final GestureTapDownCallback onTapDown;
-  final GestureTapUpCallback onTapUp;
-  final GestureTapCancelCallback onTertiaryTapCancel;
-  final GestureTapDownCallback onTertiaryTapDown;
-  final GestureTapUpCallback onTertiaryTapUp;
-  final GestureDragCancelCallback onVerticalDragCancel;
-  final GestureDragDownCallback onVerticalDragDown;
-  final GestureDragEndCallback onVerticalDragEnd;
-  final GestureDragStartCallback onVerticalDragStart;
-  final GestureDragUpdateCallback onVerticalDragUpdate;
+  final GestureDoubleTapCallback? onDoubleTap;
+  final GestureTapCancelCallback? onDoubleTapCancel;
+  final GestureTapDownCallback? onDoubleTapDown;
+  final GestureForcePressEndCallback? onForcePressEnd;
+  final GestureForcePressPeakCallback? onForcePressPeak;
+  final GestureForcePressStartCallback? onForcePressStart;
+  final GestureForcePressUpdateCallback? onForcePressUpdate;
+  final GestureDragCancelCallback? onHorizontalDragCancel;
+  final GestureDragDownCallback? onHorizontalDragDown;
+  final GestureDragEndCallback? onHorizontalDragEnd;
+  final GestureDragStartCallback? onHorizontalDragStart;
+  final GestureDragUpdateCallback? onHorizontalDragUpdate;
+  final GestureLongPressCallback? onLongPress;
+  final GestureLongPressEndCallback? onLongPressEnd;
+  final GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate;
+  final GestureLongPressStartCallback? onLongPressStart;
+  final GestureLongPressUpCallback? onLongPressUp;
+  final GestureDragCancelCallback? onPanCancel;
+  final GestureDragDownCallback? onPanDown;
+  final GestureDragEndCallback? onPanEnd;
+  final GestureDragStartCallback? onPanStart;
+  final GestureDragUpdateCallback? onPanUpdate;
+  final GestureScaleEndCallback? onScaleEnd;
+  final GestureScaleStartCallback? onScaleStart;
+  final GestureScaleUpdateCallback? onScaleUpdate;
+  final GestureLongPressCallback? onSecondaryLongPress;
+  final GestureLongPressEndCallback? onSecondaryLongPressEnd;
+  final GestureLongPressMoveUpdateCallback? onSecondaryLongPressMoveUpdate;
+  final GestureLongPressStartCallback? onSecondaryLongPressStart;
+  final GestureLongPressUpCallback? onSecondaryLongPressUp;
+  final GestureTapCallback? onSecondaryTap;
+  final GestureTapCancelCallback? onSecondaryTapCancel;
+  final GestureTapDownCallback? onSecondaryTapDown;
+  final GestureTapUpCallback? onSecondaryTapUp;
+  final GestureTapCallback? onTap;
+  final GestureTapCancelCallback? onTapCancel;
+  final GestureTapDownCallback? onTapDown;
+  final GestureTapUpCallback? onTapUp;
+  final GestureTapCancelCallback? onTertiaryTapCancel;
+  final GestureTapDownCallback? onTertiaryTapDown;
+  final GestureTapUpCallback? onTertiaryTapUp;
+  final GestureDragCancelCallback? onVerticalDragCancel;
+  final GestureDragDownCallback? onVerticalDragDown;
+  final GestureDragEndCallback? onVerticalDragEnd;
+  final GestureDragStartCallback? onVerticalDragStart;
+  final GestureDragUpdateCallback? onVerticalDragUpdate;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -177,11 +177,11 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeHitTestBehavior]
-  static JsonGestureDetectorBuilder fromDynamic(
+  static JsonGestureDetectorBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonGestureDetectorBuilder result;
+    JsonGestureDetectorBuilder? result;
 
     if (map != null) {
       result = JsonGestureDetectorBuilder(
@@ -249,10 +249,10 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 

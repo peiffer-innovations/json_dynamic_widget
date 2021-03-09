@@ -20,7 +20,6 @@ class StackSchema {
           'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
           'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'fit': SchemaHelper.objectSchema(StackFitSchema.id),
-          'overflow': SchemaHelper.objectSchema(OverflowSchema.id),
           'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
         },
       },

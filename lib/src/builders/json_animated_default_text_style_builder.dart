@@ -9,32 +9,30 @@ import 'package:json_theme/json_theme.dart';
 class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
   JsonAnimatedDefaultTextStyleBuilder({
     this.curve,
-    @required this.duration,
+    required this.duration,
     this.maxLines,
     this.onEnd,
     this.overflow,
     this.softWrap,
-    @required this.style,
+    required this.style,
     this.textAlign,
     this.textHeightBehavior,
     this.textWidthBasis,
-  })  : assert(duration != null),
-        assert(style != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'animated_default_text_style';
 
-  final Curve curve;
+  final Curve? curve;
   final Duration duration;
-  final int maxLines;
-  final VoidCallback onEnd;
-  final TextOverflow overflow;
-  final bool softWrap;
+  final int? maxLines;
+  final VoidCallback? onEnd;
+  final TextOverflow? overflow;
+  final bool? softWrap;
   final TextStyle style;
-  final TextAlign textAlign;
-  final TextHeightBehavior textHeightBehavior;
-  final TextWidthBasis textWidthBasis;
+  final TextAlign? textAlign;
+  final TextHeightBehavior? textHeightBehavior;
+  final TextWidthBasis? textWidthBasis;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -64,18 +62,18 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeTextAlign]
   ///  * [ThemeDecoder.decodeTextHeightBehavior]
   ///  * [ThemeDecoder.decodeTextWidthBasis]
-  static JsonAnimatedDefaultTextStyleBuilder fromDynamic(
+  static JsonAnimatedDefaultTextStyleBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedDefaultTextStyleBuilder result;
+    JsonAnimatedDefaultTextStyleBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedDefaultTextStyleBuilder(
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         maxLines: JsonClass.parseInt(map['maxLines']),
         onEnd: map['onEnd'],
         overflow: ThemeDecoder.decodeTextOverflow(
@@ -83,13 +81,11 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             TextOverflow.clip,
-        softWrap: map['software'] == null
-            ? true
-            : JsonClass.parseBool(map['softWrap']),
+        softWrap: JsonClass.parseBool(map['softWrap'] ?? true),
         style: ThemeDecoder.decodeTextStyle(
           map['style'],
           validate: false,
-        ),
+        )!,
         textAlign: ThemeDecoder.decodeTextAlign(
           map['textAlign'],
           validate: false,
@@ -111,10 +107,10 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -130,18 +126,16 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedDefaultTextStyle extends StatefulWidget {
   _JsonAnimatedDefaultTextStyle({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonAnimatedDefaultTextStyleBuilder builder;
   final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -154,16 +148,16 @@ class _JsonAnimatedDefaultTextStyleState
   @override
   Widget build(BuildContext context) {
     return AnimatedDefaultTextStyle(
-      curve: widget.builder.curve,
+      curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       maxLines: widget.builder.maxLines,
       onEnd: widget.builder.onEnd,
-      overflow: widget.builder.overflow,
-      softWrap: widget.builder.softWrap,
+      overflow: widget.builder.overflow ?? TextOverflow.clip,
+      softWrap: widget.builder.softWrap ?? true,
       style: widget.builder.style,
       textAlign: widget.builder.textAlign,
       textHeightBehavior: widget.builder.textHeightBehavior,
-      textWidthBasis: widget.builder.textWidthBasis,
+      textWidthBasis: widget.builder.textWidthBasis ?? TextWidthBasis.parent,
       child: widget.child.build(
         childBuilder: widget.childBuilder,
         context: context,

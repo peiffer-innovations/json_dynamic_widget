@@ -19,12 +19,12 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'linear_progress_indicator';
 
-  final Color backgroundColor;
-  final double minHeight;
-  final String semanticsLabel;
-  final String semanticsValue;
-  final double value;
-  final Animation<Color> valueColor;
+  final Color? backgroundColor;
+  final double? minHeight;
+  final String? semanticsLabel;
+  final String? semanticsValue;
+  final double? value;
+  final Animation<Color>? valueColor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -42,11 +42,11 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonLinearProgressIndicatorBuilder fromDynamic(
+  static JsonLinearProgressIndicatorBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonLinearProgressIndicatorBuilder result;
+    JsonLinearProgressIndicatorBuilder? result;
 
     if (map != null) {
       result = JsonLinearProgressIndicatorBuilder(
@@ -58,14 +58,16 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
         value: JsonClass.parseDouble(map['value']),
-        valueColor: map['valueColor'] is Function
-            ? map['valueColor']
-            : AlwaysStoppedAnimation(
-                ThemeDecoder.decodeColor(
-                  map['valueColor'],
-                  validate: false,
-                ),
-              ),
+        valueColor: map['valueColor'] == null
+            ? null
+            : map['valueColor'] is Animation
+                ? map['valueColor']
+                : AlwaysStoppedAnimation(
+                    ThemeDecoder.decodeColor(
+                      map['valueColor'],
+                      validate: false,
+                    )!,
+                  ),
       );
     }
 
@@ -74,10 +76,10 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return LinearProgressIndicator(
       backgroundColor: backgroundColor,

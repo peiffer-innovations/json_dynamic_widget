@@ -6,7 +6,10 @@ void main() {
     const type = JsonFormBuilder.type;
 
     expect(type, 'form');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({}) is JsonFormBuilder,
       true,

@@ -9,20 +9,18 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
   JsonAnimatedOpacityBuilder({
     this.alwaysIncludeSemantics,
     this.curve,
-    @required this.duration,
+    required this.duration,
     this.onEnd,
-    @required this.opacity,
-  })  : assert(duration != null),
-        assert(opacity != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.opacity,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'animated_opacity';
 
-  final bool alwaysIncludeSemantics;
-  final Curve curve;
+  final bool? alwaysIncludeSemantics;
+  final Curve? curve;
   final Duration duration;
-  final VoidCallback onEnd;
+  final VoidCallback? onEnd;
   final double opacity;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -41,24 +39,23 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
   /// As a note, the [Curve] and [VoidCallback] cannot be decoded via JSON.
   /// Instead, the only way to bind those values to the builder is to use a
   /// function or a variable reference via the [JsonWidgetRegistry].
-  static JsonAnimatedOpacityBuilder fromDynamic(
+  static JsonAnimatedOpacityBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonAnimatedOpacityBuilder result;
+    JsonAnimatedOpacityBuilder? result;
 
     if (map != null) {
       result = JsonAnimatedOpacityBuilder(
         alwaysIncludeSemantics: JsonClass.parseBool(
-              map['alwaysIncludeSemantics'],
-            ) ??
-            false,
+          map['alwaysIncludeSemantics'],
+        ),
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
-        ),
+        )!,
         onEnd: map['onEnd'],
-        opacity: JsonClass.parseDouble(map['opacity']),
+        opacity: JsonClass.parseDouble(map['opacity'])!,
       );
     }
 
@@ -67,10 +64,10 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    BuildContext context,
-    JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
@@ -86,18 +83,16 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
 
 class _JsonAnimatedOpacity extends StatefulWidget {
   _JsonAnimatedOpacity({
-    @required this.builder,
-    @required this.child,
-    @required this.childBuilder,
-    @required this.data,
-    Key key,
-  })  : assert(builder != null),
-        assert(data != null),
-        super(key: key);
+    required this.builder,
+    required this.child,
+    required this.childBuilder,
+    required this.data,
+    Key? key,
+  }) : super(key: key);
 
   final JsonAnimatedOpacityBuilder builder;
   final JsonWidgetData child;
-  final ChildWidgetBuilder childBuilder;
+  final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 
   @override
@@ -108,8 +103,8 @@ class _JsonAnimatedOpacityState extends State<_JsonAnimatedOpacity> {
   @override
   Widget build(BuildContext context) {
     return AnimatedOpacity(
-      alwaysIncludeSemantics: widget.builder.alwaysIncludeSemantics,
-      curve: widget.builder.curve,
+      alwaysIncludeSemantics: widget.builder.alwaysIncludeSemantics ?? false,
+      curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       onEnd: widget.builder.onEnd,
       opacity: widget.builder.opacity,

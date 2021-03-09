@@ -5,13 +5,13 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
 class InputDecorationDecoder {
-  static InputDecoration fromDynamic(
+  static InputDecoration? fromDynamic(
     dynamic map, {
-    @required ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetRegistry registry,
+    required ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetRegistry? registry,
   }) {
-    InputDecoration result;
+    InputDecoration? result;
 
     if (map != null) {
       result = InputDecoration(

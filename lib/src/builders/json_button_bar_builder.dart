@@ -24,16 +24,16 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
 
   static const type = 'button_bar';
 
-  final MainAxisAlignment alignment;
-  final bool buttonAlignedDropdown;
-  final double buttonHeight;
-  final double buttonMinWidth;
-  final EdgeInsetsGeometry buttonPadding;
-  final ButtonTextTheme buttonTextTheme;
-  final ButtonBarLayoutBehavior layoutBehavior;
-  final MainAxisSize mainAxisSize;
-  final double overflowButtonSpacing;
-  final VerticalDirection overflowDirection;
+  final MainAxisAlignment? alignment;
+  final bool? buttonAlignedDropdown;
+  final double? buttonHeight;
+  final double? buttonMinWidth;
+  final EdgeInsetsGeometry? buttonPadding;
+  final ButtonTextTheme? buttonTextTheme;
+  final ButtonBarLayoutBehavior? layoutBehavior;
+  final MainAxisSize? mainAxisSize;
+  final double? overflowButtonSpacing;
+  final VerticalDirection? overflowDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -55,11 +55,11 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonButtonBarBuilder fromDynamic(
+  static JsonButtonBarBuilder? fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    JsonButtonBarBuilder result;
+    JsonButtonBarBuilder? result;
 
     if (map != null) {
       result = JsonButtonBarBuilder(
@@ -88,10 +88,10 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     return ButtonBar(
       alignment: alignment,

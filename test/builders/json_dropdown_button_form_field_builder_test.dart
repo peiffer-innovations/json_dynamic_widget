@@ -6,7 +6,10 @@ void main() {
     const type = JsonDropdownButtonFormFieldBuilder.type;
 
     expect(type, 'dropdown_button_form_field');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonDropdownButtonFormFieldBuilder,

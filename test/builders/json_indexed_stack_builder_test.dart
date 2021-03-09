@@ -6,7 +6,10 @@ void main() {
     const type = JsonIndexedStackBuilder.type;
 
     expect(type, 'indexed_stack');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonIndexedStackBuilder,

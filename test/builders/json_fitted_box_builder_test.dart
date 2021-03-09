@@ -6,7 +6,10 @@ void main() {
     const type = JsonFittedBoxBuilder.type;
 
     expect(type, 'fitted_box');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonFittedBoxBuilder,

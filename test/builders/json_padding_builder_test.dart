@@ -6,7 +6,10 @@ void main() {
     const type = JsonPaddingBuilder.type;
 
     expect(type, 'padding');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'padding': '16.0',

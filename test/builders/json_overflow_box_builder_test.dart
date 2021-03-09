@@ -6,7 +6,10 @@ void main() {
     const type = JsonOverflowBoxBuilder.type;
 
     expect(type, 'overflow_box');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonOverflowBoxBuilder,

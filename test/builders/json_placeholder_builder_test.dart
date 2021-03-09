@@ -6,7 +6,10 @@ void main() {
     const type = JsonPlaceholderBuilder.type;
 
     expect(type, 'placeholder');
-    expect(JsonWidgetRegistry.instance.getWidgetBuilder(type) != null, true);
+    expect(
+      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
+      true,
+    );
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonPlaceholderBuilder,
