@@ -3,10 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/values/values.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
-import 'package:json_dynamic_widget/src/schema/schemas/container_schema.dart';
-import 'package:json_dynamic_widget/src/schema/schemas/cupertino_switch_schema.dart';
 
 import '../schema/all.dart';
 
@@ -230,6 +227,10 @@ class JsonWidgetRegistry {
       builder: JsonElevatedButtonBuilder.fromDynamic,
       schemaId: ElevatedButtonSchema.id,
     ),
+    JsonExcludeSemanticsBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonExcludeSemanticsBuilder.fromDynamic,
+      schemaId: ExcludeSemanticsSchema.id,
+    ),
     JsonExpandedBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonExpandedBuilder.fromDynamic,
       schemaId: ExpandedSchema.id,
@@ -330,6 +331,10 @@ class JsonWidgetRegistry {
       builder: JsonMemoryImageBuilder.fromDynamic,
       schemaId: MemoryImageSchema.id,
     ),
+    JsonMergeSemanticsBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonMergeSemanticsBuilder.fromDynamic,
+      schemaId: MergeSemanticsSchema.id,
+    ),
     JsonNetworkImageBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonNetworkImageBuilder.fromDynamic,
       schemaId: NetworkImageSchema.id,
@@ -389,6 +394,10 @@ class JsonWidgetRegistry {
     JsonScaffoldBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonScaffoldBuilder.fromDynamic,
       schemaId: ScaffoldSchema.id,
+    ),
+    JsonSemanticsBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonSemanticsBuilder.fromDynamic,
+      schemaId: SemanticsSchema.id,
     ),
     JsonSetValueBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonSetValueBuilder.fromDynamic,

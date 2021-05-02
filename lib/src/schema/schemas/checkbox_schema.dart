@@ -18,6 +18,7 @@ class CheckboxSchema {
       'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'checkColor': SchemaHelper.objectSchema(ColorSchema.id),
       'enabled': SchemaHelper.boolSchema,
+      'fillColor': SchemaHelper.stringSchema,
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusNode': SchemaHelper.stringSchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -27,6 +28,7 @@ class CheckboxSchema {
       'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onChanged': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
+      'overlayColor': SchemaHelper.stringSchema,
       'tristate': SchemaHelper.boolSchema,
       'validators': {
         'type': 'array',

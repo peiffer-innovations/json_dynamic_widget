@@ -15,6 +15,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.autovalidateMode,
     this.checkColor,
     required this.enabled,
+    this.fillColor,
     this.focusColor,
     this.focusNode,
     this.hoverColor,
@@ -23,6 +24,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.mouseCursor,
     this.onChanged,
     this.onSaved,
+    this.overlayColor,
     required this.tristate,
     this.validator,
     this.value,
@@ -38,6 +40,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   final AutovalidateMode? autovalidateMode;
   final Color? checkColor;
   final bool enabled;
+  final MaterialStateProperty<Color?>? fillColor;
   final Color? focusColor;
   final FocusNode? focusNode;
   final Color? hoverColor;
@@ -46,6 +49,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   final MouseCursor? mouseCursor;
   final ValueChanged<bool?>? onChanged;
   final ValueChanged<bool?>? onSaved;
+  final MaterialStateProperty<Color?>? overlayColor;
   final bool tristate;
   final Validator? validator;
   final bool? value;
@@ -61,6 +65,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///   "autovalidateMode": <AutovalidateMode>,
   ///   "checkColor": <Color>,
   ///   "enabled": <bool>,
+  ///   "fillColor": <MaterialStateProperty<Color>>,
   ///   "focusColor": <Color>,
   ///   "focusNode": <FocusNode>,
   ///   "hoverColor": <Color>,
@@ -69,6 +74,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///   "mouseCursor": <MouseCursor>,
   ///   "onChanged": <ValueChanged<bool>>,
   ///   "onSaved": <ValueChanged<onSaved>>,
+  ///   "overlayColor": <MaterialStateProperty<Color>>,
   ///   "tristate": <bool>,
   ///   "validators": <ValueValidator[]>,
   ///   "value": <bool>,
@@ -84,6 +90,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///  * [buildCustom]
   ///  * [ThemeDecoder.decodeAutovalidateMode]
   ///  * [ThemeDecoder.decodeColor]
+  ///  * [ThemeDecoder.decodeMaterialStatePropertyColor]
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeVisualDensity]
@@ -102,7 +109,10 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
@@ -112,6 +122,10 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
         ),
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        fillColor: ThemeDecoder.decodeMaterialStatePropertyColor(
+          map['fillColor'],
+          validate: false,
+        ),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
           validate: false,
@@ -132,6 +146,10 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
         ),
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
+        overlayColor: ThemeDecoder.decodeMaterialStatePropertyColor(
+          map['overlayColor'],
+          validate: false,
+        ),
         tristate: JsonClass.parseBool(map['tristate']),
         validator: map['validators'] == null
             ? null
@@ -197,6 +215,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
             activeColor: activeColor,
             autofocus: autofocus,
             checkColor: checkColor,
+            fillColor: fillColor,
             focusColor: focusColor,
             focusNode: focusNode,
             hoverColor: hoverColor,
@@ -214,6 +233,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
 
                     data.registry.setValue(data.id, value);
                   },
+            overlayColor: overlayColor,
             tristate: tristate,
             value: state.value,
             visualDensity: visualDensity,

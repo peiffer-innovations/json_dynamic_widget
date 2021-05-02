@@ -81,30 +81,20 @@
                           "type": "row",
                           "children": [
                             {
-                              "type": "flexible",
                               "child": {
-                                "type": "semantics",
-                                "args": {
-                                  "sortKey": {
-                                    "order": 0.0,
-                                    "textField": true
-                                  }
-                                },
+                                "type": "flexible",
                                 "child": {
-                                  "type": "exclude_semantics",
-                                  "child": {
-                                    "type": "text_form_field",
-                                    "args": {
-                                      "decoration": {
-                                        "hintText": "John",
-                                        "labelText": "First Name"
-                                      },
-                                      "validators": [
-                                        {
-                                          "type": "required"
-                                        }
-                                      ]
-                                    }
+                                  "type": "text_form_field",
+                                  "args": {
+                                    "decoration": {
+                                      "hintText": "John",
+                                      "labelText": "First Name"
+                                    },
+                                    "validators": [
+                                      {
+                                        "type": "required"
+                                      }
+                                    ]
                                   }
                                 }
                               }
@@ -118,20 +108,17 @@
                             {
                               "type": "flexible",
                               "child": {
-                                "type": "merge_semantics",
-                                "child": {
-                                  "type": "text_form_field",
-                                  "args": {
-                                    "decoration": {
-                                      "hintText": "Doe",
-                                      "labelText": "Last Name"
-                                    },
-                                    "validators": [
-                                      {
-                                        "type": "required"
-                                      }
-                                    ]
-                                  }
+                                "type": "text_form_field",
+                                "args": {
+                                  "decoration": {
+                                    "hintText": "Doe",
+                                    "labelText": "Last Name"
+                                  },
+                                  "validators": [
+                                    {
+                                      "type": "required"
+                                    }
+                                  ]
                                 }
                               }
                             }

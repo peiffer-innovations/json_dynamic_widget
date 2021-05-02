@@ -1,3 +1,8 @@
+## [2.1.0] - May, 2nd 2021
+
+* **BREAKING**: Completely refactored how `ElevatedButton`, `OutlinedButton`, and `TextButton` work with the style attribute.
+* Added support for `Semantics`, `MergeSemantics`, and `ExcludeSemantics`.
+
 ## [2.0.0] - March, 8th 2021
 
 * Null Safety
