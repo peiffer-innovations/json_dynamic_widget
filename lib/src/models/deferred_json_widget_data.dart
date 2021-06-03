@@ -10,7 +10,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   DeferredJsonWidgetData({
     required String key,
     required JsonWidgetRegistry registry,
-  })   : _key = key,
+  })  : _key = key,
         _registry = registry;
 
   final String _key;

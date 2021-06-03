@@ -16,7 +16,7 @@ class JsonWidgetData extends JsonClass {
     String? id,
     JsonWidgetRegistry? registry,
     required this.type,
-  })   : assert(
+  })  : assert(
           child == null || children?.isNotEmpty != true,
           'A JsonWidgetData may either contain a [child] or an array of [children], but not both.',
         ),

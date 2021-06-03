@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:automated_testing_framework/automated_testing_framework.dart';
 import 'package:example/src/custom_schemas/dotted_border_schema.dart';
 import 'package:example/src/custom_schemas/svg_schema.dart';
 import 'package:example/src/dotted_border_builder.dart';
@@ -16,6 +17,9 @@ import 'src/full_widget_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  TestAppSettings.initialize(appIdentifier: 'JSON Dynamic Widget');
+
   Logger.root.onRecord.listen((record) {
     debugPrint('${record.level.name}: ${record.time}: ${record.message}');
     if (record.error != null) {
@@ -25,6 +29,8 @@ void main() async {
       debugPrint('${record.stackTrace}');
     }
   });
+
+  var logger = Logger('main');
 
   var navigatorKey = GlobalKey<NavigatorState>();
 
@@ -164,6 +170,13 @@ void main() async {
   });
 
   registry.setValue('customRect', Rect.largest);
+
+  try {
+    var data = await rootBundle.loadString('secrets/credentials.json');
+    if (data != null) {}
+  } catch (e) {
+    logger.info('');
+  }
 
   runApp(MyApp(
     navigatorKey: navigatorKey,

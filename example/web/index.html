@@ -31,7 +31,27 @@
     }
 
   </script>
-  <script src="main.dart.js" type="application/javascript"></script>
+
+<script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyCOD2sfv5kF48H2eYdZAhImtsuB339irHI",
+    authDomain: "automated-testing-framework.firebaseapp.com",
+    databaseURL: "https://automated-testing-framework.firebaseio.com",
+    projectId: "automated-testing-framework",
+    storageBucket: "automated-testing-framework.appspot.com",
+    messagingSenderId: "538983735108",
+    appId: "1:538983735108:web:cf5a648de1b6dc14310111"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script src="main.dart.js" type="application/javascript"></script>
 </body>
 
 </html>

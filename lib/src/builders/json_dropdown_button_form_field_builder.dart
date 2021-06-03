@@ -167,13 +167,13 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
         onSaved: map['onSaved'],
         onTap: map['onTap'],
         selectedItemBuilder: map['selectedItemBuilder'],
-        validator: map['validators'] == null
-            ? null
-            : Validator.fromDynamic({'validators': map['validators']}),
         style: ThemeDecoder.decodeTextStyle(
           map['style'],
           validate: false,
         ),
+        validator: map['validators'] == null
+            ? null
+            : Validator.fromDynamic({'validators': map['validators']}),
         value: map['value'],
       );
     }
