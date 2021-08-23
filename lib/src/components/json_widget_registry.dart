@@ -3,7 +3,21 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/builders/json_dynamic_builder.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
+import 'package:json_dynamic_widget/src/components/functions/navigate_named.dart'
+    as navigate_named_fun;
+import 'package:json_dynamic_widget/src/components/functions/navigate_pop.dart'
+    as navigate_pop_fun;
+import 'package:json_dynamic_widget/src/components/functions/noop.dart'
+    as noop_fun;
+import 'package:json_dynamic_widget/src/components/functions/remove_value.dart'
+    as remove_value_fun;
+import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
+    as set_value_fun;
+import 'package:json_dynamic_widget/src/components/functions/dynamic.dart'
+    as dynamic_fun;
+import 'package:json_dynamic_widget/src/schema/schemas/dynamic_schema.dart';
 
 import '../schema/all.dart';
 
@@ -37,54 +51,6 @@ class JsonWidgetRegistry {
     _functions.addAll(functions ?? {});
     _values.addAll(values ?? {});
   }
-
-  /// Function key for the built in `navigate_named` function.  The
-  /// `navigate_named` function requires that the [navigatorKey] has been set on
-  /// the registry before it is used or an exception will be thrown.
-  ///
-  /// When called, the `navigate_named` function will push a named route using
-  /// the [navigatorKey].
-  ///
-  /// The `navigate_named` function one or two values on the `args` array:
-  ///  1. [String] -- The name of the route to push.
-  ///  2. [dynamic] -- <Optional> object to pass along as the route arguments.
-  static const fun_key_navigate_named = 'navigate_named';
-
-  /// Function key for the built in `navigate_pop` function.  The `navigate_pop`
-  /// function requires that the [navigatorKey] has been set on the registry
-  /// before it is used or an exception will be thrown.
-  ///
-  /// When called, the `navigate_pop` function will call to pop the current
-  /// route off the navigator stack.
-  ///
-  /// The `navigate_pop` accepts a single optional value in the `args` array:
-  ///  1. [dynamic] -- <Optional> pop result
-  static const fun_key_navigate_pop = 'navigate_pop';
-
-  /// Function key for the built in `noop` function.  The `noop` function does
-  /// nothing and exists mostly to assist with testing UI elements that need a
-  /// function but don't actually care what the function does (such as ensuring
-  /// buttons look correct when enabled).
-  ///
-  /// The `noop` takes no values in the `args` array.
-  static const fun_key_noop = 'noop';
-
-  /// Function key for the built in `remove_value` function.  The `remove_value`
-  /// function accepts a key and a value and then calls the [removeValue]
-  /// function.
-  ///
-  /// The `remove_value` function takes one value in the `args` array:
-  ///  1. [String] -- the key to pass to [removeValue].
-  static const fun_key_remove_value = 'remove_value';
-
-  /// Function key for the built in `set_value` function.  The `set_value`
-  /// function accepts a key and a value and then calls the [setValue] function
-  /// with those values.
-  ///
-  /// The `set_value` function takes two values in the `args` array:
-  ///  1. [String] -- the key to pass to [setValue].
-  ///  2. [dynamic] -- the value to pass to [setValue].
-  static const fun_key_set_value = 'set_value';
 
   static final JsonWidgetRegistry instance = JsonWidgetRegistry(
     debugLabel: 'default',
@@ -222,6 +188,10 @@ class JsonWidgetRegistry {
     JsonDropdownButtonFormFieldBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,
       schemaId: DropdownButtonFormFieldSchema.id,
+    ),
+    JsonDynamicBuilder.type: JsonWidgetBuilderContainer(
+      builder: JsonDynamicBuilder.fromDynamic,
+      schemaId: DynamicSchema.id,
     ),
     JsonElevatedButtonBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonElevatedButtonBuilder.fromDynamic,
@@ -442,49 +412,15 @@ class JsonWidgetRegistry {
     JsonThemeBuilder.type: JsonWidgetBuilderContainer(
       builder: JsonThemeBuilder.fromDynamic,
       schemaId: ThemeSchema.id,
-    ),
+    )
   };
   final _internalFunctions = <String, JsonWidgetFunction>{
-    fun_key_navigate_named: ({
-      required List<dynamic>? args,
-      required JsonWidgetRegistry registry,
-    }) {
-      assert(registry.navigatorKey != null);
-
-      return () => registry.navigatorKey!.currentState!.pushNamed(
-            args![0],
-            arguments: args.length >= 2 ? args[1] : null,
-          );
-    },
-    fun_key_navigate_pop: ({
-      required List<dynamic>? args,
-      required JsonWidgetRegistry registry,
-    }) {
-      assert(registry.navigatorKey != null);
-
-      return () => registry.navigatorKey!.currentState!.pop(
-            args?.isNotEmpty == true ? args![0] : null,
-          );
-    },
-    fun_key_noop: ({
-      required List<dynamic>? args,
-      required JsonWidgetRegistry registry,
-    }) {},
-    fun_key_remove_value: ({
-      required List<dynamic>? args,
-      required JsonWidgetRegistry registry,
-    }) =>
-        () => registry.removeValue(
-              args![0],
-            ),
-    fun_key_set_value: ({
-      required List<dynamic>? args,
-      required JsonWidgetRegistry registry,
-    }) =>
-        () => registry.setValue(
-              args![0],
-              args[1],
-            ),
+    navigate_named_fun.key: navigate_named_fun.body,
+    navigate_pop_fun.key: navigate_pop_fun.body,
+    noop_fun.key: noop_fun.body,
+    remove_value_fun.key: remove_value_fun.body,
+    set_value_fun.key: set_value_fun.body,
+    dynamic_fun.key: dynamic_fun.body,
   };
   final _internalValues = <String, dynamic>{}..addAll(
       CurvesValues.values,

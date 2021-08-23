@@ -35,6 +35,7 @@ class JsonDynamicWidgetSchemas {
     DecoratedBoxSchema.id: DecoratedBoxSchema.schema,
     DirectionalitySchema.id: DirectionalitySchema.schema,
     DropdownButtonFormFieldSchema.id: DropdownButtonFormFieldSchema.schema,
+    DynamicSchema.id: DynamicSchema.schema,
     ElevatedButtonSchema.id: ElevatedButtonSchema.schema,
     ExcludeSemanticsSchema.id: ExcludeSemanticsSchema.schema,
     ExpandedSchema.id: ExpandedSchema.schema,

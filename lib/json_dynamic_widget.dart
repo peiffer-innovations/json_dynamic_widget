@@ -30,6 +30,7 @@ export 'src/builders/json_cupertino_switch_builder.dart';
 export 'src/builders/json_decorated_box_builder.dart';
 export 'src/builders/json_directionality_builder.dart';
 export 'src/builders/json_dropdown_button_form_field_builder.dart';
+export 'src/builders/json_dynamic_builder.dart';
 export 'src/builders/json_elevated_button_builder.dart';
 export 'src/builders/json_exclude_semantics_builder.dart';
 export 'src/builders/json_expanded_builder.dart';

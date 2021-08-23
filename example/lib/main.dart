@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:automated_testing_framework/automated_testing_framework.dart';
 import 'package:example/src/custom_schemas/dotted_border_schema.dart';
 import 'package:example/src/custom_schemas/svg_schema.dart';
+import 'package:example/src/custom_function/show_dialog.dart'
+    as show_dialog_fun;
 import 'package:example/src/dotted_border_builder.dart';
 import 'package:example/src/issue_24_page.dart';
 import 'package:example/src/svg_builder.dart';
@@ -167,6 +169,7 @@ void main() async {
             .toList();
       };
     },
+    show_dialog_fun.key: show_dialog_fun.body,
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -268,6 +271,7 @@ class RootPage extends StatelessWidget {
     'switch': _onPageSelected,
     'theme': _onPageSelected,
     'tween_animation': _onPageSelected,
+    'dynamic': _onPageSelected,
   };
 
   static Future<void> _onPageSelected(
