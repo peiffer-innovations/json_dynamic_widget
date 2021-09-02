@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/builders/json_dynamic_builder.dart';
-import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
+import 'package:json_dynamic_widget/src/components/functions/dynamic.dart'
+    as dynamic_fun;
 import 'package:json_dynamic_widget/src/components/functions/navigate_named.dart'
     as navigate_named_fun;
 import 'package:json_dynamic_widget/src/components/functions/navigate_pop.dart'
@@ -15,9 +16,7 @@ import 'package:json_dynamic_widget/src/components/functions/remove_value.dart'
     as remove_value_fun;
 import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
     as set_value_fun;
-import 'package:json_dynamic_widget/src/components/functions/dynamic.dart'
-    as dynamic_fun;
-import 'package:json_dynamic_widget/src/schema/schemas/dynamic_schema.dart';
+import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 
 import '../schema/all.dart';
 
@@ -57,6 +56,7 @@ class JsonWidgetRegistry {
   );
 
   final _customBuilders = <String, JsonWidgetBuilderContainer>{};
+
   final String? debugLabel;
   final bool disableValidation;
   final _functions = <String, JsonWidgetFunction>{};

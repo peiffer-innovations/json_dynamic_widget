@@ -1,8 +1,5 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Function key for the built in `navigate_named` function.
-final String key = 'navigate_named';
-
 /// Function body for the built in `navigate_pop` function.
 /// The `navigate_named` function requires that the [navigatorKey] has been set on
 /// the registry before it is used or an exception will be thrown.
@@ -24,3 +21,6 @@ final JsonWidgetFunction body = ({
         arguments: args.length >= 2 ? args[1] : null,
       );
 };
+
+/// Function key for the built in `navigate_named` function.
+final String key = 'navigate_named';

@@ -1,9 +1,6 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/components/types.dart';
 
-/// Function key for the built in `set_value` function.
-final String key = 'set_value';
-
 /// Function body for the built in `set_value` function. The `set_value`
 /// function accepts a key and a value and then calls the [setValue] function
 /// with those values.
@@ -19,3 +16,6 @@ final JsonWidgetFunction body = ({
           args![0],
           args[1],
         );
+
+/// Function key for the built in `set_value` function.
+final String key = 'set_value';
