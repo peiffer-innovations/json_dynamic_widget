@@ -124,6 +124,7 @@ Widget Builders | Example Location
 [cupertino_switch](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCupertinoSwitchBuilder/fromDynamic.html) | [cupertino_switch.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/cupertino_switch.json)
 [directionality](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonDirectionalityBuilder/fromDynamic.html) | [directionality.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/directionality.json)
 [dropdown_button_form_field](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonDropdownButtonFormFieldBuilder/fromDynamic.html) | [form.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/form.json)
+[dynamic](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonDynamicBuilder/fromDynamic.html) | [dynamic.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/dynamic.json)
 [elevated_button](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonElevatedButtonBuilder/fromDynamic.html) | [buttons.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/buttons.json)
 [expanded](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonExpandedBuilder/fromDynamic.html) | [conditional.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/conditional.json)
 [fitted_box](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonFittedBoxBuilder/fromDynamic.html) | [fitted_box.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/fitted_box.json)
@@ -213,6 +214,7 @@ Function Name    | Example | Args | Description
 `noop`           | `##noop()##` | n/a | Simple no-arg no-op function that can be used to enable buttons for UI testing.
 `remove_value`   | `##remove_value(varName)##` | <ol><li>The variable name</li></ol> | Removes the variable named in the first argument from the registry.
 `set_value`      | `##set_value(varName, some value)##` | <ol><li>The variable name</li><li>The variable value</li></ol> | Sets the value of the variable in the registry.
+`dynamic`   | `##dynamic(operationVar1, operationVar2...)##` | The variable names which contains values convertable into `DynamicOperation`.| Executes every `DynamicOperation` passed as args.
 
 
 ## Creating Custom Widgets

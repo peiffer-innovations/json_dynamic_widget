@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:automated_testing_framework/automated_testing_framework.dart';
+import 'package:example/src/custom_function/show_dialog.dart'
+    as show_dialog_fun;
 import 'package:example/src/custom_schemas/dotted_border_schema.dart';
 import 'package:example/src/custom_schemas/svg_schema.dart';
 import 'package:example/src/dotted_border_builder.dart';
@@ -167,6 +169,7 @@ void main() async {
             .toList();
       };
     },
+    show_dialog_fun.key: show_dialog_fun.body,
   });
 
   registry.setValue('customRect', Rect.largest);
@@ -184,13 +187,13 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  final GlobalKey<NavigatorState> navigatorKey;
+
   MyApp({
     Key key,
     @required this.navigatorKey,
   })  : assert(navigatorKey != null),
         super(key: key);
-
-  final GlobalKey<NavigatorState> navigatorKey;
 
   @override
   Widget build(BuildContext context) {
@@ -203,10 +206,6 @@ class MyApp extends StatelessWidget {
 }
 
 class RootPage extends StatelessWidget {
-  const RootPage({
-    Key key,
-  }) : super(key: key);
-
   static final _pages = {
     'align': _onPageSelected,
     'animated_align': _onPageSelected,
@@ -268,7 +267,31 @@ class RootPage extends StatelessWidget {
     'switch': _onPageSelected,
     'theme': _onPageSelected,
     'tween_animation': _onPageSelected,
+    'dynamic': _onPageSelected,
   };
+
+  const RootPage({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var names = _pages.keys.toList();
+    names.sort();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Select Widget / Page'),
+      ),
+      body: ListView.builder(
+        itemCount: _pages.length,
+        itemBuilder: (BuildContext context, int index) => ListTile(
+          title: Text(names[index]),
+          onTap: () => _pages[names[index]](context, names[index]),
+        ),
+      ),
+    );
+  }
 
   static Future<void> _onPageSelected(
     BuildContext context,
@@ -289,25 +312,6 @@ class RootPage extends StatelessWidget {
       MaterialPageRoute(
         builder: (BuildContext context) => FullWidgetPage(
           data: data,
-        ),
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var names = _pages.keys.toList();
-    names.sort();
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Select Widget / Page'),
-      ),
-      body: ListView.builder(
-        itemCount: _pages.length,
-        itemBuilder: (BuildContext context, int index) => ListTile(
-          title: Text(names[index]),
-          onTap: () => _pages[names[index]](context, names[index]),
         ),
       ),
     );

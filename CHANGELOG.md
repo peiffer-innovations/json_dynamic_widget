@@ -1,3 +1,6 @@
+## [2.2.0] - August, 23nd 2021
+* Added `dynamic` builder type and `dynamic` function.
+
 ## [2.1.0] - June, 2nd 2021
 
 * **BREAKING**: Completely refactored how `ElevatedButton`, `OutlinedButton`, and `TextButton` work with the style attribute.
