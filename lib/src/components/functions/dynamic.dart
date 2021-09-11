@@ -1,4 +1,4 @@
-import 'package:collection/collection.dart';
+import 'dart:convert';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/builders/json_dynamic_builder.dart';
@@ -158,10 +158,8 @@ abstract class DynamicOperation extends JsonClass {
     }
 
     index = childrenData.indexWhere(
-      (childData) => target.entries.every(
-        (entry) =>
-            DeepCollectionEquality().equals(entry.value, childData[entry.key]),
-      ),
+      (childData) => target.entries.every((entry) =>
+          jsonEncode(entry.value) == jsonEncode(childData[entry.key])),
     );
     return index;
   }
