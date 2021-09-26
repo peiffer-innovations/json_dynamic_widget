@@ -122,7 +122,6 @@ class _JsonAnimatedSizeState extends State<_JsonAnimatedSize> {
       curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       reverseDuration: widget.builder.reverseDuration,
-      vsync: widget.builder.vsync!,
       child: widget.child!.build(
         childBuilder: widget.childBuilder,
         context: context,
@@ -141,7 +140,6 @@ class _JsonAnimatedSizeStateTicker extends State<_JsonAnimatedSize>
       curve: widget.builder.curve ?? Curves.linear,
       duration: widget.builder.duration,
       reverseDuration: widget.builder.reverseDuration,
-      vsync: this,
       child: widget.child!.build(
         childBuilder: widget.childBuilder,
         context: context,

@@ -10,7 +10,7 @@ class OverflowBoxSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/OverflowBox-class.html',
     'type': 'object',
-    'title': 'OverflowBoxBuilder',
+    'title': 'OverflowBox',
     'additionalProperties': false,
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),

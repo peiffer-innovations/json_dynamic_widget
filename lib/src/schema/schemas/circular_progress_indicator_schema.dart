@@ -10,10 +10,11 @@ class CircularProgressIndicatorSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/CircularProgressIndicator-class.html',
     'type': 'object',
-    'title': 'CircularProgressIndicatorBuilder',
+    'title': 'CircularProgressIndicator',
     'additionalProperties': false,
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'color': SchemaHelper.objectSchema(ColorSchema.id),
       'semanticsLabel': SchemaHelper.stringSchema,
       'semanticsValue': SchemaHelper.stringSchema,
       'strokeWidth': SchemaHelper.numberSchema,

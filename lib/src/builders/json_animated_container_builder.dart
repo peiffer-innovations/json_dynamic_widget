@@ -9,6 +9,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   JsonAnimatedContainerBuilder({
     this.alignment,
+    required this.clipBehavior,
     this.color,
     this.constraints,
     this.curve,
@@ -20,6 +21,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
     this.onEnd,
     this.padding,
     this.transform,
+    this.transformAlignment,
     this.width,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -27,6 +29,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   static const type = 'animated_container';
 
   final AlignmentGeometry? alignment;
+  final Clip clipBehavior;
   final Color? color;
   final BoxConstraints? constraints;
   final Curve? curve;
@@ -38,6 +41,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   final VoidCallback? onEnd;
   final EdgeInsetsGeometry? padding;
   final Matrix4? transform;
+  final AlignmentGeometry? transformAlignment;
   final double? width;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -46,6 +50,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "alignment: <AlignmentGeometry>,
+  ///   "clipBehavior": <Clip>,
   ///   "color": <Color>,
   ///   "constraints": <BoxConstraints>,
   ///   "curve": <Curve>,
@@ -57,6 +62,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   ///   "onEnd": <VoidCallback>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "transform": <Matrix4>,
+  ///   "transformAlignment": <TransformAlignment>,
   ///   "width": <double>
   /// }
   /// ```
@@ -76,6 +82,11 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
           map['alignment'],
           validate: false,
         ),
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.none,
         color: ThemeDecoder.decodeColor(
           map['color'],
           validate: false,
@@ -108,6 +119,10 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
         ),
         transform: ThemeDecoder.decodeMatrix4(
           map['matrix4'],
+          validate: false,
+        ),
+        transformAlignment: ThemeDecoder.decodeAlignment(
+          map['transformAlignment'],
           validate: false,
         ),
         width: JsonClass.parseDouble(map['width']),
@@ -159,6 +174,7 @@ class _JsonAnimatedContainerState extends State<_JsonAnimatedContainer> {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       alignment: widget.builder.alignment,
+      clipBehavior: widget.builder.clipBehavior,
       color: widget.builder.color,
       constraints: widget.builder.constraints,
       curve: widget.builder.curve ?? Curves.linear,
@@ -170,6 +186,7 @@ class _JsonAnimatedContainerState extends State<_JsonAnimatedContainer> {
       onEnd: widget.builder.onEnd,
       padding: widget.builder.padding,
       transform: widget.builder.transform,
+      transformAlignment: widget.builder.transformAlignment,
       width: widget.builder.width,
       child: widget.child!.build(
         childBuilder: widget.childBuilder,

@@ -10,7 +10,7 @@ class AnimatedThemeSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/AnimatedTheme-class.html',
     'type': 'object',
-    'title': 'AnimatedThemeBuilder',
+    'title': 'AnimatedTheme',
     'additionalProperties': false,
     'required': [
       'data',

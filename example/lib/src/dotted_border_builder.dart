@@ -8,54 +8,50 @@ import 'package:json_theme/json_theme.dart';
 class DottedBorderBuilder extends JsonWidgetBuilder {
   DottedBorderBuilder({
     this.color,
-    @required this.dashPattern,
-  })  : assert(dashPattern != null),
-        super(numSupportedChildren: kNumSupportedChildren);
+    required this.dashPattern,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'dotted_border';
 
-  final Color color;
+  final Color? color;
   final List<double> dashPattern;
 
   static DottedBorderBuilder fromDynamic(
     dynamic map, {
-    JsonWidgetRegistry registry,
+    JsonWidgetRegistry? registry,
   }) {
-    DottedBorderBuilder result;
-
-    if (map != null) {
-      result = DottedBorderBuilder(
-        color: ThemeDecoder.decodeColor(
-              map['color'],
-              validate: false,
-            ) ??
-            Colors.black,
-        dashPattern: map['dashPattern'] == null
-            ? null
-            : List<double>.from(
-                map['dashPattern'].map(
-                  (e) => JsonClass.parseDouble(e, 0.0),
-                ),
-              ),
-      );
+    if (map == null) {
+      throw Exception('DottedBorderBuilder: map is null');
     }
-
-    return result;
+    return DottedBorderBuilder(
+      color: ThemeDecoder.decodeColor(
+            map['color'],
+            validate: false,
+          ) ??
+          Colors.black,
+      dashPattern: map['dashPattern'] == null
+          ? [0.0]
+          : List<double>.from(
+              map['dashPattern'].map(
+                (e) => JsonClass.parseDouble(e, 0.0),
+              ),
+            ),
+    );
   }
 
   @override
   Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
   }) {
     var child = getChild(data);
 
     return DottedBorder(
       borderType: BorderType.Circle,
-      color: color,
+      color: color ?? Colors.black,
       dashPattern: dashPattern,
       child: child.build(
         childBuilder: childBuilder,

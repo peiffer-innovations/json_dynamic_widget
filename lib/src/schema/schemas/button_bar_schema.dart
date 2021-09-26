@@ -9,7 +9,7 @@ class ButtonBarSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/material/ButtonBar-class.html',
-    'title': 'ButtonBarBuilder',
+    'title': 'ButtonBar',
     'type': 'object',
     'additionalProperties': false,
     'properties': {

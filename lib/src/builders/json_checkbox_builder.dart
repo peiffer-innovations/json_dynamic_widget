@@ -25,6 +25,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.onChanged,
     this.onSaved,
     this.overlayColor,
+    this.shape,
+    this.side,
+    this.splashRadius,
     required this.tristate,
     this.validator,
     this.value,
@@ -50,6 +53,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   final ValueChanged<bool?>? onChanged;
   final ValueChanged<bool?>? onSaved;
   final MaterialStateProperty<Color?>? overlayColor;
+  final OutlinedBorder? shape;
+  final BorderSide? side;
+  final double? splashRadius;
   final bool tristate;
   final Validator? validator;
   final bool? value;
@@ -75,6 +81,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///   "onChanged": <ValueChanged<bool>>,
   ///   "onSaved": <ValueChanged<onSaved>>,
   ///   "overlayColor": <MaterialStateProperty<Color>>,
+  ///   "shape": <OutlinedBorder>,
+  ///   "side": <BorderSide>,
+  ///   "splashRadius": <double>,
   ///   "tristate": <bool>,
   ///   "validators": <ValueValidator[]>,
   ///   "value": <bool>,
@@ -89,10 +98,12 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [buildCustom]
   ///  * [ThemeDecoder.decodeAutovalidateMode]
+  ///  * [ThemeDecoder.decodeBorderSide]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeMaterialStatePropertyColor]
   ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
   ///  * [ThemeDecoder.decodeMouseCursor]
+  ///  * [ThemeDecoder.decodeOutlinedBorder]
   ///  * [ThemeDecoder.decodeVisualDensity]
   ///  * [Validator]
   static JsonCheckboxBuilder? fromDynamic(
@@ -150,6 +161,15 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
           map['overlayColor'],
           validate: false,
         ),
+        shape: ThemeDecoder.decodeOutlinedBorder(
+          map['shape'],
+          validate: false,
+        ),
+        side: ThemeDecoder.decodeBorderSide(
+          map['side'],
+          validate: false,
+        ),
+        splashRadius: JsonClass.parseDouble(map['splashRadius']),
         tristate: JsonClass.parseBool(map['tristate']),
         validator: map['validators'] == null
             ? null
@@ -234,6 +254,9 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
                     data.registry.setValue(data.id, value);
                   },
             overlayColor: overlayColor,
+            shape: shape,
+            side: side,
+            splashRadius: splashRadius,
             tristate: tristate,
             value: state.value,
             visualDensity: visualDensity,

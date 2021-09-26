@@ -18,9 +18,12 @@ class _DynamicWidgetState extends State<Issue24Page> {
     return FutureBuilder(
       builder: (context, AsyncSnapshot<String> snapshot) {
         if (snapshot.hasData) {
-          JsonWidgetRegistry.instance.clearValues();
-          var widgetJson = jsonDecode(snapshot.data);
-          var widget = JsonWidgetData.fromDynamic(widgetJson);
+          var registry = JsonWidgetRegistry.instance.copyWith();
+          var widgetJson = jsonDecode(snapshot.data!);
+          var widget = JsonWidgetData.fromDynamic(
+            widgetJson,
+            registry: registry,
+          )!;
           return widget.build(
             context: context,
           );

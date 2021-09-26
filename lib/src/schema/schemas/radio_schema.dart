@@ -9,7 +9,7 @@ class RadioSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/material/Radio-class.html',
     'type': 'object',
-    'title': 'RadioBuilder',
+    'title': 'Radio',
     'additionalProperties': false,
     'properties': {
       'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -18,6 +18,9 @@ class RadioSchema {
       'autofocus': SchemaHelper.boolSchema,
       'checkColor': SchemaHelper.objectSchema(ColorSchema.id),
       'enabled': SchemaHelper.boolSchema,
+      'fillColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusNode': SchemaHelper.stringSchema,
       'groupValue': SchemaHelper.anySchema,
@@ -30,7 +33,11 @@ class RadioSchema {
       'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onChanged': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'toggleable': SchemaHelper.boolSchema,
+      'splashRadius': SchemaHelper.numberSchema,
       'validators': SchemaHelper.anySchema,
       'value': SchemaHelper.anySchema,
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),

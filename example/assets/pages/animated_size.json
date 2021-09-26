@@ -45,7 +45,8 @@
       }
     },
     "floatingActionButton": {
-      "type": "raised_button",
+      "type": "elevated_button",
+      "id": "press_me_button",
       "args": {
         "onPressed": "##set_value(customText, This is not a short text. This is a very very long text.)##"
       },

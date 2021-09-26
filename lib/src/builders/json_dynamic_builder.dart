@@ -116,16 +116,16 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
 }
 
 class _DynamicWidget extends StatefulWidget {
-  final JsonWidgetData data;
-
-  final String childTemplate;
-  final ChildWidgetBuilder? childBuilder;
   _DynamicWidget({
     required this.data,
     required this.childTemplate,
     this.childBuilder,
     Key? key,
   }) : super(key: key);
+
+  final String childTemplate;
+  final ChildWidgetBuilder? childBuilder;
+  final JsonWidgetData data;
 
   @override
   _DynamicWidgetState createState() => _DynamicWidgetState();

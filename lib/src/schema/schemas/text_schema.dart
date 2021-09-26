@@ -9,7 +9,7 @@ class TextSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Text-class.html',
     'type': 'object',
-    'title': 'TextBuilder',
+    'title': 'Text',
     'additionalProperties': false,
     'required': [
       'text',

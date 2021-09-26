@@ -21,6 +21,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.cursorRadius,
     required this.cursorWidth,
     this.decoration,
+    required this.enableIMEPersonalizedLearning,
     required this.enableInteractiveSelection,
     required this.enableSuggestions,
     this.enabled,
@@ -42,6 +43,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.onSaved,
     this.onTap,
     this.readOnly,
+    this.restorationId,
     this.scrollPadding,
     this.scrollPhysics,
     this.selectionControls,
@@ -73,6 +75,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final Radius? cursorRadius;
   final double cursorWidth;
   final dynamic decoration;
+  final bool enableIMEPersonalizedLearning;
   final bool enableInteractiveSelection;
   final bool enableSuggestions;
   final bool? enabled;
@@ -94,6 +97,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final FormFieldSetter<String>? onSaved;
   final VoidCallback? onTap;
   final bool? readOnly;
+  final String? restorationId;
   final EdgeInsetsGeometry? scrollPadding;
   final ScrollPhysics? scrollPhysics;
   final TextSelectionControls? selectionControls;
@@ -126,6 +130,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "cursorRadius": <Radius>,
   ///   "cursorWidth": <double>,
   ///   "decoration": <InputDecorationDecoder>,
+  ///   "enableIMEPersonalizedLearning": <bool>,
   ///   "enableInteractiveSelection": <bool>,
   ///   "enableSuggestions": <bool>,
   ///   "enabled": <bool>,
@@ -147,6 +152,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "onSaved": <FormFieldSetter<String>>,
   ///   "onTap": <VoidCallback>,
   ///   "readOnly": <bool>,
+  ///   "restorationId": <bool>,
   ///   "scrollPadding": <EdgeInsetsGeometry>,
   ///   "scrollPhysics": <ScrollPhysics>,
   ///   "selectionControls": <TextSelectionControls>,
@@ -221,6 +227,10 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         ),
         cursorWidth: JsonClass.parseDouble(map['cursorWidth'], 2)!,
         decoration: map['decoration'],
+        enableIMEPersonalizedLearning:
+            map['enableIMEPersonalizedLearning'] == null
+                ? true
+                : JsonClass.parseBool(map['enableIMEPersonalizedLearning']),
         enableInteractiveSelection: map['enableInteractiveSelection'] == null
             ? true
             : JsonClass.parseBool(map['enableInteractiveSelection']),
@@ -255,6 +265,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         onSaved: map['onSaved'],
         onTap: map['onTap'],
         readOnly: JsonClass.parseBool(map['readOnly']),
+        restorationId: map['restorationId'],
         scrollPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
               map['scrollPadding'],
               validate: false,
@@ -402,6 +413,8 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         cursorRadius: widget.builder.cursorRadius,
         cursorWidth: widget.builder.cursorWidth,
         decoration: _decoration ?? const InputDecoration(),
+        enableIMEPersonalizedLearning:
+            widget.builder.enableIMEPersonalizedLearning,
         enableInteractiveSelection: widget.builder.enableInteractiveSelection,
         enableSuggestions: widget.builder.enableSuggestions,
         enabled: widget.builder.enabled,
@@ -433,6 +446,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         onSaved: widget.builder.onSaved,
         onTap: widget.builder.onTap,
         readOnly: widget.builder.readOnly ?? false,
+        restorationId: widget.builder.restorationId,
         scrollPadding: widget.builder.scrollPadding as EdgeInsets,
         scrollPhysics: widget.builder.scrollPhysics,
         selectionControls: widget.builder.selectionControls,

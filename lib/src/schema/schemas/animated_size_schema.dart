@@ -10,7 +10,7 @@ class AnimatedSizeSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedSize-class.html',
     'type': 'object',
-    'title': 'AnimatedSizeBuilder',
+    'title': 'AnimatedSize',
     'additionalProperties': false,
     'required': [
       'duration',

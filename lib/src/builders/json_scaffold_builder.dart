@@ -27,9 +27,11 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     this.floatingActionButtonAnimator,
     this.floatingActionButtonLocation,
     this.persistentFooterButtons,
+    this.onDrawerChanged,
+    this.onEndDrawerChanged,
     required this.primary,
     this.resizeToAvoidBottomInset,
-    this.resizeToAvoidBottomPadding,
+    this.restorationId,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -52,10 +54,12 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   final JsonWidgetData? floatingActionButton;
   final FloatingActionButtonAnimator? floatingActionButtonAnimator;
   final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final ValueChanged<bool>? onDrawerChanged;
+  final ValueChanged<bool>? onEndDrawerChanged;
   final List<JsonWidgetData>? persistentFooterButtons;
   final bool primary;
   final bool? resizeToAvoidBottomInset;
-  final bool? resizeToAvoidBottomPadding;
+  final String? restorationId;
 
   /// Builds the builder from a Map-like dynamic structure.  The scaffold is a
   /// special case that uses `child` as an alias for the `body` attribute.  This
@@ -82,10 +86,12 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   ///   "floatingActionButton": <JsonWidgetData>,
   ///   "floatingActionButtonAnimator": <FloatingActionButtonAnimator>,
   ///   "floatingActionButtonLocation": <ActionButtonLocation>,
+  ///   "onDrawerChanged": <ValueChanged<bool>>,
+  ///   "onEndDrawerChanged": <ValueChanged<bool>>,
   ///   "persistentFooterButtons": <JsonWidgetData[]>,
   ///   "primary": <bool>,
   ///   "resizeToAvoidBottomInset": <bool>,
-  ///   "resizeToAvoidBottomPadding": <bool>
+  ///   "restorationId": <String>
   /// }
   /// ```
   ///
@@ -174,12 +180,12 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
               ),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
+        onDrawerChanged: map['onDrawerChanged'],
+        onEndDrawerChanged: map['onEndDrawerChanged'],
         resizeToAvoidBottomInset: map['resizeToAvoidBottomInset'] == null
             ? null
             : JsonClass.parseBool(map['resizeToAvoidBottomInset']),
-        resizeToAvoidBottomPadding: map['resizeToAvoidBottomPadding'] == null
-            ? null
-            : JsonClass.parseBool(map['resizeToAvoidBottomPadding']),
+        restorationId: map['restorationId'],
       );
     }
 
@@ -243,7 +249,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
             ],
       primary: primary,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-      // resizeToAvoidBottomPadding: resizeToAvoidBottomPadding,
+      restorationId: restorationId,
     );
   }
 }

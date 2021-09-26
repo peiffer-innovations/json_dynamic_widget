@@ -10,7 +10,7 @@ class OutlinedButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/OutlinedButton-class.html',
     'type': 'object',
-    'title': 'OutlinedButtonBuilder',
+    'title': 'OutlinedButton',
     'additionalProperties': false,
     'properties': {
       'autofocus': SchemaHelper.boolSchema,

@@ -10,7 +10,7 @@ class FractionalTranslationSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/FractionalTranslation-class.html',
     'type': 'object',
-    'title': 'FractionalTranslationBuilder',
+    'title': 'FractionalTranslation',
     'additionalProperties': false,
     'required': [
       'translation',

@@ -5,8 +5,10 @@
 import FlutterMacOS
 import Foundation
 
-import package_info
+import desktop_window
+import package_info_plus_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  FLTPackageInfoPlugin.register(with: registry.registrar(forPlugin: "FLTPackageInfoPlugin"))
+  DesktopWindowPlugin.register(with: registry.registrar(forPlugin: "DesktopWindowPlugin"))
+  FLTPackageInfoPlusPlugin.register(with: registry.registrar(forPlugin: "FLTPackageInfoPlusPlugin"))
 }

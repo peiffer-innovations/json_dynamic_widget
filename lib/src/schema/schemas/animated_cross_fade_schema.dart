@@ -10,7 +10,7 @@ class AnimatedCrossFadeSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedCrossFade-class.html',
     'type': 'object',
-    'title': 'AnimatedCrossFadeBuilder',
+    'title': 'AnimatedCrossFade',
     'additionalProperties': false,
     'required': [
       'crossFadeState',

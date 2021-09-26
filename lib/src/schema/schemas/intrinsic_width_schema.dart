@@ -10,7 +10,7 @@ class IntrinsicWidthSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/IntrinsicWidth-class.html',
     'type': 'object',
-    'title': 'IntrinsicWidthBuilder',
+    'title': 'IntrinsicWidth',
     'additionalProperties': false,
     'properties': {
       'stepHeight': SchemaHelper.numberSchema,

@@ -10,7 +10,7 @@ class AnimatedPhysicalModelSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedPhysicalModel-class.html',
     'type': 'object',
-    'title': 'AnimatedPhysicalModelBuilder',
+    'title': 'AnimatedPhysicalModel',
     'additionalProperties': false,
     'required': [
       'color',

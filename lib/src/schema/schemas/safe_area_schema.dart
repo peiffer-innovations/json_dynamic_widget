@@ -14,7 +14,7 @@ class SafeAreaSchema {
       },
       {
         'type': 'object',
-        'title': 'SafeAreaSchemaBuilder',
+        'title': 'SafeAreaSchema',
         'additionalProperties': false,
         'properties': {
           'bottom': SchemaHelper.boolSchema,

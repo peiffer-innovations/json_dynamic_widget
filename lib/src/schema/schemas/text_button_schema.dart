@@ -10,7 +10,7 @@ class TextButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/TextButton-class.html',
     'type': 'object',
-    'title': 'TextButtonBuilder',
+    'title': 'TextButton',
     'additionalProperties': false,
     'properties': {
       'autofocus': SchemaHelper.boolSchema,

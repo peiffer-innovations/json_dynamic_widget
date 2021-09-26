@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-final JsonWidgetFunction body = (
-        {List<dynamic> args, JsonWidgetRegistry registry}) =>
+final JsonWidgetFunction body = ({
+  List<dynamic>? args,
+  required JsonWidgetRegistry registry,
+}) =>
     () {
       if (args != null && args.length == 2) {
         final String buildContextVarName = args[0];
@@ -13,14 +15,18 @@ final JsonWidgetFunction body = (
         var dialogData =
             DialogData.fromJson(registry.getValue(dialogDataVarName));
 
-        var title =
-            JsonWidgetData.fromDynamic(dialogData.title, registry: registry)
-                .build(
+        var title = JsonWidgetData.fromDynamic(
+          dialogData.title,
+          registry: registry,
+        )!
+            .build(
           context: context,
         );
-        var content =
-            JsonWidgetData.fromDynamic(dialogData.content, registry: registry)
-                .build(context: context);
+        var content = JsonWidgetData.fromDynamic(
+          dialogData.content,
+          registry: registry,
+        )!
+            .build(context: context);
         List<Widget> actions = dialogData.actions
             .map(
               (actionData) => TextButton(
@@ -31,7 +37,8 @@ final JsonWidgetFunction body = (
                 child: JsonWidgetData.fromDynamic(
                   actionData.title,
                   registry: registry,
-                ).build(context: context),
+                )!
+                    .build(context: context),
               ),
             )
             .toList();
@@ -48,11 +55,10 @@ final JsonWidgetFunction body = (
 final String key = 'show_dialog';
 
 class ActionData extends JsonClass {
-  Map<String, dynamic> title;
-
-  Function onPressed;
-
-  ActionData({this.title, this.onPressed});
+  ActionData({
+    required this.title,
+    required this.onPressed,
+  });
   factory ActionData.fromJson(dynamic json) {
     return ActionData(
       title: Map<String, dynamic>.from(
@@ -62,6 +68,10 @@ class ActionData extends JsonClass {
     );
   }
 
+  Map<String, dynamic> title;
+
+  Function onPressed;
+
   @override
   Map<String, dynamic> toJson() {
     return {'title': title, 'onPressed': onPressed};
@@ -69,12 +79,12 @@ class ActionData extends JsonClass {
 }
 
 class DialogData extends JsonClass {
-  Map<String, dynamic> title;
+  DialogData({
+    required this.title,
+    required this.content,
+    required this.actions,
+  });
 
-  Map<String, dynamic> content;
-
-  Iterable<ActionData> actions;
-  DialogData({this.title, this.content, this.actions});
   factory DialogData.fromJson(dynamic json) {
     return DialogData(
       title: Map<String, dynamic>.from(
@@ -90,6 +100,12 @@ class DialogData extends JsonClass {
       ),
     );
   }
+
+  Map<String, dynamic> title;
+
+  Map<String, dynamic> content;
+
+  Iterable<ActionData> actions;
 
   @override
   Map<String, dynamic> toJson() {

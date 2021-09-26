@@ -9,7 +9,7 @@ class OffstageSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Offstage-class.html',
     'type': 'object',
-    'title': 'OffstageBuilder',
+    'title': 'Offstage',
     'additionalProperties': false,
     'properties': {
       'offstage': SchemaHelper.boolSchema,

@@ -99,7 +99,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
           map['style'],
           validate: false,
         ),
-        text: map['text'],
+        text: map['text'].toString(),
         textAlign: ThemeDecoder.decodeTextAlign(
           map['textAlign'],
           validate: false,

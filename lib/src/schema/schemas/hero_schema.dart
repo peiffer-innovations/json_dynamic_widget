@@ -9,7 +9,7 @@ class HeroSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Hero-class.html',
     'type': 'object',
-    'title': 'HeroBuilder',
+    'title': 'Hero',
     'additionalProperties': false,
     'required': [
       'tag',

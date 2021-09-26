@@ -9,7 +9,7 @@ class PaddingSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Padding-class.html',
     'type': 'object',
-    'title': 'PaddingBuilder',
+    'title': 'Padding',
     'additionalProperties': false,
     'required': [
       'padding',

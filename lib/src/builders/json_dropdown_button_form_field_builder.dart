@@ -9,12 +9,14 @@ import 'package:json_theme/json_theme.dart';
 /// [fromDynamic] for the format.
 class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   JsonDropdownButtonFormFieldBuilder({
+    this.alignment,
     this.autofocus,
     this.autovalidateMode,
     this.decoration,
     this.disabledHint,
     this.dropdownColor,
     this.elevation,
+    this.enableFeedback,
     this.enabled,
     this.focusColor,
     this.focusNode,
@@ -27,6 +29,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     this.isDense,
     this.isExpanded,
     this.itemHeight,
+    this.menuMaxHeight,
     this.onChanged,
     this.onSaved,
     this.onTap,
@@ -39,12 +42,14 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 0;
   static const type = 'dropdown_button_form_field';
 
+  final Alignment? alignment;
   final bool? autofocus;
   final AutovalidateMode? autovalidateMode;
   final dynamic decoration;
   final JsonWidgetData? disabledHint;
   final Color? dropdownColor;
   final int? elevation;
+  final bool? enableFeedback;
   final bool? enabled;
   final Color? focusColor;
   final FocusNode? focusNode;
@@ -57,6 +62,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   final bool? isDense;
   final bool? isExpanded;
   final double? itemHeight;
+  final double? menuMaxHeight;
   final ValueChanged? onChanged;
   final FormFieldSetter? onSaved;
   final VoidCallback? onTap;
@@ -70,6 +76,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
+  ///   "alignment": <Alignment>,
   ///   "autofocus": <bool>,
   ///   "autovalidateMode": <AutovalidateMode>,
   ///   "decoration": <InputDecorationDecoder>,
@@ -132,6 +139,10 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonDropdownButtonFormFieldBuilder(
+        alignment: ThemeDecoder.decodeAlignment(
+          map['alignment'],
+          validate: false,
+        ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
             ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
@@ -145,6 +156,9 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         elevation: JsonClass.parseInt(map['elevation'], 8),
+        enableFeedback: map['enableFeedback'] == null
+            ? true
+            : JsonClass.parseBool(map['enableFeedback']),
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         hint: JsonWidgetData.fromDynamic(map['hint']),
@@ -163,6 +177,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
             map['isDense'] == null ? true : JsonClass.parseBool(map['isDense']),
         isExpanded: JsonClass.parseBool(map['isExpanded']),
         itemHeight: JsonClass.parseDouble(map['itemHeight']),
+        menuMaxHeight: JsonClass.parseDouble(map['menuMaxHeight']),
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
         onTap: map['onTap'],
@@ -307,6 +322,7 @@ class _JsonDropdownButtonFormFieldWidgetState
 
   @override
   Widget build(BuildContext context) => DropdownButtonFormField(
+        alignment: widget.builder.alignment ?? AlignmentDirectional.centerStart,
         autofocus: widget.builder.autofocus ?? false,
         autovalidateMode: widget.builder.autovalidateMode,
         decoration: _decoration ?? const InputDecoration(),
@@ -316,6 +332,7 @@ class _JsonDropdownButtonFormFieldWidgetState
         ),
         dropdownColor: widget.builder.dropdownColor,
         elevation: widget.builder.elevation ?? 8,
+        enableFeedback: widget.builder.enableFeedback,
         focusColor: widget.builder.focusColor,
         focusNode: widget.builder.focusNode,
         hint: widget.builder.hint?.build(
@@ -333,6 +350,7 @@ class _JsonDropdownButtonFormFieldWidgetState
         isDense: widget.builder.isDense ?? true,
         isExpanded: widget.builder.isExpanded ?? false,
         itemHeight: widget.builder.itemHeight,
+        menuMaxHeight: widget.builder.menuMaxHeight,
         onChanged: widget.builder.enabled != true
             ? null
             : (dynamic value) {

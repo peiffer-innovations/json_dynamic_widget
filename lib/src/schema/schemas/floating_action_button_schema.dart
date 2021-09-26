@@ -10,13 +10,14 @@ class FloatingActionButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/FloatingActionButton-class.html',
     'type': 'object',
-    'title': 'FloatingActionButtonBuilder',
+    'title': 'FloatingActionButton',
     'additionalProperties': false,
     'properties': {
       'autofocus': SchemaHelper.boolSchema,
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
       'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
       'disabledElevation': SchemaHelper.numberSchema,
+      'enableFeedback': SchemaHelper.boolSchema,
       'elevation': SchemaHelper.numberSchema,
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusElevation': SchemaHelper.numberSchema,

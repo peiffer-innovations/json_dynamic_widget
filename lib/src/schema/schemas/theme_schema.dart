@@ -9,7 +9,7 @@ class ThemeSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/material/Theme-class.html',
     'type': 'object',
-    'title': 'ThemeBuilder',
+    'title': 'Theme',
     'additionalProperties': false,
     'properties': {
       'data': SchemaHelper.objectSchema(ThemeDataSchema.id),

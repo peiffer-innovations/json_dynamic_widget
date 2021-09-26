@@ -10,7 +10,7 @@ class AnimatedOpacitySchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html',
     'type': 'object',
-    'title': 'AnimatedOpacityBuilder',
+    'title': 'AnimatedOpacity',
     'additionalProperties': false,
     'required': [
       'duration',

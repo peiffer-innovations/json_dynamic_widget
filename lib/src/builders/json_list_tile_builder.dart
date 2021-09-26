@@ -12,12 +12,16 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
     required this.autofocus,
     this.contentPadding,
     this.dense,
+    this.enableFeedback,
     required this.enabled,
     this.focusColor,
     this.focusNode,
+    this.horizontalTitleGap,
     this.hoverColor,
     required this.isThreeLine,
     this.leading,
+    this.minLeadingWidth,
+    this.minVerticalPadding,
     this.mouseCursor,
     this.onLongPress,
     this.onTap,
@@ -37,12 +41,16 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   final bool autofocus;
   final EdgeInsetsGeometry? contentPadding;
   final bool? dense;
+  final bool? enableFeedback;
   final bool enabled;
   final Color? focusColor;
   final FocusNode? focusNode;
+  final double? horizontalTitleGap;
   final Color? hoverColor;
   final bool isThreeLine;
   final JsonWidgetData? leading;
+  final double? minLeadingWidth;
+  final double? minVerticalPadding;
   final MouseCursor? mouseCursor;
   final VoidCallback? onLongPress;
   final VoidCallback? onTap;
@@ -63,12 +71,16 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   ///   "autofocus": <bool>,
   ///   "contentPadding": <EdgeInsetsGeometry>,
   ///   "dense": <bool>,
+  ///   "enableFeedback": <bool>,
   ///   "enabled": <bool>,
   ///   "focusNode": <Color>,
   ///   "focusNode": <FocusNode>,
+  ///   "horizontalTitleGap": <double>,
   ///   "hoverColor": <Color>,
   ///   "isThreeLine": <bool>,
   ///   "leading": <JsonWidgetData>,
+  ///   "minLeadingWidth": <double>,
+  ///   "minVerticalPadding": <double>,
   ///   "mouseCursor": <MouseCursor>,
   ///   "onLongPress": <VoidCallback>,
   ///   "onTap": <VoidCallback>,
@@ -108,6 +120,11 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         dense: JsonClass.parseBool(map['dense']),
+        enableFeedback: map['enableFeedback'] == null
+            ? true
+            : JsonClass.parseBool(
+                map['enableFeedback'],
+              ),
         enabled: map['enabled'] == null
             ? true
             : JsonClass.parseBool(
@@ -118,6 +135,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         focusNode: map['focusNode'],
+        horizontalTitleGap: JsonClass.parseDouble(map['horizontalTitleGap']),
         hoverColor: ThemeDecoder.decodeColor(
           map['hoverColor'],
           validate: false,
@@ -127,6 +145,8 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['leading'],
           registry: registry,
         ),
+        minLeadingWidth: JsonClass.parseDouble(map['minLeadingWidth']),
+        minVerticalPadding: JsonClass.parseDouble(map['minVerticalPadding']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
           validate: false,
@@ -173,9 +193,11 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
       autofocus: autofocus,
       contentPadding: contentPadding,
       dense: dense,
+      enableFeedback: enableFeedback,
       enabled: enabled,
       focusColor: focusColor,
       focusNode: focusNode,
+      horizontalTitleGap: horizontalTitleGap,
       hoverColor: hoverColor,
       isThreeLine: isThreeLine,
       key: key,
@@ -183,6 +205,8 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
         childBuilder: childBuilder,
         context: context,
       ),
+      minLeadingWidth: minLeadingWidth,
+      minVerticalPadding: minVerticalPadding,
       mouseCursor: mouseCursor,
       onLongPress: onLongPress,
       onTap: onTap,

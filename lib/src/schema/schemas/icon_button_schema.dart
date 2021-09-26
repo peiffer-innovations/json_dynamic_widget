@@ -11,7 +11,7 @@ class IconButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/IconButton-class.html',
     'type': 'object',
-    'title': 'IconButtonBuilder',
+    'title': 'IconButton',
     'additionalProperties': false,
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),

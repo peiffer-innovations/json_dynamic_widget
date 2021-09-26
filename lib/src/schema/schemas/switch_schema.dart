@@ -9,14 +9,13 @@ class SwitchSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/material/Switch-class.html',
     'type': 'object',
-    'title': 'SwitchBuilder',
+    'title': 'Switch',
     'additionalProperties': false,
     'properties': {
       'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
       'activeThumbImage': SchemaHelper.objectSchema(ImageProviderSchema.id),
       'activeTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'autofocus': SchemaHelper.boolSchema,
-      'autovalidate': SchemaHelper.boolSchema,
       'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'dragStartBehavior':
           SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
@@ -36,7 +35,16 @@ class SwitchSchema {
       'onChanged': SchemaHelper.stringSchema,
       'onInactiveThumbImageError': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
-      'trackColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'splashRadius': SchemaHelper.numberSchema,
+      'thumbColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
+      'trackColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyColorSchema.id,
+      ),
       'validators': SchemaHelper.anySchema,
       'value': SchemaHelper.boolSchema,
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),

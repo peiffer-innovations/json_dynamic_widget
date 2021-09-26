@@ -10,7 +10,7 @@ class AnimatedPositionedSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedPositioned-class.html',
     'type': 'object',
-    'title': 'AnimatedPositionedBuilder',
+    'title': 'AnimatedPositioned',
     'additionalProperties': false,
     'required': [
       'duration',

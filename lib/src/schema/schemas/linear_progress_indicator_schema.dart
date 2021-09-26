@@ -10,10 +10,11 @@ class LinearProgressIndicatorSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html',
     'type': 'object',
-    'title': 'LinearProgressIndicatorBuilder',
+    'title': 'LinearProgressIndicator',
     'additionalProperties': false,
     'properties': {
       'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'color': SchemaHelper.objectSchema(ColorSchema.id),
       'minHeight': SchemaHelper.numberSchema,
       'semanticsLabel': SchemaHelper.stringSchema,
       'semanticsValue': SchemaHelper.stringSchema,

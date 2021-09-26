@@ -9,8 +9,14 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonSemanticsBuilder extends JsonWidgetBuilder {
   JsonSemanticsBuilder({
+    this.attributedDecreasedValue,
+    this.attributedHint,
+    this.attributedIncreasedValue,
+    this.attributedLabel,
+    this.attributedValue,
     this.button,
     this.checked,
+    this.customSemanticsActions,
     this.container = false,
     this.currentValueLength,
     this.decreasedValue,
@@ -25,6 +31,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
     this.image,
     this.inMutuallyExclusiveGroup,
     this.increasedValue,
+    this.keyboardKey,
     this.label,
     this.link,
     this.liveRegion,
@@ -66,7 +73,13 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'semantics';
 
+  final AttributedString? attributedDecreasedValue;
+  final AttributedString? attributedHint;
+  final AttributedString? attributedIncreasedValue;
+  final AttributedString? attributedLabel;
+  final AttributedString? attributedValue;
   final bool? button;
+  final Map<CustomSemanticsAction, VoidCallback>? customSemanticsActions;
   final bool? checked;
   final bool container;
   final int? currentValueLength;
@@ -82,6 +95,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   final bool? image;
   final bool? inMutuallyExclusiveGroup;
   final String? increasedValue;
+  final bool? keyboardKey;
   final String? label;
   final bool? link;
   final bool? liveRegion;
@@ -124,6 +138,12 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
+  ///   "attributedDecreasedValue": <AttributedString>,
+  ///   "attributedHint": <AttributedString>,
+  ///   "attributedIncreasedValue": <AttributedString>,
+  ///   "attributedLabel": <AttributedString>,
+  ///   "attributedValue": <AttributedString>,
+  ///   "customSemanticsActions": <Map<CustomSemanticsAction, VoidCallback>>,
   ///   "button": <bool>,
   ///   "checked": <bool>,
   ///   "container": <bool>,
@@ -140,6 +160,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   ///   "image": <bool>,
   ///   "inMutuallyExclusiveGroup": <bool>
   ///   "increasedValue": <String>,
+  ///   "keyboardKey": <bool>,
   ///   "label": <String>,
   ///   "link": <bool>,
   ///   "liveRegion": <bool>,
@@ -186,58 +207,90 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSemanticsBuilder(
-        button: JsonClass.parseBool(map['button']),
-        checked: JsonClass.parseBool(map['button']),
-        container: JsonClass.parseBool(map['button']),
-        currentValueLength: JsonClass.parseInt(map['button']),
-        decreasedValue: map['button'],
-        enabled: JsonClass.parseBool(map['button']),
-        excludeSemantics: JsonClass.parseBool(map['button']),
-        explicitChildNodes: JsonClass.parseBool(map['button']),
-        focusable: JsonClass.parseBool(map['button']),
-        focused: JsonClass.parseBool(map['button']),
-        header: JsonClass.parseBool(map['button']),
-        hidden: JsonClass.parseBool(map['button']),
-        hint: map['button'],
-        image: JsonClass.parseBool(map['button']),
-        inMutuallyExclusiveGroup: JsonClass.parseBool(map['button']),
-        increasedValue: map['button'],
-        label: map['button'],
-        link: JsonClass.parseBool(map['button']),
-        liveRegion: JsonClass.parseBool(map['button']),
-        maxValueLength: JsonClass.parseInt(map['button']),
-        multiline: JsonClass.parseBool(map['button']),
-        namesRoute: JsonClass.parseBool(map['button']),
-        obscured: JsonClass.parseBool(map['button']),
+        button:
+            map['button'] == null ? null : JsonClass.parseBool(map['button']),
+        checked:
+            map['checked'] == null ? null : JsonClass.parseBool(map['checked']),
+        container: JsonClass.parseBool(map['container']),
+        currentValueLength: JsonClass.parseInt(map['currentValueLength']),
+        decreasedValue: map['decreasedValue'],
+        enabled:
+            map['enabled'] == null ? null : JsonClass.parseBool(map['enabled']),
+        excludeSemantics: JsonClass.parseBool(map['excludeSemantics']),
+        explicitChildNodes: JsonClass.parseBool(map['explicitChildNodes']),
+        focusable: map['focusable'] == null
+            ? null
+            : JsonClass.parseBool(map['focusable']),
+        focused:
+            map['focused'] == null ? null : JsonClass.parseBool(map['focused']),
+        header:
+            map['header'] == null ? null : JsonClass.parseBool(map['header']),
+        hidden:
+            map['hidden'] == null ? null : JsonClass.parseBool(map['hidden']),
+        hint: map['hint'],
+        image: map['image'] == null ? null : JsonClass.parseBool(map['image']),
+        inMutuallyExclusiveGroup:
+            JsonClass.parseBool(map['inMutuallyExclusiveGroup']),
+        increasedValue: map['increasedValue'],
+        keyboardKey: map['keyboardKey'] == null
+            ? null
+            : JsonClass.parseBool(map['keyboardKey']),
+        label: map['label'],
+        link: map['link'] == null ? null : JsonClass.parseBool(map['link']),
+        liveRegion: map['liveRegion'] == null
+            ? null
+            : JsonClass.parseBool(map['liveRegion']),
+        maxValueLength: map['maxValueLength'] == null
+            ? null
+            : JsonClass.parseInt(map['maxValueLength']),
+        multiline: map['multiline'] == null
+            ? null
+            : JsonClass.parseBool(map['multiline']),
+        namesRoute: map['namesRoute'] == null
+            ? null
+            : JsonClass.parseBool(map['namesRoute']),
+        obscured: map['obscured'] == null
+            ? null
+            : JsonClass.parseBool(map['obscured']),
         onCopy: map['onCopy'],
-        onCut: map['onCopy'],
-        onDecrease: map['onCopy'],
-        onDidGainAccessibilityFocus: map['onCopy'],
-        onDidLoseAccessibilityFocus: map['onCopy'],
-        onDismiss: map['onCopy'],
-        onIncrease: map['onCopy'],
-        onLongPress: map['onCopy'],
-        onLongPressHint: map['onCopy'],
-        onMoveCursorBackwardByCharacter: map['onCopy'],
-        onMoveCursorForwardByCharacter: map['onCopy'],
-        onPaste: map['onCopy'],
-        onScrollDown: map['onCopy'],
-        onScrollLeft: map['onCopy'],
-        onScrollRight: map['onCopy'],
-        onScrollUp: map['onCopy'],
-        onSetSelection: map['onCopy'],
-        onTap: map['onCopy'],
-        onTapHint: map['onCopy'],
-        readOnly: JsonClass.parseBool(map['button']),
-        scopesRoute: JsonClass.parseBool(map['button']),
-        selected: JsonClass.parseBool(map['button']),
-        slider: JsonClass.parseBool(map['button']),
+        onCut: map['onCut'],
+        onDecrease: map['onDecrease'],
+        onDidGainAccessibilityFocus: map['onDidGainAccessibilityFocus'],
+        onDidLoseAccessibilityFocus: map['onDidLoseAccessibilityFocus'],
+        onDismiss: map['onDismiss'],
+        onIncrease: map['onIncrease'],
+        onLongPress: map['onLongPress'],
+        onLongPressHint: map['onLongPressHint'],
+        onMoveCursorBackwardByCharacter: map['onMoveCursorBackwardByCharacter'],
+        onMoveCursorForwardByCharacter: map['onMoveCursorForwardByCharacter'],
+        onPaste: map['onPaste'],
+        onScrollDown: map['onScrollDown'],
+        onScrollLeft: map['onScrollLeft'],
+        onScrollRight: map['onScrollRight'],
+        onScrollUp: map['onScrollUp'],
+        onSetSelection: map['onSetSelection'],
+        onTap: map['onTap'],
+        onTapHint: map['onTapHint'],
+        readOnly: map['readOnly'] == null
+            ? null
+            : JsonClass.parseBool(map['readOnly']),
+        scopesRoute: map['scopesRoute'] == null
+            ? null
+            : JsonClass.parseBool(map['scopesRoute']),
+        selected: map['selected'] == null
+            ? null
+            : JsonClass.parseBool(map['selected']),
+        slider:
+            map['slider'] == null ? null : JsonClass.parseBool(map['slider']),
         sortKey: ThemeDecoder.decodeOrdinalSortKey(map['sortKey']),
         tagForChildren: ThemeDecoder.decodeSemanticsTag(map['tagForChildren']),
-        textDirection: ThemeDecoder.decodeTextDirection(map['button']),
-        textField: JsonClass.parseBool(map['button']),
-        toggled: JsonClass.parseBool(map['button']),
-        value: map['button'],
+        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        textField: map['textField'] == null
+            ? null
+            : JsonClass.parseBool(map['textField']),
+        toggled:
+            map['toggled'] == null ? null : JsonClass.parseBool(map['toggled']),
+        value: map['value'],
       );
     }
 
@@ -254,7 +307,13 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
     var child = getChild(data);
 
     return Semantics(
+      attributedDecreasedValue: attributedDecreasedValue,
+      attributedHint: attributedHint,
+      attributedIncreasedValue: attributedIncreasedValue,
+      attributedLabel: attributedLabel,
+      attributedValue: attributedValue,
       button: button,
+      customSemanticsActions: customSemanticsActions,
       checked: checked,
       container: container,
       currentValueLength: currentValueLength,
@@ -271,6 +330,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
       inMutuallyExclusiveGroup: inMutuallyExclusiveGroup,
       increasedValue: increasedValue,
       key: key,
+      keyboardKey: keyboardKey,
       label: label,
       link: link,
       liveRegion: liveRegion,

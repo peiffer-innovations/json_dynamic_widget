@@ -1,10 +1,21 @@
+## [3.0.0] - September, 19th 2021
+
+* Updated to Flutter 2.5
+* Added `clip_path`, `measured`, `layout_builder`, `testable` as newly supported widgets.
+* Fix for issue #30
+* Began support for automated tests
+
+
 ## [2.2.0] - August, 23nd 2021
+
 * Added `dynamic` builder type and `dynamic` function.
+
 
 ## [2.1.0] - June, 2nd 2021
 
 * **BREAKING**: Completely refactored how `ElevatedButton`, `OutlinedButton`, and `TextButton` work with the style attribute.
 * Added support for `Semantics`, `MergeSemantics`, and `ExcludeSemantics`.
+
 
 ## [2.0.0] - March, 8th 2021
 

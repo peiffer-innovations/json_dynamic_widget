@@ -21,6 +21,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
     this.padding,
     this.physics,
     required this.primary,
+    this.prototypeItem,
     this.restorationId,
     required this.reverse,
     required this.scrollDirection,
@@ -42,6 +43,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   final EdgeInsets? padding;
   final ScrollPhysics? physics;
   final bool primary;
+  final JsonWidgetData? prototypeItem;
   final String? restorationId;
   final bool reverse;
   final Axis scrollDirection;
@@ -64,6 +66,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "physics": <ScrollPhysics>,
   ///   "primary": <bool>,
+  ///   "prototypeItem": <JsonWidgetData>,
   ///   "restorationId": <String>,
   ///   "reverse": <bool>,
   ///   "scrollDirection": <Axis>,
@@ -162,6 +165,10 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       padding: padding,
       physics: physics,
       primary: primary,
+      prototypeItem: prototypeItem?.build(
+        context: context,
+        childBuilder: childBuilder,
+      ),
       restorationId: restorationId,
       reverse: reverse,
       scrollDirection: scrollDirection,

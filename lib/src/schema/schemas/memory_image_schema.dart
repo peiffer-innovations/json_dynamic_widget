@@ -10,7 +10,7 @@ class MemoryImageSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/painting/MemoryImage-class.html',
     'type': 'object',
-    'title': 'MemoryImageBuilder',
+    'title': 'MemoryImage',
     'additionalProperties': false,
     'required': [
       'image',
@@ -32,6 +32,7 @@ class MemoryImageSchema {
       'image': SchemaHelper.anySchema,
       'isAntiAlias': SchemaHelper.boolSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
+      'opacity': SchemaHelper.numberSchema,
       'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),
       'scale': SchemaHelper.numberSchema,
       'semanticLabel': SchemaHelper.stringSchema,

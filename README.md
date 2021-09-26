@@ -116,6 +116,7 @@ Widget Builders | Example Location
 [checkbox](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCheckboxBuilder/fromDynamic.html) | [checkbox.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/checkbox.json)
 [circular_progress_indicator](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCircularProgressIndicatatorBuilder/fromDynamic.html) | [circular_progress_indicator.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/circular_progress_indicator.json)
 [clip_oval](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonClipOvalBuilder/fromDynamic.html) | [clips.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/clips.json)
+[clip_path](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonClipPathBuilder/fromDynamic.html) | [clips.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/clips.json)
 [clip_rect](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonClipRectBuilder/fromDynamic.html) | [clips.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/clips.json)
 [clip_rrect](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonClipRRectBuilder/fromDynamic.html) | [bank_example.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/bank_example.json)
 [column](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonColumnBuilder/fromDynamic.html) | [bank_example.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/bank_example.json)
@@ -209,12 +210,13 @@ The built in functions are defined below:
 
 Function Name    | Example | Args | Description
 -----------------|---------|------|------------
+`dynamic`        | `##dynamic(operationVar1, operationVar2...)##` | The variable names which contains values convertable into `DynamicOperation`.| Executes every `DynamicOperation` passed as args.
+`log`            | `##log(my message, info)##` | <ol><li>The message to write to the logger</li><li>Optional: level to log the message at; defaults to `finest`</li></ol> | Logs the given message out to the logger using the optional level or `finest` if not set.
 `navigate_named` | `##navigate_named(home, {{someValue}})##` | <ol><li>The route name</li><li>Optional: an arguments object to provide</li></ol> | Navigates to the named route.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.
 `navigate_pop`   | `##navigate_pop(false)##` | <ol><li>Optional: the value to pop with</li></ol> | Pop's the navigator stack.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.
 `noop`           | `##noop()##` | n/a | Simple no-arg no-op function that can be used to enable buttons for UI testing.
 `remove_value`   | `##remove_value(varName)##` | <ol><li>The variable name</li></ol> | Removes the variable named in the first argument from the registry.
 `set_value`      | `##set_value(varName, some value)##` | <ol><li>The variable name</li><li>The variable value</li></ol> | Sets the value of the variable in the registry.
-`dynamic`   | `##dynamic(operationVar1, operationVar2...)##` | The variable names which contains values convertable into `DynamicOperation`.| Executes every `DynamicOperation` passed as args.
 
 
 ## Creating Custom Widgets

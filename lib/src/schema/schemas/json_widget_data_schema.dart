@@ -9,7 +9,7 @@ class JsonWidgetDataSchema {
     r'$id': '$id',
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonWidgetData-class.html',
-    'title': 'JsonWidgetDataBuilder',
+    'title': 'JsonWidgetData',
     'oneOf': [
       {
         'type': 'string',

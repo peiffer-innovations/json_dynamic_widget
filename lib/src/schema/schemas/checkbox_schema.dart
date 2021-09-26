@@ -1,3 +1,4 @@
+import 'package:json_dynamic_widget/json_dynamic_widget_schemas.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 
 class CheckboxSchema {
@@ -9,7 +10,7 @@ class CheckboxSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/material/Checkbox-class.html',
     'type': 'object',
-    'title': 'CheckboxBuilder',
+    'title': 'Checkbox',
     'additionalProperties': false,
     'properties': {
       'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -29,6 +30,9 @@ class CheckboxSchema {
       'onChanged': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
       'overlayColor': SchemaHelper.stringSchema,
+      'shape': SchemaHelper.objectSchema(OutlinedButtonSchema.id),
+      'side': SchemaHelper.objectSchema(BorderSideSchema.id),
+      'splashRadius': SchemaHelper.numberSchema,
       'tristate': SchemaHelper.boolSchema,
       'validators': {
         'type': 'array',

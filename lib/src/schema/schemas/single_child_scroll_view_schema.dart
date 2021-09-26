@@ -9,7 +9,7 @@ class SingleChildScrollViewSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html',
-    'title': 'SingleChildScrollViewBuilder',
+    'title': 'SingleChildScrollView',
     'oneOf': [
       {
         'type': 'null',
@@ -20,8 +20,12 @@ class SingleChildScrollViewSchema {
         'properties': {
           'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'controller': SchemaHelper.stringSchema,
-          'dragStartBehavior':
-              SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
+          'dragStartBehavior': SchemaHelper.objectSchema(
+            DragStartBehaviorSchema.id,
+          ),
+          'keyboardDismissBehavior': SchemaHelper.objectSchema(
+            ScrollViewKeyboardDismissBehaviorSchema.id,
+          ),
           'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
           'primary': SchemaHelper.boolSchema,

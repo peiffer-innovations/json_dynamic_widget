@@ -8,7 +8,7 @@ class CardSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/material/Card-class.html',
-    'title': 'CardBuilder',
+    'title': 'Card',
     'oneOf': [
       {
         'type': 'null',

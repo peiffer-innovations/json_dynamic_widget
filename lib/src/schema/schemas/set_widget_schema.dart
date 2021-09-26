@@ -8,7 +8,7 @@ class SetWidgetSchema {
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonSetWidgetBuilder-class.html',
     'type': 'object',
-    'title': 'SetWidgetBuilder',
+    'title': 'SetWidget',
     'additionalProperties': true,
   };
 }

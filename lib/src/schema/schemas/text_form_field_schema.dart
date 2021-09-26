@@ -10,7 +10,7 @@ class TextFormFieldSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/TextFormField-class.html',
     'type': 'object',
-    'title': 'TextFormFieldBuilder',
+    'title': 'TextFormField',
     'additionalProperties': false,
     'properties': {
       'autocorrect': SchemaHelper.boolSchema,
@@ -30,6 +30,7 @@ class TextFormFieldSchema {
       'cursorRadius': SchemaHelper.objectSchema(RadiusSchema.id),
       'cursorWidth': SchemaHelper.numberSchema,
       'decoration': SchemaHelper.anySchema,
+      'enableIMEPersonalizedLearning': SchemaHelper.boolSchema,
       'enableInteractiveSelection': SchemaHelper.boolSchema,
       'enableSuggestions': SchemaHelper.boolSchema,
       'enabled': SchemaHelper.boolSchema,
@@ -40,8 +41,9 @@ class TextFormFieldSchema {
       'keyboardAppearance': SchemaHelper.objectSchema(BrightnessSchema.id),
       'keyboardType': SchemaHelper.objectSchema(TextInputTypeSchema.id),
       'maxLength': SchemaHelper.numberSchema,
-      'maxLengthEnforcement':
-          SchemaHelper.objectSchema(MaxLengthEnforcementSchema.id),
+      'maxLengthEnforcement': SchemaHelper.objectSchema(
+        MaxLengthEnforcementSchema.id,
+      ),
       'maxLines': SchemaHelper.numberSchema,
       'minLines': SchemaHelper.numberSchema,
       'obscureText': SchemaHelper.boolSchema,
@@ -52,6 +54,7 @@ class TextFormFieldSchema {
       'onSaved': SchemaHelper.stringSchema,
       'onTap': SchemaHelper.stringSchema,
       'readOnly': SchemaHelper.boolSchema,
+      'restorationId': SchemaHelper.stringSchema,
       'scrollPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'scrollPhysics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
       'selectionControls': SchemaHelper.stringSchema,

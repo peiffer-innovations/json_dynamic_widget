@@ -94,6 +94,7 @@
                                   "type": "exclude_semantics",
                                   "child": {
                                     "type": "text_form_field",
+                                    "id": "first_name",
                                     "args": {
                                       "decoration": {
                                         "hintText": "John",
@@ -121,6 +122,7 @@
                                 "type": "merge_semantics",
                                 "child": {
                                   "type": "text_form_field",
+                                  "id": "last_name",
                                   "args": {
                                     "decoration": {
                                       "hintText": "Doe",
@@ -145,6 +147,7 @@
                         },
                         {
                           "type": "text_form_field",
+                          "id": "email_address",
                           "args": {
                             "decoration": {
                               "hintText": "name@example.com",
@@ -168,6 +171,7 @@
                         },
                         {
                           "type": "dropdown_button_form_field",
+                          "id": "email_type",
                           "args": {
                             "decoration": {
                               "labelText": "Email Type"
@@ -189,6 +193,7 @@
                   },
                   {
                     "type": "raised_button",
+                    "id": "submit_button",
                     "args": {
                       "color": "#4a95ec",
                       "colorBrightness": "dark",

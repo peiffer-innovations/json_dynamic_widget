@@ -10,7 +10,7 @@ class FlatButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/FlatButton-class.html',
     'type': 'object',
-    'title': 'FlatButtonBuilder',
+    'title': 'FlatButton',
     'additionalProperties': false,
     'properties': {
       'autofocus': SchemaHelper.boolSchema,

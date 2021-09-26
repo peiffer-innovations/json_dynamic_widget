@@ -62,8 +62,6 @@ Map<String, dynamic> _executeFunctions(final Map<String, dynamic> json) {
 
 /// Operation which defines adding of the new child into [JsonDynamicBuilder].
 class AddDynamicOperation extends DynamicOperation {
-  static const targetDefault = {'index': -1};
-
   AddDynamicOperation({
     required String builder,
     Map<String, dynamic> target = targetDefault,
@@ -73,6 +71,8 @@ class AddDynamicOperation extends DynamicOperation {
           target: target,
           values: DynamicValuesFactory.create(values),
         );
+
+  static const targetDefault = {'index': -1};
 
   @override
   DynamicOperationType get type => DynamicOperationType.ADD;
@@ -85,42 +85,12 @@ class AddDynamicOperation extends DynamicOperation {
 
 /// Defines a dynamic operation on children of [JsonDynamicBuilder].
 abstract class DynamicOperation extends JsonClass {
-  static const _targetIndexKey = 'index';
-
-  static const typeKey = 'type';
-
-  static const builderKey = 'builder';
-
-  static const targetKey = 'target';
-
-  static const valuesKey = 'values';
-
-  static const valuesIdKey = 'id';
-
-  /// Variable which state is listened by [JsonDynamicBuilder].
-  /// Any modificiation of that variable triggers [JsonDynamicBuilder] rebuild.
-  final String builder;
-
-  /// Data used to find correct child of [JsonDynamicBuilder] which should
-  ///  be affected by an operation. For e.g. :
-  /// 1. Targeting the last child:
-  /// {
-  ///   "index" : -1
-  /// }
-  /// 2. Targeting the child by its id:
-  /// {
-  ///   "id" : "123"
-  /// }
-  final Map<String, dynamic> target;
-
-  /// Values that are passed to a targeted
-  /// via [target] child of [builder] variable.
-  final Map<String, dynamic> values;
   DynamicOperation({
     required this.builder,
     required this.target,
     required this.values,
   });
+
   factory DynamicOperation.fromJson(dynamic json) {
     final type = DynamicOperationType.values.firstWhere(
       (e) => e.name!.toLowerCase() == json[typeKey].toString().toLowerCase(),
@@ -143,6 +113,34 @@ abstract class DynamicOperation extends JsonClass {
         throw UnimplementedError();
     }
   }
+
+  static const typeKey = 'type';
+  static const builderKey = 'builder';
+  static const targetKey = 'target';
+  static const valuesKey = 'values';
+  static const valuesIdKey = 'id';
+
+  static const _targetIndexKey = 'index';
+
+  /// Variable which state is listened by [JsonDynamicBuilder].
+  /// Any modificiation of that variable triggers [JsonDynamicBuilder] rebuild.
+  final String builder;
+
+  /// Data used to find correct child of [JsonDynamicBuilder] which should
+  ///  be affected by an operation. For e.g. :
+  /// 1. Targeting the last child:
+  /// {
+  ///   "index" : -1
+  /// }
+  /// 2. Targeting the child by its id:
+  /// {
+  ///   "id" : "123"
+  /// }
+  final Map<String, dynamic> target;
+
+  /// Values that are passed to a targeted
+  /// via [target] child of [builder] variable.
+  final Map<String, dynamic> values;
 
   /// Type of the operation.
   DynamicOperationType get type;

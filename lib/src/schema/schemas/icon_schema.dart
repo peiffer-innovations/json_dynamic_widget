@@ -9,7 +9,7 @@ class IconSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Icon-class.html',
     'type': 'object',
-    'title': 'IconBuilder',
+    'title': 'Icon',
     'additionalProperties': false,
     'required': [
       'icon',

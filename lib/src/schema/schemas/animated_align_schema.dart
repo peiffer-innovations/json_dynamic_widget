@@ -10,7 +10,7 @@ class AnimatedAlignSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedAlign-class.html',
     'type': 'object',
-    'title': 'AnimatedAlignBuilder',
+    'title': 'AnimatedAlign',
     'additionalProperties': false,
     'required': [
       'alignment',

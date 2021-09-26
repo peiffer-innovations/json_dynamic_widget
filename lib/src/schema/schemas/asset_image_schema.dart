@@ -10,7 +10,7 @@ class AssetImageSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/painting/AssetImage-class.html',
     'type': 'object',
-    'title': 'AssetImageBuilder',
+    'title': 'AssetImage',
     'required': [
       'name',
     ],

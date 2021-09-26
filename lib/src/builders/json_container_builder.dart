@@ -143,8 +143,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
       margin: margin,
       padding: padding,
       transform: transform,
-      // TODO: 1.24
-      // transformAlignment: transformAlignment,
+      transformAlignment: transformAlignment,
       width: width,
       child: data.children?.length != 1
           ? null

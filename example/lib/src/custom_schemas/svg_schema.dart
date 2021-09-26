@@ -6,7 +6,7 @@ class SvgSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
-    'title': 'SvgBuilder',
+    'title': 'Svg',
     'type': 'object',
     'additionalProperties': false,
     'properties': {

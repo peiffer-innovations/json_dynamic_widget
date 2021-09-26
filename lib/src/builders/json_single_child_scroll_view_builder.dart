@@ -12,6 +12,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     required this.clipBehavior,
     this.controller,
     required this.dragStartBehavior,
+    this.keyboardDismissBehavior,
     this.padding,
     this.physics,
     this.primary,
@@ -26,6 +27,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   final Clip clipBehavior;
   final ScrollController? controller;
   final DragStartBehavior dragStartBehavior;
+  final ScrollViewKeyboardDismissBehavior? keyboardDismissBehavior;
   final EdgeInsets? padding;
   final ScrollPhysics? physics;
   final bool? primary;
@@ -41,6 +43,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///   "clipBehavior": <Clip>,
   ///   "controller": <ScrollController>,
   ///   "dragStartBehavior": <DragStartBehavior>,
+  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "physics": <ScrollPhysics>,
   ///   "primary": <bool>,
@@ -59,6 +62,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeScrollPhysics]
+  ///  * [ThemeDecoder.decodeScrollViewKeyboardDismissBehavior]
   static JsonSingleChildScrollViewBuilder? fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
@@ -75,6 +79,11 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             DragStartBehavior.start,
+        keyboardDismissBehavior:
+            ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
+          map['keyboardDismissBehavior'],
+          validate: false,
+        ),
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['padding'],
           validate: false,
@@ -112,6 +121,8 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
       controller: controller,
       dragStartBehavior: dragStartBehavior,
       key: key,
+      keyboardDismissBehavior:
+          keyboardDismissBehavior ?? ScrollViewKeyboardDismissBehavior.manual,
       padding: padding,
       physics: physics,
       primary: primary,

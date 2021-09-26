@@ -1,0 +1,49 @@
+name: Flutter Pages Deployer
+
+on:
+  push:
+    branches: [main]
+    # paths:
+    #   - .github/workflows/pages.yaml
+    #   - pubspec.yaml
+    #   - lib/**
+    #   - example/**
+
+jobs:
+  build_number:
+    runs-on: ubuntu-latest
+    outputs:
+      buildnumber: ${{ steps.buildnumber.outputs.build_number }}
+    steps:
+      - name: Generate Build Number
+        id: buildnumber
+        uses: einaregilsson/build-number@v3
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+      - name: Build Number
+        run: echo "Build Number - $BUILD_NUMBER"
+
+  publish:
+    needs: build_number
+    runs-on: ubuntu-latest
+
+    container:
+      image: google/dart:latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Validate
+        uses: peiffer-innovations/actions-flutter-validate@v1.0.2
+        with:
+          flutter_package: true
+
+      - name: Web
+        uses: peiffer-innovations/actions-flutter-deploy-pages@v1.5.0
+        with:
+          build_mode: release
+          build_number: ${{ needs.build_number.outputs.buildnumber }}
+          deploy_path: web
+          repo_url: https://github.com/${{ github.repository }}
+          source_path: example
+          token: ${{ secrets.GITHUB_TOKEN }}

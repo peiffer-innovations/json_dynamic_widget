@@ -10,7 +10,7 @@ class ScaffoldSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/material/Scaffold-class.html',
     'type': 'object',
-    'title': 'ScaffoldBuilder',
+    'title': 'Scaffold',
     'additionalProperties': false,
     'properties': {
       'appBar': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
@@ -30,15 +30,20 @@ class ScaffoldSchema {
       'extendBodyBehindAppBar': SchemaHelper.boolSchema,
       'floatingActionButton':
           SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'floatingActionButtonAnimator':
-          SchemaHelper.objectSchema(FloatingActionButtonAnimatorSchema.id),
-      'floatingActionButtonLocation':
-          SchemaHelper.objectSchema(FloatingActionButtonLocationSchema.id),
-      'persistentFooterButtons':
-          SchemaHelper.arraySchema(JsonWidgetDataSchema.id),
+      'floatingActionButtonAnimator': SchemaHelper.objectSchema(
+        FloatingActionButtonAnimatorSchema.id,
+      ),
+      'floatingActionButtonLocation': SchemaHelper.objectSchema(
+        FloatingActionButtonLocationSchema.id,
+      ),
+      'persistentFooterButtons': SchemaHelper.arraySchema(
+        JsonWidgetDataSchema.id,
+      ),
+      'onDrawerChanged': SchemaHelper.stringSchema,
+      'onEndDrawerChanged': SchemaHelper.stringSchema,
       'primary': SchemaHelper.boolSchema,
       'resizeToAvoidBottomInset': SchemaHelper.boolSchema,
-      'resizeToAvoidBottomPadding': SchemaHelper.boolSchema,
+      'restorationId': SchemaHelper.stringSchema,
     },
   };
 }

@@ -8,7 +8,7 @@ class IntrinsicHeightSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/IntrinsicHeight-class.html',
     'type': 'object',
-    'title': 'IntrinsicHeightBuilder',
+    'title': 'IntrinsicHeight',
     'additionalProperties': false,
     'properties': {}
   };

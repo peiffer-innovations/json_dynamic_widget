@@ -9,13 +9,14 @@ class AnimatedContainerSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedContainer-class.html',
-    'title': 'AnimatedContainerBuilder',
+    'title': 'AnimatedContainer',
     'required': [
       'duration',
     ],
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'color': SchemaHelper.objectSchema(ColorSchema.id),
+      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
       'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'curve': SchemaHelper.stringSchema,
       'decoration': SchemaHelper.objectSchema(BoxDecorationSchema.id),
@@ -26,6 +27,7 @@ class AnimatedContainerSchema {
       'onEnd': SchemaHelper.stringSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'transform': SchemaHelper.objectSchema(Matrix4Schema.id),
+      'transformAlignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'width': SchemaHelper.numberSchema,
     },
   };

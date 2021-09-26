@@ -9,7 +9,7 @@ class InputErrorSchema {
     r'$id': '$id',
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/InputError-class.html',
-    'title': 'InputErrorBuilder',
+    'title': 'InputError',
     'type': 'object',
     'additionalProperties': false,
     'required': [

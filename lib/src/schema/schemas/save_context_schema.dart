@@ -10,7 +10,7 @@ class SaveContextSchema {
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonSaveContextBuilder-class.html',
     'type': 'object',
-    'title': 'SaveContextBuilder',
+    'title': 'SaveContext',
     'additionalProperties': false,
     'properties': {
       'key': SchemaHelper.stringSchema,

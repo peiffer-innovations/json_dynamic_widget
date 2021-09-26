@@ -10,7 +10,7 @@ class AnimatedPaddingSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedPadding-class.html',
     'type': 'object',
-    'title': 'AnimatedPaddingBuilder',
+    'title': 'AnimatedPadding',
     'additionalProperties': false,
     'required': [
       'duration',

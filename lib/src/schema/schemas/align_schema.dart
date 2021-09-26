@@ -9,7 +9,7 @@ class AlignSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Align-class.html',
     'type': 'object',
-    'title': 'AlignBuilder',
+    'title': 'Align',
     'additionalProperties': false,
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),

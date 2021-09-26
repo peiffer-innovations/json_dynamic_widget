@@ -25,6 +25,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     this.onHorizontalDragStart,
     this.onHorizontalDragUpdate,
     this.onLongPress,
+    this.onLongPressCancel,
+    this.onLongPressDown,
     this.onLongPressEnd,
     this.onLongPressMoveUpdate,
     this.onLongPressStart,
@@ -38,6 +40,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     this.onScaleStart,
     this.onScaleUpdate,
     this.onSecondaryLongPress,
+    this.onSecondaryLongPressCancel,
+    this.onSecondaryLongPressDown,
     this.onSecondaryLongPressEnd,
     this.onSecondaryLongPressMoveUpdate,
     this.onSecondaryLongPressStart,
@@ -50,6 +54,13 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
     this.onTapCancel,
     this.onTapDown,
     this.onTapUp,
+    this.onTertiaryLongPress,
+    this.onTertiaryLongPressCancel,
+    this.onTertiaryLongPressDown,
+    this.onTertiaryLongPressEnd,
+    this.onTertiaryLongPressMoveUpdate,
+    this.onTertiaryLongPressStart,
+    this.onTertiaryLongPressUp,
     this.onTertiaryTapCancel,
     this.onTertiaryTapDown,
     this.onTertiaryTapUp,
@@ -79,6 +90,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   final GestureDragStartCallback? onHorizontalDragStart;
   final GestureDragUpdateCallback? onHorizontalDragUpdate;
   final GestureLongPressCallback? onLongPress;
+  final GestureLongPressCancelCallback? onLongPressCancel;
+  final GestureLongPressDownCallback? onLongPressDown;
   final GestureLongPressEndCallback? onLongPressEnd;
   final GestureLongPressMoveUpdateCallback? onLongPressMoveUpdate;
   final GestureLongPressStartCallback? onLongPressStart;
@@ -92,6 +105,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   final GestureScaleStartCallback? onScaleStart;
   final GestureScaleUpdateCallback? onScaleUpdate;
   final GestureLongPressCallback? onSecondaryLongPress;
+  final GestureLongPressCancelCallback? onSecondaryLongPressCancel;
+  final GestureLongPressDownCallback? onSecondaryLongPressDown;
   final GestureLongPressEndCallback? onSecondaryLongPressEnd;
   final GestureLongPressMoveUpdateCallback? onSecondaryLongPressMoveUpdate;
   final GestureLongPressStartCallback? onSecondaryLongPressStart;
@@ -104,6 +119,13 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   final GestureTapCancelCallback? onTapCancel;
   final GestureTapDownCallback? onTapDown;
   final GestureTapUpCallback? onTapUp;
+  final GestureLongPressCallback? onTertiaryLongPress;
+  final GestureLongPressCancelCallback? onTertiaryLongPressCancel;
+  final GestureLongPressDownCallback? onTertiaryLongPressDown;
+  final GestureLongPressEndCallback? onTertiaryLongPressEnd;
+  final GestureLongPressMoveUpdateCallback? onTertiaryLongPressMoveUpdate;
+  final GestureLongPressStartCallback? onTertiaryLongPressStart;
+  final GestureLongPressUpCallback? onTertiaryLongPressUp;
   final GestureTapCancelCallback? onTertiaryTapCancel;
   final GestureTapDownCallback? onTertiaryTapDown;
   final GestureTapUpCallback? onTertiaryTapUp;
@@ -134,6 +156,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   ///   "onHorizontalDragStart": <GestureDragStartCallback>,
   ///   "onHorizontalDragUpdate": <GestureDragUpdateCallback>,
   ///   "onLongPress": <GestureLongPressCallback>,
+  ///   "onLongPressCancel": <GestureLongPressCancelCallback>,
+  ///   "onLongPressDown": <GestureLongPressDownCallback>,
   ///   "onLongPressEnd": <GestureLongPressEndCallback>,
   ///   "onLongPressMoveUpdate": <GestureLongPressMoveUpdateCallback>,
   ///   "onLongPressStart": <GestureLongPressStartCallback>,
@@ -147,6 +171,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   ///   "onScaleStart": <GestureScaleStartCallback>,
   ///   "onScaleUpdate": <GestureScaleUpdateCallback>,
   ///   "onSecondaryLongPress": <GestureLongPressCallback>,
+  ///   "onSecondaryLongPressCancel": <GestureLongPressCancelCallback>,
+  ///   "onSecondaryLongPressDown": <GestureLongPressDownCallback>,
   ///   "onSecondaryLongPressEnd": <GestureLongPressEndCallback>,
   ///   "onSecondaryLongPressMoveUpdate": <GestureLongPressMoveUpdateCallback>,
   ///   "onSecondaryLongPressStart": <GestureLongPressStartCallback>,
@@ -159,6 +185,13 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
   ///   "onTapCancel": <GestureTapCancelCallback>,
   ///   "onTapDown": <GestureTapDownCallback>,
   ///   "onTapUp": <GestureTapUpCallback>,
+  ///   "onTertiaryLongPress": <GestureLongPressCallback>,
+  ///   "onTertiaryLongPressCancel": <GestureLongPressCancelCallback>,
+  ///   "onTertiaryLongPressDown": <GestureLongPressDownCallback>,
+  ///   "onTertiaryLongPressEnd": <GestureLongPressEndCallback>,
+  ///   "onTertiaryLongPressMoveUpdate": <GestureLongPressMoveUpdateCallback>,
+  ///   "onTertiaryLongPressStart": <GestureLongPressStartCallback>,
+  ///   "onTertiaryLongPressUp": <GestureLongPressUpCallback>,
   ///   "onTertiaryTapCancel": <GestureTapCancelCallback>,
   ///   "onTertiaryTapDown": <GestureTapDownCallback>,
   ///   "onTertiaryTapUp": <GestureTapUpCallback>,
@@ -208,6 +241,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
         onHorizontalDragStart: map['onHorizontalDragStart'],
         onHorizontalDragUpdate: map['onHorizontalDragUpdate'],
         onLongPress: map['onLongPress'],
+        onLongPressCancel: map['onLongPressCancel'],
+        onLongPressDown: map['onLongPressDown'],
         onLongPressEnd: map['onLongPressEnd'],
         onLongPressMoveUpdate: map['onLongPressMoveUpdate'],
         onLongPressStart: map['onLongPressStart'],
@@ -221,6 +256,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
         onScaleStart: map['onScaleStart'],
         onScaleUpdate: map['onScaleUpdate'],
         onSecondaryLongPress: map['onSecondaryLongPress'],
+        onSecondaryLongPressCancel: map['onSecondaryLongPressCancel'],
+        onSecondaryLongPressDown: map['onSecondaryLongPressDown'],
         onSecondaryLongPressEnd: map['onSecondaryLongPressEnd'],
         onSecondaryLongPressMoveUpdate: map['onSecondaryLongPressMoveUpdate'],
         onSecondaryLongPressStart: map['onSecondaryLongPressStart'],
@@ -233,6 +270,13 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
         onTapCancel: map['onTapCancel'],
         onTapDown: map['onTapDown'],
         onTapUp: map['onTapUp'],
+        onTertiaryLongPress: map['onTertiaryLongPress'],
+        onTertiaryLongPressCancel: map['onTertiaryLongPressCancel'],
+        onTertiaryLongPressDown: map['onTertiaryLongPressDown'],
+        onTertiaryLongPressEnd: map['onTertiaryLongPressEnd'],
+        onTertiaryLongPressMoveUpdate: map['onTertiaryLongPressMoveUpdate'],
+        onTertiaryLongPressStart: map['onTertiaryLongPressStart'],
+        onTertiaryLongPressUp: map['onTertiaryLongPressUp'],
         onTertiaryTapCancel: map['onTertiaryTapCancel'],
         onTertiaryTapDown: map['onTertiaryTapDown'],
         onTertiaryTapUp: map['onTertiaryTapUp'],
@@ -274,6 +318,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       onHorizontalDragStart: onHorizontalDragStart,
       onHorizontalDragUpdate: onHorizontalDragUpdate,
       onLongPress: onLongPress,
+      onLongPressCancel: onLongPressCancel,
+      onLongPressDown: onLongPressDown,
       onLongPressEnd: onLongPressEnd,
       onLongPressMoveUpdate: onLongPressMoveUpdate,
       onLongPressStart: onLongPressStart,
@@ -287,6 +333,8 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       onScaleStart: onScaleStart,
       onScaleUpdate: onScaleUpdate,
       onSecondaryLongPress: onSecondaryLongPress,
+      onSecondaryLongPressCancel: onSecondaryLongPressCancel,
+      onSecondaryLongPressDown: onSecondaryLongPressDown,
       onSecondaryLongPressEnd: onSecondaryLongPressEnd,
       onSecondaryLongPressMoveUpdate: onSecondaryLongPressMoveUpdate,
       onSecondaryLongPressStart: onSecondaryLongPressStart,
@@ -299,6 +347,13 @@ class JsonGestureDetectorBuilder extends JsonWidgetBuilder {
       onTapCancel: onTapCancel,
       onTapDown: onTapDown,
       onTapUp: onTapUp,
+      onTertiaryLongPress: onTertiaryLongPress,
+      onTertiaryLongPressCancel: onTertiaryLongPressCancel,
+      onTertiaryLongPressDown: onTertiaryLongPressDown,
+      onTertiaryLongPressEnd: onTertiaryLongPressEnd,
+      onTertiaryLongPressMoveUpdate: onTertiaryLongPressMoveUpdate,
+      onTertiaryLongPressStart: onTertiaryLongPressStart,
+      onTertiaryLongPressUp: onTertiaryLongPressUp,
       onTertiaryTapCancel: onTertiaryTapCancel,
       onTertiaryTapDown: onTertiaryTapDown,
       onTertiaryTapUp: onTertiaryTapUp,

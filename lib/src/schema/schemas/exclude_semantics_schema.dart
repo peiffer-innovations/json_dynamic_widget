@@ -10,7 +10,7 @@ class ExcludeSemanticsSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html',
     'type': 'object',
-    'title': 'ExcludeSemanticsBuilder',
+    'title': 'ExcludeSemantics',
     'additionalProperties': false,
     'properties': {
       'excluding': SchemaHelper.boolSchema,

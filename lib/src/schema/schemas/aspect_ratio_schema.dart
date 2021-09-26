@@ -10,7 +10,7 @@ class AspectRatioSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AspectRatio-class.html',
     'type': 'object',
-    'title': 'AspectRatioBuilder',
+    'title': 'AspectRatio',
     'additionalProperties': false,
     'required': [
       'aspectRatio',

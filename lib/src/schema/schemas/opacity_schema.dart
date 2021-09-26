@@ -9,7 +9,7 @@ class OpacitySchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Opacity-class.html',
     'type': 'object',
-    'title': 'OpacityBuilder',
+    'title': 'Opacity',
     'additionalProperties': false,
     'required': [
       'opacity',

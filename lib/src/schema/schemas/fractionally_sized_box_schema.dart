@@ -10,7 +10,7 @@ class FractionallySizedBoxSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html',
     'type': 'object',
-    'title': 'FractionallySizedBoxBuilder',
+    'title': 'FractionallySizedBox',
     'additionalProperties': false,
     'properties': {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),

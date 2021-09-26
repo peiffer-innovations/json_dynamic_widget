@@ -1,3 +1,4 @@
+import 'package:json_dynamic_widget/json_dynamic_widget_schemas.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 
 class ListViewSchema {
@@ -8,7 +9,7 @@ class ListViewSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/ListView-class.html',
-    'title': 'ListViewBuilder',
+    'title': 'ListView',
     'oneOf': [
       {
         'type': 'null',
@@ -32,6 +33,7 @@ class ListViewSchema {
           'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
           'primary': SchemaHelper.boolSchema,
+          'prototypeItem': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
           'restorationId': SchemaHelper.stringSchema,
           'reverse': SchemaHelper.boolSchema,
           'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),

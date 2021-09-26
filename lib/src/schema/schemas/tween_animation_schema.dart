@@ -9,7 +9,7 @@ class TweenAnimationSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/animation/Tween-class.html',
     'type': 'object',
-    'title': 'TweenAnimationBuilder',
+    'title': 'TweenAnimation',
     'additionalProperties': false,
     'required': [
       'builder',

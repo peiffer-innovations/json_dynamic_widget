@@ -9,7 +9,7 @@ class IndexedStackSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/IndexedStack-class.html',
-    'title': 'IndexedStackBuilder',
+    'title': 'IndexedStack',
     'oneOf': [
       {
         'type': 'null',

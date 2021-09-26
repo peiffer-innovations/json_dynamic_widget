@@ -14,6 +14,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
     required this.clipBehavior,
     this.disabledElevation,
     this.elevation,
+    this.enableFeedback,
     this.focusColor,
     this.focusElevation,
     this.focusNode,
@@ -40,6 +41,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   final Clip clipBehavior;
   final double? disabledElevation;
   final double? elevation;
+  final bool? enableFeedback;
   final Color? focusColor;
   final double? focusElevation;
   final FocusNode? focusNode;
@@ -67,6 +69,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   ///   "clipBehavior": <Clip>,
   ///   "disabledElevation": <double>,
   ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
   ///   "focusColor": <Color>,
   ///   "focusElevation": <double>,
   ///   "focusNode": <FocusNode>,
@@ -123,6 +126,9 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
         elevation: JsonClass.parseDouble(
           map['elevation'],
         ),
+        enableFeedback: map['enableFeedback'] == null
+            ? null
+            : JsonClass.parseBool(map['enableFeedback']),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
           validate: false,
@@ -191,6 +197,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
       backgroundColor: backgroundColor,
       clipBehavior: clipBehavior,
       disabledElevation: disabledElevation,
+      enableFeedback: enableFeedback,
       elevation: elevation,
       focusColor: focusColor,
       focusElevation: focusElevation,

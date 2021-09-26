@@ -9,7 +9,7 @@ class IgnorePointerSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/IgnorePointer-class.html',
-    'title': 'IgnorePointerBuilder',
+    'title': 'IgnorePointer',
     'oneOf': [
       {
         'type': 'null',

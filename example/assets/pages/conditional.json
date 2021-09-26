@@ -24,13 +24,16 @@
           "args": {
             "mainAxisSize": "max"
           },
-          "children": [{
+          "children": [
+            {
               "type": "row",
               "args": {
                 "mainAxisAlignment": "spaceEvenly"
               },
-              "children": [{
+              "children": [
+                {
                   "type": "raised_button",
+                  "id": "button1",
                   "args": {
                     "onPressed": "##set_value(button, 1)##"
                   },
@@ -43,6 +46,7 @@
                 },
                 {
                   "type": "raised_button",
+                  "id": "button2",
                   "args": {
                     "onPressed": "##set_value(button, 2)##"
                   },
@@ -55,6 +59,7 @@
                 },
                 {
                   "type": "raised_button",
+                  "id": "button3",
                   "args": {
                     "onPressed": "##set_value(button, 3)##"
                   },
@@ -72,7 +77,8 @@
               "args": {
                 "mainAxisAlignment": "spaceEvenly"
               },
-              "children": [{
+              "children": [
+                {
                   "type": "flat_button",
                   "args": {
                     "onPressed": "##set_value(button, 4)##"
@@ -119,7 +125,8 @@
                   "args": {
                     "mainAxisSize": "min"
                   },
-                  "children": [{
+                  "children": [
+                    {
                       "type": "text",
                       "args": {
                         "text": "{{button}}"
@@ -127,7 +134,8 @@
                     },
                     {
                       "type": "stack",
-                      "children": [{
+                      "children": [
+                        {
                           "type": "conditional",
                           "args": {
                             "conditional": {

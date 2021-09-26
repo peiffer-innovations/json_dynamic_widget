@@ -10,6 +10,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   JsonInteractiveViewerBuilder({
     required this.alignPanAxis,
     required this.boundaryMargin,
+    required this.clipBehavior,
     required this.constrained,
     required this.maxScale,
     required this.minScale,
@@ -26,6 +27,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
 
   final bool alignPanAxis;
   final EdgeInsets boundaryMargin;
+  final Clip clipBehavior;
   final bool constrained;
   final double maxScale;
   final double minScale;
@@ -43,6 +45,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   /// {
   ///   "alignPanAxis": <bool>,
   ///   "boundaryMargin": <EdgeInsets>,
+  ///   "clipBehavior": <Clip>,
   ///   "constrained": <bool>,
   ///   "maxScale": <double>,
   ///   "minScale": <double>,
@@ -81,6 +84,11 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
               validate: false,
             ) as EdgeInsets? ??
             EdgeInsets.zero,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         constrained: map['constrained'] == null
             ? true
             : JsonClass.parseBool(
@@ -126,6 +134,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
     return InteractiveViewer(
       alignPanAxis: alignPanAxis,
       boundaryMargin: boundaryMargin,
+      clipBehavior: clipBehavior,
       constrained: constrained,
       key: key,
       maxScale: maxScale,

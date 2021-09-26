@@ -31,6 +31,7 @@
         },
         {
           "type": "center",
+          "id": "clip_rect",
           "child": {
             "type": "clip_rect",
             "child": {
@@ -54,6 +55,39 @@
         },
         {
           "type": "list_tile",
+          "id": "clip_rrect",
+          "args": {
+            "title": {
+              "type": "center",
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "ClipRRect"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "center",
+          "child": {
+            "type": "clip_rrect",
+            "args": {
+              "borderRadius": 16.0
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "color": "#ff0000",
+                "height": 100.0,
+                "width": 100.0
+              }
+            }
+          }
+        },
+        {
+          "type": "list_tile",
+          "id": "clip_oval",
           "args": {
             "title": {
               "type": "center",
@@ -76,6 +110,44 @@
                 "src": "https://i.ibb.co/1vXpqVs/flutter-logo.jpg"
               }
             }
+          }
+        },
+        {
+          "type": "list_tile",
+          "id": "clip_path",
+          "args": {
+            "title": {
+              "type": "center",
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "ClipPath"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "center",
+          "child": {
+            "type": "clip_path",
+            "args": {
+              "clipper": "{{clipper}}"
+            },
+            "child": {
+              "type": "container",
+              "args": {
+                "color": "#ff0000",
+                "height": 100.0,
+                "width": 100.0
+              }
+            }
+          }
+        },
+        {
+          "type": "sized_box",
+          "args": {
+            "height": 20.0
           }
         }
       ]

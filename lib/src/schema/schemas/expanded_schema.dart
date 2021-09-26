@@ -8,7 +8,7 @@ class ExpandedSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Expanded-class.html',
-    'title': 'ExpandedBuilder',
+    'title': 'Expanded',
     'oneOf': [
       {
         'type': 'null',

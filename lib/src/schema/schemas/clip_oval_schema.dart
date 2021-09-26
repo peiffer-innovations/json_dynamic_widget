@@ -8,7 +8,7 @@ class ClipOvalSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/ClipOval-class.html',
-    'title': 'ClipOvalBuilder',
+    'title': 'ClipOval',
     'oneOf': [
       {
         'type': 'null',

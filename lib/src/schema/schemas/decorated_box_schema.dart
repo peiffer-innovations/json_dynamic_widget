@@ -9,7 +9,7 @@ class DecoratedBoxSchema {
     r'$id': '$id',
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/DecoratedBox-class.html',
-    'title': 'DecoratedBoxBuilder',
+    'title': 'DecoratedBox',
     'additionalProperties': false,
     'required': [
       'decoration',

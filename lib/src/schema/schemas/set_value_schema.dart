@@ -8,7 +8,7 @@ class SetValueSchema {
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonSetValueBuilder-class.html',
     'type': 'object',
-    'title': 'SetValueBuilder',
+    'title': 'SetValue',
     'additionalProperties': true,
   };
 }

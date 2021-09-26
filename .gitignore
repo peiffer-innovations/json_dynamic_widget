@@ -12,6 +12,7 @@ pubspec.lock
 coverage/
 coverage_badge.svg
 test/.test_coverage.dart
+output/
 
 # IntelliJ related
 *.iml

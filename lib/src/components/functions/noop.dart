@@ -11,10 +11,7 @@ final JsonWidgetFunction body = ({
   required List<dynamic>? args,
   required JsonWidgetRegistry registry,
 }) =>
-    () => registry.setValue(
-          args![0],
-          args[1],
-        );
+    () {};
 
 /// Function key for the built in `noop` function.
 final String key = 'noop';

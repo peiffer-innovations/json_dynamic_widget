@@ -9,6 +9,7 @@ class DynamicSchema {
     r'$id': '$id',
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonDynamicBuilder-class.html',
+    'title': 'Dynamic',
     'oneOf': [
       {
         'type': 'null',

@@ -10,7 +10,7 @@ class NetworkImageSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/painting/NetworkImage-class.html',
     'type': 'object',
-    'title': 'NetworkImageBuilder',
+    'title': 'NetworkImage',
     'additionalProperties': false,
     'required': [
       'src',

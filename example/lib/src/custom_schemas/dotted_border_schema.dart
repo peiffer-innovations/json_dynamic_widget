@@ -6,7 +6,7 @@ class DottedBorderSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
-    'title': 'DottedBorderBuilder',
+    'title': 'DottedBorder',
     'type': 'object',
     'additionalProperties': false,
     'properties': {

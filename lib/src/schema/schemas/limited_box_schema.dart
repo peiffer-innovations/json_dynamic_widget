@@ -10,7 +10,7 @@ class LimitedBoxSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/LimitedBox-class.html',
     'type': 'object',
-    'title': 'LimitedBoxBuilder',
+    'title': 'LimitedBox',
     'additionalProperties': false,
     'properties': {
       'maxHeight': SchemaHelper.numberSchema,

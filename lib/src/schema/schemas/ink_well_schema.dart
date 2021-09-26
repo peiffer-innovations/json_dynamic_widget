@@ -9,7 +9,7 @@ class InkWellSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/material/InkWell-class.html',
     'type': 'object',
-    'title': 'InkWellBuilder',
+    'title': 'InkWell',
     'additionalProperties': false,
     'properties': {
       'autofocus': SchemaHelper.boolSchema,
@@ -31,6 +31,9 @@ class InkWellSchema {
       'onTap': SchemaHelper.stringSchema,
       'onTapCancel': SchemaHelper.stringSchema,
       'onTapDown': SchemaHelper.stringSchema,
+      'overlayColor': SchemaHelper.objectSchema(
+        MaterialStatePropertyMouseCursorSchema.id,
+      ),
       'radius': SchemaHelper.numberSchema,
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
       'splashFactory':

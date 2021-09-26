@@ -10,13 +10,14 @@ class InteractiveViewerSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/InteractiveViewer-class.html',
     'type': 'object',
-    'title': 'InteractiveViewerBuilder',
+    'title': 'InteractiveViewer',
     'additionalProperties': false,
     'properties': {
       'alignPanAxis': SchemaHelper.boolSchema,
       'boundaryMargin': SchemaHelper.objectSchema(
         EdgeInsetsGeometrySchema.id,
       ),
+      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
       'constrained': SchemaHelper.boolSchema,
       'maxScale': SchemaHelper.numberSchema,
       'minScale': SchemaHelper.numberSchema,

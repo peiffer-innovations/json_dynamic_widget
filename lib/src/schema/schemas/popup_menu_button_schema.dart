@@ -11,16 +11,15 @@ class PopupMenuButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/PopupMenuButton-class.html',
     'type': 'object',
-    'title': 'PopupMenuButtonBuilder',
+    'title': 'PopupMenuButton',
     'additionalProperties': false,
-    'required': [
-      'itemBuilder',
-    ],
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'enabled': SchemaHelper.boolSchema,
+      'enableFeedback': SchemaHelper.boolSchema,
       'icon': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      'iconSize': SchemaHelper.numberSchema,
       'initialValue': SchemaHelper.stringSchema,
       'itemBuilder': SchemaHelper.stringSchema,
       'offset': SchemaHelper.objectSchema(OffsetSchema.id),

@@ -10,7 +10,7 @@ class PositionedSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/Positioned-class.html',
     'type': 'object',
-    'title': 'PositionedBuilder',
+    'title': 'Positioned',
     'additionalProperties': false,
     'properties': {
       'bottom': SchemaHelper.numberSchema,

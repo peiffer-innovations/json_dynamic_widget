@@ -9,7 +9,7 @@ class ClipRRectSchema {
     r'$id': '$id',
     r'$comment': 'https://api.flutter.dev/flutter/widgets/ClipRRect-class.html',
     'type': 'object',
-    'title': 'ClipRRectBuilder',
+    'title': 'ClipRRect',
     'additionalProperties': false,
     'required': [
       'borderRadius',

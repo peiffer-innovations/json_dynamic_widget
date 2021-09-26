@@ -3,10 +3,10 @@ import 'package:json_theme/json_theme_schemas.dart';
 
 /// Container for a [JsonWidgetBuilder] builder as well as an associated schema
 /// id.  The schema id will be used to validate the JSON args against the
-/// schema if it is not [null].  If it is [null], no schema validation will be
+/// schema if it is not `null`.  If it is `null`, no schema validation will be
 /// performed against the JSON for this particular builder.
 class JsonWidgetBuilderContainer {
-  JsonWidgetBuilderContainer({
+  const JsonWidgetBuilderContainer({
     required this.builder,
     this.schemaId,
   });

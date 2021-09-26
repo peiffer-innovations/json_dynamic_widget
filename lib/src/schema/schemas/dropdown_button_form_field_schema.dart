@@ -11,9 +11,10 @@ class DropdownButtonFormFieldSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/DropdownButtonFormField-class.html',
     'type': 'object',
-    'title': 'DropdownButtonFormFieldBuilder',
+    'title': 'DropdownButtonFormField',
     'additionalProperties': false,
     'properties': {
+      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'autofocus': SchemaHelper.boolSchema,
       'autovalidate': SchemaHelper.boolSchema,
       'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
@@ -21,6 +22,7 @@ class DropdownButtonFormFieldSchema {
       'disabledHint': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'dropdownColor': SchemaHelper.objectSchema(ColorSchema.id),
       'elevation': SchemaHelper.numberSchema,
+      'enableFeedback': SchemaHelper.boolSchema,
       'enabled': SchemaHelper.boolSchema,
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusNode': SchemaHelper.stringSchema,
@@ -33,6 +35,7 @@ class DropdownButtonFormFieldSchema {
       'isDense': SchemaHelper.boolSchema,
       'isExpanded': SchemaHelper.boolSchema,
       'itemHeight': SchemaHelper.numberSchema,
+      'menuMaxHeight': SchemaHelper.boolSchema,
       'onChanged': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
       'onTap': SchemaHelper.stringSchema,

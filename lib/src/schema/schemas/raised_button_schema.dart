@@ -10,7 +10,7 @@ class RaisedButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/RaisedButton-class.html',
     'type': 'object',
-    'title': 'RaisedButtonBuilder',
+    'title': 'RaisedButton',
     'additionalProperties': false,
     'properties': {
       'animationDuration': SchemaHelper.numberSchema,

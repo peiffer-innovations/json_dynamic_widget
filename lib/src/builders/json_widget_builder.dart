@@ -191,7 +191,11 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
               data: _data,
               key: ValueKey(_data.id),
             )), (e, stack) {
-      _logger.severe('Error building widget: [${_data.type}].', e, stack);
+      _logger.severe(
+        'Error building widget: [${_data.type}].',
+        e,
+        stack,
+      );
     });
 
     if (widget.childBuilder != null) {

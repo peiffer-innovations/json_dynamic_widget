@@ -38,7 +38,7 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
   /// ```
   ///
   /// The `conditional` value is required but the `onFalse` is not.  If the
-  /// `onFalse` is [null] then the build will return an empty [SizedBox] when
+  /// `onFalse` is `null` then the build will return an empty [SizedBox] when
   /// the `conditional` evaluates to [false].
   ///
   /// See also:

@@ -10,7 +10,7 @@ class AnimatedSwitcherSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedSwitcher-class.html',
     'type': 'object',
-    'title': 'AnimatedSwitcherBuilder',
+    'title': 'AnimatedSwitcher',
     'additionalProperties': false,
     'required': [
       'child',

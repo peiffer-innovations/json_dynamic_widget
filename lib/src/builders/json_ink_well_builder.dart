@@ -28,6 +28,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
     this.onTap,
     this.onTapCancel,
     this.onTapDown,
+    this.overlayColor,
     this.radius,
     this.splashColor,
     this.splashFactory,
@@ -55,6 +56,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   final GestureTapCallback? onTap;
   final GestureTapCancelCallback? onTapCancel;
   final GestureTapDownCallback? onTapDown;
+  final MaterialStateProperty<Color?>? overlayColor;
   final double? radius;
   final Color? splashColor;
   final InteractiveInkFeatureFactory? splashFactory;
@@ -83,6 +85,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   ///   "onTap": <GestureTapCallback>,
   ///   "onTapCancel": <GestureTapCancelCallback>,
   ///   "onTapDown": <GestureTapDownCallback>,
+  ///   "overlayColor": <MaterialStatePropertyColor>,
   ///   "radius": <double>,
   ///   "splashColor": <Color>,
   ///   "splashFactory": <InteractiveInkFeatureFactory>
@@ -151,6 +154,10 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
         onTap: map['onTap'],
         onTapCancel: map['onTapCancel'],
         onTapDown: map['onTapDown'],
+        overlayColor: ThemeDecoder.decodeMaterialStatePropertyColor(
+          map['overlayColor'],
+          validate: false,
+        ),
         radius: JsonClass.parseDouble(map['radius']),
         splashColor: ThemeDecoder.decodeColor(
           map['splashColor'],
@@ -196,6 +203,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
       onTap: onTap,
       onTapCancel: onTapCancel,
       onTapDown: onTapDown,
+      overlayColor: overlayColor,
       radius: radius,
       splashColor: splashColor,
       splashFactory: splashFactory,

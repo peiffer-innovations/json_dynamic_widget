@@ -10,7 +10,7 @@ class AnimatedDefaultTextStyleSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedDefaultTextStyle-class.html',
     'type': 'object',
-    'title': 'AnimatedDefaultTextStyleBuilder',
+    'title': 'AnimatedDefaultTextStyle',
     'additionalProperties': false,
     'required': [
       'duration',

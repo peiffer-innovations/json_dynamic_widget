@@ -24,7 +24,11 @@
               "args": {
                 "onLongPress": "##simplePrintMessage()##",
                 "style": {
-                  "foregroundColor": "##materialCallback()##"
+                  "foregroundColor": {
+                    "pressed": "FF2196F3",
+                    "focused": "FF2196F3",
+                    "empty": "FFF44336"
+                  }
                 }
               },
               "child": {
@@ -45,7 +49,11 @@
               "args": {
                 "onLongPress": "##simplePrintMessage()##",
                 "style": {
-                  "foregroundColor": "##materialCallback()##"
+                  "foregroundColor": {
+                    "pressed": "FF2196F3",
+                    "focused": "FF2196F3",
+                    "empty": "FFF44336"
+                  }
                 }
               },
               "child": {
@@ -66,7 +74,11 @@
               "args": {
                 "onLongPress": "##simplePrintMessage()##",
                 "style": {
-                  "foregroundColor": "##materialCallback()##"
+                  "foregroundColor": {
+                    "pressed": "FF2196F3",
+                    "focused": "FF2196F3",
+                    "empty": "FFF44336"
+                  }
                 }
               },
               "child": {

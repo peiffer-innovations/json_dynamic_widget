@@ -10,8 +10,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   JsonPopupMenuButtonBuilder({
     this.color,
     this.elevation,
+    this.enableFeedback,
     required this.enabled,
     this.icon,
+    this.iconSize,
     this.initialValue,
     required this.itemBuilder,
     required this.offset,
@@ -27,8 +29,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
 
   final Color? color;
   final double? elevation;
+  final bool? enableFeedback;
   final bool enabled;
   final JsonWidgetData? icon;
+  final double? iconSize;
   final dynamic initialValue;
   final PopupMenuItemBuilder itemBuilder;
   final Offset offset;
@@ -45,8 +49,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   /// {
   ///   "color": <Color>,
   ///   "elevation": <double>,
+  ///   "enableFeedback": <bool>,
   ///   "enabled": <bool>,
   ///   "icon": <JsonWidgetData>,
+  ///   "iconSize": <double>
   ///   "initialValue": <T>,
   ///   "itemBuilder": <PopupMenuItemBuilder<T>>,
   ///   "offset": <Offset>,
@@ -85,6 +91,11 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
         elevation: JsonClass.parseDouble(
           map['elevation'],
         ),
+        enableFeedback: map['enableFeedback'] == null
+            ? true
+            : JsonClass.parseBool(
+                map['enableFeedback'],
+              ),
         enabled: map['enabled'] == null
             ? true
             : JsonClass.parseBool(
@@ -94,6 +105,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
           map['icon'],
           registry: registry,
         ),
+        iconSize: JsonClass.parseDouble(map['iconSize']),
         initialValue: map['initialValue'],
         itemBuilder: map['itemBuilder'],
         offset: ThemeDecoder.decodeOffset(
@@ -131,11 +143,13 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     return PopupMenuButton(
       color: color,
       elevation: elevation,
+      enableFeedback: enableFeedback,
       enabled: enabled,
       icon: icon?.build(
         childBuilder: childBuilder,
         context: context,
       ),
+      iconSize: iconSize,
       initialValue: initialValue,
       itemBuilder: itemBuilder,
       key: key,

@@ -10,7 +10,7 @@ class AnimatedPositionedDirectionalSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/AnimatedPositionedDirectional-class.html',
     'type': 'object',
-    'title': 'AnimatedPositionedDirectionalBuilder',
+    'title': 'AnimatedPositionedDirectional',
     'additionalProperties': false,
     'required': [
       'duration',

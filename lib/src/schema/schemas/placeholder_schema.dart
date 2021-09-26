@@ -10,7 +10,7 @@ class PlaceholderSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/Placeholder-class.html',
     'type': 'object',
-    'title': 'PlaceholderBuilder',
+    'title': 'Placeholder',
     'additionalProperties': false,
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),

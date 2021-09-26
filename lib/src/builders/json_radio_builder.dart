@@ -18,6 +18,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     required this.autofocus,
     this.autovalidateMode,
     required this.enabled,
+    this.fillColor,
     this.focusColor,
     this.focusNode,
     this.groupValue,
@@ -28,6 +29,8 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     this.mouseCursor,
     this.onChanged,
     this.onSaved,
+    this.overlayColor,
+    this.splashRadius,
     required this.toggleable,
     this.validator,
     this.value,
@@ -42,6 +45,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   final bool autofocus;
   final AutovalidateMode? autovalidateMode;
   final bool enabled;
+  final MaterialStateProperty<Color?>? fillColor;
   final Color? focusColor;
   final FocusNode? focusNode;
   final dynamic groupValue;
@@ -52,7 +56,9 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   final MouseCursor? mouseCursor;
   final ValueChanged<dynamic>? onChanged;
   final ValueChanged<dynamic>? onSaved;
+  final MaterialStateProperty<Color?>? overlayColor;
   final bool toggleable;
+  final double? splashRadius;
   final Validator? validator;
   final dynamic value;
   final VisualDensity? visualDensity;
@@ -67,6 +73,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   ///   "autofocus": <bool>,
   ///   "checkColor": <Color>,
   ///   "enabled": <bool>,
+  ///   "fillColor": <MaterialStateProperty<Color>>,
   ///   "focusColor": <Color>,
   ///   "focusNode": <FocusNode>,
   ///   "groupValue": <dynamic>,
@@ -77,7 +84,9 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   ///   "mouseCursor": <MouseCursor>,
   ///   "onChanged": <ValueCallback<dynamic>>,
   ///   "onSaved": <ValueCallback<dynamic>>,
+  ///   "overlayColor": <MaterialStateProperty<Color>>,
   ///   "toggleable": <bool>,
+  ///   "splashRadius": <double>,
   ///   "validators": <ValueValidators[]>,
   ///   "value": <dynamic>,
   ///   "visualDensity": <VisualDensity>,
@@ -115,6 +124,9 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
                 : AutovalidateMode.disabled,
         enabled:
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        fillColor: ThemeDecoder.decodeMaterialStatePropertyColor(
+          map['fillColor'],
+        ),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
           validate: false,
@@ -136,6 +148,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
         ),
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
+        overlayColor: ThemeDecoder.decodeMaterialStatePropertyColor(
+          map['overlayColor'],
+        ),
+        splashRadius: JsonClass.parseDouble(map['splashRadius']),
         toggleable: JsonClass.parseBool(map['toggleable']),
         validator: map['validators'] == null
             ? null
@@ -266,6 +282,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
           child: Radio<dynamic>(
             activeColor: widget.builder.activeColor,
             autofocus: widget.builder.autofocus,
+            fillColor: widget.builder.fillColor,
             focusColor: widget.builder.focusColor,
             focusNode: widget.builder.focusNode,
             groupValue: state.value,
@@ -285,6 +302,8 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
                       widget.data.registry.setValue(widget.builder.id!, value);
                     }
                   },
+            overlayColor: widget.builder.overlayColor,
+            splashRadius: widget.builder.splashRadius,
             toggleable: widget.builder.toggleable,
             value: widget.builder.value,
             visualDensity: widget.builder.visualDensity,

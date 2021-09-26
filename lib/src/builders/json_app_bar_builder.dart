@@ -1,5 +1,6 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
@@ -14,18 +15,20 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
     this.backgroundColor,
     this.bottom,
     required this.bottomOpacity,
-    this.brightness,
     this.centerTitle,
     this.elevation,
     required this.excludeHeaderSemantics,
     this.flexibleSpace,
+    this.foregroundColor,
     this.iconTheme,
     this.leading,
     this.leadingWidth,
     required this.primary,
     this.shadowColor,
     this.shape,
-    this.textTheme,
+    this.systemOverlayStyle,
+    this.titleTextStyle,
+    this.toolbarTextStyle,
     this.title,
     this.titleSpacing,
     this.toolbarHeight,
@@ -44,18 +47,20 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   final Color? backgroundColor;
   final JsonWidgetData? bottom;
   final double bottomOpacity;
-  final Brightness? brightness;
   final bool? centerTitle;
   final double? elevation;
   final bool excludeHeaderSemantics;
   final JsonWidgetData? flexibleSpace;
+  final Color? foregroundColor;
   final IconThemeData? iconTheme;
   final JsonWidgetData? leading;
   final double? leadingWidth;
   final bool primary;
   final Color? shadowColor;
   final ShapeBorder? shape;
-  final TextTheme? textTheme;
+  final SystemUiOverlayStyle? systemOverlayStyle;
+  final TextStyle? titleTextStyle;
+  final TextStyle? toolbarTextStyle;
   final JsonWidgetData? title;
   final double? titleSpacing;
   final double? toolbarHeight;
@@ -68,21 +73,24 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   /// {
   ///   "actions": <JsonWidgetData[]>,
   ///   "actionsIconTheme": <IconThemeData>,
+  ///   "automaticallyImplyLeading": <bool>,
   ///   "backgroundColor": <Color>,
   ///   "bottom": <JsonWidgetData>,
   ///   "bottomOpacity": <double>,
-  ///   "brightness": <Brightness>,
   ///   "centerTitle": <bool>,
   ///   "elevation": <double>,
   ///   "excludeHeaderSemantics": <bool>,
   ///   "flexibleSpace": <JsonWidgetData>,
+  ///   "foregroundColor": <Color>,
   ///   "iconTheme": <IconThemeData>,
   ///   "leading": <bool>,
   ///   "leadingWidth": <double>,
   ///   "primary": <bool>,
   ///   "shadowColor": <Color>,
   ///   "shape": <ShapeBorder>,
-  ///   "textTheme": <TextTheme>,
+  ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
+  ///   "titleTextStyle": <TextStyle>,
+  ///   "toolbarTextStyle": <TextStyle>,
   ///   "title": <JsonWidgetData>,
   ///   "titleSpacing": <double>,
   ///   "toolbarHeight": <double>,
@@ -127,10 +135,6 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           registry: registry,
         ),
         bottomOpacity: JsonClass.parseDouble(map['bottomOpacity'], 1.0)!,
-        brightness: ThemeDecoder.decodeBrightness(
-          map['brightness'],
-          validate: false,
-        ),
         centerTitle: map['centerTitle'] == null
             ? null
             : JsonClass.parseBool(map['centerTitle']),
@@ -160,8 +164,16 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['shape'],
           validate: false,
         ),
-        textTheme: ThemeDecoder.decodeTextTheme(
-          map['textTheme'],
+        systemOverlayStyle: ThemeDecoder.decodeSystemUiOverlayStyle(
+          map['systemOverlayStyle'],
+          validate: false,
+        ),
+        titleTextStyle: ThemeDecoder.decodeTextStyle(
+          map['titleTextStyle'],
+          validate: false,
+        ),
+        toolbarTextStyle: ThemeDecoder.decodeTextStyle(
+          map['toolbarTextStyle'],
           validate: false,
         ),
         title: JsonWidgetData.fromDynamic(
@@ -210,7 +222,6 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         context: context,
       ) as PreferredSizeWidget?,
       bottomOpacity: bottomOpacity,
-      brightness: brightness,
       centerTitle: centerTitle,
       elevation: elevation,
       excludeHeaderSemantics: excludeHeaderSemantics,
@@ -218,6 +229,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         childBuilder: childBuilder,
         context: context,
       ),
+      foregroundColor: foregroundColor,
       iconTheme: iconTheme,
       key: key,
       leading: leading?.build(
@@ -228,7 +240,9 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
       primary: primary,
       shadowColor: shadowColor,
       shape: shape,
-      textTheme: textTheme,
+      systemOverlayStyle: systemOverlayStyle,
+      titleTextStyle: titleTextStyle,
+      toolbarTextStyle: toolbarTextStyle,
       title: title?.build(
         childBuilder: childBuilder,
         context: context,

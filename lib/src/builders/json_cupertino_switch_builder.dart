@@ -18,6 +18,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     this.label,
     this.onChanged,
     this.onSaved,
+    this.thumbColor,
     this.trackColor,
     this.validator,
     this.value,
@@ -34,6 +35,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   final String? label;
   final ValueChanged<bool>? onChanged;
   final ValueChanged<bool?>? onSaved;
+  final Color? thumbColor;
   final Color? trackColor;
   final Validator? validator;
   final bool? value;
@@ -51,6 +53,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   ///   "label": <String>,
   ///   "onChanged": <ValueCallback<bool>>,
   ///   "onSaved": <ValueCallback<bool>>,
+  ///   "thumbColor": <Color>,
   ///   "trackColor": <Color>,
   ///   "validators": <ValueValidator[]>,
   ///   "value": <bool>,
@@ -95,6 +98,10 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
         label: map['label'],
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
+        thumbColor: ThemeDecoder.decodeColor(
+          map['thumbColor'],
+          validate: false,
+        ),
         trackColor: ThemeDecoder.decodeColor(
           map['trackColor'],
           validate: false,
@@ -176,6 +183,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
                       data.registry.setValue(data.id, value);
                     }
                   },
+            thumbColor: thumbColor,
             trackColor: trackColor,
             value: state.value,
           ),

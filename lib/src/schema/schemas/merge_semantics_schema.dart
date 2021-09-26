@@ -8,6 +8,6 @@ class MergeSemanticsSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/MergeSemantics-class.html',
     'type': 'null',
-    'title': 'MergeSemanticsBuilder',
+    'title': 'MergeSemantics',
   };
 }

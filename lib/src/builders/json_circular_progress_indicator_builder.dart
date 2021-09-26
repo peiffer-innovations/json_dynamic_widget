@@ -9,6 +9,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
   JsonCircularProgressIndicatorBuilder({
     this.backgroundColor,
+    this.color,
     this.semanticsLabel,
     this.semanticsValue,
     required this.strokeWidth,
@@ -21,6 +22,7 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
   static const type = 'circular_progress_indicator';
 
   final Color? backgroundColor;
+  final Color? color;
   final String? semanticsLabel;
   final String? semanticsValue;
   final double strokeWidth;
@@ -32,12 +34,13 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   'backgroundColor': <Color>,
-  ///   'semanticsLabel': <String>,
-  ///   'semanticsValue': <String>,
-  ///   'strokeWidth': <double>,
-  ///   'value': <double>,
-  ///   'valueColor': <Animation<Color> | Color>
+  ///   "backgroundColor": <Color>,
+  ///   "color": <Color>,
+  ///   "semanticsLabel": <String>,
+  ///   "semanticsValue": <String>,
+  ///   "strokeWidth": <double>,
+  ///   "value": <double>,
+  ///   "valueColor": <Animation<Color> | Color>
   /// }
   /// ```
   ///
@@ -52,6 +55,7 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonCircularProgressIndicatorBuilder(
         backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
+        color: ThemeDecoder.decodeColor(map['color']),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
         strokeWidth: JsonClass.parseDouble(map['strokeWidth'], 4.0)!,
@@ -78,6 +82,7 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
   }) {
     return CircularProgressIndicator(
       backgroundColor: backgroundColor,
+      color: color,
       key: key,
       semanticsLabel: semanticsLabel,
       semanticsValue: semanticsValue,

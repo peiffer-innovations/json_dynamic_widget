@@ -27,6 +27,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
     required this.image,
     required this.isAntiAlias,
     required this.matchTextDirection,
+    this.opacity,
     required this.repeat,
     required this.scale,
     this.semanticLabel,
@@ -52,6 +53,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
   final bool isAntiAlias;
   final Uint8List image;
   final bool matchTextDirection;
+  final double? opacity;
   final ImageRepeat repeat;
   final double scale;
   final String? semanticLabel;
@@ -78,6 +80,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
   ///   "image": <String | Uint8List>,
   ///   "isAntiAlias": <bool>,
   ///   "matchTextDirection": <bool>,
+  ///   "opacity": <double>,
   ///   "repeat": <ImageRepeat>,
   ///   "scale": <double>,
   ///   "semanticLabel": <String>,
@@ -152,6 +155,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             ImageRepeat.noRepeat,
+        opacity: JsonClass.parseDouble(map['opacity']),
         scale: JsonClass.parseDouble(map['scale'], 1.0)!,
         semanticLabel: map['semanticLabel'],
         width: JsonClass.parseDouble(map['width']),
@@ -186,6 +190,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
       isAntiAlias: isAntiAlias,
       key: key,
       matchTextDirection: matchTextDirection,
+      opacity: opacity == null ? null : AlwaysStoppedAnimation(opacity!),
       repeat: repeat,
       scale: scale,
       semanticLabel: semanticLabel,

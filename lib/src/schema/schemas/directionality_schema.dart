@@ -10,7 +10,7 @@ class DirectionalitySchema {
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/Directionality-class.html',
     'type': 'object',
-    'title': 'DirectionalityBuilder',
+    'title': 'Directionality',
     'additionalProperties': false,
     'required': [
       'textDirection',

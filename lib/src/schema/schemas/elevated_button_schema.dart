@@ -10,7 +10,7 @@ class ElevatedButtonSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/material/ElevatedButton-class.html',
     'type': 'object',
-    'title': 'ElevatedButtonBuilder',
+    'title': 'ElevatedButton',
     'additionalProperties': false,
     'properties': {
       'autofocus': SchemaHelper.boolSchema,

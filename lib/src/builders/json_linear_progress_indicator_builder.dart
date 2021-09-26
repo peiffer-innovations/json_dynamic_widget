@@ -9,6 +9,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   JsonLinearProgressIndicatorBuilder({
     this.backgroundColor,
+    this.color,
     this.minHeight,
     this.semanticsLabel,
     this.semanticsValue,
@@ -20,6 +21,7 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   static const type = 'linear_progress_indicator';
 
   final Color? backgroundColor;
+  final Color? color;
   final double? minHeight;
   final String? semanticsLabel;
   final String? semanticsValue;
@@ -32,6 +34,7 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "backgroundColor": <Color>,
+  ///   "color": <Color>,
   ///   "minHeight": <double>,
   ///   "semanticsLabel": <String>,
   ///   "semanticsValue": <String>,
@@ -52,6 +55,10 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
       result = JsonLinearProgressIndicatorBuilder(
         backgroundColor: ThemeDecoder.decodeColor(
           map['backgroundColor'],
+          validate: false,
+        ),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
           validate: false,
         ),
         minHeight: JsonClass.parseDouble(map['minHeight']),
@@ -83,6 +90,7 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   }) {
     return LinearProgressIndicator(
       backgroundColor: backgroundColor,
+      color: color,
       key: key,
       minHeight: minHeight,
       semanticsLabel: semanticsLabel,

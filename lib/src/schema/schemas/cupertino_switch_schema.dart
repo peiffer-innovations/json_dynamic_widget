@@ -10,7 +10,7 @@ class CupertinoSwitchSchema {
     r'$comment':
         'https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html',
     'type': 'object',
-    'title': 'CupertinoSwitchBuilder',
+    'title': 'CupertinoSwitch',
     'additionalProperties': false,
     'properties': {
       'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
@@ -22,6 +22,7 @@ class CupertinoSwitchSchema {
       'label': SchemaHelper.stringSchema,
       'onChanged': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
+      'thumbColor': SchemaHelper.objectSchema(ColorSchema.id),
       'trackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'validators': {
         'type': 'array',
