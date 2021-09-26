@@ -36,7 +36,7 @@ jobs:
           cp output/* schemas/json_dynamic_widget
           cd schemas
           git add .
-          git commit -m "json_dynamic_widget: schema update"
+          git commit --allow-empty -m "json_dynamic_widget: schema update"
           git push origin HEAD:gh-pages
           cd ..
 
