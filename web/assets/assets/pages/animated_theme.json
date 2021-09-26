@@ -8,7 +8,7 @@
     "args": {
       "customThemeData": {
         "appBarTheme": {
-          "color": "{{customColor}}"
+          "backgroundColor": "{{customColor}}"
         }
       }
     },
@@ -33,7 +33,8 @@
             }
           },
           "floatingActionButton": {
-            "type": "raised_button",
+            "type": "elevated_button",
+            "id": "press_me_button",
             "args": {
               "onPressed": "##set_value(customColor, #0000FF)##"
             },

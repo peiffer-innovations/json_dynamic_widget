@@ -1,0 +1,35 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "automaticallyImplyLeading": false,
+        "backgroundColor": "#000000",
+        "elevation": 0,
+        "leading": {
+          "type": "icon_button",
+          "args": {
+            "color": "#FFFFFF",
+            "icon": {
+              "type": "icon",
+              "args": {
+                "icon": {
+                  "codePoint": 58712,
+                  "fontFamily": "MaterialIcons"
+                }
+              }
+            },
+            "onPressed": "##navigate_pop()##"
+          }
+        },
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Leading Example"
+          }
+        }
+      }
+    }
+  }
+}
