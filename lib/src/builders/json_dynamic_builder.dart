@@ -77,6 +77,17 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     );
   }
 
+  /// Removes any / all values this builder may have set from the
+  /// [JsonWidgetRegistry].
+  @override
+  void remove(JsonWidgetData data) {
+    if (data.id.isNotEmpty == true) {
+      data.registry.removeValue(data.id);
+    }
+
+    super.remove(data);
+  }
+
   /// Builds the builder from a Map-like dynamic structure. This expects the
   /// JSON format to be of the following structure:
   ///

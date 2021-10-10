@@ -6,7 +6,6 @@ class JsonWidgetRegexHelper {
 
   static final dynamicVarRegex = RegExp(r'^\{\{\s*\S*\s*\}\}$');
   static final functionRegex = RegExp(r'^##(\S*)\s*(\(.*\))##$');
-  static final paramsRegex = RegExp(r'(\!?{{0,2}[^,\{\(\)\}]*\}{0,2})');
   static final varRegex = RegExp(r'^!?\{\{\s*\S*\s*\}\}$');
 
   static List<JsonWidgetParams>? parse(String? data) {
@@ -23,28 +22,26 @@ class JsonWidgetRegexHelper {
           key: funName,
         ));
 
-        var matches = paramsRegex.allMatches(data!);
-        for (var match in matches) {
-          var group = match.group(0);
-          if (group?.trim().isNotEmpty == true) {
-            if (group!.startsWith('!{{') && group.endsWith('}}')) {
-              params.add(
-                JsonWidgetParams(
-                  isStatic: true,
-                  isVariable: true,
-                  key: group.substring(3, group.length - 2).trim(),
-                ),
-              );
-            } else if (group.startsWith('{{') && group.endsWith('}}')) {
-              params.add(
-                JsonWidgetParams(
-                  isVariable: true,
-                  key: group.substring(2, group.length - 2).trim(),
-                ),
-              );
-            } else {
-              params.add(JsonWidgetParams(key: group.trim()));
-            }
+        var strParams = data!.substring(1, data.length - 1).split(',');
+        for (var strParam in strParams) {
+          strParam = strParam.trim();
+          if (strParam.startsWith('!{{') && strParam.endsWith('}}')) {
+            params.add(
+              JsonWidgetParams(
+                isStatic: true,
+                isVariable: true,
+                key: strParam.substring(3, strParam.length - 2).trim(),
+              ),
+            );
+          } else if (strParam.startsWith('{{') && strParam.endsWith('}}')) {
+            params.add(
+              JsonWidgetParams(
+                isVariable: true,
+                key: strParam.substring(2, strParam.length - 2).trim(),
+              ),
+            );
+          } else {
+            params.add(JsonWidgetParams(key: strParam.trim()));
           }
         }
       } else {
@@ -76,8 +73,8 @@ class JsonWidgetParams {
     this.isFunction = false,
     this.isStatic = false,
     this.isVariable = false,
-    required this.key,
-  }) : assert(key?.isNotEmpty == true);
+    this.key,
+  });
 
   final bool isDeferred;
   final bool isFunction;
