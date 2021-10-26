@@ -98,7 +98,23 @@
                                     "args": {
                                       "decoration": {
                                         "hintText": "John",
-                                        "labelText": "First Name"
+                                        "labelText": "First Name",
+                                        "suffixIcon": {
+                                          "type": "icon_button",
+                                          "args": {
+                                            "icon": {
+                                              "type": "icon",
+                                              "args": {
+                                                "icon": {
+                                                  "codePoint": 57704,
+                                                  "fontFamily": "MaterialIcons",
+                                                  "size": 50
+                                                }
+                                              }
+                                            },
+                                            "onPressed": "##set_value(first_name,)##"
+                                          }
+                                        }
                                       },
                                       "validators": [
                                         {
@@ -126,7 +142,23 @@
                                   "args": {
                                     "decoration": {
                                       "hintText": "Doe",
-                                      "labelText": "Last Name"
+                                      "labelText": "Last Name",
+                                      "suffixIcon": {
+                                        "type": "icon_button",
+                                        "args": {
+                                          "icon": {
+                                            "type": "icon",
+                                            "args": {
+                                              "icon": {
+                                                "codePoint": 57704,
+                                                "fontFamily": "MaterialIcons",
+                                                "size": 50
+                                              }
+                                            }
+                                          },
+                                          "onPressed": "##set_value(last_name,)##"
+                                        }
+                                      }
                                     },
                                     "validators": [
                                       {
@@ -151,7 +183,23 @@
                           "args": {
                             "decoration": {
                               "hintText": "name@example.com",
-                              "labelText": "Email Address"
+                              "labelText": "Email Address",
+                              "suffixIcon": {
+                                "type": "icon_button",
+                                "args": {
+                                  "icon": {
+                                    "type": "icon",
+                                    "args": {
+                                      "icon": {
+                                        "codePoint": 57704,
+                                        "fontFamily": "MaterialIcons",
+                                        "size": 50
+                                      }
+                                    }
+                                  },
+                                  "onPressed": "##set_value(email_address,)##"
+                                }
+                              }
                             },
                             "validators": [
                               {

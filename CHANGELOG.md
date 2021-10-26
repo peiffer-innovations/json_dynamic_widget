@@ -1,3 +1,10 @@
+## [3.1.0] - October, 10th 2021
+
+* The modification of the value which lies under `id` key of `JsonWidgetRegistry` for `JsonTextFormFieldBuilder` will change the value in `TextFormField`.
+* Added missing `remove` for `JsonDynamicBuilder`.
+* Allow for empty values in function params.
+* Fixed the invalid dialog closing in `dynamic.json` page after submitting the dialog form.
+
 ## [3.0.0] - September, 19th 2021
 
 * Updated to Flutter 2.5

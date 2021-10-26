@@ -32,7 +32,7 @@ final JsonWidgetFunction body = ({
               (actionData) => TextButton(
                 onPressed: () {
                   actionData.onPressed();
-                  Navigator.of(context).pop();
+                  Navigator.of(context, rootNavigator: true).pop();
                 },
                 child: JsonWidgetData.fromDynamic(
                   actionData.title,

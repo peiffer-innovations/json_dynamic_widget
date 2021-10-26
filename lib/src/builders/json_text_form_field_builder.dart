@@ -15,7 +15,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     required this.autofocus,
     this.autovalidateMode,
     this.buildCounter,
-    this.controller,
+    required this.controller,
     this.cursorColor,
     this.cursorHeight,
     this.cursorRadius,
@@ -27,7 +27,6 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.enabled,
     required this.expands,
     this.focusNode,
-    this.initialValue,
     this.inputFormatters,
     this.keyboardAppearance,
     this.keyboardType,
@@ -69,7 +68,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final bool autofocus;
   final AutovalidateMode? autovalidateMode;
   final InputCounterWidgetBuilder? buildCounter;
-  final TextEditingController? controller;
+  final TextEditingController controller;
   final Color? cursorColor;
   final double? cursorHeight;
   final Radius? cursorRadius;
@@ -81,7 +80,6 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final bool? enabled;
   final bool expands;
   final FocusNode? focusNode;
-  final String? initialValue;
   final List<TextInputFormatter>? inputFormatters;
   final Brightness? keyboardAppearance;
   final TextInputType? keyboardType;
@@ -215,7 +213,8 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
         buildCounter: map['buildCounter'],
-        controller: map['controller'],
+        controller: map['controller'] ??
+            TextEditingController(text: map['initialValue']),
         cursorColor: ThemeDecoder.decodeColor(
           map['cursorColor'],
           validate: false,
@@ -241,7 +240,6 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         expands: JsonClass.parseBool(map['expands']),
         focusNode: map['focusNode'],
-        initialValue: map['initialValue'],
         inputFormatters: map['inputFormatters'],
         keyboardAppearance: ThemeDecoder.decodeBrightness(
           map['keyboardBrightness'],
@@ -347,6 +345,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   /// non-empty `id` associated with it and the [enabled] property is [true]
   /// then this will attach the input value to the [JsonWidgetRegistry]
   /// using the `id` as the key any time the selected value is changed.
+  /// The modification of the value which lies under `id` key in
+  /// [JsonWidgetRegistry] will modify also value of [TextFormField]. It is
+  /// really useful to create clearing values logic.
   ///
   /// Likewise, this will set any error messages using the key '$id.error'.  An
   /// empty string will be used to represent no error message.
@@ -398,6 +399,17 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         registry: widget.data.registry,
       );
     }
+    widget.data.registry.valueStream.listen((event) {
+      if (event == widget.data.id) {
+        String value = widget.data.registry.getValue(widget.data.id);
+        widget.builder.controller.value = widget.builder.controller.value
+            .copyWith(
+                text: value,
+                selection: TextSelection(
+                    baseOffset: value.length, extentOffset: value.length),
+                composing: TextRange(start: 0, end: value.length));
+      }
+    });
   }
 
   @override
@@ -407,7 +419,13 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         autofocus: widget.builder.autofocus,
         autovalidateMode: widget.builder.autovalidateMode,
         buildCounter: widget.builder.buildCounter,
-        controller: widget.builder.controller,
+        controller: widget.builder.controller
+          ..addListener(() {
+            if (widget.data.id.isNotEmpty == true) {
+              widget.data.registry
+                  .setValue(widget.data.id, widget.builder.controller.text);
+            }
+          }),
         cursorColor: widget.builder.cursorColor,
         cursorHeight: widget.builder.cursorHeight,
         cursorRadius: widget.builder.cursorRadius,
@@ -420,7 +438,6 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         enabled: widget.builder.enabled,
         expands: widget.builder.expands,
         focusNode: widget.builder.focusNode,
-        initialValue: widget.builder.initialValue,
         inputFormatters: widget.builder.inputFormatters,
         keyboardAppearance: widget.builder.keyboardAppearance,
         keyboardType: widget.builder.keyboardType,
@@ -435,10 +452,6 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
             : (value) {
                 if (widget.builder.onChanged != null) {
                   widget.builder.onChanged!(value);
-                }
-
-                if (widget.data.id.isNotEmpty == true) {
-                  widget.data.registry.setValue(widget.data.id, value);
                 }
               },
         onEditingComplete: widget.builder.onEditingComplete,
