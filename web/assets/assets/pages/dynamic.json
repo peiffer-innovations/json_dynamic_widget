@@ -12,6 +12,7 @@
                 }
             }
         },
+        "resizeToAvoidBottomInset": true,
         "body": {
             "type": "column",
             "args": {
@@ -221,7 +222,23 @@
                                                                     "args": {
                                                                         "decoration": {
                                                                             "hintText": "Write a message",
-                                                                            "labelText": "Message"
+                                                                            "labelText": "Message",
+                                                                            "suffixIcon": {
+                                                                                "type": "icon_button",
+                                                                                "args": {
+                                                                                    "icon": {
+                                                                                        "type": "icon",
+                                                                                        "args": {
+                                                                                            "icon": {
+                                                                                                "codePoint": 57704,
+                                                                                                "fontFamily": "MaterialIcons",
+                                                                                                "size": 50
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "onPressed": "##set_value(form_message,)##"
+                                                                                }
+                                                                            }
                                                                         },
                                                                         "validators": [
                                                                             {
@@ -243,7 +260,7 @@
                                                     "type": "add",
                                                     "builder": "items",
                                                     "target": {
-                                                        "index": -1
+                                                        "index": 0
                                                     },
                                                     "values": {
                                                         "message": "{{form_message}}"
