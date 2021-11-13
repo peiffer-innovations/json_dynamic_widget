@@ -8,13 +8,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    container:
+      image: google/dart:latest
+
     steps:
       - uses: actions/checkout@v2
-
-      - uses: subosito/flutter-action@v1
-        with:
-          channel: "stable"
-
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1.0.2
         with:
@@ -31,13 +29,11 @@ jobs:
 
       - name: Update Schemas
         run: |
-          git config --global user.email "noop@peifferinnovations.com"
-          git config --global user.name "action"
+          git config --global user.email "noop@github.com"
           git config --global url."https://action:${{secrets.REPO_TOKEN}}@github.com/".insteadOf https://github.com/
-
-          rm -rf schemas/schemas/json_dynamic_widget
-          mkdir schemas/schemas/json_dynamic_widget
-          cp output/* schemas/schemas/json_dynamic_widget
+          rm -rf schemas/json_dynamic_widget
+          mkdir schemas/json_dynamic_widget
+          cp output/* schemas/json_dynamic_widget
           cd schemas
           git add .
           git commit --allow-empty -m "json_dynamic_widget: schema update"
@@ -45,10 +41,11 @@ jobs:
           cd ..
 
       - name: Publish
-        uses: k-paxian/dart-package-publisher@v1.3
+        uses: sakebook/actions-flutter-pub-publisher@v1.3.1
         with:
-          credentialJson: ${{ secrets.CREDENTIAL_JSON }}
-          skipTests: true
+          credential: ${{ secrets.CREDENTIAL_JSON }}
+          flutter_package: true
+          skip_test: true
 
       - uses: CDDelta/dart-version-auto-tag@v1.0.1
         with:
