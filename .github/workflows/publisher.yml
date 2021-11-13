@@ -31,9 +31,9 @@ jobs:
         run: |
           git config --global user.email "noop@github.com"
           git config --global url."https://action:${{secrets.REPO_TOKEN}}@github.com/".insteadOf https://github.com/
-          rm -rf schemas/json_dynamic_widget
-          mkdir schemas/json_dynamic_widget
-          cp output/* schemas/json_dynamic_widget
+          rm -rf schemas/schemas/json_dynamic_widget
+          mkdir schemas/schemas/json_dynamic_widget
+          cp output/* schemas/schemas/json_dynamic_widget
           cd schemas
           git add .
           git commit --allow-empty -m "json_dynamic_widget: schema update"

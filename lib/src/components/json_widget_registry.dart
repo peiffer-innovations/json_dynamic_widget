@@ -161,7 +161,10 @@ class JsonWidgetRegistry {
   /// If no builder is registered for the given [type] then this will throw an
   /// [Exception].
   JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
-    var container = _customBuilders[type] ?? _internalBuilders[type]!;
+    var container = _customBuilders[type] ?? _internalBuilders[type];
+    if (container == null) {
+      throw Exception('No widget with type: "$type" found in the registry.');
+    }
     var builder = container.builder;
 
     return builder;
