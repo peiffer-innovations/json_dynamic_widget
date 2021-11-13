@@ -3,6 +3,7 @@
 ## Table of Contents
 
 * [Live Example](#live-example)
+* [First Party Plugins](#first-party-plugins)
 * [Introduction](#introduction)
 * [Understanding the Registry](#understanding-the-registry)
 * [Built In Widgets](#built-in-widgets)
@@ -14,6 +15,13 @@
 ## Live Example
 
 * [Web](https://peiffer-innovations.github.io/json_dynamic_widget/web/index.html#/)
+
+
+## First Party Plugins
+
+Here's a list of first party plugins that exist for this library.
+
+* [json_dynamic_widget_plugin_svg](https://pub.dev/packages/json_dynamic_widget_plugin_svg)
 
 
 ## Introduction

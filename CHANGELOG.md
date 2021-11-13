@@ -1,4 +1,4 @@
-## [3.1.1] - November 13th, 2021
+## [3.1.1+1] - November 13th, 2021
 
 * Minor error reporting enhancements
 * Dependency updates
