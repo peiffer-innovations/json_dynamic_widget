@@ -8,9 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    container:
-      image: dart:latest
-
     steps:
       - uses: actions/checkout@v2
       - name: Validate
