@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/animation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -236,6 +238,61 @@ void main() {
           'decelerate_curve': Curves.decelerate,
         },
       ),
+    );
+  });
+
+  test('json path', () {
+    var people = [
+      {
+        'firstName': 'John',
+        'lastName': 'Smith',
+        'address': {
+          'street': '1234 Lane Ave',
+          'city': 'Springfield',
+          'state': 'OH',
+        }
+      },
+      {
+        'firstName': 'Jane',
+        'lastName': 'Smith',
+        'address': {
+          'street': '1234 Lane Ave',
+          'city': 'Springfield',
+          'state': 'MI',
+        }
+      },
+    ];
+
+    var registry = JsonWidgetRegistry(values: {'people': people});
+
+    expect(
+      registry.getValue(r'people;$[0].firstName'),
+      'John',
+    );
+    expect(
+      registry.getValue(r'people;$[1].address.state'),
+      'MI',
+    );
+
+    expect(
+      registry.getValue(r'people;$'),
+      people,
+    );
+
+    registry = JsonWidgetRegistry(values: {'people': json.encode(people)});
+
+    expect(
+      registry.getValue(r'people;$[0].firstName'),
+      'John',
+    );
+    expect(
+      registry.getValue(r'people;$[1].address.state'),
+      'MI',
+    );
+
+    expect(
+      registry.getValue(r'people;$'),
+      people,
     );
   });
 }

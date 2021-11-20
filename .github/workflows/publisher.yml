@@ -9,12 +9,12 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: google/dart:latest
+      image: dart:latest
 
     steps:
       - uses: actions/checkout@v2
       - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1.0.2
+        uses: peiffer-innovations/actions-flutter-validate@v1.1.1
         with:
           flutter_package: true
 
@@ -29,6 +29,7 @@ jobs:
 
       - name: Update Schemas
         run: |
+          git config --global user.name "action"
           git config --global user.email "noop@github.com"
           git config --global url."https://action:${{secrets.REPO_TOKEN}}@github.com/".insteadOf https://github.com/
           rm -rf schemas/json_dynamic_widget
@@ -41,11 +42,9 @@ jobs:
           cd ..
 
       - name: Publish
-        uses: sakebook/actions-flutter-pub-publisher@v1.3.1
+        uses: peiffer-innovations/actions-pub-publish@v1.0.0
         with:
-          credential: ${{ secrets.CREDENTIAL_JSON }}
-          flutter_package: true
-          skip_test: true
+          credentials: ${{ secrets.CREDENTIAL_JSON }}
 
       - uses: CDDelta/dart-version-auto-tag@v1.0.1
         with:

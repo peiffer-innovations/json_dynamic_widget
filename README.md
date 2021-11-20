@@ -193,11 +193,17 @@ Variables can be defined on the `JsonWidgetRegistry` that is used to render the 
 
 Variable references can be static (read only once) or dynamic (will rebuild whenever the underlying value changes).  To use the static reference, prefix it with an exclamation point (`!`).
 
+Variables may be complex JSON objects and you can reference notes on the object utilizing a [JSON Path expression](https://pub.dev/packages/json_path).  To do this, use the name of the variable followed by a semicolon (`;`) followed by the JSON Path expression.  An example of using the JSON Path option can be found in the [variables.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/variables.json) example
+
 Examples:
 ```
 {{dynamicVariavle}}
 
+{{dynamic;$.person.firstName}}
+
 !{{staticVariable}}
+
+!{{static;$.employees[1].lastName}}
 ```
 
 A variable can be used in any of the `child` / `children` / `args` values and for certain types of properties, a variable reference iw the only way to actually assign that value.

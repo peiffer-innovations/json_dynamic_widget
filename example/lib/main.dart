@@ -370,6 +370,7 @@ class RootPage extends StatelessWidget {
     'switch': _onPageSelected,
     'theme': _onPageSelected,
     'tween_animation': _onPageSelected,
+    'variables': _onPageSelected,
   };
 
   @override

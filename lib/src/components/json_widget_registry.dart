@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -18,6 +19,7 @@ import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
     as set_value_fun;
 import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
+import 'package:json_path/json_path.dart';
 
 /// Registry for both the library provided as well as custom form builders that
 /// the application may provide.
@@ -148,11 +150,40 @@ class JsonWidgetRegistry {
     );
   }
 
-  /// Returns the variable value for the given [key].This will first check for
+  /// Returns the variable value for the given [key]. This will first check for
   /// a custom dynamic value using the [key], and if none is found, this will
   /// then check the internal values. If a variable with named [key] cannot be
   /// found, this will return [null].
-  dynamic getValue(String? key) => _values[key] ?? _internalValues[key!];
+  ///
+  /// If the [key] contains a semicolon (`;`) then the first part will be used
+  /// as the actual key to look up and the second part will be treated as the
+  /// JSON Path expression to get the value out of the value represented by the
+  /// key.
+  dynamic getValue(String? key) {
+    String? jsonPath;
+    if (key is String && key.contains(';')) {
+      var parts = key.split(';');
+      key = parts[0];
+      jsonPath = parts[1];
+    }
+
+    var value = _values[key] ?? _internalValues[key];
+
+    try {
+      if (jsonPath != null) {
+        var jsonData = value;
+        if (jsonData is String &&
+            (jsonData.startsWith('{') || jsonData.startsWith('['))) {
+          jsonData = json.decode(jsonData);
+        }
+        value = JsonPath(jsonPath).readValues(jsonData).first;
+      }
+    } catch (e) {
+      // no-op
+    }
+
+    return value;
+  }
 
   /// Returns the builder for the requested [type].  This will first search the
   /// registered custom builders, then if no builder is found, this will then

@@ -1,3 +1,8 @@
+## [3.2.0] - November 20th, 2021
+
+* Added ability to get data from a variable via JSON Path
+
+
 ## [3.1.1+1] - November 13th, 2021
 
 * Minor error reporting enhancements
