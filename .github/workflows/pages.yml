@@ -3,11 +3,6 @@ name: Flutter Pages Deployer
 on:
   push:
     branches: [main]
-    # paths:
-    #   - .github/workflows/pages.yaml
-    #   - pubspec.yaml
-    #   - lib/**
-    #   - example/**
 
 jobs:
   build_number:
@@ -26,9 +21,6 @@ jobs:
   publish:
     needs: build_number
     runs-on: ubuntu-latest
-
-    container:
-      image: dart:latest
 
     steps:
       - uses: actions/checkout@v2
