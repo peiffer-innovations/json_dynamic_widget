@@ -1,4 +1,4 @@
-## [3.2.0] - November 20th, 2021
+## [3.2.0+1] - November 20th, 2021
 
 * Added ability to get data from a variable via JSON Path
 

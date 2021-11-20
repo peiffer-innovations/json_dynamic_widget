@@ -37,7 +37,7 @@ Widgets that are capable of building themselves from JSON structures.  The gener
   "child": {
     "...": "..."
   },
-  "children: [{
+  "children": [{
     "...": "...",
   }]
 }
