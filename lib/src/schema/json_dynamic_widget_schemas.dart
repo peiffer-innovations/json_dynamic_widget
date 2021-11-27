@@ -94,6 +94,7 @@ class JsonDynamicWidgetSchemas {
     TextSchema.id: TextSchema.schema,
     ThemeSchema.id: ThemeSchema.schema,
     TweenAnimationSchema.id: TweenAnimationSchema.schema,
+    WrapSchema.id: WrapSchema.schema,
   });
 
   static Map<String, dynamic>? lookup(String key) =>

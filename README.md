@@ -21,6 +21,8 @@
 
 Here's a list of first party plugins that exist for this library.
 
+* [json_dynamic_widget_plugin_lottie](https://pub.dev/packages/json_dynamic_widget_plugin_lottie)
+* [json_dynamic_widget_plugin_rive](https://pub.dev/packages/json_dynamic_widget_plugin_rive)
 * [json_dynamic_widget_plugin_svg](https://pub.dev/packages/json_dynamic_widget_plugin_svg)
 
 
@@ -225,6 +227,7 @@ The built in functions are defined below:
 Function Name    | Example | Args | Description
 -----------------|---------|------|------------
 `dynamic`        | `##dynamic(operationVar1, operationVar2...)##` | The variable names which contains values convertable into `DynamicOperation`.| Executes every `DynamicOperation` passed as args.
+`for_each`       | `##for_each({{items;$.data.items}}, {{templateName}}, value, key)##` | <ol><li>The variable containing the items to iterate over</li><li>The variable containing the template to use when iterating.</li><li>Optional: the name of the variable to put the value in</li><li>Optional: the name of the variable to put the index or key in</li></ol> | Iterates over the list or map defined by the first arg and builds the widget defined in the template / second argument.  The value will be placed in either the variable named `value` or the passed in third argument.  Finally, the index or key will be placed in `key` or the fourth arg's name.
 `log`            | `##log(my message, info)##` | <ol><li>The message to write to the logger</li><li>Optional: level to log the message at; defaults to `finest`</li></ol> | Logs the given message out to the logger using the optional level or `finest` if not set.
 `navigate_named` | `##navigate_named(home, {{someValue}})##` | <ol><li>The route name</li><li>Optional: an arguments object to provide</li></ol> | Navigates to the named route.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.
 `navigate_pop`   | `##navigate_pop(false)##` | <ol><li>Optional: the value to pop with</li></ol> | Pop's the navigator stack.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.

@@ -28,113 +28,131 @@
             },
             "child": {
               "type": "stack",
-              "children": [{
-                "type": "align",
-                "args": {
-                  "alignment": "bottomLeft"
-                },
-                "child": {
-                  "type": "raised_button",
+              "children": [
+                {
+                  "type": "align",
                   "args": {
-                    "onPressed": "##set_value(theme, cool_blue)##"
+                    "alignment": "bottomLeft"
                   },
                   "child": {
-                    "type": "text",
+                    "type": "raised_button",
                     "args": {
-                      "text": "Big Red"
-                    }
-                  }
-                }
-              }, {
-                "type": "align",
-                "args": {
-                  "alignment": "bottomRight"
-                },
-                "child": {
-                  "type": "raised_button",
-                  "args": {
-                    "onPressed": "##set_value(theme, big_red)##"
-                  },
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "Cool Blue"
-                    }
-                  }
-                }
-              }, {
-                "type": "positioned",
-                "args": {
-                  "bottom": 80,
-                  "left": 16,
-                  "right": 16,
-                  "top": 0
-                },
-                "child": {
-                  "type": "single_child_scroll_view",
-                  "args": {
-                    "padding": [16, 0]
-                  },
-                  "child": {
-                    "type": "column",
-                    "args": {
-                      "mainAxisSize": "min"
+                      "onPressed": "##set_value(theme, big_red)##"
                     },
-                    "children": [{
-                      "type": "checkbox"
-                    }, {
-                      "type": "sized_box",
-                      "args": {
-                        "height": 16.0
-                      }
-                    }, {
-                      "type": "row",
-                      "args": {
-                        "mainAxisAlignment": "spaceEvenly"
-                      },
-                      "children": [{
-                        "type": "radio",
-                        "args": {
-                          "groupValue": "false",
-                          "id": "radio",
-                          "value": true
-                        }
-                      }, {
-                        "type": "radio",
-                        "args": {
-                          "groupValue": "false",
-                          "id": "radio",
-                          "value": false
-                        }
-                      }]
-                    }, {
+                    "child": {
                       "type": "text",
                       "args": {
-                        "text": "Hello, World!"
+                        "text": "Big Red"
                       }
-                    }, {
-                      "type": "sized_box",
+                    }
+                  }
+                },
+                {
+                  "type": "align",
+                  "args": {
+                    "alignment": "bottomRight"
+                  },
+                  "child": {
+                    "type": "raised_button",
+                    "args": {
+                      "onPressed": "##set_value(theme, cool_blue)##"
+                    },
+                    "child": {
+                      "type": "text",
                       "args": {
-                        "height": 16.0
+                        "text": "Cool Blue"
                       }
-                    }, {
-                      "type": "text_form_field",
+                    }
+                  }
+                },
+                {
+                  "type": "positioned",
+                  "args": {
+                    "bottom": 80,
+                    "left": 16,
+                    "right": 16,
+                    "top": 0
+                  },
+                  "child": {
+                    "type": "single_child_scroll_view",
+                    "args": {
+                      "padding": [
+                        16,
+                        0
+                      ]
+                    },
+                    "child": {
+                      "type": "column",
                       "args": {
-                        "decoration": {
-                          "hintText": "example@example.com",
-                          "labelText": "Email Address"
-                        }
+                        "mainAxisSize": "min"
                       },
-                      "id": "text_form_field"
-                    }, {
-                      "type": "sized_box",
-                      "args": {
-                        "height": 16.0
-                      }
-                    }]
+                      "children": [
+                        {
+                          "type": "checkbox"
+                        },
+                        {
+                          "type": "sized_box",
+                          "args": {
+                            "height": 16.0
+                          }
+                        },
+                        {
+                          "type": "row",
+                          "args": {
+                            "mainAxisAlignment": "spaceEvenly"
+                          },
+                          "children": [
+                            {
+                              "type": "radio",
+                              "args": {
+                                "groupValue": "false",
+                                "id": "radio",
+                                "value": true
+                              }
+                            },
+                            {
+                              "type": "radio",
+                              "args": {
+                                "groupValue": "false",
+                                "id": "radio",
+                                "value": false
+                              }
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "args": {
+                            "text": "Hello, World!"
+                          }
+                        },
+                        {
+                          "type": "sized_box",
+                          "args": {
+                            "height": 16.0
+                          }
+                        },
+                        {
+                          "type": "text_form_field",
+                          "args": {
+                            "decoration": {
+                              "hintText": "example@example.com",
+                              "labelText": "Email Address"
+                            }
+                          },
+                          "id": "text_form_field"
+                        },
+                        {
+                          "type": "sized_box",
+                          "args": {
+                            "height": 16.0
+                          }
+                        }
+                      ]
+                    }
                   }
                 }
-              }]
+              ]
             }
           }
         }
@@ -146,7 +164,7 @@
     "args": {
       "conditional": {
         "values": {
-          "theme": "cool_blue"
+          "theme": "big_red"
         }
       },
       "onFalse": {

@@ -1,3 +1,9 @@
+## [3.3.0] - November 26th, 2021
+
+* Added `for_each` iterator function
+* Fixed `theme.json` example
+
+
 ## [3.2.0+1] - November 20th, 2021
 
 * Added ability to get data from a variable via JSON Path

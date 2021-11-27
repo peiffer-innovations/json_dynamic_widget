@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/components/functions/dynamic.dart'
     as dynamic_fun;
+import 'package:json_dynamic_widget/src/components/functions/for_each.dart'
+    as for_each_fun;
 import 'package:json_dynamic_widget/src/components/functions/log.dart'
     as log_fun;
 import 'package:json_dynamic_widget/src/components/functions/navigate_named.dart'
@@ -40,20 +42,30 @@ class JsonWidgetRegistry {
   /// widget [builders], custom widget [functions], and widget [values].
   JsonWidgetRegistry({
     Map<String, JsonWidgetBuilderContainer>? builders,
-    this.debugLabel,
+    String? debugLabel,
     this.disableValidation = false,
     Map<String, JsonWidgetFunction>? functions,
     this.navigatorKey,
+    JsonWidgetRegistry? parent,
     Map<String, dynamic>? values,
-  }) {
+  })  : debugLabel = (parent != null ? '${parent.debugLabel}.' : '') +
+            (debugLabel ?? 'child_${++childCount}'),
+        _parent = parent {
     _customBuilders.addAll(builders ?? {});
     _functions.addAll(functions ?? {});
     _values.addAll(values ?? {});
+    _parentDisposeStreamSubscription =
+        parent?.disposeStream.listen((_) => dispose());
+
+    _parentValueStreamSubscription = parent?.valueStream
+        .listen((event) => _valueStreamController?.add(event));
   }
 
   static final JsonWidgetRegistry instance = JsonWidgetRegistry(
     debugLabel: 'default',
   );
+
+  static int childCount = 0;
 
   final _customBuilders = <String, JsonWidgetBuilderContainer>{};
 
@@ -63,6 +75,7 @@ class JsonWidgetRegistry {
   final _internalBuilders = JsonWidgetInternalBuilders.builders;
   final _internalFunctions = <String, JsonWidgetFunction>{
     dynamic_fun.key: dynamic_fun.body,
+    for_each_fun.key: for_each_fun.body,
     log_fun.key: log_fun.body,
     navigate_named_fun.key: navigate_named_fun.body,
     navigate_pop_fun.key: navigate_pop_fun.body,
@@ -73,8 +86,13 @@ class JsonWidgetRegistry {
   final _internalValues = <String, dynamic>{}..addAll(
       CurvesValues.values,
     );
+  final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
 
+  StreamController<void>? _disposeStreamController =
+      StreamController<void>.broadcast();
+  StreamSubscription<void>? _parentDisposeStreamSubscription;
+  StreamSubscription<String>? _parentValueStreamSubscription;
   StreamController<String>? _valueStreamController =
       StreamController<String>.broadcast();
 
@@ -92,12 +110,22 @@ class JsonWidgetRegistry {
   /// ```
   GlobalKey<NavigatorState>? navigatorKey;
 
+  /// Returns the [Stream] that an element can listen to in order to be notified
+  /// when the registry is disposed.  Typically this should only be used by
+  /// child registries listening to notifications from their parent registries.
+  Stream<void> get disposeStream => _disposeStreamController!.stream;
+
   /// Returns an unmodifiable reference to the internal set of values.
-  Map<String, dynamic> get values => Map.unmodifiable(_values);
+  Map<String, dynamic> get values => Map.unmodifiable(
+        Map.from(_values)
+          ..addAll(
+            _parent?.values ?? const <String, dynamic>{},
+          ),
+      );
 
   /// Returns the [Stream] that an element can listen to in order to be notified
-  /// when
-  Stream<String?> get valueStream => _valueStreamController!.stream;
+  /// when a value has changed.
+  Stream<String> get valueStream => _valueStreamController!.stream;
 
   /// Removes all variable values from the registry
   void clearValues() {
@@ -114,6 +142,7 @@ class JsonWidgetRegistry {
     bool? disableValidation,
     Map<String, JsonWidgetFunction>? functions,
     GlobalKey<NavigatorState>? navigatorKey,
+    JsonWidgetRegistry? parent,
     Map<String, dynamic>? values,
   }) =>
       JsonWidgetRegistry(
@@ -122,11 +151,22 @@ class JsonWidgetRegistry {
         disableValidation: disableValidation ?? this.disableValidation,
         functions: functions ?? _functions,
         navigatorKey: navigatorKey ?? this.navigatorKey,
+        parent: parent ?? this,
         values: values ?? Map.from(_values),
       );
 
   /// Disposes the registry.
   void dispose() {
+    _disposeStreamController?.add(null);
+    _disposeStreamController?.close();
+    _disposeStreamController = null;
+
+    _parentDisposeStreamSubscription?.cancel();
+    _parentDisposeStreamSubscription = null;
+
+    _parentValueStreamSubscription?.cancel();
+    _parentValueStreamSubscription = null;
+
     _valueStreamController?.close();
     _valueStreamController = null;
   }
@@ -141,7 +181,12 @@ class JsonWidgetRegistry {
   ) {
     var fun = _functions[key!] ?? _internalFunctions[key];
     if (fun == null) {
-      throw Exception('No function named "$key" found in the registry.');
+      if (_parent == null) {
+        throw Exception(
+            'No function named "$key" found in the registry [$debugLabel].');
+      } else {
+        return _parent!.execute(key, args);
+      }
     }
 
     return fun(
@@ -182,7 +227,7 @@ class JsonWidgetRegistry {
       // no-op
     }
 
-    return value;
+    return value ?? _parent?.getValue(key);
   }
 
   /// Returns the builder for the requested [type].  This will first search the
@@ -193,10 +238,13 @@ class JsonWidgetRegistry {
   /// [Exception].
   JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
     var container = _customBuilders[type] ?? _internalBuilders[type];
-    if (container == null) {
-      throw Exception('No widget with type: "$type" found in the registry.');
+
+    var builder = container?.builder ?? _parent?.getWidgetBuilder(type);
+
+    if (builder == null) {
+      throw Exception(
+          'No widget with type: "$type" found in the registry [$debugLabel].');
     }
-    var builder = container.builder;
 
     return builder;
   }

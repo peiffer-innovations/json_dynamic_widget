@@ -32,6 +32,12 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       var data = _registry.getValue(_key);
 
       if (data is! JsonWidgetData) {
+        data = JsonWidgetData.fromDynamic(
+          data,
+          registry: registry,
+        );
+      }
+      if (data is! JsonWidgetData) {
         throw Exception(
           'Unable to find JsonWidgetData for [$_key] on the registry',
         );
@@ -54,6 +60,12 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   String get id => data.id;
 
   @override
+  dynamic get originalChild => data.originalChild;
+
+  @override
+  dynamic get originalChildren => data.originalChildren;
+
+  @override
   Widget build({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
@@ -70,6 +82,8 @@ class DeferredJsonWidgetData implements JsonWidgetData {
     List<JsonWidgetData>? children,
     Set<String>? dynamicKeys,
     String? id,
+    dynamic originalChild,
+    dynamic originalChildren,
     JsonWidgetRegistry? registry,
     String? type,
   }) =>
@@ -79,6 +93,8 @@ class DeferredJsonWidgetData implements JsonWidgetData {
         children: children ?? this.children,
         dynamicKeys: dynamicKeys ?? this.dynamicKeys,
         id: id ?? this.id,
+        originalChild: originalChild ?? this.originalChild,
+        originalChildren: originalChildren ?? this.originalChildren,
         registry: registry ?? this.registry,
         type: type ?? this.type,
       );

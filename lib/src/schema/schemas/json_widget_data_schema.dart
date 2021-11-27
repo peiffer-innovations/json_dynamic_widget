@@ -27,8 +27,15 @@ class JsonWidgetDataSchema {
           },
           'child': SchemaHelper.anySchema,
           'children': {
-            'type': 'array',
-            'items': SchemaHelper.anySchema,
+            'anyOf': [
+              {
+                'type': 'string',
+              },
+              {
+                'type': 'array',
+                'items': SchemaHelper.anySchema,
+              },
+            ],
           },
           'id': {
             'type': 'string',

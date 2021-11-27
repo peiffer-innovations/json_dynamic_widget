@@ -335,6 +335,7 @@ class RootPage extends StatelessWidget {
     'directionality': _onPageSelected,
     'dynamic': _onUntestablePageSelected,
     'fitted_box': _onPageSelected,
+    'for_each': _onPageSelected,
     'form': _onPageSelected,
     'fractional_translation': _onPageSelected,
     'fractionally_sized_box': _onPageSelected,

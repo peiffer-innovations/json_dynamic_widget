@@ -14,7 +14,7 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
     this.values,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
-  static const kNumSupportedChildren = -1;
+  static const kNumSupportedChildren = 1;
   static const type = 'set_value';
 
   final dynamic values;
