@@ -63,7 +63,8 @@ class JsonWidgetData extends JsonClass {
     JsonWidgetRegistry? registry,
   }) {
     JsonWidgetData? result;
-    var innerRegistry = registry ?? JsonWidgetRegistry.instance;
+    registry ??= JsonWidgetRegistry.instance;
+    ;
 
     if (map is String &&
         (map.startsWith('!{{') || map.startsWith('{{')) &&
@@ -71,17 +72,17 @@ class JsonWidgetData extends JsonClass {
       var key = map.substring(map.indexOf('{{') + 2, map.length - 2).trim();
       result = DeferredJsonWidgetData(
         key: key,
-        registry: innerRegistry,
+        registry: registry,
       );
     } else if (map != null) {
       var type = map['type'];
-      var builder = innerRegistry.getWidgetBuilder(type);
+      var builder = registry.getWidgetBuilder(type);
       var args = map['args'];
 
       // The validation needs to happen before we process the dynamic args or
       // else there may be non-JSON compatible objects in the map which will
       // always fail validation.
-      assert(innerRegistry.validateBuilderSchema(
+      assert(registry.validateBuilderSchema(
         type: type,
         value: args,
         validate: args == null ? false : true,
@@ -101,22 +102,20 @@ class JsonWidgetData extends JsonClass {
       }
 
       var dynamicParamsResult =
-          innerRegistry.processDynamicArgs(args ?? <String, dynamic>{});
+          registry.processDynamicArgs(args ?? <String, dynamic>{});
 
       try {
         result = JsonWidgetData(
           args: map['args'] ?? {},
           builder: () {
             return builder(
-              innerRegistry
-                  .processDynamicArgs(args ?? <String, dynamic>{})
-                  .values,
+              registry!.processDynamicArgs(args ?? <String, dynamic>{}).values,
               registry: registry,
             )!;
           },
           child: child,
           children: map['children'] is String
-              ? innerRegistry.processDynamicArgs(map['children']).values
+              ? registry.processDynamicArgs(map['children']).values
               : JsonClass.fromDynamicList(
                   map['children'],
                   (dynamic map) => JsonWidgetData.fromDynamic(
@@ -128,7 +127,7 @@ class JsonWidgetData extends JsonClass {
           id: map['id'],
           originalChild: map['child'],
           originalChildren: map['children'],
-          registry: innerRegistry,
+          registry: registry,
           type: type,
         );
       } catch (e, stack) {

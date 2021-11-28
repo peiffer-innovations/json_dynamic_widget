@@ -1,4 +1,4 @@
-## [3.3.0] - November 28th, 2021
+## [3.3.0+1] - November 28th, 2021
 
 * Added `for_each` iterator function
 * Fixed `theme.json` example

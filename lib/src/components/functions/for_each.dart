@@ -31,7 +31,7 @@ final JsonWidgetFunction body = ({
   if (iterable is Iterable) {
     var index = 0;
     for (var value in iterable) {
-      var reg = registry.copyWith();
+      var reg = JsonWidgetRegistry(parent: registry);
       _logger.finest('[for_each]: [$index[ [$value]');
       reg.setValue(varName, value);
       reg.setValue(keyName, index++);
@@ -45,7 +45,7 @@ final JsonWidgetFunction body = ({
     }
   } else if (iterable is Map) {
     for (var entry in iterable.entries) {
-      var reg = registry.copyWith();
+      var reg = JsonWidgetRegistry(parent: registry);
       _logger.finest('[for_each]: [${entry.key}[ [${entry.value}]');
       reg.setValue(varName, entry.value);
       reg.setValue(keyName, entry.key);
