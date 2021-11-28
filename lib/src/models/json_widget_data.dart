@@ -64,9 +64,10 @@ class JsonWidgetData extends JsonClass {
   }) {
     JsonWidgetData? result;
     registry ??= JsonWidgetRegistry.instance;
-    ;
 
-    if (map is String &&
+    if (map is JsonWidgetData) {
+      result = map;
+    } else if (map is String &&
         (map.startsWith('!{{') || map.startsWith('{{')) &&
         map.endsWith('}}')) {
       var key = map.substring(map.indexOf('{{') + 2, map.length - 2).trim();
