@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/components/types.dart';
 import 'package:logging/logging.dart';
@@ -33,6 +32,7 @@ final JsonWidgetFunction body = ({
     var index = 0;
     for (var value in iterable) {
       var reg = registry.copyWith();
+      _logger.finest('[for_each]: [$index[ [$value]');
       reg.setValue(varName, value);
       reg.setValue(keyName, index++);
 
@@ -46,6 +46,7 @@ final JsonWidgetFunction body = ({
   } else if (iterable is Map) {
     for (var entry in iterable.entries) {
       var reg = registry.copyWith();
+      _logger.finest('[for_each]: [${entry.key}[ [${entry.value}]');
       reg.setValue(varName, entry.value);
       reg.setValue(keyName, entry.key);
 
