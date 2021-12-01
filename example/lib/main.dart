@@ -340,6 +340,7 @@ class RootPage extends StatelessWidget {
     'fractional_translation': _onPageSelected,
     'fractionally_sized_box': _onPageSelected,
     'gestures': _onPageSelected,
+    'grid_view': _onPageSelected,
     'images': _onPageSelected,
     'indexed_stack': _onPageSelected,
     'input_error': _onPageSelected,
@@ -358,6 +359,7 @@ class RootPage extends StatelessWidget {
         ),
     'issue_30': _onPageSelected,
     'layout_builder': _onPageSelected,
+    'length': _onPageSelected,
     'limited_box': _onPageSelected,
     'linear_progress_indicator': _onPageSelected,
     'list_view': _onPageSelected,
@@ -367,11 +369,14 @@ class RootPage extends StatelessWidget {
     'overflow_box': _onPageSelected,
     'placeholder': _onPageSelected,
     'popup_menu_button': _onPageSelected,
+    'set_default_value': _onPageSelected,
     'simple_page': _onPageSelected,
     'switch': _onPageSelected,
     'theme': _onPageSelected,
+    'tooltip': _onPageSelected,
     'tween_animation': _onPageSelected,
     'variables': _onPageSelected,
+    'wrap': _onPageSelected,
   };
 
   @override

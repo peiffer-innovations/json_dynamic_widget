@@ -7,6 +7,8 @@ import 'package:json_dynamic_widget/src/components/functions/dynamic.dart'
     as dynamic_fun;
 import 'package:json_dynamic_widget/src/components/functions/for_each.dart'
     as for_each_fun;
+import 'package:json_dynamic_widget/src/components/functions/length.dart'
+    as length_fun;
 import 'package:json_dynamic_widget/src/components/functions/log.dart'
     as log_fun;
 import 'package:json_dynamic_widget/src/components/functions/navigate_named.dart'
@@ -76,6 +78,7 @@ class JsonWidgetRegistry {
   final _internalFunctions = <String, JsonWidgetFunction>{
     dynamic_fun.key: dynamic_fun.body,
     for_each_fun.key: for_each_fun.body,
+    length_fun.key: length_fun.body,
     log_fun.key: log_fun.body,
     navigate_named_fun.key: navigate_named_fun.body,
     navigate_pop_fun.key: navigate_pop_fun.body,

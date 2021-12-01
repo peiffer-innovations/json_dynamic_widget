@@ -185,6 +185,10 @@ class JsonWidgetInternalBuilders {
           builder: JsonGestureDetectorBuilder.fromDynamic,
           schemaId: GestureDetectorSchema.id,
         ),
+        JsonGridViewBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonGridViewBuilder.fromDynamic,
+          schemaId: GridViewSchema.id,
+        ),
         JsonHeroBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonHeroBuilder.fromDynamic,
           schemaId: HeroSchema.id,
@@ -325,6 +329,10 @@ class JsonWidgetInternalBuilders {
           builder: JsonSemanticsBuilder.fromDynamic,
           schemaId: SemanticsSchema.id,
         ),
+        JsonSetDefaultValueBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonSetDefaultValueBuilder.fromDynamic,
+          schemaId: SetDefaultValueSchema.id,
+        ),
         JsonSetValueBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSetValueBuilder.fromDynamic,
           schemaId: SetValueSchema.id,
@@ -365,6 +373,10 @@ class JsonWidgetInternalBuilders {
           builder: JsonTextFormFieldBuilder.fromDynamic,
           schemaId: TextFormFieldSchema.id,
         ),
+        JsonTooltipBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonTooltipBuilder.fromDynamic,
+          schemaId: TooltipSchema.id,
+        ),
         JsonTweenAnimationBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonTweenAnimationBuilder.fromDynamic,
           schemaId: TweenAnimationSchema.id,
@@ -372,6 +384,10 @@ class JsonWidgetInternalBuilders {
         JsonThemeBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonThemeBuilder.fromDynamic,
           schemaId: ThemeSchema.id,
+        ),
+        JsonWrapBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonWrapBuilder.fromDynamic,
+          schemaId: WrapSchema.id,
         )
       };
 }

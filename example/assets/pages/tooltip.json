@@ -1,0 +1,77 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Simple Page"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "column",
+      "children": [
+        {
+          "type": "tooltip",
+          "args": {
+            "message": "DEFAULT TOOLTIP"
+          },
+          "child": {
+            "type": "material",
+            "args": {
+              "borderRadius": 8,
+              "color": "#ccc"
+            },
+            "child": {
+              "type": "padding",
+              "args": {
+                "padding": 16
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "Default Tooltip"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "sized_box",
+          "args": {
+            "height": 16
+          }
+        },
+        {
+          "type": "tooltip",
+          "args": {
+            "message": "CUSTOM TOOLTIP"
+          },
+          "child": {
+            "type": "material",
+            "args": {
+              "borderRadius": 8,
+              "color": "#ccc"
+            },
+            "child": {
+              "type": "padding",
+              "args": {
+                "padding": 16
+              },
+              "child": {
+                "type": "text",
+                "args": {
+                  "text": "Custom Tooltip"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

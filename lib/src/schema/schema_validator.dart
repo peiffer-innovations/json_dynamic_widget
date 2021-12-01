@@ -98,9 +98,10 @@ class SchemaValidator {
 
     var errors = jsonSchema.validateWithErrors(processedValue);
     if (errors.isNotEmpty == true) {
+      var encoder = JsonEncoder.withIndent('  ');
       result = false;
       var errorStr =
-          'Value: ${json.encode(value)}\n\nSchema Error: $schemaId\n';
+          '*** VALIDATION ERROR ***:\n${encoder.convert(value)}\n\nSchema Error: $schemaId\n';
       for (var error in errors) {
         errorStr += ' * [${error.schemaPath}]: ${error.message}\n';
       }

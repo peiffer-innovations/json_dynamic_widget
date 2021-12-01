@@ -48,6 +48,7 @@ class JsonDynamicWidgetSchemas {
     FractionalTranslationSchema.id: FractionalTranslationSchema.schema,
     FractionallySizedBoxSchema.id: FractionallySizedBoxSchema.schema,
     GestureDetectorSchema.id: GestureDetectorSchema.schema,
+    GridViewSchema.id: GridViewSchema.schema,
     HeroSchema.id: HeroSchema.schema,
     IconButtonSchema.id: IconButtonSchema.schema,
     IconSchema.id: IconSchema.schema,
@@ -82,6 +83,7 @@ class JsonDynamicWidgetSchemas {
     SaveContextSchema.id: SaveContextSchema.schema,
     ScaffoldSchema.id: ScaffoldSchema.schema,
     SemanticsSchema.id: SemanticsSchema.schema,
+    SetDefaultValueSchema.id: SetDefaultValueSchema.schema,
     SetValueSchema.id: SetValueSchema.schema,
     SetWidgetSchema.id: SetWidgetSchema.schema,
     SingleChildScrollViewSchema.id: SingleChildScrollViewSchema.schema,
@@ -93,6 +95,7 @@ class JsonDynamicWidgetSchemas {
     TextFormFieldSchema.id: TextFormFieldSchema.schema,
     TextSchema.id: TextSchema.schema,
     ThemeSchema.id: ThemeSchema.schema,
+    TooltipSchema.id: TooltipSchema.schema,
     TweenAnimationSchema.id: TweenAnimationSchema.schema,
     WrapSchema.id: WrapSchema.schema,
   });

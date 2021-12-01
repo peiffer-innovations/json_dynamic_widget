@@ -16,6 +16,7 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
     this.runSpacing,
     this.spacing,
     this.textDirection,
+    this.verticalDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = -1;
@@ -29,6 +30,7 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
   final double? runSpacing;
   final double? spacing;
   final TextDirection? textDirection;
+  final VerticalDirection? verticalDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -42,7 +44,8 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
   ///   "runAlignment": <WrapAlignment>,
   ///   "runSpacing": <double>,
   ///   "spacing": <double>,
-  ///   "textDirection": <TextDirection>
+  ///   "textDirection": <TextDirection>,
+  ///   "verticalDirection": <VerticalDirection>
   /// }
   /// ```
   ///
@@ -51,52 +54,27 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeTextDirection]
   ///  * [ThemeDecoder.decodeWrapAlignment]
+  ///  * [ThemeDecoder.decodeVerticalDirection]
   ///  * [ThemeDecoder.decodeWrapCrossAlignment]
-  static JsonTextBuilder? fromDynamic(
+  static JsonWrapBuilder? fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
-    JsonTextBuilder? result;
+    JsonWrapBuilder? result;
     if (map != null) {
-      result = JsonTextBuilder(
-        locale: ThemeDecoder.decodeLocale(
-          map['local'],
-          validate: false,
+      result = JsonWrapBuilder(
+        alignment: ThemeDecoder.decodeWrapAlignment(map['alignment']),
+        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
+        crossAxisAlignment: ThemeDecoder.decodeWrapCrossAlignment(
+          map['crossAxisAlignment'],
         ),
-        maxLines: JsonClass.parseInt(map['maxLines']),
-        overflow: ThemeDecoder.decodeTextOverflow(
-          map['overflow'],
-          validate: false,
-        ),
-        semanticsLabel: map['semanticsLabel'],
-        softWrap: map['softWrap'] == null
-            ? null
-            : JsonClass.parseBool(map['softWrap']),
-        strutStyle: ThemeDecoder.decodeStrutStyle(
-          map['strutStyle'],
-          validate: false,
-        ),
-        style: ThemeDecoder.decodeTextStyle(
-          map['style'],
-          validate: false,
-        ),
-        text: map['text'].toString(),
-        textAlign: ThemeDecoder.decodeTextAlign(
-          map['textAlign'],
-          validate: false,
-        ),
-        textDirection: ThemeDecoder.decodeTextDirection(
-          map['textDirection'],
-          validate: false,
-        ),
-        textHeightBehavior: ThemeDecoder.decodeTextHeightBehavior(
-          map['textHeightBehavior'],
-          validate: false,
-        ),
-        textScaleFactor: JsonClass.parseDouble(map['textScaleFactor']),
-        textWidthBasis: ThemeDecoder.decodeTextWidthBasis(
-          map['textWidthBasis'],
-          validate: false,
+        direction: ThemeDecoder.decodeAxis(map['axis']),
+        runAlignment: ThemeDecoder.decodeWrapAlignment(map['runAlignment']),
+        spacing: JsonClass.parseDouble(map['spacing']),
+        runSpacing: JsonClass.parseDouble(map['runSpacing']),
+        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        verticalDirection: ThemeDecoder.decodeVerticalDirection(
+          map['verticalDirection'],
         ),
       );
     }
@@ -121,6 +99,13 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
         runSpacing: runSpacing ?? 0.0,
         spacing: spacing ?? 0.0,
         textDirection: textDirection,
-        children: [],
+        verticalDirection: verticalDirection ?? VerticalDirection.down,
+        children: [
+          for (var child in data.children ?? <JsonWidgetData>[])
+            child.build(
+              context: context,
+              childBuilder: childBuilder,
+            ),
+        ],
       );
 }

@@ -43,6 +43,7 @@ export 'src/builders/json_form_builder.dart';
 export 'src/builders/json_fractional_translation_builder.dart';
 export 'src/builders/json_fractionally_sized_box_builder.dart';
 export 'src/builders/json_gesture_detector_builder.dart';
+export 'src/builders/json_grid_view_builder.dart';
 export 'src/builders/json_hero_builder.dart';
 export 'src/builders/json_icon_builder.dart';
 export 'src/builders/json_icon_button_builder.dart';
@@ -78,6 +79,7 @@ export 'src/builders/json_safe_area_builder.dart';
 export 'src/builders/json_save_context_builder.dart';
 export 'src/builders/json_scaffold_builder.dart';
 export 'src/builders/json_semantics_builder.dart';
+export 'src/builders/json_set_default_value_builder.dart';
 export 'src/builders/json_set_value_builder.dart';
 export 'src/builders/json_set_widget_builder.dart';
 export 'src/builders/json_single_child_scroll_view_builder.dart';
@@ -89,8 +91,10 @@ export 'src/builders/json_text_builder.dart';
 export 'src/builders/json_text_button_builder.dart';
 export 'src/builders/json_text_form_field_builder.dart';
 export 'src/builders/json_theme_builder.dart';
+export 'src/builders/json_tooltip_builder.dart';
 export 'src/builders/json_tween_animation_builder.dart';
 export 'src/builders/json_widget_builder.dart';
+export 'src/builders/json_wrap_builder.dart';
 
 export 'src/components/json_widget_regex_helper.dart';
 export 'src/components/json_widget_registry.dart';
@@ -98,6 +102,8 @@ export 'src/components/types.dart';
 export 'src/components/values/values.dart';
 
 export 'src/decoders/input_decoration_decoder.dart';
+
+export 'src/exceptions/handled_json_widget_exception.dart';
 
 export 'src/models/deferred_json_widget_data.dart';
 export 'src/models/dynamic_params_result.dart';

@@ -1,9 +1,10 @@
+import 'dart:convert';
+
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
-import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
 
 class JsonWidgetData extends JsonClass {
@@ -49,7 +50,6 @@ class JsonWidgetData extends JsonClass {
   /// between passing in a `child` or a `children` with a single element, this
   /// will treat both of those identically.
   ///
-  /// ```json
   /// {
   ///   "type": <String>,
   ///   "args": <dynamic>,
@@ -65,6 +65,16 @@ class JsonWidgetData extends JsonClass {
     JsonWidgetData? result;
     registry ??= JsonWidgetRegistry.instance;
 
+    if (map is String &&
+        map.startsWith('{') &&
+        !map.startsWith('{{') &&
+        map.endsWith('}')) {
+      try {
+        map = json.decode(map);
+      } catch (e) {
+        // no-op; it probably just isn't a JSON string
+      }
+    }
     if (map is JsonWidgetData) {
       result = map;
     } else if (map is String &&
@@ -77,6 +87,13 @@ class JsonWidgetData extends JsonClass {
       );
     } else if (map != null) {
       var type = map['type'];
+      if (type is! String) {
+        throw HandledJsonWidgetException(
+          'Unknown type encountered: [$type]',
+          null,
+          data: map,
+        );
+      }
       var builder = registry.getWidgetBuilder(type);
       var args = map['args'];
 
@@ -132,11 +149,19 @@ class JsonWidgetData extends JsonClass {
           type: type,
         );
       } catch (e, stack) {
-        if (e is _HandledJsonWidgetException) {
+        if (e is HandledJsonWidgetException) {
           rethrow;
         }
-        _logger.severe('Error parsing data:\n$map', e, stack);
-        throw _HandledJsonWidgetException(e, stack);
+        var errorValue = map;
+        if (errorValue is Map || errorValue is List) {
+          errorValue = JsonEncoder.withIndent('  ').convert(errorValue);
+        }
+        _logger.severe('*** WIDGET PARSE ERROR ***\n$errorValue', e, stack);
+        throw HandledJsonWidgetException(
+          e,
+          stack,
+          data: errorValue,
+        );
       }
     }
 
@@ -232,12 +257,4 @@ class JsonWidgetData extends JsonClass {
         'args': args,
         'children': JsonClass.toJsonList(children),
       });
-}
-
-@immutable
-class _HandledJsonWidgetException implements Exception {
-  _HandledJsonWidgetException(this.e, this.stack);
-
-  final dynamic e;
-  final StackTrace stack;
 }

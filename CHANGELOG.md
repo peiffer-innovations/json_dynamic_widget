@@ -1,3 +1,12 @@
+## [3.4.0] - November 30th, 2021
+
+* Added ability for `JsonDynamicWidget` to be able to parse a JSON string
+* Added `length` function
+* Added `JsonSetDefaultValueBuilder` to be able to set values if, and only if, the value is not already set on the registry
+* Added `JsonTooltipBuilder`, `JsonWrapBuilder`, and `JsonGridViewBuilder`
+* Greatly improved error messaging
+
+
 ## [3.3.0+1] - November 28th, 2021
 
 * Added `for_each` iterator function

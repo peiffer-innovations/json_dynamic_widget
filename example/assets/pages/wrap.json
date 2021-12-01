@@ -68,15 +68,17 @@
       ]
     },
     "template": {
-      "type": "list_tile",
+      "type": "material",
       "args": {
-        "subtitle": {
-          "type": "text",
-          "args": {
-            "text": "{{key}}"
-          }
+        "borderRadius": 8,
+        "color": "#ccc"
+      },
+      "child": {
+        "type": "padding",
+        "args": {
+          "padding": 16.0
         },
-        "title": {
+        "child": {
           "type": "text",
           "args": {
             "text": "{{value}}"
@@ -92,37 +94,19 @@
         "type": "app_bar",
         "args": {
           "title": {
-            "type": "row",
+            "type": "text",
             "args": {
-              "crossAxisAlignment": "start",
-              "mainAxisAlignment": "start",
-              "mainAxisSize": "min"
-            },
-            "children": [
-              {
-                "type": "text",
-                "args": {
-                  "text": "For Each ("
-                }
-              },
-              {
-                "type": "text",
-                "args": {
-                  "text": "##length({{entries;$.values}})##"
-                }
-              },
-              {
-                "type": "text",
-                "args": {
-                  "text": ")"
-                }
-              }
-            ]
+              "text": "Wrap"
+            }
           }
         }
       },
       "body": {
-        "type": "list_view",
+        "type": "wrap",
+        "args": {
+          "runSpacing": 16.0,
+          "spacing": 16.0
+        },
         "children": "##for_each({{entries;$.values}}, template)##"
       }
     }

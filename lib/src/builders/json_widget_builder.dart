@@ -28,8 +28,6 @@ abstract class JsonWidgetBuilder {
     type: JsonSizedBoxBuilder.type,
   );
 
-  static final Logger _logger = Logger('JsonWidgetBuilder');
-
   final bool preferredSizeWidget;
   final int numSupportedChildren;
 
@@ -109,6 +107,8 @@ abstract class JsonWidgetBuilder {
   }) {
     var key = ValueKey(data.id);
 
+    dynamic exception;
+    StackTrace? stackTrace;
     var widget = runZonedGuarded(() {
       return buildCustom(
         childBuilder: childBuilder,
@@ -117,11 +117,20 @@ abstract class JsonWidgetBuilder {
         key: key,
       );
     }, (e, stack) {
-      _logger.severe('[ERROR]: Unable to build widget', e, stack);
+      exception = e;
+      stackTrace = stack;
     });
 
     if (widget == null) {
-      throw Exception('[ERROR]: Unable to build widget');
+      if (exception is HandledJsonWidgetException) {
+        throw exception;
+      } else {
+        throw HandledJsonWidgetException(
+          exception,
+          stackTrace,
+          data: data.toJson(),
+        );
+      }
     }
 
     if (childBuilder != null) {
