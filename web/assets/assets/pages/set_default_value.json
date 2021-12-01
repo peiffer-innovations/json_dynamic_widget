@@ -1,0 +1,77 @@
+{
+  "type": "set_default_value",
+  "args": {
+    "default": "set_default_value",
+    "nonDefault": "set_default_value"
+  },
+  "child": {
+    "type": "set_value",
+    "args": {
+      "nonDefault": "set_value"
+    },
+    "child": {
+      "type": "set_default_value",
+      "args": {
+        "nonDefault": "set_value"
+      },
+      "child": {
+        "type": "scaffold",
+        "args": {
+          "appBar": {
+            "type": "app_bar",
+            "args": {
+              "title": {
+                "type": "text",
+                "args": {
+                  "text": "Set Default Value"
+                }
+              }
+            }
+          },
+          "body": {
+            "type": "center",
+            "child": {
+              "type": "list_view",
+              "children": [
+                {
+                  "type": "list_tile",
+                  "args": {
+                    "subtitle": {
+                      "type": "text",
+                      "args": {
+                        "text": "{{default}}"
+                      }
+                    },
+                    "title": {
+                      "type": "text",
+                      "args": {
+                        "text": "default"
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "list_tile",
+                  "args": {
+                    "subtitle": {
+                      "type": "text",
+                      "args": {
+                        "text": "{{nonDefault}}"
+                      }
+                    },
+                    "title": {
+                      "type": "text",
+                      "args": {
+                        "text": "nonDefault"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
