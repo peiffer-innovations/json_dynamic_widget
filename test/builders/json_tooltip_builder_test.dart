@@ -5,7 +5,7 @@ void main() {
   test('type', () {
     const type = JsonTooltipBuilder.type;
 
-    expect(type, 'text');
+    expect(type, 'tooltip');
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
       true,
