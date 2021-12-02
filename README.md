@@ -30,7 +30,14 @@ Here's a list of first party plugins that exist for this library.
 
 ## Introduction
 
-Widgets that are capable of building themselves from JSON structures.  The general structure follows:
+**Important Note**: Because this library allows for dynamic building of Icons, Flutter's built in tree shaker for icons no longer has the ability to guarantee what icons are referenced vs not.  Once you include this as a dependency, you must add the `--no-tree-shake-icons` as a build flag or your builds will fail.
+
+Example:
+```
+flutter build [apk | web | ios | ...] --no-tree-shake-icons
+```
+
+This library provides Widgets that are capable of building themselves from JSON structures.  The general structure follows:
 
 ```json
 {

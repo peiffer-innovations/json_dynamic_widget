@@ -1,4 +1,4 @@
-## [3.4.0+1] - November 30th, 2021
+## [3.4.0+2] - November 30th, 2021
 
 * Added ability for `JsonDynamicWidget` to be able to parse a JSON string
 * Added `length` function
