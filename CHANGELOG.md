@@ -1,3 +1,8 @@
+## [3.4.1] - December 2nd, 2021
+
+* Added ability to get the map of registered functions
+
+
 ## [3.4.0+2] - November 30th, 2021
 
 * Added ability for `JsonDynamicWidget` to be able to parse a JSON string

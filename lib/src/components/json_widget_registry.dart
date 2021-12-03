@@ -118,6 +118,10 @@ class JsonWidgetRegistry {
   /// child registries listening to notifications from their parent registries.
   Stream<void> get disposeStream => _disposeStreamController!.stream;
 
+  /// Returns an unmodifiable reference to the internal set of functions.
+  Map<String, JsonWidgetFunction> get functions =>
+      Map.unmodifiable(Map.from(_internalFunctions)..addAll(_functions));
+
   /// Returns an unmodifiable reference to the internal set of values.
   Map<String, dynamic> get values => Map.unmodifiable(
         Map.from(_values)
