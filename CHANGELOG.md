@@ -1,6 +1,7 @@
-## [3.4.2] - December 3rd, 2021
+## [3.4.2+1] - December 3rd, 2021
 
 * Minor fix on the function expression parser
+* Redefined `JsonWidgetFunction` to return `dynamic` rather than `FutureOr<dynamic>` as futures actually never worked
 
 
 ## [3.4.1] - December 2nd, 2021
