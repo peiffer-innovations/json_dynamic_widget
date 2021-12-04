@@ -1,3 +1,8 @@
+## [3.4.2] - December 3rd, 2021
+
+* Minor fix on the function expression parser
+
+
 ## [3.4.1] - December 2nd, 2021
 
 * Added ability to get the map of registered functions

@@ -5,7 +5,7 @@ class JsonWidgetRegexHelper {
   JsonWidgetRegexHelper._();
 
   static final dynamicVarRegex = RegExp(r'^\{\{\s*\S*\s*\}\}$');
-  static final functionRegex = RegExp(r'^##(\S*)\s*(\(.*\))##$');
+  static final functionRegex = RegExp(r'^##([^(]*)\s*(\(.*\))##$');
   static final varRegex = RegExp(r'^!?\{\{\s*\S*\s*\}\}$');
 
   static List<JsonWidgetParams>? parse(String? data) {

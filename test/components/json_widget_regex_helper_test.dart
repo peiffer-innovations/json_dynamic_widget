@@ -92,6 +92,20 @@ void main() {
     );
   });
 
+  test('expression', () {
+    var parsed = JsonWidgetRegexHelper.parse(
+      '##expression(add(subtract(2, 1), add(1, 1)))##',
+    );
+
+    expect(
+      parsed![0],
+      JsonWidgetParams(
+        isFunction: true,
+        key: 'expression',
+      ),
+    );
+  });
+
   test('complex function', () {
     var parsed = JsonWidgetRegexHelper.parse(
       '##myFunction({{param1}}, const1, {{param2}}, {{param3}}, const2, const3)##',
