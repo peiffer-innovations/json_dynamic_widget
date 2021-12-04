@@ -95475,7 +95475,7 @@ s($,"b9e","aOv",function(){return new M.avT()})
 s($,"b9f","aOw",function(){return new U.avS()})
 s($,"b9g","aOx",function(){return new O.avR()})
 s($,"b9h","aOy",function(){return new S.avQ()})
-s($,"b5I","aM4",function(){return P.e2("^##(\\S*)\\s*(\\(.*\\))##$",!0,!1,!1)})
+s($,"b5I","aM4",function(){return P.e2("^##([^(]*)\\s*(\\(.*\\))##$",!0,!1,!1)})
 s($,"b5J","aM5",function(){return P.e2("^!?\\{\\{\\s*\\S*\\s*\\}\\}$",!0,!1,!1)})
 s($,"b5K","jQ",function(){var q=null
 return E.Oi(q,"default",!1,q,q,q,q)})
