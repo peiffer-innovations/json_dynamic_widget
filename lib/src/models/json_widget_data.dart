@@ -85,6 +85,11 @@ class JsonWidgetData extends JsonClass {
         key: key,
         registry: registry,
       );
+    } else if (map is String && map.startsWith('##') && map.endsWith(')##')) {
+      result = DeferredFunctionWidgetData(
+        key: map,
+        registry: registry,
+      );
     } else if (map != null) {
       var type = map['type'];
       if (type is! String) {
@@ -208,7 +213,8 @@ class JsonWidgetData extends JsonClass {
   /// Recreates the data object based on the updated values and function
   /// responces from the registry.  This should only be called within the
   /// framework itself, external code should not need to call this.
-  JsonWidgetData recreate() {
+  JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
+    var registry = newRegistry ?? this.registry;
     var builder = registry.getWidgetBuilder(type);
     var dynamicParamsResult = registry.processDynamicArgs(args);
 
@@ -216,17 +222,55 @@ class JsonWidgetData extends JsonClass {
 
     if (originalChild is String) {
       var values = registry.processDynamicArgs(originalChild).values;
+      if (values is String) {
+        try {
+          values = json.decode(values);
+        } catch (e) {
+          // no-op
+        }
+      }
       if (values is List) {
-        children = List<JsonWidgetData>.from(values);
+        children = List<JsonWidgetData>.from(
+          values.map(
+            (e) => JsonWidgetData.fromDynamic(
+              e,
+              registry: registry,
+            ),
+          ),
+        );
       } else {
-        children = <JsonWidgetData>[values];
+        children = <JsonWidgetData>[
+          JsonWidgetData.fromDynamic(
+            values,
+            registry: registry,
+          )!
+        ];
       }
     } else if (originalChildren is String) {
       var values = registry.processDynamicArgs(originalChildren).values;
+      if (values is String) {
+        try {
+          values = json.decode(values);
+        } catch (e) {
+          // no-op
+        }
+      }
       if (values is List) {
-        children = List<JsonWidgetData>.from(values);
+        children = List<JsonWidgetData>.from(
+          values.map(
+            (e) => JsonWidgetData.fromDynamic(
+              e,
+              registry: registry,
+            ),
+          ),
+        );
       } else {
-        children = <JsonWidgetData>[values];
+        children = <JsonWidgetData>[
+          JsonWidgetData.fromDynamic(
+            values,
+            registry: registry,
+          )!
+        ];
       }
     } else {
       children = this.children;

@@ -6,8 +6,8 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// are needed.  This is used internally by the library for when widgets are
 /// requested through a variable reference because the variable often won't
 /// exist until after the first pass of the widget tree processing is completed.
-class DeferredJsonWidgetData implements JsonWidgetData {
-  DeferredJsonWidgetData({
+class DeferredFunctionWidgetData implements JsonWidgetData {
+  DeferredFunctionWidgetData({
     required String key,
     required JsonWidgetRegistry registry,
   })  : _key = key,
@@ -29,7 +29,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
 
   JsonWidgetData get data {
     if (_data == null) {
-      var data = _registry.getValue(_key);
+      var data = _registry.processDynamicArgs(_key).values;
 
       if (data is! JsonWidgetData) {
         data = JsonWidgetData.fromDynamic(
@@ -39,7 +39,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       }
       if (data is! JsonWidgetData) {
         throw Exception(
-          'Unable to find JsonWidgetData for [$_key] on the registry',
+          'Unable to find JsonWidgetData via [$_key] on the registry',
         );
       }
 

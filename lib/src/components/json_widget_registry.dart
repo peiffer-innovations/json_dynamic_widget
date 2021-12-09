@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/components/functions/dynamic.dart'
@@ -24,6 +26,7 @@ import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
 import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:json_path/json_path.dart';
+import 'package:logging/logging.dart';
 
 /// Registry for both the library provided as well as custom form builders that
 /// the application may provide.
@@ -53,6 +56,7 @@ class JsonWidgetRegistry {
   })  : debugLabel = (parent != null ? '${parent.debugLabel}.' : '') +
             (debugLabel ?? 'child_${++childCount}'),
         _parent = parent {
+    _logger = Logger('REGISTRY ${this.debugLabel}');
     _customBuilders.addAll(builders ?? {});
     _functions.addAll(functions ?? {});
     _values.addAll(values ?? {});
@@ -70,8 +74,8 @@ class JsonWidgetRegistry {
   static int childCount = 0;
 
   final _customBuilders = <String, JsonWidgetBuilderContainer>{};
+  final String debugLabel;
 
-  final String? debugLabel;
   final bool disableValidation;
   final _functions = <String, JsonWidgetFunction>{};
   final _internalBuilders = JsonWidgetInternalBuilders.builders;
@@ -94,6 +98,7 @@ class JsonWidgetRegistry {
 
   StreamController<void>? _disposeStreamController =
       StreamController<void>.broadcast();
+  late Logger _logger;
   StreamSubscription<void>? _parentDisposeStreamSubscription;
   StreamSubscription<String>? _parentValueStreamSubscription;
   StreamController<String>? _valueStreamController =
@@ -212,6 +217,7 @@ class JsonWidgetRegistry {
   /// JSON Path expression to get the value out of the value represented by the
   /// key.
   dynamic getValue(String? key) {
+    var originalKey = key;
     String? jsonPath;
     if (key is String && key.contains(';')) {
       var parts = key.split(';');
@@ -234,7 +240,13 @@ class JsonWidgetRegistry {
       // no-op
     }
 
-    return value ?? _parent?.getValue(key);
+    value ??= _parent?.getValue(key);
+
+    _logger.finest(
+      '[getValue]: [$originalKey] = [${value?.toString().substring(0, min(80, value?.toString().length ?? 0))}]',
+    );
+
+    return value;
   }
 
   /// Returns the builder for the requested [type].  This will first search the
@@ -407,7 +419,15 @@ class JsonWidgetRegistry {
       removeValue(key);
     } else {
       var current = _values[key];
-      if (current != value) {
+
+      var equals = current == value;
+      if (current is List || current is Set || current is Map) {
+        equals = DeepCollectionEquality().equals(current, value);
+      }
+      if (!equals) {
+        _logger.finest(
+          '[setValue]: [$key] = [${value?.toString().substring(0, min(80, value?.toString().length ?? 0))}]',
+        );
         _values[key] = value;
         _valueStreamController?.add(key);
       }

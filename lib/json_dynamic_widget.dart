@@ -105,6 +105,7 @@ export 'src/decoders/input_decoration_decoder.dart';
 
 export 'src/exceptions/handled_json_widget_exception.dart';
 
+export 'src/models/deferred_function_widget_data.dart';
 export 'src/models/deferred_json_widget_data.dart';
 export 'src/models/dynamic_params_result.dart';
 export 'src/models/json_widget_builder_container.dart';

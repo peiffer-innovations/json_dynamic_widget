@@ -189,7 +189,7 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
 
   void _handleSubscription(String? event) {
     if (event == _data.id) {
-      _data = _data.recreate();
+      _data = _data.recreate(_data.registry);
       if (mounted == true) {
         setState(() {});
       }

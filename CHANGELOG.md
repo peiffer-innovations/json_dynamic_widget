@@ -1,3 +1,9 @@
+## [3.4.3] - December 8th, 2021
+
+* Fixes for when a function is used as a `child`
+* Fixed value notifications when values are a collection and matches current
+
+
 ## [3.4.2+1] - December 3rd, 2021
 
 * Minor fix on the function expression parser
