@@ -13,6 +13,7 @@ analyzer:
 dependencies:
   automated_testing_framework: ^3.1.1+2
   child_builder: ^2.0.0
+  collection: ^1.15.0
   flutter:
     sdk: flutter
   form_validation: ^2.1.0
