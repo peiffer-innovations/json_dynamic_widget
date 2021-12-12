@@ -27,6 +27,9 @@ dependencies:
   meta: ^1.7.0
   uuid: ^3.0.5
 
+false_secrets:
+  - example/web/index.html
+
 # dependency_overrides:
 #   json_theme:
 #     path: ../json_theme
