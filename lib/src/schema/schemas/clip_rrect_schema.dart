@@ -17,6 +17,7 @@ class ClipRRectSchema {
     'properties': {
       'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
       'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
+      'clipper': SchemaHelper.stringSchema,
     },
   };
 }

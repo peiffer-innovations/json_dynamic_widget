@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'testable');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonTestableBuilder,
       true,

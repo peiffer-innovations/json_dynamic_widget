@@ -33,6 +33,7 @@ class NetworkImageSchema {
       'isAntiAlias': SchemaHelper.boolSchema,
       'loadingBuilder': SchemaHelper.stringSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
+      'opacity': SchemaHelper.numberSchema,
       'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),
       'scale': SchemaHelper.numberSchema,
       'semanticLabel': SchemaHelper.stringSchema,

@@ -23,6 +23,7 @@ class TooltipSchema {
       'message': SchemaHelper.stringSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'preferBelow': SchemaHelper.boolSchema,
+      'richMessage': SchemaHelper.stringSchema,
       'showDuration': SchemaHelper.numberSchema,
       'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'triggerMode': SchemaHelper.boolSchema,

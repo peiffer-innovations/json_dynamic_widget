@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'cupertino_switch');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonCupertinoSwitchBuilder,
       true,

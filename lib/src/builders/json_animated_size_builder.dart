@@ -130,8 +130,7 @@ class _JsonAnimatedSizeState extends State<_JsonAnimatedSize> {
   }
 }
 
-class _JsonAnimatedSizeStateTicker extends State<_JsonAnimatedSize>
-    with SingleTickerProviderStateMixin {
+class _JsonAnimatedSizeStateTicker extends State<_JsonAnimatedSize> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSize(

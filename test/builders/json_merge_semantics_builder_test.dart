@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'merge_semantics');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonMergeSemanticsBuilder,
       true,

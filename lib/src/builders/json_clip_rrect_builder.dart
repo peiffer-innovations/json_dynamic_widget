@@ -9,6 +9,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   JsonClipRRectBuilder({
     this.borderRadius,
     required this.clipBehavior,
+    this.clipper,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -16,6 +17,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
 
   final BorderRadius? borderRadius;
   final Clip clipBehavior;
+  final CustomClipper<RRect>? clipper;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -48,6 +50,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Clip.antiAlias,
+        clipper: map['clipper'],
       );
     }
 
@@ -66,6 +69,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
     return ClipRRect(
       borderRadius: borderRadius,
       clipBehavior: clipBehavior,
+      clipper: clipper,
       key: key,
       child: child.build(
         childBuilder: childBuilder,

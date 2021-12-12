@@ -56,6 +56,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
     this.onScrollRight,
     this.onScrollUp,
     this.onSetSelection,
+    this.onSetText,
     this.onTap,
     this.onTapHint,
     this.readOnly,
@@ -120,6 +121,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   final VoidCallback? onScrollRight;
   final VoidCallback? onScrollUp;
   final ValueChanged<TextSelection>? onSetSelection;
+  final ValueChanged<String>? onSetText;
   final VoidCallback? onTap;
   final String? onTapHint;
   final bool? readOnly;
@@ -185,6 +187,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   ///   "onScrollRight": <VoidCallback>,
   ///   "onScrollUp": <VoidCallback>,
   ///   "onSetSelection": <ValueChanged<TextSelection>>,
+  ///   "onSetText": <ValueChanged<String>>,
   ///   "onTap": <VoidCallback>,
   ///   "onTapHint": <String>,
   ///   "readOnly": <bool>,
@@ -269,6 +272,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
         onScrollRight: map['onScrollRight'],
         onScrollUp: map['onScrollUp'],
         onSetSelection: map['onSetSelection'],
+        onSetText: map['onSetText'],
         onTap: map['onTap'],
         onTapHint: map['onTapHint'],
         readOnly: map['readOnly'] == null
@@ -355,6 +359,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
       onScrollRight: onScrollRight,
       onScrollUp: onScrollUp,
       onSetSelection: onSetSelection,
+      onSetText: onSetText,
       onTap: onTap,
       onTapHint: onTapHint,
       readOnly: readOnly,

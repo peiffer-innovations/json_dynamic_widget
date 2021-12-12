@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'conditional');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'conditional': {'values': {}}
       }) is JsonConditionalBuilder,

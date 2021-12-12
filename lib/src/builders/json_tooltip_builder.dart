@@ -16,6 +16,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
     required this.message,
     this.padding,
     this.preferBelow,
+    this.richMessage,
     this.showDuration,
     this.textStyle,
     this.triggerMode,
@@ -34,6 +35,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
   final String message;
   final EdgeInsetsGeometry? padding;
   final bool? preferBelow;
+  final InlineSpan? richMessage;
   final Duration? showDuration;
   final TextStyle? textStyle;
   final TooltipTriggerMode? triggerMode;
@@ -53,6 +55,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
   ///   "message": <String>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "preferBelow": <bool>,
+  ///   "richMessage": <InlineSpan>,
   ///   "showDuration": <Duration>,
   ///   "textStyle": <TextStyle>,
   ///   "triggerMode": <bool>,
@@ -88,6 +91,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
         preferBelow: map['preferBelow'] == null
             ? null
             : JsonClass.parseBool(map['preferBelow']),
+        richMessage: map['richMessage'],
         showDuration: JsonClass.parseDurationFromMillis(map['showDuration']),
         textStyle: ThemeDecoder.decodeTextStyle(map['textStyle']),
         triggerMode: ThemeDecoder.decodeTooltipTriggerMode(map['triggerMode']),
@@ -116,6 +120,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
         message: message,
         padding: padding,
         preferBelow: preferBelow,
+        richMessage: richMessage,
         showDuration: showDuration,
         textStyle: textStyle,
         triggerMode: triggerMode,

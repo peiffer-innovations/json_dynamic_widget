@@ -31,6 +31,7 @@ class AssetImageSchema {
       'isAntiAlias': SchemaHelper.boolSchema,
       'matchTextDirection': SchemaHelper.boolSchema,
       'name': SchemaHelper.stringSchema,
+      'opacity': SchemaHelper.numberSchema,
       'package': SchemaHelper.stringSchema,
       'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),
       'scale': SchemaHelper.numberSchema,

@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'dropdown_button_form_field');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonDropdownButtonFormFieldBuilder,
       true,

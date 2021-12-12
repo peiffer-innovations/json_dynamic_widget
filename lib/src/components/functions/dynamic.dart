@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/builders/json_dynamic_builder.dart';
 
 /// Function body for the built in `dynamic` function.
 /// It accepts variable names which values should be convertable

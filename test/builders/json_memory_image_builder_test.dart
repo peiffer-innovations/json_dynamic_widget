@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'memory_image');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'image': 'aGVsbG8=',
       }) is JsonMemoryImageBuilder,

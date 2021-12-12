@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'animated_align');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'alignment': 'bottomLeft',

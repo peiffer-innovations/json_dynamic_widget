@@ -1,5 +1,4 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/types.dart';
 
 /// Function body for the built in `set_value` function. The `set_value`
 /// function accepts a key and a value and then returns a [VoidCallback] that

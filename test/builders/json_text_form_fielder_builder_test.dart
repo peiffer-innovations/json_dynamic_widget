@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'text_form_field');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonTextFormFieldBuilder,
       true,

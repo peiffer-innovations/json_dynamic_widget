@@ -8,10 +8,6 @@ void main() {
 
     expect(type, 'popup_menu_button');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'itemBuilder': (BuildContext context) => <PopupMenuEntry>[],

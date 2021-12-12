@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/types.dart';
 
 /// Function body for the built in `length` function. The `length` function
 /// takes 1 argument.  The return value depend on the type of the arg.

@@ -27,6 +27,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
     required this.isAntiAlias,
     this.loadingBuilder,
     required this.matchTextDirection,
+    this.opacity,
     required this.repeat,
     required this.scale,
     this.semanticLabel,
@@ -55,6 +56,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   final bool isAntiAlias;
   final ImageLoadingBuilder? loadingBuilder;
   final bool matchTextDirection;
+  final double? opacity;
   final ImageRepeat repeat;
   final double scale;
   final String? semanticLabel;
@@ -83,6 +85,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   ///   "isAntiAlias": <bool>,
   ///   "loadingBuilder": <ImageLoadingBuilder>,
   ///   "matchTextDirection": <bool>,
+  ///   "opacity": <double>,
   ///   "repeat": <ImageRepeat>,
   ///   "scale": <double>,
   ///   "semanticLabel": <String>,
@@ -152,6 +155,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
         isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
         loadingBuilder: map['loadingBuilder'],
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
+        opacity: JsonClass.parseDouble(map['opacity']),
         repeat: ThemeDecoder.decodeImageRepeat(
               map['imageRepeat'],
               validate: false,
@@ -194,6 +198,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
       key: key,
       loadingBuilder: loadingBuilder,
       matchTextDirection: matchTextDirection,
+      opacity: opacity == null ? null : AlwaysStoppedAnimation(opacity!),
       repeat: repeat,
       scale: scale,
       semanticLabel: semanticLabel,

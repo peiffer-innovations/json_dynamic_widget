@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'radio');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({'id': 'foo'})
           is JsonRadioBuilder,
       true,

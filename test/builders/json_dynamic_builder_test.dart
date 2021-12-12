@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'dynamic');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'dynamic': {'builderType': 'test'}
       }) is JsonDynamicBuilder,

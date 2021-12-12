@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'flexible');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonFlexibleBuilder,
       true,

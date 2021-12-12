@@ -6,10 +6,6 @@ void main() {
     const type = JsonWrapBuilder.type;
 
     expect(type, 'wrap');
-    expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
 
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(

@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'exclude_semantics');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonExcludeSemanticsBuilder,
       true,

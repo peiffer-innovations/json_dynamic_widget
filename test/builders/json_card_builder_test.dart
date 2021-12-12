@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'card');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({}) is JsonCardBuilder,
       true,
     );

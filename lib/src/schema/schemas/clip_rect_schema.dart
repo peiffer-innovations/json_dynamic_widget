@@ -18,6 +18,7 @@ class ClipRectSchema {
         'additionalProperties': false,
         'properties': {
           'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
+          'clipper': SchemaHelper.stringSchema,
         },
       },
     ],

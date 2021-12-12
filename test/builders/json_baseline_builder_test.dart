@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'baseline');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'baseline': 20,
         'baselineType': 'ideographic',

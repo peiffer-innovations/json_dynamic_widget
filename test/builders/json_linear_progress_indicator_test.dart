@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'linear_progress_indicator');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonLinearProgressIndicatorBuilder,
       true,

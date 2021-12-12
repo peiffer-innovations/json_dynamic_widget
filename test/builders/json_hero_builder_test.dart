@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'hero');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
         'tag': 'tag',
       }) is JsonHeroBuilder,

@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'layout_builder');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonLayoutBuilderBuilder,
       true,

@@ -43,6 +43,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.onTap,
     this.readOnly,
     this.restorationId,
+    this.scrollController,
     this.scrollPadding,
     this.scrollPhysics,
     this.selectionControls,
@@ -96,6 +97,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final VoidCallback? onTap;
   final bool? readOnly;
   final String? restorationId;
+  final ScrollController? scrollController;
   final EdgeInsetsGeometry? scrollPadding;
   final ScrollPhysics? scrollPhysics;
   final TextSelectionControls? selectionControls;
@@ -151,6 +153,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "onTap": <VoidCallback>,
   ///   "readOnly": <bool>,
   ///   "restorationId": <bool>,
+  ///   "scrollController": <ScrollController>,
   ///   "scrollPadding": <EdgeInsetsGeometry>,
   ///   "scrollPhysics": <ScrollPhysics>,
   ///   "selectionControls": <TextSelectionControls>,
@@ -169,8 +172,8 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   /// }
   /// ```
   ///
-  /// Note: The [TextSelectionControls] cannot be decoded and can only be
-  /// utilized if passed in as a variable reference.
+  /// Note: The [ScrollController] and [TextSelectionControls] cannot be decoded
+  /// and can only be utilized if passed in as a variable reference.
   ///
   /// See also:
   ///  * [buildCustom]
@@ -460,6 +463,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         onTap: widget.builder.onTap,
         readOnly: widget.builder.readOnly ?? false,
         restorationId: widget.builder.restorationId,
+        scrollController: widget.builder.scrollController,
         scrollPadding: widget.builder.scrollPadding as EdgeInsets,
         scrollPhysics: widget.builder.scrollPhysics,
         selectionControls: widget.builder.selectionControls,

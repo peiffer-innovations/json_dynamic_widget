@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'set_widget');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSetWidgetBuilder,
       true,

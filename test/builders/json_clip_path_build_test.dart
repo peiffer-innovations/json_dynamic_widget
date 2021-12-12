@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'clip_path');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonClipPathBuilder,
       true,

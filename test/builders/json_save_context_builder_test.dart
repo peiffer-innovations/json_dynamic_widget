@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'save_context');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSaveContextBuilder,
       true,

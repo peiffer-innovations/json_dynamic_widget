@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
@@ -11,6 +10,8 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
     required this.autofocus,
     required this.clipBehavior,
     this.focusNode,
+    this.onFocusChange,
+    this.onHover,
     this.onLongPress,
     this.onPressed,
     this.style,
@@ -22,6 +23,8 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   final bool autofocus;
   final Clip clipBehavior;
   final FocusNode? focusNode;
+  final ValueChanged<bool>? onFocusChange;
+  final ValueChanged<bool>? onHover;
   final VoidCallback? onLongPress;
   final VoidCallback? onPressed;
   final ButtonStyle? style;
@@ -34,6 +37,8 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   ///   "autofocus": <bool>,
   ///   "clipBehavior": <Clip>,
   ///   "focusNode": <FocusNode>,
+  ///   "onFocusChange": <ValueChanged<bool>>,
+  ///   "onHover": <ValueChanged<bool>>,
   ///   "onLongPress": <VoidCallback>,
   ///   "onPressed": <VoidCallback>,
   ///   "style": <ButtonStyle>
@@ -66,6 +71,8 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
             ) ??
             Clip.none,
         focusNode: map['focusNode'],
+        onFocusChange: map['onFocusChange'],
+        onHover: map['onHover'],
         onLongPress: map['onLongPress'],
         onPressed: map['onPressed'],
         style: ThemeDecoder.decodeButtonStyle(
@@ -92,6 +99,8 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
       clipBehavior: clipBehavior,
       focusNode: focusNode,
       key: key,
+      onFocusChange: onFocusChange,
+      onHover: onHover,
       onLongPress: onLongPress,
       onPressed: onPressed,
       style: style,

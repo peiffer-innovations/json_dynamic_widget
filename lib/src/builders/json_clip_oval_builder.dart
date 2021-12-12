@@ -8,6 +8,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonClipOvalBuilder extends JsonWidgetBuilder {
   JsonClipOvalBuilder({
     required this.clipBehavior,
+    this.clipper,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -15,13 +16,15 @@ class JsonClipOvalBuilder extends JsonWidgetBuilder {
   static const type = 'clip_oval';
 
   final Clip clipBehavior;
+  final CustomClipper<Rect>? clipper;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
-  ///   "clipBehavior": <Clip>
+  ///   "clipBehavior": <Clip>,
+  ///   "clipper": <CustomClipper<Rect>>
   /// }
   /// ```
   ///
@@ -40,6 +43,7 @@ class JsonClipOvalBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Clip.hardEdge,
+        clipper: map['clipper'],
       );
     }
 
@@ -56,6 +60,7 @@ class JsonClipOvalBuilder extends JsonWidgetBuilder {
 
     return ClipOval(
       clipBehavior: clipBehavior,
+      clipper: clipper,
       key: key,
       child: child.build(
         childBuilder: childBuilder,

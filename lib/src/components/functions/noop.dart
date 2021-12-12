@@ -1,5 +1,4 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/types.dart';
 
 /// Function body for the built in `noop` function. The `noop` function does
 /// nothing and exists mostly to assist with testing UI elements that need a

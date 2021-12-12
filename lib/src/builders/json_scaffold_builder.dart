@@ -169,6 +169,8 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
           map['floatingActionButtonLocation'],
           validate: false,
         ),
+        onDrawerChanged: map['onDrawerChanged'],
+        onEndDrawerChanged: map['onEndDrawerChanged'],
         persistentFooterButtons: map['persistentFooterButtons'] == null
             ? null
             : JsonClass.fromDynamicList(
@@ -180,8 +182,6 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
               ),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
-        onDrawerChanged: map['onDrawerChanged'],
-        onEndDrawerChanged: map['onEndDrawerChanged'],
         resizeToAvoidBottomInset: map['resizeToAvoidBottomInset'] == null
             ? null
             : JsonClass.parseBool(map['resizeToAvoidBottomInset']),
@@ -238,6 +238,8 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
       floatingActionButtonAnimator: floatingActionButtonAnimator,
       floatingActionButtonLocation: floatingActionButtonLocation,
       key: key,
+      onDrawerChanged: onDrawerChanged,
+      onEndDrawerChanged: onEndDrawerChanged,
       persistentFooterButtons: persistentFooterButtons == null
           ? null
           : [

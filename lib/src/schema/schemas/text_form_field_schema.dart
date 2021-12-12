@@ -55,6 +55,7 @@ class TextFormFieldSchema {
       'onTap': SchemaHelper.stringSchema,
       'readOnly': SchemaHelper.boolSchema,
       'restorationId': SchemaHelper.stringSchema,
+      'scrollController': SchemaHelper.stringSchema,
       'scrollPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'scrollPhysics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
       'selectionControls': SchemaHelper.stringSchema,

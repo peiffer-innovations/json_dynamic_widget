@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'gesture_detector');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonGestureDetectorBuilder,
       true,

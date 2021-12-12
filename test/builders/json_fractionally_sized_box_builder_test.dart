@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'fractionally_sized_box');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonFractionallySizedBoxBuilder,
       true,

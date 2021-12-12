@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'circular_progress_indicator');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonCircularProgressIndicatorBuilder,
       true,

@@ -16,6 +16,8 @@ class TextButtonSchema {
       'autofocus': SchemaHelper.boolSchema,
       'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
       'focusNode': SchemaHelper.stringSchema,
+      'onFocusChange': SchemaHelper.stringSchema,
+      'onHover': SchemaHelper.stringSchema,
       'onLongPress': SchemaHelper.stringSchema,
       'onPressed': SchemaHelper.stringSchema,
       'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),

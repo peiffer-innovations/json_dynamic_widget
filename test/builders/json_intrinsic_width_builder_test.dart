@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'intrinsic_width');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonIntrinsicWidthBuilder,
       true,

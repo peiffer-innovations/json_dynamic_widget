@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'directionality');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'textDirection': 'ltr',

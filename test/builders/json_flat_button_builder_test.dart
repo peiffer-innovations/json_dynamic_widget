@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'flat_button');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonFlatButtonBuilder,
       true,

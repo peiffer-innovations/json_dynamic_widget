@@ -1,5 +1,4 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/types.dart';
 
 /// Function body for the built in `navigate_pop` function.
 /// When called, the `navigate_pop` function will call to pop the current

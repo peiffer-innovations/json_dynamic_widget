@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'aspect_ratio');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonAspectRatioBuilder,
       true,

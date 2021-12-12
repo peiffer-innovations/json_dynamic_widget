@@ -24,6 +24,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
     required this.isAntiAlias,
     required this.matchTextDirection,
     required this.name,
+    this.opacity,
     this.package,
     required this.repeat,
     this.scale,
@@ -52,6 +53,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   final bool isAntiAlias;
   final bool matchTextDirection;
   final String name;
+  final double? opacity;
   final String? package;
   final ImageRepeat repeat;
   final double? scale;
@@ -79,6 +81,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   ///   "isAntiAlias": <bool>,
   ///   "matchTextDirection": <bool>,
   ///   "name": <String>,
+  ///   "opacity": <double>,
   ///   "package": <String>,
   ///   "repeat": <ImageRepeat>,
   ///   "scale": <double>,
@@ -181,6 +184,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
       isAntiAlias: isAntiAlias,
       key: key,
       matchTextDirection: matchTextDirection,
+      opacity: opacity == null ? null : AlwaysStoppedAnimation(opacity!),
       package: package,
       repeat: repeat,
       scale: scale,

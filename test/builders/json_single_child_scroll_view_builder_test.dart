@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'single_child_scroll_view');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSingleChildScrollViewBuilder,
       true,

@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'limited_box');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonLimitedBoxBuilder,
       true,

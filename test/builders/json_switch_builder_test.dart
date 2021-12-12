@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'switch');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonSwitchBuilder,
       true,

@@ -1,5 +1,4 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/types.dart';
 import 'package:logging/logging.dart';
 
 final _logger = Logger('for_each');

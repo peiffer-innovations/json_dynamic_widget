@@ -21,7 +21,9 @@
 
 Here's a list of first party plugins that exist for this library.
 
+* [json_dynamic_widget_plugin_expressions](https://pub.dev/packages/json_dynamic_widget_plugin_expressions)
 * [json_dynamic_widget_plugin_font_awesome](https://pub.dev/packages/json_dynamic_widget_plugin_font_awesome)
+* [json_dynamic_widget_plugin_ionicons](https://pub.dev/packages/json_dynamic_widget_plugin_ionicons)
 * [json_dynamic_widget_plugin_lottie](https://pub.dev/packages/json_dynamic_widget_plugin_lottie)
 * [json_dynamic_widget_plugin_material_icons](https://pub.dev/packages/json_dynamic_widget_plugin_material_icons)
 * [json_dynamic_widget_plugin_rive](https://pub.dev/packages/json_dynamic_widget_plugin_rive)

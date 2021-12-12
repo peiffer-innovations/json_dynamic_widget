@@ -1,6 +1,5 @@
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
@@ -18,6 +17,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
     this.focusNode,
     this.horizontalTitleGap,
     this.hoverColor,
+    this.iconColor,
     required this.isThreeLine,
     this.leading,
     this.minLeadingWidth,
@@ -26,9 +26,12 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
     this.onLongPress,
     this.onTap,
     required this.selected,
+    this.selectedColor,
     this.selectedTileColor,
     this.shape,
+    this.style,
     this.subtitle,
+    this.textColor,
     this.tileColor,
     this.title,
     this.trailing,
@@ -47,6 +50,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   final FocusNode? focusNode;
   final double? horizontalTitleGap;
   final Color? hoverColor;
+  final Color? iconColor;
   final bool isThreeLine;
   final JsonWidgetData? leading;
   final double? minLeadingWidth;
@@ -55,9 +59,12 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   final VoidCallback? onLongPress;
   final VoidCallback? onTap;
   final bool selected;
+  final Color? selectedColor;
   final Color? selectedTileColor;
   final ShapeBorder? shape;
+  final ListTileStyle? style;
   final JsonWidgetData? subtitle;
+  final Color? textColor;
   final Color? tileColor;
   final JsonWidgetData? title;
   final JsonWidgetData? trailing;
@@ -77,6 +84,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   ///   "focusNode": <FocusNode>,
   ///   "horizontalTitleGap": <double>,
   ///   "hoverColor": <Color>,
+  ///   "iconColor": <Color>,
   ///   "isThreeLine": <bool>,
   ///   "leading": <JsonWidgetData>,
   ///   "minLeadingWidth": <double>,
@@ -84,10 +92,13 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   ///   "mouseCursor": <MouseCursor>,
   ///   "onLongPress": <VoidCallback>,
   ///   "onTap": <VoidCallback>,
+  ///   "selectedColor": <Color>,
   ///   "selected": <bool>,
   ///   "shape": <ShapeBorder>,
-  ///   "subtitle": <JsonWidgetData>,
   ///   "selectedTileColor": <Color>,
+  ///   "style": <ListTileStyle>,
+  ///   "subtitle": <JsonWidgetData>,
+  ///   "textColor": <Color>,
   ///   "tileColor": <Color>,
   ///   "title": <JsonWidgetData>,
   ///   "trailing": <JsonWidgetData>,
@@ -103,6 +114,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   ///  * [JsonWidgetData.fromDynamic]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
+  ///  * [ThemeDecoder.decodeListTileStyle]
   ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeShapeBorder]
   ///  * [ThemeDecoder.decodeVisualDensity]
@@ -140,6 +152,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['hoverColor'],
           validate: false,
         ),
+        iconColor: ThemeDecoder.decodeColor(map['iconColor']),
         isThreeLine: JsonClass.parseBool(map['isThreeLine']),
         leading: JsonWidgetData.fromDynamic(
           map['leading'],
@@ -154,15 +167,21 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
         onLongPress: map['onLongPress'],
         onTap: map['onTap'],
         selected: JsonClass.parseBool(map['selected']),
+        selectedColor: ThemeDecoder.decodeColor(map['selectedColor']),
         selectedTileColor: ThemeDecoder.decodeColor(map['selectedTileColor']),
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
+          validate: false,
+        ),
+        style: ThemeDecoder.decodeListTileStyle(
+          map['style'],
           validate: false,
         ),
         subtitle: JsonWidgetData.fromDynamic(
           map['subtitle'],
           registry: registry,
         ),
+        textColor: ThemeDecoder.decodeColor(map['textColor']),
         tileColor: ThemeDecoder.decodeColor(map['tileColor']),
         title: JsonWidgetData.fromDynamic(
           map['title'],
@@ -199,6 +218,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
       focusNode: focusNode,
       horizontalTitleGap: horizontalTitleGap,
       hoverColor: hoverColor,
+      iconColor: iconColor,
       isThreeLine: isThreeLine,
       key: key,
       leading: leading?.build(
@@ -211,12 +231,15 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
       onLongPress: onLongPress,
       onTap: onTap,
       selected: selected,
+      selectedColor: selectedColor,
       selectedTileColor: selectedTileColor,
       shape: shape,
+      style: style,
       subtitle: subtitle?.build(
         childBuilder: childBuilder,
         context: context,
       ),
+      textColor: textColor,
       tileColor: tileColor,
       title: title?.build(
         childBuilder: childBuilder,

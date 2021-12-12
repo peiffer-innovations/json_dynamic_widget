@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'expanded');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonExpandedBuilder,
       true,

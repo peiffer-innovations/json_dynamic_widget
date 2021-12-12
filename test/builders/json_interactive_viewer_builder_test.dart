@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'interactive_viewer');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonInteractiveViewerBuilder,
       true,

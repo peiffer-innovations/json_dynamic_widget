@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'animated_physical_model');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'color': '#FFF',

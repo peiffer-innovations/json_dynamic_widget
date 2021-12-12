@@ -59,6 +59,7 @@ class SemanticsSchema {
       'onScrollRight': SchemaHelper.stringSchema,
       'onScrollUp': SchemaHelper.stringSchema,
       'onSetSelection': SchemaHelper.stringSchema,
+      'onSetText': SchemaHelper.stringSchema,
       'onTap': SchemaHelper.stringSchema,
       'onTapHint': SchemaHelper.stringSchema,
       'readOnly': SchemaHelper.boolSchema,

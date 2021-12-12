@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'animated_cross_fade');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'crossFadeState': 'showFirst',

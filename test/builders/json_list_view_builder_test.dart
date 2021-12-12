@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'list_view');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonListViewBuilder,
       true,

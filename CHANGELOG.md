@@ -1,5 +1,6 @@
-## [3.4.3] - December 8th, 2021
+## [3.5.0] - December 12th, 2021
 
+* Updates for Flutter 2.8
 * Fixes for when a function is used as a `child`
 * Fixed value notifications when values are a collection and matches current
 

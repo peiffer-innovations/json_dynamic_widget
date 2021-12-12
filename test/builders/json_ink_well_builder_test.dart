@@ -7,10 +7,6 @@ void main() {
 
     expect(type, 'ink_well');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type) is Function,
-      true,
-    );
-    expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({})
           is JsonInkWellBuilder,
       true,
