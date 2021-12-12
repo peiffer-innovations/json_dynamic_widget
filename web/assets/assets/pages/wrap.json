@@ -102,12 +102,15 @@
         }
       },
       "body": {
-        "type": "wrap",
-        "args": {
-          "runSpacing": 16.0,
-          "spacing": 16.0
-        },
-        "children": "##for_each({{entries;$.values}}, template)##"
+        "type": "single_child_scroll_view",
+        "child": {
+          "type": "wrap",
+          "args": {
+            "runSpacing": 16.0,
+            "spacing": 16.0
+          },
+          "children": "##for_each({{entries;$.values}}, template)##"
+        }
       }
     }
   }
