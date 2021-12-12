@@ -26,9 +26,9 @@ dependencies:
   meta: ^1.7.0
   uuid: ^3.0.5
 
-dependency_overrides:
-  json_theme:
-    path: ../json_theme
+# dependency_overrides:
+#   json_theme:
+#     path: ../json_theme
 
 dev_dependencies:
   flutter_test:
