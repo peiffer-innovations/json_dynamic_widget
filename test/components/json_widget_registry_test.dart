@@ -17,7 +17,7 @@ void main() {
     );
 
     expect(
-      registry.processDynamicArgs({
+      registry.processArgs({
         'one': '{{one}}',
         'false': '{{false}}',
         'string': '{{string}}',
@@ -25,9 +25,9 @@ void main() {
         'twoPointFive': '{{twoPointFive}}',
         'constant': 'constant',
       }),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {'one', 'false', 'string', 'true', 'twoPointFive'},
-        values: {
+        value: {
           'one': 1,
           'false': false,
           'string': 'foo',
@@ -39,7 +39,7 @@ void main() {
     );
 
     expect(
-      registry.processDynamicArgs([
+      registry.processArgs([
         '{{one}}',
         '{{false}}',
         '{{string}}',
@@ -47,9 +47,9 @@ void main() {
         '{{twoPointFive}}',
         'constant'
       ]),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {'one', 'false', 'string', 'true', 'twoPointFive'},
-        values: [
+        value: [
           1,
           false,
           'foo',
@@ -60,7 +60,7 @@ void main() {
       ),
     );
     expect(
-      registry.processDynamicArgs({
+      registry.processArgs({
         'nested': {
           'one': '{{one}}',
           'false': '{{false}}',
@@ -69,9 +69,9 @@ void main() {
           'twoPointFive': '{{twoPointFive}}'
         },
       }),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {'one', 'false', 'string', 'true', 'twoPointFive'},
-        values: {
+        value: {
           'nested': {
             'one': 1,
             'false': false,
@@ -104,42 +104,42 @@ void main() {
     );
 
     expect(
-      registry.processDynamicArgs('##test()##'),
-      DynamicParamsResult(
+      registry.processArgs('##test()##'),
+      ProcessedArg(
         dynamicKeys: {'__FUNCTION__'},
-        values: '',
+        value: '',
       ),
     );
     expect(result, '');
 
     expect(
-      registry.processDynamicArgs('##test({{one}})##'),
-      DynamicParamsResult(
+      registry.processArgs('##test({{one}})##'),
+      ProcessedArg(
         dynamicKeys: {'__FUNCTION__', 'one'},
-        values: '1',
+        value: '1',
       ),
     );
     expect(result, '1');
 
     expect(
-      registry.processDynamicArgs('##test(foo)##'),
-      DynamicParamsResult(
+      registry.processArgs('##test(foo)##'),
+      ProcessedArg(
         dynamicKeys: {'__FUNCTION__'},
-        values: 'foo',
+        value: 'foo',
       ),
     );
     expect(result, 'foo');
 
     expect(
-      registry.processDynamicArgs({
+      registry.processArgs({
         'nested': {
           'foo': '##test(foo, {{one}})##',
           'bar': '{{twoPointFive}}',
         },
       }),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {'__FUNCTION__', 'one', 'twoPointFive'},
-        values: {
+        value: {
           'nested': {
             'foo': 'foo|1',
             'bar': 2.5,
@@ -150,13 +150,13 @@ void main() {
     expect(result, 'foo|1');
 
     expect(
-      registry.processDynamicArgs({
+      registry.processArgs({
         'nested': {
           'foo':
               '##test( {{one}}, {{false}} ,  {{string}}, {{true}}, {{twoPointFive}}, constant  )##',
         },
       }),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {
           '__FUNCTION__',
           'one',
@@ -165,7 +165,7 @@ void main() {
           'true',
           'twoPointFive'
         },
-        values: {
+        value: {
           'nested': {
             'foo': '1|false|foo|true|2.5|constant',
           },
@@ -175,14 +175,14 @@ void main() {
     expect(result, '1|false|foo|true|2.5|constant');
 
     expect(
-      registry.processDynamicArgs({
+      registry.processArgs({
         'nested': [
           'foo',
           '##test( cons tant, {{one}}, {{false}} ,  {{string}}, {{true}}, {{twoPointFive}}, constant  )##',
           '{{one}}',
         ],
       }),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {
           '__FUNCTION__',
           'one',
@@ -191,7 +191,7 @@ void main() {
           'true',
           'twoPointFive'
         },
-        values: {
+        value: {
           'nested': [
             'foo',
             'cons tant|1|false|foo|true|2.5|constant',
@@ -213,31 +213,82 @@ void main() {
     );
 
     expect(
-      registry.processDynamicArgs(
+      registry.processArgs(
         {
           'bounce_in_curve': '{{bounce_in_curve}}',
         },
       ),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {'bounce_in_curve'},
-        values: {
+        value: {
           'bounce_in_curve': Curves.bounceInOut,
         },
       ),
     );
 
     expect(
-      registry.processDynamicArgs(
+      registry.processArgs(
         {
           'decelerate_curve': '{{decelerate_curve}}',
         },
       ),
-      DynamicParamsResult(
+      ProcessedArg(
         dynamicKeys: {'decelerate_curve'},
-        values: {
+        value: {
           'decelerate_curve': Curves.decelerate,
         },
       ),
+    );
+  });
+
+  test('expression arg processors', () {
+    var registry = JsonWidgetRegistry(
+      values: {
+        'one': 1,
+        'string': 'foo',
+        'name': 'Steve',
+        'twoPointFive': 2.5,
+      },
+      functions: {
+        'concat': ({
+          required List<dynamic>? args,
+          required JsonWidgetRegistry registry,
+        }) =>
+            () {
+              return args!.join();
+            }
+      },
+    );
+
+    expect(
+      registry.processArgs('Hello world!').toString(),
+      ProcessedArg(dynamicKeys: {}, value: 'Hello world!').toString(),
+    );
+
+    expect(
+      registry.processArgs('\${one}').toString(),
+      ProcessedArg(dynamicKeys: {'one'}, value: 1).toString(),
+    );
+    expect(
+      registry.processArgs('\${one + one}').toString(),
+      ProcessedArg(dynamicKeys: {'one'}, value: 2).toString(),
+    );
+    expect(
+      registry
+          .processArgs(
+              "\${concat('Hello ',name,'! Here\\'s the map: ',{'key': 'value'}, ' and the array: ', ['value1', false])()}")
+          .toString(),
+      ProcessedArg(dynamicKeys: {
+        'name'
+      }, value: "Hello Steve! Here's the map: {key: value} and the array: [value1, false]")
+          .toString(),
+    );
+    expect(
+      registry
+          .processArgs("\${concat('Hello ', concat('Mr. ', name)())()}")
+          .toString(),
+      ProcessedArg(dynamicKeys: {'name'}, value: 'Hello Mr. Steve')
+          .toString(),
     );
   });
 

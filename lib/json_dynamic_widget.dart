@@ -106,7 +106,6 @@ export 'src/builders/json_tween_animation_builder.dart';
 export 'src/builders/json_widget_builder.dart';
 export 'src/builders/json_wrap_builder.dart';
 
-export 'src/components/json_widget_regex_helper.dart';
 export 'src/components/json_widget_registry.dart';
 export 'src/components/types.dart';
 export 'src/components/values/values.dart';
@@ -115,13 +114,12 @@ export 'src/decoders/input_decoration_decoder.dart';
 export 'src/decoders/sliver_grid_delegate_decoder.dart';
 
 export 'src/exceptions/handled_json_widget_exception.dart';
-
 export 'src/models/deferred_function_widget_data.dart';
 export 'src/models/deferred_json_widget_data.dart';
-export 'src/models/dynamic_params_result.dart';
 export 'src/models/json_widget_builder_container.dart';
 export 'src/models/json_widget_data.dart';
 export 'src/models/json_widget_type.dart';
 export 'src/models/named_function_arg.dart';
+export 'src/models/processed_args.dart';
 
 export 'src/widgets/input_error.dart';

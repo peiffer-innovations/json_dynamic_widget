@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/components/json_widget_regex_helper.dart';
 
 void main() {
   test('null', () {
@@ -268,6 +269,66 @@ void main() {
           originalValue: 'const3',
         ),
       ],
+    );
+  });
+
+  test('expression arg processors', () {
+    var registry = JsonWidgetRegistry(
+      values: {
+        'one': 1,
+        'map': {
+          'field1': [
+            {'field2': 'Christopher'}
+          ],
+        },
+        'string': 'foo',
+        'name': 'Steve',
+        'twoPointFive': 2.5,
+      },
+      functions: {
+        'concat': ({
+          required List<dynamic>? args,
+          required JsonWidgetRegistry registry,
+        }) =>
+            () {
+              return args!.join();
+            }
+      },
+    );
+    expect(
+      registry.processArgs('Hello world!').toString(),
+      ProcessedArg(dynamicKeys: {}, value: 'Hello world!').toString(),
+    );
+
+    expect(
+      registry.processArgs('\${one}').toString(),
+      ProcessedArg(dynamicKeys: {'one'}, value: 1).toString(),
+    );
+    expect(
+      registry.processArgs('\${one + one}').toString(),
+      ProcessedArg(dynamicKeys: {'one'}, value: 2).toString(),
+    );
+    expect(
+      registry
+          .processArgs(
+              "\${concat('Hello ',name,'! Here\\'s the map: ',{'key': 'value'}, ' and the array: ', ['value1', false])()}")
+          .toString(),
+      ProcessedArg(dynamicKeys: {
+        'name'
+      }, value: "Hello Steve! Here's the map: {key: value} and the array: [value1, false]")
+          .toString(),
+    );
+    expect(
+      registry
+          .processArgs("\${concat('Hello ', concat('Mr. ', name)())()}")
+          .toString(),
+      ProcessedArg(dynamicKeys: {'name'}, value: 'Hello Mr. Steve').toString(),
+    );
+    expect(
+      registry
+          .processArgs("\${'Hello '+ map['field1'][0]['field2']}")
+          .toString(),
+      ProcessedArg(dynamicKeys: {'map'}, value: 'Hello Christopher').toString(),
     );
   });
 }

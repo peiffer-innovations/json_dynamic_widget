@@ -29,7 +29,7 @@ class DeferredFunctionWidgetData implements JsonWidgetData {
 
   JsonWidgetData get data {
     if (_data == null) {
-      var data = _registry.processDynamicArgs(_key).values;
+      var data = _registry.processArgs(_key).value;
 
       if (data is! JsonWidgetData) {
         data = JsonWidgetData.fromDynamic(

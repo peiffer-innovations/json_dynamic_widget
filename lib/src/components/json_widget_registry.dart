@@ -24,6 +24,8 @@ import 'package:json_dynamic_widget/src/components/functions/remove_value.dart'
 import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
     as set_value_fun;
 import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
+import 'package:json_dynamic_widget/src/components/processors/arg_processor.dart';
+import 'package:json_dynamic_widget/src/components/processors/raw_arg_processor.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:json_path/json_path.dart';
 import 'package:logging/logging.dart';
@@ -52,6 +54,7 @@ class JsonWidgetRegistry {
     Map<String, JsonWidgetFunction>? functions,
     this.navigatorKey,
     JsonWidgetRegistry? parent,
+    List<ArgProcessor>? argProcessors,
     Map<String, dynamic>? values,
   })  : debugLabel = (parent != null ? '${parent.debugLabel}.' : '') +
             (debugLabel ?? 'child_${++childCount}'),
@@ -62,6 +65,7 @@ class JsonWidgetRegistry {
     _values.addAll(values ?? {});
     _parentDisposeStreamSubscription =
         parent?.disposeStream.listen((_) => dispose());
+    _argProcessors = argProcessors ?? ArgProcessors.backported;
 
     _parentValueStreamSubscription = parent?.valueStream
         .listen((event) => _valueStreamController?.add(event));
@@ -95,6 +99,7 @@ class JsonWidgetRegistry {
     );
   final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
+  List<ArgProcessor> _argProcessors = [];
 
   StreamController<void>? _disposeStreamController =
       StreamController<void>.broadcast();
@@ -154,6 +159,7 @@ class JsonWidgetRegistry {
     bool? disableValidation,
     Map<String, JsonWidgetFunction>? functions,
     GlobalKey<NavigatorState>? navigatorKey,
+    List<ArgProcessor>? argProcessors,
     JsonWidgetRegistry? parent,
     Map<String, dynamic>? values,
   }) =>
@@ -164,6 +170,7 @@ class JsonWidgetRegistry {
         functions: functions ?? _functions,
         navigatorKey: navigatorKey ?? this.navigatorKey,
         parent: parent ?? this,
+        argProcessors: argProcessors ?? _argProcessors,
         values: values ?? Map.from(_values),
       );
 
@@ -181,30 +188,6 @@ class JsonWidgetRegistry {
 
     _valueStreamController?.close();
     _valueStreamController = null;
-  }
-
-  /// Executes the dynamic function named [key].  This will first check  for a
-  /// custom dynamic function using the [key], and if none is found, this will
-  /// then check the internal functions.  If no function can be found in either
-  /// collection, this will throw an [Exception].
-  dynamic execute(
-    String? key,
-    Iterable<dynamic>? args,
-  ) {
-    var fun = _functions[key!] ?? _internalFunctions[key];
-    if (fun == null) {
-      if (_parent == null) {
-        throw Exception(
-            'No function named "$key" found in the registry [$debugLabel].');
-      } else {
-        return _parent!.execute(key, args);
-      }
-    }
-
-    return fun(
-      args: args as List<dynamic>?,
-      registry: this,
-    );
   }
 
   /// Returns the variable value for the given [key]. This will first check for
@@ -249,6 +232,41 @@ class JsonWidgetRegistry {
     return value;
   }
 
+  /// Returns the function with the given [functionName].
+  /// If a function with named [functionName] cannot be
+  /// found, this will return [null].
+  JsonWidgetFunction? getFunction(String? functionName) {
+    JsonWidgetFunction? function;
+    if (functionName != null) {
+      function = _functions[functionName] ?? _internalFunctions[functionName];
+    }
+    return function;
+  }
+
+  /// Executes the dynamic function named [key].  This will first check  for a
+  /// custom dynamic function using the [key], and if none is found, this will
+  /// then check the internal functions.  If no function can be found in either
+  /// collection, this will throw an [Exception].
+  dynamic execute(
+    String? key,
+    Iterable<dynamic>? args,
+  ) {
+    var fun = _functions[key!] ?? _internalFunctions[key];
+    if (fun == null) {
+      if (_parent == null) {
+        throw Exception(
+            'No function named "$key" found in the registry [$debugLabel].');
+      } else {
+        return _parent!.execute(key, args);
+      }
+    }
+
+    return fun(
+      args: args as List<dynamic>?,
+      registry: this,
+    );
+  }
+
   /// Returns the builder for the requested [type].  This will first search the
   /// registered custom builders, then if no builder is found, this will then
   /// search the library provided builders.
@@ -268,94 +286,13 @@ class JsonWidgetRegistry {
     return builder;
   }
 
-  /// Processes any dynamic argument values from [args].  This will return a
-  /// metadata object with the results as well as a collection of dynamic
-  /// variable names that were encounted.
-  DynamicParamsResult processDynamicArgs(
-    dynamic args, {
-    Set<String>? dynamicKeys,
-  }) {
-    dynamicKeys ??= <String>{};
-
-    dynamic result;
-    if (args is String) {
-      var parsed = JsonWidgetRegexHelper.parse(args);
-
-      if (parsed?.isNotEmpty == true) {
-        String? functionKey;
-        List<dynamic>? functionArgs;
-        for (var item in parsed!) {
-          if (item.isFunction == true) {
-            dynamicKeys.add('__FUNCTION__');
-
-            functionKey = item.key;
-            functionArgs = [];
-          } else if (item.isVariable == true) {
-            if (item.isStatic != true) {
-              dynamicKeys.add(item.key!);
-            }
-
-            var value = getValue(item.key);
-            result = value;
-            if (item.isNamedVariable == true) {
-              functionArgs?.add(
-                NamedFunctionArg(
-                  name: item.originalValue.split(':')[0],
-                  original: item.originalValue,
-                  value: value,
-                ),
-              );
-            } else {
-              functionArgs?.add(value);
-            }
-          } else {
-            functionArgs?.add(item.key);
-            result = item.key;
-          }
-        }
-
-        if (functionKey?.isNotEmpty == true) {
-          result = execute(functionKey, functionArgs);
-        }
-      } else {
-        result = args;
-      }
-    } else if (args is Iterable) {
-      result = [];
-      for (var value in args) {
-        result.add(processDynamicArgs(
-          value,
-          dynamicKeys: dynamicKeys,
-        ).values);
-      }
-    } else if (args is Map) {
-      result = {};
-
-      if (args['type'] != null &&
-          (args['child'] != null ||
-              args['children'] != null ||
-              args['args'] != null)) {
-        // The entry has a "type" and one of: "child", "children", "args".  This
-        // means the item is most likely a JsonWidgetData class, so we should
-        // not process the args yet.  We should wait until the actual
-        // JsonWidgetData gets built.
-        result = args;
-      } else {
-        args.forEach((key, value) {
-          result[key] = processDynamicArgs(
-            value,
-            dynamicKeys: dynamicKeys,
-          ).values;
-        });
-      }
-    } else {
-      result = args;
-    }
-
-    return DynamicParamsResult(
-      dynamicKeys: dynamicKeys,
-      values: result,
-    );
+  ProcessedArg processArgs(dynamic args) {
+    return _argProcessors
+        .firstWhere(
+          (parser) => parser.support(args),
+          orElse: () => RawArgProcessor(),
+        )
+        .process(this, args);
   }
 
   /// Registers the widget type with the registry to that [type] can be used in

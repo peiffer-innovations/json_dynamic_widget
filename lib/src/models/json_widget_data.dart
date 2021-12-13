@@ -125,20 +125,20 @@ class JsonWidgetData extends JsonClass {
       }
 
       var dynamicParamsResult =
-          registry.processDynamicArgs(args ?? <String, dynamic>{});
+          registry.processArgs(args ?? <String, dynamic>{});
 
       try {
         result = JsonWidgetData(
           args: map['args'] ?? {},
           builder: () {
             return builder(
-              registry!.processDynamicArgs(args ?? <String, dynamic>{}).values,
+              registry!.processArgs(args ?? <String, dynamic>{}).value,
               registry: registry,
             )!;
           },
           child: child,
           children: map['children'] is String
-              ? registry.processDynamicArgs(map['children']).values
+              ? registry.processArgs(map['children']).value
               : JsonClass.fromDynamicList(
                   map['children'],
                   (dynamic map) => JsonWidgetData.fromDynamic(
@@ -216,12 +216,12 @@ class JsonWidgetData extends JsonClass {
   JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
     var registry = newRegistry ?? this.registry;
     var builder = registry.getWidgetBuilder(type);
-    var dynamicParamsResult = registry.processDynamicArgs(args);
+    var dynamicParamsResult = registry.processArgs(args);
 
     List<JsonWidgetData>? children;
 
     if (originalChild is String) {
-      var values = registry.processDynamicArgs(originalChild).values;
+      var values = registry.processArgs(originalChild).value;
       if (values is String) {
         try {
           values = json.decode(values);
@@ -247,7 +247,7 @@ class JsonWidgetData extends JsonClass {
         ];
       }
     } else if (originalChildren is String) {
-      var values = registry.processDynamicArgs(originalChildren).values;
+      var values = registry.processArgs(originalChildren).value;
       if (values is String) {
         try {
           values = json.decode(values);
@@ -280,7 +280,7 @@ class JsonWidgetData extends JsonClass {
       args: args,
       builder: () {
         return builder(
-          registry.processDynamicArgs(args ?? <String, dynamic>{}).values,
+          registry.processArgs(args ?? <String, dynamic>{}).value,
           registry: registry,
         )!;
       },
