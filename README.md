@@ -236,6 +236,26 @@ Variable Name        | Example | Description
 
 Similar to the [variables](#using-variables), the `JsonWidgetRegistry` supports registering dynamic functions that can be called to create values.  If a value is a dynamic function then it must begin and end with two pound signs: `##`.  For example: `##set_value(variableName, 5)##`.  Dynamic values can refer to variables using the mustache format.
 
+Additionally, parameters can be named as follows:
+```
+##myFunction(key:keyName, value:{{value}})##
+```
+
+Constants will not be processed before being passed to the function, but variables will be reprocessed into a new class: `NamedFunctionArg`.
+
+Now, in your function, the args will be passed as such:
+```
+[
+  "key:keyName",
+  NamedFunctionArg(name: "value", value: <<value of variable from registry>>, "original": "value:{{value}}")
+]
+```
+
+This allows function that take multiple, optional, values to be more easily created and called vs having to do something like...
+```
+##myFunction(value, {{null}}, {{null}}, {{null}}, #ff0000)##
+```
+
 The built in functions are defined below:
 
 Function Name    | Example | Args | Description

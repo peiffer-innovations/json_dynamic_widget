@@ -30,7 +30,10 @@ final JsonWidgetFunction body = ({
   if (iterable is Iterable) {
     var index = 0;
     for (var value in iterable) {
-      var reg = JsonWidgetRegistry(parent: registry);
+      var reg = JsonWidgetRegistry(
+        debugLabel: 'for_each_$index',
+        parent: registry,
+      );
       _logger.finest('[$index] [$value]');
       reg.setValue(varName, value);
       reg.setValue(keyName, index++);

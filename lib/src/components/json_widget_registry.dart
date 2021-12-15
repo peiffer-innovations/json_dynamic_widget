@@ -296,8 +296,18 @@ class JsonWidgetRegistry {
             }
 
             var value = getValue(item.key);
-            functionArgs?.add(value);
             result = value;
+            if (item.isNamedVariable == true) {
+              functionArgs?.add(
+                NamedFunctionArg(
+                  name: item.originalValue.split(':')[0],
+                  original: item.originalValue,
+                  value: value,
+                ),
+              );
+            } else {
+              functionArgs?.add(value);
+            }
           } else {
             functionArgs?.add(item.key);
             result = item.key;

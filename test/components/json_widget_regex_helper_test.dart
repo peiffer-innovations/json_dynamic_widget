@@ -18,14 +18,20 @@ void main() {
     expect(
       JsonWidgetRegexHelper.parse('foo'),
       [
-        JsonWidgetParams(key: 'foo'),
+        JsonWidgetParams(
+          key: 'foo',
+          originalValue: 'foo',
+        ),
       ],
     );
 
     expect(
       JsonWidgetRegexHelper.parse('  foo  '),
       [
-        JsonWidgetParams(key: '  foo  '),
+        JsonWidgetParams(
+          key: '  foo  ',
+          originalValue: '  foo  ',
+        ),
       ],
     );
 
@@ -34,7 +40,10 @@ void main() {
         'The quick brown fox jumps over the lazy dog',
       ),
       [
-        JsonWidgetParams(key: 'The quick brown fox jumps over the lazy dog'),
+        JsonWidgetParams(
+          key: 'The quick brown fox jumps over the lazy dog',
+          originalValue: 'The quick brown fox jumps over the lazy dog',
+        ),
       ],
     );
 
@@ -45,6 +54,8 @@ void main() {
       [
         JsonWidgetParams(
           key:
+              'myFunction({{param1}}, const1, {{param2}}, {{param3}}, const2, const3)',
+          originalValue:
               'myFunction({{param1}}, const1, {{param2}}, {{param3}}, const2, const3)',
         ),
       ],
@@ -58,6 +69,7 @@ void main() {
         JsonWidgetParams(
           isVariable: true,
           key: 'foo',
+          originalValue: '{{foo}}',
         ),
       ],
     );
@@ -67,6 +79,7 @@ void main() {
         JsonWidgetParams(
           isVariable: true,
           key: 'foo',
+          originalValue: '{{  foo  }}',
         ),
       ],
     );
@@ -77,6 +90,7 @@ void main() {
           isStatic: true,
           isVariable: true,
           key: 'foo',
+          originalValue: '!{{foo}}',
         ),
       ],
     );
@@ -87,6 +101,7 @@ void main() {
           isStatic: true,
           isVariable: true,
           key: 'foo',
+          originalValue: '!{{  foo  }}',
         ),
       ],
     );
@@ -102,13 +117,14 @@ void main() {
       JsonWidgetParams(
         isFunction: true,
         key: 'expression',
+        originalValue: '##expression(add(subtract(2, 1), add(1, 1)))##',
       ),
     );
   });
 
   test('complex function', () {
     var parsed = JsonWidgetRegexHelper.parse(
-      '##myFunction({{param1}}, const1, {{param2}}, {{param3}}, const2, const3)##',
+      '##myFunction({{param1}}, const1, !{{param2}}, {{param3}}, const2, const3)##',
     );
 
     expect(
@@ -117,22 +133,85 @@ void main() {
         JsonWidgetParams(
           isFunction: true,
           key: 'myFunction',
+          originalValue:
+              '##myFunction({{param1}}, const1, !{{param2}}, {{param3}}, const2, const3)##',
         ),
         JsonWidgetParams(
           isVariable: true,
           key: 'param1',
+          originalValue: '{{param1}}',
         ),
-        JsonWidgetParams(key: 'const1'),
         JsonWidgetParams(
+          key: 'const1',
+          originalValue: 'const1',
+        ),
+        JsonWidgetParams(
+          isStatic: true,
           isVariable: true,
           key: 'param2',
+          originalValue: '!{{param2}}',
         ),
         JsonWidgetParams(
           isVariable: true,
           key: 'param3',
+          originalValue: '{{param3}}',
         ),
-        JsonWidgetParams(key: 'const2'),
-        JsonWidgetParams(key: 'const3'),
+        JsonWidgetParams(
+          key: 'const2',
+          originalValue: 'const2',
+        ),
+        JsonWidgetParams(
+          key: 'const3',
+          originalValue: 'const3',
+        ),
+      ],
+    );
+  });
+
+  test('named params function', () {
+    var parsed = JsonWidgetRegexHelper.parse(
+      '##myFunction(items:{{param1}}, const1, values:!{{param2}}, {{param3}}, const2, const3)##',
+    );
+
+    expect(
+      parsed,
+      [
+        JsonWidgetParams(
+          isFunction: true,
+          key: 'myFunction',
+          originalValue:
+              '##myFunction(items:{{param1}}, const1, values:!{{param2}}, {{param3}}, const2, const3)##',
+        ),
+        JsonWidgetParams(
+          isNamedVariable: true,
+          isVariable: true,
+          key: 'param1',
+          originalValue: 'items:{{param1}}',
+        ),
+        JsonWidgetParams(
+          key: 'const1',
+          originalValue: 'const1',
+        ),
+        JsonWidgetParams(
+          isNamedVariable: true,
+          isStatic: true,
+          isVariable: true,
+          key: 'param2',
+          originalValue: 'values:!{{param2}}',
+        ),
+        JsonWidgetParams(
+          isVariable: true,
+          key: 'param3',
+          originalValue: '{{param3}}',
+        ),
+        JsonWidgetParams(
+          key: 'const2',
+          originalValue: 'const2',
+        ),
+        JsonWidgetParams(
+          key: 'const3',
+          originalValue: 'const3',
+        ),
       ],
     );
   });

@@ -1,3 +1,8 @@
+## [3.5.1] - December 14th, 2021
+
+* Added ability to use named args in parameters like: `##setItems(key:keyName, items:{{myItems}})##`
+
+
 ## [3.5.0] - December 12th, 2021
 
 * Updates for Flutter 2.8

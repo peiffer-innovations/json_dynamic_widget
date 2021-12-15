@@ -111,5 +111,6 @@ export 'src/models/dynamic_params_result.dart';
 export 'src/models/json_widget_builder_container.dart';
 export 'src/models/json_widget_data.dart';
 export 'src/models/json_widget_type.dart';
+export 'src/models/named_function_arg.dart';
 
 export 'src/widgets/input_error.dart';
