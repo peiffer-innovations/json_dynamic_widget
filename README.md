@@ -21,6 +21,7 @@
 
 Here's a list of first party plugins that exist for this library.
 
+* [json_dynamic_widget_plugin_charts_flutter](https://github.com/peiffer-innovations/json_dynamic_widget_plugin_charts_flutter)
 * [json_dynamic_widget_plugin_expressions](https://pub.dev/packages/json_dynamic_widget_plugin_expressions)
 * [json_dynamic_widget_plugin_font_awesome](https://pub.dev/packages/json_dynamic_widget_plugin_font_awesome)
 * [json_dynamic_widget_plugin_ionicons](https://pub.dev/packages/json_dynamic_widget_plugin_ionicons)
@@ -236,10 +237,25 @@ Variable Name        | Example | Description
 
 Similar to the [variables](#using-variables), the `JsonWidgetRegistry` supports registering dynamic functions that can be called to create values.  If a value is a dynamic function then it must begin and end with two pound signs: `##`.  For example: `##set_value(variableName, 5)##`.  Dynamic values can refer to variables using the mustache format.
 
+Should you need to use commas in the actual values, they can be escaped via a double backslash character as follows:
+```
+##sayHello(Hello\\, {{firstName}}!)##
+```
+
+Assuming the function `sayHello` is implemented as, and the `{{firstName}}` variable is "Ted":
+```dart
+print(args[0]);
+```
+... then the output of that could would be:
+```
+Hello, Ted!
+```
+
 Additionally, parameters can be named as follows:
 ```
 ##myFunction(key:keyName, value:{{value}})##
 ```
+
 
 Constants will not be processed before being passed to the function, but variables will be reprocessed into a new class: `NamedFunctionArg`.
 

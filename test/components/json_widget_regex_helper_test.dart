@@ -46,6 +46,17 @@ void main() {
         ),
       ],
     );
+    expect(
+      JsonWidgetRegexHelper.parse(
+        'The quick brown fox, jumps over the lazy dog',
+      ),
+      [
+        JsonWidgetParams(
+          key: 'The quick brown fox, jumps over the lazy dog',
+          originalValue: 'The quick brown fox, jumps over the lazy dog',
+        ),
+      ],
+    );
 
     expect(
       JsonWidgetRegexHelper.parse(
@@ -144,6 +155,50 @@ void main() {
         JsonWidgetParams(
           key: 'const1',
           originalValue: 'const1',
+        ),
+        JsonWidgetParams(
+          isStatic: true,
+          isVariable: true,
+          key: 'param2',
+          originalValue: '!{{param2}}',
+        ),
+        JsonWidgetParams(
+          isVariable: true,
+          key: 'param3',
+          originalValue: '{{param3}}',
+        ),
+        JsonWidgetParams(
+          key: 'const2',
+          originalValue: 'const2',
+        ),
+        JsonWidgetParams(
+          key: 'const3',
+          originalValue: 'const3',
+        ),
+      ],
+    );
+
+    parsed = JsonWidgetRegexHelper.parse(
+      '##myFunction({{param1}}, [1\\,2\\,3], !{{param2}}, {{param3}}, const2, const3)##',
+    );
+
+    expect(
+      parsed,
+      [
+        JsonWidgetParams(
+          isFunction: true,
+          key: 'myFunction',
+          originalValue:
+              '##myFunction({{param1}}, [1\\,2\\,3], !{{param2}}, {{param3}}, const2, const3)##',
+        ),
+        JsonWidgetParams(
+          isVariable: true,
+          key: 'param1',
+          originalValue: '{{param1}}',
+        ),
+        JsonWidgetParams(
+          key: '[1,2,3]',
+          originalValue: '[1,2,3]',
         ),
         JsonWidgetParams(
           isStatic: true,

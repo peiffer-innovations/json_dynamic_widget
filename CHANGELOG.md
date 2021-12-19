@@ -1,3 +1,8 @@
+## [3.5.2] - December 19th, 2021
+
+* Added ability to escape commas in function args
+
+
 ## [3.5.1] - December 14th, 2021
 
 * Added ability to use named args in parameters like: `##setItems(key:keyName, items:{{myItems}})##`

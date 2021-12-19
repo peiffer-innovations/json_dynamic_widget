@@ -5,7 +5,7 @@ class JsonWidgetRegexHelper {
   JsonWidgetRegexHelper._();
 
   static final dynamicVarRegex = RegExp(r'^\{\{\s*\S*\s*\}\}$');
-  static final functionRegex = RegExp(r'^##([^(]*)\s*(\(.*\))##$');
+  static final functionRegex = RegExp(r'^##([^(]*)\s*\((.*)\)##$');
   static final varRegex = RegExp(r'^!?\{\{\s*\S*\s*\}\}$');
 
   static List<JsonWidgetParams>? parse(String? data) {
@@ -24,7 +24,26 @@ class JsonWidgetRegexHelper {
           originalValue: originalFun,
         ));
 
-        var strParams = data!.substring(1, data.length - 1).split(',');
+        var strParams = <String>[];
+        var buffer = StringBuffer();
+        for (var i = 0; i < data!.length; i++) {
+          var char = data.substring(i, i + 1);
+          if (char == ',') {
+            strParams.add(buffer.toString());
+            buffer.clear();
+          } else if (char == '\\') {
+            i++;
+            char = data.substring(i, i + 1);
+            buffer.write(char);
+          } else {
+            buffer.write(char);
+          }
+        }
+
+        if (buffer.isNotEmpty) {
+          strParams.add(buffer.toString());
+        }
+        // var strParams = data!.substring(1, data.length - 1).split(',');
         for (var strParam in strParams) {
           strParam = strParam.trim();
           if (strParam.startsWith('!{{') && strParam.endsWith('}}')) {
