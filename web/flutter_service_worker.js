@@ -7,7 +7,7 @@ const RESOURCES = {
 "canvaskit/profiling/canvaskit.js": "f3bfccc993a1e0bfdd3440af60d99df4",
 "canvaskit/profiling/canvaskit.wasm": "a9610cf39260f60fbe7524a785c66101",
 "canvaskit/canvaskit.wasm": "04ed3c745ff1dee16504be01f9623498",
-"main.dart.js": "2e3c060ebef7bf469d1b07a7406d07bb",
+"main.dart.js": "c8e4fa3f7b62aeac25c8100ee4455700",
 "version.json": "ff966ab969ba381b900e61629bfb9789",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
@@ -106,8 +106,8 @@ const RESOURCES = {
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
 "assets/assets/widgets/issue_24.json": "ce819747a12097fcf29f1d6545ae5a61",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"index.html": "9dc4c9d33d90cd1fbf2f98d9ba42e408",
-"/": "9dc4c9d33d90cd1fbf2f98d9ba42e408",
+"index.html": "f24c70d4f02556e1c0153343b389c9b1",
+"/": "f24c70d4f02556e1c0153343b389c9b1",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 
