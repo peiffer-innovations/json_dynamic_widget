@@ -28,6 +28,7 @@ export 'src/builders/json_column_builder.dart';
 export 'src/builders/json_conditional_builder.dart';
 export 'src/builders/json_container_builder.dart';
 export 'src/builders/json_cupertino_switch_builder.dart';
+export 'src/builders/json_custom_scroll_view_builder.dart';
 export 'src/builders/json_decorated_box_builder.dart';
 export 'src/builders/json_directionality_builder.dart';
 export 'src/builders/json_dropdown_button_form_field_builder.dart';
@@ -84,6 +85,8 @@ export 'src/builders/json_set_value_builder.dart';
 export 'src/builders/json_set_widget_builder.dart';
 export 'src/builders/json_single_child_scroll_view_builder.dart';
 export 'src/builders/json_sized_box_builder.dart';
+export 'src/builders/json_sliver_grid_builder.dart';
+export 'src/builders/json_sliver_list_builder.dart';
 export 'src/builders/json_stack_builder.dart';
 export 'src/builders/json_switch_builder.dart';
 export 'src/builders/json_testable_builder.dart';
@@ -102,6 +105,7 @@ export 'src/components/types.dart';
 export 'src/components/values/values.dart';
 
 export 'src/decoders/input_decoration_decoder.dart';
+export 'src/decoders/sliver_grid_delegate_decoder.dart';
 
 export 'src/exceptions/handled_json_widget_exception.dart';
 

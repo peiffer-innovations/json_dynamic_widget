@@ -5,46 +5,44 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme.dart';
 
-/// Builder that can build an [GridView] widget.  See the [fromDynamic] for the
-/// format.
-class JsonGridViewBuilder extends JsonWidgetBuilder {
-  JsonGridViewBuilder({
-    required this.addAutomaticKeepAlives,
-    required this.addRepaintBoundaries,
-    required this.addSemanticIndexes,
+/// Builder that can build an [CustomScrollView] widget.  See the
+/// [fromDynamic] for the format.
+class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
+  JsonCustomScrollViewBuilder({
+    this.anchor,
     this.cacheExtent,
+    this.center,
     required this.clipBehavior,
     this.controller,
     required this.dragStartBehavior,
-    required this.gridDelegate,
-    required this.keyboardDismissBehavior,
-    this.padding,
+    this.keyboardDismissBehavior,
     this.physics,
-    required this.primary,
+    this.primary,
     this.restorationId,
     required this.reverse,
+    this.scrollBehavior,
     required this.scrollDirection,
+    this.semanticChildCount,
     required this.shrinkWrap,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = -1;
-  static const type = 'grid_view';
+  static const type = 'custom_scroll_view';
 
-  final bool addAutomaticKeepAlives;
-  final bool addRepaintBoundaries;
-  final bool addSemanticIndexes;
+  final double? anchor;
   final double? cacheExtent;
+  final Key? center;
   final Clip clipBehavior;
   final ScrollController? controller;
   final DragStartBehavior dragStartBehavior;
-  final dynamic gridDelegate;
-  final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
-  final EdgeInsets? padding;
+  final ScrollViewKeyboardDismissBehavior? keyboardDismissBehavior;
   final ScrollPhysics? physics;
-  final bool primary;
+  final bool? primary;
   final String? restorationId;
   final bool reverse;
+  final ScrollBehavior? scrollBehavior;
   final Axis scrollDirection;
+  final int? semanticChildCount;
   final bool shrinkWrap;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -52,23 +50,21 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "addAutomaticKeepAlives": <bool>,
-  ///   "addRepaintBoundaries": <bool>,
-  ///   "addSemanticIndexes": <bool>,
+  ///   "anchor": <double>,
   ///   "cacheExtent": <double>,
   ///   "clipBehavior": <Clip>,
+  ///   "center": <Key>,
   ///   "controller": <ScrollController>,
   ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "itemExtent": <double>,
-  ///   "gridDelegate": <SliverGridDelegate>,
   ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "physics": <ScrollPhysics>,
   ///   "primary": <bool>,
-  ///   "prototypeItem": <JsonWidgetData>,
   ///   "restorationId": <String>,
   ///   "reverse": <bool>,
+  ///   "scrollBehavior": <ScrollBehavior>,
   ///   "scrollDirection": <Axis>,
+  ///   "semanticChildCount": <int>,
   ///   "shrinkWrap": <bool>
   /// }
   /// ```
@@ -77,90 +73,56 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
   /// the only way to bind those values to the builder is to use a function or a
   /// variable reference via the [JsonWidgetRegistry].
   ///
-  /// The "gridDelegate" can be passed in via a variable or it can be decoded
-  /// using one of the two schemas:
-  /// ```json
-  /// {
-  ///   "type": "max_cross_axis_extent",
-  ///   "childAspectRatio": <double?>,
-  ///   "crossAxisSpacing": <double?>,
-  ///   "mainAxisExtent": <double?>,
-  ///   "mainAxisSpacing": <double?>,
-  ///   "maxCrossAxisExtent": "<double>"
-  /// }
-  /// ```
-  ///
-  /// ... or ...
-  ///
-  /// ```json
-  /// {
-  ///   "type": "fixed_cross_axis_count",
-  ///   "crossAxisCount": <int>,
-  ///   "childAspectRatio": <double?>,
-  ///   "crossAxisSpacing": <double?>,
-  ///   "mainAxisExtent": <double?>,
-  ///   "mainAxisSpacing": <double?>
-  /// }
-  /// ```
-  ///
   /// See also:
   ///  * [ThemeDecoder.decodeAxis]
-  ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
+  ///  * [ThemeDecoder.decodeScrollBehavior]
   ///  * [ThemeDecoder.decodeScrollPhysics]
-  static JsonGridViewBuilder? fromDynamic(
+  ///  * [ThemeDecoder.decodeScrollViewKeyboardDismissBehavior]
+  static JsonCustomScrollViewBuilder? fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
-    JsonGridViewBuilder? result;
+    JsonCustomScrollViewBuilder? result;
 
     if (map != null) {
-      result = JsonGridViewBuilder(
-        addAutomaticKeepAlives: map['addAutomaticKeepAlives'] == null
-            ? true
-            : JsonClass.parseBool(map['addAutomaticKeepAlives']),
-        addRepaintBoundaries: map['addRepaintBoundaries'] == null
-            ? true
-            : JsonClass.parseBool(map['addRepaintBoundaries']),
-        addSemanticIndexes: map['addSemanticIndexes'] == null
-            ? true
-            : JsonClass.parseBool(map['addSemanticIndexes']),
+      result = JsonCustomScrollViewBuilder(
+        anchor: JsonClass.parseDouble(map['anchor']),
         cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
-        clipBehavior: ThemeDecoder.decodeClip(
-              map['clipBehavior'],
-              validate: false,
-            ) ??
-            Clip.hardEdge,
+        center:
+            map['center'] is String ? ValueKey(map['center']) : map['center'],
+        clipBehavior:
+            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
               validate: false,
             ) ??
             DragStartBehavior.start,
-        gridDelegate: map['gridDelegate'],
         keyboardDismissBehavior:
             ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
-                  map['keyboardDismissBehavior'],
-                  validate: false,
-                ) ??
-                ScrollViewKeyboardDismissBehavior.manual,
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
-          map['padding'],
+          map['keyboardDismissBehavior'],
           validate: false,
-        ) as EdgeInsets?,
+        ),
         physics: ThemeDecoder.decodeScrollPhysics(
           map['physics'],
           validate: false,
         ),
-        primary: JsonClass.parseBool(map['primary']),
+        primary:
+            map['primary'] == null ? null : JsonClass.parseBool(map['primary']),
         restorationId: map['restorationId'],
         reverse: JsonClass.parseBool(map['reverse']),
+        scrollBehavior: ThemeDecoder.decodeScrollBehavior(
+          map['scrollBehavior'],
+          validate: false,
+        ),
         scrollDirection: ThemeDecoder.decodeAxis(
               map['scrollDirection'],
               validate: false,
             ) ??
             Axis.vertical,
+        semanticChildCount: JsonClass.parseInt(map['semanticChildCount']),
         shrinkWrap: JsonClass.parseBool(map['shrinkWrap']),
       );
     }
@@ -175,35 +137,33 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    return GridView.builder(
-      addAutomaticKeepAlives: addAutomaticKeepAlives,
-      addRepaintBoundaries: addRepaintBoundaries,
-      addSemanticIndexes: addSemanticIndexes,
+    var children = [
+      for (var child in data.children ?? <JsonWidgetData>[])
+        child.build(
+          context: context,
+          childBuilder: childBuilder,
+        ),
+    ];
+
+    return CustomScrollView(
+      anchor: anchor ?? 0.0,
       cacheExtent: cacheExtent,
+      center: center,
       clipBehavior: clipBehavior,
       controller: controller,
       dragStartBehavior: dragStartBehavior,
-      gridDelegate: SliverGridDelegateDecoder.decodeGridDelegate(
-        gridDelegate: gridDelegate,
-      ),
-      itemCount: data.children?.length ?? 0,
       key: key,
-      keyboardDismissBehavior: keyboardDismissBehavior,
-      padding: padding,
+      keyboardDismissBehavior:
+          keyboardDismissBehavior ?? ScrollViewKeyboardDismissBehavior.manual,
       physics: physics,
       primary: primary,
       restorationId: restorationId,
       reverse: reverse,
+      scrollBehavior: scrollBehavior,
       scrollDirection: scrollDirection,
-      semanticChildCount: data.children?.length ?? 0,
+      semanticChildCount: semanticChildCount,
       shrinkWrap: shrinkWrap,
-      itemBuilder: (BuildContext context, int index) {
-        var w = data.children![index].build(
-          childBuilder: childBuilder,
-          context: context,
-        );
-        return w;
-      },
+      slivers: children,
     );
   }
 }

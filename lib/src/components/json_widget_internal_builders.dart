@@ -125,6 +125,10 @@ class JsonWidgetInternalBuilders {
           builder: JsonCupertinoSwitchBuilder.fromDynamic,
           schemaId: CupertinoSwitchSchema.id,
         ),
+        JsonCustomScrollViewBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonCustomScrollViewBuilder.fromDynamic,
+          schemaId: CustomScrollViewSchema.id,
+        ),
         JsonDecoratedBoxBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonDecoratedBoxBuilder.fromDynamic,
           schemaId: DecoratedBoxSchema.id,
@@ -348,6 +352,14 @@ class JsonWidgetInternalBuilders {
         JsonSizedBoxBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSizedBoxBuilder.fromDynamic,
           schemaId: SizedBoxSchema.id,
+        ),
+        JsonSliverGridBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonSliverGridBuilder.fromDynamic,
+          schemaId: SliverGridSchema.id,
+        ),
+        JsonSliverListBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonSliverListBuilder.fromDynamic,
+          schemaId: SliverListSchema.id,
         ),
         JsonStackBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonStackBuilder.fromDynamic,

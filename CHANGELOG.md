@@ -1,3 +1,8 @@
+## [3.5.3] - December 28th, 2021
+
+* Added `SliverList`, `SliverGrid` and `CustomScrollView`
+
+
 ## [3.5.2] - December 19th, 2021
 
 * Added ability to escape commas in function args

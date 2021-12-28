@@ -371,6 +371,7 @@ class RootPage extends StatelessWidget {
     'popup_menu_button': _onPageSelected,
     'set_default_value': _onPageSelected,
     'simple_page': _onPageSelected,
+    'slivers': _onPageSelected,
     'switch': _onPageSelected,
     'theme': _onPageSelected,
     'tooltip': _onPageSelected,
