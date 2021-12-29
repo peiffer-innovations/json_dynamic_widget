@@ -107,8 +107,8 @@ const RESOURCES = {
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
 "assets/assets/widgets/issue_24.json": "ce819747a12097fcf29f1d6545ae5a61",
 "assets/fonts/MaterialIcons-Regular.otf": "4e6447691c9509f7acdbf8a931a85ca1",
-"index.html": "264149274ad32e5e67d485444179733c",
-"/": "264149274ad32e5e67d485444179733c",
+"index.html": "9963806bb2508f21bd06f615d48da86b",
+"/": "9963806bb2508f21bd06f615d48da86b",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796"
 };
 
