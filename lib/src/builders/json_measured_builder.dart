@@ -42,6 +42,7 @@ class JsonMeasuredBuilder extends JsonWidgetBuilder {
         builder: this,
         childBuilder: childBuilder,
         data: data,
+        key: key,
       );
 }
 

@@ -91,6 +91,7 @@ class JsonDynamicWidgetSchemas {
     SizedBoxSchema.id: SizedBoxSchema.schema,
     SliverListSchema.id: SliverListSchema.schema,
     SliverGridSchema.id: SliverGridSchema.schema,
+    SliverToBoxAdapterSchema.id: SliverToBoxAdapterSchema.schema,
     StackSchema.id: StackSchema.schema,
     SwitchSchema.id: SwitchSchema.schema,
     TestableSchema.id: TestableSchema.schema,

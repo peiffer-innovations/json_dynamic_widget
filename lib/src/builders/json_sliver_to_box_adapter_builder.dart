@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [SliverList] widget.  See the [fromDynamic] for
-/// the format.
-class JsonSliverListBuilder extends JsonWidgetBuilder {
-  JsonSliverListBuilder({
+/// Builder that can build an [SliverToBoxAdapter] widget.  See the
+/// [fromDynamic] for the format.
+class JsonSliverToBoxAdapterBuilder extends JsonWidgetBuilder {
+  JsonSliverToBoxAdapterBuilder({
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,
@@ -16,7 +16,7 @@ class JsonSliverListBuilder extends JsonWidgetBuilder {
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = -1;
-  static const type = 'sliver_list';
+  static const type = 'sliver_to_box_adapter';
 
   final bool addAutomaticKeepAlives;
   final bool addRepaintBoundaries;
@@ -42,14 +42,14 @@ class JsonSliverListBuilder extends JsonWidgetBuilder {
   /// As a note, the [ScrollController] cannot be decoded via JSON.  Instead,
   /// the only way to bind those values to the builder is to use a function or a
   /// variable reference via the [JsonWidgetRegistry].
-  static JsonSliverListBuilder? fromDynamic(
+  static JsonSliverToBoxAdapterBuilder? fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
-    JsonSliverListBuilder? result;
+    JsonSliverToBoxAdapterBuilder? result;
 
     if (map != null) {
-      result = JsonSliverListBuilder(
+      result = JsonSliverToBoxAdapterBuilder(
         addAutomaticKeepAlives: JsonClass.parseBool(
           map['addAutomaticKeepAlives'],
           whenNull: true,
@@ -79,22 +79,12 @@ class JsonSliverListBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) => data.children![index].build(
-          context: context,
-          childBuilder: childBuilder,
-        ),
-        addAutomaticKeepAlives: addAutomaticKeepAlives,
-        addRepaintBoundaries: addRepaintBoundaries,
-        addSemanticIndexes: addSemanticIndexes,
-        childCount: data.children?.length ?? 0,
-        findChildIndexCallback: findChildIndexCallback,
-        semanticIndexCallback:
-            semanticIndexCallback ?? (Widget _, int localIndex) => localIndex,
-        semanticIndexOffset: semanticIndexOffset,
-      ),
+    return SliverToBoxAdapter(
       key: key,
+      child: getChild(data).build(
+        childBuilder: childBuilder,
+        context: context,
+      ),
     );
   }
 }

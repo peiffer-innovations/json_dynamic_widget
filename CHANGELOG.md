@@ -1,6 +1,6 @@
-## [3.5.3] - December 28th, 2021
+## [3.5.3+1] - December 29th, 2021
 
-* Added `SliverList`, `SliverGrid` and `CustomScrollView`
+* Added `SliverToBoxAdapter`, `SliverList`, `SliverGrid` and `CustomScrollView`
 
 
 ## [3.5.2] - December 19th, 2021

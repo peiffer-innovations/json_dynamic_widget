@@ -101,6 +101,7 @@ class JsonSliverGridBuilder extends JsonWidgetBuilder {
       gridDelegate: SliverGridDelegateDecoder.decodeGridDelegate(
         gridDelegate: gridDelegate,
       ),
+      key: key,
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget_schemas.dart';
+import 'package:json_dynamic_widget/src/schema/all.dart';
 
 class JsonWidgetInternalBuilders {
   static Map<String, JsonWidgetBuilderContainer> get builders =>
@@ -360,6 +361,10 @@ class JsonWidgetInternalBuilders {
         JsonSliverListBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSliverListBuilder.fromDynamic,
           schemaId: SliverListSchema.id,
+        ),
+        JsonSliverToBoxAdapterBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonSliverToBoxAdapterBuilder.fromDynamic,
+          schemaId: SliverToBoxAdapterSchema.id,
         ),
         JsonStackBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonStackBuilder.fromDynamic,

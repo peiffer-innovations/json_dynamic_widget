@@ -87,6 +87,7 @@ export 'src/builders/json_single_child_scroll_view_builder.dart';
 export 'src/builders/json_sized_box_builder.dart';
 export 'src/builders/json_sliver_grid_builder.dart';
 export 'src/builders/json_sliver_list_builder.dart';
+export 'src/builders/json_sliver_to_box_adapter_builder.dart';
 export 'src/builders/json_stack_builder.dart';
 export 'src/builders/json_switch_builder.dart';
 export 'src/builders/json_testable_builder.dart';

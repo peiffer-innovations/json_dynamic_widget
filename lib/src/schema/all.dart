@@ -88,6 +88,7 @@ export 'schemas/single_child_scroll_view_schema.dart';
 export 'schemas/sized_box_schema.dart';
 export 'schemas/sliver_grid_schema.dart';
 export 'schemas/sliver_list_schema.dart';
+export 'schemas/sliver_to_box_adapter_schema.dart';
 export 'schemas/stack_schema.dart';
 export 'schemas/switch_schema.dart';
 export 'schemas/testable_schema.dart';
