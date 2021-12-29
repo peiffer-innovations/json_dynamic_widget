@@ -138,6 +138,26 @@
         "type": "custom_scroll_view",
         "children": [
           {
+            "type": "sliver_to_box_adapter",
+            "child": {
+              "type": "list_tile",
+              "args": {
+                "subtitle": {
+                  "type": "text",
+                  "args": {
+                    "text": "max_cross_axis_extent"
+                  }
+                },
+                "title": {
+                  "type": "text",
+                  "args": {
+                    "text": "SliverGrid"
+                  }
+                }
+              }
+            }
+          },
+          {
             "type": "sliver_grid",
             "args": {
               "gridDelegate": {
@@ -151,8 +171,42 @@
             "children": "##for_each({{entries;$.values}}, template)##"
           },
           {
+            "type": "sliver_to_box_adapter",
+            "child": {
+              "type": "list_tile",
+              "args": {
+                "title": {
+                  "type": "text",
+                  "args": {
+                    "text": "SliverList"
+                  }
+                }
+              }
+            }
+          },
+          {
             "type": "sliver_list",
             "children": "##for_each({{entries;$.values}}, listTemplate)##"
+          },
+          {
+            "type": "sliver_to_box_adapter",
+            "child": {
+              "type": "list_tile",
+              "args": {
+                "subtitle": {
+                  "type": "text",
+                  "args": {
+                    "text": "fixed_cross_axis_count"
+                  }
+                },
+                "title": {
+                  "type": "text",
+                  "args": {
+                    "text": "SliverGrid"
+                  }
+                }
+              }
+            }
           },
           {
             "type": "sliver_grid",
