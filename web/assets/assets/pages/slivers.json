@@ -135,93 +135,133 @@
         }
       },
       "body": {
-        "type": "custom_scroll_view",
-        "children": [
-          {
-            "type": "sliver_to_box_adapter",
-            "child": {
-              "type": "list_tile",
-              "args": {
-                "subtitle": {
-                  "type": "text",
-                  "args": {
-                    "text": "max_cross_axis_extent"
-                  }
-                },
-                "title": {
-                  "type": "text",
-                  "args": {
-                    "text": "SliverGrid"
-                  }
-                }
-              }
-            }
+        "type": "set_scroll_controller",
+        "args": {
+          "key": "controller"
+        },
+        "child": {
+          "type": "scrollbar",
+          "args": {
+            "controller": "{{controller}}"
           },
-          {
-            "type": "sliver_grid",
+          "child": {
+            "type": "padding",
             "args": {
-              "gridDelegate": {
-                "childAspectRatio": 1.5,
-                "crossAxisSpacing": 16.0,
-                "mainAxisSpacing": 12.0,
-                "maxCrossAxisExtent": 300,
-                "type": "max_cross_axis_extent"
+              "padding": {
+                "left": 40,
+                "right": 40
               }
             },
-            "children": "##for_each({{entries;$.values}}, template)##"
-          },
-          {
-            "type": "sliver_to_box_adapter",
             "child": {
-              "type": "list_tile",
+              "type": "custom_scroll_view",
               "args": {
-                "title": {
-                  "type": "text",
+                "controller": "{{controller}}"
+              },
+              "children": [
+                {
+                  "type": "sliver_padding",
                   "args": {
-                    "text": "SliverList"
-                  }
-                }
-              }
-            }
-          },
-          {
-            "type": "sliver_list",
-            "children": "##for_each({{entries;$.values}}, listTemplate)##"
-          },
-          {
-            "type": "sliver_to_box_adapter",
-            "child": {
-              "type": "list_tile",
-              "args": {
-                "subtitle": {
-                  "type": "text",
-                  "args": {
-                    "text": "fixed_cross_axis_count"
+                    "padding": {
+                      "top": 16
+                    }
+                  },
+                  "child": {
+                    "type": "sliver_to_box_adapter",
+                    "child": {
+                      "type": "list_tile",
+                      "args": {
+                        "subtitle": {
+                          "type": "text",
+                          "args": {
+                            "text": "max_cross_axis_extent"
+                          }
+                        },
+                        "title": {
+                          "type": "text",
+                          "args": {
+                            "text": "SliverGrid"
+                          }
+                        }
+                      }
+                    }
                   }
                 },
-                "title": {
-                  "type": "text",
+                {
+                  "type": "sliver_grid",
                   "args": {
-                    "text": "SliverGrid"
+                    "gridDelegate": {
+                      "childAspectRatio": 1.5,
+                      "crossAxisSpacing": 16.0,
+                      "mainAxisSpacing": 12.0,
+                      "maxCrossAxisExtent": 300,
+                      "type": "max_cross_axis_extent"
+                    }
+                  },
+                  "children": "##for_each({{entries;$.values}}, template)##"
+                },
+                {
+                  "type": "sliver_to_box_adapter",
+                  "child": {
+                    "type": "list_tile",
+                    "args": {
+                      "title": {
+                        "type": "text",
+                        "args": {
+                          "text": "SliverList"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "sliver_list",
+                  "children": "##for_each({{entries;$.values}}, listTemplate)##"
+                },
+                {
+                  "type": "sliver_to_box_adapter",
+                  "child": {
+                    "type": "list_tile",
+                    "args": {
+                      "subtitle": {
+                        "type": "text",
+                        "args": {
+                          "text": "fixed_cross_axis_count"
+                        }
+                      },
+                      "title": {
+                        "type": "text",
+                        "args": {
+                          "text": "SliverGrid"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "sliver_padding",
+                  "args": {
+                    "padding": {
+                      "bottom": 16
+                    }
+                  },
+                  "child": {
+                    "type": "sliver_grid",
+                    "args": {
+                      "gridDelegate": {
+                        "crossAxisCount": 4,
+                        "childAspectRatio": 0.5,
+                        "crossAxisSpacing": 8.0,
+                        "mainAxisSpacing": 12.0,
+                        "type": "fixed_cross_axis_count"
+                      }
+                    },
+                    "children": "##for_each({{entries;$.values}}, template)##"
                   }
                 }
-              }
+              ]
             }
-          },
-          {
-            "type": "sliver_grid",
-            "args": {
-              "gridDelegate": {
-                "crossAxisCount": 4,
-                "childAspectRatio": 0.5,
-                "crossAxisSpacing": 8.0,
-                "mainAxisSpacing": 12.0,
-                "type": "fixed_cross_axis_count"
-              }
-            },
-            "children": "##for_each({{entries;$.values}}, template)##"
           }
-        ]
+        }
       }
     }
   }
