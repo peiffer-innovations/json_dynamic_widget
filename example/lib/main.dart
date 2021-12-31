@@ -369,6 +369,7 @@ class RootPage extends StatelessWidget {
     'overflow_box': _onPageSelected,
     'placeholder': _onPageSelected,
     'popup_menu_button': _onPageSelected,
+    'scroll_view': _onPageSelected,
     'set_default_value': _onPageSelected,
     'simple_page': _onPageSelected,
     'slivers': _onPageSelected,

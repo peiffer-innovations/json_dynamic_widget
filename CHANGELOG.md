@@ -1,4 +1,12 @@
-## [3.5.3+1] - December 29th, 2021
+## [3.6.0] - December 31st, 2021
+
+* Added new `comment` option to allow for human readable comments to be placed in the JSON tree.
+* Added `PrimaryScrollController`, `Scrollbar`, `ScrollConfiguration`
+* Added `SliverPadding`
+* Added new `set_scroll_controller` option to create and place a `ScrollController` on the registry.
+
+
+## [3.5.3] - December 29th, 2021
 
 * Added `SliverToBoxAdapter`, `SliverList`, `SliverGrid` and `CustomScrollView`
 

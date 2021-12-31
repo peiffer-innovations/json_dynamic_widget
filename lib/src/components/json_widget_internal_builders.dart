@@ -114,6 +114,10 @@ class JsonWidgetInternalBuilders {
           builder: JsonColumnBuilder.fromDynamic,
           schemaId: ColumnSchema.id,
         ),
+        JsonCommentBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonCommentBuilder.fromDynamic,
+          schemaId: CommentSchema.id,
+        ),
         JsonConditionalBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonConditionalBuilder.fromDynamic,
           schemaId: ConditionalSchema.id,
@@ -306,6 +310,10 @@ class JsonWidgetInternalBuilders {
           builder: JsonPositionedBuilder.fromDynamic,
           schemaId: PositionedSchema.id,
         ),
+        JsonPrimaryScrollControllerBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonPrimaryScrollControllerBuilder.fromDynamic,
+          schemaId: PrimaryScrollControllerSchema.id,
+        ),
         JsonRadioBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonRadioBuilder.fromDynamic,
           schemaId: RadioSchema.id,
@@ -330,9 +338,21 @@ class JsonWidgetInternalBuilders {
           builder: JsonScaffoldBuilder.fromDynamic,
           schemaId: ScaffoldSchema.id,
         ),
+        JsonScrollConfigurationBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonScrollConfigurationBuilder.fromDynamic,
+          schemaId: ScrollConfigurationSchema.id,
+        ),
+        JsonScrollbarBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonScrollbarBuilder.fromDynamic,
+          schemaId: ScrollbarSchema.id,
+        ),
         JsonSemanticsBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSemanticsBuilder.fromDynamic,
           schemaId: SemanticsSchema.id,
+        ),
+        JsonSetScrollControllerBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonSetScrollControllerBuilder.fromDynamic,
+          schemaId: SetScrollControllerSchema.id,
         ),
         JsonSetDefaultValueBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSetDefaultValueBuilder.fromDynamic,
@@ -361,6 +381,10 @@ class JsonWidgetInternalBuilders {
         JsonSliverListBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSliverListBuilder.fromDynamic,
           schemaId: SliverListSchema.id,
+        ),
+        JsonSliverPaddingBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonSliverPaddingBuilder.fromDynamic,
+          schemaId: SliverPaddingSchema.id,
         ),
         JsonSliverToBoxAdapterBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSliverToBoxAdapterBuilder.fromDynamic,

@@ -7,13 +7,13 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// built widget.  See the [fromDynamic] for the format.
 class JsonSaveContextBuilder extends JsonWidgetBuilder {
   JsonSaveContextBuilder({
-    this.key,
+    required this.key,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = -1;
   static const type = 'save_context';
 
-  final String? key;
+  final String key;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -33,7 +33,7 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
     JsonSaveContextBuilder? result;
 
     if (map != null) {
-      result = JsonSaveContextBuilder(key: map['key']);
+      result = JsonSaveContextBuilder(key: map['key'] ?? 'context');
     }
 
     return result;
@@ -79,7 +79,7 @@ class _JsonSaveContextWidget extends StatefulWidget {
 class _JsonSaveContextWidgetState extends State<_JsonSaveContextWidget> {
   @override
   void dispose() {
-    widget.data.registry.removeValue(widget.builder.key!);
+    widget.data.registry.removeValue(widget.builder.key);
 
     super.dispose();
   }
@@ -87,7 +87,7 @@ class _JsonSaveContextWidgetState extends State<_JsonSaveContextWidget> {
   @override
   Widget build(BuildContext context) => Builder(
         builder: (BuildContext context) {
-          widget.data.registry.setValue(widget.builder.key!, context);
+          widget.data.registry.setValue(widget.builder.key, context);
           return widget.data.children?.isNotEmpty == true
               ? widget.data.children![0].build(
                   childBuilder: widget.childBuilder,
