@@ -39,7 +39,7 @@ jobs:
           cd ..
 
       - name: Publish
-        uses: peiffer-innovations/actions-pub-publish@v1.0.0
+        uses: peiffer-innovations/actions-pub-publish@v1.0.1
         with:
           credentials: ${{ secrets.CREDENTIAL_JSON }}
 

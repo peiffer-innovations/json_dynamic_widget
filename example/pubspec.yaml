@@ -10,12 +10,12 @@ environment:
 
 dependencies:
   automated_testing_framework: ^3.2.0
-  automated_testing_framework_plugin_images: ^3.0.3
+  automated_testing_framework_plugin_images: ^3.0.4
   desktop_window: ^0.4.0
-  dotted_border: ^2.0.0+1
+  dotted_border: ^2.0.0+2
   flutter:
     sdk: flutter
-  flutter_svg: ^0.22.0
+  flutter_svg: ^1.0.0
   json_dynamic_widget:
     path: ../
 
