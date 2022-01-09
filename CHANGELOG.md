@@ -1,3 +1,8 @@
+## [3.6.0+1] - January 9th, 2022
+
+* Dependency updates
+
+
 ## [3.6.0] - December 31st, 2021
 
 * Added new `comment` option to allow for human readable comments to be placed in the JSON tree.
