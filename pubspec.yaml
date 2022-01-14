@@ -21,7 +21,6 @@ dependencies:
   interpolation: ^2.1.2
   json_class: ^2.1.2+3
   json_conditional: ^2.1.0+2
-  json_path: ^0.3.1
   json_schema2: ^2.0.0+5
   json_theme: ^3.2.4
   logging: ^1.0.2

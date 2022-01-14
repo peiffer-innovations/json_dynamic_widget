@@ -22,7 +22,7 @@
         "child": {
           "type": "animated_cross_fade",
           "args": {
-            "crossFadeState": "{{customCrossFadeState}}",
+            "crossFadeState": "${customCrossFadeState}",
             "duration": 1000
           },
           "children": [
@@ -50,7 +50,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customCrossFadeState, showSecond)##"
+        "onPressed": "${set_value('customCrossFadeState', 'showSecond')}"
       },
       "child": {
         "type": "text",

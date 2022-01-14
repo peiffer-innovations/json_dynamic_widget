@@ -22,9 +22,9 @@
         "child": {
           "type": "tween_animation",
           "args": {
-            "builder": "##getCustomTweenBuilder()##",
+            "builder": "${getCustomTweenBuilder()}",
             "duration": 1000,
-            "tween": "##getCustomTween({{customSize}})##"
+            "tween": "${getCustomTween(customSize)}"
           },
           "child": {
             "type": "icon",

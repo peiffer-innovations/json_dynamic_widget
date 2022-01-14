@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
@@ -24,10 +23,7 @@ import 'package:json_dynamic_widget/src/components/functions/remove_value.dart'
 import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
     as set_value_fun;
 import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
-import 'package:json_dynamic_widget/src/components/processors/arg_processor.dart';
-import 'package:json_dynamic_widget/src/components/processors/raw_arg_processor.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
-import 'package:json_path/json_path.dart';
 import 'package:logging/logging.dart';
 
 /// Registry for both the library provided as well as custom form builders that
@@ -65,8 +61,7 @@ class JsonWidgetRegistry {
     _values.addAll(values ?? {});
     _parentDisposeStreamSubscription =
         parent?.disposeStream.listen((_) => dispose());
-    _argProcessors = argProcessors ?? ArgProcessors.backported;
-
+    _argProcessors = argProcessors ?? ArgProcessors.defaults;
     _parentValueStreamSubscription = parent?.valueStream
         .listen((event) => _valueStreamController?.add(event));
   }
@@ -190,39 +185,14 @@ class JsonWidgetRegistry {
     _valueStreamController = null;
   }
 
-  /// Returns the variable value for the given [key]. This will first check for
+  /// Returns the variable value for the given [key].This will first check for
   /// a custom dynamic value using the [key], and if none is found, this will
   /// then check the internal values. If a variable with named [key] cannot be
   /// found, this will return [null].
-  ///
-  /// If the [key] contains a semicolon (`;`) then the first part will be used
-  /// as the actual key to look up and the second part will be treated as the
-  /// JSON Path expression to get the value out of the value represented by the
-  /// key.
   dynamic getValue(String? key) {
     var originalKey = key;
-    String? jsonPath;
-    if (key is String && key.contains(';')) {
-      var parts = key.split(';');
-      key = parts[0];
-      jsonPath = parts[1];
-    }
 
     var value = _values[key] ?? _internalValues[key];
-
-    try {
-      if (jsonPath != null) {
-        var jsonData = value;
-        if (jsonData is String &&
-            (jsonData.startsWith('{') || jsonData.startsWith('['))) {
-          jsonData = json.decode(jsonData);
-        }
-        value = JsonPath(jsonPath).readValues(jsonData).first;
-      }
-    } catch (e) {
-      // no-op
-    }
-
     value ??= _parent?.getValue(key);
 
     _logger.finest(

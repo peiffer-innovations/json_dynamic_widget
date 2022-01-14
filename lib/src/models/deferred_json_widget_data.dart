@@ -29,7 +29,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
 
   JsonWidgetData get data {
     if (_data == null) {
-      var data = _registry.getValue(_key);
+      var data = _registry.processArgs(_key).value;
 
       if (data is! JsonWidgetData) {
         data = JsonWidgetData.fromDynamic(
@@ -39,7 +39,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       }
       if (data is! JsonWidgetData) {
         throw Exception(
-          'Unable to find JsonWidgetData for [$_key] on the registry',
+          'Unable to find JsonWidgetData via [$_key] on the registry',
         );
       }
 

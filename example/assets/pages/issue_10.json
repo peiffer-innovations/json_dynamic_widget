@@ -15,7 +15,7 @@
               "text": "Test"
             }
           },
-          "systemOverlayStyle": "{{customBrightness}}"
+          "systemOverlayStyle": "${customBrightness}"
         }
       }
     }

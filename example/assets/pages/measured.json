@@ -48,7 +48,7 @@
 										{
 											"type": "text",
 											"args": {
-												"text": "{{container.width}}"
+												"text": "${container.width}"
 											}
 										},
 										{
@@ -60,7 +60,7 @@
 										{
 											"type": "text",
 											"args": {
-												"text": "{{container.height}}"
+												"text": "${container.height}"
 											}
 										}
 									]
@@ -104,7 +104,7 @@
 											{
 												"type": "text",
 												"args": {
-													"text": "{{text.width}}"
+													"text": "${text.width}"
 												}
 											},
 											{
@@ -116,7 +116,7 @@
 											{
 												"type": "text",
 												"args": {
-													"text": "{{text.height}}"
+													"text": "${text.height}"
 												}
 											}
 										]
@@ -166,7 +166,7 @@
 														"style": {
 															"fontWeight": "bold"
 														},
-														"text": "{{text_bold.width}}"
+														"text": "${text_bold.width}"
 													}
 												},
 												{
@@ -184,7 +184,7 @@
 														"style": {
 															"fontWeight": "bold"
 														},
-														"text": "{{text_bold.height}}"
+														"text": "${text_bold.height}"
 													}
 												}
 											]
@@ -237,7 +237,7 @@
 												{
 													"type": "text",
 													"args": {
-														"text": "{{container.width}}"
+														"text": "${container.width}"
 													}
 												},
 												{
@@ -249,7 +249,7 @@
 												{
 													"type": "text",
 													"args": {
-														"text": "{{container.height}}"
+														"text": "${container.height}"
 													}
 												}
 											]

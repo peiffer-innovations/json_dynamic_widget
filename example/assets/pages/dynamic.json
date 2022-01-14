@@ -45,7 +45,7 @@
                                                                 "text": "Submit"
                                                             }
                                                         },
-                                                        "onPressed": "##dynamic(edit{id}Element)##"
+                                                        "onPressed": "${dynamic('edit{id}Element')}"
                                                     }
                                                 ],
                                                 "title": {
@@ -103,7 +103,7 @@
                                                     "id": "{id}"
                                                 },
                                                 "values": {
-                                                    "message": "{{edit_message_{id}}}"
+                                                    "message": "${edit_message_{id}}"
                                                 }
                                             }
                                         },
@@ -124,10 +124,10 @@
                                                                 }
                                                             }
                                                         },
-                                                        "onPressed": "##show_dialog(dialogContext, editDialogData{id})##"
+                                                        "onPressed": "${show_dialog('dialogContext', 'editDialogData{id}')}"
                                                     }
                                                 },
-                                                "onLongPress": "##dynamic(remove{id}Element)##",
+                                                "onLongPress": "${dynamic('remove{id}Element')}",
                                                 "title": {
                                                     "type": "text",
                                                     "args": {
@@ -236,7 +236,7 @@
                                                                                             }
                                                                                         }
                                                                                     },
-                                                                                    "onPressed": "##set_value(form_message,)##"
+                                                                                    "onPressed": "${set_value('form_message','')}"
                                                                                 }
                                                                             }
                                                                         },
@@ -263,7 +263,7 @@
                                                         "index": 0
                                                     },
                                                     "values": {
-                                                        "message": "{{form_message}}"
+                                                        "message": "${form_message}"
                                                     }
                                                 }
                                             },
@@ -272,7 +272,7 @@
                                                 "args": {
                                                     "color": "#4a95ec",
                                                     "colorBrightness": "dark",
-                                                    "onPressed": "##dynamic(dynamicItemsAdd)##"
+                                                    "onPressed": "${dynamic('dynamicItemsAdd')}"
                                                 },
                                                 "child": {
                                                     "type": "container",

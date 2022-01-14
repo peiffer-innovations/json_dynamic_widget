@@ -20,7 +20,7 @@
                 }
               }
             },
-            "onPressed": "##navigate_pop()##"
+            "onPressed": "${navigate_pop()}"
           }
         },
         "title": {

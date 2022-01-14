@@ -65,10 +65,7 @@ class JsonWidgetData extends JsonClass {
     JsonWidgetData? result;
     registry ??= JsonWidgetRegistry.instance;
 
-    if (map is String &&
-        map.startsWith('{') &&
-        !map.startsWith('{{') &&
-        map.endsWith('}')) {
+    if (map is String && map.startsWith('{') && map.endsWith('}')) {
       try {
         map = json.decode(map);
       } catch (e) {
@@ -77,16 +74,8 @@ class JsonWidgetData extends JsonClass {
     }
     if (map is JsonWidgetData) {
       result = map;
-    } else if (map is String &&
-        (map.startsWith('!{{') || map.startsWith('{{')) &&
-        map.endsWith('}}')) {
-      var key = map.substring(map.indexOf('{{') + 2, map.length - 2).trim();
+    } else if (map is String && map.startsWith('\${') && map.endsWith('}')) {
       result = DeferredJsonWidgetData(
-        key: key,
-        registry: registry,
-      );
-    } else if (map is String && map.startsWith('##') && map.endsWith(')##')) {
-      result = DeferredFunctionWidgetData(
         key: map,
         registry: registry,
       );

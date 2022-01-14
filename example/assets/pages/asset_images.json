@@ -22,12 +22,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -39,7 +39,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -53,12 +53,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -70,7 +70,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -84,12 +84,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -101,7 +101,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -115,12 +115,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -132,7 +132,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -146,12 +146,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -163,7 +163,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -177,12 +177,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -194,7 +194,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -208,12 +208,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -225,7 +225,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -239,12 +239,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -256,7 +256,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -270,12 +270,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -287,7 +287,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -301,12 +301,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -318,7 +318,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -332,12 +332,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -349,7 +349,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -363,12 +363,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -380,7 +380,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -394,12 +394,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -411,7 +411,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -425,12 +425,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -442,7 +442,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -456,12 +456,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -473,7 +473,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -487,12 +487,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -504,7 +504,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }
@@ -518,12 +518,12 @@
         "child": {
           "type": "ink_well",
           "args": {
-            "onTap": "##getImageNavigator(!{{index}})##"
+            "onTap": "${getImageNavigator(index)}"
           },
           "child": {
             "type": "hero",
             "args": {
-              "tag": "##getImageId(!{{index}})##"
+              "tag": "${getImageId(index)}"
             },
             "child": {
               "type": "container",
@@ -535,7 +535,7 @@
                 "type": "asset_image",
                 "args": {
                   "fit": "fitHeight",
-                  "name": "##getImageAsset(!{{index}})##"
+                  "name": "${getImageAsset(index)}"
                 }
               }
             }

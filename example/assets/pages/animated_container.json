@@ -22,7 +22,7 @@
         "child": {
           "type": "animated_container",
           "args": {
-            "alignment": "{{customAlign}}",
+            "alignment": "${customAlign}",
             "color": "#0000FF",
             "duration": 1000,
             "height": 100,
@@ -43,7 +43,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customAlign, center)##"
+        "onPressed": "${set_value('customAlign', 'center')}"
       },
       "child": {
         "type": "text",

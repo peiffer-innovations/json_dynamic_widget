@@ -20,9 +20,9 @@
       "child": {
         "type": "animated_opacity",
         "args": {
-          "curve": "{{slow_middle_curve}}",
+          "curve": "${slow_middle_curve}",
           "duration": 1000,
-          "opacity": "{{customOpacity}}"
+          "opacity": "${customOpacity}"
         },
         "child": {
           "type": "container",
@@ -36,7 +36,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customOpacity, 0)##"
+        "onPressed": "${set_value('customOpacity', 0)}"
       },
       "child": {
         "type": "text",

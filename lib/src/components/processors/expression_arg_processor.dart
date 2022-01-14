@@ -1,6 +1,5 @@
 import 'package:expressions/expressions.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/processors/arg_processor.dart';
 
 class ExpressionArgProcessor implements ArgProcessor {
   final _matchRegexp = RegExp(r'^\${\s*(.*?)\s*}$');
@@ -12,9 +11,7 @@ class ExpressionArgProcessor implements ArgProcessor {
   @override
   ProcessedArg process(JsonWidgetRegistry registry, dynamic arg) {
     var dynamicKeys = <String>{};
-
     var regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
-
     var expression = Expression.tryParse(regexpMatch.group(1)!);
     if (expression != null) {
       var evaluator = ArgsExpressionEvaluator(registry);
@@ -47,9 +44,20 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
   @override
   dynamic evalMemberExpression(
       MemberExpression expression, Map<String, dynamic> context) {
-    var variableName = expression.property.name.split('.')[0];
-    return super.evalMemberExpression(
-        expression, _updateContextIfNeeded(context, variableName));
+    var variableName = '${expression.object}.${expression.property}';
+    return evalVariable(Variable(Identifier(variableName)), context);
+  }
+
+  @override
+  dynamic evalIndexExpression(
+      IndexExpression expression, Map<String, dynamic> context) {
+    dynamic objectIndexValue;
+    var objectValue = eval(expression.object, context);
+    if (objectValue != null) {
+      objectIndexValue =
+          eval(expression.object, context)[eval(expression.index, context)];
+    }
+    return objectIndexValue;
   }
 
   @override

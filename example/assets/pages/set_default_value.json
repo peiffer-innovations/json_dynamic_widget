@@ -39,7 +39,7 @@
                     "subtitle": {
                       "type": "text",
                       "args": {
-                        "text": "{{default}}"
+                        "text": "${default}"
                       }
                     },
                     "title": {
@@ -56,7 +56,7 @@
                     "subtitle": {
                       "type": "text",
                       "args": {
-                        "text": "{{nonDefault}}"
+                        "text": "${nonDefault}"
                       }
                     },
                     "title": {

@@ -36,9 +36,8 @@ final String key = 'dynamic';
 
 void _execute(final DynamicOperation dynamicOperation,
     final JsonWidgetRegistry registry) {
-  var childrenData = List<Map<String, dynamic>>.from(
-    registry.getValue(dynamicOperation.builder),
-  );
+  var childrenJson = json.encode(registry.getValue(dynamicOperation.builder));
+  var childrenData = List<Map<String, dynamic>>.from(json.decode(childrenJson));
   var index = dynamicOperation.findIndex(childrenData);
   dynamicOperation.execute(childrenData, index);
   registry.setValue(dynamicOperation.builder, childrenData);

@@ -27,7 +27,7 @@
           "children": [{
             "type": "raised_button",
             "args": {
-              "onPressed": "##set_value(error, This is an error)##"
+              "onPressed": "${set_value('error', 'This is an error')}"
             },
             "child": {
               "type": "text",
@@ -38,7 +38,7 @@
           }, {
             "type": "raised_button",
             "args": {
-              "onPressed": "##remove_value(error)##"
+              "onPressed": "${remove_value('error')}"
             },
             "child": {
               "type": "text",
@@ -55,7 +55,7 @@
         }, {
           "type": "input_error",
           "args": {
-            "text": "{{error}}"
+            "text": "${error}"
           }
         }]
       }

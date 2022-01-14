@@ -37,10 +37,10 @@
               "type": "animated_physical_model",
               "args": {
                 "animateColor": true,
-                "borderRadius": "{{customBorderRadius}}",
-                "color": "{{customColor}}",
+                "borderRadius": "${customBorderRadius}",
+                "color": "${customColor}",
                 "duration": 1000,
-                "elevation": "{{customElevation}}",
+                "elevation": "${customElevation}",
                 "shadowColor": "#000",
                 "shape": "rectangle"
               },
@@ -60,7 +60,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customElevation, 25)##"
+        "onPressed": "${set_value('customElevation', 25)}"
       },
       "child": {
         "type": "text",

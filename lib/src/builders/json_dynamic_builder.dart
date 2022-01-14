@@ -19,7 +19,7 @@ class DynamicValuesFactory {
 
 /// Builder that builds children based on the state the listened value.
 /// Listened value name is equal to `id` field value.
-/// Children are created from `childTemplate` with usage of `##dynamic##`
+/// Children are created from `childTemplate` with usage of `${dynamic}`
 /// function. `childTemplate` is able to use template values via {} format.
 /// For example to use an `id` value in a template just putting there `{id}`
 /// is enough. Templating mechanism uses [Interpolation] underneath.

@@ -60,7 +60,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{container.minWidth}}"
+                            "text": "${container.minWidth}"
                           }
                         },
                         {
@@ -72,7 +72,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{container.minHeight}}"
+                            "text": "${container.minHeight}"
                           }
                         },
                         {
@@ -84,7 +84,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{container.maxWidth}}"
+                            "text": "${container.maxWidth}"
                           }
                         },
                         {
@@ -96,7 +96,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{container.maxHeight}}"
+                            "text": "${container.maxHeight}"
                           }
                         },
                         {
@@ -150,7 +150,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{screen.minWidth}}"
+                            "text": "${screen.minWidth}"
                           }
                         },
                         {
@@ -162,7 +162,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{screen.minHeight}}"
+                            "text": "${screen.minHeight}"
                           }
                         },
                         {
@@ -174,7 +174,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{screen.maxWidth}}"
+                            "text": "${screen.maxWidth}"
                           }
                         },
                         {
@@ -186,7 +186,7 @@
                         {
                           "type": "text",
                           "args": {
-                            "text": "{{screen.maxHeight}}"
+                            "text": "${screen.maxHeight}"
                           }
                         },
                         {
@@ -242,7 +242,7 @@
                           {
                             "type": "text",
                             "args": {
-                              "text": "{{body.minWidth}}"
+                              "text": "${body.minWidth}"
                             }
                           },
                           {
@@ -254,7 +254,7 @@
                           {
                             "type": "text",
                             "args": {
-                              "text": "{{body.minHeight}}"
+                              "text": "${body.minHeight}"
                             }
                           },
                           {
@@ -266,7 +266,7 @@
                           {
                             "type": "text",
                             "args": {
-                              "text": "{{body.maxWidth}}"
+                              "text": "${body.maxWidth}"
                             }
                           },
                           {
@@ -278,7 +278,7 @@
                           {
                             "type": "text",
                             "args": {
-                              "text": "{{body.maxHeight}}"
+                              "text": "${body.maxHeight}"
                             }
                           },
                           {
@@ -342,7 +342,7 @@
                             {
                               "type": "text",
                               "args": {
-                                "text": "{{container.minWidth}}"
+                                "text": "${container.minWidth}"
                               }
                             },
                             {
@@ -354,7 +354,7 @@
                             {
                               "type": "text",
                               "args": {
-                                "text": "{{container.minHeight}}"
+                                "text": "${container.minHeight}"
                               }
                             },
                             {
@@ -366,7 +366,7 @@
                             {
                               "type": "text",
                               "args": {
-                                "text": "{{container.maxWidth}}"
+                                "text": "${container.maxWidth}"
                               }
                             },
                             {
@@ -378,7 +378,7 @@
                             {
                               "type": "text",
                               "args": {
-                                "text": "{{container.maxHeight}}"
+                                "text": "${container.maxHeight}"
                               }
                             },
                             {

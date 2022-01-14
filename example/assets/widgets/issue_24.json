@@ -23,7 +23,7 @@
                   }
                 }
               },
-              "onPressed": "##simplePrintMessage()##"
+              "onPressed": "${simplePrintMessage()}"
             }
           }
         ]

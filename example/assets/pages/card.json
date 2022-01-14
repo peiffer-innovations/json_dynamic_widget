@@ -80,7 +80,7 @@
                 "children": [{
                   "type": "flat_button",
                   "args": {
-                    "onPressed": "##noop()##"
+                    "onPressed": "${noop()}"
                   },
                   "child": {
                     "type": "text",
@@ -94,7 +94,7 @@
                 }, {
                   "type": "flat_button",
                   "args": {
-                    "onPressed": "##noop()##"
+                    "onPressed": "${noop()}"
                   },
                   "child": {
                     "type": "text",
