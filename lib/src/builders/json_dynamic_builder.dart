@@ -12,7 +12,7 @@ import 'package:uuid/uuid.dart';
 class DynamicValuesFactory {
   static Map<String, dynamic> create(dynamic valuesRaw) {
     var values = Map<String, dynamic>.from(valuesRaw);
-    values['id'] ??= Uuid().v4();
+    values['id'] ??= Uuid().v4().replaceAll('-', '_');
     return values;
   }
 }

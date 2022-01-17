@@ -9,15 +9,21 @@ class IterableArgProcessor implements ArgProcessor {
   }
 
   @override
-  ProcessedArg process(JsonWidgetRegistry registry, dynamic arg) {
+  ProcessedArg process(
+      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables) {
+    var calculateListenVariables = listenVariables == null;
+    var resultListenVariables = listenVariables ?? <String>{};
+
     var iterableArg = arg as Iterable;
-    var dynamicKeys = <String>{};
     var processedArgs = [];
     iterableArg.forEach((arg) {
-      var processedArg = registry.processArgs(arg);
+      var processedArg = registry.processArgs(arg, listenVariables);
       processedArgs.add(processedArg.value);
-      dynamicKeys.addAll(processedArg.dynamicKeys.toList());
+      if (calculateListenVariables) {
+        resultListenVariables.addAll(processedArg.listenVariables.toList());
+      }
     });
-    return ProcessedArg(value: processedArgs, dynamicKeys: dynamicKeys);
+    return ProcessedArg(
+        value: processedArgs, listenVariables: resultListenVariables);
   }
 }

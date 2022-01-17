@@ -256,13 +256,13 @@ class JsonWidgetRegistry {
     return builder;
   }
 
-  ProcessedArg processArgs(dynamic args) {
+  ProcessedArg processArgs(dynamic args, Set<String>? listenVariables) {
     return _argProcessors
         .firstWhere(
           (parser) => parser.support(args),
           orElse: () => RawArgProcessor(),
         )
-        .process(this, args);
+        .process(this, args, listenVariables);
   }
 
   /// Registers the widget type with the registry to that [type] can be used in

@@ -13,13 +13,11 @@ void main() {
     );
 
     expect(
-      registry.processArgs(
-        {
-          'bounce_in_curve': '\${bounce_in_curve}',
-        },
-      ),
+      registry.processArgs({
+        'bounce_in_curve': '\${bounce_in_curve}',
+      }, null),
       ProcessedArg(
-        dynamicKeys: {'bounce_in_curve'},
+        listenVariables: {'bounce_in_curve'},
         value: {
           'bounce_in_curve': Curves.bounceInOut,
         },
@@ -27,13 +25,11 @@ void main() {
     );
 
     expect(
-      registry.processArgs(
-        {
-          'decelerate_curve': '\${decelerate_curve}',
-        },
-      ),
+      registry.processArgs({
+        'decelerate_curve': '\${decelerate_curve}',
+      }, null),
       ProcessedArg(
-        dynamicKeys: {'decelerate_curve'},
+        listenVariables: {'decelerate_curve'},
         value: {
           'decelerate_curve': Curves.decelerate,
         },
@@ -61,33 +57,35 @@ void main() {
     );
 
     expect(
-      registry.processArgs('Hello world!').toString(),
-      ProcessedArg(dynamicKeys: {}, value: 'Hello world!').toString(),
+      registry.processArgs('Hello world!', null).toString(),
+      ProcessedArg(listenVariables: {}, value: 'Hello world!').toString(),
     );
 
     expect(
-      registry.processArgs('\${one}').toString(),
-      ProcessedArg(dynamicKeys: {'one'}, value: 1).toString(),
+      registry.processArgs('\${one}', null).toString(),
+      ProcessedArg(listenVariables: {'one'}, value: 1).toString(),
     );
     expect(
-      registry.processArgs('\${one + one}').toString(),
-      ProcessedArg(dynamicKeys: {'one'}, value: 2).toString(),
+      registry.processArgs('\${one + one}', null).toString(),
+      ProcessedArg(listenVariables: {'one'}, value: 2).toString(),
     );
     expect(
       registry
           .processArgs(
-              "\${concat('Hello ',name,'! Here\\'s the map: ',{'key': 'value'}, ' and the array: ', ['value1', false])()}")
+              "\${concat('Hello ',name,'! Here\\'s the map: ',{'key': 'value'}, ' and the array: ', ['value1', false])()}",
+              null)
           .toString(),
-      ProcessedArg(dynamicKeys: {
+      ProcessedArg(listenVariables: {
         'name'
       }, value: "Hello Steve! Here's the map: {key: value} and the array: [value1, false]")
           .toString(),
     );
     expect(
       registry
-          .processArgs("\${concat('Hello ', concat('Mr. ', name)())()}")
+          .processArgs("\${concat('Hello ', concat('Mr. ', name)())()}", null)
           .toString(),
-      ProcessedArg(dynamicKeys: {'name'}, value: 'Hello Mr. Steve').toString(),
+      ProcessedArg(listenVariables: {'name'}, value: 'Hello Mr. Steve')
+          .toString(),
     );
   });
 }

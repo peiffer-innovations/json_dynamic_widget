@@ -9,26 +9,33 @@ class ExpressionArgProcessor implements ArgProcessor {
   }
 
   @override
-  ProcessedArg process(JsonWidgetRegistry registry, dynamic arg) {
-    var dynamicKeys = <String>{};
+  ProcessedArg process(
+      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables) {
+    var calculateListenVariables = listenVariables == null;
+    var resultListenVariables = listenVariables ?? <String>{};
+
     var regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
     var expression = Expression.tryParse(regexpMatch.group(1)!);
     if (expression != null) {
-      var evaluator = ArgsExpressionEvaluator(registry);
+      var evaluator =
+          ArgsExpressionEvaluator(registry, calculateListenVariables);
       arg = evaluator.evaluate(expression);
-      dynamicKeys = evaluator.dynamicKeys;
+      if (calculateListenVariables) {
+        resultListenVariables = evaluator.listenVariables;
+      }
     }
-    return ProcessedArg(dynamicKeys: dynamicKeys, value: arg);
+    return ProcessedArg(listenVariables: resultListenVariables, value: arg);
   }
 }
 
 class ArgsExpressionEvaluator extends ExpressionEvaluator {
-  ArgsExpressionEvaluator(this.registry);
+  ArgsExpressionEvaluator(this.registry, this.calculateListenVariables);
 
-  final Set<String> _dynamicKeys = {};
+  final Set<String> _listenVariables = {};
+  final bool calculateListenVariables;
   final JsonWidgetRegistry registry;
 
-  Set<String> get dynamicKeys => _dynamicKeys;
+  Set<String> get listenVariables => _listenVariables;
 
   dynamic evaluate(Expression expression) {
     return super.eval(expression, {});
@@ -84,7 +91,9 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
     if (!context.containsKey(variableName)) {
       var function = registry.getFunction(variableName);
       if (function == null) {
-        _dynamicKeys.add(variableName);
+        if (calculateListenVariables) {
+          _listenVariables.add(variableName);
+        }
         context[variableName] = registry.getValue(variableName);
       } else {
         context[variableName] = function;

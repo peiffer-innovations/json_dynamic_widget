@@ -7,7 +7,9 @@ class RawArgProcessor implements ArgProcessor {
   }
 
   @override
-  ProcessedArg process(JsonWidgetRegistry registry, dynamic arg) {
-    return ProcessedArg(dynamicKeys: {}, value: arg);
+  ProcessedArg process(
+      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables) {
+    var resultListenVariables = listenVariables ?? <String>{};
+    return ProcessedArg(listenVariables: resultListenVariables, value: arg);
   }
 }

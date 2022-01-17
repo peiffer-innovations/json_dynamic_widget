@@ -3,11 +3,11 @@ import 'package:meta/meta.dart';
 @immutable
 class ProcessedArg {
   const ProcessedArg({
-    required this.dynamicKeys,
+    required this.listenVariables,
     required this.value,
   });
 
-  final Set<String> dynamicKeys;
+  final Set<String> listenVariables;
   final dynamic value;
 
   @override
@@ -16,7 +16,8 @@ class ProcessedArg {
 
     if (other is ProcessedArg) {
       result = true;
-      result = result && dynamicKeys.toString() == other.dynamicKeys.toString();
+      result = result &&
+          listenVariables.toString() == other.listenVariables.toString();
       result = result && value?.toString() == other.value?.toString();
     }
 
@@ -24,8 +25,9 @@ class ProcessedArg {
   }
 
   @override
-  int get hashCode => (31 * (dynamicKeys.hashCode)) * (value?.hashCode ?? 0);
+  int get hashCode =>
+      (31 * (listenVariables.hashCode)) * (value?.hashCode ?? 0);
 
   @override
-  String toString() => 'ProcessedArg({$dynamicKeys}, {$value})';
+  String toString() => 'ProcessedArg({$listenVariables}, {$value})';
 }

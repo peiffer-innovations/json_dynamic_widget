@@ -11,9 +11,11 @@ class MapArgProcessor implements ArgProcessor {
   }
 
   @override
-  ProcessedArg process(JsonWidgetRegistry registry, dynamic arg) {
+  ProcessedArg process(
+      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables) {
     var mapArg = arg as Map;
-    var dynamicKeys = <String>{};
+    var calculateListenVariables = listenVariables == null;
+    var resultListenVariables = listenVariables ?? <String>{};
     var processedMapArg = {};
 
     if (_isJsonWidgetData(mapArg)) {
@@ -21,15 +23,20 @@ class MapArgProcessor implements ArgProcessor {
       // means the item is most likely a JsonWidgetData class, so we should
       // not process the args yet.  We should wait until the actual
       // JsonWidgetData gets built.
-      return ProcessedArg(value: arg, dynamicKeys: dynamicKeys);
+      return ProcessedArg(value: arg, listenVariables: resultListenVariables);
     }
 
     mapArg.keys.forEach((key) {
-      var processedArg = registry.processArgs(mapArg[key]);
+      var processedArg = registry.processArgs(mapArg[key], listenVariables);
       processedMapArg[key] = processedArg.value;
-      dynamicKeys.addAll(processedArg.dynamicKeys.toList());
+      if (calculateListenVariables) {
+        resultListenVariables.addAll(processedArg.listenVariables.toList());
+      }
     });
-    return ProcessedArg(value: processedMapArg, dynamicKeys: dynamicKeys);
+    return ProcessedArg(
+      value: processedMapArg,
+      listenVariables: resultListenVariables,
+    );
   }
 
   bool _isJsonWidgetData(Map mapArg) {
