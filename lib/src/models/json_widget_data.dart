@@ -90,7 +90,7 @@ class JsonWidgetData extends JsonClass {
       }
       var builder = registry.getWidgetBuilder(type);
       var args = map['args'];
-      var listenVariables = _getListenVariables(args);
+      var listenVariables = _getListenVariables(map);
 
       // The validation needs to happen before we process the dynamic args or
       // else there may be non-JSON compatible objects in the map which will
@@ -165,16 +165,16 @@ class JsonWidgetData extends JsonClass {
     return result;
   }
 
-  /// Get listen variables directly from [args].
+  /// Get listen variables directly from [map].
   /// Changing the value of listen variables is causing [JsonWidgetData] to be
-  /// rebuilt. Defining them in [args] is also stopping [ArgProcessor] from
+  /// rebuilt. Defining them in [map] is also stopping [ArgProcessor] from
   /// calculating the listen variables during processing.
-  static Set<String>? _getListenVariables(dynamic args) {
+  static Set<String>? _getListenVariables(dynamic map) {
     Set<String>? listenVariables;
-    if (args != null &&
-        args['listen'] != null &&
-        args['listen'] is Iterable<dynamic>) {
-      listenVariables = Set<String>.from(args['listen']);
+    if (map != null &&
+        map['listen'] != null &&
+        map['listen'] is Iterable<dynamic>) {
+      listenVariables = Set<String>.from(map['listen']);
     }
     return listenVariables;
   }
@@ -222,7 +222,6 @@ class JsonWidgetData extends JsonClass {
   JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
     var registry = newRegistry ?? this.registry;
     var builder = registry.getWidgetBuilder(type);
-    var listenVariables = _getListenVariables(args);
     var dynamicParamsResult = registry.processArgs(args, listenVariables);
 
     List<JsonWidgetData>? children;
