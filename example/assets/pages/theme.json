@@ -37,7 +37,7 @@
                   "child": {
                     "type": "raised_button",
                     "args": {
-                      "onPressed": "##set_value(theme, big_red)##"
+                      "onPressed": "${set_value('theme', 'big_red')}"
                     },
                     "child": {
                       "type": "text",
@@ -55,7 +55,7 @@
                   "child": {
                     "type": "raised_button",
                     "args": {
-                      "onPressed": "##set_value(theme, cool_blue)##"
+                      "onPressed": "${set_value('theme', 'cool_blue')}"
                     },
                     "child": {
                       "type": "text",
@@ -189,7 +189,7 @@
             "toggleableActiveColor": "#33691e"
           }
         },
-        "child": "{{body}}"
+        "child": "${body}"
       }
     },
     "child": {
@@ -222,7 +222,7 @@
           "toggleableActiveColor": "#b71c1c"
         }
       },
-      "child": "{{body}}"
+      "child": "${body}"
     }
   }
 }

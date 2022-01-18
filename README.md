@@ -246,8 +246,7 @@ Variable Name        | Example | Description
 `${curveName}_curve` | <ul><li>`{{linear_curve}}`</li><li>`{{bounce_in_curve}}`</li></ul> | Provides a `const` instance of any of the [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html#constants) const values. The name of the Curve constant should be transformed into snake_case.
 
 ## Dynamic Functions
-
-Similar to the [variables](#using-variables), the `JsonWidgetRegistry` supports registering dynamic functions that can be called to create values.  If a value is a dynamic function then it must begin and end with two pound signs: `##`.  For example: `##set_value(variableName, 5)##`.  Dynamic values can refer to variables using the mustache format.
+on then it must begin and end with two pound signs: `##`.  For example: `##set_value(variableName, 5)##`.  Dynamic values can refer to variables using the mustache format.
 
 Should you need to use commas in the actual values, they can be escaped via a double backslash character as follows:
 ```
@@ -288,15 +287,15 @@ The built in functions are defined below:
 
 Function Name    | Example | Args | Description
 -----------------|---------|------|------------
-`dynamic`        | `##dynamic(operationVar1, operationVar2...)##` | The variable names which contains values convertable into `DynamicOperation`.| Executes every `DynamicOperation` passed as args.
-`for_each`       | `##for_each({{items;$.data.items}}, {{templateName}}, value, key)##` | <ol><li>The variable containing the items to iterate over</li><li>The variable containing the template to use when iterating.</li><li>Optional: the name of the variable to put the value in</li><li>Optional: the name of the variable to put the index or key in</li></ol> | Iterates over the list or map defined by the first arg and builds the widget defined in the template / second argument.  The value will be placed in either the variable named `value` or the passed in third argument.  Finally, the index or key will be placed in `key` or the fourth arg's name.
-`length`         | `##length({{myVar}})##` | <ol><li>The variable or value to return the length from.</li></ol> | Returns the length of the first argument.  If the argument is a JSON encoded String, this will first decode it to the native representation.  Next, the return value depends on the type of argument.  If the arg is a String, a Map, a List, a Set, or an Iterable, the result of calling `.length` on it will be returned.  Otherwise if the arg is an int or a double, the int value of the arg will be returned.  Other types will result in an exception.
-`log`            | `##log(my message, info)##` | <ol><li>The message to write to the logger</li><li>Optional: level to log the message at; defaults to `finest`</li></ol> | Logs the given message out to the logger using the optional level or `finest` if not set.
-`navigate_named` | `##navigate_named(home, {{someValue}})##` | <ol><li>The route name</li><li>Optional: an arguments object to provide</li></ol> | Navigates to the named route.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.
-`navigate_pop`   | `##navigate_pop(false)##` | <ol><li>Optional: the value to pop with</li></ol> | Pop's the navigator stack.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.
-`noop`           | `##noop()##` | n/a | Simple no-arg no-op function that can be used to enable buttons for UI testing.
-`remove_value`   | `##remove_value(varName)##` | <ol><li>The variable name</li></ol> | Removes the variable named in the first argument from the registry.
-`set_value`      | `##set_value(varName, some value)##` | <ol><li>The variable name</li><li>The variable value</li></ol> | Sets the value of the variable in the registry.
+`dynamic`        | `${dynamic('operationVar1', 'operationVar2'...)}` | The variable names which contains values convertable into `DynamicOperation`.| Executes every `DynamicOperation` passed as args.
+`for_each`       | `${for_each(items['data']['items'], 'templateName', 'value', 'key')}` | <ol><li>The variable containing the items to iterate over</li><li>The variable containing the template to use when iterating.</li><li>Optional: the name of the variable to put the value in</li><li>Optional: the name of the variable to put the index or key in</li></ol> | Iterates over the list or map defined by the first arg and builds the widget defined in the template / second argument.  The value will be placed in either the variable named `value` or the passed in third argument.  Finally, the index or key will be placed in `key` or the fourth arg's name.
+`length`         | `${length(myVar)}` | <ol><li>The variable or value to return the length from.</li></ol> | Returns the length of the first argument.  If the argument is a JSON encoded String, this will first decode it to the native representation.  Next, the return value depends on the type of argument.  If the arg is a String, a Map, a List, a Set, or an Iterable, the result of calling `.length` on it will be returned.  Otherwise if the arg is an int or a double, the int value of the arg will be returned.  Other types will result in an exception.
+`log`            | `${log('my message', 'info')}` | <ol><li>The message to write to the logger</li><li>Optional: level to log the message at; defaults to `finest`</li></ol> | Logs the given message out to the logger using the optional level or `finest` if not set.
+`navigate_named` | `${navigate_named('home', someValue)}` | <ol><li>The route name</li><li>Optional: an arguments object to provide</li></ol> | Navigates to the named route.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.
+`navigate_pop`   | `${navigate_pop(false)}` | <ol><li>Optional: the value to pop with</li></ol> | Pop's the navigator stack.  The `GlobalKey<NavigatorState>` must be provided to the registry before this will work.
+`noop`           | `${noop()}` | n/a | Simple no-arg no-op function that can be used to enable buttons for UI testing.
+`remove_value`   | `${remove_value('varName')}` | <ol><li>The variable name</li></ol> | Removes the variable named in the first argument from the registry.
+`set_value`      | `${set_value('varName', 'some value')}` | <ol><li>The variable name</li><li>The variable value</li></ol> | Sets the value of the variable in the registry.
 
 
 ## Creating Custom Widgets

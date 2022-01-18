@@ -20,7 +20,7 @@
       "child": {
         "type": "animated_align",
         "args": {
-          "alignment": "{{customAlign}}",
+          "alignment": "${customAlign}",
           "duration": 1000
         },
         "child": {
@@ -37,7 +37,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customAlign, topCenter)##"
+        "onPressed": "${set_value('customAlign', 'topCenter')}"
       },
       "child": {
         "type": "text",

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
@@ -25,7 +24,6 @@ import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
     as set_value_fun;
 import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
-import 'package:json_path/json_path.dart';
 import 'package:logging/logging.dart';
 
 /// Registry for both the library provided as well as custom form builders that
@@ -52,6 +50,7 @@ class JsonWidgetRegistry {
     Map<String, JsonWidgetFunction>? functions,
     this.navigatorKey,
     JsonWidgetRegistry? parent,
+    List<ArgProcessor>? argProcessors,
     Map<String, dynamic>? values,
   })  : debugLabel = (parent != null ? '${parent.debugLabel}.' : '') +
             (debugLabel ?? 'child_${++childCount}'),
@@ -62,7 +61,7 @@ class JsonWidgetRegistry {
     _values.addAll(values ?? {});
     _parentDisposeStreamSubscription =
         parent?.disposeStream.listen((_) => dispose());
-
+    _argProcessors = argProcessors ?? ArgProcessors.defaults;
     _parentValueStreamSubscription = parent?.valueStream
         .listen((event) => _valueStreamController?.add(event));
   }
@@ -95,6 +94,7 @@ class JsonWidgetRegistry {
     );
   final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
+  List<ArgProcessor> _argProcessors = [];
 
   StreamController<void>? _disposeStreamController =
       StreamController<void>.broadcast();
@@ -154,6 +154,7 @@ class JsonWidgetRegistry {
     bool? disableValidation,
     Map<String, JsonWidgetFunction>? functions,
     GlobalKey<NavigatorState>? navigatorKey,
+    List<ArgProcessor>? argProcessors,
     JsonWidgetRegistry? parent,
     Map<String, dynamic>? values,
   }) =>
@@ -164,6 +165,7 @@ class JsonWidgetRegistry {
         functions: functions ?? _functions,
         navigatorKey: navigatorKey ?? this.navigatorKey,
         parent: parent ?? this,
+        argProcessors: argProcessors ?? _argProcessors,
         values: values ?? Map.from(_values),
       );
 
@@ -181,6 +183,34 @@ class JsonWidgetRegistry {
 
     _valueStreamController?.close();
     _valueStreamController = null;
+  }
+
+  /// Returns the variable value for the given [key].This will first check for
+  /// a custom dynamic value using the [key], and if none is found, this will
+  /// then check the internal values. If a variable with named [key] cannot be
+  /// found, this will return [null].
+  dynamic getValue(String? key) {
+    var originalKey = key;
+
+    var value = _values[key] ?? _internalValues[key];
+    value ??= _parent?.getValue(key);
+
+    _logger.finest(
+      '[getValue]: [$originalKey] = [${value?.toString().substring(0, min(80, value?.toString().length ?? 0))}]',
+    );
+
+    return value;
+  }
+
+  /// Returns the function with the given [functionName].
+  /// If a function with named [functionName] cannot be
+  /// found, this will return [null].
+  JsonWidgetFunction? getFunction(String? functionName) {
+    JsonWidgetFunction? function;
+    if (functionName != null) {
+      function = _functions[functionName] ?? _internalFunctions[functionName];
+    }
+    return function;
   }
 
   /// Executes the dynamic function named [key].  This will first check  for a
@@ -207,48 +237,6 @@ class JsonWidgetRegistry {
     );
   }
 
-  /// Returns the variable value for the given [key]. This will first check for
-  /// a custom dynamic value using the [key], and if none is found, this will
-  /// then check the internal values. If a variable with named [key] cannot be
-  /// found, this will return [null].
-  ///
-  /// If the [key] contains a semicolon (`;`) then the first part will be used
-  /// as the actual key to look up and the second part will be treated as the
-  /// JSON Path expression to get the value out of the value represented by the
-  /// key.
-  dynamic getValue(String? key) {
-    var originalKey = key;
-    String? jsonPath;
-    if (key is String && key.contains(';')) {
-      var parts = key.split(';');
-      key = parts[0];
-      jsonPath = parts[1];
-    }
-
-    var value = _values[key] ?? _internalValues[key];
-
-    try {
-      if (jsonPath != null) {
-        var jsonData = value;
-        if (jsonData is String &&
-            (jsonData.startsWith('{') || jsonData.startsWith('['))) {
-          jsonData = json.decode(jsonData);
-        }
-        value = JsonPath(jsonPath).readValues(jsonData).first;
-      }
-    } catch (e) {
-      // no-op
-    }
-
-    value ??= _parent?.getValue(key);
-
-    _logger.finest(
-      '[getValue]: [$originalKey] = [${value?.toString().substring(0, min(80, value?.toString().length ?? 0))}]',
-    );
-
-    return value;
-  }
-
   /// Returns the builder for the requested [type].  This will first search the
   /// registered custom builders, then if no builder is found, this will then
   /// search the library provided builders.
@@ -268,94 +256,13 @@ class JsonWidgetRegistry {
     return builder;
   }
 
-  /// Processes any dynamic argument values from [args].  This will return a
-  /// metadata object with the results as well as a collection of dynamic
-  /// variable names that were encounted.
-  DynamicParamsResult processDynamicArgs(
-    dynamic args, {
-    Set<String>? dynamicKeys,
-  }) {
-    dynamicKeys ??= <String>{};
-
-    dynamic result;
-    if (args is String) {
-      var parsed = JsonWidgetRegexHelper.parse(args);
-
-      if (parsed?.isNotEmpty == true) {
-        String? functionKey;
-        List<dynamic>? functionArgs;
-        for (var item in parsed!) {
-          if (item.isFunction == true) {
-            dynamicKeys.add('__FUNCTION__');
-
-            functionKey = item.key;
-            functionArgs = [];
-          } else if (item.isVariable == true) {
-            if (item.isStatic != true) {
-              dynamicKeys.add(item.key!);
-            }
-
-            var value = getValue(item.key);
-            result = value;
-            if (item.isNamedVariable == true) {
-              functionArgs?.add(
-                NamedFunctionArg(
-                  name: item.originalValue.split(':')[0],
-                  original: item.originalValue,
-                  value: value,
-                ),
-              );
-            } else {
-              functionArgs?.add(value);
-            }
-          } else {
-            functionArgs?.add(item.key);
-            result = item.key;
-          }
-        }
-
-        if (functionKey?.isNotEmpty == true) {
-          result = execute(functionKey, functionArgs);
-        }
-      } else {
-        result = args;
-      }
-    } else if (args is Iterable) {
-      result = [];
-      for (var value in args) {
-        result.add(processDynamicArgs(
-          value,
-          dynamicKeys: dynamicKeys,
-        ).values);
-      }
-    } else if (args is Map) {
-      result = {};
-
-      if (args['type'] != null &&
-          (args['child'] != null ||
-              args['children'] != null ||
-              args['args'] != null)) {
-        // The entry has a "type" and one of: "child", "children", "args".  This
-        // means the item is most likely a JsonWidgetData class, so we should
-        // not process the args yet.  We should wait until the actual
-        // JsonWidgetData gets built.
-        result = args;
-      } else {
-        args.forEach((key, value) {
-          result[key] = processDynamicArgs(
-            value,
-            dynamicKeys: dynamicKeys,
-          ).values;
-        });
-      }
-    } else {
-      result = args;
-    }
-
-    return DynamicParamsResult(
-      dynamicKeys: dynamicKeys,
-      values: result,
-    );
+  ProcessedArg processArgs(dynamic args, Set<String>? listenVariables) {
+    return _argProcessors
+        .firstWhere(
+          (parser) => parser.support(args),
+          orElse: () => RawArgProcessor(),
+        )
+        .process(this, args, listenVariables);
   }
 
   /// Registers the widget type with the registry to that [type] can be used in

@@ -20,7 +20,7 @@
       "child": {
         "type": "flat_button",
         "args": {
-          "padding": "{{customPadding}}"
+          "padding": "${customPadding}"
         },
         "child": {
           "type": "text",

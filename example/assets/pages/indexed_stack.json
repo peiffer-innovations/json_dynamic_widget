@@ -27,7 +27,7 @@
           "children": [{
             "type": "raised_button",
             "args": {
-              "onPressed": "##set_value(index, 0)##"
+              "onPressed": "${set_value('index', 0)}"
             },
             "child": {
               "type": "text",
@@ -43,7 +43,7 @@
           }, {
             "type": "raised_button",
             "args": {
-              "onPressed": "##set_value(index, 1)##"
+              "onPressed": "${set_value('index', 1)}"
             },
             "child": {
               "type": "text",
@@ -59,7 +59,7 @@
           }, {
             "type": "raised_button",
             "args": {
-              "onPressed": "##set_value(index, 2)##"
+              "onPressed": "${set_value('index', 2)}"
             },
             "child": {
               "type": "text",
@@ -76,7 +76,7 @@
         }, {
           "type": "indexed_stack",
           "args": {
-            "index": "{{index}}"
+            "index": "${index}"
           },
           "children": [{
             "type": "text",

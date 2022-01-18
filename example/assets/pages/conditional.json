@@ -35,7 +35,7 @@
                   "type": "raised_button",
                   "id": "button1",
                   "args": {
-                    "onPressed": "##set_value(button, 1)##"
+                    "onPressed": "${set_value('button', 1)}"
                   },
                   "child": {
                     "type": "text",
@@ -48,7 +48,7 @@
                   "type": "raised_button",
                   "id": "button2",
                   "args": {
-                    "onPressed": "##set_value(button, 2)##"
+                    "onPressed": "${set_value('button', 2)}"
                   },
                   "child": {
                     "type": "text",
@@ -61,7 +61,7 @@
                   "type": "raised_button",
                   "id": "button3",
                   "args": {
-                    "onPressed": "##set_value(button, 3)##"
+                    "onPressed": "${set_value('button', 3)}"
                   },
                   "child": {
                     "type": "text",
@@ -81,7 +81,7 @@
                 {
                   "type": "flat_button",
                   "args": {
-                    "onPressed": "##set_value(button, 4)##"
+                    "onPressed": "${set_value('button', 4)}"
                   },
                   "child": {
                     "type": "text",
@@ -93,7 +93,7 @@
                 {
                   "type": "flat_button",
                   "args": {
-                    "onPressed": "##set_value(button, 5)##"
+                    "onPressed": "${set_value('button', 5)}"
                   },
                   "child": {
                     "type": "text",
@@ -105,7 +105,7 @@
                 {
                   "type": "flat_button",
                   "args": {
-                    "onPressed": "##set_value(button, 6)##"
+                    "onPressed": "${set_value('button', 6)}"
                   },
                   "child": {
                     "type": "text",
@@ -129,7 +129,7 @@
                     {
                       "type": "text",
                       "args": {
-                        "text": "{{button}}"
+                        "text": "${button}"
                       }
                     },
                     {

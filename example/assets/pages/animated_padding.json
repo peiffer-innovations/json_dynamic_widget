@@ -21,7 +21,7 @@
         "type": "animated_padding",
         "args": {
           "duration": 1000,
-          "padding": "{{customPadding}}"
+          "padding": "${customPadding}"
         },
         "child": {
           "type": "container",
@@ -37,7 +37,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customPadding, 100)##"
+        "onPressed": "${set_value('customPadding', 100)}"
       },
       "child": {
         "type": "text",

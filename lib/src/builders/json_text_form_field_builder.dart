@@ -405,12 +405,12 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
     widget.data.registry.valueStream.listen((event) {
       if (event == widget.data.id) {
         String value = widget.data.registry.getValue(widget.data.id);
-        widget.builder.controller.value = widget.builder.controller.value
-            .copyWith(
-                text: value,
-                selection: TextSelection(
-                    baseOffset: value.length, extentOffset: value.length),
-                composing: TextRange(start: 0, end: value.length));
+        var textValue = widget.builder.controller.value.copyWith(
+            text: value,
+            selection: TextSelection(
+                baseOffset: value.length, extentOffset: value.length),
+            composing: TextRange(start: 0, end: value.length));
+        widget.builder.controller.value = textValue;
       }
     });
   }

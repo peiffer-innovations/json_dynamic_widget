@@ -45,13 +45,13 @@
         }, {
           "type": "ignore_pointer",
           "args": {
-            "ignoring": "{{ignore}}"
+            "ignoring": "${ignore}"
           },
           "child": {
             "type": "gesture_detector",
             "args": {
-              "onDoubleTap": "##set_value(gesture, double_tap)##",
-              "onTap": "##set_value(gesture, tap)##"
+              "onDoubleTap": "${set_value('gesture', 'double_tap')}",
+              "onTap": "${set_value('gesture', 'tap')}"
             },
             "child": {
               "type": "padding",
@@ -74,7 +74,7 @@
         }, {
           "type": "text",
           "args": {
-            "text": "{{gesture}}"
+            "text": "${gesture}"
           }
         }]
       }

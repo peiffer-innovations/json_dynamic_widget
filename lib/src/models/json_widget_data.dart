@@ -13,7 +13,7 @@ class JsonWidgetData extends JsonClass {
     required this.builder,
     JsonWidgetData? child,
     List<JsonWidgetData>? children,
-    Set<String>? dynamicKeys,
+    Set<String>? listenVariables,
     String? id,
     this.originalChild,
     this.originalChildren,
@@ -25,7 +25,7 @@ class JsonWidgetData extends JsonClass {
         ),
         args = args,
         children = children ?? (child == null ? null : [child]),
-        dynamicKeys = dynamicKeys ?? <String>{},
+        listenVariables = listenVariables ?? <String>{},
         id = id ?? Uuid().v4(),
         registry = registry ?? JsonWidgetRegistry.instance;
 
@@ -34,7 +34,7 @@ class JsonWidgetData extends JsonClass {
   final dynamic args;
   final JsonWidgetBuilder Function() builder;
   final List<JsonWidgetData>? children;
-  final Set<String> dynamicKeys;
+  final Set<String> listenVariables;
   final String id;
   final dynamic originalChild;
   final dynamic originalChildren;
@@ -65,10 +65,7 @@ class JsonWidgetData extends JsonClass {
     JsonWidgetData? result;
     registry ??= JsonWidgetRegistry.instance;
 
-    if (map is String &&
-        map.startsWith('{') &&
-        !map.startsWith('{{') &&
-        map.endsWith('}')) {
+    if (map is String && map.startsWith('{') && map.endsWith('}')) {
       try {
         map = json.decode(map);
       } catch (e) {
@@ -77,16 +74,8 @@ class JsonWidgetData extends JsonClass {
     }
     if (map is JsonWidgetData) {
       result = map;
-    } else if (map is String &&
-        (map.startsWith('!{{') || map.startsWith('{{')) &&
-        map.endsWith('}}')) {
-      var key = map.substring(map.indexOf('{{') + 2, map.length - 2).trim();
+    } else if (map is String && map.startsWith('\${') && map.endsWith('}')) {
       result = DeferredJsonWidgetData(
-        key: key,
-        registry: registry,
-      );
-    } else if (map is String && map.startsWith('##') && map.endsWith(')##')) {
-      result = DeferredFunctionWidgetData(
         key: map,
         registry: registry,
       );
@@ -101,6 +90,7 @@ class JsonWidgetData extends JsonClass {
       }
       var builder = registry.getWidgetBuilder(type);
       var args = map['args'];
+      var listenVariables = _getListenVariables(args);
 
       // The validation needs to happen before we process the dynamic args or
       // else there may be non-JSON compatible objects in the map which will
@@ -124,21 +114,23 @@ class JsonWidgetData extends JsonClass {
         map['args'].remove('body');
       }
 
-      var dynamicParamsResult =
-          registry.processDynamicArgs(args ?? <String, dynamic>{});
+      var processedArgs =
+          registry.processArgs(args ?? <String, dynamic>{}, listenVariables);
 
       try {
         result = JsonWidgetData(
           args: map['args'] ?? {},
           builder: () {
             return builder(
-              registry!.processDynamicArgs(args ?? <String, dynamic>{}).values,
+              registry!
+                  .processArgs(args ?? <String, dynamic>{}, listenVariables)
+                  .value,
               registry: registry,
             )!;
           },
           child: child,
           children: map['children'] is String
-              ? registry.processDynamicArgs(map['children']).values
+              ? registry.processArgs(map['children'], listenVariables).value
               : JsonClass.fromDynamicList(
                   map['children'],
                   (dynamic map) => JsonWidgetData.fromDynamic(
@@ -146,7 +138,7 @@ class JsonWidgetData extends JsonClass {
                     registry: registry,
                   )!,
                 ),
-          dynamicKeys: dynamicParamsResult.dynamicKeys,
+          listenVariables: processedArgs.listenVariables,
           id: map['id'],
           originalChild: map['child'],
           originalChildren: map['children'],
@@ -173,6 +165,20 @@ class JsonWidgetData extends JsonClass {
     return result;
   }
 
+  /// Get listen variables directly from [args].
+  /// Changing the value of listen variables is causing [JsonWidgetData] to be
+  /// rebuilt. Defining them in [args] is also stopping [ArgProcessor] from
+  /// calculating the listen variables during processing.
+  static Set<String>? _getListenVariables(dynamic args) {
+    Set<String>? listenVariables;
+    if (args != null &&
+        args['listen'] != null &&
+        args['listen'] is Iterable<dynamic>) {
+      listenVariables = Set<String>.from(args['listen']);
+    }
+    return listenVariables;
+  }
+
   /// Convenience method that can build the widget this data object represents.
   /// This is the equilivant of calling: [builder.build] and padding this in as
   /// the [data] parameter.
@@ -191,7 +197,7 @@ class JsonWidgetData extends JsonClass {
     dynamic args,
     JsonWidgetBuilder? builder,
     List<JsonWidgetData>? children,
-    Set<String>? dynamicKeys,
+    Set<String>? listenVariables,
     String? id,
     dynamic originalChild,
     dynamic originalChildren,
@@ -202,7 +208,7 @@ class JsonWidgetData extends JsonClass {
         args: args ?? this.args,
         builder: builder as JsonWidgetBuilder Function()? ?? this.builder,
         children: children ?? this.children,
-        dynamicKeys: dynamicKeys ?? this.dynamicKeys,
+        listenVariables: listenVariables ?? this.listenVariables,
         id: id ?? this.id,
         originalChild: originalChild ?? this.originalChild,
         originalChildren: originalChildren ?? this.originalChildren,
@@ -216,12 +222,13 @@ class JsonWidgetData extends JsonClass {
   JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
     var registry = newRegistry ?? this.registry;
     var builder = registry.getWidgetBuilder(type);
-    var dynamicParamsResult = registry.processDynamicArgs(args);
+    var listenVariables = _getListenVariables(args);
+    var dynamicParamsResult = registry.processArgs(args, listenVariables);
 
     List<JsonWidgetData>? children;
 
     if (originalChild is String) {
-      var values = registry.processDynamicArgs(originalChild).values;
+      var values = registry.processArgs(originalChild, listenVariables).value;
       if (values is String) {
         try {
           values = json.decode(values);
@@ -247,7 +254,8 @@ class JsonWidgetData extends JsonClass {
         ];
       }
     } else if (originalChildren is String) {
-      var values = registry.processDynamicArgs(originalChildren).values;
+      var values =
+          registry.processArgs(originalChildren, listenVariables).value;
       if (values is String) {
         try {
           values = json.decode(values);
@@ -280,12 +288,14 @@ class JsonWidgetData extends JsonClass {
       args: args,
       builder: () {
         return builder(
-          registry.processDynamicArgs(args ?? <String, dynamic>{}).values,
+          registry
+              .processArgs(args ?? <String, dynamic>{}, listenVariables)
+              .value,
           registry: registry,
         )!;
       },
       children: children?.map((child) => child.recreate()).toList(),
-      dynamicKeys: dynamicParamsResult.dynamicKeys,
+      listenVariables: dynamicParamsResult.listenVariables,
       id: id,
       originalChild: originalChild,
       originalChildren: originalChildren,

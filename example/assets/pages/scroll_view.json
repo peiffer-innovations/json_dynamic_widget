@@ -505,7 +505,7 @@
               "type": "scrollbar",
               "id": "right",
               "args": {
-                "controller": "{{controller}}",
+                "controller": "${controller}",
                 "isAlwaysShown": true,
                 "scrollbarOrientation": "right"
               },
@@ -531,7 +531,7 @@
                   "child": {
                     "type": "list_view",
                     "args": {
-                      "controller": "{{controller}}"
+                      "controller": "${controller}"
                     },
                     "children": [
                       {

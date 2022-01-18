@@ -81,7 +81,7 @@
         "child": {
           "type": "text",
           "args": {
-            "text": "{{value}}"
+            "text": "${value}"
           }
         }
       }
@@ -109,7 +109,7 @@
             "runSpacing": 16.0,
             "spacing": 16.0
           },
-          "children": "##for_each({{entries;$.values}}, template)##"
+          "children": "${for_each(entries['values'], 'template')}"
         }
       }
     }

@@ -15,7 +15,7 @@ final JsonWidgetFunction body = ({
   required JsonWidgetRegistry registry,
 }) {
   var iterable = args![0];
-  var template = args[1];
+  var template = '\${${args[1]}}';
 
   var varName = 'value';
   var keyName = 'key';

@@ -8,8 +8,8 @@
           {
             "type": "popup_menu_button",
             "args": {
-              "itemBuilder": "##buildPopupMenu()##",
-              "onCanceled": "##simplePrintMessage(CANCELED)##"
+              "itemBuilder": "${buildPopupMenu()}",
+              "onCanceled": "${simplePrintMessage('CANCELED')}"
             },
             "child": {
               "type": "icon",
