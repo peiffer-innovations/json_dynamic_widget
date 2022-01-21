@@ -1,5 +1,7 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+/// Processor which is accepting any [arg] and not process [arg] value at all.
+/// That processor should be used as the last processor in the pipeline.
 class RawArgProcessor implements ArgProcessor {
   @override
   bool support(dynamic arg) {

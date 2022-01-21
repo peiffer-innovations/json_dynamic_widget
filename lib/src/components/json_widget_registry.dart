@@ -43,6 +43,8 @@ import 'package:logging/logging.dart';
 class JsonWidgetRegistry {
   /// Constructs a one-off registry.  This accepts an optional group of custom
   /// widget [builders], custom widget [functions], and widget [values].
+  /// It allows to extend the default syntax with custom one by passing
+  /// [argProcessors].
   JsonWidgetRegistry({
     Map<String, JsonWidgetBuilderContainer>? builders,
     String? debugLabel,
@@ -94,7 +96,7 @@ class JsonWidgetRegistry {
     );
   final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
-  List<ArgProcessor> _argProcessors = [];
+  late List<ArgProcessor> _argProcessors;
 
   StreamController<void>? _disposeStreamController =
       StreamController<void>.broadcast();
@@ -256,6 +258,13 @@ class JsonWidgetRegistry {
     return builder;
   }
 
+  /// Process [JsonWidgetData] args by using [_argProcessors].
+  /// Default processors are definied in [ArgProcessors.defaults].
+  /// Passing [listenVariables] is skipping the step of calculating
+  /// these variables during processing.
+  /// Processing is mostly about executing pipeline of processors and finding
+  /// first supported one. In case of not finding any processor
+  /// [RawArgProcessor]is used instead.
   ProcessedArg processArgs(dynamic args, Set<String>? listenVariables) {
     return _argProcessors
         .firstWhere(
@@ -303,6 +312,11 @@ class JsonWidgetRegistry {
   /// [registerFunction] for each entry in [functions].
   void registerFunctions(Map<String, JsonWidgetFunction> functions) =>
       functions.forEach((key, value) => registerFunction(key, value));
+
+  /// Registers custom arg processors. It allows to extend the default syntax
+  /// with custom one.
+  void registerArgProcessors(List<ArgProcessor> argProcessors) =>
+      _argProcessors = argProcessors;
 
   /// Removes the [key] from the registry.
   ///

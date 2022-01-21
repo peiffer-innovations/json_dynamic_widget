@@ -87,5 +87,15 @@ void main() {
       ProcessedArg(listenVariables: {'name'}, value: 'Hello Mr. Steve')
           .toString(),
     );
+    expect(
+      registry.processArgs({'\${string}': '\${name}'}, null).toString(),
+      ProcessedArg(listenVariables: {'string', 'name'}, value: {'foo': 'Steve'})
+          .toString(),
+    );
+    expect(
+      registry.processArgs(['\${string}', '\${name}'], null).toString(),
+      ProcessedArg(listenVariables: {'string', 'name'}, value: ['foo', 'Steve'])
+          .toString(),
+    );
   });
 }
