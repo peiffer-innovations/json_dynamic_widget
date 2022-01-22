@@ -4,12 +4,15 @@
 
 * [Live Example](#live-example)
 * [First Party Plugins](#first-party-plugins)
+* [Migration to 4.X.X version](#migration-to-4xx-version)
 * [Introduction](#introduction)
 * [Understanding the Registry](#understanding-the-registry)
 * [Built In Widgets](#built-in-widgets)
-* [Using Variables](#using-variables)
-* [Dynamic Functions](#dynamic-functions)
+* [Using Expressions](#using-expressions)
+  * [Using Variables](#using-variables)
+  * [Dynamic Functions](#dynamic-functions)
 * [Creating Custom Widgets](#creating-custom-widgets)
+* [Creating Custom Arg Processor](#creating-custom-arg-processor)
 
 
 ## Live Example
@@ -31,6 +34,17 @@ Here's a list of first party plugins that exist for this library.
 * [json_dynamic_widget_plugin_rive](https://pub.dev/packages/json_dynamic_widget_plugin_rive)
 * [json_dynamic_widget_plugin_svg](https://pub.dev/packages/json_dynamic_widget_plugin_svg)
 
+## Migration to 4.X.X version
+With 4.0.0 version the new syntax has been introduced for JSONs. The way of expressing `variables` and `functions` has been change. Total table of change and the way how to migrate the JSON definitions to support new format.
+
+| The change | Previous | New |
+---|---|---
+Variables syntax|`{{varName}}`|`${varName}`
+Function syntax|`##func1(string,{{varName}})##`|`${func1('string', varName)}`
+Lack of static variables|`!{{staticVarName}}`|All listen variables can be defined as `"listen":["var1","var2"]` in JSON. Lack of the `staticVarName` in such an array is equivalent of static variable in the previous syntax
+Removed JsonPath from variables|`{{dynamic;$.person.firstName}}`|`${dynamic['person']['firstName']}`
+Removed `NamedFunctionArg`|`##myFunction(key:keyName, value:{{value}})##`|`${myFunction({"key":'keyName','value':value})}`
+Escaping of commas is not needed in function params|`##sayHello(Hello\\, {{firstName}}!)##`|`${sayHello('Hello, '+ firstName)}`
 
 ## Introduction
 
@@ -54,11 +68,15 @@ This library provides Widgets that are capable of building themselves from JSON 
   },
   "children": [{
     "...": "...",
-  }]
+  }],
+  "listen": []
 }
 ```
 
 Where the `child` and `children` are mutually exclusive.  From a purely technical standpoint, there's no difference between passing in a `child` or a `children` with exactly one element.
+
+The `listen` array is used to define variable names that specified `JsonWidgetData` listen to. Thanks to that `JsonWidgetData` will be rebuilt with every change of such a variables.
+In case of not defining such a array the `JsonWidgetRegistry` will try to built such a array dynamically and use any met variable. Good practice is to define it by a hand to reduce amount of rebuilds.
 
 See the documentation and / or example app for the currently supported widgets.  All built types are encoded using a lower-case and underscore separator as opposed to a camel case strategy.  For instance, a `ClipRect` will have a type of `clip_rect`.
 
@@ -103,11 +121,13 @@ class _MyWidgetState extends State<MyStatefulWidget> {
 ## Understanding the Registry
 
 The `JsonWidgetRegistry` is the centralized processing warehouse for building and using the JSON Dynamic Widgets.  Widgets must be registered to the registry to be available for building.  The registry also supports providing dynamic variables and dynamic functions to the widgets that it builds.
+The Registry is also repsonsible for processing `JsonWidgetData` args to their 
+real values via arg processors. Users can define their own arg processors which is giving the possibility to define the custom syntax.
+
 
 When a value changes on the registry, it posts a notification to the [valueStream](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonWidgetRegistry/valueStream.html) so any potential processing logic can be executed.  The dynamic widgets that use variable values also listen to this stream so they can update their widget state when a value they use for rendering change.
 
-The registry always has a default instance that will be used when a substitute registry is not given.  Substitute registeries can be created and used to isolate variables and functions within the app as needed.  For instance, you may want a separate registry per page if each page may set dynamic values on the registryo.  This can prevent the values from one page being overwritten by another.
-
+The registry always has a default instance that will be used when a substitute registry is not given. Substitute registeries can be created and used to isolate variables and functions within the app as needed.  For instance, you may want a separate registry per page if each page may set dynamic values on the registry.  This can prevent the values from one page being overwritten by another.
 
 
 ## Built In Widgets
@@ -216,44 +236,41 @@ Widget Builders | Example Location
 [wrap](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonWrapBuilder/fromDynamic.html) | [wrap.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/wrap.json)
 
 
-## Using Variables
+## Using Expressions
+The library since version 4.0.0 has a tight integration with [expressions](https://pub.dev/packages/expressions) library. By integrating the `JsonWidgetRegistry` variables and functions with that library there is possible to define different kind of simple expressions placed between `${}`.
 
-Variables can be defined on the `JsonWidgetRegistry` that is used to render the dynamic widgets.  Within the JSON, the template engine uses a format similar to the mustache format for variable references.
+### Using Variables
 
-Variable references can be static (read only once) or dynamic (will rebuild whenever the underlying value changes).  To use the static reference, prefix it with an exclamation point (`!`).
+Variables can be defined on the `JsonWidgetRegistry` that is used to render the dynamic widgets.
 
-Variables may be complex JSON objects and you can reference notes on the object utilizing a [JSON Path expression](https://pub.dev/packages/json_path).  To do this, use the name of the variable followed by a semicolon (`;`) followed by the JSON Path expression.  An example of using the JSON Path option can be found in the [variables.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/variables.json) example
-
-Examples:
-```
-{{dynamicVariavle}}
-
-{{dynamic;$.person.firstName}}
-
-!{{staticVariable}}
-
-!{{static;$.employees[1].lastName}}
-```
-
-A variable can be used in any of the `child` / `children` / `args` values and for certain types of properties, a variable reference iw the only way to actually assign that value.
+A variable can be used in any of the `child` / `children` / `args` values and for certain types of properties, a variable reference if the only way to actually assign that value.
 
 Widgets that accept user input will assign that user input to a variable named the value inside of the `id` option, if an `id` exists.  This allows widgets the ability to listen to input value updates.
+
+There is a possibility to use them in JSON definition thanks to [expressions](https://pub.dev/packages/expressions) library. Few examples:
+```
+${dynamicVariable}
+${dynamic['persons'][0]}
+${'Hello ' + name}
+```
+
+More examples is available at [variables.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/variables.json).
 
 The built in variables are defined below:
 
 Variable Name        | Example | Description
 ---------------------|---------|------------
-`${curveName}_curve` | <ul><li>`{{linear_curve}}`</li><li>`{{bounce_in_curve}}`</li></ul> | Provides a `const` instance of any of the [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html#constants) const values. The name of the Curve constant should be transformed into snake_case.
+`${curveName}_curve` | <ul><li>`${linear_curve}`</li><li>`${bounce_in_curve}`</li></ul> | Provides a `const` instance of any of the [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html#constants) const values. The name of the Curve constant should be transformed into snake_case.
 
-## Dynamic Functions
-on then it must begin and end with two pound signs: `##`.  For example: `##set_value(variableName, 5)##`.  Dynamic values can refer to variables using the mustache format.
+### Dynamic Functions
 
-Should you need to use commas in the actual values, they can be escaped via a double backslash character as follows:
+#### **Basic function usage**
+Like any other expression functions defined in `JsonWidgetRegistry` can be used in JSON by placing their name and params between `${}`. For example:
 ```
-##sayHello(Hello\\, {{firstName}}!)##
+${sayHello('Hello,' + firstName)}
 ```
 
-Assuming the function `sayHello` is implemented as, and the `{{firstName}}` variable is "Ted":
+Assuming the function `sayHello` is implemented as, and the `firstName` variable is "Ted":
 ```dart
 print(args[0]);
 ```
@@ -262,27 +279,32 @@ print(args[0]);
 Hello, Ted!
 ```
 
-Additionally, parameters can be named as follows:
-```
-##myFunction(key:keyName, value:{{value}})##
-```
+#### **Named args in functions**
 
-
-Constants will not be processed before being passed to the function, but variables will be reprocessed into a new class: `NamedFunctionArg`.
+Additionally we can pass a map to the function:
+```
+${myFunction({'key':'keyName', 'value':value})}
+```
 
 Now, in your function, the args will be passed as such:
 ```
 [
-  "key:keyName",
-  NamedFunctionArg(name: "value", value: <<value of variable from registry>>, "original": "value:{{value}}")
+  {"key":"keyName", "value": <<value of the variable from the registry>>}
 ]
 ```
 
 This allows function that take multiple, optional, values to be more easily created and called vs having to do something like...
 ```
-##myFunction(value, {{null}}, {{null}}, {{null}}, #ff0000)##
+${myFunction(value, null, null, null, '#ff0000')}
 ```
 
+#### **Complex function calls**
+This is possible to construct really complex function calls:
+```
+${func1(func2(func3()+' text'+var1), func4(1+2))}
+```
+
+#### **Built functions**
 The built in functions are defined below:
 
 Function Name    | Example | Args | Description
@@ -437,3 +459,49 @@ Once the widget is registered, you can safely use the registry to build the widg
   }
 }
 ```
+
+## Creating Custom Arg Processor
+Custom arg processors are allowing to extend JSON syntax with custom one.
+
+For example let's create the arg processor which will convert `"TRUE"` and `"FALSE"` into booleans as a result of `JsonWidgetRegistry` args processing.
+
+First the `ArgProcessor` interface has to be implemented.
+
+```dart
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+class BooleanStringArgProcessor implements ArgProcessor {
+  final _matchRegexp = RegExp(r'^TRUE|FALSE$');
+
+  @override
+  bool support(dynamic arg) {
+    return arg != null && arg is String && _matchRegexp.hasMatch(arg);
+  }
+
+  @override
+  ProcessedArg process(
+      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables) {
+    var resultListenVariables = listenVariables ?? <String>{};
+    var boolStr = _matchRegexp.firstMatch(arg)!.toString();
+    return ProcessedArg(
+        listenVariables: resultListenVariables,
+        value: boolStr == 'TRUE',
+    );
+  }
+}
+```
+
+Then such a processor has to be placed into `JsonWidgetRegistry`.
+By default `ArgProcessors.defaults` are used but there is a possibility to change that via
+`JsonWidgetRegistry.registerArgProcessors`.
+
+```dart
+  var registry = JsonWidgetRegistry.instance;
+
+  registry.registerArgProcessors(
+   <ArgProcessor>[BooleanStringArgProcessor()].addAll(ArgProcessors.defaults)
+  );
+```
+
+The arg processors are executed from the first to the last one in the list.
+To make sure that `BooleanStringArgProcessor` will be used the best is to add it as a first element of the list.
