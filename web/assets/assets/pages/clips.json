@@ -132,7 +132,7 @@
           "child": {
             "type": "clip_path",
             "args": {
-              "clipper": "{{clipper}}"
+              "clipper": "${clipper}"
             },
             "child": {
               "type": "container",

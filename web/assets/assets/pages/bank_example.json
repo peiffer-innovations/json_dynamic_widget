@@ -328,7 +328,7 @@
                               "child": {
                                 "type": "container",
                                 "args": {
-                                  "color": "{{etchColor}}",
+                                  "color": "${etchColor}",
                                   "height": 1,
                                   "width": 20
 
@@ -343,7 +343,7 @@
                               "child": {
                                 "type": "container",
                                 "args": {
-                                  "color": "{{etchColor}}",
+                                  "color": "${etchColor}",
                                   "height": 1,
                                   "width": 20
                                 }
@@ -357,7 +357,7 @@
                               "child": {
                                 "type": "container",
                                 "args": {
-                                  "color": "{{etchColor}}",
+                                  "color": "${etchColor}",
                                   "height": 1,
                                   "width": 20
                                 }
@@ -371,7 +371,7 @@
                               "child": {
                                 "type": "container",
                                 "args": {
-                                  "color": "{{etchColor}}",
+                                  "color": "${etchColor}",
                                   "height": 1,
                                   "width": 20
                                 }
@@ -385,7 +385,7 @@
                               "child": {
                                 "type": "container",
                                 "args": {
-                                  "color": "{{etchColor}}",
+                                  "color": "${etchColor}",
                                   "height": 10,
                                   "width": 1
                                 }
@@ -399,7 +399,7 @@
                               "child": {
                                 "type": "container",
                                 "args": {
-                                  "color": "{{etchColor}}",
+                                  "color": "${etchColor}",
                                   "height": 10,
                                   "width": 1
                                 }
@@ -415,7 +415,7 @@
                                 "args": {
                                   "decoration": {
                                     "border": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "style": "solid",
                                       "width": 1
                                     },
@@ -437,7 +437,7 @@
                               "child": {
                                 "type": "container",
                                 "args": {
-                                  "color": "{{etchColor}}",
+                                  "color": "${etchColor}",
                                   "height": 10,
                                   "width": 1
                                 }
@@ -599,7 +599,7 @@
                                   "child": {
                                     "type": "container",
                                     "args": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "height": 1,
                                       "width": 20
                                     }
@@ -614,7 +614,7 @@
                                   "child": {
                                     "type": "container",
                                     "args": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "height": 1,
                                       "width": 20
                                     }
@@ -629,7 +629,7 @@
                                   "child": {
                                     "type": "container",
                                     "args": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "height": 1,
                                       "width": 20
                                     }
@@ -644,7 +644,7 @@
                                   "child": {
                                     "type": "container",
                                     "args": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "height": 1,
                                       "width": 20
                                     }
@@ -659,7 +659,7 @@
                                   "child": {
                                     "type": "container",
                                     "args": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "height": 10,
                                       "width": 1
                                     }
@@ -674,7 +674,7 @@
                                   "child": {
                                     "type": "container",
                                     "args": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "height": 10,
                                       "width": 1
                                     }
@@ -691,7 +691,7 @@
                                     "args": {
                                       "decoration": {
                                         "border": {
-                                          "color": "{{etchColor}}",
+                                          "color": "${etchColor}",
                                           "style": "solid",
                                           "width": 1
                                         },
@@ -714,7 +714,7 @@
                                   "child": {
                                     "type": "container",
                                     "args": {
-                                      "color": "{{etchColor}}",
+                                      "color": "${etchColor}",
                                       "height": 10,
                                       "width": 1
                                     }

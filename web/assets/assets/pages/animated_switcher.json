@@ -39,7 +39,7 @@
         "child": {
           "type": "animated_switcher",
           "args": {
-            "child": "{{customFirstText}}",
+            "child": "${customFirstText}",
             "duration": 1000
           }
         }
@@ -49,7 +49,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##setWidgetByKey(customFirstText, customSecondText)##"
+        "onPressed": "${setWidgetByKey('customFirstText', 'customSecondText')}"
       },
       "child": {
         "type": "text",

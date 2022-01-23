@@ -8,14 +8,14 @@
     "args": {
       "customThemeData": {
         "appBarTheme": {
-          "backgroundColor": "{{customColor}}"
+          "backgroundColor": "${customColor}"
         }
       }
     },
     "child": {
       "type": "animated_theme",
       "args": {
-        "data": "{{customThemeData}}",
+        "data": "${customThemeData}",
         "duration": 1000
       },
       "child": {
@@ -36,7 +36,7 @@
             "type": "elevated_button",
             "id": "press_me_button",
             "args": {
-              "onPressed": "##set_value(customColor, #0000FF)##"
+              "onPressed": "${set_value('customColor', '#0000FF')}"
             },
             "child": {
               "type": "text",

@@ -15,8 +15,8 @@
     "body": {
       "type": "asset_image",
       "args": {
-        "centerSlice": "{{customRect}}",
-        "name": "##getImageAsset(1)##"
+        "centerSlice": "${customRect}",
+        "name": "${getImageAsset(1)}"
       }
     }
   }

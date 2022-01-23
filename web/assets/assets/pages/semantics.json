@@ -179,7 +179,7 @@
                     "args": {
                       "color": "#4a95ec",
                       "colorBrightness": "dark",
-                      "onPressed": "##validateForm(form_context)##"
+                      "onPressed": "${validateForm('form_context')}"
                     },
                     "child": {
                       "type": "container",

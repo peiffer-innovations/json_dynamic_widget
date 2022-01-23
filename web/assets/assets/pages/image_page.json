@@ -17,13 +17,13 @@
       "child": {
         "type": "hero",
         "args": {
-          "tag": "{{imageTag}}"
+          "tag": "${imageTag}"
         },
         "child": {
           "type": "asset_image",
           "args": {
             "fit": "fitWidth",
-            "name": "{{imageAsset}}"
+            "name": "${imageAsset}"
           }
         }
       }

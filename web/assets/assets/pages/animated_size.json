@@ -37,7 +37,7 @@
             "child": {
               "type": "text",
               "args": {
-                "text": "{{customText}}"
+                "text": "${customText}"
               }
             }
           }
@@ -48,7 +48,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customText, This is not a short text. This is a very very long text.)##"
+        "onPressed": "${set_value('customText', 'This is not a short text. This is a very very long text.')}"
       },
       "child": {
         "type": "text",
