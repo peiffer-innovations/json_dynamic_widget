@@ -43,7 +43,8 @@ abstract class JsonWidgetBuilder {
   }) {
     late Widget result;
 
-    if (preferredSizeWidget == true || data.listenVariables.isNotEmpty != true) {
+    if (preferredSizeWidget == true ||
+        data.listenVariables.isNotEmpty != true) {
       result = _buildWidget(
         childBuilder: childBuilder,
         context: context,
