@@ -2,7 +2,7 @@ name: Flutter Pull Request Checker
 
 on:
   pull_request:
-    branches: [main]
+    branches: [main, beta]
 
 jobs:
   build:
