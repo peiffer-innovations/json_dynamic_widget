@@ -23,15 +23,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -45,9 +45,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -61,15 +61,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -83,9 +83,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -99,15 +99,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -121,9 +121,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -137,15 +137,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -159,9 +159,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -175,15 +175,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -197,9 +197,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -213,15 +213,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -235,9 +235,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -251,15 +251,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -273,9 +273,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -289,15 +289,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -311,9 +311,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -327,15 +327,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -349,9 +349,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -365,15 +365,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -387,9 +387,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -403,15 +403,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -425,9 +425,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -441,15 +441,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -463,9 +463,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -479,15 +479,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -501,9 +501,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -517,15 +517,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -539,9 +539,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -555,15 +555,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -577,9 +577,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -593,15 +593,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -615,9 +615,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }
@@ -631,15 +631,15 @@
           "child": {
             "type": "ink_well",
             "args": {
-              "onTap": "${getImageNavigator(index)}",
-              "listen": []
+              "onTap": "${getImageNavigator(index)}"
             },
+            "listen": [],
             "child": {
               "type": "hero",
               "args": {
-                "tag": "${getImageId(index)}",
-                "listen": []
+                "tag": "${getImageId(index)}"
               },
+              "listen": [],
               "child": {
                 "type": "container",
                 "args": {
@@ -653,9 +653,9 @@
                   "type": "asset_image",
                   "args": {
                     "fit": "fitHeight",
-                    "name": "${getImageAsset(index)}",
-                    "listen": []
-                  }
+                    "name": "${getImageAsset(index)}"
+                  },
+                  "listen": []
                 }
               }
             }

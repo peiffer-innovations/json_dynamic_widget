@@ -2,6 +2,11 @@ import 'package:json_dynamic_widget/src/components/json_widget_registry.dart';
 import 'package:json_dynamic_widget/src/components/processors/arg_processor.dart';
 import 'package:json_dynamic_widget/src/models/processed_args.dart';
 
+/// Processor for iterable [arg].
+/// The processor is processing every value of the [arg] using
+/// [JsonWidgetRegistry] processsors and it is aggregating all
+/// listen variable names. In case of passing [listenVariables] directly
+/// then the aggregation step is skipped.
 class IterableArgProcessor implements ArgProcessor {
   @override
   bool support(dynamic arg) {

@@ -1,6 +1,16 @@
 import 'package:expressions/expressions.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+/// Processor that integrates https://pub.dev/packages/expressions library
+/// syntax with [JsonWidgetRegistry] variables and functions.
+/// All expressions should be placed in ${.*} syntax.
+/// A few examples:
+/// - ${var1} - find the value of 'var1' variable inside of [JsonWidgetRegistry]
+/// and return ['var1'] it's name as the listen variable names.
+/// - ${print('var1 value is: ' + var1)} - executes 'print' function from
+/// [JsonWidgetRegistry]. As the arg for that function it takes contatenation
+/// of 'var1 value is: ' string and the value of 'var1'.
+/// Listen variable names for such a expression is ['var1'].
 class ExpressionArgProcessor implements ArgProcessor {
   final _matchRegexp = RegExp(r'^\${\s*(.*?)\s*}$');
   @override
@@ -28,6 +38,8 @@ class ExpressionArgProcessor implements ArgProcessor {
   }
 }
 
+/// Modification added to [ExpressionEvaluator] which integrates
+/// [JsonWidgetRegistry] variables and functions.
 class ArgsExpressionEvaluator extends ExpressionEvaluator {
   ArgsExpressionEvaluator(this.registry, this.calculateListenVariables);
 

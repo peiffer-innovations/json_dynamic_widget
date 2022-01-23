@@ -43,6 +43,10 @@ class JsonWidgetDataSchema {
           'type': {
             'type': 'string',
           },
+          'listen': {
+            'type': 'array',
+            'items': SchemaHelper.stringSchema,
+          },
         },
       },
     ],
