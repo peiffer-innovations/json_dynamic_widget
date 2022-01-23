@@ -211,6 +211,7 @@ class JsonWidgetRegistry {
     JsonWidgetFunction? function;
     if (functionName != null) {
       function = _functions[functionName] ?? _internalFunctions[functionName];
+      function ??= _parent?.getFunction(functionName);
     }
     return function;
   }
