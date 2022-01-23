@@ -1,5 +1,7 @@
-## [4.0.0] - January 22th, 2022
+## [4.0.0-beta] - January 22th, 2022
 * **BREAKING**: Introduction of the new JSON syntax which integrates strongly [expressions](https://pub.dev/packages/expressions) library
+* Huge thanks to [crisperit](https://github.com/crisperit) for this release
+
 
 ## [3.6.0+3] - January 9th, 2022
 
