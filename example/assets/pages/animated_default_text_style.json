@@ -25,7 +25,7 @@
           "type": "animated_default_text_style",
           "args": {
             "duration": 1500,
-            "style": "{{customTextStyle}}"
+            "style": "${customTextStyle}"
           },
           "child": {
             "type": "text",
@@ -40,7 +40,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##updateCustomTextStyle()##"
+        "onPressed": "${updateCustomTextStyle()}"
       },
       "child": {
         "type": "text",

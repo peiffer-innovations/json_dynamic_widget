@@ -8,10 +8,12 @@ void main() {
     var key = 'key';
     expect(registry.getValue(key), null);
 
-    registry.execute('set_value', [key, 'value'])();
+    registry.getFunction('set_value')!(
+        args: [key, 'value'], registry: registry)();
     expect(registry.getValue(key), 'value');
 
-    registry.execute('set_value', [key, 'value2'])();
+    registry.getFunction('set_value')!(
+        args: [key, 'value2'], registry: registry)();
     expect(registry.getValue(key), 'value2');
   });
 }

@@ -20,7 +20,7 @@
       "child": {
         "type": "offstage",
         "args": {
-          "offstage": "{{visible}}"
+          "offstage": "${visible}"
         },
         "child": {
           "type": "text",
@@ -33,7 +33,7 @@
     "floatingActionButton": {
       "type": "floating_action_button",
       "args": {
-        "onPressed": "##negateBool(visible)##"
+        "onPressed": "${negateBool('visible')}"
       },
       "child": {
         "type": "icon",

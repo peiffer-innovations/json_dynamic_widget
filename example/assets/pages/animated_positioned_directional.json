@@ -30,7 +30,7 @@
               "args": {
                 "duration": 1000,
                 "start": 100,
-                "width": "{{customWidth}}"
+                "width": "${customWidth}"
               },
               "child": {
                 "type": "text",
@@ -47,7 +47,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customWidth, 200)##"
+        "onPressed": "${set_value('customWidth', 200)}"
       },
       "child": {
         "type": "text",

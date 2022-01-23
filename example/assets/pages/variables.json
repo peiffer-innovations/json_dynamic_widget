@@ -53,7 +53,7 @@
             {
               "type": "text",
               "args": {
-                "text": "{{people;$[0].firstName}}"
+                "text": "${people[0]['firstName']}"
               }
             }
           ]

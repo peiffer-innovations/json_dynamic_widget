@@ -24,7 +24,7 @@
             "type": "animated_positioned",
             "args": {
               "duration": 1000,
-              "height": "{{customHeight}}"
+              "height": "${customHeight}"
             },
             "child": {
               "type": "container",
@@ -41,7 +41,7 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "##set_value(customHeight, 100)##"
+        "onPressed": "${set_value('customHeight', 100)}"
       },
       "child": {
         "type": "text",

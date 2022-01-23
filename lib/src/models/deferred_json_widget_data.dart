@@ -29,7 +29,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
 
   JsonWidgetData get data {
     if (_data == null) {
-      var data = _registry.getValue(_key);
+      var data = _registry.processArgs(_key, null).value;
 
       if (data is! JsonWidgetData) {
         data = JsonWidgetData.fromDynamic(
@@ -39,7 +39,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       }
       if (data is! JsonWidgetData) {
         throw Exception(
-          'Unable to find JsonWidgetData for [$_key] on the registry',
+          'Unable to find JsonWidgetData via [$_key] on the registry',
         );
       }
 
@@ -54,7 +54,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   }
 
   @override
-  Set<String> get dynamicKeys => data.dynamicKeys;
+  Set<String> get listenVariables => data.listenVariables;
 
   @override
   String get id => data.id;
@@ -80,7 +80,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
     dynamic args,
     JsonWidgetBuilder? builder,
     List<JsonWidgetData>? children,
-    Set<String>? dynamicKeys,
+    Set<String>? listenVariables,
     String? id,
     dynamic originalChild,
     dynamic originalChildren,
@@ -91,7 +91,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
         args: args ?? this.args,
         builder: builder as JsonWidgetBuilder Function()? ?? this.builder,
         children: children ?? this.children,
-        dynamicKeys: dynamicKeys ?? this.dynamicKeys,
+        listenVariables: listenVariables ?? this.listenVariables,
         id: id ?? this.id,
         originalChild: originalChild ?? this.originalChild,
         originalChildren: originalChildren ?? this.originalChildren,

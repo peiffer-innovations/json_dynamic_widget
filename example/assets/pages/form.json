@@ -112,7 +112,7 @@
                                                 }
                                               }
                                             },
-                                            "onPressed": "##set_value(first_name,)##"
+                                            "onPressed": "${set_value('first_name','')}"
                                           }
                                         }
                                       },
@@ -156,7 +156,7 @@
                                               }
                                             }
                                           },
-                                          "onPressed": "##set_value(last_name,)##"
+                                          "onPressed": "${set_value('last_name','')}"
                                         }
                                       }
                                     },
@@ -197,7 +197,7 @@
                                       }
                                     }
                                   },
-                                  "onPressed": "##set_value(email_address,)##"
+                                  "onPressed": "${set_value('email_address','')}"
                                 }
                               }
                             },
@@ -245,7 +245,7 @@
                     "args": {
                       "color": "#4a95ec",
                       "colorBrightness": "dark",
-                      "onPressed": "##validateForm(form_context)##"
+                      "onPressed": "${validateForm('form_context')}"
                     },
                     "child": {
                       "type": "container",

@@ -23,7 +23,7 @@
           {
             "type": "raised_button",
             "args": {
-              "onPressed": "##simplePrintMessage()##"
+              "onPressed": "${simplePrintMessage()}"
             },
             "child": {
               "type": "text",
@@ -35,7 +35,7 @@
           {
             "type": "raised_button",
             "args": {
-              "onPressed": "##simplePrintMessage()##"
+              "onPressed": "${simplePrintMessage()}"
             },
             "child": {
               "type": "text",
@@ -47,7 +47,7 @@
           {
             "type": "raised_button",
             "args": {
-              "onPressed": "##simplePrintMessage()##"
+              "onPressed": "${simplePrintMessage()}"
             },
             "child": {
               "type": "text",

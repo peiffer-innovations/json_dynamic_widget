@@ -73,7 +73,7 @@
         "title": {
           "type": "text",
           "args": {
-            "text": "{{value}}"
+            "text": "${value}"
           }
         }
       }
@@ -111,7 +111,7 @@
               {
                 "type": "text",
                 "args": {
-                  "text": "{{value}}"
+                  "text": "${value}"
                 }
               }
             ]
@@ -142,7 +142,7 @@
         "child": {
           "type": "scrollbar",
           "args": {
-            "controller": "{{controller}}"
+            "controller": "${controller}"
           },
           "child": {
             "type": "padding",
@@ -155,7 +155,7 @@
             "child": {
               "type": "custom_scroll_view",
               "args": {
-                "controller": "{{controller}}"
+                "controller": "${controller}"
               },
               "children": [
                 {
@@ -197,7 +197,7 @@
                       "type": "max_cross_axis_extent"
                     }
                   },
-                  "children": "##for_each({{entries;$.values}}, template)##"
+                  "children": "${for_each(entries['values'], 'template')}"
                 },
                 {
                   "type": "sliver_to_box_adapter",
@@ -215,7 +215,7 @@
                 },
                 {
                   "type": "sliver_list",
-                  "children": "##for_each({{entries;$.values}}, listTemplate)##"
+                  "children": "${for_each(entries['values'], 'listTemplate')}"
                 },
                 {
                   "type": "sliver_to_box_adapter",
@@ -255,7 +255,7 @@
                         "type": "fixed_cross_axis_count"
                       }
                     },
-                    "children": "##for_each({{entries;$.values}}, template)##"
+                    "children": "${for_each(entries['values'], 'template')}"
                   }
                 }
               ]

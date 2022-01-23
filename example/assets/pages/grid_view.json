@@ -100,7 +100,7 @@
               {
                 "type": "text",
                 "args": {
-                  "text": "{{value}}"
+                  "text": "${value}"
                 }
               }
             ]
@@ -138,7 +138,7 @@
               {
                 "type": "raised_button",
                 "args": {
-                  "onPressed": "##set_value(index, 0)##"
+                  "onPressed": "${set_value('index', 0)}"
                 },
                 "child": {
                   "type": "text",
@@ -156,7 +156,7 @@
               {
                 "type": "raised_button",
                 "args": {
-                  "onPressed": "##set_value(index, 1)##"
+                  "onPressed": "${set_value('index', 1)}"
                 },
                 "child": {
                   "type": "text",
@@ -178,7 +178,7 @@
             "child": {
               "type": "indexed_stack",
               "args": {
-                "index": "{{index}}"
+                "index": "${index}"
               },
               "children": [
                 {
@@ -192,7 +192,7 @@
                       "type": "max_cross_axis_extent"
                     }
                   },
-                  "children": "##for_each({{entries;$.values}}, template)##"
+                  "children": "${for_each(entries['values'], 'template')}"
                 },
                 {
                   "type": "grid_view",
@@ -205,7 +205,7 @@
                       "type": "fixed_cross_axis_count"
                     }
                   },
-                  "children": "##for_each({{entries;$.values}}, template)##"
+                  "children": "${for_each(entries['values'], 'template')}"
                 }
               ]
             }
