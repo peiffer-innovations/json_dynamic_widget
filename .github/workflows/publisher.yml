@@ -2,7 +2,7 @@ name: Flutter Publisher
 
 on:
   push:
-    branches: [main]
+    branches: [main, beta]
 
 jobs:
   build:
