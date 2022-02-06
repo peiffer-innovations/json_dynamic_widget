@@ -17,6 +17,7 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
     this.scrollbarOrientation,
     this.showTrackOnHover,
     this.thickness,
+    this.trackVisibility,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -31,6 +32,7 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
   final ScrollbarOrientation? scrollbarOrientation;
   final bool? showTrackOnHover;
   final double? thickness;
+  final bool? trackVisibility;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -45,7 +47,8 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
   ///   "radius": <Radius>,
   ///   "scrollbarOrientation": <ScrollbarOrientation>,
   ///   "showTrackOnHover": <bool>,
-  ///   "thickness": <double>
+  ///   "thickness": <double>,
+  ///   "trackVisibility": <bool>
   /// }
   /// ```
   ///
@@ -113,6 +116,7 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
       scrollbarOrientation: scrollbarOrientation,
       showTrackOnHover: showTrackOnHover,
       thickness: thickness,
+      trackVisibility: trackVisibility,
       key: key,
       child: child,
     );
