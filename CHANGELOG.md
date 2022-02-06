@@ -1,4 +1,10 @@
-## [4.0.0] - January 22th, 2022
+## [4.0.1] - February 6th, 2022
+
+* Flutter 2.10
+
+
+## [4.0.0] - January 22nd, 2022
+
 * **BREAKING**: Introduction of the new JSON syntax which integrates strongly [expressions](https://pub.dev/packages/expressions) library
 * Huge thanks to [crisperit](https://github.com/crisperit) for this release
 

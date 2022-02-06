@@ -85,12 +85,13 @@ class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
     );
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(
-          androidOverscrollIndicator: androidOverscrollIndicator,
-          dragDevices: dragDevices,
-          overscroll: overscroll,
-          physics: physics,
-          platform: platform,
-          scrollbars: scrollbars),
+        androidOverscrollIndicator: androidOverscrollIndicator,
+        dragDevices: dragDevices,
+        overscroll: overscroll,
+        physics: physics,
+        platform: platform,
+        scrollbars: scrollbars,
+      ),
       key: key,
       child: child,
     );
