@@ -2,7 +2,7 @@ name: json_dynamic_widget
 description: A library to dynamically generate widgets within Flutter from JSON or other Map-like structures.
 homepage: https://github.com/peiffer-innovations/json_dynamic_widget
 
-version: 4.0.1+1
+version: 4.0.1+2
 
 environment:
   sdk: ">=2.15.0 <3.0.0"
@@ -11,7 +11,7 @@ analyzer:
   exclude: [lib/generated/**]
 
 dependencies:
-  automated_testing_framework: ^3.2.3
+  automated_testing_framework: ^3.3.0+1
   child_builder: ^2.0.0+3
   collection: ^1.15.0
   expressions: ^0.2.3

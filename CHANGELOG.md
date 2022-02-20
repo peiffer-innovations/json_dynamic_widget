@@ -1,3 +1,8 @@
+## [4.0.1+2] - February 20th, 2022
+
+* Formatting changes
+
+
 ## [4.0.1+1] - February 6th, 2022
 
 * Flutter 2.10

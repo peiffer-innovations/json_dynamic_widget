@@ -15,14 +15,19 @@ abstract class ArgProcessor {
   /// Process passed [arg] into [ProcessedArg].
   /// The [registry] is giving functions and variables information context for
   /// the processing.
+  ///
   /// Passed [listenVariables] is the information about variables that
   /// [JsonWidgetData] depends on. Passing that should be make the
   /// [ArgProcessor] to stop calculating these variable names. It is
   /// treated as a optimization.
+  ///
   /// [ProcessedArg] contains info about [arg] real value and variable names
   /// that it depends on.
   ProcessedArg process(
-      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables);
+    JsonWidgetRegistry registry,
+    dynamic arg,
+    Set<String>? listenVariables,
+  );
 }
 
 /// List of predifinied [ArgProcessor]s.

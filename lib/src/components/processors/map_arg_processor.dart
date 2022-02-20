@@ -10,6 +10,7 @@ import 'package:json_dynamic_widget/src/models/processed_args.dart';
 /// Processor for map [arg]. It is entry point for [JsonWidgetData] args.
 /// If the [arg] is detected to be [JsonWidgetData] then processing of such
 /// an [arg] is skipped.
+///
 /// The processor is processing every key/value of the [arg] using
 /// [JsonWidgetRegistry] processsors and it is aggregating all
 /// listen variable names. In case of passing [listenVariables] directly
@@ -23,13 +24,14 @@ class MapArgProcessor implements ArgProcessor {
   ];
 
   @override
-  bool support(dynamic arg) {
-    return arg != null && arg is Map;
-  }
+  bool support(dynamic arg) => arg != null && arg is Map;
 
   @override
   ProcessedArg process(
-      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables) {
+    JsonWidgetRegistry registry,
+    dynamic arg,
+    Set<String>? listenVariables,
+  ) {
     var mapArg = arg as Map;
     var calculateListenVariables = listenVariables == null;
     var resultListenVariables = listenVariables ?? <String>{};
@@ -50,8 +52,9 @@ class MapArgProcessor implements ArgProcessor {
       processedMapArg[processedKeyArg.value] = processedValueArg.value;
       if (calculateListenVariables) {
         resultListenVariables.addAll(processedKeyArg.listenVariables.toList());
-        resultListenVariables
-            .addAll(processedValueArg.listenVariables.toList());
+        resultListenVariables.addAll(
+          processedValueArg.listenVariables.toList(),
+        );
       }
     });
     return ProcessedArg(
@@ -61,7 +64,10 @@ class MapArgProcessor implements ArgProcessor {
   }
 
   ProcessedArg _processKey(
-      JsonWidgetRegistry registry, String key, Set<String>? listenVariables) {
+    JsonWidgetRegistry registry,
+    String key,
+    Set<String>? listenVariables,
+  ) {
     return _keyProcessors
         .firstWhere(
           (parser) => parser.support(key),

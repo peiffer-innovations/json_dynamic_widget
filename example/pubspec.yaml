@@ -9,7 +9,7 @@ environment:
   sdk: ">=2.15.0 <3.0.0"
 
 dependencies:
-  automated_testing_framework: ^3.2.3
+  automated_testing_framework: ^3.3.0
   automated_testing_framework_plugin_images: ^3.0.4
   desktop_window: ^0.4.0
   dotted_border: ^2.0.0+2
