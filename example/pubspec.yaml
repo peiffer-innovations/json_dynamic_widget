@@ -6,7 +6,7 @@ publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.15.0 <3.0.0"
+  sdk: ">=2.16.0 <3.0.0"
 
 dependencies:
   automated_testing_framework: ^3.3.0
@@ -15,13 +15,17 @@ dependencies:
   dotted_border: ^2.0.0+2
   flutter:
     sdk: flutter
-  flutter_svg: ^1.0.0
+  flutter_svg: ^1.0.3
   json_dynamic_widget:
     path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+# Required until XMl and Flutter SVG update to pull in 5.0.0
+dependency_overrides:
+  petitparser: ^4.4.0
 
 flutter:
   uses-material-design: true

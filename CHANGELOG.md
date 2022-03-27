@@ -1,3 +1,9 @@
+## [4.1.0] - March 27th, 2022
+
+* Fixed missing schemas for `Measured` and `LayoutBuilder`
+* Swapped from [expressions](https://pub.dev/packages/expressions) to [template_expressions](https://pub.dev/packages/template_expressions) to provide more functionality for expressions.
+
+
 ## [4.0.1+2] - February 20th, 2022
 
 * Formatting changes

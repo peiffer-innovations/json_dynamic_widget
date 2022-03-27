@@ -1,5 +1,5 @@
-import 'package:expressions/expressions.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:template_expressions/expressions.dart';
 
 /// Processor that integrates https://pub.dev/packages/expressions library
 /// syntax with [JsonWidgetRegistry] variables and functions.  All expressions
@@ -22,7 +22,10 @@ class ExpressionArgProcessor implements ArgProcessor {
 
   @override
   ProcessedArg process(
-      JsonWidgetRegistry registry, dynamic arg, Set<String>? listenVariables) {
+    JsonWidgetRegistry registry,
+    dynamic arg,
+    Set<String>? listenVariables,
+  ) {
     var calculateListenVariables = listenVariables == null;
     var resultListenVariables = listenVariables ?? <String>{};
 
@@ -36,7 +39,10 @@ class ExpressionArgProcessor implements ArgProcessor {
         resultListenVariables = evaluator.listenVariables;
       }
     }
-    return ProcessedArg(listenVariables: resultListenVariables, value: arg);
+    return ProcessedArg(
+      listenVariables: resultListenVariables,
+      value: arg,
+    );
   }
 }
 
