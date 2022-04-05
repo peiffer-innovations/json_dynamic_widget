@@ -1,6 +1,7 @@
-## [4.1.1] - April 5th, 2022
+## [4.1.1+1] - April 5th, 2022
 
 * Fixed overridden template parser
+* Fix for [Issue #51](https://github.com/peiffer-innovations/json_dynamic_widget/issues/51)
 
 
 ## [4.1.0+1] - March 27th, 2022

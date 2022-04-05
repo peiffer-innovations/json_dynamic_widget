@@ -20,6 +20,7 @@ class AssetImageSchema {
       'cacheHeight': SchemaHelper.numberSchema,
       'cacheWidth': SchemaHelper.numberSchema,
       'centerSlice': SchemaHelper.objectSchema(RectSchema.id),
+      'color': SchemaHelper.objectSchema(ColorSchema.id),
       'colorBlendMode': SchemaHelper.objectSchema(BlendModeSchema.id),
       'errorBuilder': SchemaHelper.stringSchema,
       'excludeFromSemantics': SchemaHelper.boolSchema,
