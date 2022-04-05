@@ -1,3 +1,8 @@
+## [4.1.1] - April 5th, 2022
+
+* Fixed overridden template parser
+
+
 ## [4.1.0+1] - March 27th, 2022
 
 * Fixed missing schemas for `Measured` and `LayoutBuilder`

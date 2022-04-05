@@ -81,8 +81,9 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
   @override
   dynamic evalMemberExpression(
     MemberExpression expression,
-    Map<String, dynamic> context,
-  ) {
+    Map<String, dynamic> context, {
+    bool nullable = false,
+  }) {
     var variableName = '${expression.object}.${expression.property}';
     return evalVariable(Variable(Identifier(variableName)), context);
   }
@@ -90,8 +91,9 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
   @override
   dynamic evalIndexExpression(
     IndexExpression expression,
-    Map<String, dynamic> context,
-  ) {
+    Map<String, dynamic> context, {
+    bool nullable = false,
+  }) {
     dynamic objectIndexValue;
     var objectValue = eval(expression.object, context);
     if (objectValue != null) {
@@ -103,9 +105,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
 
   @override
   dynamic evalCallExpression(
-    CallExpression expression,
-    Map<String, dynamic> context,
-  ) {
+      CallExpression expression, Map<String, dynamic> context) {
     dynamic result;
     var callee = eval(expression.callee, context);
     var arguments = expression.arguments.map((e) => eval(e, context)).toList();
