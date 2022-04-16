@@ -11,7 +11,7 @@ analyzer:
   exclude: [lib/generated/**]
 
 dependencies:
-  automated_testing_framework: ^3.3.1
+  automated_testing_framework: ^3.3.1+1
   child_builder: ^2.0.0+3
   collection: ^1.15.0
   flutter:
@@ -24,7 +24,7 @@ dependencies:
   json_theme: ^3.3.1
   logging: ^1.0.2
   meta: ^1.7.0
-  template_expressions: ^1.1.1+2
+  template_expressions: ^1.1.4
   uuid: ^3.0.6
 
 false_secrets:
