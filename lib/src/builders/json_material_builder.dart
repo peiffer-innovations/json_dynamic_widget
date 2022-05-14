@@ -19,6 +19,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     this.padding,
     this.shadowColor,
     this.shape,
+    this.surfaceTintColor,
     this.textStyle,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -36,6 +37,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   final EdgeInsetsGeometry? padding;
   final Color? shadowColor;
   final ShapeBorder? shape;
+  final Color? surfaceTintColor;
   final TextStyle? textStyle;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -53,6 +55,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///   "materialType": <MaterialType>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "shadowColor": <Color>,
+  ///   "surfaceTintColor": <Color>,
   ///   "shape": <ShapeBorder>,
   ///   "textStyle": <TextStyle>
   /// }
@@ -116,6 +119,10 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
           map['shape'],
           validate: false,
         ),
+        surfaceTintColor: ThemeDecoder.decodeColor(
+          map['surfaceTintColor'],
+          validate: false,
+        ),
         textStyle: ThemeDecoder.decodeTextStyle(
           map['textStyle'],
           validate: false,
@@ -148,6 +155,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
       key: key,
       shadowColor: shadowColor,
       shape: shape,
+      surfaceTintColor: surfaceTintColor,
       textStyle: textStyle,
       type: materialType,
       child: padding == null

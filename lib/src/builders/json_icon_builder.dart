@@ -11,6 +11,7 @@ class JsonIconBuilder extends JsonWidgetBuilder {
     this.color,
     required this.icon,
     this.semanticLabel,
+    this.shadows,
     this.size,
     this.textDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -21,6 +22,7 @@ class JsonIconBuilder extends JsonWidgetBuilder {
   final Color? color;
   final IconData? icon;
   final String? semanticLabel;
+  final List<Shadow>? shadows;
   final double? size;
   final TextDirection? textDirection;
 
@@ -32,6 +34,7 @@ class JsonIconBuilder extends JsonWidgetBuilder {
   ///   "color": <Color>,
   ///   "icon": <IconData>,
   ///   "semanticLabel": <String>,
+  ///   "shadows": <List<Shadow>>,
   ///   "size": <double>,
   ///   "textDirection": <TextDirection>
   /// }
@@ -40,6 +43,7 @@ class JsonIconBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeIconData]
+  ///  * [ThemeDecoder.decodeShadow]
   ///  * [ThemeDecoder.decodeTextDirection]
   static JsonIconBuilder? fromDynamic(
     dynamic map, {
@@ -58,6 +62,13 @@ class JsonIconBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         semanticLabel: map['semanticLabel'],
+        shadows: JsonClass.fromDynamicList(
+          map['shadows'],
+          (map) => ThemeDecoder.decodeShadow(
+            map,
+            validate: false,
+          )!,
+        ),
         size: JsonClass.parseDouble(map['size']),
         textDirection: ThemeDecoder.decodeTextDirection(
           map['textDirection'],
@@ -81,6 +92,7 @@ class JsonIconBuilder extends JsonWidgetBuilder {
       color: color,
       key: key,
       semanticLabel: semanticLabel,
+      shadows: shadows,
       size: size,
       textDirection: textDirection,
     );

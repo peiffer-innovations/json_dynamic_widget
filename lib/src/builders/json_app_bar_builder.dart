@@ -24,8 +24,10 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
     this.leading,
     this.leadingWidth,
     required this.primary,
+    this.scrolledUnderElevation,
     this.shadowColor,
     this.shape,
+    this.surfaceTintColor,
     this.systemOverlayStyle,
     this.titleTextStyle,
     this.toolbarTextStyle,
@@ -56,8 +58,10 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   final JsonWidgetData? leading;
   final double? leadingWidth;
   final bool primary;
+  final double? scrolledUnderElevation;
   final Color? shadowColor;
   final ShapeBorder? shape;
+  final Color? surfaceTintColor;
   final SystemUiOverlayStyle? systemOverlayStyle;
   final TextStyle? titleTextStyle;
   final TextStyle? toolbarTextStyle;
@@ -86,8 +90,10 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   ///   "leading": <bool>,
   ///   "leadingWidth": <double>,
   ///   "primary": <bool>,
+  ///   "scrolledUnderElevation": <double>,
   ///   "shadowColor": <Color>,
   ///   "shape": <ShapeBorder>,
+  ///   "surfaceTintColor": <Color>,
   ///   "systemOverlayStyle": <SystemUiOverlayStyle>,
   ///   "titleTextStyle": <TextStyle>,
   ///   "toolbarTextStyle": <TextStyle>,
@@ -156,12 +162,19 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         leadingWidth: JsonClass.parseDouble(map['leadingWidth']),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
+        scrolledUnderElevation: JsonClass.parseDouble(
+          map['scrolledUnderElevation'],
+        ),
         shadowColor: ThemeDecoder.decodeColor(
           map['shadowColor'],
           validate: false,
         ),
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
+          validate: false,
+        ),
+        surfaceTintColor: ThemeDecoder.decodeColor(
+          map['surfaceTintColor'],
           validate: false,
         ),
         systemOverlayStyle: ThemeDecoder.decodeSystemUiOverlayStyle(
@@ -238,15 +251,17 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
       ),
       leadingWidth: leadingWidth,
       primary: primary,
+      scrolledUnderElevation: scrolledUnderElevation,
       shadowColor: shadowColor,
       shape: shape,
+      surfaceTintColor: surfaceTintColor,
       systemOverlayStyle: systemOverlayStyle,
-      titleTextStyle: titleTextStyle,
-      toolbarTextStyle: toolbarTextStyle,
       title: title?.build(
         childBuilder: childBuilder,
         context: context,
       ),
+      titleTextStyle: titleTextStyle,
+      toolbarTextStyle: toolbarTextStyle,
       titleSpacing: titleSpacing,
       toolbarHeight: toolbarHeight,
       toolbarOpacity: toolbarOpacity,

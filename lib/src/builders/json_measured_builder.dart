@@ -69,7 +69,7 @@ class _MeasuredState extends State<_Measured> {
   void initState() {
     super.initState();
 
-    SchedulerBinding.instance!.addPostFrameCallback((timeStamp) {
+    SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
       var boundary =
           _renderKey.currentContext!.findRenderObject() as RenderBox?;
 

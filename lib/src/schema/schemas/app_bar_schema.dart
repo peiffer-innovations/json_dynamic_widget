@@ -28,8 +28,10 @@ class AppBarSchema {
       'leading': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'leadingWidth': SchemaHelper.numberSchema,
       'primary': SchemaHelper.boolSchema,
+      'scrolledUnderElevation': SchemaHelper.boolSchema,
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
       'systemOverlayStyle': SchemaHelper.objectSchema(
         SystemUiOverlayStyleSchema.id,
       ),

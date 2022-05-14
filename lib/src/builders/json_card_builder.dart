@@ -16,6 +16,7 @@ class JsonCardBuilder extends JsonWidgetBuilder {
     required this.semanticContainer,
     this.shadowColor,
     this.shape,
+    this.surfaceTintColor,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -30,6 +31,7 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   final bool semanticContainer;
   final Color? shadowColor;
   final ShapeBorder? shape;
+  final Color? surfaceTintColor;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
@@ -43,7 +45,8 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   ///   "margin": <EdgeInsetsGeometry>,
   ///   "semanticContainer": <bool>,
   ///   "shadowColor": <Color>,
-  ///   "shape": <ShapeBorder>
+  ///   "shape": <ShapeBorder>,
+  ///   "surfaceTintColor": <Color>
   /// }
   /// ```
   ///
@@ -89,6 +92,10 @@ class JsonCardBuilder extends JsonWidgetBuilder {
           map['shape'],
           validate: false,
         ),
+        surfaceTintColor: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
       );
     }
 
@@ -114,6 +121,7 @@ class JsonCardBuilder extends JsonWidgetBuilder {
       semanticContainer: semanticContainer,
       shadowColor: shadowColor,
       shape: shape,
+      surfaceTintColor: surfaceTintColor,
       child: child.build(
         childBuilder: childBuilder,
         context: context,

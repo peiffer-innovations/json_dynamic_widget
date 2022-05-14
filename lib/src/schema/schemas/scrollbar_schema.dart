@@ -13,16 +13,14 @@ class ScrollbarSchema {
     'additionalProperties': false,
     'properties': {
       'controller': SchemaHelper.stringSchema,
-      'hoverThickness': SchemaHelper.numberSchema,
       'interactive': SchemaHelper.boolSchema,
-      'isAlwaysShown': SchemaHelper.boolSchema,
       'notificationPredicate': SchemaHelper.stringSchema,
       'radius': SchemaHelper.objectSchema(RadiusSchema.id),
       'scrollbarOrientation': SchemaHelper.objectSchema(
         ScrollbarOrientationSchema.id,
       ),
-      'showTrackOnHover': SchemaHelper.boolSchema,
-      'thickness': SchemaHelper.numberSchema
+      'thickness': SchemaHelper.numberSchema,
+      'thumbVisibility': SchemaHelper.boolSchema,
     },
   };
 }

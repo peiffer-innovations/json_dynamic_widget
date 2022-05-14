@@ -20,6 +20,7 @@ class AnimatedCrossFadeSchema {
       'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'crossFadeState': SchemaHelper.objectSchema(CrossFadeStateSchema.id),
       'duration': SchemaHelper.numberSchema,
+      'excludeBottomFocus': SchemaHelper.boolSchema,
       'firstCurve': SchemaHelper.stringSchema,
       'layoutBuilder': SchemaHelper.stringSchema,
       'reverseDuration': SchemaHelper.numberSchema,

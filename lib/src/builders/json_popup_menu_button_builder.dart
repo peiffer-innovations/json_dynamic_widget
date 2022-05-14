@@ -9,6 +9,7 @@ import 'package:json_theme/json_theme.dart';
 class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   JsonPopupMenuButtonBuilder({
     this.color,
+    this.constraints,
     this.elevation,
     this.enableFeedback,
     required this.enabled,
@@ -20,7 +21,9 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     this.onCanceled,
     this.onSelected,
     required this.padding,
+    this.position,
     this.shape,
+    this.splashRadius,
     this.tooltip,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -28,6 +31,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   static const type = 'popup_menu_button';
 
   final Color? color;
+  final BoxConstraints? constraints;
   final double? elevation;
   final bool? enableFeedback;
   final bool enabled;
@@ -39,7 +43,9 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   final PopupMenuCanceled? onCanceled;
   final PopupMenuItemSelected? onSelected;
   final EdgeInsetsGeometry padding;
+  final PopupMenuPosition? position;
   final ShapeBorder? shape;
+  final double? splashRadius;
   final String? tooltip;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -48,6 +54,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "color": <Color>,
+  ///   "constraints": <BoxConstraints>,
   ///   "elevation": <double>,
   ///   "enableFeedback": <bool>,
   ///   "enabled": <bool>,
@@ -60,6 +67,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   ///   "onSelected": <PopupMenuItemSelected<T>>,
   ///   "padding": <EdgeInsetsGeometry>,
   ///   "shape": <ShapeBorder>,
+  ///   "splashRadius": <SplashRadius>,
   ///   "tooltip": <String>
   /// }
   /// ```
@@ -72,9 +80,11 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   ///
   /// See also:
   ///  * [JsonWidgetData.fromDynamic]
+  ///  * [ThemeDecoder.decodeBoxConstraints]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeOffset]
+  ///  * [ThemeDecoder.decodePopupMenuPosition]
   ///  * [ThemeDecoder.decodeShapeBorder]
   static JsonPopupMenuButtonBuilder? fromDynamic(
     dynamic map, {
@@ -86,6 +96,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
       result = JsonPopupMenuButtonBuilder(
         color: ThemeDecoder.decodeColor(
           map['color'],
+          validate: false,
+        ),
+        constraints: ThemeDecoder.decodeBoxConstraints(
+          map['constraints'],
           validate: false,
         ),
         elevation: JsonClass.parseDouble(
@@ -120,10 +134,15 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             EdgeInsets.all(8.0),
+        position: ThemeDecoder.decodePopupMenuPosition(
+          map['position'],
+          validate: false,
+        ),
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
           validate: false,
         ),
+        splashRadius: JsonClass.parseDouble(map['splashRadius']),
         tooltip: map['tooltip'],
       );
     }
@@ -142,6 +161,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
 
     return PopupMenuButton(
       color: color,
+      constraints: constraints,
       elevation: elevation,
       enableFeedback: enableFeedback,
       enabled: enabled,
@@ -157,7 +177,9 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
       onCanceled: onCanceled,
       onSelected: onSelected,
       padding: padding,
+      position: position ?? PopupMenuPosition.over,
       shape: shape,
+      splashRadius: splashRadius,
       tooltip: tooltip,
       child: child.build(
         childBuilder: childBuilder,

@@ -19,6 +19,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
     this.onInteractionUpdate,
     required this.panEnabled,
     required this.scaleEnabled,
+    required this.scaleFactor,
     this.transformationController,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -36,6 +37,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   final GestureScaleUpdateCallback? onInteractionUpdate;
   final bool panEnabled;
   final bool scaleEnabled;
+  final double scaleFactor;
   final TransformationController? transformationController;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -54,6 +56,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   ///   "onInteractionUpdate": <GestureScaleUpdateCallback>,
   ///   "panEnabled": <bool>,
   ///   "scaleEnabled": <bool>,
+  ///   "scaleFactor": <double>,
   ///   "transformationController": <TransformationController>
   /// }
   /// ```
@@ -115,6 +118,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(
                 map['scaleEnabled'],
               ),
+        scaleFactor: JsonClass.parseDouble(map['scaleFactor']) ?? 200.0,
         transformationController: map['transformationController'],
       );
     }
@@ -144,6 +148,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
       onInteractionUpdate: onInteractionUpdate,
       panEnabled: panEnabled,
       scaleEnabled: scaleEnabled,
+      scaleFactor: scaleFactor,
       transformationController: transformationController,
       child: child.build(
         childBuilder: childBuilder,

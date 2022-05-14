@@ -1,3 +1,8 @@
+## [5.0.0] - May 14th, 2022
+
+* Flutter 3.0
+
+
 ## [4.1.1+1] - April 5th, 2022
 
 * Fixed overridden template parser

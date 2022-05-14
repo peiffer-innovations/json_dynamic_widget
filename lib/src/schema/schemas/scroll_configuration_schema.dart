@@ -13,9 +13,6 @@ class ScrollConfigurationSchema {
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'androidOverscrollIndicator': SchemaHelper.objectSchema(
-        AndroidOverscrollIndicatorSchema.id,
-      ),
       'dragDevices': SchemaHelper.stringSchema,
       'overscroll': SchemaHelper.boolSchema,
       'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),

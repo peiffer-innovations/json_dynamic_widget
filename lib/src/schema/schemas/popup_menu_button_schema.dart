@@ -15,6 +15,7 @@ class PopupMenuButtonSchema {
     'additionalProperties': false,
     'properties': {
       'color': SchemaHelper.objectSchema(ColorSchema.id),
+      'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
       'elevation': SchemaHelper.numberSchema,
       'enabled': SchemaHelper.boolSchema,
       'enableFeedback': SchemaHelper.boolSchema,
@@ -26,7 +27,9 @@ class PopupMenuButtonSchema {
       'onCanceled': SchemaHelper.stringSchema,
       'onSelected': SchemaHelper.stringSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      'position': SchemaHelper.objectSchema(PopupMenuPositionSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'splashRadius': SchemaHelper.numberSchema,
       'tooltip': SchemaHelper.stringSchema,
     }
   };

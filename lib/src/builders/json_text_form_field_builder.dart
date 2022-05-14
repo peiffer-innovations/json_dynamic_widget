@@ -34,6 +34,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     this.maxLengthEnforcement,
     this.maxLines,
     this.minLines,
+    this.mouseCursor,
     this.obscureText,
     required this.obscuringCharacter,
     this.onChanged,
@@ -88,6 +89,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   final MaxLengthEnforcement? maxLengthEnforcement;
   final int? maxLines;
   final int? minLines;
+  final MouseCursor? mouseCursor;
   final bool? obscureText;
   final String obscuringCharacter;
   final ValueChanged<String>? onChanged;
@@ -144,6 +146,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "maxLengthEnforced": <bool>,
   ///   "maxLines": <int>,
   ///   "minLines": <int>,
+  ///   "mouseCursor": <MouseCursor>,
   ///   "obscureText": <bool>,
   ///   "obscuringCharacter": <String>,
   ///   "onChanged": <ValueChanged<String>>,
@@ -183,9 +186,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMaxLengthEnforcement]
+  ///  * [ThemeDecoder.decodeMouseCursor]
   ///  * [ThemeDecoder.decodeRadius]
   ///  * [ThemeDecoder.decodeScrollPhysics]
-  ///  * [ThemeDecoder.decodeTextSelectionControls]
   ///  * [ThemeDecoder.decodeSmartDashesType]
   ///  * [ThemeDecoder.decodeSmartQuotesType]
   ///  * [ThemeDecoder.decodeTextAlign]
@@ -258,6 +261,10 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         ),
         maxLines: JsonClass.parseInt(map['maxLines'], 1),
         minLines: JsonClass.parseInt(map['minLines']),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+          map['mouseCursor'],
+          validate: false,
+        ),
         obscureText: JsonClass.parseBool(map['obscureText']),
         obscuringCharacter: map['obscuringCharacter'] ?? '•',
         onChanged: map['onChanged'],
@@ -408,7 +415,9 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         var textValue = widget.builder.controller.value.copyWith(
             text: value,
             selection: TextSelection(
-                baseOffset: value.length, extentOffset: value.length),
+              baseOffset: value.length,
+              extentOffset: value.length,
+            ),
             composing: TextRange(start: 0, end: value.length));
         widget.builder.controller.value = textValue;
       }
@@ -448,6 +457,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         maxLengthEnforcement: widget.builder.maxLengthEnforcement,
         maxLines: widget.builder.maxLines,
         minLines: widget.builder.minLines,
+        mouseCursor: widget.builder.mouseCursor,
         obscuringCharacter: widget.builder.obscuringCharacter,
         obscureText: widget.builder.obscureText ?? false,
         onChanged: widget.builder.enabled != true

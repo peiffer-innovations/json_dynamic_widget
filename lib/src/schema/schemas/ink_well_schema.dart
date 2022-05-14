@@ -31,6 +31,7 @@ class InkWellSchema {
       'onTap': SchemaHelper.stringSchema,
       'onTapCancel': SchemaHelper.stringSchema,
       'onTapDown': SchemaHelper.stringSchema,
+      'onTapUp': SchemaHelper.stringSchema,
       'overlayColor': SchemaHelper.objectSchema(
         MaterialStatePropertyMouseCursorSchema.id,
       ),

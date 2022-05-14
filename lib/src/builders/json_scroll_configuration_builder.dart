@@ -9,7 +9,6 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
   JsonScrollConfigurationBuilder({
-    this.androidOverscrollIndicator,
     this.dragDevices,
     this.overscroll,
     this.physics,
@@ -20,7 +19,6 @@ class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'scroll_configuration';
 
-  final AndroidOverscrollIndicator? androidOverscrollIndicator;
   final Set<PointerDeviceKind>? dragDevices;
   final bool? overscroll;
   final ScrollPhysics? physics;
@@ -32,7 +30,6 @@ class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "androidOverscrollIndicator": <AndroidOverscrollIndicator>,
   ///   "dragDevices": <Set<PointerDeviceKind>>,
   ///   "overscroll": <bool>,
   ///   "physics": <ScrollPhysics>,
@@ -42,7 +39,6 @@ class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
   /// ```
   ///
   /// See also:
-  ///  * [ThemeDecoder.decodeAndroidOverscrollIndicator]
   ///  * [ThemeDecoder.decodeScrollPhysics]
   static JsonScrollConfigurationBuilder? fromDynamic(
     dynamic map, {
@@ -51,10 +47,6 @@ class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
     JsonScrollConfigurationBuilder? result;
     if (map != null) {
       result = JsonScrollConfigurationBuilder(
-        androidOverscrollIndicator:
-            ThemeDecoder.decodeAndroidOverscrollIndicator(
-                map['androidOverscrollIndicator'],
-                validate: false),
         dragDevices: map['dragDevices'],
         overscroll: map['overscroll'] == null
             ? null
@@ -85,7 +77,6 @@ class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
     );
     return ScrollConfiguration(
       behavior: ScrollConfiguration.of(context).copyWith(
-        androidOverscrollIndicator: androidOverscrollIndicator,
         dragDevices: dragDevices,
         overscroll: overscroll,
         physics: physics,

@@ -46,6 +46,7 @@ class TextFormFieldSchema {
       ),
       'maxLines': SchemaHelper.numberSchema,
       'minLines': SchemaHelper.numberSchema,
+      'mouseCursor': SchemaHelper.objectSchema(TextFormFieldSchema.id),
       'obscureText': SchemaHelper.boolSchema,
       'obscuringCharacter': SchemaHelper.stringSchema,
       'onChanged': SchemaHelper.stringSchema,

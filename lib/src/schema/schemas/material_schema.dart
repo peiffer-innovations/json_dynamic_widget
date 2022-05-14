@@ -28,6 +28,7 @@ class MaterialSchema {
           'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
           'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
           'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+          'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
           'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
         },
       },

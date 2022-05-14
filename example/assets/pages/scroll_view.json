@@ -23,7 +23,6 @@
               "type": "scrollbar",
               "id": "left",
               "args": {
-                "isAlwaysShown": true,
                 "scrollbarOrientation": "left"
               },
               "child": {
@@ -506,7 +505,6 @@
               "id": "right",
               "args": {
                 "controller": "${controller}",
-                "isAlwaysShown": true,
                 "scrollbarOrientation": "right"
               },
               "child": {

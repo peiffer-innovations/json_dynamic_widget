@@ -12,6 +12,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     this.alignment,
     this.autofocus,
     this.autovalidateMode,
+    this.borderRadius,
     this.decoration,
     this.disabledHint,
     this.dropdownColor,
@@ -45,6 +46,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   final Alignment? alignment;
   final bool? autofocus;
   final AutovalidateMode? autovalidateMode;
+  final BorderRadius? borderRadius;
   final dynamic decoration;
   final JsonWidgetData? disabledHint;
   final Color? dropdownColor;
@@ -79,6 +81,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///   "alignment": <Alignment>,
   ///   "autofocus": <bool>,
   ///   "autovalidateMode": <AutovalidateMode>,
+  ///   "borderRadius": <BorderRadius>,
   ///   "decoration": <InputDecorationDecoder>,
   ///   "disabledHint": <JsonWidgetData>,
   ///   "dropdownColor": <Color>,
@@ -149,6 +152,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
+        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']),
         decoration: map['decoration'],
         disabledHint: JsonWidgetData.fromDynamic(map['disabledHint']),
         dropdownColor: ThemeDecoder.decodeColor(
@@ -325,6 +329,7 @@ class _JsonDropdownButtonFormFieldWidgetState
         alignment: widget.builder.alignment ?? AlignmentDirectional.centerStart,
         autofocus: widget.builder.autofocus ?? false,
         autovalidateMode: widget.builder.autovalidateMode,
+        borderRadius: widget.builder.borderRadius,
         decoration: _decoration ?? const InputDecoration(),
         disabledHint: widget.builder.disabledHint?.build(
           childBuilder: widget.childBuilder,

@@ -26,6 +26,7 @@ class InteractiveViewerSchema {
       'onInteractionUpdate': SchemaHelper.stringSchema,
       'panEnabled': SchemaHelper.boolSchema,
       'scaleEnabled': SchemaHelper.boolSchema,
+      'scaleFactor': SchemaHelper.numberSchema,
       'transformationController': SchemaHelper.stringSchema,
     }
   };

@@ -13,6 +13,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
     this.alignment,
     required this.crossFadeState,
     required this.duration,
+    this.excludeBottomFocus = true,
     this.firstCurve,
     this.layoutBuilder,
     this.reverseDuration,
@@ -26,6 +27,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
   final AlignmentGeometry? alignment;
   final CrossFadeState crossFadeState;
   final Duration duration;
+  final bool excludeBottomFocus;
   final Curve? firstCurve;
   final AnimatedCrossFadeBuilder? layoutBuilder;
   final Duration? reverseDuration;
@@ -40,6 +42,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
   ///   "alignment": <AlignmentGeometry>,
   ///   "crossFadeState": <CrossFadeState>,
   ///   "duration": <int; millis>,
+  ///   "excludeBottomFocus": <bool>,
   ///   "firstCurve": <Curve>,
   ///   "layoutBuilder": <AnimatedCrossFadeBuilder>,
   ///   "reverseDuration": <int; millis>,
@@ -71,6 +74,10 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
         )!,
+        excludeBottomFocus: JsonClass.parseBool(
+          map['excludeBottomFocus'],
+          whenNull: true,
+        ),
         firstCurve: map['firstCurve'] ?? Curves.linear,
         layoutBuilder:
             map['layoutBuilder'] ?? AnimatedCrossFade.defaultLayoutBuilder,
@@ -137,6 +144,7 @@ class _JsonAnimatedCrossFadeState extends State<_JsonAnimatedCrossFade> {
       alignment: widget.builder.alignment ?? Alignment.topCenter,
       crossFadeState: widget.builder.crossFadeState,
       duration: widget.builder.duration,
+      excludeBottomFocus: widget.builder.excludeBottomFocus,
       firstCurve: widget.builder.firstCurve ?? Curves.linear,
       layoutBuilder: widget.builder.layoutBuilder ??
           AnimatedCrossFade.defaultLayoutBuilder,

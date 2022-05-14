@@ -25,6 +25,7 @@ class CardSchema {
           'semanticContainer': SchemaHelper.boolSchema,
           'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
           'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+          'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
         },
       },
     ],
