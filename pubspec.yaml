@@ -5,7 +5,7 @@ homepage: https://github.com/peiffer-innovations/json_dynamic_widget
 version: 5.0.0
 
 environment:
-  sdk: ">=2.16.0 <3.0.0"
+  sdk: '>=2.17.0 <3.0.0'
 
 analyzer:
   exclude: [lib/generated/**]
@@ -22,7 +22,7 @@ dependencies:
   json_conditional: ^2.1.0+3
   json_schema2: ^2.0.2
   json_theme: ^4.0.0
-  logging: ^1.0.2
+  logging: ^1.0.1
   meta: ^1.7.0
   template_expressions: ^1.1.6
   uuid: ^3.0.6
@@ -37,3 +37,25 @@ false_secrets:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+ignore_updates:
+  # Ignoring everything in flutter_test as those are all point-in-time entries
+  # can't upgrade without upgrading Flutter itself.
+  - 'async'
+  - 'boolean_selector'
+  - 'characters'
+  - 'charcode'
+  - 'collection'
+  - 'clock'
+  - 'fake_async'
+  - 'file'
+  - 'matcher'
+  - 'material_color_utilities'
+  - 'meta'
+  - 'path'
+  - 'source_span'
+  - 'stack_trace'
+  - 'stream_channel'
+  - 'string_scanner'
+  - 'term_glyph'
+  - 'vector_math'

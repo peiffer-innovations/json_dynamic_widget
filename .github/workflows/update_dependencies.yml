@@ -1,0 +1,18 @@
+name: Automated Dependencies Updater
+
+on:
+  schedule:
+    - cron: '0 1 * * 2'
+
+jobs:
+  update_dependencies:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dependencies
+        uses: peiffer-innovations/actions-dart-dependency-updater@v1.0.16
+        with:
+          merge: true
+          paths: .,example
+          pull_request: true
+          token: ${{ secrets.REPO_TOKEN }}
