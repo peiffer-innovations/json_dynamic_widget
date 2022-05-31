@@ -1,39 +1,45 @@
-name: example
-description: Example app for the JsonDynamicWidget library
+name: 'example'
+description: 'Example app for the JsonDynamicWidget library'
+publish_to: 'none'
+version: '1.0.0+2'
 
-publish_to: "none"
+environment: 
+  sdk: '>=2.17.0 <3.0.0'
 
-version: 1.0.0+1
+dependencies: 
+  automated_testing_framework: '^4.0.1+1'
+  automated_testing_framework_plugin_images: '^4.0.0+1'
+  desktop_window: '^0.4.0'
+  dotted_border: '^2.0.0+2'
+  flutter: 
+    sdk: 'flutter'
+  flutter_svg: '^1.1.0'
+  json_dynamic_widget: 
+    path: '../'
 
-environment:
-  sdk: ">=2.17.0 <3.0.0"
+dev_dependencies: 
+  flutter_test: 
+    sdk: 'flutter'
 
-dependencies:
-  automated_testing_framework: ^4.0.0
-  automated_testing_framework_plugin_images: ^4.0.0
-  desktop_window: ^0.4.0
-  dotted_border: ^2.0.0+2
-  flutter:
-    sdk: flutter
-  flutter_svg: ^1.0.3
-  json_dynamic_widget:
-    path: ../
 
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-
-flutter:
+flutter: 
   uses-material-design: true
-  assets:
-    - assets/images/
-    - assets/pages/
-    - assets/secrets/
-    - assets/widgets/
-  fonts:
-    - family: lato
-      fonts:
-        - asset: assets/fonts/Lato-Regular.ttf
-    - family: metal
-      fonts:
-        - asset: assets/fonts/MetalMania-Regular.ttf
+  assets: 
+    - 'assets/images/'
+    - 'assets/pages/'
+    - 'assets/secrets/'
+    - 'assets/widgets/'
+  fonts: 
+    - 
+      family: 'lato'
+      fonts: 
+        - 
+          asset: 'assets/fonts/Lato-Regular.ttf'
+
+    - 
+      family: 'metal'
+      fonts: 
+        - 
+          asset: 'assets/fonts/MetalMania-Regular.ttf'
+
+
