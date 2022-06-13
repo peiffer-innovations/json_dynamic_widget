@@ -1,3 +1,8 @@
+## [5.0.1] - June, 13, 2022
+
+* Fixing #58 - log function
+
+
 ## [5.0.0+2] - June, 7, 2022
 
 * Automated dependency updates
