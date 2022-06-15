@@ -1,0 +1,19 @@
+name: Generate TOC
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/generate_toc.yml
+      - README.md
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: technote-space/toc-generator@v4
+        with:
+          COMMIT_MESSAGE: "[actions skip]: TOC"
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+          TARGET_PATHS: README.md
