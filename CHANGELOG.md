@@ -1,3 +1,8 @@
+## [5.0.2+1] - June 21, 2022
+
+* Automated dependency updates
+
+
 ## [5.0.2] - June 15, 2022
 
 * Refactored all builders to a separate `builders` export from the main export.
@@ -287,6 +292,7 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
