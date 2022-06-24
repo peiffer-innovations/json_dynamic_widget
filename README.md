@@ -1,3 +1,5 @@
+# json_dynamic_widget
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
@@ -21,22 +23,6 @@
   - [Creating Custom Arg Processor](#creating-custom-arg-processor)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-# json_dynamic_widget
-
-## Table of Contents
-
-* [Live Example](#live-example)
-* [First Party Plugins](#first-party-plugins)
-* [Migration to 4.X.X version](#migration-to-4xx-version)
-* [Introduction](#introduction)
-* [Understanding the Registry](#understanding-the-registry)
-* [Built In Widgets](#built-in-widgets)
-* [Using Expressions](#using-expressions)
-  * [Using Variables](#using-variables)
-  * [Dynamic Functions](#dynamic-functions)
-* [Creating Custom Widgets](#creating-custom-widgets)
-* [Creating Custom Arg Processor](#creating-custom-arg-processor)
 
 
 ## Live Example
