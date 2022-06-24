@@ -4,23 +4,21 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
-- [json_dynamic_widget](#json_dynamic_widget)
-  - [Table of Contents](#table-of-contents)
-  - [Live Example](#live-example)
-  - [First Party Plugins](#first-party-plugins)
-  - [Migration to 4.X.X version](#migration-to-4xx-version)
-  - [Introduction](#introduction)
-  - [Understanding the Registry](#understanding-the-registry)
-  - [Built In Widgets](#built-in-widgets)
-  - [Using Expressions](#using-expressions)
-    - [Using Variables](#using-variables)
-    - [Dynamic Functions](#dynamic-functions)
-      - [**Basic function usage**](#basic-function-usage)
-      - [**Named args in functions**](#named-args-in-functions)
-      - [**Complex function calls**](#complex-function-calls)
-      - [**Built functions**](#built-functions)
-  - [Creating Custom Widgets](#creating-custom-widgets)
-  - [Creating Custom Arg Processor](#creating-custom-arg-processor)
+- [Live Example](#live-example)
+- [First Party Plugins](#first-party-plugins)
+- [Migration to 4.X.X version](#migration-to-4xx-version)
+- [Introduction](#introduction)
+- [Understanding the Registry](#understanding-the-registry)
+- [Built In Widgets](#built-in-widgets)
+- [Using Expressions](#using-expressions)
+  - [Using Variables](#using-variables)
+  - [Dynamic Functions](#dynamic-functions)
+    - [**Basic function usage**](#basic-function-usage)
+    - [**Named args in functions**](#named-args-in-functions)
+    - [**Complex function calls**](#complex-function-calls)
+    - [**Built functions**](#built-functions)
+- [Creating Custom Widgets](#creating-custom-widgets)
+- [Creating Custom Arg Processor](#creating-custom-arg-processor)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
