@@ -8,13 +8,13 @@ const RESOURCES = {
 "canvaskit/profiling/canvaskit.js": "ae2949af4efc61d28a4a80fffa1db900",
 "canvaskit/profiling/canvaskit.wasm": "95e736ab31147d1b2c7b25f11d4c32cd",
 "canvaskit/canvaskit.wasm": "4b83d89d9fecbea8ca46f2f760c5a9ba",
-"index.html": "400dfd3e5df930d9652f3d65a53f7551",
-"/": "400dfd3e5df930d9652f3d65a53f7551",
+"index.html": "a3899f8c7b3efffb94127a7f9aac9c8d",
+"/": "a3899f8c7b3efffb94127a7f9aac9c8d",
 "flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
-"version.json": "949b37a9bcbe78c0e17df92dab1f3d2b",
+"version.json": "5feb9f7eb7fd91b821e22b5ab1113112",
 "assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
 "assets/fonts/MaterialIcons-Regular.otf": "95db9098c58fd6db106f1116bae85a0b",
 "assets/AssetManifest.json": "7bfacaa05531933270ee9d77489b9f8b",
@@ -111,7 +111,7 @@ const RESOURCES = {
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
 "assets/assets/widgets/issue_24.json": "77bf723a8ec7a8b5314f0833fab4e74a",
 "assets/NOTICES": "b2ec9240d148cb77baa5bc09db6162e7",
-"main.dart.js": "a4a011e1764d56dafead9b2a4dfc5857"
+"main.dart.js": "a6e19f9fb8540d58446a4770d58bc135"
 };
 
 // The application shell files that are downloaded before a service worker can
