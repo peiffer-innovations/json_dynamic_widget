@@ -1,4 +1,4 @@
-## [5.0.3] - July 25th, 2022
+## [5.0.3+1] - July 25th, 2022
 
 * Added YAML support with an example
 
