@@ -20,6 +20,7 @@ import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 import 'package:logging/logging.dart';
+import 'package:yaon/yaon.dart' as yaon;
 
 import 'src/full_widget_page.dart';
 
@@ -248,6 +249,15 @@ void main() async {
     TestRunner(
       controller: testController,
       enabled: !kReleaseMode,
+      testableRenderController: TestableRenderController(
+        gestures: TestableGestures(
+          overlayDoubleTap: TestableGestureAction.toggle_global_overlay,
+          overlayLongPress: TestableGestureAction.toggle_overlay,
+          overlayTap: TestableGestureAction.open_test_actions_page,
+          widgetDoubleTap: null,
+          widgetLongPress: TestableGestureAction.toggle_overlay,
+        ),
+      ),
       theme: ThemeData.light(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -306,79 +316,79 @@ class RootPage extends StatelessWidget {
   }) : super(key: key);
 
   static final _pages = {
-    'align': _onPageSelected,
-    'animated_align': _onPageSelected,
-    'animated_container': _onPageSelected,
-    'animated_cross_fade': _onPageSelected,
-    'animated_default_text_style': _onPageSelected,
-    'animated_opacity': _onPageSelected,
-    'animated_padding': _onPageSelected,
-    'animated_physical_model': _onPageSelected,
-    'animated_positioned': _onPageSelected,
-    'animated_positioned_directional': _onPageSelected,
-    'animated_size': _onPageSelected,
-    'animated_switcher': _onPageSelected,
-    'animated_theme': _onPageSelected,
-    'aspect_ratio': _onPageSelected,
-    'asset_images': _onPageSelected,
-    'bank_example': _onPageSelected,
-    'baseline': _onPageSelected,
-    'buttons': _onPageSelected,
-    'card': _onPageSelected,
-    'center': _onPageSelected,
-    'checkbox': _onPageSelected,
-    'circular_progress_indicator': _onPageSelected,
-    'clips': _onPageSelected,
-    'conditional': _onPageSelected,
-    'cupertino_switch': _onPageSelected,
-    'decorated_box': _onPageSelected,
-    'directionality': _onPageSelected,
+    'align': _onJsonPageSelected,
+    'animated_align': _onJsonPageSelected,
+    'animated_container': _onJsonPageSelected,
+    'animated_cross_fade': _onJsonPageSelected,
+    'animated_default_text_style': _onJsonPageSelected,
+    'animated_opacity': _onJsonPageSelected,
+    'animated_padding': _onJsonPageSelected,
+    'animated_physical_model': _onJsonPageSelected,
+    'animated_positioned': _onJsonPageSelected,
+    'animated_positioned_directional': _onJsonPageSelected,
+    'animated_size': _onJsonPageSelected,
+    'animated_switcher': _onJsonPageSelected,
+    'animated_theme': _onJsonPageSelected,
+    'aspect_ratio': _onJsonPageSelected,
+    'asset_images': _onJsonPageSelected,
+    'bank_example': _onJsonPageSelected,
+    'baseline': _onJsonPageSelected,
+    'buttons': _onJsonPageSelected,
+    'card': _onJsonPageSelected,
+    'center': _onJsonPageSelected,
+    'checkbox': _onJsonPageSelected,
+    'circular_progress_indicator': _onJsonPageSelected,
+    'clips': _onJsonPageSelected,
+    'conditional': _onJsonPageSelected,
+    'cupertino_switch': _onYamlPageSelected,
+    'decorated_box': _onJsonPageSelected,
+    'directionality': _onJsonPageSelected,
     'dynamic': _onUntestablePageSelected,
-    'fitted_box': _onPageSelected,
-    'for_each': _onPageSelected,
-    'form': _onPageSelected,
-    'fractional_translation': _onPageSelected,
-    'fractionally_sized_box': _onPageSelected,
-    'gestures': _onPageSelected,
-    'grid_view': _onPageSelected,
-    'images': _onPageSelected,
-    'indexed_stack': _onPageSelected,
-    'input_error': _onPageSelected,
-    'interactive_viewer': _onPageSelected,
-    'intrinsic_height': _onPageSelected,
-    'intrinsic_width': _onPageSelected,
-    'issue_10': _onPageSelected,
-    'issue_11': _onPageSelected,
-    'issue_12': _onPageSelected,
-    'issue_20_list': _onPageSelected,
-    'issue_20_single': _onPageSelected,
+    'fitted_box': _onJsonPageSelected,
+    'for_each': _onJsonPageSelected,
+    'form': _onJsonPageSelected,
+    'fractional_translation': _onJsonPageSelected,
+    'fractionally_sized_box': _onJsonPageSelected,
+    'gestures': _onJsonPageSelected,
+    'grid_view': _onJsonPageSelected,
+    'images': _onJsonPageSelected,
+    'indexed_stack': _onJsonPageSelected,
+    'input_error': _onJsonPageSelected,
+    'interactive_viewer': _onJsonPageSelected,
+    'intrinsic_height': _onJsonPageSelected,
+    'intrinsic_width': _onJsonPageSelected,
+    'issue_10': _onJsonPageSelected,
+    'issue_11': _onJsonPageSelected,
+    'issue_12': _onJsonPageSelected,
+    'issue_20_list': _onJsonPageSelected,
+    'issue_20_single': _onJsonPageSelected,
     'issue_24': (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => Issue24Page(),
           ),
         ),
-    'issue_30': _onPageSelected,
-    'layout_builder': _onPageSelected,
-    'length': _onPageSelected,
-    'limited_box': _onPageSelected,
-    'linear_progress_indicator': _onPageSelected,
-    'list_view': _onPageSelected,
-    'measured': _onPageSelected,
-    'offstage': _onPageSelected,
-    'opacity': _onPageSelected,
-    'overflow_box': _onPageSelected,
-    'placeholder': _onPageSelected,
-    'popup_menu_button': _onPageSelected,
-    'scroll_view': _onPageSelected,
-    'set_default_value': _onPageSelected,
-    'simple_page': _onPageSelected,
-    'slivers': _onPageSelected,
-    'switch': _onPageSelected,
-    'theme': _onPageSelected,
-    'tooltip': _onPageSelected,
-    'tween_animation': _onPageSelected,
-    'variables': _onPageSelected,
-    'wrap': _onPageSelected,
+    'issue_30': _onJsonPageSelected,
+    'layout_builder': _onJsonPageSelected,
+    'length': _onJsonPageSelected,
+    'limited_box': _onJsonPageSelected,
+    'linear_progress_indicator': _onJsonPageSelected,
+    'list_view': _onJsonPageSelected,
+    'measured': _onJsonPageSelected,
+    'offstage': _onJsonPageSelected,
+    'opacity': _onJsonPageSelected,
+    'overflow_box': _onJsonPageSelected,
+    'placeholder': _onJsonPageSelected,
+    'popup_menu_button': _onJsonPageSelected,
+    'scroll_view': _onJsonPageSelected,
+    'set_default_value': _onJsonPageSelected,
+    'simple_page': _onJsonPageSelected,
+    'slivers': _onJsonPageSelected,
+    'switch': _onJsonPageSelected,
+    'theme': _onJsonPageSelected,
+    'tooltip': _onJsonPageSelected,
+    'tween_animation': _onJsonPageSelected,
+    'variables': _onJsonPageSelected,
+    'wrap': _onJsonPageSelected,
   };
 
   @override
@@ -427,13 +437,22 @@ class RootPage extends StatelessWidget {
     );
   }
 
+  static Future<void> _onJsonPageSelected(
+    BuildContext context,
+    String pageId,
+  ) =>
+      _onPageSelected(context, pageId, '.json');
+
   static Future<void> _onPageSelected(
     BuildContext context,
-    String themeId,
+    String pageId,
+    String extension,
   ) async {
     var registry = JsonWidgetRegistry.instance.copyWith();
-    var pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
-    var dataJson = json.decode(pageStr);
+    var pageStr = await rootBundle.loadString(
+      'assets/pages/${pageId}$extension',
+    );
+    var dataJson = yaon.parse(pageStr);
 
     // This is put in to give credit for when designs from online were used in
     // example files.  It's not actually a valid attribute to exist in the JSON
@@ -453,6 +472,12 @@ class RootPage extends StatelessWidget {
       ),
     );
   }
+
+  static Future<void> _onYamlPageSelected(
+    BuildContext context,
+    String pageId,
+  ) =>
+      _onPageSelected(context, pageId, '.yaml');
 
   static Future<void> _onUntestablePageSelected(
     BuildContext context,

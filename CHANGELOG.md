@@ -1,3 +1,8 @@
+## [5.0.3] - July 25th, 2022
+
+* Added YAML support with an example
+
+
 ## [5.0.2+5] - July 19, 2022
 
 * Automated dependency updates

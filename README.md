@@ -62,7 +62,7 @@ Example:
 flutter build [apk | web | ios | ...] --no-tree-shake-icons
 ```
 
-This library provides Widgets that are capable of building themselves from JSON structures.  The general structure follows:
+This library provides Widgets that are capable of building themselves from JSON or YAML structures.  The general structure follows:
 
 ```json
 {
@@ -74,10 +74,23 @@ This library provides Widgets that are capable of building themselves from JSON 
     "...": "..."
   },
   "children": [{
-    "...": "...",
+    "...": "..."
   }],
   "listen": []
 }
+```
+
+```yaml
+---
+type: "<lower_case_type>"
+args:
+  "...": "..."
+child:
+  "...": "..."
+children:
+- "...": "..."
+listen: []
+
 ```
 
 Where the `child` and `children` are mutually exclusive.  From a purely technical standpoint, there's no difference between passing in a `child` or a `children` with exactly one element.
@@ -173,7 +186,7 @@ Widget Builders | Example Location
 [comment](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCommentBuilder/fromDynamic.html) | [scroll_view.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/scroll_view.json)
 [conditional](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonConditionalBuilder/fromDynamic.html) | [conditional.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/conditional.json)
 [container](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonContainerBuilder/fromDynamic.html) | [bank_example.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/bank_example.json)
-[cupertino_switch](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCupertinoSwitchBuilder/fromDynamic.html) | [cupertino_switch.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/cupertino_switch.json)
+[cupertino_switch](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCupertinoSwitchBuilder/fromDynamic.html) | [cupertino_switch.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/cupertino_switch.yaml)
 [custom_scroll_view](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCustomScrollViewBuilder/fromDynamic.html) | [slivers.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/slivers.json)
 [directionality](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonDirectionalityBuilder/fromDynamic.html) | [directionality.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/directionality.json)
 [dropdown_button_form_field](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonDropdownButtonFormFieldBuilder/fromDynamic.html) | [form.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/form.json)
