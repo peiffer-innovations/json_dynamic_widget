@@ -38,12 +38,14 @@ dev_dependencies:
 
 
 ignore_updates: 
+  - 'archive'
   - 'async'
   - 'boolean_selector'
   - 'characters'
   - 'charcode'
   - 'collection'
   - 'clock'
+  - 'crypto'
   - 'fake_async'
   - 'file'
   - 'matcher'
@@ -54,5 +56,9 @@ ignore_updates:
   - 'stack_trace'
   - 'stream_channel'
   - 'string_scanner'
+  - 'sync_http'
   - 'term_glyph'
+  - 'test_api'
+  - 'typed_data'
   - 'vector_math'
+  - 'webdriver'
