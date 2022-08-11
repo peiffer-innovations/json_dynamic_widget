@@ -167,10 +167,6 @@ class JsonWidgetInternalBuilders {
           builder: JsonFittedBoxBuilder.fromDynamic,
           schemaId: FittedBoxSchema.id,
         ),
-        JsonFlatButtonBuilder.type: JsonWidgetBuilderContainer(
-          builder: JsonFlatButtonBuilder.fromDynamic,
-          schemaId: FlatButtonSchema.id,
-        ),
         JsonFlexibleBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonFlexibleBuilder.fromDynamic,
           schemaId: FlexibleSchema.id,
@@ -319,10 +315,6 @@ class JsonWidgetInternalBuilders {
           builder: JsonRadioBuilder.fromDynamic,
           schemaId: RadioSchema.id,
         ),
-        JsonRaisedButtonBuilder.type: JsonWidgetBuilderContainer(
-          builder: JsonRaisedButtonBuilder.fromDynamic,
-          schemaId: RaisedButtonSchema.id,
-        ),
         JsonRowBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonRowBuilder.fromDynamic,
           schemaId: RowSchema.id,
@@ -398,10 +390,6 @@ class JsonWidgetInternalBuilders {
         JsonSwitchBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonSwitchBuilder.fromDynamic,
           schemaId: SwitchSchema.id,
-        ),
-        JsonTestableBuilder.type: JsonWidgetBuilderContainer(
-          builder: JsonTestableBuilder.fromDynamic,
-          schemaId: TestableSchema.id,
         ),
         JsonTextBuilder.type: JsonWidgetBuilderContainer(
           builder: JsonTextBuilder.fromDynamic,
