@@ -3,60 +3,62 @@ import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Function body for the built in `dynamic` function.
 /// It accepts variable names which values should be convertable
 ///  into [DynamicOperation]. It tries to call [DynamicOperation.execute]
 /// on each of the operations and updates list of values which lies
 /// under [DynamicOperation.builder] field. That action should trigger rebuilt
 /// of [JsonDynamicBuilder] which listen to [DynamicOperation.builder] variable.
-final JsonWidgetFunction body = (
-        {required List<dynamic>? args, required JsonWidgetRegistry registry}) =>
-    () {
-      if (args != null) {
-        args
-            .map(
-              (dynamicOperationVarName) =>
-                  registry.getValue(dynamicOperationVarName),
-            )
-            .map(
-              (json) => _executeFunctions(
-                Map<String, dynamic>.from(json),
-              ),
-            )
-            .map(
-              (json) => DynamicOperation.fromJson(json),
-            )
-            .forEach(
-              (json) => _execute(json, registry),
-            );
-      }
-    };
+class DynamicFunction {
+  static const key = 'dynamic';
+  static final JsonWidgetFunction body = (
+          {required List<dynamic>? args,
+          required JsonWidgetRegistry registry}) =>
+      () {
+        if (args != null) {
+          args
+              .map(
+                (dynamicOperationVarName) =>
+                    registry.getValue(dynamicOperationVarName),
+              )
+              .map(
+                (json) => _executeFunctions(
+                  Map<String, dynamic>.from(json),
+                ),
+              )
+              .map(
+                (json) => DynamicOperation.fromJson(json),
+              )
+              .forEach(
+                (json) => _execute(json, registry),
+              );
+        }
+      };
 
-/// Function key for the built in `dynamic` function.
-final String key = 'dynamic';
-
-void _execute(final DynamicOperation dynamicOperation,
-    final JsonWidgetRegistry registry) {
-  var childrenJson = json.encode(registry.getValue(dynamicOperation.builder));
-  var childrenData = List<Map<String, dynamic>>.from(json.decode(childrenJson));
-  var index = dynamicOperation.findIndex(childrenData);
-  dynamicOperation.execute(childrenData, index);
-  registry.setValue(dynamicOperation.builder, childrenData);
-}
-
-Map<String, dynamic> _executeFunctions(final Map<String, dynamic> json) {
-  for (var key in json.keys) {
-    var value = json[key];
-    if (value is Function) {
-      value = value();
-    } else if (value is Map) {
-      value = _executeFunctions(
-        Map<String, dynamic>.from(value),
-      );
-    }
-    json[key] = value;
+  static void _execute(final DynamicOperation dynamicOperation,
+      final JsonWidgetRegistry registry) {
+    var childrenJson = json.encode(registry.getValue(dynamicOperation.builder));
+    var childrenData =
+        List<Map<String, dynamic>>.from(json.decode(childrenJson));
+    var index = dynamicOperation.findIndex(childrenData);
+    dynamicOperation.execute(childrenData, index);
+    registry.setValue(dynamicOperation.builder, childrenData);
   }
-  return json;
+
+  static Map<String, dynamic> _executeFunctions(
+      final Map<String, dynamic> json) {
+    for (var key in json.keys) {
+      var value = json[key];
+      if (value is Function) {
+        value = value();
+      } else if (value is Map) {
+        value = _executeFunctions(
+          Map<String, dynamic>.from(value),
+        );
+      }
+      json[key] = value;
+    }
+    return json;
+  }
 }
 
 /// Operation which defines adding of the new child into [JsonDynamicBuilder].

@@ -1,7 +1,10 @@
+## [5.1.1] - August 20th, 2022
+
+* Added the possibility to select internal functions thanks to `overrideInternalFunctions` flag
+
 ## [5.1.0+1] - August 16, 2022
 
 * Automated dependency updates
-
 
 ## [5.1.0] - August 11th, 2022
 

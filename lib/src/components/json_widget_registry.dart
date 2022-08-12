@@ -4,24 +4,7 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/functions/dynamic.dart'
-    as dynamic_fun;
-import 'package:json_dynamic_widget/src/components/functions/for_each.dart'
-    as for_each_fun;
-import 'package:json_dynamic_widget/src/components/functions/length.dart'
-    as length_fun;
-import 'package:json_dynamic_widget/src/components/functions/log.dart'
-    as log_fun;
-import 'package:json_dynamic_widget/src/components/functions/navigate_named.dart'
-    as navigate_named_fun;
-import 'package:json_dynamic_widget/src/components/functions/navigate_pop.dart'
-    as navigate_pop_fun;
-import 'package:json_dynamic_widget/src/components/functions/noop.dart'
-    as noop_fun;
-import 'package:json_dynamic_widget/src/components/functions/remove_value.dart'
-    as remove_value_fun;
-import 'package:json_dynamic_widget/src/components/functions/set_value.dart'
-    as set_value_fun;
+import 'package:json_dynamic_widget/src/components/functions/json_widget_internal_functions.dart';
 import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:logging/logging.dart';
@@ -50,6 +33,7 @@ class JsonWidgetRegistry {
     String? debugLabel,
     this.disableValidation = false,
     Map<String, JsonWidgetFunction>? functions,
+    bool overrideInternalFunctions = false,
     this.navigatorKey,
     JsonWidgetRegistry? parent,
     List<ArgProcessor>? argProcessors,
@@ -59,7 +43,12 @@ class JsonWidgetRegistry {
         _parent = parent {
     _logger = Logger('REGISTRY ${this.debugLabel}');
     _customBuilders.addAll(builders ?? {});
-    _functions.addAll(functions ?? {});
+    _functions.addAll({
+      ...overrideInternalFunctions
+          ? <String, JsonWidgetFunction>{}
+          : JsonWidgetInternalFunctions.defaults(),
+      ...(functions ?? <String, JsonWidgetFunction>{})
+    });
     _values.addAll(values ?? {});
     _parentDisposeStreamSubscription =
         parent?.disposeStream.listen((_) => dispose());
@@ -80,17 +69,6 @@ class JsonWidgetRegistry {
   final bool disableValidation;
   final _functions = <String, JsonWidgetFunction>{};
   final _internalBuilders = JsonWidgetInternalBuilders.builders;
-  final _internalFunctions = <String, JsonWidgetFunction>{
-    dynamic_fun.key: dynamic_fun.body,
-    for_each_fun.key: for_each_fun.body,
-    length_fun.key: length_fun.body,
-    log_fun.key: log_fun.body,
-    navigate_named_fun.key: navigate_named_fun.body,
-    navigate_pop_fun.key: navigate_pop_fun.body,
-    noop_fun.key: noop_fun.body,
-    remove_value_fun.key: remove_value_fun.body,
-    set_value_fun.key: set_value_fun.body,
-  };
   final _internalValues = <String, dynamic>{}..addAll(
       CurvesValues.values,
     );
@@ -126,8 +104,7 @@ class JsonWidgetRegistry {
   Stream<void> get disposeStream => _disposeStreamController!.stream;
 
   /// Returns an unmodifiable reference to the internal set of functions.
-  Map<String, JsonWidgetFunction> get functions =>
-      Map.unmodifiable(Map.from(_internalFunctions)..addAll(_functions));
+  Map<String, JsonWidgetFunction> get functions => _functions;
 
   /// Returns an unmodifiable reference to the internal set of values.
   Map<String, dynamic> get values => Map.unmodifiable(
@@ -210,7 +187,7 @@ class JsonWidgetRegistry {
   JsonWidgetFunction? getFunction(String? functionName) {
     JsonWidgetFunction? function;
     if (functionName != null) {
-      function = _functions[functionName] ?? _internalFunctions[functionName];
+      function = _functions[functionName];
       function ??= _parent?.getFunction(functionName);
     }
     return function;
@@ -224,7 +201,7 @@ class JsonWidgetRegistry {
     String? key,
     Iterable<dynamic>? args,
   ) {
-    var fun = _functions[key!] ?? _internalFunctions[key];
+    var fun = _functions[key!];
     if (fun == null) {
       if (_parent == null) {
         throw Exception(
