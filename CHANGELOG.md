@@ -1,3 +1,8 @@
+## [5.1.0+1] - August 16, 2022
+
+* Automated dependency updates
+
+
 ## [5.1.0] - August 11th, 2022
 
 * Preparing for Flutter 3.3
@@ -337,6 +342,7 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
