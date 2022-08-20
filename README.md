@@ -339,6 +339,24 @@ Function Name    | Example | Args | Description
 `remove_value`   | `${remove_value('varName')}` | <ol><li>The variable name</li></ol> | Removes the variable named in the first argument from the registry.
 `set_value`      | `${set_value('varName', 'some value')}` | <ol><li>The variable name</li><li>The variable value</li></ol> | Sets the value of the variable in the registry.
 
+All the internal functions are added to the registry by default.
+
+It is possible to omit that behavior by using `overrideInternalFunctions` flag.
+To select manually the internal functions it is recommended to use `JsonWidgetInternalFunctionsBuilder`.
+```
+import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
+
+  JsonWidgetRegistry(
+    overrideInternalFunctions: true, 
+    functions: {
+      ...JsonWidgetInternalFunctionsBuilder().withSetValue().build(),
+      ...<String, JsonWidgetFunction>{
+        'customFunction': ({args, required registry}) {
+          print("This is a custom registry function.");
+        },
+      }
+  });
+```
 
 ## Creating Custom Widgets
 
