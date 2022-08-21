@@ -19,7 +19,7 @@ output/
 *.ipr
 *.iws
 .idea/
-
+.settings/
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
@@ -38,6 +38,7 @@ build/
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
+/.settings/
 **/android/captures/
 **/android/gradlew
 **/android/gradlew.bat
