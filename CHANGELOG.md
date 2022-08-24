@@ -1,3 +1,7 @@
+## [5.1.2] - August 24th, 2022
+
+* Added the possibility to select internal builders thanks to `overrideInternalBuilders` flag
+
 ## [5.1.1] - August 20th, 2022
 
 * Added the possibility to select internal functions thanks to `overrideInternalFunctions` flag

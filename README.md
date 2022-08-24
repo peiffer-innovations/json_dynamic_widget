@@ -255,6 +255,27 @@ Widget Builders | Example Location
 [tween_animation](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonTweenAnimationBuilder/fromDynamic.html) | [tween_animation.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/tween_animation.json)
 [wrap](https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonWrapBuilder/fromDynamic.html) | [wrap.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/wrap.json)
 
+All the internal builders are added to the registry by default.
+
+It is possible to omit that behavior by using `overrideInternalBuilders` flag.
+To select manually the internal functions it is recommended to use `JsonWidgetInternalBuildersBuilder`.
+const JsonWidgetBuilderContainer(
+            builder: JsonBottomNavigationBarBuilder.fromDynamic,
+            schemaId: BottomNavigationBarSchema.id
+        )
+```
+  JsonWidgetRegistry(
+    overrideInternalBuilders: true,
+     builders: {
+    ...JsonWidgetInternalBuildersBuilder().withColumn().build(),
+    ...<String, JsonWidgetBuilderContainer>{
+      JsonCustomBuilder.type: JsonWidgetBuilderContainer(
+          builder: JsonCustomBuilder.fromDynamic,
+          schemaId: JsonCustomBuilderSchema.id)
+    }
+  });
+```
+
 
 ## Using Expressions
 The library since version 4.0.0 has a tight integration with [expressions](https://pub.dev/packages/expressions) library. By integrating the `JsonWidgetRegistry` variables and functions with that library there is possible to define different kind of simple expressions placed between `${}`.
@@ -344,8 +365,6 @@ All the internal functions are added to the registry by default.
 It is possible to omit that behavior by using `overrideInternalFunctions` flag.
 To select manually the internal functions it is recommended to use `JsonWidgetInternalFunctionsBuilder`.
 ```
-import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
-
   JsonWidgetRegistry(
     overrideInternalFunctions: true, 
     functions: {
