@@ -1,6 +1,7 @@
-name: Automated Dependencies Updater
+name: Dependencies Updater
 
 on:
+  workflow_dispatch:
   schedule:
     - cron: '0 1 * * 2'
 
