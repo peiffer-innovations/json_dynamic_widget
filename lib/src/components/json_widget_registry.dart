@@ -4,8 +4,6 @@ import 'dart:math';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/components/functions/json_widget_internal_functions.dart';
-import 'package:json_dynamic_widget/src/components/json_widget_internal_builders.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:logging/logging.dart';
 
@@ -30,6 +28,7 @@ class JsonWidgetRegistry {
   /// [argProcessors].
   JsonWidgetRegistry({
     Map<String, JsonWidgetBuilderContainer>? builders,
+    bool overrideInternalBuilders = false,
     String? debugLabel,
     this.disableValidation = false,
     Map<String, JsonWidgetFunction>? functions,
@@ -42,12 +41,13 @@ class JsonWidgetRegistry {
             (debugLabel ?? 'child_${++childCount}'),
         _parent = parent {
     _logger = Logger('REGISTRY ${this.debugLabel}');
-    _customBuilders.addAll(builders ?? {});
+    _builders.addAll({
+      if (!overrideInternalBuilders) ...JsonWidgetInternalBuilders.defaults(),
+      if (builders != null) ...builders
+    });
     _functions.addAll({
-      ...overrideInternalFunctions
-          ? <String, JsonWidgetFunction>{}
-          : JsonWidgetInternalFunctions.defaults(),
-      ...(functions ?? <String, JsonWidgetFunction>{})
+      if (!overrideInternalFunctions) ...JsonWidgetInternalFunctions.defaults(),
+      if (functions != null) ...functions
     });
     _values.addAll(values ?? {});
     _parentDisposeStreamSubscription =
@@ -63,12 +63,11 @@ class JsonWidgetRegistry {
 
   static int childCount = 0;
 
-  final _customBuilders = <String, JsonWidgetBuilderContainer>{};
+  final _builders = <String, JsonWidgetBuilderContainer>{};
   final String debugLabel;
 
   final bool disableValidation;
   final _functions = <String, JsonWidgetFunction>{};
-  final _internalBuilders = JsonWidgetInternalBuilders.builders;
   final _internalValues = <String, dynamic>{}..addAll(
       CurvesValues.values,
     );
@@ -138,7 +137,7 @@ class JsonWidgetRegistry {
     Map<String, dynamic>? values,
   }) =>
       JsonWidgetRegistry(
-        builders: builders ?? Map.from(_customBuilders),
+        builders: builders ?? Map.from(_builders),
         debugLabel: debugLabel ?? this.debugLabel,
         disableValidation: disableValidation ?? this.disableValidation,
         functions: functions ?? _functions,
@@ -224,7 +223,7 @@ class JsonWidgetRegistry {
   /// If no builder is registered for the given [type] then this will throw an
   /// [Exception].
   JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
-    var container = _customBuilders[type] ?? _internalBuilders[type];
+    var container = _builders[type];
 
     var builder = container?.builder ?? _parent?.getWidgetBuilder(type);
 
@@ -263,7 +262,7 @@ class JsonWidgetRegistry {
     String type,
     JsonWidgetBuilderContainer container,
   ) =>
-      _customBuilders[type] = container;
+      _builders[type] = container;
 
   /// Registers the custom builders.  This is a convenience method that calls
   /// [registerCustomBuilder] for each entry in [containers].
@@ -350,7 +349,7 @@ class JsonWidgetRegistry {
   /// associated builder, if one exists.  If the [type] is not registered then
   /// this will [null].
   JsonWidgetBuilderContainer? unregisterCustomBuilder(String type) =>
-      _customBuilders.remove(type);
+      _builders.remove(type);
 
   JsonWidgetFunction? unregisterFunction(String key) {
     assert(key.isNotEmpty == true);
@@ -373,7 +372,7 @@ class JsonWidgetRegistry {
 
     assert(() {
       if (disableValidation != true) {
-        var container = _customBuilders[type] ?? _internalBuilders[type];
+        var container = _builders[type];
         if (container?.schemaId != null) {
           result = SchemaValidator().validate(
             schemaId: container!.schemaId,
