@@ -105,10 +105,10 @@ const RESOURCES = {
 "assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
 "assets/NOTICES": "b2ec9240d148cb77baa5bc09db6162e7",
 "flutter.js": "eb2682e33f25cd8f1fc59011497c35f8",
-"index.html": "4c2f46afc1cac95ad0f2eaea6755ff48",
-"/": "4c2f46afc1cac95ad0f2eaea6755ff48",
+"index.html": "14641916638dfa97f6a2949c58782c24",
+"/": "14641916638dfa97f6a2949c58782c24",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"version.json": "17562e360f01b7641c74b82e2401e71d",
+"version.json": "00b922b8d097d45a2155b4dd7b95132d",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
