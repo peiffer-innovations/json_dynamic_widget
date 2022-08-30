@@ -1,3 +1,8 @@
+## [5.1.2+1] - August 30, 2022
+
+* Automated dependency updates
+
+
 ## [5.1.2] - August 24th, 2022
 
 * Added the possibility to select internal builders thanks to `overrideInternalBuilders` flag
@@ -349,6 +354,7 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
