@@ -25,7 +25,7 @@
             "mainAxisAlignment": "spaceEvenly"
           },
           "children": [{
-            "type": "raised_button",
+            "type": "elevated_button",
             "args": {
               "onPressed": "${set_value('error', 'This is an error')}"
             },
@@ -36,7 +36,7 @@
               }
             }
           }, {
-            "type": "raised_button",
+            "type": "elevated_button",
             "args": {
               "onPressed": "${remove_value('error')}"
             },

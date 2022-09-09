@@ -175,7 +175,7 @@
                     }
                   },
                   {
-                    "type": "raised_button",
+                    "type": "elevated_button",
                     "args": {
                       "color": "#4a95ec",
                       "colorBrightness": "dark",

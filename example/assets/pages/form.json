@@ -240,7 +240,7 @@
                     }
                   },
                   {
-                    "type": "raised_button",
+                    "type": "elevated_button",
                     "id": "submit_button",
                     "args": {
                       "color": "#4a95ec",

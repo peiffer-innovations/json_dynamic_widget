@@ -18,7 +18,7 @@
         "customPadding": 16
       },
       "child": {
-        "type": "flat_button",
+        "type": "elevated_button",
         "args": {
           "padding": "${customPadding}"
         },
