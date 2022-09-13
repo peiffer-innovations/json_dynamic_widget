@@ -92390,14 +92390,14 @@ j.toString
 return A.QR(a1,B.QU.h(0,j),r,e,d,c,a,s,b,f,new A.QT(m,l,k,p,o,h,q,g,h,h,h,h,h,h,n))},
 ap0(a,b){return this.IU(a,b,null,null)},
 rt(a,b,c){return this.IU(a,b,c,null)},
-pg(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g,f
-if(a==null||a.length===0)return null
-if(a==="none")return null
+pg(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e=null
+if(a==null||a.length===0)return e
+if(a==="none")return e
 if(a.toLowerCase()==="currentcolor"){this.a.a=!0
 return b==null?this.b.a:b}if(a[0]==="#"){if(a.length===4){s=a[1]
 r=a[2]
 q=a[3]
-a="#"+s+s+r+r+q+q}p=A.en(B.b.bn(a,1),null,16)
+a="#"+s+s+r+r+q+q}p=A.en(B.b.bn(a,1),e,16)
 o=a.length
 if(o===7)return new A.o((p|4278190080)>>>0)
 if(o===9)return new A.o(p>>>0)}if(B.b.bi(a.toLowerCase(),"rgba")){o=t.a4
@@ -92431,7 +92431,7 @@ l=A.a2(new A.a9(A.a(B.b.O(a,J.aIa(a,"(")+1,B.b.dX(a,")")).split(","),t.s),new A.
 g=l.length>3?l[3]:255
 return A.ai(g,l[0],l[1],l[2])}f=B.Qe.h(0,a)
 if(f!=null)return f
-throw A.c(A.a7('Could not parse "'+A.e(a)+'" as a color.'))}}
+return e}}
 A.asb.prototype={
 $1(a){return"StrokeCap."+a.b==="StrokeCap."+A.e(this.a)},
 $S:491}
