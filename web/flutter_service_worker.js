@@ -106,10 +106,10 @@ const RESOURCES = {
 "assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
 "assets/NOTICES": "6a9dd0809e196d8ffacf7b57080d1f4c",
 "flutter.js": "f85e6fb278b0fd20c349186fb46ae36d",
-"index.html": "374930c83a9ae9fd220fe7b50bdbb27c",
-"/": "374930c83a9ae9fd220fe7b50bdbb27c",
+"index.html": "1be59b11fb40ef09be8369d4c6f427ef",
+"/": "1be59b11fb40ef09be8369d4c6f427ef",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"version.json": "696a3ac9b766733ba01fcd4f1c797b6e",
+"version.json": "20ba0f81a8cb56e45ccbc80cc7e2cd09",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
