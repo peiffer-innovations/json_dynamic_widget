@@ -21,7 +21,7 @@
         },
         "children": [
           {
-            "type": "raised_button",
+            "type": "elevated_button",
             "args": {
               "onPressed": "${simplePrintMessage()}"
             },
@@ -33,7 +33,7 @@
             }
           },
           {
-            "type": "raised_button",
+            "type": "elevated_button",
             "args": {
               "onPressed": "${simplePrintMessage()}"
             },
@@ -45,7 +45,7 @@
             }
           },
           {
-            "type": "raised_button",
+            "type": "elevated_button",
             "args": {
               "onPressed": "${simplePrintMessage()}"
             },

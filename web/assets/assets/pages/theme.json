@@ -35,7 +35,7 @@
                     "alignment": "bottomLeft"
                   },
                   "child": {
-                    "type": "raised_button",
+                    "type": "elevated_button",
                     "args": {
                       "onPressed": "${set_value('theme', 'big_red')}"
                     },
@@ -53,7 +53,7 @@
                     "alignment": "bottomRight"
                   },
                   "child": {
-                    "type": "raised_button",
+                    "type": "elevated_button",
                     "args": {
                       "onPressed": "${set_value('theme', 'cool_blue')}"
                     },

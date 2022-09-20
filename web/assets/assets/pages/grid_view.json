@@ -136,7 +136,7 @@
             },
             "children": [
               {
-                "type": "raised_button",
+                "type": "elevated_button",
                 "args": {
                   "onPressed": "${set_value('index', 0)}"
                 },
@@ -154,7 +154,7 @@
                 }
               },
               {
-                "type": "raised_button",
+                "type": "elevated_button",
                 "args": {
                   "onPressed": "${set_value('index', 1)}"
                 },

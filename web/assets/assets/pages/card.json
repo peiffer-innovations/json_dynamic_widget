@@ -78,7 +78,7 @@
               }, {
                 "type": "button_bar",
                 "children": [{
-                  "type": "flat_button",
+                  "type": "elevated_button",
                   "args": {
                     "onPressed": "${noop()}"
                   },
@@ -92,7 +92,7 @@
                     }
                   }
                 }, {
-                  "type": "flat_button",
+                  "type": "elevated_button",
                   "args": {
                     "onPressed": "${noop()}"
                   },
