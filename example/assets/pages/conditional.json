@@ -32,7 +32,7 @@
               },
               "children": [
                 {
-                  "type": "raised_button",
+                  "type": "elevated_button",
                   "id": "button1",
                   "args": {
                     "onPressed": "${set_value('button', 1)}"
@@ -45,7 +45,7 @@
                   }
                 },
                 {
-                  "type": "raised_button",
+                  "type": "elevated_button",
                   "id": "button2",
                   "args": {
                     "onPressed": "${set_value('button', 2)}"
@@ -58,7 +58,7 @@
                   }
                 },
                 {
-                  "type": "raised_button",
+                  "type": "elevated_button",
                   "id": "button3",
                   "args": {
                     "onPressed": "${set_value('button', 3)}"
@@ -79,7 +79,7 @@
               },
               "children": [
                 {
-                  "type": "flat_button",
+                  "type": "elevated_button",
                   "args": {
                     "onPressed": "${set_value('button', 4)}"
                   },
@@ -91,7 +91,7 @@
                   }
                 },
                 {
-                  "type": "flat_button",
+                  "type": "elevated_button",
                   "args": {
                     "onPressed": "${set_value('button', 5)}"
                   },
@@ -103,7 +103,7 @@
                   }
                 },
                 {
-                  "type": "flat_button",
+                  "type": "elevated_button",
                   "args": {
                     "onPressed": "${set_value('button', 6)}"
                   },
