@@ -108,7 +108,6 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     JsonWidgetRegistry? registry,
   }) {
     JsonRadioBuilder? result;
-
     if (map != null) {
       result = JsonRadioBuilder(
         activeColor: ThemeDecoder.decodeColor(
@@ -155,7 +154,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
-        value: map['value'] == null ? null : JsonClass.parseBool(map['value']),
+        value: map['value'],
         visualDensity: ThemeDecoder.decodeVisualDensity(
           map['visualDensity'],
           validate: false,

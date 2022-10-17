@@ -380,6 +380,7 @@ class RootPage extends StatelessWidget {
     'overflow_box': _onJsonPageSelected,
     'placeholder': _onJsonPageSelected,
     'popup_menu_button': _onJsonPageSelected,
+    'radio': _onJsonPageSelected,
     'scroll_view': _onJsonPageSelected,
     'set_default_value': _onJsonPageSelected,
     'simple_page': _onJsonPageSelected,
