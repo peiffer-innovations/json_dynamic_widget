@@ -1,7 +1,11 @@
+## [5.1.3] - October 17, 2022
+
+* Fixed value type of radio
+* Added radio.json example
+
 ## [5.1.2+7] - October 18, 2022
 
 * Automated dependency updates
-
 
 ## [5.1.2+6] - October 11, 2022
 
