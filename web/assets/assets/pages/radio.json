@@ -1,0 +1,60 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Test"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "radioGroupValue": "radioValue1"
+      },
+      "child": {
+        "type": "column",
+        "children": [
+          {
+            "type": "text",
+            "args": {
+              "text": "${'Selected radio group value: ' + radioGroupValue ?? ''}"
+            }
+          },
+          {
+            "type": "radio",
+            "args": {
+              "groupValue": "${radioGroupValue}",
+              "id": "radioGroupValue",
+              "value": "radioValue1"
+            }
+          },
+          {
+            "type": "radio",
+            "args": {
+              "groupValue": "${radioGroupValue}",
+              "id": "radioGroupValue",
+              "value": "radioValue2"
+            }
+          },
+          {
+            "type": "radio",
+            "args": {
+              "groupValue": "${radioGroupValue}",
+              "id": "radioGroupValue",
+              "value": "radioValue3"
+            }
+          }
+        ],
+        "args": {
+          "crossAxisAlignment": "start"
+        }
+      }
+    }
+  }
+}
