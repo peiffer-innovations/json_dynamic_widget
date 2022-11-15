@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/publisher.yml
       - pubspec.yaml
+  workflow_dispatch:
 
 jobs:
   build:
