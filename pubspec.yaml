@@ -34,10 +34,6 @@ dev_dependencies:
   flutter_test:
     sdk: 'flutter'
 
-dependency_overrides:
-  template_expressions:
-    path: ../template_expressions
-
 ignore_updates:
   - 'archive'
   - 'async'
