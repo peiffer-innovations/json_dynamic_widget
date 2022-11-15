@@ -1,43 +1,50 @@
 name: 'example'
 description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
-version: '1.0.0+24'
+version: '1.0.0+25'
 
-environment:
+environment: 
   sdk: '>=2.18.0 <3.0.0'
 
-dependencies:
-  automated_testing_framework: '^4.0.7+5'
-  automated_testing_framework_plugin_images: '^4.0.0+22'
+dependencies: 
+  automated_testing_framework: '^4.0.7+7'
+  automated_testing_framework_plugin_images: '^4.0.0+24'
   desktop_window: '^0.4.0'
   dotted_border: '^2.0.0+3'
-  flutter:
+  flutter: 
     sdk: 'flutter'
   flutter_svg: '^1.1.6'
-  json_dynamic_widget:
+  json_dynamic_widget: 
     path: '../'
 
-dev_dependencies:
-  flutter_test:
+dev_dependencies: 
+  flutter_test: 
     sdk: 'flutter'
 
-flutter:
+
+flutter: 
   uses-material-design: true
-  assets:
+  assets: 
     - 'assets/images/'
     - 'assets/pages/'
     - 'assets/secrets/'
     - 'assets/widgets/'
-  fonts:
-    - family: 'lato'
-      fonts:
-        - asset: 'assets/fonts/Lato-Regular.ttf'
+  fonts: 
+    - 
+      family: 'lato'
+      fonts: 
+        - 
+          asset: 'assets/fonts/Lato-Regular.ttf'
 
-    - family: 'metal'
-      fonts:
-        - asset: 'assets/fonts/MetalMania-Regular.ttf'
+    - 
+      family: 'metal'
+      fonts: 
+        - 
+          asset: 'assets/fonts/MetalMania-Regular.ttf'
 
-ignore_updates:
+
+
+ignore_updates: 
   - 'archive'
   - 'async'
   - 'boolean_selector'
