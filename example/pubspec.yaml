@@ -1,14 +1,14 @@
 name: 'example'
 description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
-version: '1.0.0+25'
+version: '1.0.0+26'
 
 environment: 
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies: 
-  automated_testing_framework: '^4.0.7+7'
-  automated_testing_framework_plugin_images: '^4.0.0+24'
+  automated_testing_framework: '^4.0.7+8'
+  automated_testing_framework_plugin_images: '^4.0.0+25'
   desktop_window: '^0.4.0'
   dotted_border: '^2.0.0+3'
   flutter: 
