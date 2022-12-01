@@ -108,7 +108,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
           validate: false,
         ) as EdgeInsets?,
         transform: ThemeDecoder.decodeMatrix4(
-          map['matrix4'],
+          map['transform'],
           validate: false,
         ),
         transformAlignment: ThemeDecoder.decodeAlignment(
