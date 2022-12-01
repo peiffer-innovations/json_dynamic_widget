@@ -1,3 +1,8 @@
+## [5.1.4] - December 1, 2022
+
+* Fixed `transform` arg of Container builder
+
+
 ## [5.1.3+5] - November 22, 2022
 
 * Automated dependency updates
