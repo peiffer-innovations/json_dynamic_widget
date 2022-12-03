@@ -13,9 +13,16 @@ class AlignSchema {
     'title': 'Align',
     'additionalProperties': false,
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'heightFactor': SchemaHelper.numberSchema,
-      'widthFactor': SchemaHelper.numberSchema,
+      AlignSchemaPropertyKey.alignment:
+          SchemaHelper.objectSchema(AlignmentSchema.id),
+      AlignSchemaPropertyKey.heightFactor: SchemaHelper.numberSchema,
+      AlignSchemaPropertyKey.widthFactor: SchemaHelper.numberSchema,
     }
   };
+}
+
+class AlignSchemaPropertyKey {
+  static const alignment = 'alignment';
+  static const heightFactor = 'heightFactor';
+  static const widthFactor = 'widthFactor';
 }
