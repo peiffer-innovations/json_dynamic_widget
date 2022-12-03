@@ -2,6 +2,7 @@ import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget/src/schema/all.dart';
 import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Align] widget.  See the [fromDynamic] for the
@@ -42,11 +43,13 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonAlignBuilder(
         alignment: ThemeDecoder.decodeAlignment(
-          map['alignment'],
+          map[AlignSchemaPropertyKey.alignment],
           validate: false,
         ),
-        heightFactor: JsonClass.parseDouble(map['heightFactor']),
-        widthFactor: JsonClass.parseDouble(map['widthFactor']),
+        heightFactor:
+            JsonClass.parseDouble(map[AlignSchemaPropertyKey.heightFactor]),
+        widthFactor:
+            JsonClass.parseDouble(map[AlignSchemaPropertyKey.widthFactor]),
       );
     }
 
