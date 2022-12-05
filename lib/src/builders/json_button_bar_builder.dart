@@ -63,23 +63,37 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonButtonBarBuilder(
-        alignment: ThemeDecoder.decodeMainAxisAlignment(map['alignment']),
+        alignment: ThemeDecoder.decodeMainAxisAlignment(
+          map['alignment'],
+          validate: false,
+        ),
         buttonAlignedDropdown: map['buttonAlignedDropdown'] == null
             ? null
             : JsonClass.parseBool(map['buttonAlignedDropdown']),
         buttonHeight: JsonClass.parseDouble(map['buttonHeight']),
         buttonMinWidth: JsonClass.parseDouble(map['buttonMinWidth']),
-        buttonPadding:
-            ThemeDecoder.decodeEdgeInsetsGeometry(map['buttonPadding']),
-        buttonTextTheme:
-            ThemeDecoder.decodeButtonTextTheme(map['buttonTextTheme']),
-        layoutBehavior:
-            ThemeDecoder.decodeButtonBarLayoutBehavior(map['layoutBehavior']),
-        mainAxisSize: ThemeDecoder.decodeMainAxisSize(map['mainAxisSize']),
+        buttonPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['buttonPadding'],
+          validate: false,
+        ),
+        buttonTextTheme: ThemeDecoder.decodeButtonTextTheme(
+          map['buttonTextTheme'],
+          validate: false,
+        ),
+        layoutBehavior: ThemeDecoder.decodeButtonBarLayoutBehavior(
+          map['layoutBehavior'],
+          validate: false,
+        ),
+        mainAxisSize: ThemeDecoder.decodeMainAxisSize(
+          map['mainAxisSize'],
+          validate: false,
+        ),
         overflowButtonSpacing:
             JsonClass.parseDouble(map['overflowButtonSpacing']),
-        overflowDirection:
-            ThemeDecoder.decodeVerticalDirection(map['overflowDirection']),
+        overflowDirection: ThemeDecoder.decodeVerticalDirection(
+          map['overflowDirection'],
+          validate: false,
+        ),
       );
     }
 

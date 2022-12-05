@@ -52,7 +52,7 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Theme(
       data: theme,

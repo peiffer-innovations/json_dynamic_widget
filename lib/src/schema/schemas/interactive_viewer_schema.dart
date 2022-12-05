@@ -13,7 +13,7 @@ class InteractiveViewerSchema {
     'title': 'InteractiveViewer',
     'additionalProperties': false,
     'properties': {
-      'alignPanAxis': SchemaHelper.boolSchema,
+      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
       'boundaryMargin': SchemaHelper.objectSchema(
         EdgeInsetsGeometrySchema.id,
       ),
@@ -24,6 +24,7 @@ class InteractiveViewerSchema {
       'onInteractionEnd': SchemaHelper.stringSchema,
       'onInteractionStart': SchemaHelper.stringSchema,
       'onInteractionUpdate': SchemaHelper.stringSchema,
+      'panAxis': SchemaHelper.objectSchema(PanAxisSchema.id),
       'panEnabled': SchemaHelper.boolSchema,
       'scaleEnabled': SchemaHelper.boolSchema,
       'scaleFactor': SchemaHelper.numberSchema,

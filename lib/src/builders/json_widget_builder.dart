@@ -106,7 +106,7 @@ abstract class JsonWidgetBuilder {
     required BuildContext context,
     required JsonWidgetData data,
   }) {
-    var key = ValueKey(data.id);
+    final key = ValueKey(data.id);
 
     dynamic exception;
     StackTrace? stackTrace;

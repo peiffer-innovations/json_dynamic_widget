@@ -49,6 +49,7 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
       result = JsonOverflowBoxBuilder(
         alignment: ThemeDecoder.decodeAlignment(
               map['alignment'],
+              validate: false,
             ) ??
             Alignment.center,
         maxHeight: JsonClass.parseDouble(
@@ -76,7 +77,7 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return OverflowBox(
       alignment: alignment,

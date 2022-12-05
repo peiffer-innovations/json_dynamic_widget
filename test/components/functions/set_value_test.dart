@@ -3,9 +3,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('set_value', () {
-    var registry = JsonWidgetRegistry();
+    final registry = JsonWidgetRegistry();
 
-    var key = 'key';
+    final key = 'key';
     expect(registry.getValue(key), null);
 
     registry.getFunction('set_value')!(

@@ -14,9 +14,9 @@ class LogFunction {
       () {
         Level level;
 
-        var message = args![0];
+        final message = args![0];
 
-        var levelArg =
+        final levelArg =
             (args.length >= 2 ? args[1] : '').toString().toLowerCase();
         switch (levelArg) {
           case 'fine':

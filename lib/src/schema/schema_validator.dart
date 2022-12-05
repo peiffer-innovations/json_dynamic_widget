@@ -14,7 +14,7 @@ class SchemaValidator {
   factory SchemaValidator() => _instance;
   SchemaValidator._internal() {
     assert(() {
-      var cache = SchemaCache();
+      final cache = SchemaCache();
 
       JsonDynamicWidgetSchemas.all.forEach(
         (id, schema) => cache.addSchema(id, schema),
@@ -74,7 +74,7 @@ class SchemaValidator {
     var result = true;
     RefProvider? refProvider;
     refProvider = (String ref) {
-      var schema = SchemaCache().getSchema(ref);
+      final schema = SchemaCache().getSchema(ref);
       if (schema == null) {
         throw Exception('Unable to find schema: $ref');
       }
@@ -85,20 +85,20 @@ class SchemaValidator {
       );
     };
 
-    var schemaData = SchemaCache().getSchema(schemaId);
+    final schemaData = SchemaCache().getSchema(schemaId);
     assert(schemaData != null, 'Cannot find schema: $schemaId');
-    var jsonSchema = JsonSchema.createSchema(
+    final jsonSchema = JsonSchema.createSchema(
       schemaData,
       refProvider: refProvider,
     );
 
-    var processedValue = value is Map
+    final processedValue = value is Map
         ? JsonClass.removeNull(Map<String, dynamic>.from(value))
         : value;
 
-    var errors = jsonSchema.validateWithErrors(processedValue);
+    final errors = jsonSchema.validateWithErrors(processedValue);
     if (errors.isNotEmpty == true) {
-      var encoder = JsonEncoder.withIndent('  ');
+      final encoder = const JsonEncoder.withIndent('  ');
       result = false;
       var errorStr =
           '*** VALIDATION ERROR ***:\n${encoder.convert(value)}\n\nSchema Error: $schemaId\n';

@@ -199,7 +199,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var theBody = body ?? getChild(data);
+    final theBody = body ?? getChild(data);
 
     return Scaffold(
       appBar: appBar?.build(

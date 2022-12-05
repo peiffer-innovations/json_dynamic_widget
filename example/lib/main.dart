@@ -29,7 +29,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   TestAppSettings.initialize(appIdentifier: 'JSON Dynamic Widget');
-  var testRegistry = TestStepRegistry.instance;
+  final testRegistry = TestStepRegistry.instance;
   TestImagesHelper.registerTestSteps(testRegistry);
 
   if (!kIsWeb &&
@@ -37,7 +37,7 @@ void main() async {
           Platform.isFuchsia ||
           Platform.isMacOS ||
           Platform.isWindows)) {
-    await DesktopWindow.setWindowSize(Size(1024, 768));
+    await DesktopWindow.setWindowSize(const Size(1024, 768));
   }
 
   Logger.root.onRecord.listen((record) {
@@ -50,33 +50,34 @@ void main() async {
     }
   });
 
-  var navigatorKey = GlobalKey<NavigatorState>();
+  final navigatorKey = GlobalKey<NavigatorState>();
 
   // This is needed to adding custom schema validations
-  var schemaCache = SchemaCache();
+  final schemaCache = SchemaCache();
   schemaCache.addSchema(SvgSchema.id, SvgSchema.schema);
   schemaCache.addSchema(DottedBorderSchema.id, DottedBorderSchema.schema);
 
-  var registry = JsonWidgetRegistry.instance;
+  final registry = JsonWidgetRegistry.instance;
   registry.navigatorKey = navigatorKey;
   registry.registerCustomBuilder(
     DottedBorderBuilder.type,
-    JsonWidgetBuilderContainer(
+    const JsonWidgetBuilderContainer(
       builder: DottedBorderBuilder.fromDynamic,
       schemaId: DottedBorderSchema.id,
     ),
   );
   registry.registerCustomBuilder(
     SvgBuilder.type,
-    JsonWidgetBuilderContainer(
+    const JsonWidgetBuilderContainer(
       builder: SvgBuilder.fromDynamic,
       schemaId: SvgSchema.id,
     ),
   );
 
   registry.registerFunction('navigatePage', ({args, required registry}) async {
-    var jsonStr = await rootBundle.loadString('assets/pages/${args![0]}.json');
-    var jsonData = json.decode(jsonStr);
+    final jsonStr =
+        await rootBundle.loadString('assets/pages/${args![0]}.json');
+    final jsonData = json.decode(jsonStr);
     await navigatorKey.currentState!.push(
       MaterialPageRoute(
         builder: (BuildContext context) => FullWidgetPage(
@@ -94,10 +95,10 @@ void main() async {
     'getImageId': ({args, required registry}) => 'image${args![0]}',
     'getImageNavigator': ({args, required registry}) => () async {
           registry.setValue('index', args![0]);
-          var dataStr =
+          final dataStr =
               await rootBundle.loadString('assets/pages/image_page.json');
           final imagePageJson = Map.unmodifiable(json.decode(dataStr));
-          var imgRegistry = JsonWidgetRegistry(
+          final imgRegistry = JsonWidgetRegistry(
             debugLabel: 'ImagePage',
             values: {
               'imageAsset': 'assets/images/image${args[0]}.jpg',
@@ -118,15 +119,15 @@ void main() async {
         },
     'noop': ({args, required registry}) => () {},
     'validateForm': ({args, required registry}) => () {
-          BuildContext context = registry.getValue(args![0]);
+          final BuildContext context = registry.getValue(args![0]);
 
-          var valid = Form.of(context)!.validate();
+          final valid = Form.of(context).validate();
           registry.setValue('form_validation', valid);
         },
     'updateCustomTextStyle': ({args, required registry}) => () {
           registry.setValue(
             'customTextStyle',
-            TextStyle(
+            const TextStyle(
               color: Colors.black,
             ),
           );
@@ -137,8 +138,8 @@ void main() async {
             icon: child!,
             iconSize: size,
             onPressed: () {
-              var _current = registry.getValue('customSize');
-              var _size = _current == 50.0 ? 100.0 : 50.0;
+              final _current = registry.getValue('customSize');
+              final _size = _current == 50.0 ? 100.0 : 50.0;
               registry.setValue('customSize', _size);
             },
           );
@@ -147,7 +148,7 @@ void main() async {
       return Tween<double>(begin: 0, end: args![0]);
     },
     'setWidgetByKey': ({args, required registry}) => () {
-          var _replace = registry.getValue(args![1]);
+          final _replace = registry.getValue(args![1]);
           registry.setValue(args[0], _replace);
         },
     'simplePrintMessage': ({args, required registry}) => () {
@@ -161,7 +162,7 @@ void main() async {
           print(message);
         },
     'negateBool': ({args, required registry}) => () {
-          bool value = registry.getValue(args![0]);
+          final bool value = registry.getValue(args![0]);
           registry.setValue(args[0], !value);
         },
     'buildPopupMenu': ({args, required registry}) {
@@ -183,19 +184,19 @@ void main() async {
   registry.setValue('customRect', Rect.largest);
   registry.setValue('clipper', Clipper());
 
-  var assetTestStore = AssetTestStore(
+  final assetTestStore = AssetTestStore(
     testAssetIndex: 'assets/testing/tests/all.json',
   );
 
-  var desktop = !kIsWeb &&
+  final desktop = !kIsWeb &&
       (Platform.isFuchsia ||
           Platform.isLinux ||
           Platform.isMacOS ||
           Platform.isWindows);
 
-  var ioTestStore = IoTestStore();
+  final ioTestStore = IoTestStore();
 
-  var testController = TestController(
+  final testController = TestController(
     goldenImageWriter:
         !desktop ? TestStore.goldenImageWriter : ioTestStore.goldenImageWriter,
     navigatorKey: navigatorKey,
@@ -263,7 +264,7 @@ void main() async {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: kReleaseMode
-            ? RootPage()
+            ? const RootPage()
             : ResetPage(
                 navigatorKey: navigatorKey,
               ),
@@ -296,17 +297,17 @@ class ResetPageState extends State<ResetPage> {
 
   Future<void> _navigateHome() async {
     while (true) {
-      await Future.delayed(Duration(milliseconds: 300));
+      await Future.delayed(const Duration(milliseconds: 300));
       await Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (_) => RootPage(),
+          builder: (_) => const RootPage(),
         ),
       );
     }
   }
 
   @override
-  Widget build(BuildContext context) => Center(
+  Widget build(BuildContext context) => const Center(
         child: CircularProgressIndicator(),
       );
 }
@@ -395,7 +396,7 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var names = _pages.keys.toList();
+    final names = _pages.keys.toList();
     names.sort();
 
     return Scaffold(
@@ -403,14 +404,14 @@ class RootPage extends StatelessWidget {
         actions: !kIsWeb && kDebugMode
             ? [
                 IconButton(
-                  icon: Icon(Icons.bug_report),
+                  icon: const Icon(Icons.bug_report),
                   onPressed: () async {
-                    var testController = TestController.of(context)!;
-                    var tests = await testController.loadTests(context);
+                    final testController = TestController.of(context)!;
+                    final tests = await testController.loadTests(context);
 
                     var passed = true;
                     for (var test in tests!) {
-                      var report = await testController.executeTest(
+                      final report = await testController.executeTest(
                         test: await test.loader.load(ignoreImages: true),
                       );
 
@@ -424,7 +425,7 @@ class RootPage extends StatelessWidget {
                 ),
               ]
             : null,
-        title: Text('Select Widget / Page'),
+        title: const Text('Select Widget / Page'),
       ),
       body: ListView.builder(
         itemCount: _pages.length,
@@ -450,18 +451,18 @@ class RootPage extends StatelessWidget {
     String pageId,
     String extension,
   ) async {
-    var registry = JsonWidgetRegistry.instance.copyWith();
-    var pageStr = await rootBundle.loadString(
+    final registry = JsonWidgetRegistry.instance.copyWith();
+    final pageStr = await rootBundle.loadString(
       'assets/pages/${pageId}$extension',
     );
-    var dataJson = yaon.parse(pageStr);
+    final dataJson = yaon.parse(pageStr);
 
     // This is put in to give credit for when designs from online were used in
     // example files.  It's not actually a valid attribute to exist in the JSON
     // so it needs to be removed before we create the widget.
     dataJson.remove('_designCredit');
 
-    var data = JsonWidgetData.fromDynamic(
+    final data = JsonWidgetData.fromDynamic(
       dataJson,
       registry: registry,
     );
@@ -485,16 +486,16 @@ class RootPage extends StatelessWidget {
     BuildContext context,
     String themeId,
   ) async {
-    var registry = JsonWidgetRegistry.instance.copyWith();
-    var pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
-    var dataJson = json.decode(pageStr);
+    final registry = JsonWidgetRegistry.instance.copyWith();
+    final pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
+    final dataJson = json.decode(pageStr);
 
     // This is put in to give credit for when designs from online were used in
     // example files.  It's not actually a valid attribute to exist in the JSON
     // so it needs to be removed before we create the widget.
     dataJson.remove('_designCredit');
 
-    var data = JsonWidgetData.fromDynamic(
+    final data = JsonWidgetData.fromDynamic(
       dataJson,
       registry: registry,
     );

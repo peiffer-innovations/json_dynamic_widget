@@ -128,7 +128,7 @@ class _JsonSetScrollControllerWidgetState
                   childBuilder: widget.childBuilder,
                   context: context,
                 )
-              : SizedBox();
+              : const SizedBox();
         },
       );
 }

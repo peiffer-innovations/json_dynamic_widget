@@ -207,7 +207,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var initialValue = value ?? (tristate != true ? false : null);
+    final initialValue = value ?? (tristate != true ? false : null);
 
     return FormField<bool>(
       autovalidateMode: autovalidateMode,
@@ -217,7 +217,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
       validator: validator == null
           ? null
           : (value) {
-              var error = validator!.validate(
+              final error = validator!.validate(
                 context: context,
                 label: label ?? '',
                 value: value?.toString(),

@@ -54,8 +54,14 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonCircularProgressIndicatorBuilder(
-        backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
-        color: ThemeDecoder.decodeColor(map['color']),
+        backgroundColor: ThemeDecoder.decodeColor(
+          map['backgroundColor'],
+          validate: false,
+        ),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
         strokeWidth: JsonClass.parseDouble(map['strokeWidth'], 4.0)!,
@@ -65,7 +71,10 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
             : map['valueColor'] is Animation
                 ? map['valueColor']
                 : AlwaysStoppedAnimation(
-                    ThemeDecoder.decodeColor(map['valueColor'])!,
+                    ThemeDecoder.decodeColor(
+                      map['valueColor'],
+                      validate: false,
+                    )!,
                   ),
       );
     }

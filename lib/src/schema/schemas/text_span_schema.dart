@@ -1,15 +1,15 @@
 import 'package:json_theme/json_theme_schemas.dart';
 
-class TextSchema {
+class TextSpanSchema {
   static const id =
-      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/text.json';
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/text_span.json';
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': '$id',
-    r'$comment': 'https://api.flutter.dev/flutter/widgets/Text-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/TextSpan-class.html',
     'type': 'object',
-    'title': 'Text',
+    'title': 'TextSpan',
     'additionalProperties': false,
     'required': [
       'text',
@@ -25,9 +25,8 @@ class TextSchema {
       'text': SchemaHelper.stringSchema,
       'textAlign': SchemaHelper.objectSchema(TextAlignSchema.id),
       'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
-      'textHeightBehavior': SchemaHelper.objectSchema(
-        TextHeightBehaviorSchema.id,
-      ),
+      'textHeightBehavior':
+          SchemaHelper.objectSchema(TextHeightBehaviorSchema.id),
       'textScaleFactor': SchemaHelper.numberSchema,
       'textWidthBasis': SchemaHelper.objectSchema(TextWidthBasisSchema.id),
     }

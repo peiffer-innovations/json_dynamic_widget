@@ -77,7 +77,10 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
     JsonTooltipBuilder? result;
     if (map != null) {
       result = JsonTooltipBuilder(
-        decoration: ThemeDecoder.decodeBoxDecoration(map['decoration']),
+        decoration: ThemeDecoder.decodeBoxDecoration(
+          map['decoration'],
+          validate: false,
+        ),
         enableFeedback: map['enableFeedback'] == null
             ? null
             : JsonClass.parseBool(map['enableFeedback']),
@@ -85,16 +88,28 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
             ? null
             : JsonClass.parseBool(map['excludeFromSemantics']),
         height: JsonClass.parseDouble(map['height']),
-        margin: ThemeDecoder.decodeEdgeInsetsGeometry(map['margin']),
+        margin: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['margin'],
+          validate: false,
+        ),
         message: map['message']?.toString() ?? '',
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']),
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['padding'],
+          validate: false,
+        ),
         preferBelow: map['preferBelow'] == null
             ? null
             : JsonClass.parseBool(map['preferBelow']),
         richMessage: map['richMessage'],
         showDuration: JsonClass.parseDurationFromMillis(map['showDuration']),
-        textStyle: ThemeDecoder.decodeTextStyle(map['textStyle']),
-        triggerMode: ThemeDecoder.decodeTooltipTriggerMode(map['triggerMode']),
+        textStyle: ThemeDecoder.decodeTextStyle(
+          map['textStyle'],
+          validate: false,
+        ),
+        triggerMode: ThemeDecoder.decodeTooltipTriggerMode(
+          map['triggerMode'],
+          validate: false,
+        ),
         verticalOffset: JsonClass.parseDouble(map['verticalOffset']),
         waitDuration: JsonClass.parseDurationFromMillis(map['waitDuration']),
       );

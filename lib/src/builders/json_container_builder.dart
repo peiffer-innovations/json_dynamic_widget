@@ -129,7 +129,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Container(
       alignment: alignment,

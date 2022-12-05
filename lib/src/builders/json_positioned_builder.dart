@@ -65,7 +65,7 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Positioned(
       bottom: bottom,

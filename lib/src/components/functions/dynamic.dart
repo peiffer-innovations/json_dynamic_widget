@@ -36,10 +36,11 @@ class DynamicFunction {
 
   static void _execute(final DynamicOperation dynamicOperation,
       final JsonWidgetRegistry registry) {
-    var childrenJson = json.encode(registry.getValue(dynamicOperation.builder));
-    var childrenData =
+    final childrenJson =
+        json.encode(registry.getValue(dynamicOperation.builder));
+    final childrenData =
         List<Map<String, dynamic>>.from(json.decode(childrenJson));
-    var index = dynamicOperation.findIndex(childrenData);
+    final index = dynamicOperation.findIndex(childrenData);
     dynamicOperation.execute(childrenData, index);
     registry.setValue(dynamicOperation.builder, childrenData);
   }

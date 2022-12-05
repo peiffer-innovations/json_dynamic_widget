@@ -52,8 +52,8 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
     JsonConditionalBuilder? result;
 
     if (map != null) {
-      var conditional = Conditional.fromDynamic(map['conditional'])!;
-      var keys = <String>{};
+      final conditional = Conditional.fromDynamic(map['conditional'])!;
+      final keys = <String>{};
       _appendKeys(conditional, keys);
 
       result = JsonConditionalBuilder(
@@ -148,7 +148,7 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
     if (_keys.contains(event) == true) {
       _data = _data.recreate();
 
-      var builder = _data.builder() as JsonConditionalBuilder;
+      final builder = _data.builder() as JsonConditionalBuilder;
       _conditional = builder.conditional;
       _keys = builder.keys;
       _onFalse = builder.onFalse;
@@ -161,9 +161,9 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var result = _conditional.evaluate(_data.registry.values);
+    final result = _conditional.evaluate(_data.registry.values);
 
-    var onTrue = _data.children?.isNotEmpty == true
+    final onTrue = _data.children?.isNotEmpty == true
         ? _data.children![0]
         : JsonWidgetBuilder.kDefaultChild;
 
@@ -183,7 +183,7 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
             childBuilder: widget.childBuilder,
             context: context,
           ) ??
-          SizedBox();
+          const SizedBox();
     }
 
     return child;

@@ -63,18 +63,35 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
     JsonWrapBuilder? result;
     if (map != null) {
       result = JsonWrapBuilder(
-        alignment: ThemeDecoder.decodeWrapAlignment(map['alignment']),
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
+        alignment: ThemeDecoder.decodeWrapAlignment(
+          map['alignment'],
+          validate: false,
+        ),
+        clipBehavior: ThemeDecoder.decodeClip(
+          map['clipBehavior'],
+          validate: false,
+        ),
         crossAxisAlignment: ThemeDecoder.decodeWrapCrossAlignment(
           map['crossAxisAlignment'],
+          validate: false,
         ),
-        direction: ThemeDecoder.decodeAxis(map['axis']),
-        runAlignment: ThemeDecoder.decodeWrapAlignment(map['runAlignment']),
+        direction: ThemeDecoder.decodeAxis(
+          map['axis'],
+          validate: false,
+        ),
+        runAlignment: ThemeDecoder.decodeWrapAlignment(
+          map['runAlignment'],
+          validate: false,
+        ),
         spacing: JsonClass.parseDouble(map['spacing']),
         runSpacing: JsonClass.parseDouble(map['runSpacing']),
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
         verticalDirection: ThemeDecoder.decodeVerticalDirection(
           map['verticalDirection'],
+          validate: false,
         ),
       );
     }

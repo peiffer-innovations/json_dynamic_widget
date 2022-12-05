@@ -129,7 +129,7 @@ class _JsonPrimaryScrollControllerWidgetState
                     childBuilder: widget.childBuilder,
                     context: context,
                   )
-                : SizedBox();
+                : const SizedBox();
           },
         ),
       );

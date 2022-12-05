@@ -26,7 +26,7 @@ class JsonWidgetData extends JsonClass {
         args = args,
         children = children ?? (child == null ? null : [child]),
         listenVariables = listenVariables ?? <String>{},
-        id = id ?? Uuid().v4(),
+        id = id ?? const Uuid().v4(),
         registry = registry ?? JsonWidgetRegistry.instance;
 
   static final Logger _logger = Logger('JsonWidgetData');
@@ -81,7 +81,7 @@ class JsonWidgetData extends JsonClass {
       );
     } else if (map != null) {
       try {
-        var type = map['type'];
+        final type = map['type'];
         if (type is! String) {
           throw HandledJsonWidgetException(
             'Unknown type encountered: [$type]',
@@ -89,9 +89,9 @@ class JsonWidgetData extends JsonClass {
             data: map,
           );
         }
-        var builder = registry.getWidgetBuilder(type);
-        var args = map['args'];
-        var listenVariables = _getListenVariables(map);
+        final builder = registry.getWidgetBuilder(type);
+        final args = map['args'];
+        final listenVariables = _getListenVariables(map);
 
         // The validation needs to happen before we process the dynamic args or
         // else there may be non-JSON compatible objects in the map which will
@@ -112,12 +112,12 @@ class JsonWidgetData extends JsonClass {
             registry: registry,
           );
 
-          var args = Map<String, dynamic>.from(map['args']);
+          final args = Map<String, dynamic>.from(map['args']);
           args.remove('body');
           map['args'] = args;
         }
 
-        var processedArgs =
+        final processedArgs =
             registry.processArgs(args ?? <String, dynamic>{}, listenVariables);
 
         result = JsonWidgetData(
@@ -153,7 +153,7 @@ class JsonWidgetData extends JsonClass {
         }
         var errorValue = map;
         if (errorValue is Map || errorValue is List) {
-          errorValue = JsonEncoder.withIndent('  ').convert(errorValue);
+          errorValue = const JsonEncoder.withIndent('  ').convert(errorValue);
         }
         _logger.severe('''
 *** WIDGET PARSE ERROR ***
@@ -227,9 +227,9 @@ $map
   /// responces from the registry.  This should only be called within the
   /// framework itself, external code should not need to call this.
   JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
-    var registry = newRegistry ?? this.registry;
-    var builder = registry.getWidgetBuilder(type);
-    var dynamicParamsResult = registry.processArgs(args, listenVariables);
+    final registry = newRegistry ?? this.registry;
+    final builder = registry.getWidgetBuilder(type);
+    final dynamicParamsResult = registry.processArgs(args, listenVariables);
 
     List<JsonWidgetData>? children;
 

@@ -116,7 +116,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
@@ -124,6 +127,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         fillColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['fillColor'],
+          validate: false,
         ),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
@@ -148,6 +152,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
         onSaved: map['onSaved'],
         overlayColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['overlayColor'],
+          validate: false,
         ),
         splashRadius: JsonClass.parseDouble(map['splashRadius']),
         toggleable: JsonClass.parseBool(map['toggleable']),
@@ -193,7 +198,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonRadioWidget(
       builder: this,
@@ -261,7 +266,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
       validator: widget.builder.validator == null
           ? null
           : (value) {
-              var error = widget.builder.validator!.validate(
+              final error = widget.builder.validator!.validate(
                 context: context,
                 label: widget.builder.label ?? '',
                 value: value?.toString(),

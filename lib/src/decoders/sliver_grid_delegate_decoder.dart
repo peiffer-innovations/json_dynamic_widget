@@ -9,7 +9,7 @@ class SliverGridDelegateDecoder {
   }) {
     SliverGridDelegate? result;
 
-    var createException = (message) => Exception('''
+    final createException = (message) => Exception('''
 $message
 
 1. "delegate": {
@@ -43,7 +43,7 @@ $message
         }
       }
 
-      var type = delegate['type'] ?? 'maxCrossAxisExtent';
+      final type = delegate['type'] ?? 'maxCrossAxisExtent';
       switch (type) {
         case 'max_cross_axis_extent':
           result = SliverGridDelegateWithMaxCrossAxisExtent(

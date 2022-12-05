@@ -152,7 +152,10 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['hoverColor'],
           validate: false,
         ),
-        iconColor: ThemeDecoder.decodeColor(map['iconColor']),
+        iconColor: ThemeDecoder.decodeColor(
+          map['iconColor'],
+          validate: false,
+        ),
         isThreeLine: JsonClass.parseBool(map['isThreeLine']),
         leading: JsonWidgetData.fromDynamic(
           map['leading'],
@@ -167,8 +170,14 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
         onLongPress: map['onLongPress'],
         onTap: map['onTap'],
         selected: JsonClass.parseBool(map['selected']),
-        selectedColor: ThemeDecoder.decodeColor(map['selectedColor']),
-        selectedTileColor: ThemeDecoder.decodeColor(map['selectedTileColor']),
+        selectedColor: ThemeDecoder.decodeColor(
+          map['selectedColor'],
+          validate: false,
+        ),
+        selectedTileColor: ThemeDecoder.decodeColor(
+          map['selectedTileColor'],
+          validate: false,
+        ),
         shape: ThemeDecoder.decodeShapeBorder(
           map['shape'],
           validate: false,
@@ -181,8 +190,14 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['subtitle'],
           registry: registry,
         ),
-        textColor: ThemeDecoder.decodeColor(map['textColor']),
-        tileColor: ThemeDecoder.decodeColor(map['tileColor']),
+        textColor: ThemeDecoder.decodeColor(
+          map['textColor'],
+          validate: false,
+        ),
+        tileColor: ThemeDecoder.decodeColor(
+          map['tileColor'],
+          validate: false,
+        ),
         title: JsonWidgetData.fromDynamic(
           map['title'],
           registry: registry,

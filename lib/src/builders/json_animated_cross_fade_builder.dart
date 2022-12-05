@@ -99,8 +99,8 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var firstChild = getChild(data, index: 0);
-    var secondChild = getChild(data, index: 1);
+    final firstChild = getChild(data, index: 0);
+    final secondChild = getChild(data, index: 1);
     assert(
       data.children?.length == 2,
       '[JsonAnimatedCrossFadeBuilder] only supports exactly two children.',

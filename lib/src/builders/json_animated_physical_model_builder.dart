@@ -77,14 +77,17 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
         ),
         borderRadius: ThemeDecoder.decodeBorderRadius(
               map['borderRadius'],
+              validate: false,
             ) ??
             BorderRadius.zero,
         clipBehavior: ThemeDecoder.decodeClip(
               map['clipBehavior'],
+              validate: false,
             ) ??
             Clip.none,
         color: ThemeDecoder.decodeColor(
           map['color'],
+          validate: false,
         )!,
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
@@ -96,9 +99,11 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
         onEnd: map['onEnd'],
         shadowColor: ThemeDecoder.decodeColor(
           map['shadowColor'],
+          validate: false,
         )!,
         shape: ThemeDecoder.decodeBoxShape(
           map['shape'],
+          validate: false,
         )!,
       );
     }
@@ -113,7 +118,7 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedPhysicalModel(
       builder: this,

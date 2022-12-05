@@ -48,7 +48,7 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
               map['color'],
               validate: false,
             ) ??
-            Color(0xFF455A64),
+            const Color(0xFF455A64),
         fallbackHeight: JsonClass.parseDouble(
           map['fallbackHeight'],
           400.0,
@@ -74,7 +74,7 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
     return Placeholder(
       color: color,
       fallbackHeight: fallbackHeight,

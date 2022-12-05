@@ -85,7 +85,10 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
@@ -152,7 +155,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
       validator: validator == null
           ? null
           : (value) {
-              var error = validator!.validate(
+              final error = validator!.validate(
                 context: context,
                 label: label ?? '',
                 value: value?.toString(),

@@ -18,9 +18,9 @@ class _DynamicWidgetState extends State<Issue24Page> {
     return FutureBuilder(
       builder: (context, AsyncSnapshot<String> snapshot) {
         if (snapshot.hasData) {
-          var registry = JsonWidgetRegistry.instance.copyWith();
-          var widgetJson = jsonDecode(snapshot.data!);
-          var widget = JsonWidgetData.fromDynamic(
+          final registry = JsonWidgetRegistry.instance.copyWith();
+          final widgetJson = jsonDecode(snapshot.data!);
+          final widget = JsonWidgetData.fromDynamic(
             widgetJson,
             registry: registry,
           )!;
@@ -28,7 +28,7 @@ class _DynamicWidgetState extends State<Issue24Page> {
             context: context,
           );
         } else {
-          return Scaffold(
+          return const Scaffold(
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -40,7 +40,7 @@ class _DynamicWidgetState extends State<Issue24Page> {
   }
 
   Future<String> _getWidget() async {
-    var data = await rootBundle.loadString(widget.url);
+    final data = await rootBundle.loadString(widget.url);
     return data;
   }
 }

@@ -57,7 +57,10 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
+        clipBehavior: ThemeDecoder.decodeClip(
+          map['clipBehavior'],
+          validate: false,
+        ),
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
@@ -79,7 +82,7 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedSize(
       builder: this,
@@ -107,7 +110,7 @@ class _JsonAnimatedSize extends StatefulWidget {
 
   @override
   State<_JsonAnimatedSize> createState() {
-    State result = builder.vsync != null
+    final State result = builder.vsync != null
         ? _JsonAnimatedSizeState()
         : _JsonAnimatedSizeStateTicker();
     return result as State<_JsonAnimatedSize>;

@@ -14,8 +14,8 @@ class ForEachFunction {
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
-    var iterable = args![0];
-    var template = '\${${args[1]}}';
+    final iterable = args![0];
+    final template = '\${${args[1]}}';
 
     var varName = 'value';
     var keyName = 'key';
@@ -26,11 +26,11 @@ class ForEachFunction {
       keyName = args[3];
     }
 
-    var results = <JsonWidgetData>[];
+    final results = <JsonWidgetData>[];
     if (iterable is Iterable) {
       var index = 0;
       for (var value in iterable) {
-        var reg = JsonWidgetRegistry(
+        final reg = JsonWidgetRegistry(
           debugLabel: 'for_each_$index',
           parent: registry,
         );
@@ -47,7 +47,7 @@ class ForEachFunction {
       }
     } else if (iterable is Map) {
       for (var entry in iterable.entries) {
-        var reg = JsonWidgetRegistry(parent: registry);
+        final reg = JsonWidgetRegistry(parent: registry);
         _logger.finest('[${entry.key}] [${entry.value}]');
         reg.setValue(varName, entry.value);
         reg.setValue(keyName, entry.key);

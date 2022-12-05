@@ -133,7 +133,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
               map['padding'],
               validate: false,
             ) ??
-            EdgeInsets.all(8.0),
+            const EdgeInsets.all(8.0),
         position: ThemeDecoder.decodePopupMenuPosition(
           map['position'],
           validate: false,
@@ -157,7 +157,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return PopupMenuButton(
       color: color,

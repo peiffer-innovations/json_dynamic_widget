@@ -64,7 +64,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return ClipRRect(
       borderRadius: borderRadius,

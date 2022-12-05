@@ -17,7 +17,7 @@ class HandledJsonWidgetException implements Exception {
   @override
   String toString() => '''
 *** HandledJsonWidgetException ***
-${data == null ? '<no data>' : ((data is Map || data is List) ? JsonEncoder.withIndent('  ').convert(data) : data.toString())}
+${data == null ? '<no data>' : ((data is Map || data is List) ? const JsonEncoder.withIndent('  ').convert(data) : data.toString())}
 ${cause == null ? '<no cause>' : cause.toString()}
 ${stackTrace == null ? '<no stack>' : stackTrace.toString()}
 ''';

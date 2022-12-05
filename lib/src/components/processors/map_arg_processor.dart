@@ -32,10 +32,10 @@ class MapArgProcessor implements ArgProcessor {
     dynamic arg,
     Set<String>? listenVariables,
   ) {
-    var mapArg = arg as Map;
-    var calculateListenVariables = listenVariables == null;
-    var resultListenVariables = listenVariables ?? <String>{};
-    var processedMapArg = {};
+    final mapArg = arg as Map;
+    final calculateListenVariables = listenVariables == null;
+    final resultListenVariables = listenVariables ?? <String>{};
+    final processedMapArg = {};
 
     if (_isJsonWidgetData(mapArg)) {
       // The entry has a "type" and one of: "child", "children", "args".  This
@@ -46,8 +46,8 @@ class MapArgProcessor implements ArgProcessor {
     }
 
     mapArg.keys.forEach((key) {
-      var processedKeyArg = _processKey(registry, key, listenVariables);
-      var processedValueArg =
+      final processedKeyArg = _processKey(registry, key, listenVariables);
+      final processedValueArg =
           registry.processArgs(mapArg[key], listenVariables);
       processedMapArg[processedKeyArg.value] = processedValueArg.value;
       if (calculateListenVariables) {

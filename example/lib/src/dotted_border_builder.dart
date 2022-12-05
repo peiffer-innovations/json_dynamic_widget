@@ -47,7 +47,7 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return DottedBorder(
       borderType: BorderType.Circle,

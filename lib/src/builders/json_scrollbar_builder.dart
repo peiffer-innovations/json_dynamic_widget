@@ -90,7 +90,7 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data).build(
+    final child = getChild(data).build(
       childBuilder: childBuilder,
       context: context,
     );

@@ -50,7 +50,7 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Opacity(
       alwaysIncludeSemantics: alwaysIncludeSemantics,

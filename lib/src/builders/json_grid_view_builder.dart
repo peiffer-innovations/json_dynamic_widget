@@ -198,7 +198,7 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
       semanticChildCount: data.children?.length ?? 0,
       shrinkWrap: shrinkWrap,
       itemBuilder: (BuildContext context, int index) {
-        var w = data.children![index].build(
+        final w = data.children![index].build(
           childBuilder: childBuilder,
           context: context,
         );

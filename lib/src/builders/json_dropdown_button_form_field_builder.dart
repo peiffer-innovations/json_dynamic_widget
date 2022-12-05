@@ -148,11 +148,17 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
-        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']),
+        borderRadius: ThemeDecoder.decodeBorderRadius(
+          map['borderRadius'],
+          validate: false,
+        ),
         decoration: map['decoration'],
         disabledHint: JsonWidgetData.fromDynamic(map['disabledHint']),
         dropdownColor: ThemeDecoder.decodeColor(
@@ -271,9 +277,9 @@ class _JsonDropdownButtonFormFieldWidgetState
       );
     }
 
-    var itemEntries = <String, dynamic>{};
+    final itemEntries = <String, dynamic>{};
     if (widget.builder.items != null) {
-      var items = <DropdownMenuItem>[];
+      final items = <DropdownMenuItem>[];
 
       if (widget.builder.items is List) {
         widget.builder.items.forEach((value) {
@@ -303,7 +309,7 @@ class _JsonDropdownButtonFormFieldWidgetState
     if (widget.builder.selectedItemBuilder != null) {
       if (widget.builder.selectedItemBuilder is JsonWidgetData) {
         _selectedItemBuilder = (BuildContext context) {
-          var widgets = <Widget>[];
+          final widgets = <Widget>[];
           itemEntries.forEach((key, value) {
             widget.data.registry.setValue('dropdown_item_display', key);
             widget.data.registry.setValue('dropdown_item_value', value);
@@ -380,7 +386,7 @@ class _JsonDropdownButtonFormFieldWidgetState
         validator: widget.builder.validator == null
             ? null
             : (dynamic value) {
-                var error = widget.builder.validator!.validate(
+                final error = widget.builder.validator!.validate(
                   context: context,
                   label: _decoration?.labelText ?? '',
                   value: value?.toString(),

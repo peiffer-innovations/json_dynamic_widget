@@ -92,8 +92,11 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
         cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
         center:
             map['center'] is String ? ValueKey(map['center']) : map['center'],
-        clipBehavior:
-            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
@@ -137,7 +140,7 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var children = [
+    final children = [
       for (var child in data.children ?? <JsonWidgetData>[])
         child.build(
           context: context,

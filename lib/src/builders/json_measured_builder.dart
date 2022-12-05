@@ -70,7 +70,7 @@ class _MeasuredState extends State<_Measured> {
     super.initState();
 
     SchedulerBinding.instance.addPostFrameCallback((timeStamp) {
-      var boundary =
+      final boundary =
           _renderKey.currentContext!.findRenderObject() as RenderBox?;
 
       if (boundary != null && boundary.hasSize == true) {
@@ -90,7 +90,7 @@ class _MeasuredState extends State<_Measured> {
   Widget build(BuildContext context) => RepaintBoundary(
         key: _renderKey,
         child: widget.data.children?.length != 1
-            ? SizedBox()
+            ? const SizedBox()
             : widget.data.children![0].build(
                 childBuilder: widget.childBuilder,
                 context: context,

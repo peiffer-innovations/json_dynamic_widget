@@ -79,7 +79,7 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return SafeArea(
       bottom: bottom,

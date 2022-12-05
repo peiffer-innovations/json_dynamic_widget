@@ -40,17 +40,17 @@ class JsonLayoutBuilderBuilder extends JsonWidgetBuilder {
     return LayoutBuilder(
         key: key,
         builder: (BuildContext context, BoxConstraints constraints) {
-          var id = data.id;
+          final id = data.id;
 
           data.registry.setValue('$id.maxHeight', constraints.maxHeight);
           data.registry.setValue('$id.maxWidth', constraints.maxWidth);
           data.registry.setValue('$id.minHeight', constraints.minHeight);
           data.registry.setValue('$id.minWidth', constraints.minWidth);
 
-          var child = getChild(data);
+          final child = getChild(data);
 
           return data.children?.length != 1
-              ? SizedBox()
+              ? const SizedBox()
               : child.build(
                   childBuilder: childBuilder,
                   context: context,

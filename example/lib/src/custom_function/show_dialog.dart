@@ -11,23 +11,23 @@ final JsonWidgetFunction body = ({
         final String buildContextVarName = args[0];
         final String dialogDataVarName = args[1];
 
-        BuildContext context = registry.getValue(buildContextVarName);
-        var dialogData =
+        final BuildContext context = registry.getValue(buildContextVarName);
+        final dialogData =
             DialogData.fromJson(registry.getValue(dialogDataVarName));
 
-        var title = JsonWidgetData.fromDynamic(
+        final title = JsonWidgetData.fromDynamic(
           dialogData.title,
           registry: registry,
         )!
             .build(
           context: context,
         );
-        var content = JsonWidgetData.fromDynamic(
+        final content = JsonWidgetData.fromDynamic(
           dialogData.content,
           registry: registry,
         )!
             .build(context: context);
-        List<Widget> actions = dialogData.actions
+        final List<Widget> actions = dialogData.actions
             .map(
               (actionData) => TextButton(
                 onPressed: () {

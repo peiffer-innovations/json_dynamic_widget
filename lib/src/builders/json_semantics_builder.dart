@@ -286,9 +286,18 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(map['selected']),
         slider:
             map['slider'] == null ? null : JsonClass.parseBool(map['slider']),
-        sortKey: ThemeDecoder.decodeOrdinalSortKey(map['sortKey']),
-        tagForChildren: ThemeDecoder.decodeSemanticsTag(map['tagForChildren']),
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        sortKey: ThemeDecoder.decodeOrdinalSortKey(
+          map['sortKey'],
+          validate: false,
+        ),
+        tagForChildren: ThemeDecoder.decodeSemanticsTag(
+          map['tagForChildren'],
+          validate: false,
+        ),
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
         textField: map['textField'] == null
             ? null
             : JsonClass.parseBool(map['textField']),
@@ -308,7 +317,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Semantics(
       attributedDecreasedValue: attributedDecreasedValue,

@@ -45,7 +45,7 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Expanded(
       flex: flex,

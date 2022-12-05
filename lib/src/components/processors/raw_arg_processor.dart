@@ -14,7 +14,7 @@ class RawArgProcessor implements ArgProcessor {
     dynamic arg,
     Set<String>? listenVariables,
   ) {
-    var resultListenVariables = listenVariables ?? <String>{};
+    final resultListenVariables = listenVariables ?? <String>{};
     return ProcessedArg(
       listenVariables: resultListenVariables,
       value: arg,

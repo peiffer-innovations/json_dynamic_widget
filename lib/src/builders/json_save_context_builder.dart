@@ -93,7 +93,7 @@ class _JsonSaveContextWidgetState extends State<_JsonSaveContextWidget> {
                   childBuilder: widget.childBuilder,
                   context: context,
                 )
-              : SizedBox();
+              : const SizedBox();
         },
       );
 }

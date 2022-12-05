@@ -83,7 +83,7 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedPositionedDirectional(
       builder: this,

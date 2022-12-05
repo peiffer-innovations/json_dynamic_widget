@@ -35,10 +35,10 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
     JsonWidgetRegistry? registry,
   }) {
     JsonSetWidgetBuilder? result;
-    var innerRegistry = registry ?? JsonWidgetRegistry.instance;
+    final innerRegistry = registry ?? JsonWidgetRegistry.instance;
 
     if (map != null) {
-      var widgets = <String, JsonWidgetData?>{};
+      final widgets = <String, JsonWidgetData?>{};
       map.forEach(
         (key, value) => widgets[key] = JsonWidgetData.fromDynamic(value),
       );

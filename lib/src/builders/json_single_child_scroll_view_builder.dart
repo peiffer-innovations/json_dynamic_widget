@@ -71,8 +71,11 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSingleChildScrollViewBuilder(
-        clipBehavior:
-            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
@@ -114,7 +117,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return SingleChildScrollView(
       clipBehavior: clipBehavior,

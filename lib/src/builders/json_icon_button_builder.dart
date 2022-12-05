@@ -101,30 +101,63 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonIconButtonBuilder(
-        alignment:
-            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
+        alignment: ThemeDecoder.decodeAlignment(
+              map['alignment'],
+              validate: false,
+            ) ??
+            Alignment.center,
         autofocus: JsonClass.parseBool(map['autofocus']),
-        color: ThemeDecoder.decodeColor(map['color']),
-        constraints: ThemeDecoder.decodeBoxConstraints(map['constraints']),
-        disabledColor: ThemeDecoder.decodeColor(map['disabledColor']),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
+        constraints: ThemeDecoder.decodeBoxConstraints(
+          map['constraints'],
+          validate: false,
+        ),
+        disabledColor: ThemeDecoder.decodeColor(
+          map['disabledColor'],
+          validate: false,
+        ),
         enableFeedback: map['enableFeedback'] == null
             ? true
             : JsonClass.parseBool(map['enableFeedback']),
-        focusColor: ThemeDecoder.decodeColor(map['focusColor']),
+        focusColor: ThemeDecoder.decodeColor(
+          map['focusColor'],
+          validate: false,
+        ),
         focusNode: map['focusColor'],
-        highlightColor: ThemeDecoder.decodeColor(map['highlightColor']),
-        hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
+        highlightColor: ThemeDecoder.decodeColor(
+          map['highlightColor'],
+          validate: false,
+        ),
+        hoverColor: ThemeDecoder.decodeColor(
+          map['hoverColor'],
+          validate: false,
+        ),
         icon: JsonWidgetData.fromDynamic(map['icon']),
         iconSize: JsonClass.parseDouble(map['iconSize'], 24.0)!,
-        mouseCursor: ThemeDecoder.decodeMouseCursor(map['mouseCursor']) ??
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+              map['mouseCursor'],
+              validate: false,
+            ) ??
             SystemMouseCursors.click,
         onPressed: map['onPressed'],
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']) ??
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+              map['padding'],
+              validate: false,
+            ) ??
             const EdgeInsets.all(8.0),
-        splashColor: ThemeDecoder.decodeColor(map['splashColor']),
+        splashColor: ThemeDecoder.decodeColor(
+          map['splashColor'],
+          validate: false,
+        ),
         splashRadius: JsonClass.parseDouble(map['splashRadius']),
         tooltip: map['tooltip']?.toString(),
-        visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
+        visualDensity: ThemeDecoder.decodeVisualDensity(
+          map['visualDensity'],
+          validate: false,
+        ),
       );
     }
 
@@ -138,7 +171,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var theIcon = icon ?? getChild(data);
+    final theIcon = icon ?? getChild(data);
 
     return IconButton(
       alignment: alignment,

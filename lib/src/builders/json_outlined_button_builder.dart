@@ -67,6 +67,7 @@ class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
               ),
         clipBehavior: ThemeDecoder.decodeClip(
               map['clipBehavior'],
+              validate: false,
             ) ??
             Clip.none,
         focusNode: map['focusNode'],
@@ -91,7 +92,7 @@ class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return OutlinedButton(
       autofocus: autofocus,

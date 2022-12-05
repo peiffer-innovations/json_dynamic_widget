@@ -119,7 +119,7 @@ class JsonWidgetRegistry {
 
   /// Removes all variable values from the registry
   void clearValues() {
-    var keys = Set<String>.from(_values.keys);
+    final keys = Set<String>.from(_values.keys);
     _values.clear();
 
     keys.forEach((element) => _valueStreamController?.add(element));
@@ -168,7 +168,7 @@ class JsonWidgetRegistry {
   /// then check the internal values. If a variable with named [key] cannot be
   /// found, this will return [null].
   dynamic getValue(String? key) {
-    var originalKey = key;
+    final originalKey = key;
 
     var value = _values[key] ?? _internalValues[key];
     value ??= _parent?.getValue(key);
@@ -200,7 +200,7 @@ class JsonWidgetRegistry {
     String? key,
     Iterable<dynamic>? args,
   ) {
-    var fun = _functions[key!];
+    final fun = _functions[key!];
     if (fun == null) {
       if (_parent == null) {
         throw Exception(
@@ -223,13 +223,14 @@ class JsonWidgetRegistry {
   /// If no builder is registered for the given [type] then this will throw an
   /// [Exception].
   JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
-    var container = _builders[type];
+    final container = _builders[type];
 
-    var builder = container?.builder ?? _parent?.getWidgetBuilder(type);
+    final builder = container?.builder ?? _parent?.getWidgetBuilder(type);
 
     if (builder == null) {
       throw Exception(
-          'No widget with type: "$type" found in the registry [$debugLabel].');
+        'No widget with type: "$type" found in the registry [$debugLabel].',
+      );
     }
 
     return builder;
@@ -303,8 +304,8 @@ class JsonWidgetRegistry {
   dynamic removeValue(String key) {
     assert(key.isNotEmpty == true);
 
-    var hasKey = _values.containsKey(key);
-    var result = _values.remove(key);
+    final hasKey = _values.containsKey(key);
+    final result = _values.remove(key);
     if (hasKey == true) {
       _valueStreamController?.add(key);
     }
@@ -326,11 +327,11 @@ class JsonWidgetRegistry {
     if (value == null) {
       removeValue(key);
     } else {
-      var current = _values[key];
+      final current = _values[key];
 
       var equals = current == value;
       if (current is List || current is Set || current is Map) {
-        equals = DeepCollectionEquality().equals(current, value);
+        equals = const DeepCollectionEquality().equals(current, value);
       }
       if (!equals) {
         _logger.finest(
@@ -372,7 +373,7 @@ class JsonWidgetRegistry {
 
     assert(() {
       if (disableValidation != true) {
-        var container = _builders[type];
+        final container = _builders[type];
         if (container?.schemaId != null) {
           result = SchemaValidator().validate(
             schemaId: container!.schemaId,

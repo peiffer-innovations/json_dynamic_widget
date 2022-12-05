@@ -11,8 +11,8 @@ import 'package:uuid/uuid.dart';
 /// It generates 'id' field if not exist via [Uuid.v4].
 class DynamicValuesFactory {
   static Map<String, dynamic> create(dynamic valuesRaw) {
-    var values = Map<String, dynamic>.from(valuesRaw);
-    values['id'] ??= Uuid().v4().replaceAll('-', '_');
+    final values = Map<String, dynamic>.from(valuesRaw);
+    values['id'] ??= const Uuid().v4().replaceAll('-', '_');
     return values;
   }
 }
@@ -49,9 +49,9 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    dynamic args = Map.from(data.args);
+    final args = Map.from(data.args);
     args.remove('dynamic');
-    dynamic map = {
+    final map = {
       'id': data.id,
       'type': builderType,
       'args': args,
@@ -111,7 +111,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   }) {
     JsonDynamicBuilder? result;
     if (map != null) {
-      var dynamicArgs = map['dynamic'];
+      final dynamicArgs = map['dynamic'];
       if (dynamicArgs != null && dynamicArgs['builderType'] != null) {
         result = JsonDynamicBuilder(
           childTemplate: json.encode(dynamicArgs['childTemplate'] ?? {}),
@@ -148,12 +148,12 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> childrenData = _data.registry.getValue(_data.id) ?? [];
+    final List<dynamic> childrenData = _data.registry.getValue(_data.id) ?? [];
     if (childrenData.isEmpty) {
       _data.children!.clear();
     } else {
       _data.children!.clear();
-      var children = childrenData
+      final children = childrenData
           .map(
             (e) => Interpolation().eval(widget.childTemplate, e),
           )

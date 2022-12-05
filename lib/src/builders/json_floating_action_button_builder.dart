@@ -141,7 +141,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         heroTag: map['heroTag'] ??
-            FloatingActionButton(
+            const FloatingActionButton(
               onPressed: null,
             ).heroTag,
         highlightElevation: JsonClass.parseDouble(
@@ -189,7 +189,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return FloatingActionButton(
       autofocus: autofocus,

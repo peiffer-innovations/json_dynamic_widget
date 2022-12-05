@@ -56,7 +56,7 @@ class JsonClipOvalBuilder extends JsonWidgetBuilder {
       required BuildContext context,
       required JsonWidgetData data,
       Key? key}) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return ClipOval(
       clipBehavior: clipBehavior,

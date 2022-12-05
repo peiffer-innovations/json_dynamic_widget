@@ -26,13 +26,13 @@ class ExpressionArgProcessor implements ArgProcessor {
     dynamic arg,
     Set<String>? listenVariables,
   ) {
-    var calculateListenVariables = listenVariables == null;
+    final calculateListenVariables = listenVariables == null;
     var resultListenVariables = listenVariables ?? <String>{};
 
-    var regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
-    var expression = Expression.tryParse(regexpMatch.group(1)!);
+    final regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
+    final expression = Expression.tryParse(regexpMatch.group(1)!);
     if (expression != null) {
-      var evaluator =
+      final evaluator =
           ArgsExpressionEvaluator(registry, calculateListenVariables);
       arg = evaluator.evaluate(expression);
       if (calculateListenVariables) {
@@ -68,7 +68,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
     Variable variable,
     Map<String, dynamic> context,
   ) {
-    var variableName = variable.identifier.name;
+    final variableName = variable.identifier.name;
     return super.evalVariable(
       variable,
       _updateContextIfNeeded(
@@ -84,7 +84,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
     Map<String, dynamic> context, {
     bool nullable = false,
   }) {
-    var variableName = '${expression.object}.${expression.property}';
+    final variableName = '${expression.object}.${expression.property}';
     return evalVariable(Variable(Identifier(variableName)), context);
   }
 
@@ -95,7 +95,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
     bool nullable = false,
   }) {
     dynamic objectIndexValue;
-    var objectValue = eval(expression.object, context);
+    final objectValue = eval(expression.object, context);
     if (objectValue != null) {
       objectIndexValue =
           eval(expression.object, context)[eval(expression.index, context)];
@@ -107,8 +107,9 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
   dynamic evalCallExpression(
       CallExpression expression, Map<String, dynamic> context) {
     dynamic result;
-    var callee = eval(expression.callee, context);
-    var arguments = expression.arguments.map((e) => eval(e, context)).toList();
+    final callee = eval(expression.callee, context);
+    final arguments =
+        expression.arguments.map((e) => eval(e, context)).toList();
     if (callee is JsonWidgetFunction) {
       result = Function.apply(callee, null, {
         const Symbol('args'): arguments,
@@ -125,7 +126,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
     String variableName,
   ) {
     if (!context.containsKey(variableName)) {
-      var function = registry.getFunction(variableName);
+      final function = registry.getFunction(variableName);
       if (function == null) {
         if (calculateListenVariables) {
           _listenVariables.add(variableName);

@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   JsonInteractiveViewerBuilder({
-    required this.alignPanAxis,
+    this.alignment,
     required this.boundaryMargin,
     required this.clipBehavior,
     required this.constrained,
@@ -17,6 +17,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
     this.onInteractionEnd,
     this.onInteractionStart,
     this.onInteractionUpdate,
+    required this.panAxis,
     required this.panEnabled,
     required this.scaleEnabled,
     required this.scaleFactor,
@@ -26,7 +27,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'interactive_viewer';
 
-  final bool alignPanAxis;
+  final Alignment? alignment;
   final EdgeInsets boundaryMargin;
   final Clip clipBehavior;
   final bool constrained;
@@ -35,6 +36,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   final GestureScaleEndCallback? onInteractionEnd;
   final GestureScaleStartCallback? onInteractionStart;
   final GestureScaleUpdateCallback? onInteractionUpdate;
+  final PanAxis panAxis;
   final bool panEnabled;
   final bool scaleEnabled;
   final double scaleFactor;
@@ -45,19 +47,20 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignPanAxis": <bool>,
-  ///   "boundaryMargin": <EdgeInsets>,
-  ///   "clipBehavior": <Clip>,
-  ///   "constrained": <bool>,
-  ///   "maxScale": <double>,
-  ///   "minScale": <double>,
-  ///   "onInteractionEnd": <GestureScaleEndCallback>,
-  ///   "onInteractionStart": <GestureScaleStartCallback>,
-  ///   "onInteractionUpdate": <GestureScaleUpdateCallback>,
-  ///   "panEnabled": <bool>,
-  ///   "scaleEnabled": <bool>,
-  ///   "scaleFactor": <double>,
-  ///   "transformationController": <TransformationController>
+  ///   "alignment": "<Alignment>",
+  ///   "boundaryMargin": "<EdgeInsets>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "constrained": "<bool>",
+  ///   "maxScale": "<double>",
+  ///   "minScale": "<double>",
+  ///   "onInteractionEnd": "<GestureScaleEndCallback>",
+  ///   "onInteractionStart": "<GestureScaleStartCallback>",
+  ///   "onInteractionUpdate": "<GestureScaleUpdateCallback>",
+  ///   "panAxis": "<PanAxis>",
+  ///   "panEnabled": "<bool>",
+  ///   "scaleEnabled": "<bool>",
+  ///   "scaleFactor": "<double>",
+  ///   "transformationController": "<TransformationController>"
   /// }
   /// ```
   ///
@@ -77,11 +80,10 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonInteractiveViewerBuilder(
-        alignPanAxis: map['alignPanAxis'] == null
-            ? false
-            : JsonClass.parseBool(
-                map['alignPanAxis'],
-              ),
+        alignment: ThemeDecoder.decodeAlignment(
+          map['alignment'],
+          validate: false,
+        ),
         boundaryMargin: ThemeDecoder.decodeEdgeInsetsGeometry(
               map['boundaryMargin'],
               validate: false,
@@ -108,6 +110,11 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
         onInteractionEnd: map['onInteractionEnd'],
         onInteractionStart: map['onInteractionStart'],
         onInteractionUpdate: map['onInteractionUpdate'],
+        panAxis: ThemeDecoder.decodePanAxis(
+              map['panAxis'],
+              validate: false,
+            ) ??
+            PanAxis.free,
         panEnabled: map['panEnabled'] == null
             ? true
             : JsonClass.parseBool(
@@ -133,10 +140,11 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return InteractiveViewer(
-      alignPanAxis: alignPanAxis,
+      alignment: alignment,
+      // alignPanAxis: @deprecated,
       boundaryMargin: boundaryMargin,
       clipBehavior: clipBehavior,
       constrained: constrained,
@@ -146,6 +154,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
       onInteractionEnd: onInteractionEnd,
       onInteractionStart: onInteractionStart,
       onInteractionUpdate: onInteractionUpdate,
+      panAxis: panAxis,
       panEnabled: panEnabled,
       scaleEnabled: scaleEnabled,
       scaleFactor: scaleFactor,
