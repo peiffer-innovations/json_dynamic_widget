@@ -36,15 +36,15 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "end": <double>,
-  ///   "height": <double>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "start": <double>,
-  ///   "top": <double>,
-  ///   "width": <double>,
+  ///   "bottom": "<double>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "end": "<double>",
+  ///   "height": "<double>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "start": "<double>",
+  ///   "top": "<double>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///

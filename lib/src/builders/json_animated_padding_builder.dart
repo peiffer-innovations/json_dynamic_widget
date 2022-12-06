@@ -27,10 +27,10 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "padding": <EdgeInsetsGeometry>,
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "padding": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///

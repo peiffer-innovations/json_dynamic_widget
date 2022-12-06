@@ -49,21 +49,21 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment: <AlignmentGeometry>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "curve": <Curve>,
-  ///   "decoration": <BoxDecoration>,
-  ///   "duration": <int; millis>,
-  ///   "foregroundDecoration": <BoxDecoration>,
-  ///   "height: <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "transform": <Matrix4>,
-  ///   "transformAlignment": <TransformAlignment>,
-  ///   "width": <double>
+  ///   "alignment: "<AlignmentGeometry>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "curve": "<Curve>",
+  ///   "decoration": "<BoxDecoration>",
+  ///   "duration": "<int; millis>",
+  ///   "foregroundDecoration": "<BoxDecoration>",
+  ///   "height: "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "transform": "<Matrix4>",
+  ///   "transformAlignment": "<TransformAlignment>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -118,7 +118,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         transform: ThemeDecoder.decodeMatrix4(
-          map['matrix4'],
+          map['transform'],
           validate: false,
         ),
         transformAlignment: ThemeDecoder.decodeAlignment(

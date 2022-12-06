@@ -24,8 +24,8 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "clipBehavior": <Clip>
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "clipBehavior": "<Clip>"
   /// }
   /// ```
   ///

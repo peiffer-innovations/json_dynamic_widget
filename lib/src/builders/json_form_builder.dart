@@ -25,9 +25,9 @@ class JsonFormBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "autovalidateMode": <AutovalidateMode>,
-  ///   "onChanged": <VoidCallback>,
-  ///   "onWillPop": <WillPopCallback>
+  ///   "autovalidateMode": "<AutovalidateMode>",
+  ///   "onChanged": "<VoidCallback>",
+  ///   "onWillPop": "<WillPopCallback>"
   /// }
   /// ```
   ///

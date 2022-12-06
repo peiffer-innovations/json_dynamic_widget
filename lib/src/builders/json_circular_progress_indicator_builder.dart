@@ -34,13 +34,13 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "color": <Color>,
-  ///   "semanticsLabel": <String>,
-  ///   "semanticsValue": <String>,
-  ///   "strokeWidth": <double>,
-  ///   "value": <double>,
-  ///   "valueColor": <Animation<Color> | Color>
+  ///   "backgroundColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "semanticsLabel": "<String>",
+  ///   "semanticsValue": "<String>",
+  ///   "strokeWidth": "<double>",
+  ///   "value": "<double>",
+  ///   "valueColor": "<Animation<Color>> || <Color>"
   /// }
   /// ```
   ///

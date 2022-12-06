@@ -28,11 +28,11 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alwaysIncludeSemantics": <bool>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "opacity": <double>,
+  ///   "alwaysIncludeSemantics": "<bool>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "opacity": "<double>"
   /// }
   /// ```
   ///

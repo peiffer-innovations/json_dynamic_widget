@@ -27,6 +27,7 @@ class AppBarSchema {
       'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
       'leading': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'leadingWidth': SchemaHelper.numberSchema,
+      'notificationPredicate': SchemaHelper.stringSchema,
       'primary': SchemaHelper.boolSchema,
       'scrolledUnderElevation': SchemaHelper.boolSchema,
       'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),

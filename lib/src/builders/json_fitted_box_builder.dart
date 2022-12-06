@@ -24,9 +24,9 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "clipBehavior": <Clip>,
-  ///   "fit": <BoxFit>
+  ///   "alignment": "<Alignment>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "fit": "<BoxFit>"
   /// }
   /// ```
   ///

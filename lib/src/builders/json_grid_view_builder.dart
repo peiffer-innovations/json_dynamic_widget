@@ -16,6 +16,7 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
     required this.clipBehavior,
     this.controller,
     required this.dragStartBehavior,
+    this.findChildIndexCallback,
     required this.gridDelegate,
     required this.keyboardDismissBehavior,
     this.padding,
@@ -37,6 +38,7 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
   final Clip clipBehavior;
   final ScrollController? controller;
   final DragStartBehavior dragStartBehavior;
+  final ChildIndexGetter? findChildIndexCallback;
   final dynamic gridDelegate;
   final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
   final EdgeInsets? padding;
@@ -52,24 +54,24 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "addAutomaticKeepAlives": <bool>,
-  ///   "addRepaintBoundaries": <bool>,
-  ///   "addSemanticIndexes": <bool>,
-  ///   "cacheExtent": <double>,
-  ///   "clipBehavior": <Clip>,
-  ///   "controller": <ScrollController>,
-  ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "itemExtent": <double>,
-  ///   "gridDelegate": <SliverGridDelegate>,
-  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "physics": <ScrollPhysics>,
-  ///   "primary": <bool>,
-  ///   "prototypeItem": <JsonWidgetData>,
-  ///   "restorationId": <String>,
-  ///   "reverse": <bool>,
-  ///   "scrollDirection": <Axis>,
-  ///   "shrinkWrap": <bool>
+  ///   "addAutomaticKeepAlives": "<bool>",
+  ///   "addRepaintBoundaries": "<bool>",
+  ///   "addSemanticIndexes": "<bool>",
+  ///   "cacheExtent": "<double>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "controller": "<ScrollController>",
+  ///   "dragStartBehavior": "<DragStartBehavior>",
+  ///   "findChildIndexCallback": "<ChildIndexGetter>",
+  ///   "gridDelegate": "<SliverGridDelegate>",
+  ///   "keyboardDismissBehavior": "<ScrollViewKeyboardDismissBehavior>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "physics": "<ScrollPhysics>",
+  ///   "primary": "<bool>",
+  ///   "prototypeItem": "<JsonWidgetData>",
+  ///   "restorationId": "<String>",
+  ///   "reverse": "<bool>",
+  ///   "scrollDirection": "<Axis>",
+  ///   "shrinkWrap": "<bool>"
   /// }
   /// ```
   ///
@@ -82,10 +84,10 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "type": "max_cross_axis_extent",
-  ///   "childAspectRatio": <double?>,
-  ///   "crossAxisSpacing": <double?>,
-  ///   "mainAxisExtent": <double?>,
-  ///   "mainAxisSpacing": <double?>,
+  ///   "childAspectRatio": "<double?>",
+  ///   "crossAxisSpacing": "<double?>",
+  ///   "mainAxisExtent": "<double?>",
+  ///   "mainAxisSpacing": "<double?>",
   ///   "maxCrossAxisExtent": "<double>"
   /// }
   /// ```
@@ -95,11 +97,11 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "type": "fixed_cross_axis_count",
-  ///   "crossAxisCount": <int>,
-  ///   "childAspectRatio": <double?>,
-  ///   "crossAxisSpacing": <double?>,
-  ///   "mainAxisExtent": <double?>,
-  ///   "mainAxisSpacing": <double?>
+  ///   "crossAxisCount": "<int>",
+  ///   "childAspectRatio": "<double?>",
+  ///   "crossAxisSpacing": "<double?>",
+  ///   "mainAxisExtent": "<double?>",
+  ///   "mainAxisSpacing": "<double?>"
   /// }
   /// ```
   ///
@@ -138,6 +140,7 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             DragStartBehavior.start,
+        findChildIndexCallback: map['findChildIndexCallback'],
         gridDelegate: map['gridDelegate'],
         keyboardDismissBehavior:
             ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
@@ -183,6 +186,7 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
       clipBehavior: clipBehavior,
       controller: controller,
       dragStartBehavior: dragStartBehavior,
+      findChildIndexCallback: findChildIndexCallback,
       gridDelegate: SliverGridDelegateDecoder.decodeGridDelegate(
         gridDelegate: gridDelegate,
       ),

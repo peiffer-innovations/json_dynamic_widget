@@ -39,15 +39,15 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "crossFadeState": <CrossFadeState>,
-  ///   "duration": <int; millis>,
-  ///   "excludeBottomFocus": <bool>,
-  ///   "firstCurve": <Curve>,
-  ///   "layoutBuilder": <AnimatedCrossFadeBuilder>,
-  ///   "reverseDuration": <int; millis>,
-  ///   "secondCurve": <Curve>,
-  ///   "sizeCurve": <Curve>,
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "crossFadeState": "<CrossFadeState>",
+  ///   "duration": "<int; millis>",
+  ///   "excludeBottomFocus": "<bool>",
+  ///   "firstCurve": "<Curve>",
+  ///   "layoutBuilder": "<AnimatedCrossFadeBuilder>",
+  ///   "reverseDuration": "<int; millis>",
+  ///   "secondCurve": "<Curve>",
+  ///   "sizeCurve": "<Curve>"
   /// }
   /// ```
   ///

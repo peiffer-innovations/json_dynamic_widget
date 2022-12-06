@@ -29,11 +29,11 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "conditional": {
-  ///     "conditions": <Conditional[]>,
-  ///     "mode": <EvaluationMode>,
-  ///     "values": <Map<String, dynamic>>
+  ///     "conditions": "<List<Conditional>>",
+  ///     "mode": "<EvaluationMode>",
+  ///     "values": "<Map<String, dynamic>>"
   ///   },
-  ///   "onFalse": <JsonWidgetData>
+  ///   "onFalse": "<JsonWidgetData>"
   /// }
   /// ```
   ///

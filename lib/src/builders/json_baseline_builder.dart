@@ -24,8 +24,8 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "baseline": <double>,
-  ///   "baselineType": <TextBaseline>
+  ///   "baseline": "<double>",
+  ///   "baselineType": "<TextBaseline>"
   /// }
   /// ```
   ///

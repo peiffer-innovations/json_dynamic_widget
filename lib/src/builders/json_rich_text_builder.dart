@@ -17,7 +17,6 @@ class JsonRichTextBuilder extends JsonWidgetBuilder {
     this.semanticsLabel,
     required this.softWrap,
     this.strutStyle,
-    this.style,
     required this.text,
     required this.textAlign,
     this.textDirection,
@@ -37,7 +36,6 @@ class JsonRichTextBuilder extends JsonWidgetBuilder {
   final String? semanticsLabel;
   final bool softWrap;
   final StrutStyle? strutStyle;
-  final TextStyle? style;
   final TextSpan text;
   final TextAlign textAlign;
   final TextDirection? textDirection;
@@ -108,10 +106,6 @@ class JsonRichTextBuilder extends JsonWidgetBuilder {
         ),
         strutStyle: ThemeDecoder.decodeStrutStyle(
           map['strutStyle'],
-          validate: false,
-        ),
-        style: ThemeDecoder.decodeTextStyle(
-          map['style'],
           validate: false,
         ),
         text: ThemeDecoder.decodeTextSpan(

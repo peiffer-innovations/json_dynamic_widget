@@ -20,7 +20,7 @@ class JsonExcludeSemanticsBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "excluding": <bool>
+  ///   "excluding": "<bool>"
   /// }
   /// ```
   static JsonExcludeSemanticsBuilder? fromDynamic(

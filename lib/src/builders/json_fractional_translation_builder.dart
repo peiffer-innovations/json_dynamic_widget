@@ -23,8 +23,8 @@ class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "transformHitTests": <bool>,
-  ///   "translation": <Offset>
+  ///   "transformHitTests": "<bool>",
+  ///   "translation": "<Offset>"
   /// }
   /// ```
   ///

@@ -43,18 +43,18 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "decoration": <BoxDecoration>,
-  ///   "foregroundDecoration": <BoxDecoration>
-  ///   "height": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "transform": <Matrix4>,
-  ///   "transformAlignment": <TransformAlignment>,
-  ///   "width": <double>
+  ///   "alignment": "<Alignment>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "decoration": "<BoxDecoration>",
+  ///   "foregroundDecoration": "<BoxDecoration>",
+  ///   "height": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "transform": "<Matrix4>",
+  ///   "transformAlignment": "<TransformAlignment>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///

@@ -23,8 +23,8 @@ class JsonClipPathBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "clipBehavior": <Clip>,
-  ///   "clipper": <CustomClipper<Path>>
+  ///   "clipBehavior": "<Clip>",
+  ///   "clipper": "<CustomClipper<Path>>"
   /// }
   /// ```
   ///

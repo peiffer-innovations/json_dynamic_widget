@@ -42,6 +42,54 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   final Iterable<Map<String, dynamic>> initState;
   final JsonWidgetRegistry? registry;
 
+  /// Builds the builder from a Map-like dynamic structure. This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "dynamic" : {
+  ///     "builderType": "<String>",
+  ///     "childTemplate": "<Object>",
+  ///     "initState": "<List>"
+  ///   }
+  /// }
+  /// ```
+  ///
+  ///
+  /// See also:
+  ///  * [JsonDynamicBuilder.fromDynamic]
+  ///  * [JsonWidgetData.fromDynamic]
+  static JsonDynamicBuilder? fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry? registry,
+  }) {
+    JsonDynamicBuilder? result;
+    if (map != null) {
+      final dynamicArgs = map['dynamic'];
+      if (dynamicArgs != null && dynamicArgs['builderType'] != null) {
+        result = JsonDynamicBuilder(
+          childTemplate: json.encode(dynamicArgs['childTemplate'] ?? {}),
+          builderType: dynamicArgs['builderType'],
+          initState: List.from(dynamicArgs['initState'] ?? []).map(
+            (values) => Map<String, dynamic>.from(values),
+          ),
+        );
+      }
+    }
+    return result;
+  }
+
+  /// Removes any / all values this builder may have set from the
+  /// [JsonWidgetRegistry].
+  @override
+  void remove(JsonWidgetData data) {
+    if (data.id.isNotEmpty == true) {
+      data.registry.removeValue(data.id);
+    }
+
+    super.remove(data);
+  }
+
   @override
   Widget buildCustom({
     ChildWidgetBuilder? childBuilder,
@@ -76,66 +124,18 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
       key: key,
     );
   }
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
-    }
-
-    super.remove(data);
-  }
-
-  /// Builds the builder from a Map-like dynamic structure. This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "dynamic" : {
-  ///     "builderType": <String>,
-  ///     "childTemplate": <Object>,
-  ///     "initState": <List>,
-  ///   }
-  /// }
-  /// ```
-  ///
-  ///
-  /// See also:
-  ///  * [JsonDynamicBuilder.fromDynamic]
-  ///  * [JsonWidgetData.fromDynamic]
-  static JsonDynamicBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonDynamicBuilder? result;
-    if (map != null) {
-      final dynamicArgs = map['dynamic'];
-      if (dynamicArgs != null && dynamicArgs['builderType'] != null) {
-        result = JsonDynamicBuilder(
-          childTemplate: json.encode(dynamicArgs['childTemplate'] ?? {}),
-          builderType: dynamicArgs['builderType'],
-          initState: List.from(dynamicArgs['initState'] ?? []).map(
-            (values) => Map<String, dynamic>.from(values),
-          ),
-        );
-      }
-    }
-    return result;
-  }
 }
 
 class _DynamicWidget extends StatefulWidget {
   _DynamicWidget({
-    required this.data,
-    required this.childTemplate,
     this.childBuilder,
+    required this.childTemplate,
+    required this.data,
     Key? key,
   }) : super(key: key);
 
-  final String childTemplate;
   final ChildWidgetBuilder? childBuilder;
+  final String childTemplate;
   final JsonWidgetData data;
 
   @override

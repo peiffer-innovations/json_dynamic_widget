@@ -27,10 +27,10 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "curve": <Curve>,
-  ///   "data": <ThemeData>,
-  ///   "duration": <int; millis>,
-  ///   "onEnd": <VoidCallback>,
+  ///   "curve": "<Curve>",
+  ///   "data": "<ThemeData>",
+  ///   "duration": "<int; millis>",
+  ///   "onEnd": "<VoidCallback>"
   /// }
   /// ```
   ///

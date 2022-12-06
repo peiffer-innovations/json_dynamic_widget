@@ -40,16 +40,16 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   alignment: <MainAxisAlignment>,
-  ///   buttonAlignedDropdown: <bool>,
-  ///   buttonHeight: <double>,
-  ///   buttonMinWidth: <double>,
-  ///   buttonPadding: <EdgeInsetsGeometry>,
-  ///   buttonTextTheme: <ButtonTextTheme>,
-  ///   layoutBehavior: <ButtonBarLayoutBehavior>,
-  ///   mainAxisSize: <MainAxisSize>,
-  ///   overflowButtonSpacing: <double>,
-  ///   overflowDirection: <VerticalDirection>,
+  ///   "alignment": "<MainAxisAlignment>",
+  ///   "buttonAlignedDropdown": "<bool>",
+  ///   "buttonHeight": "<double>",
+  ///   "buttonMinWidth": "<double>",
+  ///   "buttonPadding": "<EdgeInsetsGeometry>",
+  ///   "buttonTextTheme": "<ButtonTextTheme>",
+  ///   "layoutBehavior": "<ButtonBarLayoutBehavior>",
+  ///   "mainAxisSize": "<MainAxisSize>",
+  ///   "overflowButtonSpacing": "<double>",
+  ///   "overflowDirection": "<VerticalDirection>"
   /// }
   /// ```
   ///

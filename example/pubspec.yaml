@@ -7,8 +7,6 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
-  automated_testing_framework: '^4.0.7+8'
-  automated_testing_framework_plugin_images: '^4.0.0+25'
   desktop_window: '^0.4.0'
   dotted_border: '^2.0.0+3'
   flutter:
@@ -20,10 +18,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: 'flutter'
-
-dependency_overrides:
-  json_theme:
-    path: ../../json_theme
 
 flutter:
   uses-material-design: true

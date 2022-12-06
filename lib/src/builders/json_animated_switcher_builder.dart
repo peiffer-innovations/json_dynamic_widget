@@ -36,13 +36,13 @@ class JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "child": <JsonWidgetData>,
-  ///   "duration": <int; millis>,
-  ///   "layoutBuilder": <AnimatedCrossFadeBuilder>,
-  ///   "reverseDuration": <int; millis>,
-  ///   "switchInCurve": <Curve>,
-  ///   "switchOutCurve": <Curve>,
-  ///   "transitionBuilder": <AnimatedSwitcherTransitionBuilder>,
+  ///   "child": "<JsonWidgetData>",
+  ///   "duration": "<int; millis>",
+  ///   "layoutBuilder": "<AnimatedCrossFadeBuilder>",
+  ///   "reverseDuration": "<int; millis>",
+  ///   "switchInCurve": "<Curve>",
+  ///   "switchOutCurve": "<Curve>",
+  ///   "transitionBuilder": "<AnimatedSwitcherTransitionBuilder>"
   /// }
   /// ```
   ///

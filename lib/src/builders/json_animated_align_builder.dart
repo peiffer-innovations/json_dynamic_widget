@@ -31,12 +31,12 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "heightFactor": <double>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "widthFactor": <double>
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "heightFactor": "<double>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "widthFactor": "<double>"
   /// }
   /// ```
   ///

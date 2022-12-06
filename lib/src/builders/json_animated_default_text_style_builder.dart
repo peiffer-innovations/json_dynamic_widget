@@ -39,16 +39,16 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "maxLines": <int>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "overflow": <TextOverflow>
-  ///   "softWrap": <bool>,
-  ///   "style": <TextStyle>,
-  ///   "textAlign": <TextAlign>,
-  ///   "textHeightBehavior": <TextHeightBehavior>,
-  ///   "textWidthBasis": <TextWidthBasis>,
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "maxLines": "<int>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "overflow": "<TextOverflow>",
+  ///   "softWrap": "<bool>",
+  ///   "style": "<TextStyle>",
+  ///   "textAlign": "<TextAlign>",
+  ///   "textHeightBehavior": "<TextHeightBehavior>",
+  ///   "textWidthBasis": "<TextWidthBasis>"
   /// }
   /// ```
   ///

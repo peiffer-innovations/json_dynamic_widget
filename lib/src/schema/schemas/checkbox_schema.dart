@@ -23,6 +23,7 @@ class CheckboxSchema {
       'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
       'focusNode': SchemaHelper.stringSchema,
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'isError': SchemaHelper.boolSchema,
       'label': SchemaHelper.stringSchema,
       'materialTapTargetSize':
           SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),

@@ -15,7 +15,7 @@ class JsonCommentBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "...": <...>
+  ///   "...": "<...>"
   /// }
   /// ```
   static JsonCommentBuilder? fromDynamic(

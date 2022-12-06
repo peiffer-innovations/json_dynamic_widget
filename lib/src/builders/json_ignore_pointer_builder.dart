@@ -22,8 +22,8 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "ignoring": <bool>,
-  ///   "ignoringSemantics": <bool>
+  ///   "ignoring": "<bool>",
+  ///   "ignoringSemantics": "<bool>"
   /// }
   /// ```
   static JsonIgnorePointerBuilder? fromDynamic(

@@ -31,12 +31,12 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "crossAxisAlignment": <CrossAxisAlignment>,
-  ///   "mainAxisAlignment": <MainAxisAlignment>,
-  ///   "mainAxisSize": <MainAxisSize>,
-  ///   "textBaseline": <TextBaseline>,
-  ///   "textDirection": <TextDirection>,
-  ///   "verticalDirection": <VerticalDirection>
+  ///   "crossAxisAlignment": "<CrossAxisAlignment>",
+  ///   "mainAxisAlignment": "<MainAxisAlignment>",
+  ///   "mainAxisSize": "<MainAxisSize>",
+  ///   "textBaseline": "<TextBaseline>",
+  ///   "textDirection": "<TextDirection>",
+  ///   "verticalDirection": "<VerticalDirection>"
   /// }
   /// ```
   ///

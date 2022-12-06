@@ -74,6 +74,7 @@ class GestureDetectorSchema {
       'onVerticalDragEnd': SchemaHelper.stringSchema,
       'onVerticalDragStart': SchemaHelper.stringSchema,
       'onVerticalDragUpdate': SchemaHelper.stringSchema,
+      'supportedDevices': SchemaHelper.arraySchema(PointerDeviceKindSchema.id),
     },
   };
 }

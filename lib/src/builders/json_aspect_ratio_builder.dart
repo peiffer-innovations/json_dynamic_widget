@@ -20,7 +20,7 @@ class JsonAspectRatioBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "aspectRatio": <double>
+  ///   "aspectRatio": "<double>"
   /// }
   /// ```
   static JsonAspectRatioBuilder? fromDynamic(

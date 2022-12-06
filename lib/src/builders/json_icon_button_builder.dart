@@ -20,11 +20,14 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
     this.hoverColor,
     this.icon,
     required this.iconSize,
+    this.isSelected,
     required this.mouseCursor,
     this.onPressed,
     required this.padding,
+    this.selectedIcon,
     this.splashColor,
     this.splashRadius,
+    this.style,
     this.tooltip,
     this.visualDensity,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -43,12 +46,15 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
   final Color? highlightColor;
   final Color? hoverColor;
   final JsonWidgetData? icon;
+  final bool? isSelected;
   final double iconSize;
   final MouseCursor mouseCursor;
   final VoidCallback? onPressed;
   final EdgeInsetsGeometry padding;
+  final JsonWidgetData? selectedIcon;
   final Color? splashColor;
   final double? splashRadius;
+  final ButtonStyle? style;
   final String? tooltip;
   final VisualDensity? visualDensity;
 
@@ -57,25 +63,28 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "autofocus": <bool>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "disabledColor": <Color>,
-  ///   "enableFeedback": <bool>,
-  ///   "focusColor": <Color>,
-  ///   "focusNode": <FocusNode>,
-  ///   "highlightColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "icon": <JsonWidgetData>,
-  ///   "iconSize": <double>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "onPressed": <VoidCallback>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "splashColor": <Color>,
-  ///   "splashRadius": <double>,
-  ///   "tooltip": <String>,
-  ///   "visualDensity": <VisualDensity>,
+  ///   "alignment": "<Alignment>",
+  ///   "autofocus": "<bool>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "disabledColor": "<Color>",
+  ///   "enableFeedback": "<bool>",
+  ///   "focusColor": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "highlightColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "icon": "<JsonWidgetData>",
+  ///   "iconSize": "<double>",
+  ///   "isSelected": "<bool>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onPressed": "<VoidCallback>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "selectedIcon": "<JsonWidgetData>",
+  ///   "splashColor": "<Color>",
+  ///   "splashRadius": "<double>",
+  ///   "style": "<ButtonStyle>",
+  ///   "tooltip": "<String>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -89,6 +98,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
   ///  * [ThemeDecoder.decodeBoxConstraints]
+  ///  * [ThemeDecoder.decodeButtonStyle]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMouseCursor]
@@ -137,6 +147,9 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
         ),
         icon: JsonWidgetData.fromDynamic(map['icon']),
         iconSize: JsonClass.parseDouble(map['iconSize'], 24.0)!,
+        isSelected: map['isSelected'] == null
+            ? null
+            : JsonClass.parseBool(map['isSelected']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
               map['mouseCursor'],
               validate: false,
@@ -153,6 +166,10 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        style: ThemeDecoder.decodeButtonStyle(
+          map['style'],
+          validate: false,
+        ),
         tooltip: map['tooltip']?.toString(),
         visualDensity: ThemeDecoder.decodeVisualDensity(
           map['visualDensity'],
@@ -186,12 +203,18 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
       hoverColor: hoverColor,
       icon: theIcon.build(childBuilder: childBuilder, context: context),
       iconSize: iconSize,
+      isSelected: isSelected,
       key: key,
       mouseCursor: mouseCursor,
       onPressed: onPressed,
       padding: padding,
+      selectedIcon: selectedIcon?.build(
+        childBuilder: childBuilder,
+        context: context,
+      ),
       splashColor: splashColor,
       splashRadius: splashRadius,
+      style: style,
       tooltip: tooltip,
       visualDensity: visualDensity,
     );

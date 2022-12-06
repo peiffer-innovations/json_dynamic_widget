@@ -19,6 +19,7 @@ class IndexedStackSchema {
         'type': 'object',
         'properties': {
           'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
+          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'index': SchemaHelper.numberSchema,
           'sizing': SchemaHelper.objectSchema(StackFitSchema.id),
           'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),

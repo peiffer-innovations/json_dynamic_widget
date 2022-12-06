@@ -25,9 +25,9 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "heightFactor": <double>,
-  ///   "widthFactor": <double>
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "heightFactor": "<double>",
+  ///   "widthFactor": "<double>"
   /// }
   /// ```
   ///

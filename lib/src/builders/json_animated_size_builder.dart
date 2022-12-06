@@ -31,12 +31,12 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "clipBehavior": <Clip>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "reverseDuration": <int; millis>,
-  ///   "vsync": <TickerProvider>,
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "reverseDuration": "<int; millis>",
+  ///   "vsync": "<TickerProvider>"
   /// }
   /// ```
   ///

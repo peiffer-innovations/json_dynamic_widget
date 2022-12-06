@@ -20,7 +20,7 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "flex": <double>
+  ///   "flex": "<double>"
   /// }
   /// ```
   static JsonExpandedBuilder? fromDynamic(

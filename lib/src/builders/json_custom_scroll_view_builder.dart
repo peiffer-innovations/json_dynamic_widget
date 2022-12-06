@@ -50,22 +50,22 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "anchor": <double>,
-  ///   "cacheExtent": <double>,
-  ///   "clipBehavior": <Clip>,
-  ///   "center": <Key>,
-  ///   "controller": <ScrollController>,
-  ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "physics": <ScrollPhysics>,
-  ///   "primary": <bool>,
-  ///   "restorationId": <String>,
-  ///   "reverse": <bool>,
-  ///   "scrollBehavior": <ScrollBehavior>,
-  ///   "scrollDirection": <Axis>,
-  ///   "semanticChildCount": <int>,
-  ///   "shrinkWrap": <bool>
+  ///   "anchor": "<double>",
+  ///   "cacheExtent": "<double>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "center": "<Key>",
+  ///   "controller": "<ScrollController>",
+  ///   "dragStartBehavior": "<DragStartBehavior>",
+  ///   "keyboardDismissBehavior": "<ScrollViewKeyboardDismissBehavior>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "physics": "<ScrollPhysics>",
+  ///   "primary": "<bool>",
+  ///   "restorationId": "<String>",
+  ///   "reverse": "<bool>",
+  ///   "scrollBehavior": "<ScrollBehavior>",
+  ///   "scrollDirection": "<Axis>",
+  ///   "semanticChildCount": "<int>",
+  ///   "shrinkWrap": "<bool>"
   /// }
   /// ```
   ///

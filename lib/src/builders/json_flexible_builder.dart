@@ -23,8 +23,8 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "fit": <FlexFit>,
-  ///   "flex": <int>
+  ///   "fit": "<FlexFit>",
+  ///   "flex": "<int>"
   /// }
   /// ```
   ///

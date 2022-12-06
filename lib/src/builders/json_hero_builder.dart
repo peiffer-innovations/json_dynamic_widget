@@ -28,11 +28,11 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "createRectTween": <CreateRectTween>,
-  ///   "flightShuttleBuilder": <HeroFlightShuttleBuilder>,
-  ///   "placeholderBuilder": <HeroPlaceholderBuilder>,
-  ///   "tag": <Object>,
-  ///   "transitionOnUserGestures": <bool>
+  ///   "createRectTween": "<CreateRectTween>",
+  ///   "flightShuttleBuilder": "<HeroFlightShuttleBuilder>",
+  ///   "placeholderBuilder": "<HeroPlaceholderBuilder>",
+  ///   "tag": "<Object>",
+  ///   "transitionOnUserGestures": "<bool>"
   /// }
   /// ```
   ///
@@ -52,8 +52,9 @@ class JsonHeroBuilder extends JsonWidgetBuilder {
         flightShuttleBuilder: map['flightShuttleBuilder'],
         placeholderBuilder: map['placeholderBuilder'],
         tag: map['tag'],
-        transitionOnUserGestures:
-            JsonClass.parseBool(map['transitionOnUserGestures']),
+        transitionOnUserGestures: JsonClass.parseBool(
+          map['transitionOnUserGestures'],
+        ),
       );
     }
 

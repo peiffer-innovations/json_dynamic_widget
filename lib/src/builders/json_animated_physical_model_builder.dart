@@ -41,17 +41,17 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "animateColor: <bool>,
-  ///   "animateShadowColor: <bool>,
-  ///   "borderRadius: <BorderRadius>,
-  ///   "clipBehavior: <Clip>,
-  ///   "color": <Color>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "elevation": <double>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "shadowColor": <Color>,
-  ///   "shape": <BoxShape>,
+  ///   "animateColor: "<bool>",
+  ///   "animateShadowColor: "<bool>",
+  ///   "borderRadius: "<BorderRadius>",
+  ///   "clipBehavior: "<Clip>",
+  ///   "color": "<Color>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "elevation": "<double>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<BoxShape>"
   /// }
   /// ```
   ///

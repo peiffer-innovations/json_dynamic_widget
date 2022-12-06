@@ -20,7 +20,7 @@ class JsonDirectionalityBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "textDirection<TextDirection>
+  ///   "textDirection": "<TextDirection>"
   /// }
   /// ```
   ///

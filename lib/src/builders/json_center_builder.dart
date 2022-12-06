@@ -23,8 +23,8 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "heightFactor": <double>,
-  ///   "widthFactor": <double>
+  ///   "heightFactor": "<double>",
+  ///   "widthFactor": "<double>"
   /// }
   /// ```
   static JsonCenterBuilder? fromDynamic(

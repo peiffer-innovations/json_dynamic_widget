@@ -38,15 +38,15 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "borderOnForeground": <bool>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "semanticContainer": <bool>,
-  ///   "shadowColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "surfaceTintColor": <Color>
+  ///   "borderOnForeground": "<bool>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "semanticContainer": "<bool>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///

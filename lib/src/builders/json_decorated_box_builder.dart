@@ -22,8 +22,8 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "decoration": <BoxDecoration>,
-  ///   "position": <DecorationPosition>
+  ///   "decoration": "<BoxDecoration>",
+  ///   "position": "<DecorationPosition>"
   /// }
   /// ```
   ///
