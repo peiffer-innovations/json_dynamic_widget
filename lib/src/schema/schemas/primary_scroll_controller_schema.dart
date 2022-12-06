@@ -13,10 +13,14 @@ class PrimaryScrollControllerSchema {
     'title': 'PrimaryScrollController',
     'additionalProperties': false,
     'properties': {
+      'automaticallyInheritForPlatforms': SchemaHelper.arraySchema(
+        TargetPlatformSchema.id,
+      ),
       'controller': SchemaHelper.stringSchema,
       'debugLabel': SchemaHelper.stringSchema,
       'initialScrollOffset': SchemaHelper.numberSchema,
       'keepScrollOffset': SchemaHelper.boolSchema,
+      'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),
     }
   };
 }

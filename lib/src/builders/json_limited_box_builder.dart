@@ -22,8 +22,8 @@ class JsonLimitedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "maxHeight": <double>,
-  ///   "maxWidth": <double>
+  ///   "maxHeight": "<double>",
+  ///   "maxWidth": "<double>"
   /// }
   /// ```
   static JsonLimitedBoxBuilder? fromDynamic(

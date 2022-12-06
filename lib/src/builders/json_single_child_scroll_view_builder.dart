@@ -40,16 +40,16 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "clipBehavior": <Clip>,
-  ///   "controller": <ScrollController>,
-  ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "physics": <ScrollPhysics>,
-  ///   "primary": <bool>,
-  ///   "restorationId": <String>,
-  ///   "reverse": <bool>,,
-  ///   "scrollDirection": <Axis>
+  ///   "clipBehavior": "<Clip>",
+  ///   "controller": "<ScrollController>",
+  ///   "dragStartBehavior": "<DragStartBehavior>",
+  ///   "keyboardDismissBehavior": "<ScrollViewKeyboardDismissBehavior>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "physics": "<ScrollPhysics>",
+  ///   "primary": "<bool>",
+  ///   "restorationId": "<String>",
+  ///   "reverse": "<bool>",
+  ///   "scrollDirection": "<Axis>"
   /// }
   /// ```
   ///

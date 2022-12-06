@@ -174,7 +174,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   ///   "textCapitalization": "<TextCapitalization>",
   ///   "textDirection": "<TextDirection>",
   ///   "textInputAction": "<TextInputAction>",
-  ///   "validators": "<ValueValidator[]>"
+  ///   "validators": "<List<ValueValidator>>"
   /// }
   /// ```
   ///

@@ -12,6 +12,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
     required this.boundaryMargin,
     required this.clipBehavior,
     required this.constrained,
+    required this.interactionEndFrictionCoefficient,
     required this.maxScale,
     required this.minScale,
     this.onInteractionEnd,
@@ -31,6 +32,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   final EdgeInsets boundaryMargin;
   final Clip clipBehavior;
   final bool constrained;
+  final double interactionEndFrictionCoefficient;
   final double maxScale;
   final double minScale;
   final GestureScaleEndCallback? onInteractionEnd;
@@ -51,6 +53,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   ///   "boundaryMargin": "<EdgeInsets>",
   ///   "clipBehavior": "<Clip>",
   ///   "constrained": "<bool>",
+  ///   "interactionEndFrictionCoefficient": "<double>",
   ///   "maxScale": "<double>",
   ///   "minScale": "<double>",
   ///   "onInteractionEnd": "<GestureScaleEndCallback>",
@@ -99,6 +102,9 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(
                 map['constrained'],
               ),
+        interactionEndFrictionCoefficient:
+            JsonClass.parseDouble(map['interactionEndFrictionCoefficient']) ??
+                0.0000135,
         maxScale: JsonClass.parseDouble(
           map['maxScale'],
           2.5,
@@ -148,6 +154,7 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
       boundaryMargin: boundaryMargin,
       clipBehavior: clipBehavior,
       constrained: constrained,
+      interactionEndFrictionCoefficient: interactionEndFrictionCoefficient,
       key: key,
       maxScale: maxScale,
       minScale: minScale,

@@ -20,7 +20,7 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "key": <String>
+  ///   "key": "<String>"
   /// }
   /// ```
   ///

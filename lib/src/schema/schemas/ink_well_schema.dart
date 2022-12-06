@@ -37,8 +37,10 @@ class InkWellSchema {
       ),
       'radius': SchemaHelper.numberSchema,
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'splashFactory':
-          SchemaHelper.objectSchema(InteractiveInkFeatureFactorySchema.id)
+      'splashFactory': SchemaHelper.objectSchema(
+        InteractiveInkFeatureFactorySchema.id,
+      ),
+      'statesController': SchemaHelper.stringSchema,
     },
   };
 }

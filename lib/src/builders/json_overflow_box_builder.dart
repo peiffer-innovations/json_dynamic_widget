@@ -29,11 +29,11 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "maxHeight": <double>,
-  ///   "maxWidth": <double>,
-  ///   "minHeight": <double>,
-  ///   "minWidth": <double>
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "maxHeight": "<double>",
+  ///   "maxWidth": "<double>",
+  ///   "minHeight": "<double>",
+  ///   "minWidth": "<double>"
   /// }
   /// ```
   ///

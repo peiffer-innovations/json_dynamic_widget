@@ -31,12 +31,12 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <bool>,
-  ///   "left": <bool>,
-  ///   "maintainBottomViewPadding": <bool>,
-  ///   "minimum": <EdgeInsetsGeometry>,
-  ///   "right": <bool>,
-  ///   "top": <bool>
+  ///   "bottom": "<bool>",
+  ///   "left": "<bool>",
+  ///   "maintainBottomViewPadding": "<bool>",
+  ///   "minimum": "<EdgeInsetsGeometry>",
+  ///   "right": "<bool>",
+  ///   "top": "<bool>"
   /// }
   /// ```
   ///

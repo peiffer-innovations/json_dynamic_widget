@@ -30,12 +30,12 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "height": <double>,
-  ///   "left": <double>,
-  ///   "right": <double>,
-  ///   "top": <double>,
-  ///   "width": <double>
+  ///   "bottom": "<double>",
+  ///   "height": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>",
+  ///   "width": "<double>"
   /// }
   /// ```
   static JsonPositionedBuilder? fromDynamic(

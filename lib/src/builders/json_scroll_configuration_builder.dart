@@ -30,11 +30,11 @@ class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "dragDevices": <Set<PointerDeviceKind>>,
-  ///   "overscroll": <bool>,
-  ///   "physics": <ScrollPhysics>,
-  ///   "platform": <TargetPlatform>,
-  ///   "scrollbars": <bool>
+  ///   "dragDevices": "<Set<PointerDeviceKind>>",
+  ///   "overscroll": "<bool>",
+  ///   "physics": "<ScrollPhysics>",
+  ///   "platform": "<TargetPlatform>",
+  ///   "scrollbars": "<bool>""
   /// }
   /// ```
   ///

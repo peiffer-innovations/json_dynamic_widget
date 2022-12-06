@@ -14,6 +14,7 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
     this.onHover,
     this.onLongPress,
     this.onPressed,
+    this.statesController,
     this.style,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -27,6 +28,7 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   final ValueChanged<bool>? onHover;
   final VoidCallback? onLongPress;
   final VoidCallback? onPressed;
+  final MaterialStatesController? statesController;
   final ButtonStyle? style;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -34,14 +36,15 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "autofocus": <bool>,
-  ///   "clipBehavior": <Clip>,
-  ///   "focusNode": <FocusNode>,
-  ///   "onFocusChange": <ValueChanged<bool>>,
-  ///   "onHover": <ValueChanged<bool>>,
-  ///   "onLongPress": <VoidCallback>,
-  ///   "onPressed": <VoidCallback>,
-  ///   "style": <ButtonStyle>
+  ///   "autofocus": "<bool>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "onFocusChange": "<ValueChanged<bool>>",
+  ///   "onHover": "<ValueChanged<bool>>",
+  ///   "onLongPress": "<VoidCallback>",
+  ///   "onPressed": "<VoidCallback>",
+  ///   "statesController": "<MaterialStatesController>",
+  ///   "style": "<ButtonStyle>"
   /// }
   /// ```
   ///
@@ -75,6 +78,7 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
         onHover: map['onHover'],
         onLongPress: map['onLongPress'],
         onPressed: map['onPressed'],
+        statesController: map['statesController'],
         style: ThemeDecoder.decodeButtonStyle(
           map['style'],
           validate: false,
@@ -103,6 +107,7 @@ class JsonTextButtonBuilder extends JsonWidgetBuilder {
       onHover: onHover,
       onLongPress: onLongPress,
       onPressed: onPressed,
+      statesController: statesController,
       style: style,
       child: child.build(
         childBuilder: childBuilder,

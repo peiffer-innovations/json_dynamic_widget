@@ -20,7 +20,7 @@ class JsonPaddingBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "padding": <EdgeInsetsGeometry>
+  ///   "padding": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///

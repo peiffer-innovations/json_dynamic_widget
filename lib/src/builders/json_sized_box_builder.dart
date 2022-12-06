@@ -22,8 +22,8 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "height": <double>,
-  ///   "width": <double>
+  ///   "height": "<double>",
+  ///   "width": "<double>"
   /// }
   /// ```
   static JsonSizedBoxBuilder? fromDynamic(

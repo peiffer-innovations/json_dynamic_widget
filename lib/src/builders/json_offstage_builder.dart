@@ -20,7 +20,7 @@ class JsonOffstageBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "offstage": <bool>
+  ///   "offstage": "<bool>"
   /// }
   /// ```
   static JsonOffstageBuilder? fromDynamic(

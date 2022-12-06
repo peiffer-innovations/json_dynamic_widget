@@ -19,7 +19,7 @@ class JsonInputErrorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "text": <String>
+  ///   "text": "<String>"
   /// }
   /// ```
   static JsonInputErrorBuilder? fromDynamic(

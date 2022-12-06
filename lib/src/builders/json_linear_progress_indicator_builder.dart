@@ -33,13 +33,13 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "color": <Color>,
-  ///   "minHeight": <double>,
-  ///   "semanticsLabel": <String>,
-  ///   "semanticsValue": <String>,
-  ///   "value": <double>,
-  ///   "valueColor": <Animation<Color> | Color>
+  ///   "backgroundColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "minHeight": "<double>",
+  ///   "semanticsLabel": "<String>",
+  ///   "semanticsValue": "<String>",
+  ///   "value": "<double>",
+  ///   "valueColor": "<Animation<Color>> || <Color>"
   /// }
   /// ```
   ///

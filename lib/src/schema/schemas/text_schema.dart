@@ -18,6 +18,7 @@ class TextSchema {
       'locale': SchemaHelper.objectSchema(LocaleSchema.id),
       'maxLines': SchemaHelper.numberSchema,
       'overflow': SchemaHelper.objectSchema(TextOverflowSchema.id),
+      'selectionColor': SchemaHelper.objectSchema(ColorSchema.id),
       'semanticsLabel': SchemaHelper.stringSchema,
       'softWrap': SchemaHelper.boolSchema,
       'strutStyle': SchemaHelper.objectSchema(StrutStyleSchema.id),

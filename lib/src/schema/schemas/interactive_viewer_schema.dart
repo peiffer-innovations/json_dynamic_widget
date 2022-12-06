@@ -19,6 +19,7 @@ class InteractiveViewerSchema {
       ),
       'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
       'constrained': SchemaHelper.boolSchema,
+      'interactionEndFrictionCoefficient': SchemaHelper.numberSchema,
       'maxScale': SchemaHelper.numberSchema,
       'minScale': SchemaHelper.numberSchema,
       'onInteractionEnd': SchemaHelper.stringSchema,

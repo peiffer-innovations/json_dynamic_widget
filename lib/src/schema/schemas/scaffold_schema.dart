@@ -36,11 +36,14 @@ class ScaffoldSchema {
       'floatingActionButtonLocation': SchemaHelper.objectSchema(
         FloatingActionButtonLocationSchema.id,
       ),
+      'onDrawerChanged': SchemaHelper.stringSchema,
+      'onEndDrawerChanged': SchemaHelper.stringSchema,
+      'persistentFooterAlignment': SchemaHelper.objectSchema(
+        AlignmentDirectionalSchema.id,
+      ),
       'persistentFooterButtons': SchemaHelper.arraySchema(
         JsonWidgetDataSchema.id,
       ),
-      'onDrawerChanged': SchemaHelper.stringSchema,
-      'onEndDrawerChanged': SchemaHelper.stringSchema,
       'primary': SchemaHelper.boolSchema,
       'resizeToAvoidBottomInset': SchemaHelper.boolSchema,
       'restorationId': SchemaHelper.stringSchema,

@@ -14,10 +14,12 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
     this.height,
     this.margin,
     required this.message,
+    this.onTriggered,
     this.padding,
     this.preferBelow,
     this.richMessage,
     this.showDuration,
+    this.textAlign,
     this.textStyle,
     this.triggerMode,
     this.verticalOffset,
@@ -33,10 +35,12 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
   final double? height;
   final EdgeInsetsGeometry? margin;
   final String message;
+  final TooltipTriggeredCallback? onTriggered;
   final EdgeInsetsGeometry? padding;
   final bool? preferBelow;
   final InlineSpan? richMessage;
   final Duration? showDuration;
+  final TextAlign? textAlign;
   final TextStyle? textStyle;
   final TooltipTriggerMode? triggerMode;
   final double? verticalOffset;
@@ -47,20 +51,22 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "decoration": <BoxDecoration>,
-  ///   "enableFeedback": <bool>,
-  ///   "excludeFromSemantics": <bool>,
-  ///   "height": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "message": <String>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "preferBelow": <bool>,
-  ///   "richMessage": <InlineSpan>,
-  ///   "showDuration": <Duration>,
-  ///   "textStyle": <TextStyle>,
-  ///   "triggerMode": <bool>,
-  ///   "verticalOffset": <double>,
-  ///   "waitDuration": <Duration>
+  ///   "decoration": "<BoxDecoration>",
+  ///   "enableFeedback": "<bool>",
+  ///   "excludeFromSemantics": "<bool>",
+  ///   "height": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "message": "<String>",
+  ///   "onTriggered": "<TooltipTriggeredCallback>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "preferBelow": "<bool>",
+  ///   "richMessage": "<InlineSpan>",
+  ///   "showDuration": "<Duration>",
+  ///   "textAlign": "<TextAlign>",
+  ///   "textStyle": "<TextStyle>",
+  ///   "triggerMode": "<bool>",
+  ///   "verticalOffset": "<double>",
+  ///   "waitDuration": "<Duration>"
   /// }
   /// ```
   ///
@@ -68,6 +74,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
   ///  * [JsonClass.parseDurationFromMillis]
   ///  * [ThemeDecoder.decodeBoxDecoration]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
+  ///  * [ThemeDecoder.decodeTextAlign]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [ThemeDecoder.decodeTooltipTriggerMode]
   static JsonTooltipBuilder? fromDynamic(
@@ -102,6 +109,10 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(map['preferBelow']),
         richMessage: map['richMessage'],
         showDuration: JsonClass.parseDurationFromMillis(map['showDuration']),
+        textAlign: ThemeDecoder.decodeTextAlign(
+          map['textAlign'],
+          validate: false,
+        ),
         textStyle: ThemeDecoder.decodeTextStyle(
           map['textStyle'],
           validate: false,
@@ -133,10 +144,12 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
         key: key,
         margin: margin,
         message: message,
+        onTriggered: onTriggered,
         padding: padding,
         preferBelow: preferBelow,
         richMessage: richMessage,
         showDuration: showDuration,
+        textAlign: textAlign,
         textStyle: textStyle,
         triggerMode: triggerMode,
         verticalOffset: verticalOffset,

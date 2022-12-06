@@ -42,6 +42,9 @@ class SwitchSchema {
       'thumbColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
+      'thumbIcon': SchemaHelper.objectSchema(
+        MaterialStatePropertyIconSchema.id,
+      ),
       'trackColor': SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),

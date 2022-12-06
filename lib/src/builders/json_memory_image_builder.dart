@@ -64,27 +64,27 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "cacheHeight": <int>,
-  ///   "cacheWidth": <int>,
-  ///   "centerSlice": <Rect>,
-  ///   "color": <Color>,
-  ///   "colorBlendMode": <BlendMode>,
-  ///   "errorBuilder": <WidgetBuilder>,
-  ///   "excludeFromSemantics": <bool>,
-  ///   "filterQuality": <FilterQuality>,
-  ///   "fit": <BoxFit>,
-  ///   "frameBuilder": <ImageFrameBuilder>,
-  ///   "gaplessPlayback": <bool>,
-  ///   "height": <double>,
-  ///   "image": <String | Uint8List>,
-  ///   "isAntiAlias": <bool>,
-  ///   "matchTextDirection": <bool>,
-  ///   "opacity": <double>,
-  ///   "repeat": <ImageRepeat>,
-  ///   "scale": <double>,
-  ///   "semanticLabel": <String>,
-  ///   "width": <double>
+  ///   "alignment": "<Alignment>",
+  ///   "cacheHeight": "<int>",
+  ///   "cacheWidth": "<int>",
+  ///   "centerSlice": "<Rect>",
+  ///   "color": "<Color>",
+  ///   "colorBlendMode": "<BlendMode>",
+  ///   "errorBuilder": "<WidgetBuilder>",
+  ///   "excludeFromSemantics": "<bool>",
+  ///   "filterQuality": "<FilterQuality>",
+  ///   "fit": "<BoxFit>",
+  ///   "frameBuilder": "<ImageFrameBuilder>",
+  ///   "gaplessPlayback": "<bool>",
+  ///   "height": "<double>",
+  ///   "image": "<String> || <Uint8List>",
+  ///   "isAntiAlias": "<bool>",
+  ///   "matchTextDirection": "<bool>",
+  ///   "opacity": "<double>",
+  ///   "repeat": "<ImageRepeat>",
+  ///   "scale": "<double>",
+  ///   "semanticLabel": "<String>",
+  ///   "width": "<double>"
   /// }
   /// ```
   /// The "image" attribute can be either a base64 encoded String, or a

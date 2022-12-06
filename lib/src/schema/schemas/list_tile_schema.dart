@@ -34,6 +34,7 @@ class ListTileSchema {
       'selectedColor': SchemaHelper.objectSchema(ColorSchema.id),
       'selectedTileColor': SchemaHelper.objectSchema(ColorSchema.id),
       'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
       'style': SchemaHelper.objectSchema(ListTileStyleSchema.id),
       'subtitle': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'textColor': SchemaHelper.objectSchema(ColorSchema.id),

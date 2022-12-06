@@ -20,8 +20,8 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "data": <ThemeData>,
-  ///   "isMaterialAppTheme": <bool>
+  ///   "data": "<ThemeData>",
+  ///   "isMaterialAppTheme": "<bool>"
   /// }
   /// ```
   ///

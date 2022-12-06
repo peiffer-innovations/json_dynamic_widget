@@ -28,11 +28,11 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "builder": <ValueWidgetBuilder>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "tween": <Tween>
+  ///   "builder": "<ValueWidgetBuilder>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "tween": "<Tween>"
   /// }
   /// ```
   ///

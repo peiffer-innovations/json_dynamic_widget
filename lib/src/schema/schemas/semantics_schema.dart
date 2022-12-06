@@ -39,6 +39,7 @@ class SemanticsSchema {
       'link': SchemaHelper.boolSchema,
       'liveRegion': SchemaHelper.boolSchema,
       'maxValueLength': SchemaHelper.numberSchema,
+      'mixed': SchemaHelper.boolSchema,
       'multiline': SchemaHelper.boolSchema,
       'namesRoute': SchemaHelper.boolSchema,
       'obscured': SchemaHelper.boolSchema,
@@ -70,6 +71,7 @@ class SemanticsSchema {
       'tagForChildren': SchemaHelper.objectSchema(SemanticsTagSchema.id),
       'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
       'textField': SchemaHelper.boolSchema,
+      'tooltip': SchemaHelper.stringSchema,
       'toggled': SchemaHelper.boolSchema,
       'value': SchemaHelper.stringSchema,
     }

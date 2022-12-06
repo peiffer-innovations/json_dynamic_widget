@@ -1,3 +1,8 @@
+## [6.0.0-prerelease1] - December 5th, 2022
+
+* Preparing for Flutter 3.6
+
+
 ## [5.1.4] - December 1, 2022
 
 * Fixed `transform` arg of Container builder

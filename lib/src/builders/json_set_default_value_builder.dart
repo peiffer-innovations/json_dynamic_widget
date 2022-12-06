@@ -24,7 +24,7 @@ class JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "<key>": <dynamic>
+  ///   "<key>": "<dynamic>"
   /// }
   /// ```
   ///

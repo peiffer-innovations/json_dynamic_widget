@@ -37,15 +37,15 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <WrapAlignment>,
-  ///   "clipBehavior": <Clip>,
-  ///   "crossAxisAlignment": <WrapCrossAlignment>,
-  ///   "direction": <Axis>,
-  ///   "runAlignment": <WrapAlignment>,
-  ///   "runSpacing": <double>,
-  ///   "spacing": <double>,
-  ///   "textDirection": <TextDirection>,
-  ///   "verticalDirection": <VerticalDirection>
+  ///   "alignment": "<WrapAlignment>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "crossAxisAlignment": "<WrapCrossAlignment>",
+  ///   "direction": "<Axis>",
+  ///   "runAlignment": "<WrapAlignment>",
+  ///   "runSpacing": "<double>",
+  ///   "spacing": "<double>",
+  ///   "textDirection": "<TextDirection>",
+  ///   "verticalDirection": "<VerticalDirection>"
   /// }
   /// ```
   ///

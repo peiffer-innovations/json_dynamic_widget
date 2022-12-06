@@ -20,7 +20,7 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "<key>": <JsonWidgetData>
+  ///   "<key>": "<JsonWidgetData>"
   /// }
   /// ```
   ///

@@ -32,13 +32,13 @@ class JsonSliverGridBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "addAutomaticKeepAlives": <bool>,
-  ///   "addRepaintBoundaries": <bool>,
-  ///   "addSemanticIndexes": <bool>,
-  ///   "findChildIndexCallback": <ChildIndexGetter>,
-  ///   "gridDelegate": <SliverGridDelegate>,
-  ///   "semanticIndexCallback": <SemanticIndexCallback>,
-  ///   "semanticIndexOffset": <int>
+  ///   "addAutomaticKeepAlives": "<bool>",
+  ///   "addRepaintBoundaries": "<bool>",
+  ///   "addSemanticIndexes": "<bool>",
+  ///   "findChildIndexCallback": "<ChildIndexGetter>",
+  ///   "gridDelegate": "<SliverGridDelegate>",
+  ///   "semanticIndexCallback": "<SemanticIndexCallback>",
+  ///   "semanticIndexOffset": "<int>"
   /// }
   /// ```
   ///

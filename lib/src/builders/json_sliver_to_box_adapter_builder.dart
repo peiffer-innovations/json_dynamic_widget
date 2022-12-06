@@ -30,12 +30,12 @@ class JsonSliverToBoxAdapterBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "addAutomaticKeepAlives": <bool>,
-  ///   "addRepaintBoundaries": <bool>,
-  ///   "addSemanticIndexes": <bool>,
-  ///   "findChildIndexCallback": <ChildIndexGetter>,
-  ///   "semanticIndexCallback": <SemanticIndexCallback>,
-  ///   "semanticIndexOffset": <int>
+  ///   "addAutomaticKeepAlives": "<bool>",
+  ///   "addRepaintBoundaries": "<bool>",
+  ///   "addSemanticIndexes": "<bool>",
+  ///   "findChildIndexCallback": "<ChildIndexGetter>",
+  ///   "semanticIndexCallback": "<SemanticIndexCallback>",
+  ///   "semanticIndexOffset": "<int>"
   /// }
   /// ```
   ///

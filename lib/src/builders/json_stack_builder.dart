@@ -27,10 +27,10 @@ class JsonStackBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "clipBehavior": <Clip>,
-  ///   "fit": <StackFit>,
-  ///   "textDirection": <TextDirection>
+  ///   "alignment": "<Alignment>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "fit": "<StackFit>",
+  ///   "textDirection": "<TextDirection>"
   /// }
   /// ```
   ///

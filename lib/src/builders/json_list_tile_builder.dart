@@ -29,6 +29,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
     this.selectedColor,
     this.selectedTileColor,
     this.shape,
+    this.splashColor,
     this.style,
     this.subtitle,
     this.textColor,
@@ -62,6 +63,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   final Color? selectedColor;
   final Color? selectedTileColor;
   final ShapeBorder? shape;
+  final Color? splashColor;
   final ListTileStyle? style;
   final JsonWidgetData? subtitle;
   final Color? textColor;
@@ -75,34 +77,35 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "autofocus": <bool>,
-  ///   "contentPadding": <EdgeInsetsGeometry>,
-  ///   "dense": <bool>,
-  ///   "enableFeedback": <bool>,
-  ///   "enabled": <bool>,
-  ///   "focusNode": <Color>,
-  ///   "focusNode": <FocusNode>,
-  ///   "horizontalTitleGap": <double>,
-  ///   "hoverColor": <Color>,
-  ///   "iconColor": <Color>,
-  ///   "isThreeLine": <bool>,
-  ///   "leading": <JsonWidgetData>,
-  ///   "minLeadingWidth": <double>,
-  ///   "minVerticalPadding": <double>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "onLongPress": <VoidCallback>,
-  ///   "onTap": <VoidCallback>,
-  ///   "selectedColor": <Color>,
-  ///   "selected": <bool>,
-  ///   "shape": <ShapeBorder>,
-  ///   "selectedTileColor": <Color>,
-  ///   "style": <ListTileStyle>,
-  ///   "subtitle": <JsonWidgetData>,
-  ///   "textColor": <Color>,
-  ///   "tileColor": <Color>,
-  ///   "title": <JsonWidgetData>,
-  ///   "trailing": <JsonWidgetData>,
-  ///   "visualDensity": <VisualDensity>
+  ///   "autofocus": "<bool>",
+  ///   "contentPadding": "<EdgeInsetsGeometry>",
+  ///   "dense": "<bool>",
+  ///   "enableFeedback": "<bool>",
+  ///   "enabled": "<bool>",
+  ///   "focusNode": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "horizontalTitleGap": "<double>",
+  ///   "hoverColor": "<Color>",
+  ///   "iconColor": "<Color>",
+  ///   "isThreeLine": "<bool>",
+  ///   "leading": "<JsonWidgetData>",
+  ///   "minLeadingWidth": "<double>",
+  ///   "minVerticalPadding": "<double>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onLongPress": "<VoidCallback>",
+  ///   "onTap": "<VoidCallback>",
+  ///   "selectedColor": "<Color>",
+  ///   "selected": "<bool>",
+  ///   "selectedTileColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "splashColor": "<Color>",
+  ///   "style": "<ListTileStyle>",
+  ///   "subtitle": "<JsonWidgetData>",
+  ///   "textColor": "<Color>",
+  ///   "tileColor": "<Color>",
+  ///   "title": "<JsonWidgetData>",
+  ///   "trailing": "<JsonWidgetData>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -182,6 +185,10 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['shape'],
           validate: false,
         ),
+        splashColor: ThemeDecoder.decodeColor(
+          map['splashColor'],
+          validate: false,
+        ),
         style: ThemeDecoder.decodeListTileStyle(
           map['style'],
           validate: false,
@@ -249,6 +256,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
       selectedColor: selectedColor,
       selectedTileColor: selectedTileColor,
       shape: shape,
+      splashColor: splashColor,
       style: style,
       subtitle: subtitle?.build(
         childBuilder: childBuilder,

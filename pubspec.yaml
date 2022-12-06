@@ -20,7 +20,7 @@ dependencies:
   json_class: '^2.1.2+13'
   json_conditional: '^2.1.0+16'
   json_schema2: '^2.0.2+18'
-  json_theme: '^5.0.0-prerelease1'
+  json_theme: '^5.0.0-prerelease3'
   logging: '^1.1.0'
   meta: '^1.7.0'
   template_expressions: '^2.0.0+2'
@@ -29,10 +29,6 @@ dependencies:
 
 false_secrets:
   - 'example/web/index.html'
-
-dependency_overrides:
-  json_theme:
-    path: ../json_theme
 
 dev_dependencies:
   flutter_test:

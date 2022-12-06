@@ -35,14 +35,14 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "controller": <ScrollController>,
-  ///   "interactive": <bool>,
-  ///   "notificationPredicate": <ScrollNotificationPredicate>,
-  ///   "radius": <Radius>,
-  ///   "scrollbarOrientation": <ScrollbarOrientation>,
-  ///   "thickness": <double>,
-  ///   "trackVisibility": <bool>,
-  ///   "thumbVisibility": <bool>
+  ///   "controller": "<ScrollController>",
+  ///   "interactive": "<bool>",
+  ///   "notificationPredicate": "<ScrollNotificationPredicate>",
+  ///   "radius": "<Radius>",
+  ///   "scrollbarOrientation": "<ScrollbarOrientation>",
+  ///   "thickness": "<double>",
+  ///   "trackVisibility": "<bool>",
+  ///   "thumbVisibility": "<bool>"
   /// }
   /// ```
   ///
@@ -96,10 +96,13 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
     );
     return Scrollbar(
       controller: controller,
+      // hoverThickness: @deprecated,
       interactive: interactive,
+      // isAlwaysShown: @deprecated,
       notificationPredicate: notificationPredicate,
       radius: radius,
       scrollbarOrientation: scrollbarOrientation,
+      // showTrackOnHover: @deprecated,
       thickness: thickness,
       thumbVisibility: thumbVisibility,
       trackVisibility: trackVisibility,

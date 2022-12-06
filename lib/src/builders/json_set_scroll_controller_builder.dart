@@ -26,10 +26,10 @@ class JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "debugLabel": <String>,
-  ///   "initialScrollOffset": <double>,
-  ///   "keepScrollOffset": <bool>,
-  ///   "key": <String>
+  ///   "debugLabel": "<String>",
+  ///   "initialScrollOffset": "<double>",
+  ///   "keepScrollOffset": "<bool>",
+  ///   "key": "<String>"
   /// }
   /// ```
   ///

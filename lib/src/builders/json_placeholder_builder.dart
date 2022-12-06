@@ -27,10 +27,10 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "fallbackHeight": <double>,
-  ///   "fallbackWidth": <double>,
-  ///   "strokeWidth": <double>
+  ///   "color": "<Color>",
+  ///   "fallbackHeight": "<double>",
+  ///   "fallbackWidth": "<double>",
+  ///   "strokeWidth": "<double>"
   /// }
   /// ```
   ///

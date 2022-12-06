@@ -20,6 +20,7 @@ class TextButtonSchema {
       'onHover': SchemaHelper.stringSchema,
       'onLongPress': SchemaHelper.stringSchema,
       'onPressed': SchemaHelper.stringSchema,
+      'statesController': SchemaHelper.stringSchema,
       'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
     }
   };

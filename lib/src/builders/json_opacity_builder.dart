@@ -22,8 +22,8 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alwaysIncludeSemantics": <bool>,
-  ///   "opacity": <double>
+  ///   "alwaysIncludeSemantics": "<bool>",
+  ///   "opacity": "<double>"
   /// }
   /// ```
   static JsonOpacityBuilder? fromDynamic(

@@ -45,19 +45,19 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "animationDuration": <int; millis>,
-  ///   "borderOnForeground": <bool>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "materialType": <MaterialType>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "shadowColor": <Color>,
-  ///   "surfaceTintColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "textStyle": <TextStyle>
+  ///   "animationDuration": "<int; millis>",
+  ///   "borderOnForeground": "<bool>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "materialType": "<MaterialType>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
