@@ -369,6 +369,7 @@ class RootPage extends StatelessWidget {
           ),
         ),
     'issue_30': _onJsonPageSelected,
+    'issue_109': _onJsonPageSelected,
     'layout_builder': _onJsonPageSelected,
     'length': _onJsonPageSelected,
     'limited_box': _onJsonPageSelected,
