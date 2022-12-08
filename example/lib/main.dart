@@ -1,10 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
-// ignore: unnecessary_import
-import 'dart:typed_data';
 
-import 'package:automated_testing_framework/automated_testing_framework.dart';
-import 'package:automated_testing_framework_plugin_images/automated_testing_framework_plugin_images.dart';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:example/src/components/clipper.dart';
 import 'package:example/src/custom_function/show_dialog.dart'
@@ -27,10 +23,6 @@ import 'src/full_widget_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  TestAppSettings.initialize(appIdentifier: 'JSON Dynamic Widget');
-  var testRegistry = TestStepRegistry.instance;
-  TestImagesHelper.registerTestSteps(testRegistry);
 
   if (!kIsWeb &&
       (Platform.isLinux ||
@@ -183,132 +175,14 @@ void main() async {
   registry.setValue('customRect', Rect.largest);
   registry.setValue('clipper', Clipper());
 
-  var assetTestStore = AssetTestStore(
-    testAssetIndex: 'assets/testing/tests/all.json',
-  );
-
-  var desktop = !kIsWeb &&
-      (Platform.isFuchsia ||
-          Platform.isLinux ||
-          Platform.isMacOS ||
-          Platform.isWindows);
-
-  var ioTestStore = IoTestStore();
-
-  var testController = TestController(
-    goldenImageWriter:
-        !desktop ? TestStore.goldenImageWriter : ioTestStore.goldenImageWriter,
-    navigatorKey: navigatorKey,
-    onReset: () async => navigatorKey.currentState!.popUntil(
-      (route) => navigatorKey.currentState!.canPop() != true,
-    ),
-    registry: testRegistry,
-    testImageReader: !desktop
-        ? TestStore.testImageReader
-        : (desktop && kDebugMode)
-            ? ioTestStore.testImageReader
-            : ({
-                required TestDeviceInfo deviceInfo,
-                required String imageId,
-                String? suiteName,
-                required String testName,
-                int? testVersion,
-              }) async {
-                var path = 'assets/testing/images';
-
-                if (suiteName?.isNotEmpty == true) {
-                  path = '${path}/_Suite_${suiteName}_';
-                } else {
-                  path = '$path/';
-                }
-
-                path = '${path}Test_${testName}_$imageId.png';
-
-                Uint8List? image;
-
-                try {
-                  image = (await rootBundle.load(path)).buffer.asUint8List();
-                } catch (e) {
-                  // no_op
-                }
-
-                return image;
-              },
-    testReader: kIsWeb || !kDebugMode || !desktop
-        ? assetTestStore.testReader
-        : ioTestStore.testReader,
-    testReporter: !desktop ? TestStore.testReporter : ioTestStore.testReporter,
-    testWriter:
-        !desktop ? ClipboardTestStore.testWriter : ioTestStore.testWriter,
-    variables: {
-      CompareGoldenImageStep.kDisableGoldenImageFailOnMissingVariable:
-          kIsWeb || kDebugMode,
-    },
-  );
-
   runApp(
-    TestRunner(
-      controller: testController,
-      enabled: !kReleaseMode,
-      testableRenderController: TestableRenderController(
-        gestures: TestableGestures(
-          overlayDoubleTap: TestableGestureAction.toggle_global_overlay,
-          overlayLongPress: TestableGestureAction.toggle_overlay,
-          overlayTap: TestableGestureAction.open_test_actions_page,
-          widgetDoubleTap: null,
-          widgetLongPress: TestableGestureAction.toggle_overlay,
-        ),
-      ),
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: RootPage(),
+      navigatorKey: navigatorKey,
       theme: ThemeData.light(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: kReleaseMode
-            ? RootPage()
-            : ResetPage(
-                navigatorKey: navigatorKey,
-              ),
-        navigatorKey: navigatorKey,
-        theme: ThemeData.light(),
-      ),
     ),
   );
-}
-
-class ResetPage extends StatefulWidget {
-  ResetPage({
-    Key? key,
-    required this.navigatorKey,
-  }) : super(key: key);
-
-  final GlobalKey<NavigatorState> navigatorKey;
-
-  @override
-  ResetPageState createState() => ResetPageState();
-}
-
-class ResetPageState extends State<ResetPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    _navigateHome();
-  }
-
-  Future<void> _navigateHome() async {
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 300));
-      await Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (_) => RootPage(),
-        ),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) => Center(
-        child: CircularProgressIndicator(),
-      );
 }
 
 class RootPage extends StatelessWidget {
@@ -401,40 +275,13 @@ class RootPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        actions: !kIsWeb && kDebugMode
-            ? [
-                IconButton(
-                  icon: Icon(Icons.bug_report),
-                  onPressed: () async {
-                    var testController = TestController.of(context)!;
-                    var tests = await testController.loadTests(context);
-
-                    var passed = true;
-                    for (var test in tests!) {
-                      var report = await testController.executeTest(
-                        test: await test.loader.load(ignoreImages: true),
-                      );
-
-                      if (report.success) {
-                        await testController.goldenImageWriter(report);
-                      }
-
-                      passed = passed && report.success;
-                    }
-                  },
-                ),
-              ]
-            : null,
         title: Text('Select Widget / Page'),
       ),
       body: ListView.builder(
         itemCount: _pages.length,
-        itemBuilder: (BuildContext context, int index) => Testable(
-          id: 'home_${names[index]}',
-          child: ListTile(
-            title: Text(names[index]),
-            onTap: () => _pages[names[index]]!(context, names[index]),
-          ),
+        itemBuilder: (BuildContext context, int index) => ListTile(
+          title: Text(names[index]),
+          onTap: () => _pages[names[index]]!(context, names[index]),
         ),
       ),
     );
