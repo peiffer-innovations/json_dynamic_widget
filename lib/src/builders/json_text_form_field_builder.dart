@@ -422,6 +422,15 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         widget.builder.controller.value = textValue;
       }
     });
+
+    widget.builder.controller.addListener(() {
+      if (widget.data.id.isNotEmpty == true) {
+        widget.data.registry.setValue(
+          widget.data.id,
+          widget.builder.controller.text,
+        );
+      }
+    });
   }
 
   @override
@@ -431,13 +440,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         autofocus: widget.builder.autofocus,
         autovalidateMode: widget.builder.autovalidateMode,
         buildCounter: widget.builder.buildCounter,
-        controller: widget.builder.controller
-          ..addListener(() {
-            if (widget.data.id.isNotEmpty == true) {
-              widget.data.registry
-                  .setValue(widget.data.id, widget.builder.controller.text);
-            }
-          }),
+        controller: widget.builder.controller,
         cursorColor: widget.builder.cursorColor,
         cursorHeight: widget.builder.cursorHeight,
         cursorRadius: widget.builder.cursorRadius,
