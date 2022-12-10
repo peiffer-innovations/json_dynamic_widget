@@ -1,4 +1,9 @@
-## [5.1.5] - December 10, 2022
+## [5.1.6] - December 10th, 2022
+
+* Fixed text input self-subscribing to change events: [Issue 109](https://github.com/peiffer-innovations/json_dynamic_widget/issues/109)
+
+
+## [5.1.5] - December 10th, 2022
 
 * Fixed `labelStyle` arg of input_decorator decoder
 

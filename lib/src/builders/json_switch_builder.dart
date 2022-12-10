@@ -217,7 +217,10 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   @override
   void remove(JsonWidgetData data) {
     if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
+      data.registry.removeValue(
+        data.id,
+        originator: data.id,
+      );
     }
 
     super.remove(data);
@@ -252,7 +255,11 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
               );
 
               if (data.id.isNotEmpty == true) {
-                data.registry.setValue('${data.id}.error', error ?? '');
+                data.registry.setValue(
+                  '${data.id}.error',
+                  error ?? '',
+                  originator: '${data.id}.error',
+                );
               }
 
               return error;
@@ -286,7 +293,11 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
                     state.didChange(value);
 
                     if (data.id.isNotEmpty == true) {
-                      data.registry.setValue(data.id, value);
+                      data.registry.setValue(
+                        data.id,
+                        value,
+                        originator: data.id,
+                      );
                     }
                   },
             onInactiveThumbImageError: onInactiveThumbImageError,

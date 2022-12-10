@@ -205,7 +205,10 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   @override
   void remove(JsonWidgetData data) {
     if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
+      data.registry.removeValue(
+        data.id,
+        originator: data.id,
+      );
     }
 
     super.remove(data);
@@ -305,8 +308,16 @@ class _JsonDropdownButtonFormFieldWidgetState
         _selectedItemBuilder = (BuildContext context) {
           var widgets = <Widget>[];
           itemEntries.forEach((key, value) {
-            widget.data.registry.setValue('dropdown_item_display', key);
-            widget.data.registry.setValue('dropdown_item_value', value);
+            widget.data.registry.setValue(
+              'dropdown_item_display',
+              key,
+              originator: null,
+            );
+            widget.data.registry.setValue(
+              'dropdown_item_value',
+              value,
+              originator: null,
+            );
 
             widget.builder.selectedItemBuilder.recreate().build(
                   childBuilder: widget.childBuilder,
@@ -371,6 +382,7 @@ class _JsonDropdownButtonFormFieldWidgetState
                   widget.data.registry.setValue(
                     widget.data.id,
                     value,
+                    originator: widget.data.id,
                   );
                 }
               },
@@ -387,8 +399,11 @@ class _JsonDropdownButtonFormFieldWidgetState
                 );
 
                 if (widget.data.id.isNotEmpty == true) {
-                  widget.data.registry
-                      .setValue('${widget.data.id}.error', error ?? '');
+                  widget.data.registry.setValue(
+                    '${widget.data.id}.error',
+                    error ?? '',
+                    originator: widget.data.id,
+                  );
                 }
 
                 return error;

@@ -108,14 +108,21 @@ class _JsonSetScrollControllerWidgetState
       keepScrollOffset: widget.builder.keepScrollOffset,
     );
 
-    widget.data.registry.setValue(widget.builder.key, _controller);
+    widget.data.registry.setValue(
+      widget.builder.key,
+      _controller,
+      originator: null,
+    );
     widget.data.children?.forEach((e) => e.recreate());
   }
 
   @override
   void dispose() {
     _controller.dispose();
-    widget.data.registry.removeValue(widget.builder.key);
+    widget.data.registry.removeValue(
+      widget.builder.key,
+      originator: null,
+    );
 
     super.dispose();
   }

@@ -170,7 +170,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   @override
   void remove(JsonWidgetData data) {
     if (id?.isNotEmpty == true) {
-      data.registry.removeValue(id!);
+      data.registry.removeValue(
+        id!,
+        originator: id!,
+      );
     }
 
     super.remove(data);
@@ -231,15 +234,20 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
   void initState() {
     super.initState();
 
-    _subscriptions.add(widget.data.registry.valueStream.listen((event) {
-      if (event == widget.builder.id) {
-        if (mounted == true) {
-          _globalKey.currentState!.didChange(
-            widget.data.registry.getValue(widget.builder.id),
-          );
-        }
-      }
-    }));
+    _subscriptions.add(
+      widget.data.registry.valueStream
+          .where((event) =>
+              !event.isSelfTriggered && event.id == widget.builder.id)
+          .listen(
+        (event) {
+          if (mounted == true) {
+            _globalKey.currentState!.didChange(
+              widget.data.registry.getValue(widget.builder.id),
+            );
+          }
+        },
+      ),
+    );
   }
 
   @override
@@ -268,8 +276,11 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
               );
 
               if (widget.data.id.isNotEmpty == true) {
-                widget.data.registry
-                    .setValue('${widget.builder.id}.error', error ?? '');
+                widget.data.registry.setValue(
+                  '${widget.builder.id}.error',
+                  error ?? '',
+                  originator: '${widget.builder.id}.error',
+                );
               }
 
               return error;
@@ -297,7 +308,11 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
                     state.didChange(value);
 
                     if (widget.builder.id?.isNotEmpty == true) {
-                      widget.data.registry.setValue(widget.builder.id!, value);
+                      widget.data.registry.setValue(
+                        widget.builder.id!,
+                        value,
+                        originator: widget.builder.id!,
+                      );
                     }
                   },
             overlayColor: widget.builder.overlayColor,

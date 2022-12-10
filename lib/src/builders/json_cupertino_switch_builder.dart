@@ -124,7 +124,10 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    data.registry.removeValue(data.id);
+    data.registry.removeValue(
+      data.id,
+      originator: data.id,
+    );
 
     super.remove(data);
   }
@@ -159,7 +162,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
               );
 
               if (data.id.isNotEmpty == true) {
-                data.registry.setValue('${data.id}.error', error ?? '');
+                data.registry.setValue(
+                  '${data.id}.error',
+                  error ?? '',
+                  originator: data.id,
+                );
               }
 
               return error;
@@ -180,7 +187,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
                     state.didChange(value);
 
                     if (data.id.isNotEmpty == true) {
-                      data.registry.setValue(data.id, value);
+                      data.registry.setValue(
+                        data.id,
+                        value,
+                        originator: data.id,
+                      );
                     }
                   },
             thumbColor: thumbColor,

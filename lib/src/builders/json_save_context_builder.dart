@@ -79,7 +79,10 @@ class _JsonSaveContextWidget extends StatefulWidget {
 class _JsonSaveContextWidgetState extends State<_JsonSaveContextWidget> {
   @override
   void dispose() {
-    widget.data.registry.removeValue(widget.builder.key);
+    widget.data.registry.removeValue(
+      widget.builder.key,
+      originator: widget.builder.key,
+    );
 
     super.dispose();
   }
@@ -87,7 +90,11 @@ class _JsonSaveContextWidgetState extends State<_JsonSaveContextWidget> {
   @override
   Widget build(BuildContext context) => Builder(
         builder: (BuildContext context) {
-          widget.data.registry.setValue(widget.builder.key, context);
+          widget.data.registry.setValue(
+            widget.builder.key,
+            context,
+            originator: widget.builder.key,
+          );
           return widget.data.children?.isNotEmpty == true
               ? widget.data.children![0].build(
                   childBuilder: widget.childBuilder,

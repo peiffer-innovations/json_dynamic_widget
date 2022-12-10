@@ -48,7 +48,12 @@ class JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
 
   @override
   void remove(JsonWidgetData data) {
-    values?.forEach((key, _) => data.registry.removeValue(key));
+    values?.forEach(
+      (key, _) => data.registry.removeValue(
+        key,
+        originator: null,
+      ),
+    );
 
     super.remove(data);
   }
@@ -66,7 +71,11 @@ class JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
     );
     values?.forEach((key, value) {
       if (data.registry.getValue(key) == null) {
-        data.registry.setValue(key, value);
+        data.registry.setValue(
+          key,
+          value,
+          originator: null,
+        );
       }
     });
 
