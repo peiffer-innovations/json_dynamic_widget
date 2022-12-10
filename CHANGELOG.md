@@ -1,3 +1,8 @@
+## [5.1.5] - December 10, 2022
+
+* Fixed `labelStyle` arg of input_decorator decoder
+
+
 ## [5.1.4] - December 1, 2022
 
 * Fixed `transform` arg of Container builder
