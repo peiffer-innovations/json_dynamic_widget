@@ -111,14 +111,21 @@ class _JsonFormWidgetState extends State<_JsonFormWidget> {
     super.initState();
 
     _key = GlobalKey<FormState>();
-    widget.data.registry.setValue('${widget.data.id}.key', _key);
+    widget.data.registry.setValue(
+      '${widget.data.id}.key',
+      _key,
+      originator: '${widget.data.id}.key',
+    );
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    widget.data.registry.removeValue('${widget.data.id}.key');
+    widget.data.registry.removeValue(
+      '${widget.data.id}.key',
+      originator: '${widget.data.id}.key',
+    );
   }
 
   @override

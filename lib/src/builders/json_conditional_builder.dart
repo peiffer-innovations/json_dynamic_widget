@@ -121,7 +121,7 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
   late JsonWidgetData _data;
   late Set<String> _keys;
   JsonWidgetData? _onFalse;
-  StreamSubscription<String?>? _subscription;
+  StreamSubscription<WidgetValueChanged>? _subscription;
 
   @override
   void initState() {
@@ -144,8 +144,8 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
     super.dispose();
   }
 
-  void _handleSubscription(String? event) {
-    if (_keys.contains(event) == true) {
+  void _handleSubscription(WidgetValueChanged event) {
+    if (_keys.contains(event.id) == true) {
       _data = _data.recreate();
 
       final builder = _data.builder() as JsonConditionalBuilder;

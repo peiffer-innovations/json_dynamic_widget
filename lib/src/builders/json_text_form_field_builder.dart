@@ -346,7 +346,10 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   @override
   void remove(JsonWidgetData data) {
     if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
+      data.registry.removeValue(
+        data.id,
+        originator: data.id,
+      );
     }
 
     super.remove(data);
@@ -397,10 +400,13 @@ class _JsonTextFormFieldWidget extends StatefulWidget {
 
 class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
   InputDecoration? _decoration;
+  String _text = '';
 
   @override
   void initState() {
     super.initState();
+
+    _text = widget.builder.controller.text;
 
     if (widget.builder.decoration != null) {
       _decoration = InputDecorationDecoder.fromDynamic(
@@ -410,10 +416,12 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         registry: widget.data.registry,
       );
     }
-    widget.data.registry.valueStream.listen((event) {
-      if (event == widget.data.id) {
-        final value = widget.data.registry.getValue(widget.data.id);
-        final textValue = widget.builder.controller.value.copyWith(
+    widget.data.registry.valueStream
+        .where((event) => !event.isSelfTriggered && event.id == widget.data.id)
+        .listen(
+      (event) {
+        String value = widget.data.registry.getValue(widget.data.id);
+        var textValue = widget.builder.controller.value.copyWith(
             text: value,
             selection: TextSelection(
               baseOffset: value.length,
@@ -421,6 +429,18 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
             ),
             composing: TextRange(start: 0, end: value.length));
         widget.builder.controller.value = textValue;
+      },
+    );
+
+    widget.builder.controller.addListener(() {
+      if (widget.data.id.isNotEmpty == true &&
+          _text != widget.builder.controller.text) {
+        _text = widget.builder.controller.text;
+        widget.data.registry.setValue(
+          widget.data.id,
+          _text,
+          originator: widget.data.id,
+        );
       }
     });
   }
@@ -433,13 +453,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         autovalidateMode: widget.builder.autovalidateMode,
         buildCounter: widget.builder.buildCounter,
         contextMenuBuilder: widget.builder.contextMenuBuilder,
-        controller: widget.builder.controller
-          ..addListener(() {
-            if (widget.data.id.isNotEmpty == true) {
-              widget.data.registry
-                  .setValue(widget.data.id, widget.builder.controller.text);
-            }
-          }),
+        controller: widget.builder.controller,
         cursorColor: widget.builder.cursorColor,
         cursorHeight: widget.builder.cursorHeight,
         cursorRadius: widget.builder.cursorRadius,
@@ -501,8 +515,11 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
                   value: value?.toString(),
                 );
 
-                widget.data.registry
-                    .setValue('${widget.data.id}.error', error ?? '');
+                widget.data.registry.setValue(
+                  '${widget.data.id}.error',
+                  error ?? '',
+                  originator: widget.data.id,
+                );
 
                 return error;
               },

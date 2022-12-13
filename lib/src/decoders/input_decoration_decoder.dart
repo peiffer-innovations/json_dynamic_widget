@@ -103,7 +103,7 @@ class InputDecorationDecoder {
               ? null
               : JsonClass.parseBool(map['isDense']),
           labelStyle: ThemeDecoder.decodeTextStyle(
-            map['labelStype'],
+            map['labelStyle'],
             validate: false,
           ),
           labelText: map['labelText'],

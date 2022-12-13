@@ -1,6 +1,16 @@
-## [6.0.0-prerelease1] - December 5th, 2022
+## [6.0.0-prerelease1] - December 12th, 2022
 
 * Preparing for Flutter 3.6
+
+
+## [5.1.6] - December 10th, 2022
+
+* Fixed text input self-subscribing to change events: [Issue 109](https://github.com/peiffer-innovations/json_dynamic_widget/issues/109)
+
+
+## [5.1.5] - December 10th, 2022
+
+* Fixed `labelStyle` arg of input_decorator decoder
 
 
 ## [5.1.4] - December 1, 2022

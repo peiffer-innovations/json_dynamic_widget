@@ -48,7 +48,10 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
 
   @override
   void remove(JsonWidgetData data) {
-    values?.forEach((key, _) => data.registry.removeValue(key));
+    values?.forEach((key, _) => data.registry.removeValue(
+          key,
+          originator: null,
+        ));
 
     super.remove(data);
   }
@@ -64,7 +67,13 @@ class JsonSetValueBuilder extends JsonWidgetBuilder {
       data.children?.length == 1 || data.children?.isNotEmpty != true,
       '[JsonSetValueBuilder] only supports zero or one child.',
     );
-    values?.forEach((key, value) => data.registry.setValue(key, value));
+    values?.forEach(
+      (key, value) => data.registry.setValue(
+        key,
+        value,
+        originator: null,
+      ),
+    );
 
     var child = data.children?.isNotEmpty == true ? data.children![0] : null;
     child = child?.recreate();

@@ -13,5 +13,6 @@ class RemoveValueFunction {
   }) =>
       () => registry.removeValue(
             args![0],
+            originator: null,
           );
 }

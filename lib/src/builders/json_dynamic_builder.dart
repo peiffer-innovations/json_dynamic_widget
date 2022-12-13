@@ -144,7 +144,7 @@ class _DynamicWidget extends StatefulWidget {
 
 class _DynamicWidgetState extends State<_DynamicWidget> {
   late JsonWidgetData _data;
-  late StreamSubscription<String?>? _subscription;
+  late StreamSubscription<WidgetValueChanged>? _subscription;
 
   @override
   Widget build(BuildContext context) {
@@ -187,8 +187,8 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
     );
   }
 
-  void _handleSubscription(String? event) {
-    if (event == _data.id) {
+  void _handleSubscription(WidgetValueChanged event) {
+    if (event.id == _data.id && event.originator != _data.id) {
       _data = _data.recreate(_data.registry);
       if (mounted == true) {
         setState(() {});

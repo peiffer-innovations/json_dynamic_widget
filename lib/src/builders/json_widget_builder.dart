@@ -175,7 +175,7 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
     _data = widget.data;
 
     _subscription = widget.data.registry.valueStream.listen((event) {
-      if (_data.listenVariables.contains(event) == true) {
+      if (_data.listenVariables.contains(event.id) == true) {
         _data = _data.recreate();
         if (mounted == true) {
           setState(() {});

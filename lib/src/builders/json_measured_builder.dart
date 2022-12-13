@@ -77,10 +77,12 @@ class _MeasuredState extends State<_Measured> {
         widget.data.registry.setValue(
           '${widget.data.id}.height',
           boundary.size.height,
+          originator: '${widget.data.id}.height',
         );
         widget.data.registry.setValue(
           '${widget.data.id}.width',
           boundary.size.width,
+          originator: '${widget.data.id}.width',
         );
       }
     });

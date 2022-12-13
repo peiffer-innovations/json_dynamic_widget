@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -10,39 +11,34 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// of [JsonDynamicBuilder] which listen to [DynamicOperation.builder] variable.
 class DynamicFunction {
   static const key = 'dynamic';
-  static final JsonWidgetFunction body = (
-          {required List<dynamic>? args,
-          required JsonWidgetRegistry registry}) =>
+  static final JsonWidgetFunction body = ({
+    required List<dynamic>? args,
+    required JsonWidgetRegistry registry,
+  }) =>
       () {
         if (args != null) {
           args
-              .map(
-                (dynamicOperationVarName) =>
-                    registry.getValue(dynamicOperationVarName),
-              )
-              .map(
-                (json) => _executeFunctions(
-                  Map<String, dynamic>.from(json),
-                ),
-              )
-              .map(
-                (json) => DynamicOperation.fromJson(json),
-              )
-              .forEach(
-                (json) => _execute(json, registry),
-              );
+              .map((key) => registry.getValue(key))
+              .map((json) => _executeFunctions(Map<String, dynamic>.from(json)))
+              .map((json) => DynamicOperation.fromJson(json))
+              .forEach((json) => _execute(json, registry));
         }
       };
 
-  static void _execute(final DynamicOperation dynamicOperation,
-      final JsonWidgetRegistry registry) {
-    final childrenJson =
-        json.encode(registry.getValue(dynamicOperation.builder));
-    final childrenData =
+  static void _execute(
+    final DynamicOperation dynamicOperation,
+    final JsonWidgetRegistry registry,
+  ) {
+    var childrenJson = json.encode(registry.getValue(dynamicOperation.builder));
+    var childrenData =
         List<Map<String, dynamic>>.from(json.decode(childrenJson));
     final index = dynamicOperation.findIndex(childrenData);
     dynamicOperation.execute(childrenData, index);
-    registry.setValue(dynamicOperation.builder, childrenData);
+    registry.setValue(
+      dynamicOperation.builder,
+      childrenData,
+      originator: null,
+    );
   }
 
   static Map<String, dynamic> _executeFunctions(

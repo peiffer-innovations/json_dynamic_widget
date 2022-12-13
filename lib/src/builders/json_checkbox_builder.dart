@@ -192,7 +192,10 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   /// [JsonWidgetRegistry].
   @override
   void remove(JsonWidgetData data) {
-    data.registry.removeValue(data.id);
+    data.registry.removeValue(
+      data.id,
+      originator: data.id,
+    );
 
     super.remove(data);
   }
@@ -227,7 +230,11 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
                 value: value?.toString(),
               );
 
-              data.registry.setValue('${data.id}.error', error ?? '');
+              data.registry.setValue(
+                '${data.id}.error',
+                error ?? '',
+                originator: data.id,
+              );
 
               return error;
             },
@@ -255,7 +262,11 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
 
                     state.didChange(value);
 
-                    data.registry.setValue(data.id, value);
+                    data.registry.setValue(
+                      data.id,
+                      value,
+                      originator: data.id,
+                    );
                   },
             overlayColor: overlayColor,
             shape: shape,

@@ -45,8 +45,13 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
 
       result = JsonSetWidgetBuilder(widgets: widgets);
       registry ??= JsonWidgetRegistry.instance;
-      result.widgets
-          ?.forEach((key, value) => innerRegistry.setValue(key, value));
+      result.widgets?.forEach(
+        (key, value) => innerRegistry.setValue(
+          key,
+          value,
+          originator: null,
+        ),
+      );
     }
 
     return result;
@@ -74,7 +79,12 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
 
   @override
   void remove(JsonWidgetData data) {
-    widgets?.forEach((key, _) => data.registry.removeValue(key));
+    widgets?.forEach(
+      (key, _) => data.registry.removeValue(
+        key,
+        originator: null,
+      ),
+    );
 
     super.remove(data);
   }

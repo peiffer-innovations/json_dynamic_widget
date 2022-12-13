@@ -35,8 +35,16 @@ class ForEachFunction {
           parent: registry,
         );
         _logger.finest('[$index] [$value]');
-        reg.setValue(varName, value);
-        reg.setValue(keyName, index++);
+        reg.setValue(
+          varName,
+          value,
+          originator: null,
+        );
+        reg.setValue(
+          keyName,
+          index++,
+          originator: null,
+        );
 
         results.add(
           DeferredJsonWidgetData(
@@ -49,8 +57,16 @@ class ForEachFunction {
       for (var entry in iterable.entries) {
         final reg = JsonWidgetRegistry(parent: registry);
         _logger.finest('[${entry.key}] [${entry.value}]');
-        reg.setValue(varName, entry.value);
-        reg.setValue(keyName, entry.key);
+        reg.setValue(
+          varName,
+          entry.value,
+          originator: null,
+        );
+        reg.setValue(
+          keyName,
+          entry.key,
+          originator: null,
+        );
 
         results.add(
           DeferredJsonWidgetData(

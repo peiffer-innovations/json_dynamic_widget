@@ -79,9 +79,9 @@ class JsonWidgetRegistry {
       StreamController<void>.broadcast();
   late Logger _logger;
   StreamSubscription<void>? _parentDisposeStreamSubscription;
-  StreamSubscription<String>? _parentValueStreamSubscription;
-  StreamController<String>? _valueStreamController =
-      StreamController<String>.broadcast();
+  StreamSubscription<WidgetValueChanged>? _parentValueStreamSubscription;
+  StreamController<WidgetValueChanged>? _valueStreamController =
+      StreamController<WidgetValueChanged>.broadcast();
 
   /// A navigator key that is required in order to use the
   /// [fun_key_navigate_named] and [fun_key_navigate_pop] functions.  This holds
@@ -115,14 +115,22 @@ class JsonWidgetRegistry {
 
   /// Returns the [Stream] that an element can listen to in order to be notified
   /// when a value has changed.
-  Stream<String> get valueStream => _valueStreamController!.stream;
+  Stream<WidgetValueChanged> get valueStream => _valueStreamController!.stream;
 
   /// Removes all variable values from the registry
   void clearValues() {
     final keys = Set<String>.from(_values.keys);
     _values.clear();
 
-    keys.forEach((element) => _valueStreamController?.add(element));
+    keys.forEach(
+      (element) => _valueStreamController?.add(
+        WidgetValueChanged(
+          id: element,
+          originator: null,
+          value: null,
+        ),
+      ),
+    );
   }
 
   // Copies the contents of the registry into a new registry.
@@ -301,13 +309,24 @@ class JsonWidgetRegistry {
   /// If, and only if, the [key] was registered on the registry will this fire
   /// an event on the [valueStream] with the [key] so listeners can be notified
   /// that the value has changed.
-  dynamic removeValue(String key) {
+  ///
+  /// This accepts an optional [originator] to allow widgets that remove values
+  /// to know when the stream fires if they are responding to their own event or
+  /// not.
+  dynamic removeValue(
+    String key, {
+    String? originator,
+  }) {
     assert(key.isNotEmpty == true);
 
     final hasKey = _values.containsKey(key);
     final result = _values.remove(key);
     if (hasKey == true) {
-      _valueStreamController?.add(key);
+      _valueStreamController?.add(WidgetValueChanged(
+        id: key,
+        originator: originator,
+        value: null,
+      ));
     }
 
     return result;
@@ -319,13 +338,21 @@ class JsonWidgetRegistry {
   /// If the [value] is different than the current value for the [key] then this
   /// will fire an event on the [valueStream] with the [key] so listeners can be
   /// notified that it has changed.
+  ///
+  /// This accepts an optional [originator] to allow widgets that set values to
+  /// know when the stream fires if they are responding to their own event or
+  /// not.
   void setValue(
     String key,
-    dynamic value,
-  ) {
+    dynamic value, {
+    String? originator,
+  }) {
     assert(key.isNotEmpty == true);
     if (value == null) {
-      removeValue(key);
+      removeValue(
+        key,
+        originator: originator,
+      );
     } else {
       final current = _values[key];
 
@@ -338,7 +365,11 @@ class JsonWidgetRegistry {
           '[setValue]: [$key] = [${value?.toString().substring(0, min(80, value?.toString().length ?? 0))}]',
         );
         _values[key] = value;
-        _valueStreamController?.add(key);
+        _valueStreamController?.add(WidgetValueChanged(
+          id: key,
+          originator: originator,
+          value: value,
+        ));
       }
     }
   }

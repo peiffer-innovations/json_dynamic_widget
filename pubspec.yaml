@@ -3,9 +3,6 @@ description: 'A library to dynamically generate widgets within Flutter from JSON
 homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget'
 version: '6.0.0-prerelease1'
 
-environment:
-  sdk: '>=2.19.0-374.1.beta <3.0.0'
-
 analyzer:
   exclude:
     - 'lib/generated/**'
