@@ -1,3 +1,8 @@
+## [5.1.6+1] - December 13, 2022
+
+* Automated dependency updates
+
+
 ## [5.1.6] - December 10th, 2022
 
 * Fixed text input self-subscribing to change events: [Issue 109](https://github.com/peiffer-innovations/json_dynamic_widget/issues/109)
@@ -428,6 +433,7 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
