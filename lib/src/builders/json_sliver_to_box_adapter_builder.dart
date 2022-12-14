@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [SliverToBoxAdapter] widget.  See the
 /// [fromDynamic] for the format.
 class JsonSliverToBoxAdapterBuilder extends JsonWidgetBuilder {
-  JsonSliverToBoxAdapterBuilder({
+  const JsonSliverToBoxAdapterBuilder({
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,

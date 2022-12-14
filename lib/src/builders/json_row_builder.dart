@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Row] widget.  See the [fromDynamic] for the
 /// format.
 class JsonRowBuilder extends JsonWidgetBuilder {
-  JsonRowBuilder({
+  const JsonRowBuilder({
     required this.crossAxisAlignment,
     required this.mainAxisAlignment,
     required this.mainAxisSize,

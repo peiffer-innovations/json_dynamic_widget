@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Form] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFormBuilder extends JsonWidgetBuilder {
-  JsonFormBuilder({
+  const JsonFormBuilder({
     this.autovalidateMode,
     this.onChanged,
     this.onWillPop,
@@ -86,7 +86,7 @@ class JsonFormBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonFormWidget extends StatefulWidget {
-  _JsonFormWidget({
+  const _JsonFormWidget({
     required this.builder,
     required this.child,
     required this.childBuilder,

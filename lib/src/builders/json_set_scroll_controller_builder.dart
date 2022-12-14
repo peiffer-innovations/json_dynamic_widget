@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that creates a scroll controller and then sets it as a variable
 /// using the "key" name.
 class JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
-  JsonSetScrollControllerBuilder({
+  const JsonSetScrollControllerBuilder({
     this.debugLabel,
     this.initialScrollOffset,
     required this.keepScrollOffset,
@@ -78,7 +78,7 @@ class JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonSetScrollControllerWidget extends StatefulWidget {
-  _JsonSetScrollControllerWidget({
+  const _JsonSetScrollControllerWidget({
     required this.builder,
     required this.childBuilder,
     required this.data,

@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Container] widget.  See the [fromDynamic] for the
 /// format.
 class JsonContainerBuilder extends JsonWidgetBuilder {
-  JsonContainerBuilder({
+  const JsonContainerBuilder({
     this.alignment,
     required this.clipBehavior,
     this.color,

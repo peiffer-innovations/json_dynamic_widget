@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ButtonBar] widget.  See the [fromDynamic] for the
 /// format.
 class JsonButtonBarBuilder extends JsonWidgetBuilder {
-  JsonButtonBarBuilder({
+  const JsonButtonBarBuilder({
     this.alignment,
     this.buttonAlignedDropdown,
     this.buttonHeight,

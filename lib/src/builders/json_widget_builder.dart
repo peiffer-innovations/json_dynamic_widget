@@ -14,14 +14,14 @@ import 'package:meta/meta.dart';
 abstract class JsonWidgetBuilder {
   /// Constructs the builder by stating whether the widget being built is a
   /// [PreferredSizeWidget] or not.
-  JsonWidgetBuilder({
+  const JsonWidgetBuilder({
     this.preferredSizeWidget = false,
     required this.numSupportedChildren,
   }) : assert(numSupportedChildren >= -1);
 
   static final JsonWidgetData kDefaultChild = JsonWidgetData(
     args: const {},
-    builder: () => JsonSizedBoxBuilder(),
+    builder: () => const JsonSizedBoxBuilder(),
     child: null,
     listenVariables: const {},
     registry: JsonWidgetRegistry.instance,
@@ -143,7 +143,7 @@ abstract class JsonWidgetBuilder {
 }
 
 class _JsonWidgetStateful extends StatefulWidget {
-  _JsonWidgetStateful({
+  const _JsonWidgetStateful({
     required this.childBuilder,
     required this.customBuilder,
     required this.data,

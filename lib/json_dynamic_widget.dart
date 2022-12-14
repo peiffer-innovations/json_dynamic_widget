@@ -4,11 +4,6 @@ export 'src/builders/json_widget_builder.dart';
 export 'src/components/functions/json_widget_internal_functions.dart';
 export 'src/components/json_widget_internal_builders.dart';
 export 'src/components/json_widget_registry.dart';
-export 'src/builders/json_widget_internal_builders.dart';
-//
-export 'src/components/functions/json_widget_internal_functions.dart';
-//
-export 'src/components/json_widget_registry.dart';
 //
 export 'src/components/processors/arg_processor.dart';
 export 'src/components/processors/expression_arg_processor.dart';

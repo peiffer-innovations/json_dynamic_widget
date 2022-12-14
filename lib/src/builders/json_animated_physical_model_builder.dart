@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedPhysicalModel] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
-  JsonAnimatedPhysicalModelBuilder({
+  const JsonAnimatedPhysicalModelBuilder({
     this.animateColor,
     this.animateShadowColor,
     this.borderRadius,
@@ -131,7 +131,7 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedPhysicalModel extends StatefulWidget {
-  _JsonAnimatedPhysicalModel({
+  const _JsonAnimatedPhysicalModel({
     required this.builder,
     required this.child,
     required this.childBuilder,

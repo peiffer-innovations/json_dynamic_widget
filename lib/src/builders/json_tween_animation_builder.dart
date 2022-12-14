@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [TweenAnimationBuilder] widget.
 /// See the [fromDynamic] for the format.
 class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
-  JsonTweenAnimationBuilder({
+  const JsonTweenAnimationBuilder({
     required this.builder,
     this.curve,
     required this.duration,
@@ -83,7 +83,7 @@ class JsonTweenAnimationBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonTweenAnimation extends StatefulWidget {
-  _JsonTweenAnimation({
+  const _JsonTweenAnimation({
     required this.builder,
     required this.childBuilder,
     required this.data,

@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [IndexedStack] widget.  See the [fromDynamic] for
 /// the format.
 class JsonIndexedStackBuilder extends JsonWidgetBuilder {
-  JsonIndexedStackBuilder({
+  const JsonIndexedStackBuilder({
     required this.alignment,
     required this.clipBehavior,
     this.index,

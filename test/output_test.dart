@@ -13,7 +13,7 @@ void main() {
 
     output.createSync(recursive: true);
 
-    final encoder = const JsonEncoder.withIndent('  ');
+    const encoder = JsonEncoder.withIndent('  ');
     for (var schema in JsonDynamicWidgetSchemas.all.values) {
       for (var i = 0; i < 3; i++) {
         try {

@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Scrollbar] widget.  See the [fromDynamic] for the
 /// format.
 class JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
-  JsonScrollConfigurationBuilder({
+  const JsonScrollConfigurationBuilder({
     this.dragDevices,
     this.overscroll,
     this.physics,

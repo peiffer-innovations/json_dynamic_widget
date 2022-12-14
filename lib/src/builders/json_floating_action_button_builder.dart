@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [FloatingActionButton] widget.
 /// See the [fromDynamic] for the format.
 class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
-  JsonFloatingActionButtonBuilder({
+  const JsonFloatingActionButtonBuilder({
     required this.autofocus,
     this.backgroundColor,
     required this.clipBehavior,

@@ -9,7 +9,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Switch] widget.  See the [fromDynamic] for the
 /// format.
 class JsonSwitchBuilder extends JsonWidgetBuilder {
-  JsonSwitchBuilder({
+  const JsonSwitchBuilder({
     this.activeColor,
     this.activeThumbImage,
     this.activeTrackColor,

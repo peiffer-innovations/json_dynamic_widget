@@ -45,7 +45,7 @@ class MapArgProcessor implements ArgProcessor {
       return ProcessedArg(value: arg, listenVariables: resultListenVariables);
     }
 
-    mapArg.keys.forEach((key) {
+    for (var key in mapArg.keys) {
       final processedKeyArg = _processKey(registry, key, listenVariables);
       final processedValueArg =
           registry.processArgs(mapArg[key], listenVariables);
@@ -56,7 +56,7 @@ class MapArgProcessor implements ArgProcessor {
           processedValueArg.listenVariables.toList(),
         );
       }
-    });
+    }
     return ProcessedArg(
       value: processedMapArg,
       listenVariables: resultListenVariables,

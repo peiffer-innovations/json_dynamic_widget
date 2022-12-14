@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedContainer] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
-  JsonAnimatedContainerBuilder({
+  const JsonAnimatedContainerBuilder({
     this.alignment,
     required this.clipBehavior,
     this.color,
@@ -152,7 +152,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedContainer extends StatefulWidget {
-  _JsonAnimatedContainer({
+  const _JsonAnimatedContainer({
     required this.builder,
     required this.child,
     required this.childBuilder,

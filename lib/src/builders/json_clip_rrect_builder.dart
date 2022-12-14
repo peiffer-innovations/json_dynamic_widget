@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ClipRRect] widget.  See the [fromDynamic] for the
 /// format.
 class JsonClipRRectBuilder extends JsonWidgetBuilder {
-  JsonClipRRectBuilder({
+  const JsonClipRRectBuilder({
     this.borderRadius,
     required this.clipBehavior,
     this.clipper,

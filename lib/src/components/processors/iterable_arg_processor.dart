@@ -21,14 +21,14 @@ class IterableArgProcessor implements ArgProcessor {
 
     final iterableArg = arg as Iterable;
     final processedArgs = [];
-    iterableArg.forEach((arg) {
+    for (var arg in iterableArg) {
       final processedArg = registry.processArgs(arg, listenVariables);
       processedArgs.add(processedArg.value);
 
       if (calculateListenVariables) {
         resultListenVariables.addAll(processedArg.listenVariables.toList());
       }
-    });
+    }
     return ProcessedArg(
       value: processedArgs,
       listenVariables: resultListenVariables,

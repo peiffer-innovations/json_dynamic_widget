@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [GridView] widget.  See the [fromDynamic] for the
 /// format.
 class JsonGridViewBuilder extends JsonWidgetBuilder {
-  JsonGridViewBuilder({
+  const JsonGridViewBuilder({
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,

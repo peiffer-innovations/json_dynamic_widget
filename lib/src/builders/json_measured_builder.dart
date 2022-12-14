@@ -7,7 +7,8 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// measurements to the [JsonWidgetRegistry]'s values.  See the [fromDynamic]
 /// for the format.
 class JsonMeasuredBuilder extends JsonWidgetBuilder {
-  JsonMeasuredBuilder() : super(numSupportedChildren: kNumSupportedChildren);
+  const JsonMeasuredBuilder()
+      : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'measured';
@@ -25,7 +26,7 @@ class JsonMeasuredBuilder extends JsonWidgetBuilder {
   }) {
     JsonMeasuredBuilder? result;
     if (map != null) {
-      result = JsonMeasuredBuilder();
+      result = const JsonMeasuredBuilder();
     }
 
     return result;
@@ -47,7 +48,7 @@ class JsonMeasuredBuilder extends JsonWidgetBuilder {
 }
 
 class _Measured extends StatefulWidget {
-  _Measured({
+  const _Measured({
     required this.builder,
     required this.childBuilder,
     required this.data,

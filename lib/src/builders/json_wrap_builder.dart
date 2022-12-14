@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Wrap] widget.  See the [fromDynamic] for the
 /// format.
 class JsonWrapBuilder extends JsonWidgetBuilder {
-  JsonWrapBuilder({
+  const JsonWrapBuilder({
     this.alignment,
     this.clipBehavior,
     this.crossAxisAlignment,

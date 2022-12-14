@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that creates a scroll controller and then creates a
 /// [PrimaryScrollController] widget on the tree.
 class JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
-  JsonPrimaryScrollControllerBuilder({
+  const JsonPrimaryScrollControllerBuilder({
     required this.automaticallyInheritForPlatforms,
     this.controller,
     this.debugLabel,
@@ -103,7 +103,7 @@ class JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonPrimaryScrollControllerWidget extends StatefulWidget {
-  _JsonPrimaryScrollControllerWidget({
+  const _JsonPrimaryScrollControllerWidget({
     required this.builder,
     required this.childBuilder,
     required this.controller,

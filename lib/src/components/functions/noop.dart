@@ -6,8 +6,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 ///
 /// The `noop` takes no values in the `args` array.
 class NoopFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'noop';
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) =>

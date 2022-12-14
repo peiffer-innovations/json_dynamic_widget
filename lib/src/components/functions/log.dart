@@ -5,9 +5,12 @@ import 'package:logging/logging.dart';
 /// 2 arguments.  The first is the message to log and the second is optional and
 /// is the level to log the message with.
 class LogFunction {
-  static final _logger = Logger('log');
+  static const JsonWidgetFunction body = _body;
   static const key = 'log';
-  static final JsonWidgetFunction body = ({
+
+  static final _logger = Logger('log');
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) =>

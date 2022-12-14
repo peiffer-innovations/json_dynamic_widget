@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Theme] widget.  See the [fromDynamic] for the
 /// format.
 class JsonThemeBuilder extends JsonWidgetBuilder {
-  JsonThemeBuilder({
+  const JsonThemeBuilder({
     required this.theme,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 

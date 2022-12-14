@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Icon] widget.  See the [fromDynamic] for the
 /// format.
 class JsonIconBuilder extends JsonWidgetBuilder {
-  JsonIconBuilder({
+  const JsonIconBuilder({
     this.color,
     this.fill,
     this.grade,

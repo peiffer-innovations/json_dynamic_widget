@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Flexible] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFlexibleBuilder extends JsonWidgetBuilder {
-  JsonFlexibleBuilder({
+  const JsonFlexibleBuilder({
     required this.fit,
     required this.flex,
   }) : super(numSupportedChildren: kNumSupportedChildren);

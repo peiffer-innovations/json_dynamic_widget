@@ -10,7 +10,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Image] widget from memory.  See the [fromDynamic]
 /// for the format.
 class JsonMemoryImageBuilder extends JsonWidgetBuilder {
-  JsonMemoryImageBuilder({
+  const JsonMemoryImageBuilder({
     required this.alignment,
     this.cacheHeight,
     this.cacheWidth,

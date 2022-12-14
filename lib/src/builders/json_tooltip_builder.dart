@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Tooltip] widget.  See the [fromDynamic] for the
 /// format.
 class JsonTooltipBuilder extends JsonWidgetBuilder {
-  JsonTooltipBuilder({
+  const JsonTooltipBuilder({
     this.decoration,
     this.enableFeedback,
     this.excludeFromSemantics,

@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Material] widget.  See the [fromDynamic] for the
 /// format.
 class JsonMaterialBuilder extends JsonWidgetBuilder {
-  JsonMaterialBuilder({
+  const JsonMaterialBuilder({
     required this.animationDuration,
     required this.borderOnForeground,
     this.borderRadius,

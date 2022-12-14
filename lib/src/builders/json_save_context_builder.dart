@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// This doesn't actually have a widget and instead simply returns the child's
 /// built widget.  See the [fromDynamic] for the format.
 class JsonSaveContextBuilder extends JsonWidgetBuilder {
-  JsonSaveContextBuilder({
+  const JsonSaveContextBuilder({
     required this.key,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -61,7 +61,7 @@ class JsonSaveContextBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonSaveContextWidget extends StatefulWidget {
-  _JsonSaveContextWidget({
+  const _JsonSaveContextWidget({
     required this.builder,
     required this.childBuilder,
     required this.data,

@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AppBar] widget.  See the [fromDynamic] for the
 /// format.
 class JsonAppBarBuilder extends JsonWidgetBuilder {
-  JsonAppBarBuilder({
+  const JsonAppBarBuilder({
     this.actions,
     this.actionsIconTheme,
     required this.automaticallyImplyLeading,

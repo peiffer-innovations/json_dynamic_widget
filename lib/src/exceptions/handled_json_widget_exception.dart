@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 class HandledJsonWidgetException implements Exception {
-  HandledJsonWidgetException(
+  const HandledJsonWidgetException(
     this.cause,
     this.stackTrace, {
     this.data,

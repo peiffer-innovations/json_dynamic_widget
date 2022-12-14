@@ -214,7 +214,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonRadioWidget extends StatefulWidget {
-  _JsonRadioWidget({
+  const _JsonRadioWidget({
     required this.builder,
     required this.child,
     required this.childBuilder,
@@ -257,7 +257,9 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
 
   @override
   void dispose() {
-    _subscriptions.forEach((sub) => sub.cancel());
+    for (var sub in _subscriptions) {
+      sub.cancel();
+    }
     _subscriptions.clear();
 
     super.dispose();

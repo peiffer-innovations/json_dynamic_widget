@@ -9,7 +9,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [TextFormField] widget.  See the [fromDynamic] for
 /// the format.
 class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
-  JsonTextFormFieldBuilder({
+  const JsonTextFormFieldBuilder({
     required this.autocorrect,
     this.autofillHints,
     required this.autofocus,
@@ -382,7 +382,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonTextFormFieldWidget extends StatefulWidget {
-  _JsonTextFormFieldWidget({
+  const _JsonTextFormFieldWidget({
     required this.builder,
     this.childBuilder,
     required this.data,
@@ -420,8 +420,8 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         .where((event) => !event.isSelfTriggered && event.id == widget.data.id)
         .listen(
       (event) {
-        String value = widget.data.registry.getValue(widget.data.id);
-        var textValue = widget.builder.controller.value.copyWith(
+        final value = widget.data.registry.getValue(widget.data.id);
+        final textValue = widget.builder.controller.value.copyWith(
             text: value,
             selection: TextSelection(
               baseOffset: value.length,

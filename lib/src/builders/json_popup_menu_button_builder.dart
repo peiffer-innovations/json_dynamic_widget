@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [PopupMenuButton] widget.  See the [fromDynamic] for the
 /// format.
 class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
-  JsonPopupMenuButtonBuilder({
+  const JsonPopupMenuButtonBuilder({
     required this.clipBehavior,
     this.color,
     this.constraints,

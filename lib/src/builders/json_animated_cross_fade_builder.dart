@@ -9,7 +9,7 @@ import 'package:json_theme/json_theme.dart';
 /// children in JSON determines which will be the first or
 /// second to be rendered.
 class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
-  JsonAnimatedCrossFadeBuilder({
+  const JsonAnimatedCrossFadeBuilder({
     this.alignment,
     required this.crossFadeState,
     required this.duration,
@@ -118,7 +118,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedCrossFade extends StatefulWidget {
-  _JsonAnimatedCrossFade({
+  const _JsonAnimatedCrossFade({
     required this.builder,
     required this.childBuilder,
     required this.data,

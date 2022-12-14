@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ListTile] widget.  See the [fromDynamic] for the
 /// format.
 class JsonListTileBuilder extends JsonWidgetBuilder {
-  JsonListTileBuilder({
+  const JsonListTileBuilder({
     required this.autofocus,
     this.contentPadding,
     this.dense,

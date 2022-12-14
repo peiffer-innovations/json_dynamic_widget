@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [InkWell] widget.  See the [fromDynamic] for the
 /// format.
 class JsonInkWellBuilder extends JsonWidgetBuilder {
-  JsonInkWellBuilder({
+  const JsonInkWellBuilder({
     required this.autofocus,
     this.borderRadius,
     required this.canRequestFocus,

@@ -10,8 +10,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// under [DynamicOperation.builder] field. That action should trigger rebuilt
 /// of [JsonDynamicBuilder] which listen to [DynamicOperation.builder] variable.
 class DynamicFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'dynamic';
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) =>
@@ -29,8 +31,9 @@ class DynamicFunction {
     final DynamicOperation dynamicOperation,
     final JsonWidgetRegistry registry,
   ) {
-    var childrenJson = json.encode(registry.getValue(dynamicOperation.builder));
-    var childrenData =
+    final childrenJson =
+        json.encode(registry.getValue(dynamicOperation.builder));
+    final childrenData =
         List<Map<String, dynamic>>.from(json.decode(childrenJson));
     final index = dynamicOperation.findIndex(childrenData);
     dynamicOperation.execute(childrenData, index);
@@ -73,7 +76,7 @@ class AddDynamicOperation extends DynamicOperation {
   static const targetDefault = {'index': -1};
 
   @override
-  DynamicOperationType get type => DynamicOperationType.ADD;
+  DynamicOperationType get type => DynamicOperationType.add;
 
   @override
   void execute(final List<Map<String, dynamic>> childrenData, int index) {
@@ -98,13 +101,13 @@ abstract class DynamicOperation extends JsonClass {
     );
     final target = Map<String, dynamic>.from(json[targetKey]);
     switch (type) {
-      case DynamicOperationType.ADD:
+      case DynamicOperationType.add:
         return AddDynamicOperation(
             builder: json[builderKey], target: target, values: values);
-      case DynamicOperationType.REMOVE:
+      case DynamicOperationType.remove:
         return RemoveDynamicOperation(
             builder: json[builderKey], target: target, values: values);
-      case DynamicOperationType.EDIT:
+      case DynamicOperationType.edit:
         return EditDynamicOperation(
             builder: json[builderKey], target: target, values: values);
       default:
@@ -172,13 +175,13 @@ abstract class DynamicOperation extends JsonClass {
 }
 
 /// Supported dynamic operations types:
-/// 1. [ADD] - adds a new child into [JsonDynamicBuilder]
+/// 1. [add] - adds a new child into [JsonDynamicBuilder]
 /// specified via [DynamicOperation.builder]
-/// 2. [REMOVE] - removes a child of [JsonDynamicBuilder]
+/// 2. [remove] - removes a child of [JsonDynamicBuilder]
 /// specified via [DynamicOperation.builder]
-/// 3. [EDIT] - edits a child of [JsonDynamicBuilder]
+/// 3. [edit] - edits a child of [JsonDynamicBuilder]
 /// specified via [DynamicOperation.builder]
-enum DynamicOperationType { ADD, REMOVE, EDIT }
+enum DynamicOperationType { add, remove, edit }
 
 /// Operation which defines editing the child of [JsonDynamicBuilder].
 class EditDynamicOperation extends DynamicOperation {
@@ -189,7 +192,7 @@ class EditDynamicOperation extends DynamicOperation {
   }) : super(builder: builder, target: target, values: values);
 
   @override
-  DynamicOperationType get type => DynamicOperationType.EDIT;
+  DynamicOperationType get type => DynamicOperationType.edit;
 
   @override
   void execute(final List<Map<String, dynamic>> childrenData, int index) {
@@ -206,7 +209,7 @@ class RemoveDynamicOperation extends DynamicOperation {
   }) : super(builder: builder, target: target, values: values);
 
   @override
-  DynamicOperationType get type => DynamicOperationType.REMOVE;
+  DynamicOperationType get type => DynamicOperationType.remove;
 
   @override
   void execute(final List<Map<String, dynamic>> childrenData, int index) {
@@ -219,13 +222,13 @@ extension DynamicOperationTypeExtension on DynamicOperationType {
   String? get name {
     String? name;
     switch (this) {
-      case DynamicOperationType.ADD:
+      case DynamicOperationType.add:
         name = 'add';
         break;
-      case DynamicOperationType.REMOVE:
+      case DynamicOperationType.remove:
         name = 'remove';
         break;
-      case DynamicOperationType.EDIT:
+      case DynamicOperationType.edit:
         name = 'edit';
     }
     return name;

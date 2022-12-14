@@ -10,7 +10,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 ///
 /// See the [fromDynamic] for the format.
 class JsonConditionalBuilder extends JsonWidgetBuilder {
-  JsonConditionalBuilder({
+  const JsonConditionalBuilder({
     required this.conditional,
     required this.keys,
     this.onFalse,
@@ -97,7 +97,7 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
 }
 
 class _ConditionalWidget extends StatefulWidget {
-  _ConditionalWidget({
+  const _ConditionalWidget({
     this.childBuilder,
     required this.conditional,
     required this.data,

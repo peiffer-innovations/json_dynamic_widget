@@ -122,15 +122,15 @@ class JsonWidgetRegistry {
     final keys = Set<String>.from(_values.keys);
     _values.clear();
 
-    keys.forEach(
-      (element) => _valueStreamController?.add(
+    for (var element in keys) {
+      _valueStreamController?.add(
         WidgetValueChanged(
           id: element,
           originator: null,
           value: null,
         ),
-      ),
-    );
+      );
+    }
   }
 
   // Copies the contents of the registry into a new registry.

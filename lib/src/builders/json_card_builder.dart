@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Card] widget.  See the [fromDynamic] for the
 /// format.
 class JsonCardBuilder extends JsonWidgetBuilder {
-  JsonCardBuilder({
+  const JsonCardBuilder({
     required this.borderOnForeground,
     this.clipBehavior,
     this.color,

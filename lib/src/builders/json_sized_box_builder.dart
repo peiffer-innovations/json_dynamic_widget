@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [SizedBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonSizedBoxBuilder extends JsonWidgetBuilder {
-  JsonSizedBoxBuilder({
+  const JsonSizedBoxBuilder({
     this.height,
     this.width,
   }) : super(numSupportedChildren: kNumSupportedChildren);

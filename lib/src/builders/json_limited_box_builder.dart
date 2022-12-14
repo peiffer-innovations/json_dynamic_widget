@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build a [LimitedBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonLimitedBoxBuilder extends JsonWidgetBuilder {
-  JsonLimitedBoxBuilder({
+  const JsonLimitedBoxBuilder({
     required this.maxHeight,
     required this.maxWidth,
   }) : super(numSupportedChildren: kNumSupportedChildren);

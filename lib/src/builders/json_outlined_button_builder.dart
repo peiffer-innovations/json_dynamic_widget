@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [OutlinedButton] widget.  See the [fromDynamic] for
 /// the format.
 class JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
-  JsonOutlinedButtonBuilder({
+  const JsonOutlinedButtonBuilder({
     required this.autofocus,
     required this.clipBehavior,
     this.focusNode,

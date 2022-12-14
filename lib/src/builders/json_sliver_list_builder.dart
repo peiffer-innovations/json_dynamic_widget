@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [SliverList] widget.  See the [fromDynamic] for
 /// the format.
 class JsonSliverListBuilder extends JsonWidgetBuilder {
-  JsonSliverListBuilder({
+  const JsonSliverListBuilder({
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,

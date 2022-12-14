@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [Placeholder] widget.  See the [fromDynamic] for the
 /// format.
 class JsonPlaceholderBuilder extends JsonWidgetBuilder {
-  JsonPlaceholderBuilder({
+  const JsonPlaceholderBuilder({
     required this.color,
     required this.fallbackHeight,
     required this.fallbackWidth,

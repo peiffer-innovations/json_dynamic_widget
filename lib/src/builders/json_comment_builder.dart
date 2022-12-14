@@ -5,7 +5,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder is just a placeholder to allow for placing comments in the JSON
 /// tree for human readability
 class JsonCommentBuilder extends JsonWidgetBuilder {
-  JsonCommentBuilder() : super(numSupportedChildren: kNumSupportedChildren);
+  const JsonCommentBuilder()
+      : super(
+          numSupportedChildren: kNumSupportedChildren,
+        );
 
   static const kNumSupportedChildren = 1;
   static const type = 'comment';
@@ -24,7 +27,7 @@ class JsonCommentBuilder extends JsonWidgetBuilder {
   }) {
     JsonCommentBuilder? result;
     if (map != null) {
-      result = JsonCommentBuilder();
+      result = const JsonCommentBuilder();
     }
 
     return result;

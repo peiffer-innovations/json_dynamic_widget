@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [DropdownButtonFormField] widget.  See the
 /// [fromDynamic] for the format.
 class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
-  JsonDropdownButtonFormFieldBuilder({
+  const JsonDropdownButtonFormFieldBuilder({
     this.alignment,
     this.autofocus,
     this.autovalidateMode,
@@ -244,7 +244,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
-  _JsonDropdownButtonFormFieldWidget({
+  const _JsonDropdownButtonFormFieldWidget({
     required this.builder,
     this.childBuilder,
     required this.data,

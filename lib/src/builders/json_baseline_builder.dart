@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Baseline] widget.  See the [fromDynamic] for the
 /// format.
 class JsonBaselineBuilder extends JsonWidgetBuilder {
-  JsonBaselineBuilder({
+  const JsonBaselineBuilder({
     required this.baseline,
     required this.baselineType,
   }) : super(numSupportedChildren: kNumSupportedChildren);

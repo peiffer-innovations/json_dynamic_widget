@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedDefaultTextStyle] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
-  JsonAnimatedDefaultTextStyleBuilder({
+  const JsonAnimatedDefaultTextStyleBuilder({
     this.curve,
     required this.duration,
     this.maxLines,
@@ -125,7 +125,7 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedDefaultTextStyle extends StatefulWidget {
-  _JsonAnimatedDefaultTextStyle({
+  const _JsonAnimatedDefaultTextStyle({
     required this.builder,
     required this.child,
     required this.childBuilder,

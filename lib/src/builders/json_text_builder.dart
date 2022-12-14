@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Text] widget.  See the [fromDynamic] for the
 /// format.
 class JsonTextBuilder extends JsonWidgetBuilder {
-  JsonTextBuilder({
+  const JsonTextBuilder({
     this.locale,
     this.maxLines,
     this.overflow,

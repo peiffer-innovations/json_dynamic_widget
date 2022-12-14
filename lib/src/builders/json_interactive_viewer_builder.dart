@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [InteractiveViewer] widget.  See the [fromDynamic] for the
 /// format.
 class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
-  JsonInteractiveViewerBuilder({
+  const JsonInteractiveViewerBuilder({
     this.alignment,
     required this.boundaryMargin,
     required this.clipBehavior,

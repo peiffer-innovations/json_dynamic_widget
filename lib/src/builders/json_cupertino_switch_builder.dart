@@ -10,7 +10,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [CupertinoSwitch] widget.  See the [fromDynamic]
 /// for the format.
 class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
-  JsonCupertinoSwitchBuilder({
+  const JsonCupertinoSwitchBuilder({
     this.activeColor,
     this.autovalidateMode,
     this.dragStartBehavior,

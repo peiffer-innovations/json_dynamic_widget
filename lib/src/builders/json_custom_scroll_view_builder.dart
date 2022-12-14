@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [CustomScrollView] widget.  See the
 /// [fromDynamic] for the format.
 class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
-  JsonCustomScrollViewBuilder({
+  const JsonCustomScrollViewBuilder({
     this.anchor,
     this.cacheExtent,
     this.center,

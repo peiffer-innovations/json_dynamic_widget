@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Scaffold] widget.  See the [fromDynamic] for the
 /// format.
 class JsonScaffoldBuilder extends JsonWidgetBuilder {
-  JsonScaffoldBuilder({
+  const JsonScaffoldBuilder({
     this.appBar,
     this.backgroundColor,
     this.body,

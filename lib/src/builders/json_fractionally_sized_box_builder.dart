@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [FractionallySizedBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
-  JsonFractionallySizedBoxBuilder({
+  const JsonFractionallySizedBoxBuilder({
     required this.alignment,
     this.heightFactor,
     this.widthFactor,

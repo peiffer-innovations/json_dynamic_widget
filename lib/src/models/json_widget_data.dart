@@ -9,7 +9,7 @@ import 'package:uuid/uuid.dart';
 
 class JsonWidgetData extends JsonClass {
   JsonWidgetData({
-    dynamic args,
+    this.args,
     required this.builder,
     JsonWidgetData? child,
     List<JsonWidgetData>? children,
@@ -23,7 +23,6 @@ class JsonWidgetData extends JsonClass {
           child == null || children?.isNotEmpty != true,
           'A JsonWidgetData may either contain a [child] or an array of [children], but not both.',
         ),
-        args = args,
         children = children ?? (child == null ? null : [child]),
         listenVariables = listenVariables ?? <String>{},
         id = id ?? const Uuid().v4(),

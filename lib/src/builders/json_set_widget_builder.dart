@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// This doesn't actually have a widget and instead simply returns the child's
 /// built widget.  See the [fromDynamic] for the format.
 class JsonSetWidgetBuilder extends JsonWidgetBuilder {
-  JsonSetWidgetBuilder({
+  const JsonSetWidgetBuilder({
     this.widgets,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 

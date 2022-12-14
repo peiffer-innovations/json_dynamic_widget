@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [AnimatedSwitcher] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
-  JsonAnimatedSwitcherBuilder({
+  const JsonAnimatedSwitcherBuilder({
     required JsonWidgetData? child,
     required this.duration,
     this.layoutBuilder,
@@ -100,7 +100,7 @@ class JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedSwitcher extends StatefulWidget {
-  _JsonAnimatedSwitcher({
+  const _JsonAnimatedSwitcher({
     required this.builder,
     required this.childBuilder,
     required this.data,

@@ -10,7 +10,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// to use the static reference to avoid the widget receiving the wrong value
 /// during build and rebuild cycles.
 class JsonSetValueBuilder extends JsonWidgetBuilder {
-  JsonSetValueBuilder({
+  const JsonSetValueBuilder({
     this.values,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 

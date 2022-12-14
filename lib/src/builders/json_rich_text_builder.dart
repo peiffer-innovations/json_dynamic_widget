@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [RichText] widget.  See the [fromDynamic] for the
 /// format.
 class JsonRichTextBuilder extends JsonWidgetBuilder {
-  JsonRichTextBuilder({
+  const JsonRichTextBuilder({
     this.locale,
     this.maxLines,
     required this.overflow,

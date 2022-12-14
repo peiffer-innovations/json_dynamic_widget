@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [CircularProgressIndicator] widget.  See the
 /// [fromDynamic] for the format.
 class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
-  JsonCircularProgressIndicatorBuilder({
+  const JsonCircularProgressIndicatorBuilder({
     this.backgroundColor,
     this.color,
     this.semanticsLabel,

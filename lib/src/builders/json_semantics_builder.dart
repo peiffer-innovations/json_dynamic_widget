@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Semantics] widget.  See the [fromDynamic] for the
 /// format.
 class JsonSemanticsBuilder extends JsonWidgetBuilder {
-  JsonSemanticsBuilder({
+  const JsonSemanticsBuilder({
     this.attributedDecreasedValue,
     this.attributedHint,
     this.attributedIncreasedValue,

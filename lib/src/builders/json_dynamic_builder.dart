@@ -26,7 +26,7 @@ class DynamicValuesFactory {
 ///
 /// See the [fromDynamic] for the format.
 class JsonDynamicBuilder extends JsonWidgetBuilder {
-  JsonDynamicBuilder({
+  const JsonDynamicBuilder({
     required this.childTemplate,
     required this.builderType,
     required this.initState,
@@ -127,7 +127,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
 }
 
 class _DynamicWidget extends StatefulWidget {
-  _DynamicWidget({
+  const _DynamicWidget({
     this.childBuilder,
     required this.childTemplate,
     required this.data,

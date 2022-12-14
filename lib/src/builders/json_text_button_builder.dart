@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [TextButton] widget.  See the [fromDynamic] for
 /// the format.
 class JsonTextButtonBuilder extends JsonWidgetBuilder {
-  JsonTextButtonBuilder({
+  const JsonTextButtonBuilder({
     required this.autofocus,
     required this.clipBehavior,
     this.focusNode,

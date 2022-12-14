@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ListView] widget.  See the [fromDynamic] for the
 /// format.
 class JsonListViewBuilder extends JsonWidgetBuilder {
-  JsonListViewBuilder({
+  const JsonListViewBuilder({
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,

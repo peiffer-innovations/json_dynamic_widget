@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InputError extends StatefulWidget {
-  InputError({
+  const InputError({
     this.error,
     Key? key,
   }) : super(key: key);
@@ -9,10 +9,10 @@ class InputError extends StatefulWidget {
   final String? error;
 
   @override
-  _InputErrorState createState() => _InputErrorState();
+  InputErrorState createState() => InputErrorState();
 }
 
-class _InputErrorState extends State<InputError> {
+class InputErrorState extends State<InputError> {
   String? _error;
 
   @override

@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedPadding] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
-  JsonAnimatedPaddingBuilder({
+  const JsonAnimatedPaddingBuilder({
     this.curve,
     required this.duration,
     this.onEnd,
@@ -80,7 +80,7 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedPadding extends StatefulWidget {
-  _JsonAnimatedPadding({
+  const _JsonAnimatedPadding({
     required this.builder,
     required this.child,
     required this.childBuilder,

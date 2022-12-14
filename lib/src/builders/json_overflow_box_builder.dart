@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [OverflowBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
-  JsonOverflowBoxBuilder({
+  const JsonOverflowBoxBuilder({
     required this.alignment,
     this.maxHeight,
     this.maxWidth,

@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Checkbox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonCheckboxBuilder extends JsonWidgetBuilder {
-  JsonCheckboxBuilder({
+  const JsonCheckboxBuilder({
     this.activeColor,
     required this.autofocus,
     this.autovalidateMode,

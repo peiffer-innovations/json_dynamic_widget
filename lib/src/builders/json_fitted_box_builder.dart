@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [FittedBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFittedBoxBuilder extends JsonWidgetBuilder {
-  JsonFittedBoxBuilder({
+  const JsonFittedBoxBuilder({
     required this.alignment,
     required this.clipBehavior,
     required this.fit,

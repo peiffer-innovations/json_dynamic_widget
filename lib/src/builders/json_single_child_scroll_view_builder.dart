@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [SingleChildScrollView] widget.  See the
 /// [fromDynamic] for the format.
 class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
-  JsonSingleChildScrollViewBuilder({
+  const JsonSingleChildScrollViewBuilder({
     required this.clipBehavior,
     this.controller,
     required this.dragStartBehavior,

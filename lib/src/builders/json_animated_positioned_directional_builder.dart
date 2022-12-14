@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [AnimatedPositionedDirectional] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
-  JsonAnimatedPositionedDirectionalBuilder({
+  const JsonAnimatedPositionedDirectionalBuilder({
     this.bottom,
     this.curve,
     required this.duration,
@@ -96,7 +96,7 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedPositionedDirectional extends StatefulWidget {
-  _JsonAnimatedPositionedDirectional({
+  const _JsonAnimatedPositionedDirectional({
     required this.builder,
     required this.child,
     required this.childBuilder,

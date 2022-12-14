@@ -9,7 +9,7 @@ class SliverGridDelegateDecoder {
   }) {
     SliverGridDelegate? result;
 
-    final createException = (message) => Exception('''
+    Exception createException(message) => Exception('''
 $message
 
 1. "delegate": {

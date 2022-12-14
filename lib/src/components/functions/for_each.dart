@@ -8,9 +8,12 @@ import 'package:logging/logging.dart';
 /// 3. Optional name to place the value in.  If not set, the variable will be placed in the name "value".
 /// 4. Optional name to place the key (if the iterable is a [Map]) or index (if the iterable is a [List]).
 class ForEachFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'for_each';
+
   static final _logger = Logger('for_each');
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
@@ -78,5 +81,5 @@ class ForEachFunction {
     }
 
     return results;
-  };
+  }
 }

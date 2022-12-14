@@ -5,7 +5,7 @@ void main() {
   test('set_value', () {
     final registry = JsonWidgetRegistry();
 
-    final key = 'key';
+    const key = 'key';
     expect(registry.getValue(key), null);
 
     registry.getFunction('set_value')!(

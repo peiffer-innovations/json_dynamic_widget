@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [FractionalTranslation] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
-  JsonFractionalTranslationBuilder({
+  const JsonFractionalTranslationBuilder({
     required this.transformHitTests,
     required this.translation,
   }) : super(numSupportedChildren: kNumSupportedChildren);

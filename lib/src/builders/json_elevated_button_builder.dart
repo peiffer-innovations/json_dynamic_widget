@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ElevatedButton] widget.  See the [fromDynamic] for
 /// the format.
 class JsonElevatedButtonBuilder extends JsonWidgetBuilder {
-  JsonElevatedButtonBuilder({
+  const JsonElevatedButtonBuilder({
     required this.autofocus,
     required this.clipBehavior,
     this.focusNode,

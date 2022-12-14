@@ -6,8 +6,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// The `remove_value` function takes one value in the `args` array:
 ///  1. [String] -- the key to pass to [removeValue].
 class RemoveValueFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'remove_value';
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) =>

@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Align] widget.  See the [fromDynamic] for the
 /// format.
 class JsonAlignBuilder extends JsonWidgetBuilder {
-  JsonAlignBuilder({
+  const JsonAlignBuilder({
     this.alignment,
     this.heightFactor,
     this.widthFactor,
