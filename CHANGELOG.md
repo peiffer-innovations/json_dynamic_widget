@@ -3,6 +3,11 @@
 * Bug fixes
 
 
+## [5.1.6+1] - December 13, 2022
+
+* Automated dependency updates
+
+
 ## [6.0.0-prerelease1] - December 12th, 2022
 
 * Preparing for Flutter 3.6
@@ -438,6 +443,7 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
