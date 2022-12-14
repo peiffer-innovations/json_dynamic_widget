@@ -1,3 +1,8 @@
+## [6.0.0-prerelease2] - December 13th, 2022
+
+* Bug fixes
+
+
 ## [6.0.0-prerelease1] - December 12th, 2022
 
 * Preparing for Flutter 3.6
