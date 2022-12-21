@@ -5,6 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 class Issue24Page extends StatefulWidget {
+  const Issue24Page({super.key});
+
   final url = 'assets/widgets/issue_24.json';
 
   @override

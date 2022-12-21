@@ -1,3 +1,4 @@
+import 'package:execution_timer/execution_timer.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 
@@ -7,12 +8,9 @@ import 'package:json_theme/json_theme_schemas.dart';
 /// performed against the JSON for this particular builder.
 class JsonWidgetBuilderContainer {
   const JsonWidgetBuilderContainer({
-    required this.builder,
+    required JsonWidgetBuilderBuilder builder,
     this.schemaId,
-  });
-
-  /// The builder that will create the [JsonWidgetBuilder] from JSON.
-  final JsonWidgetBuilderBuilder builder;
+  }) : _builder = builder;
 
   /// Optional [schemaId].  Either the schema must be registered against the
   /// [SchemaCache] or an error will happen when the validation is attempted.
@@ -20,4 +18,17 @@ class JsonWidgetBuilderContainer {
   /// This can technically be any string, but it is customary to use a URI for
   /// improved tooling support.
   final String? schemaId;
+
+  /// The builder that will create the [JsonWidgetBuilder] from JSON.
+  final JsonWidgetBuilderBuilder _builder;
+
+  JsonWidgetBuilderBuilder get builder => (
+        dynamic map, {
+        JsonWidgetRegistry? registry,
+      }) =>
+          TimeKeeper.measureSync(
+            schemaId ?? 'unknown',
+            (_) => _builder(map, registry: registry),
+            group: 'JsonWidgetBuilderBuilder.build',
+          );
 }

@@ -130,9 +130,9 @@ void main() async {
             icon: child!,
             iconSize: size,
             onPressed: () {
-              final _current = registry.getValue('customSize');
-              final _size = _current == 50.0 ? 100.0 : 50.0;
-              registry.setValue('customSize', _size);
+              final current = registry.getValue('customSize');
+              final size = current == 50.0 ? 100.0 : 50.0;
+              registry.setValue('customSize', size);
             },
           );
         },
@@ -140,8 +140,8 @@ void main() async {
       return Tween<double>(begin: 0, end: args![0]);
     },
     'setWidgetByKey': ({args, required registry}) => () {
-          final _replace = registry.getValue(args![1]);
-          registry.setValue(args[0], _replace);
+          final replace = registry.getValue(args![1]);
+          registry.setValue(args[0], replace);
         },
     'simplePrintMessage': ({args, required registry}) => () {
           var message = 'This is a simple print message';
@@ -186,12 +186,17 @@ void main() async {
   );
 }
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
   const RootPage({
     Key? key,
   }) : super(key: key);
 
-  static final _pages = {
+  @override
+  _RootPageState createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  late final _pages = {
     'align': _onJsonPageSelected,
     'animated_align': _onJsonPageSelected,
     'animated_container': _onJsonPageSelected,
@@ -240,7 +245,7 @@ class RootPage extends StatelessWidget {
     'issue_20_single': _onJsonPageSelected,
     'issue_24': (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (BuildContext context) => Issue24Page(),
+            builder: (BuildContext context) => const Issue24Page(),
           ),
         ),
     'issue_30': _onJsonPageSelected,
@@ -289,20 +294,20 @@ class RootPage extends StatelessWidget {
     );
   }
 
-  static Future<void> _onJsonPageSelected(
+  Future<void> _onJsonPageSelected(
     BuildContext context,
     String pageId,
   ) =>
       _onPageSelected(context, pageId, '.json');
 
-  static Future<void> _onPageSelected(
+  Future<void> _onPageSelected(
     BuildContext context,
     String pageId,
     String extension,
   ) async {
     final registry = JsonWidgetRegistry.instance.copyWith();
     final pageStr = await rootBundle.loadString(
-      'assets/pages/${pageId}$extension',
+      'assets/pages/$pageId$extension',
     );
     final dataJson = yaon.parse(pageStr);
 
@@ -316,22 +321,24 @@ class RootPage extends StatelessWidget {
       registry: registry,
     );
 
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => FullWidgetPage(
-          data: data!,
+    if (mounted) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => FullWidgetPage(
+            data: data!,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
-  static Future<void> _onYamlPageSelected(
+  Future<void> _onYamlPageSelected(
     BuildContext context,
     String pageId,
   ) =>
       _onPageSelected(context, pageId, '.yaml');
 
-  static Future<void> _onUntestablePageSelected(
+  Future<void> _onUntestablePageSelected(
     BuildContext context,
     String themeId,
   ) async {
@@ -349,12 +356,14 @@ class RootPage extends StatelessWidget {
       registry: registry,
     );
 
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => UntestableFullWidgetPage(
-          data: data!,
+    if (mounted) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => UntestableFullWidgetPage(
+            data: data!,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

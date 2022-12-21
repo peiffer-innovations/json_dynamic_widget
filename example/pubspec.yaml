@@ -15,6 +15,10 @@ dependencies:
   json_dynamic_widget:
     path: '../'
 
+dependency_overrides:
+  execution_timer:
+    path: ../../execution_timer
+
 dev_dependencies:
   flutter_test:
     sdk: 'flutter'

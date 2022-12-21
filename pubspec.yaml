@@ -6,15 +6,15 @@ version: '6.0.0-prerelease2'
 environment:
   sdk: '>=2.19.0-444.1.beta <3.0.0'
 
-analyzer: 
-  exclude: 
+analyzer:
+  exclude:
     - 'lib/generated/**'
 
-
-dependencies: 
+dependencies:
   child_builder: '^2.0.0+3'
   collection: '^1.16.0'
-  flutter: 
+  execution_timer: '^1.0.0'
+  flutter:
     sdk: 'flutter'
   form_validation: '^2.1.0+24'
   interpolation: '^2.1.2'
@@ -23,12 +23,16 @@ dependencies:
   json_schema2: '^2.0.2+18'
   json_theme: '^5.0.0-prerelease3'
   logging: '^1.1.0'
-  meta: '^1.7.0'
+  meta: '^1.8.0'
   template_expressions: '^2.0.0+3'
   uuid: '^3.0.7'
   yaon: '^1.0.1+8'
 
-false_secrets: 
+dependency_overrides:
+  execution_timer:
+    path: ../execution_timer
+
+false_secrets:
   - 'example/web/index.html'
 
 dev_dependencies:
@@ -36,8 +40,7 @@ dev_dependencies:
   flutter_test:
     sdk: 'flutter'
 
-
-ignore_updates: 
+ignore_updates:
   - 'archive'
   - 'async'
   - 'boolean_selector'

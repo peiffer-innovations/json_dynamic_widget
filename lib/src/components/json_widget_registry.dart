@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:collection/collection.dart';
+import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
@@ -212,7 +213,8 @@ class JsonWidgetRegistry {
     if (fun == null) {
       if (_parent == null) {
         throw Exception(
-            'No function named "$key" found in the registry [$debugLabel].');
+          'No function named "$key" found in the registry [$debugLabel].',
+        );
       } else {
         return _parent!.execute(key, args);
       }
@@ -405,12 +407,21 @@ class JsonWidgetRegistry {
     assert(() {
       if (disableValidation != true) {
         final container = _builders[type];
-        if (container?.schemaId != null) {
-          result = SchemaValidator().validate(
-            schemaId: container!.schemaId,
-            value: value,
-            validate: validate,
-          );
+        final schemaId = container?.schemaId;
+        if (schemaId != null) {
+          final timer = ExecutionWatch(
+            group: 'JsonWidgetRegistry.validateBuilderSchema',
+            name: schemaId,
+          ).start();
+          try {
+            result = SchemaValidator().validate(
+              schemaId: container!.schemaId,
+              value: value,
+              validate: validate,
+            );
+          } finally {
+            timer.stop();
+          }
         }
       }
       return true;

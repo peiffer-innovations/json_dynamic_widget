@@ -52,7 +52,7 @@ final JsonWidgetFunction body = ({
         );
       }
     };
-final String key = 'show_dialog';
+const String key = 'show_dialog';
 
 class ActionData extends JsonClass {
   ActionData({
