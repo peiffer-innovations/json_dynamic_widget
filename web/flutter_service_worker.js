@@ -110,9 +110,9 @@ const RESOURCES = {
 "assets/assets/widgets/issue_24.json": "77bf723a8ec7a8b5314f0833fab4e74a",
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
 "assets/assets/fonts/Lato-Regular.ttf": "2d36b1a925432bae7f3c53a340868c6e",
-"assets/NOTICES": "c6f147381aa44390c694550bbdb727de",
-"index.html": "b3691cbd029c8052e5f9b338a8a59ab1",
-"/": "b3691cbd029c8052e5f9b338a8a59ab1",
+"assets/NOTICES": "32817e796c0f4a3832575b4a2f81eac9",
+"index.html": "f74e21576992770bd177d137da4a75ff",
+"/": "f74e21576992770bd177d137da4a75ff",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "version.json": "2b7cd374b1db807705bec3043b1ae5cf"
 };
