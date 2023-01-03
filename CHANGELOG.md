@@ -1,3 +1,8 @@
+## [5.1.7] - January 12, 2023
+
+* Fixed radio button which was ignoring self events invalidly [Issue 117](https://github.com/peiffer-innovations/json_dynamic_widget/issues/117)
+
+
 ## [5.1.6+4] - January 10, 2023
 
 * Automated dependency updates
