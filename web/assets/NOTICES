@@ -4845,8 +4845,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --------------------------------------------------------------------------------
 child_builder
 json_dynamic_widget
-json_theme
-static_translations
 
 MIT License
 
@@ -7092,7 +7090,9 @@ SOFTWARE.
 form_validation
 json_class
 json_conditional
+json_theme
 rest_client
+static_translations
 
 MIT License
 
