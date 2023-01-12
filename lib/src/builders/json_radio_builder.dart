@@ -241,8 +241,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
 
     _subscriptions.add(
       widget.data.registry.valueStream
-          .where((event) =>
-              !event.isSelfTriggered && event.id == widget.builder.id)
+          .where((event) => event.id == widget.builder.id)
           .listen(
         (event) {
           if (mounted == true) {

@@ -1,11 +1,26 @@
-## [6.0.0-prerelease2] - December 13th, 2022
+## [5.1.7] - January 12, 2023
 
-* Bug fixes
+* Fixed radio button which was ignoring self events invalidly [Issue 117](https://github.com/peiffer-innovations/json_dynamic_widget/issues/117)
+
+
+## [5.1.6+4] - January 10, 2023
+
+* Automated dependency updates
+
+
+## [5.1.6+3] - January 3, 2023
+
+* Automated dependency updates
 
 
 ## [5.1.6+2] - December 27, 2022
 
 * Automated dependency updates
+
+
+## [6.0.0-prerelease2] - December 13th, 2022
+
+* Preparing for Flutter 3.6
 
 
 ## [5.1.6+1] - December 13, 2022
@@ -448,6 +463,8 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
+
 
 
 
