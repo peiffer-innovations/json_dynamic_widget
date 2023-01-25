@@ -28,8 +28,6 @@ jobs:
 
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
-        with:
-          flutter_package: true
 
       - name: Web
         uses: peiffer-innovations/actions-flutter-deploy-pages@v1
