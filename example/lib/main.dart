@@ -192,7 +192,7 @@ class RootPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _RootPageState createState() => _RootPageState();
+  State createState() => _RootPageState();
 }
 
 class _RootPageState extends State<RootPage> {

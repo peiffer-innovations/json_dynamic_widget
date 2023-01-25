@@ -1,3 +1,8 @@
+## [6.0.0] - January 24th, 2023
+
+* Flutter 3.7 compatibility
+
+
 ## [5.1.7+2] - January 24, 2023
 
 * Automated dependency updates

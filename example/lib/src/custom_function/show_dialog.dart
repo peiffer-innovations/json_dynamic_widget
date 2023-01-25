@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-final JsonWidgetFunction body = ({
-  List<dynamic>? args,
+dynamic body({
+  required List<dynamic>? args,
   required JsonWidgetRegistry registry,
 }) =>
     () {
