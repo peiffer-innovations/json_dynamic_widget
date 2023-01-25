@@ -1,0 +1,45 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Rich Text"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "rich_text",
+        "args": {
+          "text": {
+            "children": [
+              {
+                "text": "Hello "
+              },
+              {
+                "style": {
+                  "fontSize": 20.0,
+                  "fontWeight": "bold"
+                },
+                "text": "RICH TEXT"
+              },
+              {
+                "text": " World!"
+              }
+            ],
+            "style": {
+              "color": "#000000",
+              "fontSize": 12.0
+            }
+          }
+        }
+      }
+    }
+  }
+}
