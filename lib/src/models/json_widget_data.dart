@@ -118,6 +118,7 @@ class JsonWidgetData extends JsonClass {
             );
 
             final args = Map<String, dynamic>.from(map['args']);
+            map['child'] = args['body'];
             args.remove('body');
             map['args'] = args;
           }
