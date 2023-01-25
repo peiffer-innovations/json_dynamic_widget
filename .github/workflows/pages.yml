@@ -3,6 +3,7 @@ name: Flutter Pages Deployer
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   build_number:
@@ -31,7 +32,7 @@ jobs:
           flutter_package: true
 
       - name: Web
-        uses: peiffer-innovations/actions-flutter-deploy-pages@v1.5.0
+        uses: peiffer-innovations/actions-flutter-deploy-pages@v1
         with:
           build_mode: release
           build_number: ${{ needs.build_number.outputs.buildnumber }}
