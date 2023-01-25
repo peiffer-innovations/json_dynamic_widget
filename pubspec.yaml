@@ -29,9 +29,9 @@ dependencies:
   uuid: '^3.0.7'
   yaon: '^1.0.1+9'
 
-dependency_overrides:
-  execution_timer:
-    path: ../execution_timer
+# dependency_overrides:
+#   execution_timer:
+#     path: ../execution_timer
 
 false_secrets:
   - 'example/web/index.html'
