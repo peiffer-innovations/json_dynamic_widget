@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AppBar] widget.  See the [fromDynamic] for the
 /// format.
 class JsonAppBarBuilder extends JsonWidgetBuilder {
-  JsonAppBarBuilder({
+  const JsonAppBarBuilder({
     this.actions,
     this.actionsIconTheme,
     required this.automaticallyImplyLeading,
@@ -23,6 +23,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
     this.iconTheme,
     this.leading,
     this.leadingWidth,
+    required this.notificationPredicate,
     required this.primary,
     this.scrolledUnderElevation,
     this.shadowColor,
@@ -57,6 +58,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   final IconThemeData? iconTheme;
   final JsonWidgetData? leading;
   final double? leadingWidth;
+  final ScrollNotificationPredicate notificationPredicate;
   final bool primary;
   final double? scrolledUnderElevation;
   final Color? shadowColor;
@@ -89,6 +91,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
   ///   "iconTheme": <IconThemeData>,
   ///   "leading": <bool>,
   ///   "leadingWidth": <double>,
+  ///   "notificationPredicate": <ScrollNotificationPredicate>,
   ///   "primary": <bool>,
   ///   "scrolledUnderElevation": <double>,
   ///   "shadowColor": <Color>,
@@ -160,6 +163,8 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           registry: registry,
         ),
         leadingWidth: JsonClass.parseDouble(map['leadingWidth']),
+        notificationPredicate:
+            map['notificationPredicate'] ?? defaultScrollNotificationPredicate,
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
         scrolledUnderElevation: JsonClass.parseDouble(
@@ -250,6 +255,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
         context: context,
       ),
       leadingWidth: leadingWidth,
+      notificationPredicate: notificationPredicate,
       primary: primary,
       scrolledUnderElevation: scrolledUnderElevation,
       shadowColor: shadowColor,

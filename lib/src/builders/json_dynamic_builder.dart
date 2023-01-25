@@ -11,8 +11,8 @@ import 'package:uuid/uuid.dart';
 /// It generates 'id' field if not exist via [Uuid.v4].
 class DynamicValuesFactory {
   static Map<String, dynamic> create(dynamic valuesRaw) {
-    var values = Map<String, dynamic>.from(valuesRaw);
-    values['id'] ??= Uuid().v4().replaceAll('-', '_');
+    final values = Map<String, dynamic>.from(valuesRaw);
+    values['id'] ??= const Uuid().v4().replaceAll('-', '_');
     return values;
   }
 }
@@ -26,7 +26,7 @@ class DynamicValuesFactory {
 ///
 /// See the [fromDynamic] for the format.
 class JsonDynamicBuilder extends JsonWidgetBuilder {
-  JsonDynamicBuilder({
+  const JsonDynamicBuilder({
     required this.childTemplate,
     required this.builderType,
     required this.initState,
@@ -42,65 +42,15 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   final Iterable<Map<String, dynamic>> initState;
   final JsonWidgetRegistry? registry;
 
-  @override
-  Widget buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  }) {
-    dynamic args = Map.from(data.args);
-    args.remove('dynamic');
-    dynamic map = {
-      'id': data.id,
-      'type': builderType,
-      'args': args,
-      'children': List.empty(),
-    };
-
-    if (data.registry.getValue(data.id) == null) {
-      data.registry.setValue(
-        data.id,
-        initState
-            .map(
-              (values) => DynamicValuesFactory.create(values),
-            )
-            .toList(),
-        originator: data.id,
-      );
-    }
-
-    return _DynamicWidget(
-      data: JsonWidgetData.fromDynamic(map, registry: data.registry)!,
-      childTemplate: childTemplate,
-      childBuilder: childBuilder,
-      key: key,
-    );
-  }
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(
-        data.id,
-        originator: data.id,
-      );
-    }
-
-    super.remove(data);
-  }
-
   /// Builds the builder from a Map-like dynamic structure. This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
   ///   "dynamic" : {
-  ///     "builderType": <String>,
-  ///     "childTemplate": <Object>,
-  ///     "initState": <List>,
+  ///     "builderType": "<String>",
+  ///     "childTemplate": "<Object>",
+  ///     "initState": "<List>"
   ///   }
   /// }
   /// ```
@@ -115,7 +65,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   }) {
     JsonDynamicBuilder? result;
     if (map != null) {
-      var dynamicArgs = map['dynamic'];
+      final dynamicArgs = map['dynamic'];
       if (dynamicArgs != null && dynamicArgs['builderType'] != null) {
         result = JsonDynamicBuilder(
           childTemplate: json.encode(dynamicArgs['childTemplate'] ?? {}),
@@ -128,18 +78,64 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     }
     return result;
   }
+
+  /// Removes any / all values this builder may have set from the
+  /// [JsonWidgetRegistry].
+  @override
+  void remove(JsonWidgetData data) {
+    if (data.id.isNotEmpty == true) {
+      data.registry.removeValue(data.id);
+    }
+
+    super.remove(data);
+  }
+
+  @override
+  Widget buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  }) {
+    final args = Map.from(data.args);
+    args.remove('dynamic');
+    final map = {
+      'id': data.id,
+      'type': builderType,
+      'args': args,
+      'children': List.empty(),
+    };
+
+    if (data.registry.getValue(data.id) == null) {
+      data.registry.setValue(
+        data.id,
+        initState
+            .map(
+              (values) => DynamicValuesFactory.create(values),
+            )
+            .toList(),
+      );
+    }
+
+    return _DynamicWidget(
+      data: JsonWidgetData.fromDynamic(map, registry: data.registry)!,
+      childTemplate: childTemplate,
+      childBuilder: childBuilder,
+      key: key,
+    );
+  }
 }
 
 class _DynamicWidget extends StatefulWidget {
-  _DynamicWidget({
-    required this.data,
-    required this.childTemplate,
+  const _DynamicWidget({
     this.childBuilder,
+    required this.childTemplate,
+    required this.data,
     Key? key,
   }) : super(key: key);
 
-  final String childTemplate;
   final ChildWidgetBuilder? childBuilder;
+  final String childTemplate;
   final JsonWidgetData data;
 
   @override
@@ -152,12 +148,12 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> childrenData = _data.registry.getValue(_data.id) ?? [];
+    final List<dynamic> childrenData = _data.registry.getValue(_data.id) ?? [];
     if (childrenData.isEmpty) {
       _data.children!.clear();
     } else {
       _data.children!.clear();
-      var children = childrenData
+      final children = childrenData
           .map(
             (e) => Interpolation().eval(widget.childTemplate, e),
           )

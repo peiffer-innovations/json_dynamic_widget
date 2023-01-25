@@ -9,7 +9,7 @@ import 'package:json_theme/json_theme.dart';
 /// children in JSON determines which will be the first or
 /// second to be rendered.
 class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
-  JsonAnimatedCrossFadeBuilder({
+  const JsonAnimatedCrossFadeBuilder({
     this.alignment,
     required this.crossFadeState,
     required this.duration,
@@ -39,15 +39,15 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "crossFadeState": <CrossFadeState>,
-  ///   "duration": <int; millis>,
-  ///   "excludeBottomFocus": <bool>,
-  ///   "firstCurve": <Curve>,
-  ///   "layoutBuilder": <AnimatedCrossFadeBuilder>,
-  ///   "reverseDuration": <int; millis>,
-  ///   "secondCurve": <Curve>,
-  ///   "sizeCurve": <Curve>,
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "crossFadeState": "<CrossFadeState>",
+  ///   "duration": "<int; millis>",
+  ///   "excludeBottomFocus": "<bool>",
+  ///   "firstCurve": "<Curve>",
+  ///   "layoutBuilder": "<AnimatedCrossFadeBuilder>",
+  ///   "reverseDuration": "<int; millis>",
+  ///   "secondCurve": "<Curve>",
+  ///   "sizeCurve": "<Curve>"
   /// }
   /// ```
   ///
@@ -99,8 +99,8 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var firstChild = getChild(data, index: 0);
-    var secondChild = getChild(data, index: 1);
+    final firstChild = getChild(data, index: 0);
+    final secondChild = getChild(data, index: 1);
     assert(
       data.children?.length == 2,
       '[JsonAnimatedCrossFadeBuilder] only supports exactly two children.',
@@ -118,7 +118,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedCrossFade extends StatefulWidget {
-  _JsonAnimatedCrossFade({
+  const _JsonAnimatedCrossFade({
     required this.builder,
     required this.childBuilder,
     required this.data,

@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [Center] widget.  See the [fromDynamic] for the
 /// format.
 class JsonCenterBuilder extends JsonWidgetBuilder {
-  JsonCenterBuilder({
+  const JsonCenterBuilder({
     this.heightFactor,
     this.widthFactor,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -23,8 +23,8 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "heightFactor": <double>,
-  ///   "widthFactor": <double>
+  ///   "heightFactor": "<double>",
+  ///   "widthFactor": "<double>"
   /// }
   /// ```
   static JsonCenterBuilder? fromDynamic(
@@ -50,7 +50,7 @@ class JsonCenterBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Center(
       heightFactor: heightFactor,

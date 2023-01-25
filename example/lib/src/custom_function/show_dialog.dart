@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-final JsonWidgetFunction body = ({
-  List<dynamic>? args,
+dynamic body({
+  required List<dynamic>? args,
   required JsonWidgetRegistry registry,
 }) =>
     () {
@@ -11,23 +11,23 @@ final JsonWidgetFunction body = ({
         final String buildContextVarName = args[0];
         final String dialogDataVarName = args[1];
 
-        BuildContext context = registry.getValue(buildContextVarName);
-        var dialogData =
+        final BuildContext context = registry.getValue(buildContextVarName);
+        final dialogData =
             DialogData.fromJson(registry.getValue(dialogDataVarName));
 
-        var title = JsonWidgetData.fromDynamic(
+        final title = JsonWidgetData.fromDynamic(
           dialogData.title,
           registry: registry,
         )!
             .build(
           context: context,
         );
-        var content = JsonWidgetData.fromDynamic(
+        final content = JsonWidgetData.fromDynamic(
           dialogData.content,
           registry: registry,
         )!
             .build(context: context);
-        List<Widget> actions = dialogData.actions
+        final List<Widget> actions = dialogData.actions
             .map(
               (actionData) => TextButton(
                 onPressed: () {
@@ -52,7 +52,7 @@ final JsonWidgetFunction body = ({
         );
       }
     };
-final String key = 'show_dialog';
+const String key = 'show_dialog';
 
 class ActionData extends JsonClass {
   ActionData({

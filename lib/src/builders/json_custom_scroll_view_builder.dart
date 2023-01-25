@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [CustomScrollView] widget.  See the
 /// [fromDynamic] for the format.
 class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
-  JsonCustomScrollViewBuilder({
+  const JsonCustomScrollViewBuilder({
     this.anchor,
     this.cacheExtent,
     this.center,
@@ -50,22 +50,22 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "anchor": <double>,
-  ///   "cacheExtent": <double>,
-  ///   "clipBehavior": <Clip>,
-  ///   "center": <Key>,
-  ///   "controller": <ScrollController>,
-  ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "physics": <ScrollPhysics>,
-  ///   "primary": <bool>,
-  ///   "restorationId": <String>,
-  ///   "reverse": <bool>,
-  ///   "scrollBehavior": <ScrollBehavior>,
-  ///   "scrollDirection": <Axis>,
-  ///   "semanticChildCount": <int>,
-  ///   "shrinkWrap": <bool>
+  ///   "anchor": "<double>",
+  ///   "cacheExtent": "<double>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "center": "<Key>",
+  ///   "controller": "<ScrollController>",
+  ///   "dragStartBehavior": "<DragStartBehavior>",
+  ///   "keyboardDismissBehavior": "<ScrollViewKeyboardDismissBehavior>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "physics": "<ScrollPhysics>",
+  ///   "primary": "<bool>",
+  ///   "restorationId": "<String>",
+  ///   "reverse": "<bool>",
+  ///   "scrollBehavior": "<ScrollBehavior>",
+  ///   "scrollDirection": "<Axis>",
+  ///   "semanticChildCount": "<int>",
+  ///   "shrinkWrap": "<bool>"
   /// }
   /// ```
   ///
@@ -92,8 +92,11 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
         cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
         center:
             map['center'] is String ? ValueKey(map['center']) : map['center'],
-        clipBehavior:
-            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
@@ -137,7 +140,7 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var children = [
+    final children = [
       for (var child in data.children ?? <JsonWidgetData>[])
         child.build(
           context: context,

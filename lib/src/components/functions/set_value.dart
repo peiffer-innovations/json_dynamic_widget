@@ -8,8 +8,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 ///  1. [String] -- the key to pass to [setValue].
 ///  2. [dynamic] -- the value to pass to [setValue].
 class SetValueFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'set_value';
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) =>

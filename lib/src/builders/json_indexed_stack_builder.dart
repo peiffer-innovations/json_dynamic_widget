@@ -7,8 +7,9 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [IndexedStack] widget.  See the [fromDynamic] for
 /// the format.
 class JsonIndexedStackBuilder extends JsonWidgetBuilder {
-  JsonIndexedStackBuilder({
+  const JsonIndexedStackBuilder({
     required this.alignment,
+    required this.clipBehavior,
     this.index,
     required this.sizing,
     this.textDirection,
@@ -18,6 +19,7 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   static const type = 'indexed_stack';
 
   final AlignmentGeometry alignment;
+  final Clip clipBehavior;
   final int? index;
   final StackFit sizing;
   final TextDirection? textDirection;
@@ -27,10 +29,10 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "index": <int>,
-  ///   "sizing": <StackFit>,
-  ///   "textDirection": <TextDirection>
+  ///   "alignment": "<Alignment>",
+  ///   "index": "<int>",
+  ///   "sizing": "<StackFit>",
+  ///   "textDirection": "<TextDirection>"
   /// }
   /// ```
   ///
@@ -51,6 +53,11 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             AlignmentDirectional.topStart,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         index: JsonClass.parseInt(map['index'], 0),
         sizing: ThemeDecoder.decodeStackFit(
               map['sizing'],
@@ -76,6 +83,7 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
   }) {
     return IndexedStack(
       alignment: alignment,
+      clipBehavior: clipBehavior,
       index: index,
       key: key,
       textDirection: textDirection,

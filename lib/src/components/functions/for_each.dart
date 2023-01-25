@@ -8,14 +8,17 @@ import 'package:logging/logging.dart';
 /// 3. Optional name to place the value in.  If not set, the variable will be placed in the name "value".
 /// 4. Optional name to place the key (if the iterable is a [Map]) or index (if the iterable is a [List]).
 class ForEachFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'for_each';
+
   static final _logger = Logger('for_each');
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
-    var iterable = args![0];
-    var template = '\${${args[1]}}';
+    final iterable = args![0];
+    final template = '\${${args[1]}}';
 
     var varName = 'value';
     var keyName = 'key';
@@ -26,11 +29,11 @@ class ForEachFunction {
       keyName = args[3];
     }
 
-    var results = <JsonWidgetData>[];
+    final results = <JsonWidgetData>[];
     if (iterable is Iterable) {
       var index = 0;
       for (var value in iterable) {
-        var reg = JsonWidgetRegistry(
+        final reg = JsonWidgetRegistry(
           debugLabel: 'for_each_$index',
           parent: registry,
         );
@@ -55,7 +58,7 @@ class ForEachFunction {
       }
     } else if (iterable is Map) {
       for (var entry in iterable.entries) {
-        var reg = JsonWidgetRegistry(parent: registry);
+        final reg = JsonWidgetRegistry(parent: registry);
         _logger.finest('[${entry.key}] [${entry.value}]');
         reg.setValue(
           varName,
@@ -78,5 +81,5 @@ class ForEachFunction {
     }
 
     return results;
-  };
+  }
 }

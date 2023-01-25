@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedTheme] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
-  JsonAnimatedThemeBuilder({
+  const JsonAnimatedThemeBuilder({
     this.curve,
     required this.data,
     this.duration,
@@ -27,10 +27,10 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "curve": <Curve>,
-  ///   "data": <ThemeData>,
-  ///   "duration": <int; millis>,
-  ///   "onEnd": <VoidCallback>,
+  ///   "curve": "<Curve>",
+  ///   "data": "<ThemeData>",
+  ///   "duration": "<int; millis>",
+  ///   "onEnd": "<VoidCallback>"
   /// }
   /// ```
   ///
@@ -68,7 +68,7 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedTheme(
       builder: this,
@@ -81,7 +81,7 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedTheme extends StatefulWidget {
-  _JsonAnimatedTheme({
+  const _JsonAnimatedTheme({
     required this.builder,
     required this.child,
     required this.childBuilder,

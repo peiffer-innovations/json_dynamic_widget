@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Semantics] widget.  See the [fromDynamic] for the
 /// format.
 class JsonSemanticsBuilder extends JsonWidgetBuilder {
-  JsonSemanticsBuilder({
+  const JsonSemanticsBuilder({
     this.attributedDecreasedValue,
     this.attributedHint,
     this.attributedIncreasedValue,
@@ -36,6 +36,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
     this.link,
     this.liveRegion,
     this.maxValueLength,
+    this.mixed,
     this.multiline,
     this.namesRoute,
     this.obscured,
@@ -68,6 +69,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
     this.textDirection,
     this.textField,
     this.toggled,
+    this.tooltip,
     this.value,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -101,6 +103,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   final bool? link;
   final bool? liveRegion;
   final int? maxValueLength;
+  final bool? mixed;
   final bool? multiline;
   final bool? namesRoute;
   final bool? obscured;
@@ -133,6 +136,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   final TextDirection? textDirection;
   final bool? textField;
   final bool? toggled;
+  final String? tooltip;
   final String? value;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -140,66 +144,68 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "attributedDecreasedValue": <AttributedString>,
-  ///   "attributedHint": <AttributedString>,
-  ///   "attributedIncreasedValue": <AttributedString>,
-  ///   "attributedLabel": <AttributedString>,
-  ///   "attributedValue": <AttributedString>,
-  ///   "customSemanticsActions": <Map<CustomSemanticsAction, VoidCallback>>,
-  ///   "button": <bool>,
-  ///   "checked": <bool>,
-  ///   "container": <bool>,
-  ///   "currentValueLength": <int>,
-  ///   "decreasedValue": <String>,
-  ///   "enabled": <bool>,
-  ///   "excludeSemantics": <bool>,
-  ///   "explicitChildNodes": <bool>,
-  ///   "focusable": <bool>,
-  ///   "focused": <bool>,
-  ///   "header": <bool>,
-  ///   "hidden": <bool>,
-  ///   "hint": <String>>,
-  ///   "image": <bool>,
-  ///   "inMutuallyExclusiveGroup": <bool>
-  ///   "increasedValue": <String>,
-  ///   "keyboardKey": <bool>,
-  ///   "label": <String>,
-  ///   "link": <bool>,
-  ///   "liveRegion": <bool>,
-  ///   "maxValueLength": <int>,
-  ///   "multiline": <bool>,
-  ///   "namesRoute": <bool>,
-  ///   "obscured": <bool>,
-  ///   "onCopy": <VoidCallback>,
-  ///   "onCut": <VoidCallback>,
-  ///   "onDecrease": <VoidCallback>,
-  ///   "onDidGainAccessibilityFocus": <VoidCallback>,
-  ///   "onDidLoseAccessibilityFocus": <VoidCallback>,
-  ///   "onDismiss": <VoidCallback>,
-  ///   "onIncrease": <VoidCallback>,
-  ///   "onLongPress": <VoidCallback>,
-  ///   "onLongPressHint": <String>,
-  ///   "onMoveCursorBackwardByCharacter": <ValueChaned<bool>>,
-  ///   "onMoveCursorForwardByCharacter": <ValueChanged<bool>>,
-  ///   "onPaste": <VoidCallback>,
-  ///   "onScrollDown": <VoidCallback>,
-  ///   "onScrollLeft": <VoidCallback>,
-  ///   "onScrollRight": <VoidCallback>,
-  ///   "onScrollUp": <VoidCallback>,
-  ///   "onSetSelection": <ValueChanged<TextSelection>>,
-  ///   "onSetText": <ValueChanged<String>>,
-  ///   "onTap": <VoidCallback>,
-  ///   "onTapHint": <String>,
-  ///   "readOnly": <bool>,
-  ///   "scopesRoute": <bool>,
-  ///   "selected": <bool>,
-  ///   "slider": <bool>,
-  ///   "sortKey": <OrdinalSortKey>,
-  ///   "tagForChildren": <SemanticsTag>,
-  ///   "textDirection": <TextDirection>,
-  ///   "textField": <bool>,
-  ///   "toggled": <bool>,
-  ///   "value": <String>
+  ///   "attributedDecreasedValue": "<AttributedString>",
+  ///   "attributedHint": "<AttributedString>",
+  ///   "attributedIncreasedValue": "<AttributedString>",
+  ///   "attributedLabel": "<AttributedString>",
+  ///   "attributedValue": "<AttributedString>",
+  ///   "customSemanticsActions": "<Map<CustomSemanticsAction, VoidCallback>>",
+  ///   "button": "<bool>",
+  ///   "checked": "<bool>",
+  ///   "container": "<bool>",
+  ///   "currentValueLength": "<int>",
+  ///   "decreasedValue": "<String>",
+  ///   "enabled": "<bool>",
+  ///   "excludeSemantics": "<bool>",
+  ///   "explicitChildNodes": "<bool>",
+  ///   "focusable": "<bool>",
+  ///   "focused": "<bool>",
+  ///   "header": "<bool>",
+  ///   "hidden": "<bool>",
+  ///   "hint": "<String>",
+  ///   "image": "<bool>",
+  ///   "inMutuallyExclusiveGroup": "<bool>",
+  ///   "increasedValue": "<String>",
+  ///   "keyboardKey": "<bool>",
+  ///   "label": "<String>",
+  ///   "link": "<bool>",
+  ///   "liveRegion": "<bool>",
+  ///   "maxValueLength": "<int>",
+  ///   "mixed": "<bool>",
+  ///   "multiline": "<bool>",
+  ///   "namesRoute": "<bool>",
+  ///   "obscured": "<bool>",
+  ///   "onCopy": "<VoidCallback>",
+  ///   "onCut": "<VoidCallback>",
+  ///   "onDecrease": "<VoidCallback>",
+  ///   "onDidGainAccessibilityFocus": "<VoidCallback>",
+  ///   "onDidLoseAccessibilityFocus": "<VoidCallback>",
+  ///   "onDismiss": "<VoidCallback>",
+  ///   "onIncrease": "<VoidCallback>",
+  ///   "onLongPress": "<VoidCallback>",
+  ///   "onLongPressHint": "<String>",
+  ///   "onMoveCursorBackwardByCharacter": "<ValueChaned<bool>>",
+  ///   "onMoveCursorForwardByCharacter": "<ValueChanged<bool>>",
+  ///   "onPaste": "<VoidCallback>",
+  ///   "onScrollDown": "<VoidCallback>",
+  ///   "onScrollLeft": "<VoidCallback>",
+  ///   "onScrollRight": "<VoidCallback>",
+  ///   "onScrollUp": "<VoidCallback>",
+  ///   "onSetSelection": "<ValueChanged<TextSelection>>",
+  ///   "onSetText": "<ValueChanged<String>>",
+  ///   "onTap": "<VoidCallback>",
+  ///   "onTapHint": "<String>",
+  ///   "readOnly": "<bool>",
+  ///   "scopesRoute": "<bool>",
+  ///   "selected": "<bool>",
+  ///   "slider": "<bool>",
+  ///   "sortKey": "<OrdinalSortKey>",
+  ///   "tagForChildren": "<SemanticsTag>",
+  ///   "textDirection": "<TextDirection>",
+  ///   "textField": "<bool>",
+  ///   "toggled": "<bool>",
+  ///   "tooltip": "<String>",
+  ///   "value": "<String>"
   /// }
   /// ```
   static JsonSemanticsBuilder? fromDynamic(
@@ -246,6 +252,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
         maxValueLength: map['maxValueLength'] == null
             ? null
             : JsonClass.parseInt(map['maxValueLength']),
+        mixed: map['mixed'] == null ? null : JsonClass.parseBool(map['mixed']),
         multiline: map['multiline'] == null
             ? null
             : JsonClass.parseBool(map['multiline']),
@@ -286,14 +293,24 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(map['selected']),
         slider:
             map['slider'] == null ? null : JsonClass.parseBool(map['slider']),
-        sortKey: ThemeDecoder.decodeOrdinalSortKey(map['sortKey']),
-        tagForChildren: ThemeDecoder.decodeSemanticsTag(map['tagForChildren']),
-        textDirection: ThemeDecoder.decodeTextDirection(map['textDirection']),
+        sortKey: ThemeDecoder.decodeOrdinalSortKey(
+          map['sortKey'],
+          validate: false,
+        ),
+        tagForChildren: ThemeDecoder.decodeSemanticsTag(
+          map['tagForChildren'],
+          validate: false,
+        ),
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
         textField: map['textField'] == null
             ? null
             : JsonClass.parseBool(map['textField']),
         toggled:
             map['toggled'] == null ? null : JsonClass.parseBool(map['toggled']),
+        tooltip: map['tooltip'],
         value: map['value'],
       );
     }
@@ -308,7 +325,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Semantics(
       attributedDecreasedValue: attributedDecreasedValue,
@@ -339,6 +356,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
       link: link,
       liveRegion: liveRegion,
       maxValueLength: maxValueLength,
+      mixed: mixed,
       multiline: multiline,
       namesRoute: namesRoute,
       obscured: obscured,
@@ -371,6 +389,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
       textDirection: textDirection,
       textField: textField,
       toggled: toggled,
+      tooltip: tooltip,
       value: value,
       child: child.build(
         childBuilder: childBuilder,

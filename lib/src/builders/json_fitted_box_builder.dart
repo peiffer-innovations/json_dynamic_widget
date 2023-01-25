@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [FittedBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFittedBoxBuilder extends JsonWidgetBuilder {
-  JsonFittedBoxBuilder({
+  const JsonFittedBoxBuilder({
     required this.alignment,
     required this.clipBehavior,
     required this.fit,
@@ -24,9 +24,9 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "clipBehavior": <Clip>,
-  ///   "fit": <BoxFit>
+  ///   "alignment": "<Alignment>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "fit": "<BoxFit>"
   /// }
   /// ```
   ///
@@ -70,7 +70,7 @@ class JsonFittedBoxBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return FittedBox(
       alignment: alignment,

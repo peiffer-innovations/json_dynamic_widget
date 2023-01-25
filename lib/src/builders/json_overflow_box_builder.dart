@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [OverflowBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
-  JsonOverflowBoxBuilder({
+  const JsonOverflowBoxBuilder({
     required this.alignment,
     this.maxHeight,
     this.maxWidth,
@@ -29,11 +29,11 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "maxHeight": <double>,
-  ///   "maxWidth": <double>,
-  ///   "minHeight": <double>,
-  ///   "minWidth": <double>
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "maxHeight": "<double>",
+  ///   "maxWidth": "<double>",
+  ///   "minHeight": "<double>",
+  ///   "minWidth": "<double>"
   /// }
   /// ```
   ///
@@ -49,6 +49,7 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
       result = JsonOverflowBoxBuilder(
         alignment: ThemeDecoder.decodeAlignment(
               map['alignment'],
+              validate: false,
             ) ??
             Alignment.center,
         maxHeight: JsonClass.parseDouble(
@@ -76,7 +77,7 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return OverflowBox(
       alignment: alignment,

@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [SliverPadding] widget.  See the [fromDynamic] for the
 /// format.
 class JsonSliverPaddingBuilder extends JsonWidgetBuilder {
-  JsonSliverPaddingBuilder({
+  const JsonSliverPaddingBuilder({
     required this.padding,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -20,7 +20,7 @@ class JsonSliverPaddingBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "padding": <EdgeInsetsGeometry>
+  ///   "padding": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///
@@ -51,7 +51,7 @@ class JsonSliverPaddingBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return SliverPadding(
       key: key,

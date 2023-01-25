@@ -10,8 +10,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 ///  1. [String] -- The name of the route to push.
 ///  2. [dynamic] -- <Optional> object to pass along as the route arguments.
 class NavigateNamedFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'navigate_named';
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
@@ -21,5 +23,5 @@ class NavigateNamedFunction {
           args![0],
           arguments: args.length >= 2 ? args[1] : null,
         );
-  };
+  }
 }

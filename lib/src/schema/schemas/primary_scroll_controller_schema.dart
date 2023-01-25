@@ -6,17 +6,21 @@ class PrimaryScrollControllerSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment':
         'https://api.flutter.dev/flutter/widgets/PrimaryScrollController-class.html',
     'type': 'object',
     'title': 'PrimaryScrollController',
     'additionalProperties': false,
     'properties': {
+      'automaticallyInheritForPlatforms': SchemaHelper.arraySchema(
+        TargetPlatformSchema.id,
+      ),
       'controller': SchemaHelper.stringSchema,
       'debugLabel': SchemaHelper.stringSchema,
       'initialScrollOffset': SchemaHelper.numberSchema,
       'keepScrollOffset': SchemaHelper.boolSchema,
+      'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),
     }
   };
 }

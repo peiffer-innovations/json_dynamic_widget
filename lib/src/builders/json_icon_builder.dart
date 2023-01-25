@@ -7,36 +7,48 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Icon] widget.  See the [fromDynamic] for the
 /// format.
 class JsonIconBuilder extends JsonWidgetBuilder {
-  JsonIconBuilder({
+  const JsonIconBuilder({
     this.color,
+    this.fill,
+    this.grade,
     required this.icon,
+    this.opticalSize,
     this.semanticLabel,
     this.shadows,
     this.size,
     this.textDirection,
+    this.weight,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 0;
   static const type = 'icon';
 
   final Color? color;
+  final double? fill;
+  final double? grade;
   final IconData? icon;
+  final double? opticalSize;
   final String? semanticLabel;
   final List<Shadow>? shadows;
   final double? size;
   final TextDirection? textDirection;
+  final double? weight;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "icon": <IconData>,
-  ///   "semanticLabel": <String>,
-  ///   "shadows": <List<Shadow>>,
-  ///   "size": <double>,
-  ///   "textDirection": <TextDirection>
+  ///   "color": "<Color>",
+  ///   "fill": "<double>",
+  ///   "grade": "<double>",
+  ///   "icon": "<IconData>",
+  ///   "opticalSize": "<double>",
+  ///   "semanticLabel": "<String>",
+  ///   "shadows": "<List<Shadow>>",
+  ///   "size": "<double>",
+  ///   "textDirection": "<TextDirection>",
+  ///   "weight": "<double>"
   /// }
   /// ```
   ///
@@ -57,10 +69,13 @@ class JsonIconBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
+        fill: JsonClass.parseDouble(map['fill']),
+        grade: JsonClass.parseDouble(map['grade']),
         icon: ThemeDecoder.decodeIconData(
           map['icon'],
           validate: false,
         ),
+        opticalSize: JsonClass.parseDouble(map['opticalSize']),
         semanticLabel: map['semanticLabel'],
         shadows: JsonClass.fromDynamicList(
           map['shadows'],
@@ -90,11 +105,15 @@ class JsonIconBuilder extends JsonWidgetBuilder {
     return Icon(
       icon,
       color: color,
+      fill: fill,
+      grade: grade,
       key: key,
+      opticalSize: opticalSize,
       semanticLabel: semanticLabel,
       shadows: shadows,
       size: size,
       textDirection: textDirection,
+      weight: weight,
     );
   }
 }

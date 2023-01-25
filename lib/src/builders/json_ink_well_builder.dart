@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [InkWell] widget.  See the [fromDynamic] for the
 /// format.
 class JsonInkWellBuilder extends JsonWidgetBuilder {
-  JsonInkWellBuilder({
+  const JsonInkWellBuilder({
     required this.autofocus,
     this.borderRadius,
     required this.canRequestFocus,
@@ -32,6 +32,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
     this.radius,
     this.splashColor,
     this.splashFactory,
+    this.statesController,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -61,36 +62,38 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
   final double? radius;
   final Color? splashColor;
   final InteractiveInkFeatureFactory? splashFactory;
+  final MaterialStatesController? statesController;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
-  ///   "autofocus": <bool>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "canRequestFocus": <bool>,
-  ///   "customBorder": <ShapeBorder>,
-  ///   "enableFeedback": <bool>,
-  ///   "excludeFromSemantics": <bool>,
-  ///   "focusColor": <Color>,
-  ///   "focusNode": <FocusNode>,
-  ///   "highlightColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "onDoubleTap": <GestureTapCallback>,
-  ///   "onFocusChange": <ValueChanged<bool>>,
-  ///   "onHighlightChanged": <ValueChanged<bool>>,
-  ///   "onHover": <ValueChanged<bool>>,
-  ///   "onLongPress": <GestureLongPressCallback>,
-  ///   "onTap": <GestureTapCallback>,
-  ///   "onTapCancel": <GestureTapCancelCallback>,
-  ///   "onTapDown": <GestureTapDownCallback>,
-  ///   "onTapUp": <GestureTapUpCallback>,
-  ///   "overlayColor": <MaterialStatePropertyColor>,
-  ///   "radius": <double>,
-  ///   "splashColor": <Color>,
-  ///   "splashFactory": <InteractiveInkFeatureFactory>
+  ///   "autofocus": "<bool>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "canRequestFocus": "<bool>",
+  ///   "customBorder": "<ShapeBorder>",
+  ///   "enableFeedback": "<bool>",
+  ///   "excludeFromSemantics": "<bool>",
+  ///   "focusColor": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "highlightColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onDoubleTap": "<GestureTapCallback>",
+  ///   "onFocusChange": "<ValueChanged<bool>>",
+  ///   "onHighlightChanged": "<ValueChanged<bool>>",
+  ///   "onHover": "<ValueChanged<bool>>",
+  ///   "onLongPress": "<GestureLongPressCallback>",
+  ///   "onTap": "<GestureTapCallback>",
+  ///   "onTapCancel": "<GestureTapCancelCallback>",
+  ///   "onTapDown": "<GestureTapDownCallback>",
+  ///   "onTapUp": "<GestureTapUpCallback>",
+  ///   "overlayColor": "<MaterialStatePropertyColor>",
+  ///   "radius": "<double>",
+  ///   "splashColor": "<Color>",
+  ///   "splashFactory": "<InteractiveInkFeatureFactory>",
+  ///   "statesController": "<MaterialStatesController>"
   /// }
   /// ```
   ///
@@ -183,7 +186,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return InkWell(
       autofocus: autofocus,
@@ -211,6 +214,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
       radius: radius,
       splashColor: splashColor,
       splashFactory: splashFactory,
+      statesController: statesController,
       child: child.build(
         childBuilder: childBuilder,
         context: context,

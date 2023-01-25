@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [Positioned] widget.  See the [fromDynamic] for
 /// the format.
 class JsonPositionedBuilder extends JsonWidgetBuilder {
-  JsonPositionedBuilder({
+  const JsonPositionedBuilder({
     this.bottom,
     this.height,
     this.left,
@@ -30,12 +30,12 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "height": <double>,
-  ///   "left": <double>,
-  ///   "right": <double>,
-  ///   "top": <double>,
-  ///   "width": <double>
+  ///   "bottom": "<double>",
+  ///   "height": "<double>",
+  ///   "left": "<double>",
+  ///   "right": "<double>",
+  ///   "top": "<double>",
+  ///   "width": "<double>"
   /// }
   /// ```
   static JsonPositionedBuilder? fromDynamic(
@@ -65,7 +65,7 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Positioned(
       bottom: bottom,

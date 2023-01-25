@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [FloatingActionButton] widget.
 /// See the [fromDynamic] for the format.
 class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
-  JsonFloatingActionButtonBuilder({
+  const JsonFloatingActionButtonBuilder({
     required this.autofocus,
     this.backgroundColor,
     required this.clipBehavior,
@@ -63,28 +63,28 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "autofocus": <bool>,
-  ///   "backgroundColor": <Color>,
-  ///   "clipBehavior": <Clip>,
-  ///   "disabledElevation": <double>,
-  ///   "elevation": <double>,
-  ///   "enableFeedback": <bool>,
-  ///   "focusColor": <Color>,
-  ///   "focusElevation": <double>,
-  ///   "focusNode": <FocusNode>,
-  ///   "foregroundColor": <Color>,
-  ///   "heroTag": <Object>,
-  ///   "highlightElevation": <double>,
-  ///   "hoverColor": <Color>,
-  ///   "hoverElevation": <double>,
-  ///   "isExtended": <bool>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mini": <bool>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "onPressed": <VoidCallback>,
-  ///   "shape": <ShapeBorder>,
-  ///   "splashColor": <Color>,
-  ///   "tooltip": <String>
+  ///   "autofocus": "<bool>",
+  ///   "backgroundColor": "<Color>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "disabledElevation": "<double>",
+  ///   "elevation": "<double>",
+  ///   "enableFeedback": "<bool>",
+  ///   "focusColor": "<Color>",
+  ///   "focusElevation": "<double>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "foregroundColor": "<Color>",
+  ///   "heroTag": "<Object>",
+  ///   "highlightElevation": "<double>",
+  ///   "hoverColor": "<Color>",
+  ///   "hoverElevation": "<double>",
+  ///   "isExtended": "<bool>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mini": "<bool>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onPressed": "<VoidCallback>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "splashColor": "<Color>",
+  ///   "tooltip": "<String>"
   /// }
   /// ```
   ///
@@ -141,7 +141,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         heroTag: map['heroTag'] ??
-            FloatingActionButton(
+            const FloatingActionButton(
               onPressed: null,
             ).heroTag,
         highlightElevation: JsonClass.parseDouble(
@@ -189,7 +189,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return FloatingActionButton(
       autofocus: autofocus,

@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [IgnorePointer] widget.  See the [fromDynamic] for
 /// the format.
 class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
-  JsonIgnorePointerBuilder({
+  const JsonIgnorePointerBuilder({
     required this.ignoring,
     this.ignoringSemantics,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -22,8 +22,8 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "ignoring": <bool>,
-  ///   "ignoringSemantics": <bool>
+  ///   "ignoring": "<bool>",
+  ///   "ignoringSemantics": "<bool>"
   /// }
   /// ```
   static JsonIgnorePointerBuilder? fromDynamic(
@@ -53,7 +53,7 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return IgnorePointer(
       ignoring: ignoring,

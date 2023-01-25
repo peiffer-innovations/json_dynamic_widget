@@ -10,7 +10,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 ///
 /// See the [fromDynamic] for the format.
 class JsonConditionalBuilder extends JsonWidgetBuilder {
-  JsonConditionalBuilder({
+  const JsonConditionalBuilder({
     required this.conditional,
     required this.keys,
     this.onFalse,
@@ -29,11 +29,11 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
   /// ```json
   /// {
   ///   "conditional": {
-  ///     "conditions": <Conditional[]>,
-  ///     "mode": <EvaluationMode>,
-  ///     "values": <Map<String, dynamic>>
+  ///     "conditions": "<List<Conditional>>",
+  ///     "mode": "<EvaluationMode>",
+  ///     "values": "<Map<String, dynamic>>"
   ///   },
-  ///   "onFalse": <JsonWidgetData>
+  ///   "onFalse": "<JsonWidgetData>"
   /// }
   /// ```
   ///
@@ -52,8 +52,8 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
     JsonConditionalBuilder? result;
 
     if (map != null) {
-      var conditional = Conditional.fromDynamic(map['conditional'])!;
-      var keys = <String>{};
+      final conditional = Conditional.fromDynamic(map['conditional'])!;
+      final keys = <String>{};
       _appendKeys(conditional, keys);
 
       result = JsonConditionalBuilder(
@@ -97,7 +97,7 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
 }
 
 class _ConditionalWidget extends StatefulWidget {
-  _ConditionalWidget({
+  const _ConditionalWidget({
     this.childBuilder,
     required this.conditional,
     required this.data,
@@ -148,7 +148,7 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
     if (_keys.contains(event.id) == true) {
       _data = _data.recreate();
 
-      var builder = _data.builder() as JsonConditionalBuilder;
+      final builder = _data.builder() as JsonConditionalBuilder;
       _conditional = builder.conditional;
       _keys = builder.keys;
       _onFalse = builder.onFalse;
@@ -161,9 +161,9 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var result = _conditional.evaluate(_data.registry.values);
+    final result = _conditional.evaluate(_data.registry.values);
 
-    var onTrue = _data.children?.isNotEmpty == true
+    final onTrue = _data.children?.isNotEmpty == true
         ? _data.children![0]
         : JsonWidgetBuilder.kDefaultChild;
 
@@ -183,7 +183,7 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
             childBuilder: widget.childBuilder,
             context: context,
           ) ??
-          SizedBox();
+          const SizedBox();
     }
 
     return child;

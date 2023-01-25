@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [LinearProgressIndicator] widget.  See the
 /// [fromDynamic] for the format.
 class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
-  JsonLinearProgressIndicatorBuilder({
+  const JsonLinearProgressIndicatorBuilder({
     this.backgroundColor,
     this.color,
     this.minHeight,
@@ -33,13 +33,13 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "color": <Color>,
-  ///   "minHeight": <double>,
-  ///   "semanticsLabel": <String>,
-  ///   "semanticsValue": <String>,
-  ///   "value": <double>,
-  ///   "valueColor": <Animation<Color> | Color>
+  ///   "backgroundColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "minHeight": "<double>",
+  ///   "semanticsLabel": "<String>",
+  ///   "semanticsValue": "<String>",
+  ///   "value": "<double>",
+  ///   "valueColor": "<Animation<Color>> || <Color>"
   /// }
   /// ```
   ///

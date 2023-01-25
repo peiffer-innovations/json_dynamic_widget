@@ -6,7 +6,7 @@ void main() {
   test('internal variable', () {
     /// This registry is overriding the built-in value of
     /// `bounce_in_curve`
-    var registry = JsonWidgetRegistry(
+    final registry = JsonWidgetRegistry(
       values: {
         'bounce_in_curve': Curves.bounceInOut,
       },
@@ -16,7 +16,7 @@ void main() {
       registry.processArgs({
         'bounce_in_curve': '\${bounce_in_curve}',
       }, null),
-      ProcessedArg(
+      const ProcessedArg(
         listenVariables: {'bounce_in_curve'},
         value: {
           'bounce_in_curve': Curves.bounceInOut,
@@ -28,7 +28,7 @@ void main() {
       registry.processArgs({
         'decelerate_curve': '\${decelerate_curve}',
       }, null),
-      ProcessedArg(
+      const ProcessedArg(
         listenVariables: {'decelerate_curve'},
         value: {
           'decelerate_curve': Curves.decelerate,
@@ -38,7 +38,7 @@ void main() {
   });
 
   test('default arg processors', () {
-    var registry = JsonWidgetRegistry(
+    final registry = JsonWidgetRegistry(
       values: {
         'one': 1,
         'string': 'foo',
@@ -58,16 +58,16 @@ void main() {
 
     expect(
       registry.processArgs('Hello world!', null).toString(),
-      ProcessedArg(listenVariables: {}, value: 'Hello world!').toString(),
+      const ProcessedArg(listenVariables: {}, value: 'Hello world!').toString(),
     );
 
     expect(
       registry.processArgs('\${one}', null).toString(),
-      ProcessedArg(listenVariables: {'one'}, value: 1).toString(),
+      const ProcessedArg(listenVariables: {'one'}, value: 1).toString(),
     );
     expect(
       registry.processArgs('\${one + one}', null).toString(),
-      ProcessedArg(listenVariables: {'one'}, value: 2).toString(),
+      const ProcessedArg(listenVariables: {'one'}, value: 2).toString(),
     );
     expect(
       registry
@@ -75,7 +75,7 @@ void main() {
               "\${concat('Hello ',name,'! Here\\'s the map: ',{'key': 'value'}, ' and the array: ', ['value1', false])()}",
               null)
           .toString(),
-      ProcessedArg(listenVariables: {
+      const ProcessedArg(listenVariables: {
         'name'
       }, value: "Hello Steve! Here's the map: {key: value} and the array: [value1, false]")
           .toString(),
@@ -84,18 +84,20 @@ void main() {
       registry
           .processArgs("\${concat('Hello ', concat('Mr. ', name)())()}", null)
           .toString(),
-      ProcessedArg(listenVariables: {'name'}, value: 'Hello Mr. Steve')
+      const ProcessedArg(listenVariables: {'name'}, value: 'Hello Mr. Steve')
           .toString(),
     );
     expect(
       registry.processArgs({'\${string}': '\${name}'}, null).toString(),
-      ProcessedArg(listenVariables: {'string', 'name'}, value: {'foo': 'Steve'})
-          .toString(),
+      const ProcessedArg(
+          listenVariables: {'string', 'name'},
+          value: {'foo': 'Steve'}).toString(),
     );
     expect(
       registry.processArgs(['\${string}', '\${name}'], null).toString(),
-      ProcessedArg(listenVariables: {'string', 'name'}, value: ['foo', 'Steve'])
-          .toString(),
+      const ProcessedArg(
+          listenVariables: {'string', 'name'},
+          value: ['foo', 'Steve']).toString(),
     );
   });
 }

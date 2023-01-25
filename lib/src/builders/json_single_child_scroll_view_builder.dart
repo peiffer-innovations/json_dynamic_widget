@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [SingleChildScrollView] widget.  See the
 /// [fromDynamic] for the format.
 class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
-  JsonSingleChildScrollViewBuilder({
+  const JsonSingleChildScrollViewBuilder({
     required this.clipBehavior,
     this.controller,
     required this.dragStartBehavior,
@@ -40,16 +40,16 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "clipBehavior": <Clip>,
-  ///   "controller": <ScrollController>,
-  ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "physics": <ScrollPhysics>,
-  ///   "primary": <bool>,
-  ///   "restorationId": <String>,
-  ///   "reverse": <bool>,,
-  ///   "scrollDirection": <Axis>
+  ///   "clipBehavior": "<Clip>",
+  ///   "controller": "<ScrollController>",
+  ///   "dragStartBehavior": "<DragStartBehavior>",
+  ///   "keyboardDismissBehavior": "<ScrollViewKeyboardDismissBehavior>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "physics": "<ScrollPhysics>",
+  ///   "primary": "<bool>",
+  ///   "restorationId": "<String>",
+  ///   "reverse": "<bool>",
+  ///   "scrollDirection": "<Axis>"
   /// }
   /// ```
   ///
@@ -71,8 +71,11 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSingleChildScrollViewBuilder(
-        clipBehavior:
-            ThemeDecoder.decodeClip(map['clipBehavior']) ?? Clip.hardEdge,
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         controller: map['controller'],
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
               map['dragStartBehavior'],
@@ -114,7 +117,7 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return SingleChildScrollView(
       clipBehavior: clipBehavior,

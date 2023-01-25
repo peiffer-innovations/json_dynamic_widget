@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [Offstage] widget.  See the [fromDynamic] for the
 /// format.
 class JsonOffstageBuilder extends JsonWidgetBuilder {
-  JsonOffstageBuilder({
+  const JsonOffstageBuilder({
     required this.offstage,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -20,7 +20,7 @@ class JsonOffstageBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "offstage": <bool>
+  ///   "offstage": "<bool>"
   /// }
   /// ```
   static JsonOffstageBuilder? fromDynamic(
@@ -49,7 +49,7 @@ class JsonOffstageBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Offstage(
       key: key,

@@ -2,34 +2,41 @@ import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_theme/json_theme.dart';
 
 /// Builder that creates a scroll controller and then creates a
 /// [PrimaryScrollController] widget on the tree.
 class JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
-  JsonPrimaryScrollControllerBuilder({
+  const JsonPrimaryScrollControllerBuilder({
+    required this.automaticallyInheritForPlatforms,
     this.controller,
     this.debugLabel,
     this.initialScrollOffset,
     required this.keepScrollOffset,
+    required this.scrollDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
   static const type = 'primary_scroll_controller';
 
+  final Set<TargetPlatform> automaticallyInheritForPlatforms;
   final ScrollController? controller;
   final String? debugLabel;
   final double? initialScrollOffset;
   final bool keepScrollOffset;
+  final Axis scrollDirection;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
-  ///   "controller": <ScrollController>,
-  ///   "debugLabel": <String>,
-  ///   "initialScrollOffset": <double>,
-  ///   "keepScrollOffset": <bool>
+  ///   "automaticallyInheritForPlatforms": "<List<TargetPlatform>>",
+  ///   "controller": "<ScrollController>",
+  ///   "debugLabel": "<String>",
+  ///   "initialScrollOffset": "<double>",
+  ///   "keepScrollOffset": "<bool>",
+  ///   "scrollDirection": "<Axis>"
   /// }
   /// ```
   ///
@@ -43,12 +50,30 @@ class JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonPrimaryScrollControllerBuilder(
+        automaticallyInheritForPlatforms: Set<TargetPlatform>.from(
+          (map['automaticallyInheritForPlatforms'] as Iterable?)
+                  ?.map((e) => ThemeDecoder.decodeTargetPlatform(
+                        e,
+                        validate: false,
+                      )!)
+                  .toList() ??
+              [
+                TargetPlatform.android,
+                TargetPlatform.iOS,
+                TargetPlatform.fuchsia,
+              ],
+        ),
         debugLabel: map['debugLabel'],
         initialScrollOffset: JsonClass.parseDouble(map['initialScrollOffset']),
         keepScrollOffset: JsonClass.parseBool(
           map['keepScrollOffset'],
           whenNull: true,
         ),
+        scrollDirection: ThemeDecoder.decodeAxis(
+              map['scrollDirection'],
+              validate: false,
+            ) ??
+            Axis.vertical,
       );
     }
 
@@ -78,7 +103,7 @@ class JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonPrimaryScrollControllerWidget extends StatefulWidget {
-  _JsonPrimaryScrollControllerWidget({
+  const _JsonPrimaryScrollControllerWidget({
     required this.builder,
     required this.childBuilder,
     required this.controller,
@@ -121,7 +146,10 @@ class _JsonPrimaryScrollControllerWidgetState
 
   @override
   Widget build(BuildContext context) => PrimaryScrollController(
+        automaticallyInheritForPlatforms:
+            widget.builder.automaticallyInheritForPlatforms,
         controller: _controller,
+        scrollDirection: widget.builder.scrollDirection,
         child: Builder(
           builder: (BuildContext context) {
             return widget.data.children?.isNotEmpty == true
@@ -129,7 +157,7 @@ class _JsonPrimaryScrollControllerWidgetState
                     childBuilder: widget.childBuilder,
                     context: context,
                   )
-                : SizedBox();
+                : const SizedBox();
           },
         ),
       );

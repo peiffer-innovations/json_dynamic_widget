@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Container] widget.  See the [fromDynamic] for the
 /// format.
 class JsonContainerBuilder extends JsonWidgetBuilder {
-  JsonContainerBuilder({
+  const JsonContainerBuilder({
     this.alignment,
     required this.clipBehavior,
     this.color,
@@ -43,18 +43,18 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "decoration": <BoxDecoration>,
-  ///   "foregroundDecoration": <BoxDecoration>
-  ///   "height": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "transform": <Matrix4>,
-  ///   "transformAlignment": <TransformAlignment>,
-  ///   "width": <double>
+  ///   "alignment": "<Alignment>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "decoration": "<BoxDecoration>",
+  ///   "foregroundDecoration": "<BoxDecoration>",
+  ///   "height": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "transform": "<Matrix4>",
+  ///   "transformAlignment": "<TransformAlignment>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -129,7 +129,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Container(
       alignment: alignment,

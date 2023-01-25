@@ -67,28 +67,28 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "activeColor": <Color>,
-  ///   "autovalidateMode": <AutovalidateMode>,
-  ///   "autofocus": <bool>,
-  ///   "checkColor": <Color>,
-  ///   "enabled": <bool>,
-  ///   "fillColor": <MaterialStateProperty<Color>>,
-  ///   "focusColor": <Color>,
-  ///   "focusNode": <FocusNode>,
-  ///   "groupValue": <dynamic>,
-  ///   "hoverColor": <Color>,
-  ///   "id": <String>,
-  ///   "label": <String>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "onChanged": <ValueCallback<dynamic>>,
-  ///   "onSaved": <ValueCallback<dynamic>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "toggleable": <bool>,
-  ///   "splashRadius": <double>,
-  ///   "validators": <ValueValidators[]>,
-  ///   "value": <dynamic>,
-  ///   "visualDensity": <VisualDensity>,
+  ///   "activeColor": "<Color>,"
+  ///   "autovalidateMode": "<AutovalidateMode>",
+  ///   "autofocus": "<bool>",
+  ///   "checkColor": "<Color>",
+  ///   "enabled": "<bool>",
+  ///   "fillColor": "<MaterialStateProperty<Color>>",
+  ///   "focusColor": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "groupValue": "<dynamic>",
+  ///   "hoverColor": "<Color>",
+  ///   "id": "<String>",
+  ///   "label": "<String>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onChanged": "<ValueCallback<dynamic>>",
+  ///   "onSaved": "<ValueCallback<dynamic>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "toggleable": "<bool>",
+  ///   "splashRadius": "<double>",
+  ///   "validators": "<List<ValueValidators>>",
+  ///   "value": "<dynamic>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -116,7 +116,10 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
@@ -124,6 +127,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
             map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         fillColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['fillColor'],
+          validate: false,
         ),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
@@ -148,6 +152,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
         onSaved: map['onSaved'],
         overlayColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['overlayColor'],
+          validate: false,
         ),
         splashRadius: JsonClass.parseDouble(map['splashRadius']),
         toggleable: JsonClass.parseBool(map['toggleable']),
@@ -196,7 +201,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonRadioWidget(
       builder: this,
@@ -209,7 +214,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonRadioWidget extends StatefulWidget {
-  _JsonRadioWidget({
+  const _JsonRadioWidget({
     required this.builder,
     required this.child,
     required this.childBuilder,
@@ -251,7 +256,9 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
 
   @override
   void dispose() {
-    _subscriptions.forEach((sub) => sub.cancel());
+    for (var sub in _subscriptions) {
+      sub.cancel();
+    }
     _subscriptions.clear();
 
     super.dispose();
@@ -268,7 +275,7 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
       validator: widget.builder.validator == null
           ? null
           : (value) {
-              var error = widget.builder.validator!.validate(
+              final error = widget.builder.validator!.validate(
                 context: context,
                 label: widget.builder.label ?? '',
                 value: value?.toString(),

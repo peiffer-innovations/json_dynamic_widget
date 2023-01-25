@@ -1,42 +1,47 @@
 name: 'json_dynamic_widget'
 description: 'A library to dynamically generate widgets within Flutter from JSON or other Map-like structures.'
 homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget'
-version: '5.1.7+2'
 
-environment: 
-  sdk: '>=2.18.0 <3.0.0'
+version: '6.0.0'
 
-analyzer: 
-  exclude: 
+environment:
+  sdk: '>=2.19.0 <3.0.0'
+
+analyzer:
+  exclude:
     - 'lib/generated/**'
 
-
-dependencies: 
+dependencies:
   child_builder: '^2.0.0+3'
   collection: '^1.16.0'
-  flutter: 
+  execution_timer: '^1.0.0'
+  flutter:
     sdk: 'flutter'
   form_validation: '^2.2.0+6'
   interpolation: '^2.1.2'
   json_class: '^2.1.4+1'
   json_conditional: '^2.1.0+21'
   json_schema2: '^2.0.2+21'
-  json_theme: '^4.0.3+4'
+  json_theme: '^5.0.0'
   logging: '^1.1.0'
   meta: '^1.7.0'
   template_expressions: '^2.2.0+2'
   uuid: '^3.0.7'
   yaon: '^1.0.1+9'
 
-false_secrets: 
+# dependency_overrides:
+#   execution_timer:
+#     path: ../execution_timer
+
+false_secrets:
   - 'example/web/index.html'
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  flutter_lints: '^2.0.1'
+  flutter_test:
     sdk: 'flutter'
 
-
-ignore_updates: 
+ignore_updates:
   - 'archive'
   - 'async'
   - 'boolean_selector'

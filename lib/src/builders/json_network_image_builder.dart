@@ -68,29 +68,29 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "cacheHeight": <int>,
-  ///   "cacheWidth": <int>,
-  ///   "centerSlice": <Rect>,
-  ///   "color": <Color>,
-  ///   "colorBlendMode": <BlendMode>,
-  ///   "errorBuilder": <WidgetBuilder>,
-  ///   "excludeFromSemantics": <bool>,
-  ///   "filterQuality": <FilterQuality>,
-  ///   "fit": <BoxFit>,
-  ///   "frameBuilder": <ImageFrameBuilder>,
-  ///   "gaplessPlayback": <bool>,
-  ///   "height": <double>,
-  ///   "headers": <<Map<String, String>>
-  ///   "isAntiAlias": <bool>,
-  ///   "loadingBuilder": <ImageLoadingBuilder>,
-  ///   "matchTextDirection": <bool>,
-  ///   "opacity": <double>,
-  ///   "repeat": <ImageRepeat>,
-  ///   "scale": <double>,
-  ///   "semanticLabel": <String>,
-  ///   "src": <String>,
-  ///   "width": <double>
+  ///   "alignment": "<Alignment>",
+  ///   "cacheHeight": "<int>",
+  ///   "cacheWidth": "<int>",
+  ///   "centerSlice": "<Rect>",
+  ///   "color": "<Color>",
+  ///   "colorBlendMode": "<BlendMode>",
+  ///   "errorBuilder": "<WidgetBuilder>",
+  ///   "excludeFromSemantics": "<bool>",
+  ///   "filterQuality": "<FilterQuality>",
+  ///   "fit": "<BoxFit>",
+  ///   "frameBuilder": "<ImageFrameBuilder>",
+  ///   "gaplessPlayback": "<bool>",
+  ///   "height": "<double>",
+  ///   "headers": "<<Map<String, String>>",
+  ///   "isAntiAlias": "<bool>",
+  ///   "loadingBuilder": "<ImageLoadingBuilder>",
+  ///   "matchTextDirection": "<bool>",
+  ///   "opacity": "<double>",
+  ///   "repeat": "<ImageRepeat>",
+  ///   "scale": "<double>",
+  ///   "semanticLabel": "<String>",
+  ///   "src": "<String>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///

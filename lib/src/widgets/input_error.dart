@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class InputError extends StatefulWidget {
-  InputError({
+  const InputError({
     this.error,
     Key? key,
   }) : super(key: key);
@@ -9,10 +9,10 @@ class InputError extends StatefulWidget {
   final String? error;
 
   @override
-  _InputErrorState createState() => _InputErrorState();
+  InputErrorState createState() => InputErrorState();
 }
 
-class _InputErrorState extends State<InputError> {
+class InputErrorState extends State<InputError> {
   String? _error;
 
   @override
@@ -37,7 +37,7 @@ class _InputErrorState extends State<InputError> {
   @override
   Widget build(BuildContext context) {
     const standardDuration = Duration(milliseconds: 200);
-    var theme = Theme.of(context);
+    final theme = Theme.of(context);
 
     return ClipRect(
       child: AnimatedOpacity(
@@ -52,7 +52,9 @@ class _InputErrorState extends State<InputError> {
             _error ?? '',
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: theme.textTheme.caption!.copyWith(color: theme.errorColor),
+            style: theme.textTheme.bodySmall!.copyWith(
+              color: theme.colorScheme.error,
+            ),
           ),
         ),
       ),

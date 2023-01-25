@@ -6,7 +6,7 @@ class InkWellSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment': 'https://api.flutter.dev/flutter/material/InkWell-class.html',
     'type': 'object',
     'title': 'InkWell',
@@ -37,8 +37,10 @@ class InkWellSchema {
       ),
       'radius': SchemaHelper.numberSchema,
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'splashFactory':
-          SchemaHelper.objectSchema(InteractiveInkFeatureFactorySchema.id)
+      'splashFactory': SchemaHelper.objectSchema(
+        InteractiveInkFeatureFactorySchema.id,
+      ),
+      'statesController': SchemaHelper.stringSchema,
     },
   };
 }

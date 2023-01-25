@@ -6,9 +6,9 @@ class GridViewSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment': 'https://api.flutter.dev/flutter/widgets/GridView-class.html',
-    'title': 'ListView',
+    'title': 'GridView',
     'oneOf': [
       {
         'type': 'null',
@@ -23,10 +23,11 @@ class GridViewSchema {
           'cacheExtent': SchemaHelper.numberSchema,
           'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'controller': SchemaHelper.stringSchema,
-          'dragStartBehavior':
-              SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
+          'dragStartBehavior': SchemaHelper.objectSchema(
+            DragStartBehaviorSchema.id,
+          ),
+          'findChildIndexCallback': SchemaHelper.stringSchema,
           'gridDelegate': SchemaHelper.anySchema,
-          'itemExtent': SchemaHelper.numberSchema,
           'keyboardDismissBehavior': SchemaHelper.objectSchema(
             ScrollViewKeyboardDismissBehaviorSchema.id,
           ),
@@ -36,6 +37,7 @@ class GridViewSchema {
           'restorationId': SchemaHelper.stringSchema,
           'reverse': SchemaHelper.boolSchema,
           'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),
+          'semanticChildCount': SchemaHelper.numberSchema,
           'shrinkWrap': SchemaHelper.boolSchema,
         },
       },

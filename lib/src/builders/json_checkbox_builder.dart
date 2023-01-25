@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Checkbox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonCheckboxBuilder extends JsonWidgetBuilder {
-  JsonCheckboxBuilder({
+  const JsonCheckboxBuilder({
     this.activeColor,
     required this.autofocus,
     this.autovalidateMode,
@@ -18,6 +18,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.focusColor,
     this.focusNode,
     this.hoverColor,
+    required this.isError,
     this.label,
     this.materialTapTargetSize,
     this.mouseCursor,
@@ -46,6 +47,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   final Color? focusColor;
   final FocusNode? focusNode;
   final Color? hoverColor;
+  final bool isError;
   final String? label;
   final MaterialTapTargetSize? materialTapTargetSize;
   final MouseCursor? mouseCursor;
@@ -65,28 +67,29 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "activeColor": <Color>,
-  ///   "autofocus": <bool>,
-  ///   "autovalidateMode": <AutovalidateMode>,
-  ///   "checkColor": <Color>,
-  ///   "enabled": <bool>,
-  ///   "fillColor": <MaterialStateProperty<Color>>,
-  ///   "focusColor": <Color>,
-  ///   "focusNode": <FocusNode>,
-  ///   "hoverColor": <Color>,
-  ///   "label": <String>,
-  ///   "materialTapTargetSize": <MaterialTapTargetSize>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "onChanged": <ValueChanged<bool>>,
-  ///   "onSaved": <ValueChanged<onSaved>>,
-  ///   "overlayColor": <MaterialStateProperty<Color>>,
-  ///   "shape": <OutlinedBorder>,
-  ///   "side": <BorderSide>,
-  ///   "splashRadius": <double>,
-  ///   "tristate": <bool>,
-  ///   "validators": <ValueValidator[]>,
-  ///   "value": <bool>,
-  ///   "visualDensity": <VisualDensity>,
+  ///   "activeColor": "<Color>",
+  ///   "autofocus": "<bool>",
+  ///   "autovalidateMode": "<AutovalidateMode>",
+  ///   "checkColor": "<Color>",
+  ///   "enabled": "<bool>",
+  ///   "fillColor": "<MaterialStateProperty<Color>>",
+  ///   "focusColor": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "hoverColor": "<Color>",
+  ///   "isError": "<bool>",
+  ///   "label": "<String>",
+  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onChanged": "<ValueChanged<bool>>",
+  ///   "onSaved": "<ValueChanged<onSaved>>",
+  ///   "overlayColor": "<MaterialStateProperty<Color>>",
+  ///   "shape": "<OutlinedBorder>",
+  ///   "side": "<BorderSide>",
+  ///   "splashRadius": "<double>",
+  ///   "tristate": "<bool>",
+  ///   "validators": "<ValueValidator[]>",
+  ///   "value": "<bool>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -145,6 +148,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
           map['hoverColor'],
           validate: false,
         ),
+        isError: JsonClass.parseBool(map['isError']),
         label: map['label'],
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
           map['materialTapTargetSize'],
@@ -210,7 +214,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var initialValue = value ?? (tristate != true ? false : null);
+    final initialValue = value ?? (tristate != true ? false : null);
 
     return FormField<bool>(
       autovalidateMode: autovalidateMode,
@@ -220,7 +224,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
       validator: validator == null
           ? null
           : (value) {
-              var error = validator!.validate(
+              final error = validator!.validate(
                 context: context,
                 label: label ?? '',
                 value: value?.toString(),
@@ -245,6 +249,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
             focusColor: focusColor,
             focusNode: focusNode,
             hoverColor: hoverColor,
+            isError: isError,
             key: key,
             materialTapTargetSize: materialTapTargetSize,
             mouseCursor: mouseCursor,

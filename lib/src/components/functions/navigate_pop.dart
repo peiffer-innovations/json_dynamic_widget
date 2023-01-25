@@ -10,8 +10,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// function requires that the [navigatorKey] has been set on the registry
 /// before it is used or an exception will be thrown.
 class NavigatePopFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'navigate_pop';
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
@@ -20,5 +22,5 @@ class NavigatePopFunction {
     return () => registry.navigatorKey!.currentState!.pop(
           args?.isNotEmpty == true ? args![0] : null,
         );
-  };
+  }
 }

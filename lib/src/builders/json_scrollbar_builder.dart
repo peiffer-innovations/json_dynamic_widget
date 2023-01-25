@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Scrollbar] widget.  See the [fromDynamic] for the
 /// format.
 class JsonScrollbarBuilder extends JsonWidgetBuilder {
-  JsonScrollbarBuilder({
+  const JsonScrollbarBuilder({
     this.controller,
     this.interactive,
     this.notificationPredicate,
@@ -35,14 +35,14 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "controller": <ScrollController>,
-  ///   "interactive": <bool>,
-  ///   "notificationPredicate": <ScrollNotificationPredicate>,
-  ///   "radius": <Radius>,
-  ///   "scrollbarOrientation": <ScrollbarOrientation>,
-  ///   "thickness": <double>,
-  ///   "trackVisibility": <bool>,
-  ///   "thumbVisibility": <bool>
+  ///   "controller": "<ScrollController>",
+  ///   "interactive": "<bool>",
+  ///   "notificationPredicate": "<ScrollNotificationPredicate>",
+  ///   "radius": "<Radius>",
+  ///   "scrollbarOrientation": "<ScrollbarOrientation>",
+  ///   "thickness": "<double>",
+  ///   "trackVisibility": "<bool>",
+  ///   "thumbVisibility": "<bool>"
   /// }
   /// ```
   ///
@@ -90,16 +90,19 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data).build(
+    final child = getChild(data).build(
       childBuilder: childBuilder,
       context: context,
     );
     return Scrollbar(
       controller: controller,
+      // hoverThickness: @deprecated,
       interactive: interactive,
+      // isAlwaysShown: @deprecated,
       notificationPredicate: notificationPredicate,
       radius: radius,
       scrollbarOrientation: scrollbarOrientation,
+      // showTrackOnHover: @deprecated,
       thickness: thickness,
       thumbVisibility: thumbVisibility,
       trackVisibility: trackVisibility,

@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ButtonBar] widget.  See the [fromDynamic] for the
 /// format.
 class JsonButtonBarBuilder extends JsonWidgetBuilder {
-  JsonButtonBarBuilder({
+  const JsonButtonBarBuilder({
     this.alignment,
     this.buttonAlignedDropdown,
     this.buttonHeight,
@@ -40,16 +40,16 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   alignment: <MainAxisAlignment>,
-  ///   buttonAlignedDropdown: <bool>,
-  ///   buttonHeight: <double>,
-  ///   buttonMinWidth: <double>,
-  ///   buttonPadding: <EdgeInsetsGeometry>,
-  ///   buttonTextTheme: <ButtonTextTheme>,
-  ///   layoutBehavior: <ButtonBarLayoutBehavior>,
-  ///   mainAxisSize: <MainAxisSize>,
-  ///   overflowButtonSpacing: <double>,
-  ///   overflowDirection: <VerticalDirection>,
+  ///   "alignment": "<MainAxisAlignment>",
+  ///   "buttonAlignedDropdown": "<bool>",
+  ///   "buttonHeight": "<double>",
+  ///   "buttonMinWidth": "<double>",
+  ///   "buttonPadding": "<EdgeInsetsGeometry>",
+  ///   "buttonTextTheme": "<ButtonTextTheme>",
+  ///   "layoutBehavior": "<ButtonBarLayoutBehavior>",
+  ///   "mainAxisSize": "<MainAxisSize>",
+  ///   "overflowButtonSpacing": "<double>",
+  ///   "overflowDirection": "<VerticalDirection>"
   /// }
   /// ```
   ///
@@ -63,23 +63,37 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonButtonBarBuilder(
-        alignment: ThemeDecoder.decodeMainAxisAlignment(map['alignment']),
+        alignment: ThemeDecoder.decodeMainAxisAlignment(
+          map['alignment'],
+          validate: false,
+        ),
         buttonAlignedDropdown: map['buttonAlignedDropdown'] == null
             ? null
             : JsonClass.parseBool(map['buttonAlignedDropdown']),
         buttonHeight: JsonClass.parseDouble(map['buttonHeight']),
         buttonMinWidth: JsonClass.parseDouble(map['buttonMinWidth']),
-        buttonPadding:
-            ThemeDecoder.decodeEdgeInsetsGeometry(map['buttonPadding']),
-        buttonTextTheme:
-            ThemeDecoder.decodeButtonTextTheme(map['buttonTextTheme']),
-        layoutBehavior:
-            ThemeDecoder.decodeButtonBarLayoutBehavior(map['layoutBehavior']),
-        mainAxisSize: ThemeDecoder.decodeMainAxisSize(map['mainAxisSize']),
+        buttonPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
+          map['buttonPadding'],
+          validate: false,
+        ),
+        buttonTextTheme: ThemeDecoder.decodeButtonTextTheme(
+          map['buttonTextTheme'],
+          validate: false,
+        ),
+        layoutBehavior: ThemeDecoder.decodeButtonBarLayoutBehavior(
+          map['layoutBehavior'],
+          validate: false,
+        ),
+        mainAxisSize: ThemeDecoder.decodeMainAxisSize(
+          map['mainAxisSize'],
+          validate: false,
+        ),
         overflowButtonSpacing:
             JsonClass.parseDouble(map['overflowButtonSpacing']),
-        overflowDirection:
-            ThemeDecoder.decodeVerticalDirection(map['overflowDirection']),
+        overflowDirection: ThemeDecoder.decodeVerticalDirection(
+          map['overflowDirection'],
+          validate: false,
+        ),
       );
     }
 

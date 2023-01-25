@@ -10,7 +10,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [CupertinoSwitch] widget.  See the [fromDynamic]
 /// for the format.
 class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
-  JsonCupertinoSwitchBuilder({
+  const JsonCupertinoSwitchBuilder({
     this.activeColor,
     this.autovalidateMode,
     this.dragStartBehavior,
@@ -18,6 +18,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
     this.label,
     this.onChanged,
     this.onSaved,
+    this.restorationId,
     this.thumbColor,
     this.trackColor,
     this.validator,
@@ -35,6 +36,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   final String? label;
   final ValueChanged<bool>? onChanged;
   final ValueChanged<bool?>? onSaved;
+  final String? restorationId;
   final Color? thumbColor;
   final Color? trackColor;
   final Validator? validator;
@@ -46,18 +48,19 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "activeColor": <Color>,
-  ///   "autovalidatMode": <AutovalidateMode>,
-  ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "enabled": <bool>,
-  ///   "label": <String>,
-  ///   "onChanged": <ValueCallback<bool>>,
-  ///   "onSaved": <ValueCallback<bool>>,
-  ///   "thumbColor": <Color>,
-  ///   "trackColor": <Color>,
-  ///   "validators": <ValueValidator[]>,
-  ///   "value": <bool>,
-  ///   "visualDensity": <VisualDensity>,
+  ///   "activeColor": "<Color>",
+  ///   "autovalidatMode": "<AutovalidateMode>",
+  ///   "dragStartBehavior": "<DragStartBehavior>",
+  ///   "enabled": "<bool>",
+  ///   "label": "<String>",
+  ///   "onChanged": "<ValueCallback<bool>>",
+  ///   "onSaved": "<ValueCallback<bool>>",
+  ///   "restorationId": "<String>",
+  ///   "thumbColor": "<Color>",
+  ///   "trackColor": "<Color>",
+  ///   "validators": "<List<ValueValidator>>",
+  ///   "value": "<bool>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -85,7 +88,10 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
@@ -98,6 +104,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
         label: map['label'],
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
+        restorationId: map['restorationId']?.toString(),
         thumbColor: ThemeDecoder.decodeColor(
           map['thumbColor'],
           validate: false,
@@ -152,10 +159,11 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
       initialValue: value,
       key: key,
       onSaved: onSaved,
+      restorationId: restorationId,
       validator: validator == null
           ? null
           : (value) {
-              var error = validator!.validate(
+              final error = validator!.validate(
                 context: context,
                 label: label ?? '',
                 value: value?.toString(),

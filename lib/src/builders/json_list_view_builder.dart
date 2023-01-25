@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ListView] widget.  See the [fromDynamic] for the
 /// format.
 class JsonListViewBuilder extends JsonWidgetBuilder {
-  JsonListViewBuilder({
+  const JsonListViewBuilder({
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,
@@ -16,6 +16,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
     required this.clipBehavior,
     this.controller,
     required this.dragStartBehavior,
+    this.findChildIndexCallback,
     this.itemExtent,
     required this.keyboardDismissBehavior,
     this.padding,
@@ -38,6 +39,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   final Clip clipBehavior;
   final ScrollController? controller;
   final DragStartBehavior dragStartBehavior;
+  final ChildIndexGetter? findChildIndexCallback;
   final double? itemExtent;
   final ScrollViewKeyboardDismissBehavior keyboardDismissBehavior;
   final EdgeInsets? padding;
@@ -54,23 +56,24 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "addAutomaticKeepAlives": <bool>,
-  ///   "addRepaintBoundaries": <bool>,
-  ///   "addSemanticIndexes": <bool>,
-  ///   "cacheExtent": <double>,
-  ///   "clipBehavior": <Clip>,
-  ///   "controller": <ScrollController>,
-  ///   "dragStartBehavior": <DragStartBehavior>,
-  ///   "itemExtent": <double>,
-  ///   "keyboardDismissBehavior": <ScrollViewKeyboardDismissBehavior>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "physics": <ScrollPhysics>,
-  ///   "primary": <bool>,
-  ///   "prototypeItem": <JsonWidgetData>,
-  ///   "restorationId": <String>,
-  ///   "reverse": <bool>,
-  ///   "scrollDirection": <Axis>,
-  ///   "shrinkWrap": <bool>
+  ///   "addAutomaticKeepAlives": "<bool>",
+  ///   "addRepaintBoundaries": "<bool>",
+  ///   "addSemanticIndexes": "<bool>",
+  ///   "cacheExtent": "<double>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "controller": "<ScrollController>",
+  ///   "dragStartBehavior": "<DragStartBehavior>",
+  ///   "findChildIndexCallback": "<ChildIndexGetter>",
+  ///   "itemExtent": "<double>",
+  ///   "keyboardDismissBehavior": "<ScrollViewKeyboardDismissBehavior>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "physics": "<ScrollPhysics>",
+  ///   "primary": "<bool>",
+  ///   "prototypeItem": "<JsonWidgetData>",
+  ///   "restorationId": "<String>",
+  ///   "reverse": "<bool>",
+  ///   "scrollDirection": "<Axis>",
+  ///   "shrinkWrap": "<bool>"
   /// }
   /// ```
   ///
@@ -113,6 +116,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             DragStartBehavior.start,
+        findChildIndexCallback: map['findChildIndexCallback'],
         itemExtent: JsonClass.parseDouble(map['itemExtent']),
         keyboardDismissBehavior:
             ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
@@ -158,6 +162,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       clipBehavior: clipBehavior,
       controller: controller,
       dragStartBehavior: dragStartBehavior,
+      findChildIndexCallback: findChildIndexCallback,
       itemCount: data.children?.length ?? 0,
       itemExtent: itemExtent,
       key: key,
@@ -175,7 +180,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
       semanticChildCount: data.children?.length ?? 0,
       shrinkWrap: shrinkWrap,
       itemBuilder: (BuildContext context, int index) {
-        var w = data.children![index].build(
+        final w = data.children![index].build(
           childBuilder: childBuilder,
           context: context,
         );

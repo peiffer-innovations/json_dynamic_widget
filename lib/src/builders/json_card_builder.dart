@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Card] widget.  See the [fromDynamic] for the
 /// format.
 class JsonCardBuilder extends JsonWidgetBuilder {
-  JsonCardBuilder({
+  const JsonCardBuilder({
     required this.borderOnForeground,
     this.clipBehavior,
     this.color,
@@ -38,15 +38,15 @@ class JsonCardBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "borderOnForeground": <bool>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "semanticContainer": <bool>,
-  ///   "shadowColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "surfaceTintColor": <Color>
+  ///   "borderOnForeground": "<bool>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "semanticContainer": "<bool>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "surfaceTintColor": "<Color>"
   /// }
   /// ```
   ///
@@ -109,7 +109,7 @@ class JsonCardBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Card(
       borderOnForeground: borderOnForeground,

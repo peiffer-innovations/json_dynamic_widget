@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ClipRRect] widget.  See the [fromDynamic] for the
 /// format.
 class JsonClipRRectBuilder extends JsonWidgetBuilder {
-  JsonClipRRectBuilder({
+  const JsonClipRRectBuilder({
     this.borderRadius,
     required this.clipBehavior,
     this.clipper,
@@ -24,8 +24,8 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "borderRadius": <BorderRadius>,
-  ///   "clipBehavior": <Clip>
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "clipBehavior": "<Clip>"
   /// }
   /// ```
   ///
@@ -64,7 +64,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return ClipRRect(
       borderRadius: borderRadius,

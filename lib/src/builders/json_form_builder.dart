@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Form] widget.  See the [fromDynamic] for the
 /// format.
 class JsonFormBuilder extends JsonWidgetBuilder {
-  JsonFormBuilder({
+  const JsonFormBuilder({
     this.autovalidateMode,
     this.onChanged,
     this.onWillPop,
@@ -25,9 +25,9 @@ class JsonFormBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "autovalidateMode": <AutovalidateMode>,
-  ///   "onChanged": <VoidCallback>,
-  ///   "onWillPop": <WillPopCallback>
+  ///   "autovalidateMode": "<AutovalidateMode>",
+  ///   "onChanged": "<VoidCallback>",
+  ///   "onWillPop": "<WillPopCallback>"
   /// }
   /// ```
   ///
@@ -47,7 +47,10 @@ class JsonFormBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonFormBuilder(
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
@@ -70,7 +73,7 @@ class JsonFormBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonFormWidget(
       builder: this,
@@ -83,7 +86,7 @@ class JsonFormBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonFormWidget extends StatefulWidget {
-  _JsonFormWidget({
+  const _JsonFormWidget({
     required this.builder,
     required this.child,
     required this.childBuilder,

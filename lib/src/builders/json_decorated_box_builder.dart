@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [DecoratedBox] widget.  See the [fromDynamic] for the
 /// format.
 class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
-  JsonDecoratedBoxBuilder({
+  const JsonDecoratedBoxBuilder({
     required this.decoration,
     required this.position,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -22,8 +22,8 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "decoration": <BoxDecoration>,
-  ///   "position": <DecorationPosition>
+  ///   "decoration": "<BoxDecoration>",
+  ///   "position": "<DecorationPosition>"
   /// }
   /// ```
   ///
@@ -60,7 +60,7 @@ class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return DecoratedBox(
       decoration: decoration,

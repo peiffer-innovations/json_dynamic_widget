@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Material] widget.  See the [fromDynamic] for the
 /// format.
 class JsonMaterialBuilder extends JsonWidgetBuilder {
-  JsonMaterialBuilder({
+  const JsonMaterialBuilder({
     required this.animationDuration,
     required this.borderOnForeground,
     this.borderRadius,
@@ -45,19 +45,19 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "animationDuration": <int; millis>,
-  ///   "borderOnForeground": <bool>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "elevation": <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "materialType": <MaterialType>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "shadowColor": <Color>,
-  ///   "surfaceTintColor": <Color>,
-  ///   "shape": <ShapeBorder>,
-  ///   "textStyle": <TextStyle>
+  ///   "animationDuration": "<int; millis>",
+  ///   "borderOnForeground": "<bool>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "elevation": "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "materialType": "<MaterialType>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "shadowColor": "<Color>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "textStyle": "<TextStyle>"
   /// }
   /// ```
   ///
@@ -140,7 +140,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data).build(
+    final child = getChild(data).build(
       childBuilder: childBuilder,
       context: context,
     );

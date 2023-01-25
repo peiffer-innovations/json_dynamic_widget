@@ -6,7 +6,7 @@ class CupertinoSwitchSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment':
         'https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html',
     'type': 'object',
@@ -22,6 +22,7 @@ class CupertinoSwitchSchema {
       'label': SchemaHelper.stringSchema,
       'onChanged': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
+      'restorationId': SchemaHelper.stringSchema,
       'thumbColor': SchemaHelper.objectSchema(ColorSchema.id),
       'trackColor': SchemaHelper.objectSchema(ColorSchema.id),
       'validators': {

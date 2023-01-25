@@ -6,7 +6,7 @@ class TextFormFieldSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment':
         'https://api.flutter.dev/flutter/material/TextFormField-class.html',
     'type': 'object',
@@ -24,6 +24,7 @@ class TextFormFieldSchema {
       'autovalidate': SchemaHelper.boolSchema,
       'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
       'buildCounter': SchemaHelper.stringSchema,
+      'contextMenuBuilder': SchemaHelper.stringSchema,
       'controller': SchemaHelper.stringSchema,
       'cursorColor': SchemaHelper.objectSchema(ColorSchema.id),
       'cursorHeight': SchemaHelper.numberSchema,
@@ -54,6 +55,7 @@ class TextFormFieldSchema {
       'onFieldSubmitted': SchemaHelper.stringSchema,
       'onSaved': SchemaHelper.stringSchema,
       'onTap': SchemaHelper.stringSchema,
+      'onTapOutside': SchemaHelper.stringSchema,
       'readOnly': SchemaHelper.boolSchema,
       'restorationId': SchemaHelper.stringSchema,
       'scrollController': SchemaHelper.stringSchema,
@@ -72,7 +74,6 @@ class TextFormFieldSchema {
           SchemaHelper.objectSchema(TextCapitalizationSchema.id),
       'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
       'textInputAction': SchemaHelper.objectSchema(TextInputActionSchema.id),
-      'toolbarOptions': SchemaHelper.objectSchema(ToolbarOptionsSchema.id),
       'validators': SchemaHelper.anySchema,
     }
   };

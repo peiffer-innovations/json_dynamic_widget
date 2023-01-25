@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [IconButton] widget.  See the [fromDynamic] for
 /// the format.
 class JsonIconButtonBuilder extends JsonWidgetBuilder {
-  JsonIconButtonBuilder({
+  const JsonIconButtonBuilder({
     required this.alignment,
     required this.autofocus,
     this.color,
@@ -20,11 +20,14 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
     this.hoverColor,
     this.icon,
     required this.iconSize,
+    this.isSelected,
     required this.mouseCursor,
     this.onPressed,
     required this.padding,
+    this.selectedIcon,
     this.splashColor,
     this.splashRadius,
+    this.style,
     this.tooltip,
     this.visualDensity,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -43,12 +46,15 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
   final Color? highlightColor;
   final Color? hoverColor;
   final JsonWidgetData? icon;
+  final bool? isSelected;
   final double iconSize;
   final MouseCursor mouseCursor;
   final VoidCallback? onPressed;
   final EdgeInsetsGeometry padding;
+  final JsonWidgetData? selectedIcon;
   final Color? splashColor;
   final double? splashRadius;
+  final ButtonStyle? style;
   final String? tooltip;
   final VisualDensity? visualDensity;
 
@@ -57,25 +63,28 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "autofocus": <bool>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "disabledColor": <Color>,
-  ///   "enableFeedback": <bool>,
-  ///   "focusColor": <Color>,
-  ///   "focusNode": <FocusNode>,
-  ///   "highlightColor": <Color>,
-  ///   "hoverColor": <Color>,
-  ///   "icon": <JsonWidgetData>,
-  ///   "iconSize": <double>,
-  ///   "mouseCursor": <MouseCursor>,
-  ///   "onPressed": <VoidCallback>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "splashColor": <Color>,
-  ///   "splashRadius": <double>,
-  ///   "tooltip": <String>,
-  ///   "visualDensity": <VisualDensity>,
+  ///   "alignment": "<Alignment>",
+  ///   "autofocus": "<bool>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "disabledColor": "<Color>",
+  ///   "enableFeedback": "<bool>",
+  ///   "focusColor": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "highlightColor": "<Color>",
+  ///   "hoverColor": "<Color>",
+  ///   "icon": "<JsonWidgetData>",
+  ///   "iconSize": "<double>",
+  ///   "isSelected": "<bool>",
+  ///   "mouseCursor": "<MouseCursor>",
+  ///   "onPressed": "<VoidCallback>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "selectedIcon": "<JsonWidgetData>",
+  ///   "splashColor": "<Color>",
+  ///   "splashRadius": "<double>",
+  ///   "style": "<ButtonStyle>",
+  ///   "tooltip": "<String>",
+  ///   "visualDensity": "<VisualDensity>"
   /// }
   /// ```
   ///
@@ -89,6 +98,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [ThemeDecoder.decodeAlignment]
   ///  * [ThemeDecoder.decodeBoxConstraints]
+  ///  * [ThemeDecoder.decodeButtonStyle]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeMouseCursor]
@@ -101,30 +111,70 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonIconButtonBuilder(
-        alignment:
-            ThemeDecoder.decodeAlignment(map['alignment']) ?? Alignment.center,
+        alignment: ThemeDecoder.decodeAlignment(
+              map['alignment'],
+              validate: false,
+            ) ??
+            Alignment.center,
         autofocus: JsonClass.parseBool(map['autofocus']),
-        color: ThemeDecoder.decodeColor(map['color']),
-        constraints: ThemeDecoder.decodeBoxConstraints(map['constraints']),
-        disabledColor: ThemeDecoder.decodeColor(map['disabledColor']),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
+        constraints: ThemeDecoder.decodeBoxConstraints(
+          map['constraints'],
+          validate: false,
+        ),
+        disabledColor: ThemeDecoder.decodeColor(
+          map['disabledColor'],
+          validate: false,
+        ),
         enableFeedback: map['enableFeedback'] == null
             ? true
             : JsonClass.parseBool(map['enableFeedback']),
-        focusColor: ThemeDecoder.decodeColor(map['focusColor']),
+        focusColor: ThemeDecoder.decodeColor(
+          map['focusColor'],
+          validate: false,
+        ),
         focusNode: map['focusColor'],
-        highlightColor: ThemeDecoder.decodeColor(map['highlightColor']),
-        hoverColor: ThemeDecoder.decodeColor(map['hoverColor']),
+        highlightColor: ThemeDecoder.decodeColor(
+          map['highlightColor'],
+          validate: false,
+        ),
+        hoverColor: ThemeDecoder.decodeColor(
+          map['hoverColor'],
+          validate: false,
+        ),
         icon: JsonWidgetData.fromDynamic(map['icon']),
         iconSize: JsonClass.parseDouble(map['iconSize'], 24.0)!,
-        mouseCursor: ThemeDecoder.decodeMouseCursor(map['mouseCursor']) ??
+        isSelected: map['isSelected'] == null
+            ? null
+            : JsonClass.parseBool(map['isSelected']),
+        mouseCursor: ThemeDecoder.decodeMouseCursor(
+              map['mouseCursor'],
+              validate: false,
+            ) ??
             SystemMouseCursors.click,
         onPressed: map['onPressed'],
-        padding: ThemeDecoder.decodeEdgeInsetsGeometry(map['padding']) ??
+        padding: ThemeDecoder.decodeEdgeInsetsGeometry(
+              map['padding'],
+              validate: false,
+            ) ??
             const EdgeInsets.all(8.0),
-        splashColor: ThemeDecoder.decodeColor(map['splashColor']),
+        splashColor: ThemeDecoder.decodeColor(
+          map['splashColor'],
+          validate: false,
+        ),
         splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        style: ThemeDecoder.decodeButtonStyle(
+          map['style'],
+          validate: false,
+        ),
         tooltip: map['tooltip']?.toString(),
-        visualDensity: ThemeDecoder.decodeVisualDensity(map['visualDensity']),
+        visualDensity: ThemeDecoder.decodeVisualDensity(
+          map['visualDensity'],
+          validate: false,
+        ),
       );
     }
 
@@ -138,7 +188,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var theIcon = icon ?? getChild(data);
+    final theIcon = icon ?? getChild(data);
 
     return IconButton(
       alignment: alignment,
@@ -153,12 +203,18 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
       hoverColor: hoverColor,
       icon: theIcon.build(childBuilder: childBuilder, context: context),
       iconSize: iconSize,
+      isSelected: isSelected,
       key: key,
       mouseCursor: mouseCursor,
       onPressed: onPressed,
       padding: padding,
+      selectedIcon: selectedIcon?.build(
+        childBuilder: childBuilder,
+        context: context,
+      ),
       splashColor: splashColor,
       splashRadius: splashRadius,
+      style: style,
       tooltip: tooltip,
       visualDensity: visualDensity,
     );

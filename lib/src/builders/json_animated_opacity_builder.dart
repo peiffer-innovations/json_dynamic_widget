@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [AnimatedOpacity] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
-  JsonAnimatedOpacityBuilder({
+  const JsonAnimatedOpacityBuilder({
     this.alwaysIncludeSemantics,
     this.curve,
     required this.duration,
@@ -28,11 +28,11 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alwaysIncludeSemantics": <bool>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "opacity": <double>,
+  ///   "alwaysIncludeSemantics": "<bool>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "opacity": "<double>"
   /// }
   /// ```
   ///
@@ -69,7 +69,7 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedOpacity(
       builder: this,
@@ -82,7 +82,7 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedOpacity extends StatefulWidget {
-  _JsonAnimatedOpacity({
+  const _JsonAnimatedOpacity({
     required this.builder,
     required this.child,
     required this.childBuilder,

@@ -6,7 +6,7 @@ class SemanticsSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment': 'https://api.flutter.dev/flutter/widgets/Semantics-class.html',
     'type': 'object',
     'title': 'Semantics',
@@ -39,6 +39,7 @@ class SemanticsSchema {
       'link': SchemaHelper.boolSchema,
       'liveRegion': SchemaHelper.boolSchema,
       'maxValueLength': SchemaHelper.numberSchema,
+      'mixed': SchemaHelper.boolSchema,
       'multiline': SchemaHelper.boolSchema,
       'namesRoute': SchemaHelper.boolSchema,
       'obscured': SchemaHelper.boolSchema,
@@ -70,6 +71,7 @@ class SemanticsSchema {
       'tagForChildren': SchemaHelper.objectSchema(SemanticsTagSchema.id),
       'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
       'textField': SchemaHelper.boolSchema,
+      'tooltip': SchemaHelper.stringSchema,
       'toggled': SchemaHelper.boolSchema,
       'value': SchemaHelper.stringSchema,
     }

@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [SliverGrid] widget.  See the [fromDynamic] for
 /// the format.
 class JsonSliverGridBuilder extends JsonWidgetBuilder {
-  JsonSliverGridBuilder({
+  const JsonSliverGridBuilder({
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,
@@ -32,13 +32,13 @@ class JsonSliverGridBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "addAutomaticKeepAlives": <bool>,
-  ///   "addRepaintBoundaries": <bool>,
-  ///   "addSemanticIndexes": <bool>,
-  ///   "findChildIndexCallback": <ChildIndexGetter>,
-  ///   "gridDelegate": <SliverGridDelegate>,
-  ///   "semanticIndexCallback": <SemanticIndexCallback>,
-  ///   "semanticIndexOffset": <int>
+  ///   "addAutomaticKeepAlives": "<bool>",
+  ///   "addRepaintBoundaries": "<bool>",
+  ///   "addSemanticIndexes": "<bool>",
+  ///   "findChildIndexCallback": "<ChildIndexGetter>",
+  ///   "gridDelegate": "<SliverGridDelegate>",
+  ///   "semanticIndexCallback": "<SemanticIndexCallback>",
+  ///   "semanticIndexOffset": "<int>"
   /// }
   /// ```
   ///

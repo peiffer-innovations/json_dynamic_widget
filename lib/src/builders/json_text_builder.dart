@@ -7,10 +7,11 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Text] widget.  See the [fromDynamic] for the
 /// format.
 class JsonTextBuilder extends JsonWidgetBuilder {
-  JsonTextBuilder({
+  const JsonTextBuilder({
     this.locale,
     this.maxLines,
     this.overflow,
+    this.selectionColor,
     this.semanticsLabel,
     this.softWrap,
     this.strutStyle,
@@ -30,6 +31,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
   final Locale? locale;
   final int? maxLines;
   final TextOverflow? overflow;
+  final Color? selectionColor;
   final String? semanticsLabel;
   final bool? softWrap;
   final StrutStyle? strutStyle;
@@ -46,23 +48,25 @@ class JsonTextBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "locale": <Locale>,
-  ///   "maxLines": <int>,
-  ///   "overflow": <TextOverflow>,
-  ///   "semanticsLabel": <String>,
-  ///   "softWrap": <bool>,
-  ///   "strutStyle": <StrutStyle>,
-  ///   "style": <TextStyle>,
-  ///   "text": <String>,
-  ///   "textAlign": <TextAlign>,
-  ///   "textDirection": <TextDirection>,
-  ///   "textHeightBehavior": <TextHeightBehavior>,
-  ///   "textScaleFactor": <double>,
-  ///   "textWidthBasis": <TextWidthBasis>,
+  ///   "locale": "<Locale>",
+  ///   "maxLines": "<int>",
+  ///   "overflow": "<TextOverflow>",
+  ///   "selectionColor": "<Color>",
+  ///   "semanticsLabel": "<String>",
+  ///   "softWrap": "<bool>",
+  ///   "strutStyle": "<StrutStyle>",
+  ///   "style": "<TextStyle>",
+  ///   "text": "<String>",
+  ///   "textAlign": "<TextAlign>",
+  ///   "textDirection": "<TextDirection>",
+  ///   "textHeightBehavior": "<TextHeightBehavior>",
+  ///   "textScaleFactor": "<double>",
+  ///   "textWidthBasis": "<TextWidthBasis>"
   /// }
   /// ```
   ///
   /// See also:
+  ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeLocale]
   ///  * [ThemeDecoder.decodeTextOverflow]
   ///  * [ThemeDecoder.decodeStrutStyle]
@@ -85,6 +89,10 @@ class JsonTextBuilder extends JsonWidgetBuilder {
         maxLines: JsonClass.parseInt(map['maxLines']),
         overflow: ThemeDecoder.decodeTextOverflow(
           map['overflow'],
+          validate: false,
+        ),
+        selectionColor: ThemeDecoder.decodeColor(
+          map['selectionColor'],
           validate: false,
         ),
         semanticsLabel: map['semanticsLabel'],
@@ -137,6 +145,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
         maxLines: maxLines,
         overflow: overflow,
         semanticsLabel: semanticsLabel,
+        selectionColor: selectionColor,
         softWrap: softWrap,
         strutStyle: strutStyle,
         style: style,

@@ -6,7 +6,7 @@ class TextButtonSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment':
         'https://api.flutter.dev/flutter/material/TextButton-class.html',
     'type': 'object',
@@ -20,6 +20,7 @@ class TextButtonSchema {
       'onHover': SchemaHelper.stringSchema,
       'onLongPress': SchemaHelper.stringSchema,
       'onPressed': SchemaHelper.stringSchema,
+      'statesController': SchemaHelper.stringSchema,
       'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
     }
   };

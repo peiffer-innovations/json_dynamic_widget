@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:child_builder/child_builder.dart';
+import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -9,7 +10,7 @@ import 'package:uuid/uuid.dart';
 
 class JsonWidgetData extends JsonClass {
   JsonWidgetData({
-    dynamic args,
+    this.args,
     required this.builder,
     JsonWidgetData? child,
     List<JsonWidgetData>? children,
@@ -23,10 +24,9 @@ class JsonWidgetData extends JsonClass {
           child == null || children?.isNotEmpty != true,
           'A JsonWidgetData may either contain a [child] or an array of [children], but not both.',
         ),
-        args = args,
         children = children ?? (child == null ? null : [child]),
         listenVariables = listenVariables ?? <String>{},
-        id = id ?? Uuid().v4(),
+        id = id ?? const Uuid().v4(),
         registry = registry ?? JsonWidgetRegistry.instance;
 
   static final Logger _logger = Logger('JsonWidgetData');
@@ -81,79 +81,87 @@ class JsonWidgetData extends JsonClass {
       );
     } else if (map != null) {
       try {
-        var type = map['type'];
-        if (type is! String) {
-          throw HandledJsonWidgetException(
-            'Unknown type encountered: [$type]',
-            null,
-            data: map,
-          );
-        }
-        var builder = registry.getWidgetBuilder(type);
-        var args = map['args'];
-        var listenVariables = _getListenVariables(map);
+        final type = map['type'];
+        final timer = ExecutionWatch(
+          group: 'JsonWidgetData.fromDynamic',
+          name: type,
+        ).start();
+        try {
+          if (type is! String) {
+            throw HandledJsonWidgetException(
+              'Unknown type encountered: [$type]',
+              null,
+              data: map,
+            );
+          }
+          final builder = registry.getWidgetBuilder(type);
+          final args = map['args'];
+          final listenVariables = _getListenVariables(map);
 
-        // The validation needs to happen before we process the dynamic args or
-        // else there may be non-JSON compatible objects in the map which will
-        // always fail validation.
-        assert(registry.validateBuilderSchema(
-          type: type,
-          value: args,
-          validate: args == null ? false : true,
-        ));
+          // The validation needs to happen before we process the dynamic args or
+          // else there may be non-JSON compatible objects in the map which will
+          // always fail validation.
+          assert(registry.validateBuilderSchema(
+            type: type,
+            value: args,
+            validate: args == null ? false : true,
+          ));
 
-        var child = JsonWidgetData.fromDynamic(
-          map['child'],
-          registry: registry,
-        );
-        if (type == 'scaffold' && map['args'] is Map && child == null) {
-          child = JsonWidgetData.fromDynamic(
-            map['args']['body'],
+          var child = JsonWidgetData.fromDynamic(
+            map['child'],
             registry: registry,
           );
-
-          var args = Map<String, dynamic>.from(map['args']);
-          args.remove('body');
-          map['args'] = args;
-        }
-
-        var processedArgs =
-            registry.processArgs(args ?? <String, dynamic>{}, listenVariables);
-
-        result = JsonWidgetData(
-          args: map['args'] ?? {},
-          builder: () {
-            return builder(
-              registry!
-                  .processArgs(args ?? <String, dynamic>{}, listenVariables)
-                  .value,
+          if (type == 'scaffold' && map['args'] is Map && child == null) {
+            child = JsonWidgetData.fromDynamic(
+              map['args']['body'],
               registry: registry,
-            )!;
-          },
-          child: child,
-          children: map['children'] is String
-              ? registry.processArgs(map['children'], listenVariables).value
-              : JsonClass.fromDynamicList(
-                  map['children'],
-                  (dynamic map) => JsonWidgetData.fromDynamic(
-                    map,
-                    registry: registry,
-                  )!,
-                ),
-          listenVariables: processedArgs.listenVariables,
-          id: map['id'],
-          originalChild: map['child'],
-          originalChildren: map['children'],
-          registry: registry,
-          type: type,
-        );
+            );
+
+            final args = Map<String, dynamic>.from(map['args']);
+            args.remove('body');
+            map['args'] = args;
+          }
+
+          final processedArgs = registry.processArgs(
+              args ?? <String, dynamic>{}, listenVariables);
+
+          result = JsonWidgetData(
+            args: map['args'] ?? {},
+            builder: () {
+              return builder(
+                registry!
+                    .processArgs(args ?? <String, dynamic>{}, listenVariables)
+                    .value,
+                registry: registry,
+              )!;
+            },
+            child: child,
+            children: map['children'] is String
+                ? registry.processArgs(map['children'], listenVariables).value
+                : JsonClass.fromDynamicList(
+                    map['children'],
+                    (dynamic map) => JsonWidgetData.fromDynamic(
+                      map,
+                      registry: registry,
+                    )!,
+                  ),
+            listenVariables: processedArgs.listenVariables,
+            id: map['id'],
+            originalChild: map['child'],
+            originalChildren: map['children'],
+            registry: registry,
+            type: type,
+          );
+        } finally {
+          timer.stop();
+        }
       } catch (e, stack) {
         if (e is HandledJsonWidgetException) {
           rethrow;
         }
         var errorValue = map;
         if (errorValue is Map || errorValue is List) {
-          errorValue = JsonEncoder.withIndent('  ').convert(errorValue);
+          errorValue = const JsonEncoder.withIndent('  ').convert(errorValue);
         }
         _logger.severe('''
 *** WIDGET PARSE ERROR ***
@@ -227,9 +235,9 @@ $map
   /// responces from the registry.  This should only be called within the
   /// framework itself, external code should not need to call this.
   JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
-    var registry = newRegistry ?? this.registry;
-    var builder = registry.getWidgetBuilder(type);
-    var dynamicParamsResult = registry.processArgs(args, listenVariables);
+    final registry = newRegistry ?? this.registry;
+    final builder = registry.getWidgetBuilder(type);
+    final dynamicParamsResult = registry.processArgs(args, listenVariables);
 
     List<JsonWidgetData>? children;
 

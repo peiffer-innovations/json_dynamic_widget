@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedDefaultTextStyle] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
-  JsonAnimatedDefaultTextStyleBuilder({
+  const JsonAnimatedDefaultTextStyleBuilder({
     this.curve,
     required this.duration,
     this.maxLines,
@@ -39,16 +39,16 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "maxLines": <int>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "overflow": <TextOverflow>
-  ///   "softWrap": <bool>,
-  ///   "style": <TextStyle>,
-  ///   "textAlign": <TextAlign>,
-  ///   "textHeightBehavior": <TextHeightBehavior>,
-  ///   "textWidthBasis": <TextWidthBasis>,
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "maxLines": "<int>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "overflow": "<TextOverflow>",
+  ///   "softWrap": "<bool>",
+  ///   "style": "<TextStyle>",
+  ///   "textAlign": "<TextAlign>",
+  ///   "textHeightBehavior": "<TextHeightBehavior>",
+  ///   "textWidthBasis": "<TextWidthBasis>"
   /// }
   /// ```
   ///
@@ -112,7 +112,7 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedDefaultTextStyle(
       builder: this,
@@ -125,7 +125,7 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedDefaultTextStyle extends StatefulWidget {
-  _JsonAnimatedDefaultTextStyle({
+  const _JsonAnimatedDefaultTextStyle({
     required this.builder,
     required this.child,
     required this.childBuilder,

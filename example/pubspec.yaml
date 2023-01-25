@@ -4,16 +4,21 @@ publish_to: 'none'
 version: '1.0.0+26'
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: '>=2.19.0 <3.0.0'
 
 dependencies:
+  child_builder: '^2.0.0+3'
   desktop_window: '^0.4.0'
   dotted_border: '^2.0.0+3'
   flutter:
     sdk: 'flutter'
   flutter_svg: '^1.1.6'
+  json_class: '^2.1.4'
   json_dynamic_widget:
     path: '../'
+  json_theme: '^5.0.0'
+  logging: '^1.1.0'
+  yaon: '^1.0.1+8'
 
 dev_dependencies:
   flutter_test:

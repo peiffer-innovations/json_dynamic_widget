@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [SafeArea] widget.  See the [fromDynamic] for the
 /// format.
 class JsonSafeAreaBuilder extends JsonWidgetBuilder {
-  JsonSafeAreaBuilder({
+  const JsonSafeAreaBuilder({
     required this.bottom,
     required this.left,
     required this.maintainBottomViewPadding,
@@ -31,12 +31,12 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <bool>,
-  ///   "left": <bool>,
-  ///   "maintainBottomViewPadding": <bool>,
-  ///   "minimum": <EdgeInsetsGeometry>,
-  ///   "right": <bool>,
-  ///   "top": <bool>
+  ///   "bottom": "<bool>",
+  ///   "left": "<bool>",
+  ///   "maintainBottomViewPadding": "<bool>",
+  ///   "minimum": "<EdgeInsetsGeometry>",
+  ///   "right": "<bool>",
+  ///   "top": "<bool>"
   /// }
   /// ```
   ///
@@ -79,7 +79,7 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return SafeArea(
       bottom: bottom,

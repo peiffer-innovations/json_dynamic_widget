@@ -29,7 +29,7 @@ void main() async {
           Platform.isFuchsia ||
           Platform.isMacOS ||
           Platform.isWindows)) {
-    await DesktopWindow.setWindowSize(Size(1024, 768));
+    await DesktopWindow.setWindowSize(const Size(1024, 768));
   }
 
   Logger.root.onRecord.listen((record) {
@@ -42,33 +42,34 @@ void main() async {
     }
   });
 
-  var navigatorKey = GlobalKey<NavigatorState>();
+  final navigatorKey = GlobalKey<NavigatorState>();
 
   // This is needed to adding custom schema validations
-  var schemaCache = SchemaCache();
+  final schemaCache = SchemaCache();
   schemaCache.addSchema(SvgSchema.id, SvgSchema.schema);
   schemaCache.addSchema(DottedBorderSchema.id, DottedBorderSchema.schema);
 
-  var registry = JsonWidgetRegistry.instance;
+  final registry = JsonWidgetRegistry.instance;
   registry.navigatorKey = navigatorKey;
   registry.registerCustomBuilder(
     DottedBorderBuilder.type,
-    JsonWidgetBuilderContainer(
+    const JsonWidgetBuilderContainer(
       builder: DottedBorderBuilder.fromDynamic,
       schemaId: DottedBorderSchema.id,
     ),
   );
   registry.registerCustomBuilder(
     SvgBuilder.type,
-    JsonWidgetBuilderContainer(
+    const JsonWidgetBuilderContainer(
       builder: SvgBuilder.fromDynamic,
       schemaId: SvgSchema.id,
     ),
   );
 
   registry.registerFunction('navigatePage', ({args, required registry}) async {
-    var jsonStr = await rootBundle.loadString('assets/pages/${args![0]}.json');
-    var jsonData = json.decode(jsonStr);
+    final jsonStr =
+        await rootBundle.loadString('assets/pages/${args![0]}.json');
+    final jsonData = json.decode(jsonStr);
     await navigatorKey.currentState!.push(
       MaterialPageRoute(
         builder: (BuildContext context) => FullWidgetPage(
@@ -86,10 +87,10 @@ void main() async {
     'getImageId': ({args, required registry}) => 'image${args![0]}',
     'getImageNavigator': ({args, required registry}) => () async {
           registry.setValue('index', args![0]);
-          var dataStr =
+          final dataStr =
               await rootBundle.loadString('assets/pages/image_page.json');
           final imagePageJson = Map.unmodifiable(json.decode(dataStr));
-          var imgRegistry = JsonWidgetRegistry(
+          final imgRegistry = JsonWidgetRegistry(
             debugLabel: 'ImagePage',
             values: {
               'imageAsset': 'assets/images/image${args[0]}.jpg',
@@ -110,15 +111,15 @@ void main() async {
         },
     'noop': ({args, required registry}) => () {},
     'validateForm': ({args, required registry}) => () {
-          BuildContext context = registry.getValue(args![0]);
+          final BuildContext context = registry.getValue(args![0]);
 
-          var valid = Form.of(context)!.validate();
+          final valid = Form.of(context).validate();
           registry.setValue('form_validation', valid);
         },
     'updateCustomTextStyle': ({args, required registry}) => () {
           registry.setValue(
             'customTextStyle',
-            TextStyle(
+            const TextStyle(
               color: Colors.black,
             ),
           );
@@ -129,9 +130,9 @@ void main() async {
             icon: child!,
             iconSize: size,
             onPressed: () {
-              var _current = registry.getValue('customSize');
-              var _size = _current == 50.0 ? 100.0 : 50.0;
-              registry.setValue('customSize', _size);
+              final current = registry.getValue('customSize');
+              final size = current == 50.0 ? 100.0 : 50.0;
+              registry.setValue('customSize', size);
             },
           );
         },
@@ -139,8 +140,8 @@ void main() async {
       return Tween<double>(begin: 0, end: args![0]);
     },
     'setWidgetByKey': ({args, required registry}) => () {
-          var _replace = registry.getValue(args![1]);
-          registry.setValue(args[0], _replace);
+          final replace = registry.getValue(args![1]);
+          registry.setValue(args[0], replace);
         },
     'simplePrintMessage': ({args, required registry}) => () {
           var message = 'This is a simple print message';
@@ -153,7 +154,7 @@ void main() async {
           print(message);
         },
     'negateBool': ({args, required registry}) => () {
-          bool value = registry.getValue(args![0]);
+          final bool value = registry.getValue(args![0]);
           registry.setValue(args[0], !value);
         },
     'buildPopupMenu': ({args, required registry}) {
@@ -178,19 +179,24 @@ void main() async {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RootPage(),
+      home: const RootPage(),
       navigatorKey: navigatorKey,
       theme: ThemeData.light(),
     ),
   );
 }
 
-class RootPage extends StatelessWidget {
+class RootPage extends StatefulWidget {
   const RootPage({
     Key? key,
   }) : super(key: key);
 
-  static final _pages = {
+  @override
+  State createState() => _RootPageState();
+}
+
+class _RootPageState extends State<RootPage> {
+  late final _pages = {
     'align': _onJsonPageSelected,
     'animated_align': _onJsonPageSelected,
     'animated_container': _onJsonPageSelected,
@@ -239,7 +245,7 @@ class RootPage extends StatelessWidget {
     'issue_20_single': _onJsonPageSelected,
     'issue_24': (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (BuildContext context) => Issue24Page(),
+            builder: (BuildContext context) => const Issue24Page(),
           ),
         ),
     'issue_30': _onJsonPageSelected,
@@ -256,6 +262,7 @@ class RootPage extends StatelessWidget {
     'placeholder': _onJsonPageSelected,
     'popup_menu_button': _onJsonPageSelected,
     'radio': _onJsonPageSelected,
+    'rich_text': _onJsonPageSelected,
     'scroll_view': _onJsonPageSelected,
     'set_default_value': _onJsonPageSelected,
     'simple_page': _onJsonPageSelected,
@@ -270,12 +277,12 @@ class RootPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var names = _pages.keys.toList();
+    final names = _pages.keys.toList();
     names.sort();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Select Widget / Page'),
+        title: const Text('Select Widget / Page'),
       ),
       body: ListView.builder(
         itemCount: _pages.length,
@@ -287,72 +294,76 @@ class RootPage extends StatelessWidget {
     );
   }
 
-  static Future<void> _onJsonPageSelected(
+  Future<void> _onJsonPageSelected(
     BuildContext context,
     String pageId,
   ) =>
       _onPageSelected(context, pageId, '.json');
 
-  static Future<void> _onPageSelected(
+  Future<void> _onPageSelected(
     BuildContext context,
     String pageId,
     String extension,
   ) async {
-    var registry = JsonWidgetRegistry.instance.copyWith();
-    var pageStr = await rootBundle.loadString(
-      'assets/pages/${pageId}$extension',
+    final registry = JsonWidgetRegistry.instance.copyWith();
+    final pageStr = await rootBundle.loadString(
+      'assets/pages/$pageId$extension',
     );
-    var dataJson = yaon.parse(pageStr);
+    final dataJson = yaon.parse(pageStr);
 
     // This is put in to give credit for when designs from online were used in
     // example files.  It's not actually a valid attribute to exist in the JSON
     // so it needs to be removed before we create the widget.
     dataJson.remove('_designCredit');
 
-    var data = JsonWidgetData.fromDynamic(
+    final data = JsonWidgetData.fromDynamic(
       dataJson,
       registry: registry,
     );
 
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => FullWidgetPage(
-          data: data!,
+    if (mounted) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => FullWidgetPage(
+            data: data!,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 
-  static Future<void> _onYamlPageSelected(
+  Future<void> _onYamlPageSelected(
     BuildContext context,
     String pageId,
   ) =>
       _onPageSelected(context, pageId, '.yaml');
 
-  static Future<void> _onUntestablePageSelected(
+  Future<void> _onUntestablePageSelected(
     BuildContext context,
     String themeId,
   ) async {
-    var registry = JsonWidgetRegistry.instance.copyWith();
-    var pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
-    var dataJson = json.decode(pageStr);
+    final registry = JsonWidgetRegistry.instance.copyWith();
+    final pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
+    final dataJson = json.decode(pageStr);
 
     // This is put in to give credit for when designs from online were used in
     // example files.  It's not actually a valid attribute to exist in the JSON
     // so it needs to be removed before we create the widget.
     dataJson.remove('_designCredit');
 
-    var data = JsonWidgetData.fromDynamic(
+    final data = JsonWidgetData.fromDynamic(
       dataJson,
       registry: registry,
     );
 
-    await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => UntestableFullWidgetPage(
-          data: data!,
+    if (mounted) {
+      await Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => UntestableFullWidgetPage(
+            data: data!,
+          ),
         ),
-      ),
-    );
+      );
+    }
   }
 }

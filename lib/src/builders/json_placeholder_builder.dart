@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [Placeholder] widget.  See the [fromDynamic] for the
 /// format.
 class JsonPlaceholderBuilder extends JsonWidgetBuilder {
-  JsonPlaceholderBuilder({
+  const JsonPlaceholderBuilder({
     required this.color,
     required this.fallbackHeight,
     required this.fallbackWidth,
@@ -27,10 +27,10 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "fallbackHeight": <double>,
-  ///   "fallbackWidth": <double>,
-  ///   "strokeWidth": <double>
+  ///   "color": "<Color>",
+  ///   "fallbackHeight": "<double>",
+  ///   "fallbackWidth": "<double>",
+  ///   "strokeWidth": "<double>"
   /// }
   /// ```
   ///
@@ -48,7 +48,7 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
               map['color'],
               validate: false,
             ) ??
-            Color(0xFF455A64),
+            const Color(0xFF455A64),
         fallbackHeight: JsonClass.parseDouble(
           map['fallbackHeight'],
           400.0,
@@ -74,7 +74,7 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
     return Placeholder(
       color: color,
       fallbackHeight: fallbackHeight,

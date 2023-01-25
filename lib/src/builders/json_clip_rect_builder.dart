@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [ClipRect] widget.  See the [fromDynamic] for the
 /// format.
 class JsonClipRectBuilder extends JsonWidgetBuilder {
-  JsonClipRectBuilder({
+  const JsonClipRectBuilder({
     required this.clipBehavior,
     this.clipper,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -23,8 +23,8 @@ class JsonClipRectBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "clipBehavior": <Clip>,
-  ///   "clipper": <CustomClipper<Rect>>
+  ///   "clipBehavior": "<Clip>",
+  ///   "clipper": "<CustomClipper<Rect>>"
   /// }
   /// ```
   ///
@@ -57,7 +57,7 @@ class JsonClipRectBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return ClipRect(
       clipBehavior: clipBehavior,

@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [DropdownButtonFormField] widget.  See the
 /// [fromDynamic] for the format.
 class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
-  JsonDropdownButtonFormFieldBuilder({
+  const JsonDropdownButtonFormFieldBuilder({
     this.alignment,
     this.autofocus,
     this.autovalidateMode,
@@ -78,33 +78,33 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <Alignment>,
-  ///   "autofocus": <bool>,
-  ///   "autovalidateMode": <AutovalidateMode>,
-  ///   "borderRadius": <BorderRadius>,
-  ///   "decoration": <InputDecorationDecoder>,
-  ///   "disabledHint": <JsonWidgetData>,
-  ///   "dropdownColor": <Color>,
-  ///   "elevation": <int>,
-  ///   "enabled": <bool>,
-  ///   "focusColor": <Color>,
-  ///   "focusNode": <FocusNode>,
-  ///   "hint": <JsonWidgetData>,
-  ///   "icon": <JsonWidgetData>,
-  ///   "items": <String[] | Map<String, dynamic>>,
-  ///   "iconDisabledColor": <Color>,
-  ///   "iconEnabledColor": <Color>,
-  ///   "iconSize": <double>,
-  ///   "isDense": <bool>,
-  ///   "isExpanded": <bool>,
-  ///   "itemHeight": <double>,
-  ///   "onChanged": <ValueChanged>,
-  ///   "onSaved": <FormFieldSetter>,
-  ///   "onTap": <VoidCallback>,
-  ///   "selectedItemBuilder": <DropdownButtonBuilder | JsonWidgetData>,
-  ///   "validators": <ValueValidator[]>,
-  ///   "style": <TextStyle>,
-  ///   "value": <dynamic>,
+  ///   "alignment": "<Alignment>",
+  ///   "autofocus": "<bool>",
+  ///   "autovalidateMode": "<AutovalidateMode>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "decoration": "<InputDecorationDecoder>",
+  ///   "disabledHint": "<JsonWidgetData>",
+  ///   "dropdownColor": "<Color>",
+  ///   "elevation": "<int>",
+  ///   "enabled": "<bool>",
+  ///   "focusColor": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "hint": "<JsonWidgetData>",
+  ///   "icon": "<JsonWidgetData>",
+  ///   "items": "<List<String>> || <Map<String, dynamic>>",
+  ///   "iconDisabledColor": "<Color>",
+  ///   "iconEnabledColor": "<Color>",
+  ///   "iconSize": "<double>",
+  ///   "isDense": "<bool>",
+  ///   "isExpanded": "<bool>",
+  ///   "itemHeight": "<double>",
+  ///   "onChanged": "<ValueChanged>",
+  ///   "onSaved": "<FormFieldSetter>",
+  ///   "onTap": "<VoidCallback>",
+  ///   "selectedItemBuilder": "<DropdownButtonBuilder> || <JsonWidgetData>",
+  ///   "validators": "<List<ValueValidator>>",
+  ///   "style": "<TextStyle>",
+  ///   "value": "<dynamic>"
   /// }
   /// ```
   ///
@@ -148,11 +148,17 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
         ),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(map['autovalidateMode'])
+            ? ThemeDecoder.decodeAutovalidateMode(
+                map['autovalidateMode'],
+                validate: false,
+              )
             : JsonClass.parseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
-        borderRadius: ThemeDecoder.decodeBorderRadius(map['borderRadius']),
+        borderRadius: ThemeDecoder.decodeBorderRadius(
+          map['borderRadius'],
+          validate: false,
+        ),
         decoration: map['decoration'],
         disabledHint: JsonWidgetData.fromDynamic(map['disabledHint']),
         dropdownColor: ThemeDecoder.decodeColor(
@@ -238,7 +244,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
-  _JsonDropdownButtonFormFieldWidget({
+  const _JsonDropdownButtonFormFieldWidget({
     required this.builder,
     this.childBuilder,
     required this.data,
@@ -274,9 +280,9 @@ class _JsonDropdownButtonFormFieldWidgetState
       );
     }
 
-    var itemEntries = <String, dynamic>{};
+    final itemEntries = <String, dynamic>{};
     if (widget.builder.items != null) {
-      var items = <DropdownMenuItem>[];
+      final items = <DropdownMenuItem>[];
 
       if (widget.builder.items is List) {
         widget.builder.items.forEach((value) {
@@ -306,7 +312,7 @@ class _JsonDropdownButtonFormFieldWidgetState
     if (widget.builder.selectedItemBuilder != null) {
       if (widget.builder.selectedItemBuilder is JsonWidgetData) {
         _selectedItemBuilder = (BuildContext context) {
-          var widgets = <Widget>[];
+          final widgets = <Widget>[];
           itemEntries.forEach((key, value) {
             widget.data.registry.setValue(
               'dropdown_item_display',
@@ -392,7 +398,7 @@ class _JsonDropdownButtonFormFieldWidgetState
         validator: widget.builder.validator == null
             ? null
             : (dynamic value) {
-                var error = widget.builder.validator!.validate(
+                final error = widget.builder.validator!.validate(
                   context: context,
                   label: _decoration?.labelText ?? '',
                   value: value?.toString(),

@@ -4,113 +4,113 @@ import 'package:json_dynamic_widget/json_dynamic_widget_schemas.dart';
 import 'package:json_dynamic_widget/src/schema/all.dart';
 
 class JsonWidgetInternalBuilders {
-  static Map<String, JsonWidgetBuilderContainer> defaults() {
-    return JsonWidgetInternalBuildersBuilder()
-        .withAlign()
-        .withAnimatedAlign()
-        .withAnimatedContainer()
-        .withAnimatedCrossFade()
-        .withAnimatedDefaultTextStyle()
-        .withAnimatedOpacity()
-        .withAnimatedPadding()
-        .withAnimatedPhysicalModel()
-        .withAnimatedPositioned()
-        .withAnimatedPositionedDirectional()
-        .withAnimatedSize()
-        .withAnimatedSwitcher()
-        .withAnimatedTheme()
-        .withAppBar()
-        .withAspectRatio()
-        .withAssetImage()
-        .withBaseline()
-        .withButtonBar()
-        .withCard()
-        .withCenter()
-        .withCheckbox()
-        .withCircularProgressIndicator()
-        .withClipOval()
-        .withClipPath()
-        .withClipRect()
-        .withClipRRect()
-        .withColumn()
-        .withComment()
-        .withConditional()
-        .withContainer()
-        .withCupertinoSwitch()
-        .withCustomScrollView()
-        .withDecoratedBox()
-        .withDirectionality()
-        .withDropdownButtonFormField()
-        .withDynamic()
-        .withElevatedButton()
-        .withExcludeSemantics()
-        .withExpanded()
-        .withFittedBox()
-        .withFlexible()
-        .withFloatingActionButton()
-        .withForm()
-        .withFractionalTranslation()
-        .withFractionallySizedBox()
-        .withGestureDetector()
-        .withGridView()
-        .withHero()
-        .withIcon()
-        .withIconButton()
-        .withIgnorePointer()
-        .withIndexedStack()
-        .withInkWell()
-        .withInputError()
-        .withInteractiveViewer()
-        .withIntrinsicHeight()
-        .withIntrinsicWidth()
-        .withLayoutBuilder()
-        .withLimitedBox()
-        .withLinearProgressIndicator()
-        .withListTile()
-        .withListView()
-        .withMeasured()
-        .withMaterial()
-        .withMemoryImage()
-        .withMergeSemantics()
-        .withNetworkImage()
-        .withOffstage()
-        .withOpacity()
-        .withOutlinedButton()
-        .withOverflowBox()
-        .withPadding()
-        .withPlaceholder()
-        .withPopupMenuButton()
-        .withPositioned()
-        .withPrimaryScrollController()
-        .withRadio()
-        .withRow()
-        .withSafeArea()
-        .withSaveContext()
-        .withScaffold()
-        .withScrollConfiguration()
-        .withScrollbar()
-        .withSemantics()
-        .withSetScrollController()
-        .withSetDefaultValue()
-        .withSetValue()
-        .withSetWidget()
-        .withSingleChildScrollView()
-        .withSizedBox()
-        .withSliverGrid()
-        .withSliverList()
-        .withSliverPadding()
-        .withSliverToBoxAdapter()
-        .withStack()
-        .withSwitch()
-        .withText()
-        .withTextButton()
-        .withTextFormField()
-        .withTooltip()
-        .withTweenAnimation()
-        .withTheme()
-        .withWrap()
-        .build();
-  }
+  static Map<String, JsonWidgetBuilderContainer> defaults() =>
+      JsonWidgetInternalBuildersBuilder()
+          .withAlign()
+          .withAnimatedAlign()
+          .withAnimatedContainer()
+          .withAnimatedCrossFade()
+          .withAnimatedDefaultTextStyle()
+          .withAnimatedOpacity()
+          .withAnimatedPadding()
+          .withAnimatedPhysicalModel()
+          .withAnimatedPositioned()
+          .withAnimatedPositionedDirectional()
+          .withAnimatedSize()
+          .withAnimatedSwitcher()
+          .withAnimatedTheme()
+          .withAppBar()
+          .withAspectRatio()
+          .withAssetImage()
+          .withBaseline()
+          .withButtonBar()
+          .withCard()
+          .withCenter()
+          .withCheckbox()
+          .withCircularProgressIndicator()
+          .withClipOval()
+          .withClipPath()
+          .withClipRect()
+          .withClipRRect()
+          .withColumn()
+          .withComment()
+          .withConditional()
+          .withContainer()
+          .withCupertinoSwitch()
+          .withCustomScrollView()
+          .withDecoratedBox()
+          .withDirectionality()
+          .withDropdownButtonFormField()
+          .withDynamic()
+          .withElevatedButton()
+          .withExcludeSemantics()
+          .withExpanded()
+          .withFittedBox()
+          .withFlexible()
+          .withFloatingActionButton()
+          .withForm()
+          .withFractionalTranslation()
+          .withFractionallySizedBox()
+          .withGestureDetector()
+          .withGridView()
+          .withHero()
+          .withIcon()
+          .withIconButton()
+          .withIgnorePointer()
+          .withIndexedStack()
+          .withInkWell()
+          .withInputError()
+          .withInteractiveViewer()
+          .withIntrinsicHeight()
+          .withIntrinsicWidth()
+          .withLayoutBuilder()
+          .withLimitedBox()
+          .withLinearProgressIndicator()
+          .withListTile()
+          .withListView()
+          .withMeasured()
+          .withMaterial()
+          .withMemoryImage()
+          .withMergeSemantics()
+          .withNetworkImage()
+          .withOffstage()
+          .withOpacity()
+          .withOutlinedButton()
+          .withOverflowBox()
+          .withPadding()
+          .withPlaceholder()
+          .withPopupMenuButton()
+          .withPositioned()
+          .withPrimaryScrollController()
+          .withRadio()
+          .withRichText()
+          .withRow()
+          .withSafeArea()
+          .withSaveContext()
+          .withScaffold()
+          .withScrollConfiguration()
+          .withScrollbar()
+          .withSemantics()
+          .withSetScrollController()
+          .withSetDefaultValue()
+          .withSetValue()
+          .withSetWidget()
+          .withSingleChildScrollView()
+          .withSizedBox()
+          .withSliverGrid()
+          .withSliverList()
+          .withSliverPadding()
+          .withSliverToBoxAdapter()
+          .withStack()
+          .withSwitch()
+          .withText()
+          .withTextButton()
+          .withTextFormField()
+          .withTooltip()
+          .withTweenAnimation()
+          .withTheme()
+          .withWrap()
+          .build();
 }
 
 /// Used to create the selected subset of all internal builders.
@@ -119,7 +119,7 @@ class JsonWidgetInternalBuildersBuilder {
       <String, JsonWidgetBuilderContainer>{};
 
   JsonWidgetInternalBuildersBuilder withAlign() {
-    builders[JsonAlignBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAlignBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonAlignBuilder.fromDynamic,
       schemaId: AlignSchema.id,
     );
@@ -127,7 +127,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedAlign() {
-    builders[JsonAnimatedAlignBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedAlignBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonAnimatedAlignBuilder.fromDynamic,
       schemaId: AnimatedAlignSchema.id,
     );
@@ -135,7 +135,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedContainer() {
-    builders[JsonAnimatedContainerBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedContainerBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedContainerBuilder.fromDynamic,
       schemaId: AnimatedContainerSchema.id,
     );
@@ -143,7 +144,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedCrossFade() {
-    builders[JsonAnimatedCrossFadeBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedCrossFadeBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedCrossFadeBuilder.fromDynamic,
       schemaId: AnimatedCrossFadeSchema.id,
     );
@@ -152,7 +154,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withAnimatedDefaultTextStyle() {
     builders[JsonAnimatedDefaultTextStyleBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedDefaultTextStyleBuilder.fromDynamic,
       schemaId: AnimatedDefaultTextStyleSchema.id,
     );
@@ -160,7 +162,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedOpacity() {
-    builders[JsonAnimatedOpacityBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedOpacityBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedOpacityBuilder.fromDynamic,
       schemaId: AnimatedOpacitySchema.id,
     );
@@ -168,7 +171,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedPadding() {
-    builders[JsonAnimatedPaddingBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedPaddingBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedPaddingBuilder.fromDynamic,
       schemaId: AnimatedPaddingSchema.id,
     );
@@ -177,7 +181,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withAnimatedPhysicalModel() {
     builders[JsonAnimatedPhysicalModelBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedPhysicalModelBuilder.fromDynamic,
       schemaId: AnimatedPhysicalModelSchema.id,
     );
@@ -185,7 +189,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedPositioned() {
-    builders[JsonAnimatedPositionedBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedPositionedBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedPositionedBuilder.fromDynamic,
       schemaId: AnimatedPositionedSchema.id,
     );
@@ -194,14 +199,14 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withAnimatedPositionedDirectional() {
     builders[JsonAnimatedPositionedDirectionalBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
             builder: JsonAnimatedPositionedDirectionalBuilder.fromDynamic,
             schemaId: AnimatedPositionedDirectionalSchema.id);
     return this;
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedSize() {
-    builders[JsonAnimatedSizeBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedSizeBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonAnimatedSizeBuilder.fromDynamic,
       schemaId: AnimatedSizeSchema.id,
     );
@@ -209,7 +214,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedSwitcher() {
-    builders[JsonAnimatedSwitcherBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedSwitcherBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonAnimatedSwitcherBuilder.fromDynamic,
       schemaId: AnimatedSwitcherSchema.id,
     );
@@ -217,7 +223,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAnimatedTheme() {
-    builders[JsonAnimatedThemeBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAnimatedThemeBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonAnimatedThemeBuilder.fromDynamic,
       schemaId: AnimatedThemeSchema.id,
     );
@@ -225,7 +231,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAppBar() {
-    builders[JsonAppBarBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAppBarBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonAppBarBuilder.fromDynamic,
       schemaId: AppBarSchema.id,
     );
@@ -233,7 +239,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAspectRatio() {
-    builders[JsonAspectRatioBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAspectRatioBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonAspectRatioBuilder.fromDynamic,
       schemaId: AspectRatioSchema.id,
     );
@@ -241,7 +247,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withAssetImage() {
-    builders[JsonAssetImageBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonAssetImageBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonAssetImageBuilder.fromDynamic,
       schemaId: AssetImageSchema.id,
     );
@@ -249,7 +255,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withBaseline() {
-    builders[JsonBaselineBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonBaselineBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonBaselineBuilder.fromDynamic,
       schemaId: BaselineSchema.id,
     );
@@ -257,7 +263,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withButtonBar() {
-    builders[JsonButtonBarBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonButtonBarBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonButtonBarBuilder.fromDynamic,
       schemaId: ButtonBarSchema.id,
     );
@@ -265,7 +271,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withCard() {
-    builders[JsonCardBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonCardBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonCardBuilder.fromDynamic,
       schemaId: CardSchema.id,
     );
@@ -273,7 +279,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withCenter() {
-    builders[JsonCenterBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonCenterBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonCenterBuilder.fromDynamic,
       schemaId: CenterSchema.id,
     );
@@ -281,7 +287,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withCheckbox() {
-    builders[JsonCheckboxBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonCheckboxBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonCheckboxBuilder.fromDynamic,
       schemaId: CheckboxSchema.id,
     );
@@ -290,7 +296,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withCircularProgressIndicator() {
     builders[JsonCircularProgressIndicatorBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonCircularProgressIndicatorBuilder.fromDynamic,
       schemaId: CircularProgressIndicatorSchema.id,
     );
@@ -298,7 +304,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withClipOval() {
-    builders[JsonClipOvalBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonClipOvalBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonClipOvalBuilder.fromDynamic,
       schemaId: ClipOvalSchema.id,
     );
@@ -306,7 +312,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withClipPath() {
-    builders[JsonClipPathBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonClipPathBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonClipPathBuilder.fromDynamic,
       schemaId: ClipPathSchema.id,
     );
@@ -314,7 +320,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withClipRect() {
-    builders[JsonClipRectBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonClipRectBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonClipRectBuilder.fromDynamic,
       schemaId: ClipRectSchema.id,
     );
@@ -322,7 +328,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withClipRRect() {
-    builders[JsonClipRRectBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonClipRRectBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonClipRRectBuilder.fromDynamic,
       schemaId: ClipRRectSchema.id,
     );
@@ -330,7 +336,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withColumn() {
-    builders[JsonColumnBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonColumnBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonColumnBuilder.fromDynamic,
       schemaId: ColumnSchema.id,
     );
@@ -338,7 +344,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withComment() {
-    builders[JsonCommentBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonCommentBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonCommentBuilder.fromDynamic,
       schemaId: CommentSchema.id,
     );
@@ -346,7 +352,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withConditional() {
-    builders[JsonConditionalBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonConditionalBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonConditionalBuilder.fromDynamic,
       schemaId: ConditionalSchema.id,
     );
@@ -354,7 +360,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withContainer() {
-    builders[JsonContainerBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonContainerBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonContainerBuilder.fromDynamic,
       schemaId: ContainerSchema.id,
     );
@@ -362,7 +368,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withCupertinoSwitch() {
-    builders[JsonCupertinoSwitchBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonCupertinoSwitchBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonCupertinoSwitchBuilder.fromDynamic,
       schemaId: CupertinoSwitchSchema.id,
     );
@@ -370,7 +377,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withCustomScrollView() {
-    builders[JsonCustomScrollViewBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonCustomScrollViewBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonCustomScrollViewBuilder.fromDynamic,
       schemaId: CustomScrollViewSchema.id,
     );
@@ -378,7 +386,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withDecoratedBox() {
-    builders[JsonDecoratedBoxBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonDecoratedBoxBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonDecoratedBoxBuilder.fromDynamic,
       schemaId: DecoratedBoxSchema.id,
     );
@@ -386,7 +394,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withDirectionality() {
-    builders[JsonDirectionalityBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonDirectionalityBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonDirectionalityBuilder.fromDynamic,
       schemaId: DirectionalitySchema.id,
     );
@@ -395,7 +403,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withDropdownButtonFormField() {
     builders[JsonDropdownButtonFormFieldBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonDropdownButtonFormFieldBuilder.fromDynamic,
       schemaId: DropdownButtonFormFieldSchema.id,
     );
@@ -403,7 +411,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withDynamic() {
-    builders[JsonDynamicBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonDynamicBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonDynamicBuilder.fromDynamic,
       schemaId: DynamicSchema.id,
     );
@@ -411,7 +419,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withElevatedButton() {
-    builders[JsonElevatedButtonBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonElevatedButtonBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonElevatedButtonBuilder.fromDynamic,
       schemaId: ElevatedButtonSchema.id,
     );
@@ -419,7 +427,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withExcludeSemantics() {
-    builders[JsonExcludeSemanticsBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonExcludeSemanticsBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonExcludeSemanticsBuilder.fromDynamic,
       schemaId: ExcludeSemanticsSchema.id,
     );
@@ -427,7 +436,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withExpanded() {
-    builders[JsonExpandedBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonExpandedBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonExpandedBuilder.fromDynamic,
       schemaId: ExpandedSchema.id,
     );
@@ -435,7 +444,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withFittedBox() {
-    builders[JsonFittedBoxBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonFittedBoxBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonFittedBoxBuilder.fromDynamic,
       schemaId: FittedBoxSchema.id,
     );
@@ -443,7 +452,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withFlexible() {
-    builders[JsonFlexibleBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonFlexibleBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonFlexibleBuilder.fromDynamic,
       schemaId: FlexibleSchema.id,
     );
@@ -451,7 +460,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withFloatingActionButton() {
-    builders[JsonFloatingActionButtonBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonFloatingActionButtonBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonFloatingActionButtonBuilder.fromDynamic,
       schemaId: FloatingActionButtonSchema.id,
     );
@@ -459,7 +469,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withForm() {
-    builders[JsonFormBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonFormBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonFormBuilder.fromDynamic,
       schemaId: FormSchema.id,
     );
@@ -468,7 +478,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withFractionalTranslation() {
     builders[JsonFractionalTranslationBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonFractionalTranslationBuilder.fromDynamic,
       schemaId: FractionalTranslationSchema.id,
     );
@@ -476,7 +486,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withFractionallySizedBox() {
-    builders[JsonFractionallySizedBoxBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonFractionallySizedBoxBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonFractionallySizedBoxBuilder.fromDynamic,
       schemaId: FractionallySizedBoxSchema.id,
     );
@@ -484,7 +495,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withGestureDetector() {
-    builders[JsonGestureDetectorBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonGestureDetectorBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonGestureDetectorBuilder.fromDynamic,
       schemaId: GestureDetectorSchema.id,
     );
@@ -492,7 +504,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withGridView() {
-    builders[JsonGridViewBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonGridViewBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonGridViewBuilder.fromDynamic,
       schemaId: GridViewSchema.id,
     );
@@ -500,7 +512,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withHero() {
-    builders[JsonHeroBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonHeroBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonHeroBuilder.fromDynamic,
       schemaId: HeroSchema.id,
     );
@@ -508,7 +520,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withIcon() {
-    builders[JsonIconBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonIconBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonIconBuilder.fromDynamic,
       schemaId: IconSchema.id,
     );
@@ -516,7 +528,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withIconButton() {
-    builders[JsonIconButtonBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonIconButtonBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonIconButtonBuilder.fromDynamic,
       schemaId: IconButtonSchema.id,
     );
@@ -524,7 +536,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withIgnorePointer() {
-    builders[JsonIgnorePointerBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonIgnorePointerBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonIgnorePointerBuilder.fromDynamic,
       schemaId: IgnorePointerSchema.id,
     );
@@ -532,7 +544,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withIndexedStack() {
-    builders[JsonIndexedStackBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonIndexedStackBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonIndexedStackBuilder.fromDynamic,
       schemaId: IndexedStackSchema.id,
     );
@@ -540,7 +552,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withInkWell() {
-    builders[JsonInkWellBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonInkWellBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonInkWellBuilder.fromDynamic,
       schemaId: InkWellSchema.id,
     );
@@ -548,7 +560,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withInputError() {
-    builders[JsonInputErrorBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonInputErrorBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonInputErrorBuilder.fromDynamic,
       schemaId: InputErrorSchema.id,
     );
@@ -556,7 +568,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withInteractiveViewer() {
-    builders[JsonInteractiveViewerBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonInteractiveViewerBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonInteractiveViewerBuilder.fromDynamic,
       schemaId: InteractiveViewerSchema.id,
     );
@@ -564,7 +577,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withIntrinsicHeight() {
-    builders[JsonIntrinsicHeightBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonIntrinsicHeightBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonIntrinsicHeightBuilder.fromDynamic,
       schemaId: IntrinsicHeightSchema.id,
     );
@@ -572,7 +586,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withIntrinsicWidth() {
-    builders[JsonIntrinsicWidthBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonIntrinsicWidthBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonIntrinsicWidthBuilder.fromDynamic,
       schemaId: IntrinsicWidthSchema.id,
     );
@@ -580,7 +594,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withLayoutBuilder() {
-    builders[JsonLayoutBuilderBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonLayoutBuilderBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonLayoutBuilderBuilder.fromDynamic,
       schemaId: LayoutBuilderSchema.id,
     );
@@ -588,7 +602,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withLimitedBox() {
-    builders[JsonLimitedBoxBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonLimitedBoxBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonLimitedBoxBuilder.fromDynamic,
       schemaId: LimitedBoxSchema.id,
     );
@@ -597,7 +611,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withLinearProgressIndicator() {
     builders[JsonLinearProgressIndicatorBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonLinearProgressIndicatorBuilder.fromDynamic,
       schemaId: LinearProgressIndicatorSchema.id,
     );
@@ -605,7 +619,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withListTile() {
-    builders[JsonListTileBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonListTileBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonListTileBuilder.fromDynamic,
       schemaId: ListTileSchema.id,
     );
@@ -613,7 +627,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withListView() {
-    builders[JsonListViewBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonListViewBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonListViewBuilder.fromDynamic,
       schemaId: ListViewSchema.id,
     );
@@ -621,7 +635,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withMeasured() {
-    builders[JsonMeasuredBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonMeasuredBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonMeasuredBuilder.fromDynamic,
       schemaId: MeasuredSchema.id,
     );
@@ -629,7 +643,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withMaterial() {
-    builders[JsonMaterialBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonMaterialBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonMaterialBuilder.fromDynamic,
       schemaId: MaterialSchema.id,
     );
@@ -637,7 +651,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withMemoryImage() {
-    builders[JsonMemoryImageBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonMemoryImageBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonMemoryImageBuilder.fromDynamic,
       schemaId: MemoryImageSchema.id,
     );
@@ -645,7 +659,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withMergeSemantics() {
-    builders[JsonMergeSemanticsBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonMergeSemanticsBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonMergeSemanticsBuilder.fromDynamic,
       schemaId: MergeSemanticsSchema.id,
     );
@@ -653,7 +667,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withNetworkImage() {
-    builders[JsonNetworkImageBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonNetworkImageBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonNetworkImageBuilder.fromDynamic,
       schemaId: NetworkImageSchema.id,
     );
@@ -661,7 +675,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withOffstage() {
-    builders[JsonOffstageBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonOffstageBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonOffstageBuilder.fromDynamic,
       schemaId: OffstageSchema.id,
     );
@@ -669,7 +683,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withOpacity() {
-    builders[JsonOpacityBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonOpacityBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonOpacityBuilder.fromDynamic,
       schemaId: OpacitySchema.id,
     );
@@ -677,7 +691,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withOutlinedButton() {
-    builders[JsonOutlinedButtonBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonOutlinedButtonBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonOutlinedButtonBuilder.fromDynamic,
       schemaId: OutlinedButtonSchema.id,
     );
@@ -685,7 +699,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withOverflowBox() {
-    builders[JsonOverflowBoxBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonOverflowBoxBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonOverflowBoxBuilder.fromDynamic,
       schemaId: OverflowBoxSchema.id,
     );
@@ -693,7 +707,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withPadding() {
-    builders[JsonPaddingBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonPaddingBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonPaddingBuilder.fromDynamic,
       schemaId: PaddingSchema.id,
     );
@@ -701,7 +715,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withPlaceholder() {
-    builders[JsonPlaceholderBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonPlaceholderBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonPlaceholderBuilder.fromDynamic,
       schemaId: PlaceholderSchema.id,
     );
@@ -709,7 +723,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withPopupMenuButton() {
-    builders[JsonPopupMenuButtonBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonPopupMenuButtonBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonPopupMenuButtonBuilder.fromDynamic,
       schemaId: PopupMenuButtonSchema.id,
     );
@@ -717,7 +732,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withPositioned() {
-    builders[JsonPositionedBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonPositionedBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonPositionedBuilder.fromDynamic,
       schemaId: PositionedSchema.id,
     );
@@ -726,7 +741,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withPrimaryScrollController() {
     builders[JsonPrimaryScrollControllerBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonPrimaryScrollControllerBuilder.fromDynamic,
       schemaId: PrimaryScrollControllerSchema.id,
     );
@@ -734,15 +749,23 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withRadio() {
-    builders[JsonRadioBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonRadioBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonRadioBuilder.fromDynamic,
       schemaId: RadioSchema.id,
     );
     return this;
   }
 
+  JsonWidgetInternalBuildersBuilder withRichText() {
+    builders[JsonRichTextBuilder.type] = const JsonWidgetBuilderContainer(
+      builder: JsonRichTextBuilder.fromDynamic,
+      schemaId: RichTextSchema.id,
+    );
+    return this;
+  }
+
   JsonWidgetInternalBuildersBuilder withRow() {
-    builders[JsonRowBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonRowBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonRowBuilder.fromDynamic,
       schemaId: RowSchema.id,
     );
@@ -750,7 +773,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSafeArea() {
-    builders[JsonSafeAreaBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSafeAreaBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSafeAreaBuilder.fromDynamic,
       schemaId: SafeAreaSchema.id,
     );
@@ -758,7 +781,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSaveContext() {
-    builders[JsonSaveContextBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSaveContextBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSaveContextBuilder.fromDynamic,
       schemaId: SaveContextSchema.id,
     );
@@ -766,7 +789,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withScaffold() {
-    builders[JsonScaffoldBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonScaffoldBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonScaffoldBuilder.fromDynamic,
       schemaId: ScaffoldSchema.id,
     );
@@ -774,7 +797,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withScrollConfiguration() {
-    builders[JsonScrollConfigurationBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonScrollConfigurationBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonScrollConfigurationBuilder.fromDynamic,
       schemaId: ScrollConfigurationSchema.id,
     );
@@ -782,7 +806,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withScrollbar() {
-    builders[JsonScrollbarBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonScrollbarBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonScrollbarBuilder.fromDynamic,
       schemaId: ScrollbarSchema.id,
     );
@@ -790,7 +814,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSemantics() {
-    builders[JsonSemanticsBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSemanticsBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSemanticsBuilder.fromDynamic,
       schemaId: SemanticsSchema.id,
     );
@@ -798,7 +822,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSetScrollController() {
-    builders[JsonSetScrollControllerBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSetScrollControllerBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonSetScrollControllerBuilder.fromDynamic,
       schemaId: SetScrollControllerSchema.id,
     );
@@ -806,7 +831,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSetDefaultValue() {
-    builders[JsonSetDefaultValueBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSetDefaultValueBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonSetDefaultValueBuilder.fromDynamic,
       schemaId: SetDefaultValueSchema.id,
     );
@@ -814,7 +840,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSetValue() {
-    builders[JsonSetValueBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSetValueBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSetValueBuilder.fromDynamic,
       schemaId: SetValueSchema.id,
     );
@@ -822,7 +848,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSetWidget() {
-    builders[JsonSetWidgetBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSetWidgetBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSetWidgetBuilder.fromDynamic,
       schemaId: SetWidgetSchema.id,
     );
@@ -831,7 +857,7 @@ class JsonWidgetInternalBuildersBuilder {
 
   JsonWidgetInternalBuildersBuilder withSingleChildScrollView() {
     builders[JsonSingleChildScrollViewBuilder.type] =
-        JsonWidgetBuilderContainer(
+        const JsonWidgetBuilderContainer(
       builder: JsonSingleChildScrollViewBuilder.fromDynamic,
       schemaId: SingleChildScrollViewSchema.id,
     );
@@ -839,7 +865,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSizedBox() {
-    builders[JsonSizedBoxBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSizedBoxBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSizedBoxBuilder.fromDynamic,
       schemaId: SizedBoxSchema.id,
     );
@@ -847,7 +873,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSliverGrid() {
-    builders[JsonSliverGridBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSliverGridBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSliverGridBuilder.fromDynamic,
       schemaId: SliverGridSchema.id,
     );
@@ -855,7 +881,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSliverList() {
-    builders[JsonSliverListBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSliverListBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSliverListBuilder.fromDynamic,
       schemaId: SliverListSchema.id,
     );
@@ -863,7 +889,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSliverPadding() {
-    builders[JsonSliverPaddingBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSliverPaddingBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSliverPaddingBuilder.fromDynamic,
       schemaId: SliverPaddingSchema.id,
     );
@@ -871,7 +897,8 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSliverToBoxAdapter() {
-    builders[JsonSliverToBoxAdapterBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSliverToBoxAdapterBuilder.type] =
+        const JsonWidgetBuilderContainer(
       builder: JsonSliverToBoxAdapterBuilder.fromDynamic,
       schemaId: SliverToBoxAdapterSchema.id,
     );
@@ -879,7 +906,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withStack() {
-    builders[JsonStackBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonStackBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonStackBuilder.fromDynamic,
       schemaId: StackSchema.id,
     );
@@ -887,7 +914,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withSwitch() {
-    builders[JsonSwitchBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonSwitchBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonSwitchBuilder.fromDynamic,
       schemaId: SwitchSchema.id,
     );
@@ -895,7 +922,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withText() {
-    builders[JsonTextBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonTextBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonTextBuilder.fromDynamic,
       schemaId: TextSchema.id,
     );
@@ -903,7 +930,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withTextButton() {
-    builders[JsonTextButtonBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonTextButtonBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonTextButtonBuilder.fromDynamic,
       schemaId: TextButtonSchema.id,
     );
@@ -911,7 +938,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withTextFormField() {
-    builders[JsonTextFormFieldBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonTextFormFieldBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonTextFormFieldBuilder.fromDynamic,
       schemaId: TextFormFieldSchema.id,
     );
@@ -919,7 +946,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withTooltip() {
-    builders[JsonTooltipBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonTooltipBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonTooltipBuilder.fromDynamic,
       schemaId: TooltipSchema.id,
     );
@@ -927,7 +954,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withTweenAnimation() {
-    builders[JsonTweenAnimationBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonTweenAnimationBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonTweenAnimationBuilder.fromDynamic,
       schemaId: TweenAnimationSchema.id,
     );
@@ -935,7 +962,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withTheme() {
-    builders[JsonThemeBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonThemeBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonThemeBuilder.fromDynamic,
       schemaId: ThemeSchema.id,
     );
@@ -943,7 +970,7 @@ class JsonWidgetInternalBuildersBuilder {
   }
 
   JsonWidgetInternalBuildersBuilder withWrap() {
-    builders[JsonWrapBuilder.type] = JsonWidgetBuilderContainer(
+    builders[JsonWrapBuilder.type] = const JsonWidgetBuilderContainer(
         builder: JsonWrapBuilder.fromDynamic, schemaId: WrapSchema.id);
     return this;
   }

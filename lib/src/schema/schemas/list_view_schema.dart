@@ -7,7 +7,7 @@ class ListViewSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment': 'https://api.flutter.dev/flutter/widgets/ListView-class.html',
     'title': 'ListView',
     'oneOf': [
@@ -24,8 +24,10 @@ class ListViewSchema {
           'cacheExtent': SchemaHelper.numberSchema,
           'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
           'controller': SchemaHelper.stringSchema,
-          'dragStartBehavior':
-              SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
+          'dragStartBehavior': SchemaHelper.objectSchema(
+            DragStartBehaviorSchema.id,
+          ),
+          'findChildIndexCallback': SchemaHelper.stringSchema,
           'itemExtent': SchemaHelper.numberSchema,
           'keyboardDismissBehavior': SchemaHelper.objectSchema(
             ScrollViewKeyboardDismissBehaviorSchema.id,

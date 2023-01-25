@@ -12,7 +12,7 @@ void main() {
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
-          'builder': (context, val, child) => SizedBox(),
+          'builder': (context, val, child) => const SizedBox(),
           'duration': 1000,
           'tween': Tween(begin: 0, end: 0),
         },

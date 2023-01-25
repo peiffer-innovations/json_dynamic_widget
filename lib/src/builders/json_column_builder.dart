@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Column] widget.  See the [fromDynamic] for the
 /// format.
 class JsonColumnBuilder extends JsonWidgetBuilder {
-  JsonColumnBuilder({
+  const JsonColumnBuilder({
     required this.crossAxisAlignment,
     required this.mainAxisAlignment,
     required this.mainAxisSize,
@@ -31,12 +31,12 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "crossAxisAlignment": <CrossAxisAlignment>,
-  ///   "mainAxisAlignment": <MainAxisAlignment>,
-  ///   "mainAxisSize": <MainAxisSize>,
-  ///   "textBaseline": <TextBaseline>,
-  ///   "textDirection": <TextDirection>,
-  ///   "verticalDirection": <VerticalDirection>
+  ///   "crossAxisAlignment": "<CrossAxisAlignment>",
+  ///   "mainAxisAlignment": "<MainAxisAlignment>",
+  ///   "mainAxisSize": "<MainAxisSize>",
+  ///   "textBaseline": "<TextBaseline>",
+  ///   "textDirection": "<TextDirection>",
+  ///   "verticalDirection": "<VerticalDirection>"
   /// }
   /// ```
   ///

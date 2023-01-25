@@ -6,7 +6,7 @@ class TooltipSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment': 'https://api.flutter.dev/flutter/material/Tooltip-class.html',
     'type': 'object',
     'title': 'Text',
@@ -21,10 +21,12 @@ class TooltipSchema {
       'height': SchemaHelper.numberSchema,
       'margin': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'message': SchemaHelper.stringSchema,
+      'onTriggered': SchemaHelper.stringSchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'preferBelow': SchemaHelper.boolSchema,
       'richMessage': SchemaHelper.stringSchema,
       'showDuration': SchemaHelper.numberSchema,
+      'textAlign': SchemaHelper.objectSchema(TextAlignSchema.id),
       'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'triggerMode': SchemaHelper.boolSchema,
       'verticalOffset': SchemaHelper.numberSchema,

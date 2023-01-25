@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [AnimatedPositioned] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
-  JsonAnimatedPositionedBuilder({
+  const JsonAnimatedPositionedBuilder({
     this.bottom,
     this.curve,
     required this.duration,
@@ -36,15 +36,15 @@ class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "bottom": <double>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "height": <double>,
-  ///   "left": <double>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "right": <double>,
-  ///   "top": <double>,
-  ///   "width": <double>,
+  ///   "bottom": "<double>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "height": "<double>",
+  ///   "left": "<double>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "right": "<double>",
+  ///   "top": "<double>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -83,7 +83,7 @@ class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedPositioned(
       builder: this,
@@ -96,7 +96,7 @@ class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedPositioned extends StatefulWidget {
-  _JsonAnimatedPositioned({
+  const _JsonAnimatedPositioned({
     required this.builder,
     required this.child,
     required this.childBuilder,

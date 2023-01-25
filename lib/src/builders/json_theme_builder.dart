@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Theme] widget.  See the [fromDynamic] for the
 /// format.
 class JsonThemeBuilder extends JsonWidgetBuilder {
-  JsonThemeBuilder({
+  const JsonThemeBuilder({
     required this.theme,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -20,8 +20,8 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "data": <ThemeData>,
-  ///   "isMaterialAppTheme": <bool>
+  ///   "data": "<ThemeData>",
+  ///   "isMaterialAppTheme": "<bool>"
   /// }
   /// ```
   ///
@@ -52,7 +52,7 @@ class JsonThemeBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Theme(
       data: theme,

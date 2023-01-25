@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-
 import 'package:json_dynamic_widget/src/components/functions/length.dart';
 
 void main() {
@@ -36,7 +35,7 @@ void main() {
   });
 
   test('length: list', () {
-    var list = [];
+    final list = [];
 
     for (var i = 0; i < 5; i++) {
       expect(
@@ -57,7 +56,7 @@ void main() {
   });
 
   test('length: map', () {
-    var map = {};
+    final map = {};
 
     for (var i = 0; i < 5; i++) {
       expect(
@@ -77,7 +76,7 @@ void main() {
   });
 
   test('length: set', () {
-    var set = <String>{};
+    final set = <String>{};
 
     for (var i = 0; i < 5; i++) {
       expect(

@@ -16,19 +16,19 @@ class IterableArgProcessor implements ArgProcessor {
     dynamic arg,
     Set<String>? listenVariables,
   ) {
-    var calculateListenVariables = listenVariables == null;
-    var resultListenVariables = listenVariables ?? <String>{};
+    final calculateListenVariables = listenVariables == null;
+    final resultListenVariables = listenVariables ?? <String>{};
 
-    var iterableArg = arg as Iterable;
-    var processedArgs = [];
-    iterableArg.forEach((arg) {
-      var processedArg = registry.processArgs(arg, listenVariables);
+    final iterableArg = arg as Iterable;
+    final processedArgs = [];
+    for (var arg in iterableArg) {
+      final processedArg = registry.processArgs(arg, listenVariables);
       processedArgs.add(processedArg.value);
 
       if (calculateListenVariables) {
         resultListenVariables.addAll(processedArg.listenVariables.toList());
       }
-    });
+    }
     return ProcessedArg(
       value: processedArgs,
       listenVariables: resultListenVariables,

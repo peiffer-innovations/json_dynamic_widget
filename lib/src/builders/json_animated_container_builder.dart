@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedContainer] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
-  JsonAnimatedContainerBuilder({
+  const JsonAnimatedContainerBuilder({
     this.alignment,
     required this.clipBehavior,
     this.color,
@@ -49,21 +49,21 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment: <AlignmentGeometry>,
-  ///   "clipBehavior": <Clip>,
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "curve": <Curve>,
-  ///   "decoration": <BoxDecoration>,
-  ///   "duration": <int; millis>,
-  ///   "foregroundDecoration": <BoxDecoration>,
-  ///   "height: <double>,
-  ///   "margin": <EdgeInsetsGeometry>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "transform": <Matrix4>,
-  ///   "transformAlignment": <TransformAlignment>,
-  ///   "width": <double>
+  ///   "alignment: "<AlignmentGeometry>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "curve": "<Curve>",
+  ///   "decoration": "<BoxDecoration>",
+  ///   "duration": "<int; millis>",
+  ///   "foregroundDecoration": "<BoxDecoration>",
+  ///   "height: "<double>",
+  ///   "margin": "<EdgeInsetsGeometry>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "transform": "<Matrix4>",
+  ///   "transformAlignment": "<TransformAlignment>",
+  ///   "width": "<double>"
   /// }
   /// ```
   ///
@@ -118,7 +118,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         transform: ThemeDecoder.decodeMatrix4(
-          map['matrix4'],
+          map['transform'],
           validate: false,
         ),
         transformAlignment: ThemeDecoder.decodeAlignment(
@@ -139,7 +139,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedContainer(
       builder: this,
@@ -152,7 +152,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedContainer extends StatefulWidget {
-  _JsonAnimatedContainer({
+  const _JsonAnimatedContainer({
     required this.builder,
     required this.child,
     required this.childBuilder,

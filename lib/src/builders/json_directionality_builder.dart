@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [Directionality] widget.  See the [fromDynamic] for the
 /// format.
 class JsonDirectionalityBuilder extends JsonWidgetBuilder {
-  JsonDirectionalityBuilder({
+  const JsonDirectionalityBuilder({
     required this.textDirection,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -20,7 +20,7 @@ class JsonDirectionalityBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "textDirection<TextDirection>
+  ///   "textDirection": "<TextDirection>"
   /// }
   /// ```
   ///
@@ -51,7 +51,7 @@ class JsonDirectionalityBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Directionality(
       key: key,

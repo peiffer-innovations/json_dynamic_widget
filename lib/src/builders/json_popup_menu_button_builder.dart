@@ -7,7 +7,8 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build a [PopupMenuButton] widget.  See the [fromDynamic] for the
 /// format.
 class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
-  JsonPopupMenuButtonBuilder({
+  const JsonPopupMenuButtonBuilder({
+    required this.clipBehavior,
     this.color,
     this.constraints,
     this.elevation,
@@ -19,17 +20,21 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     required this.itemBuilder,
     required this.offset,
     this.onCanceled,
+    this.onOpened,
     this.onSelected,
     required this.padding,
     this.position,
+    this.shadowColor,
     this.shape,
     this.splashRadius,
+    this.surfaceTintColor,
     this.tooltip,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 0;
   static const type = 'popup_menu_button';
 
+  final Clip clipBehavior;
   final Color? color;
   final BoxConstraints? constraints;
   final double? elevation;
@@ -41,11 +46,14 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   final PopupMenuItemBuilder itemBuilder;
   final Offset offset;
   final PopupMenuCanceled? onCanceled;
+  final VoidCallback? onOpened;
   final PopupMenuItemSelected? onSelected;
   final EdgeInsetsGeometry padding;
   final PopupMenuPosition? position;
   final ShapeBorder? shape;
+  final Color? shadowColor;
   final double? splashRadius;
+  final Color? surfaceTintColor;
   final String? tooltip;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
@@ -53,22 +61,26 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "color": <Color>,
-  ///   "constraints": <BoxConstraints>,
-  ///   "elevation": <double>,
-  ///   "enableFeedback": <bool>,
-  ///   "enabled": <bool>,
-  ///   "icon": <JsonWidgetData>,
-  ///   "iconSize": <double>
-  ///   "initialValue": <T>,
-  ///   "itemBuilder": <PopupMenuItemBuilder<T>>,
-  ///   "offset": <Offset>,
-  ///   "onCanceled": <PopupMenuCanceled>,
-  ///   "onSelected": <PopupMenuItemSelected<T>>,
-  ///   "padding": <EdgeInsetsGeometry>,
-  ///   "shape": <ShapeBorder>,
-  ///   "splashRadius": <SplashRadius>,
-  ///   "tooltip": <String>
+  ///   "clipBehavior": <Clip>,
+  ///   "color": "<Color>",
+  ///   "constraints": "<BoxConstraints>",
+  ///   "elevation": "<double>",
+  ///   "enableFeedback": "<bool>",
+  ///   "enabled": "<bool>",
+  ///   "icon": "<JsonWidgetData>",
+  ///   "iconSize": "<double>",
+  ///   "initialValue": "<T>",
+  ///   "itemBuilder": "<PopupMenuItemBuilder<T>>",
+  ///   "offset": "<Offset>",
+  ///   "onCanceled": "<PopupMenuCanceled>",
+  ///   "onOpened": "<VoidCallback>",
+  ///   "onSelected": "<PopupMenuItemSelected<T>>",
+  ///   "padding": "<EdgeInsetsGeometry>",
+  ///   "shadowColor": "<Color>",
+  ///   "shape": "<ShapeBorder>",
+  ///   "splashRadius": "<SplashRadius>",
+  ///   "surfaceTintColor": "<Color>",
+  ///   "tooltip": "<String>"
   /// }
   /// ```
   ///
@@ -81,6 +93,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
   /// See also:
   ///  * [JsonWidgetData.fromDynamic]
   ///  * [ThemeDecoder.decodeBoxConstraints]
+  ///  * [ThemeDecoder.decodeClip]
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeOffset]
@@ -94,6 +107,11 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonPopupMenuButtonBuilder(
+        clipBehavior: ThemeDecoder.decodeClip(
+              map['clipBehavior'],
+              validate: false,
+            ) ??
+            Clip.hardEdge,
         color: ThemeDecoder.decodeColor(
           map['color'],
           validate: false,
@@ -128,14 +146,19 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
             ) ??
             Offset.zero,
         onCanceled: map['onCanceled'],
+        onOpened: map['onSelected'],
         onSelected: map['onSelected'],
         padding: ThemeDecoder.decodeEdgeInsetsGeometry(
               map['padding'],
               validate: false,
             ) ??
-            EdgeInsets.all(8.0),
+            const EdgeInsets.all(8.0),
         position: ThemeDecoder.decodePopupMenuPosition(
           map['position'],
+          validate: false,
+        ),
+        shadowColor: ThemeDecoder.decodeColor(
+          map['shadowColor'],
           validate: false,
         ),
         shape: ThemeDecoder.decodeShapeBorder(
@@ -143,6 +166,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        surfaceTintColor: ThemeDecoder.decodeColor(
+          map['surfaceTintColor'],
+          validate: false,
+        ),
         tooltip: map['tooltip'],
       );
     }
@@ -157,9 +184,10 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return PopupMenuButton(
+      clipBehavior: clipBehavior,
       color: color,
       constraints: constraints,
       elevation: elevation,
@@ -175,11 +203,14 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
       key: key,
       offset: offset,
       onCanceled: onCanceled,
+      onOpened: onOpened,
       onSelected: onSelected,
       padding: padding,
       position: position ?? PopupMenuPosition.over,
+      shadowColor: shadowColor,
       shape: shape,
       splashRadius: splashRadius,
+      surfaceTintColor: surfaceTintColor,
       tooltip: tooltip,
       child: child.build(
         childBuilder: childBuilder,

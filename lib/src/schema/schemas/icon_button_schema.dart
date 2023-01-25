@@ -7,7 +7,7 @@ class IconButtonSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment':
         'https://api.flutter.dev/flutter/material/IconButton-class.html',
     'type': 'object',
@@ -26,11 +26,14 @@ class IconButtonSchema {
       'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
       'icon': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'iconSize': SchemaHelper.numberSchema,
+      'isSelected': SchemaHelper.boolSchema,
       'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
       'onPressed': SchemaHelper.anySchema,
       'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      'selectedIcon': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
       'splashRadius': SchemaHelper.numberSchema,
+      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
       'tooltip': SchemaHelper.stringSchema,
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },

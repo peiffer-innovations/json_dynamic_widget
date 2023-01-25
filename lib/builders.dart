@@ -75,6 +75,7 @@ export 'src/builders/json_popup_menu_button_builder.dart';
 export 'src/builders/json_positioned_builder.dart';
 export 'src/builders/json_primary_scroll_controller_builder.dart';
 export 'src/builders/json_radio_builder.dart';
+export 'src/builders/json_rich_text_builder.dart';
 export 'src/builders/json_row_builder.dart';
 export 'src/builders/json_safe_area_builder.dart';
 export 'src/builders/json_save_context_builder.dart';

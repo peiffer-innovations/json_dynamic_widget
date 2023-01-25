@@ -6,7 +6,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Padding] widget.  See the [fromDynamic] for the
 /// format.
 class JsonPaddingBuilder extends JsonWidgetBuilder {
-  JsonPaddingBuilder({
+  const JsonPaddingBuilder({
     required this.padding,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -20,7 +20,7 @@ class JsonPaddingBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "padding": <EdgeInsetsGeometry>
+  ///   "padding": "<EdgeInsetsGeometry>"
   /// }
   /// ```
   ///
@@ -51,7 +51,7 @@ class JsonPaddingBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return Padding(
       key: key,

@@ -7,13 +7,12 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedSize] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
-  JsonAnimatedSizeBuilder({
+  const JsonAnimatedSizeBuilder({
     this.alignment,
     this.clipBehavior,
     this.curve,
     required this.duration,
     this.reverseDuration,
-    this.vsync,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
   static const kNumSupportedChildren = 1;
@@ -24,19 +23,17 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
   final Curve? curve;
   final Duration duration;
   final Duration? reverseDuration;
-  final TickerProvider? vsync;
 
   /// Builds the builder from a Map-like dynamic structure.  This expects the
   /// JSON format to be of the following structure:
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "clipBehavior": <Clip>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "reverseDuration": <int; millis>,
-  ///   "vsync": <TickerProvider>,
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "clipBehavior": "<Clip>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "reverseDuration": "<int; millis>",
   /// }
   /// ```
   ///
@@ -57,7 +54,10 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        clipBehavior: ThemeDecoder.decodeClip(map['clipBehavior']),
+        clipBehavior: ThemeDecoder.decodeClip(
+          map['clipBehavior'],
+          validate: false,
+        ),
         curve: map['curve'] ?? Curves.linear,
         duration: JsonClass.parseDurationFromMillis(
           map['duration'],
@@ -65,7 +65,6 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
         reverseDuration: JsonClass.parseDurationFromMillis(
           map['reverseDuration'],
         ),
-        vsync: map['vsync'],
       );
     }
 
@@ -79,7 +78,7 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedSize(
       builder: this,
@@ -92,7 +91,7 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedSize extends StatefulWidget {
-  _JsonAnimatedSize({
+  const _JsonAnimatedSize({
     required this.builder,
     required this.child,
     required this.childBuilder,
@@ -106,31 +105,10 @@ class _JsonAnimatedSize extends StatefulWidget {
   final JsonWidgetData data;
 
   @override
-  State<_JsonAnimatedSize> createState() {
-    State result = builder.vsync != null
-        ? _JsonAnimatedSizeState()
-        : _JsonAnimatedSizeStateTicker();
-    return result as State<_JsonAnimatedSize>;
-  }
+  State<_JsonAnimatedSize> createState() => _JsonAnimatedSizeState();
 }
 
 class _JsonAnimatedSizeState extends State<_JsonAnimatedSize> {
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedSize(
-      alignment: widget.builder.alignment ?? Alignment.center,
-      curve: widget.builder.curve ?? Curves.linear,
-      duration: widget.builder.duration,
-      reverseDuration: widget.builder.reverseDuration,
-      child: widget.child!.build(
-        childBuilder: widget.childBuilder,
-        context: context,
-      ),
-    );
-  }
-}
-
-class _JsonAnimatedSizeStateTicker extends State<_JsonAnimatedSize> {
   @override
   Widget build(BuildContext context) {
     return AnimatedSize(

@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// This doesn't actually have a widget and instead simply returns the child's
 /// built widget.  See the [fromDynamic] for the format.
 class JsonSetWidgetBuilder extends JsonWidgetBuilder {
-  JsonSetWidgetBuilder({
+  const JsonSetWidgetBuilder({
     this.widgets,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -20,7 +20,7 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "<key>": <JsonWidgetData>
+  ///   "<key>": "<JsonWidgetData>"
   /// }
   /// ```
   ///
@@ -35,10 +35,10 @@ class JsonSetWidgetBuilder extends JsonWidgetBuilder {
     JsonWidgetRegistry? registry,
   }) {
     JsonSetWidgetBuilder? result;
-    var innerRegistry = registry ?? JsonWidgetRegistry.instance;
+    final innerRegistry = registry ?? JsonWidgetRegistry.instance;
 
     if (map != null) {
-      var widgets = <String, JsonWidgetData?>{};
+      final widgets = <String, JsonWidgetData?>{};
       map.forEach(
         (key, value) => widgets[key] = JsonWidgetData.fromDynamic(value),
       );

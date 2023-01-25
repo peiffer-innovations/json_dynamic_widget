@@ -5,7 +5,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// Builder that can build an [InputError] widget.  See the [fromDynamic] for
 /// the format.
 class JsonInputErrorBuilder extends JsonWidgetBuilder {
-  JsonInputErrorBuilder({
+  const JsonInputErrorBuilder({
     this.text,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
@@ -19,7 +19,7 @@ class JsonInputErrorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "text": <String>
+  ///   "text": "<String>"
   /// }
   /// ```
   static JsonInputErrorBuilder? fromDynamic(

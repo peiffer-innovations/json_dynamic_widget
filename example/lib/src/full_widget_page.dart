@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 class FullWidgetPage extends StatelessWidget {
-  FullWidgetPage({
+  const FullWidgetPage({
     Key? key,
     required this.data,
   }) : super(key: key);

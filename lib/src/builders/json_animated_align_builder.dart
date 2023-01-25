@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [AnimatedAlign] widget.
 /// See the [fromDynamic] for the format.
 class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
-  JsonAnimatedAlignBuilder({
+  const JsonAnimatedAlignBuilder({
     required this.alignment,
     this.curve,
     required this.duration,
@@ -31,12 +31,12 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "alignment": <AlignmentGeometry>,
-  ///   "curve": <Curve>,
-  ///   "duration": <int; millis>,
-  ///   "heightFactor": <double>,
-  ///   "onEnd": <VoidCallback>,
-  ///   "widthFactor": <double>
+  ///   "alignment": "<AlignmentGeometry>",
+  ///   "curve": "<Curve>",
+  ///   "duration": "<int; millis>",
+  ///   "heightFactor": "<double>",
+  ///   "onEnd": "<VoidCallback>",
+  ///   "widthFactor": "<double>"
   /// }
   /// ```
   ///
@@ -75,7 +75,7 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var child = getChild(data);
+    final child = getChild(data);
 
     return _JsonAnimatedAlign(
       builder: this,
@@ -88,7 +88,7 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
 }
 
 class _JsonAnimatedAlign extends StatefulWidget {
-  _JsonAnimatedAlign({
+  const _JsonAnimatedAlign({
     required this.builder,
     required this.child,
     required this.childBuilder,

@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [CircularProgressIndicator] widget.  See the
 /// [fromDynamic] for the format.
 class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
-  JsonCircularProgressIndicatorBuilder({
+  const JsonCircularProgressIndicatorBuilder({
     this.backgroundColor,
     this.color,
     this.semanticsLabel,
@@ -34,13 +34,13 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "backgroundColor": <Color>,
-  ///   "color": <Color>,
-  ///   "semanticsLabel": <String>,
-  ///   "semanticsValue": <String>,
-  ///   "strokeWidth": <double>,
-  ///   "value": <double>,
-  ///   "valueColor": <Animation<Color> | Color>
+  ///   "backgroundColor": "<Color>",
+  ///   "color": "<Color>",
+  ///   "semanticsLabel": "<String>",
+  ///   "semanticsValue": "<String>",
+  ///   "strokeWidth": "<double>",
+  ///   "value": "<double>",
+  ///   "valueColor": "<Animation<Color>> || <Color>"
   /// }
   /// ```
   ///
@@ -54,8 +54,14 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonCircularProgressIndicatorBuilder(
-        backgroundColor: ThemeDecoder.decodeColor(map['backgroundColor']),
-        color: ThemeDecoder.decodeColor(map['color']),
+        backgroundColor: ThemeDecoder.decodeColor(
+          map['backgroundColor'],
+          validate: false,
+        ),
+        color: ThemeDecoder.decodeColor(
+          map['color'],
+          validate: false,
+        ),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
         strokeWidth: JsonClass.parseDouble(map['strokeWidth'], 4.0)!,
@@ -65,7 +71,10 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
             : map['valueColor'] is Animation
                 ? map['valueColor']
                 : AlwaysStoppedAnimation(
-                    ThemeDecoder.decodeColor(map['valueColor'])!,
+                    ThemeDecoder.decodeColor(
+                      map['valueColor'],
+                      validate: false,
+                    )!,
                   ),
       );
     }

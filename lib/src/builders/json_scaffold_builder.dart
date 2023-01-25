@@ -8,7 +8,7 @@ import 'package:json_theme/json_theme.dart';
 /// Builder that can build an [Scaffold] widget.  See the [fromDynamic] for the
 /// format.
 class JsonScaffoldBuilder extends JsonWidgetBuilder {
-  JsonScaffoldBuilder({
+  const JsonScaffoldBuilder({
     this.appBar,
     this.backgroundColor,
     this.body,
@@ -26,9 +26,10 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     this.floatingActionButton,
     this.floatingActionButtonAnimator,
     this.floatingActionButtonLocation,
-    this.persistentFooterButtons,
     this.onDrawerChanged,
     this.onEndDrawerChanged,
+    required this.persistentFooterAlignment,
+    this.persistentFooterButtons,
     required this.primary,
     this.resizeToAvoidBottomInset,
     this.restorationId,
@@ -56,6 +57,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   final FloatingActionButtonLocation? floatingActionButtonLocation;
   final ValueChanged<bool>? onDrawerChanged;
   final ValueChanged<bool>? onEndDrawerChanged;
+  final AlignmentDirectional persistentFooterAlignment;
   final List<JsonWidgetData>? persistentFooterButtons;
   final bool primary;
   final bool? resizeToAvoidBottomInset;
@@ -69,37 +71,38 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
   ///
   /// ```json
   /// {
-  ///   "appBar": <JsonWidgetData>,
-  ///   "backgroundColor": <Color>,
-  ///   "body": <JsonWidgetData>,
-  ///   "bottomNavigationBar": <JsonWidgetData>,
-  ///   "bottomSheet": <JsonWidgetData>,
-  ///   "drawer": <JsonWidgetData>,
-  ///   "drawerDragStartBehavior": <DragStartBehavior>,
-  ///   "drawerEdgeDragWidth": <double>,
-  ///   "drawerEnableOpenDragGesture": <bool>,
-  ///   "drawerScrimColor": <Color>,
-  ///   "endDrawer": <JsonWidgetData>,
-  ///   "endDrawerEnableOpenDragGesture": <bool>,
-  ///   "extendBody": <bool>,
-  ///   "extendBodyBehindAppBar": <bool>,
-  ///   "floatingActionButton": <JsonWidgetData>,
-  ///   "floatingActionButtonAnimator": <FloatingActionButtonAnimator>,
-  ///   "floatingActionButtonLocation": <ActionButtonLocation>,
-  ///   "onDrawerChanged": <ValueChanged<bool>>,
-  ///   "onEndDrawerChanged": <ValueChanged<bool>>,
-  ///   "persistentFooterButtons": <JsonWidgetData[]>,
-  ///   "primary": <bool>,
-  ///   "resizeToAvoidBottomInset": <bool>,
-  ///   "restorationId": <String>
+  ///   "appBar": "<JsonWidgetData>",
+  ///   "backgroundColor": "<Color>",
+  ///   "body": "<JsonWidgetData>",
+  ///   "bottomNavigationBar": "<JsonWidgetData>",
+  ///   "bottomSheet": "<JsonWidgetData>",
+  ///   "drawer": "<JsonWidgetData>",
+  ///   "drawerDragStartBehavior": "<DragStartBehavior>",
+  ///   "drawerEdgeDragWidth": "<double>",
+  ///   "drawerEnableOpenDragGesture": "<bool>",
+  ///   "drawerScrimColor": "<Color>",
+  ///   "endDrawer": "<JsonWidgetData>",
+  ///   "endDrawerEnableOpenDragGesture": "<bool>",
+  ///   "extendBody": "<bool>",
+  ///   "extendBodyBehindAppBar": "<bool>",
+  ///   "floatingActionButton": "<JsonWidgetData>",
+  ///   "floatingActionButtonAnimator": "<FloatingActionButtonAnimator>",
+  ///   "floatingActionButtonLocation": "<ActionButtonLocation>",
+  ///   "onDrawerChanged": "<ValueChanged<bool>>",
+  ///   "onEndDrawerChanged": "<ValueChanged<bool>>",
+  ///   "persistentFooterAlignment": "<AlignmentDirectional>",
+  ///   "persistentFooterButtons": "<List<JsonWidgetData>>",
+  ///   "primary": "<bool>",
+  ///   "resizeToAvoidBottomInset": "<bool>",
+  ///   "restorationId": "<String>"
   /// }
   /// ```
   ///
   /// See also:
   ///  * [JsonWidgetData.fromDynamic]
-  ///  * [ThemeDecoder.decodeActionButtonLocation]
   ///  * [ThemeDecoder.decodeDragStartBehavior]
   ///  * [ThemeDecoder.decodeFloatingActionButtonAnimator]
+  ///  * [ThemeDecoder.decodeFloatingActionButtonLocation]
   static JsonScaffoldBuilder? fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
@@ -171,6 +174,11 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
         ),
         onDrawerChanged: map['onDrawerChanged'],
         onEndDrawerChanged: map['onEndDrawerChanged'],
+        persistentFooterAlignment: ThemeDecoder.decodeAlignmentDirectional(
+              map['persistentFooterAlignment'],
+              validate: false,
+            ) ??
+            AlignmentDirectional.centerEnd,
         persistentFooterButtons: map['persistentFooterButtons'] == null
             ? null
             : JsonClass.fromDynamicList(
@@ -199,7 +207,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   }) {
-    var theBody = body ?? getChild(data);
+    final theBody = body ?? getChild(data);
 
     return Scaffold(
       appBar: appBar?.build(
@@ -240,6 +248,7 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
       key: key,
       onDrawerChanged: onDrawerChanged,
       onEndDrawerChanged: onEndDrawerChanged,
+      persistentFooterAlignment: persistentFooterAlignment,
       persistentFooterButtons: persistentFooterButtons == null
           ? null
           : [

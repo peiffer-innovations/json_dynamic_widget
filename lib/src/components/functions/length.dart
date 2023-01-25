@@ -13,8 +13,10 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// * [int]: The arg itself will be returned
 /// * [double]: The [int] value of the arg will be returned
 class LengthFunction {
+  static const JsonWidgetFunction body = _body;
   static const key = 'length';
-  static final JsonWidgetFunction body = ({
+
+  static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
@@ -45,5 +47,5 @@ class LengthFunction {
       );
     }
     return result;
-  };
+  }
 }

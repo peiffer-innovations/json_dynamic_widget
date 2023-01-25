@@ -7,7 +7,7 @@ class ScaffoldSchema {
 
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
+    r'$id': id,
     r'$comment': 'https://api.flutter.dev/flutter/material/Scaffold-class.html',
     'type': 'object',
     'title': 'Scaffold',
@@ -36,11 +36,14 @@ class ScaffoldSchema {
       'floatingActionButtonLocation': SchemaHelper.objectSchema(
         FloatingActionButtonLocationSchema.id,
       ),
+      'onDrawerChanged': SchemaHelper.stringSchema,
+      'onEndDrawerChanged': SchemaHelper.stringSchema,
+      'persistentFooterAlignment': SchemaHelper.objectSchema(
+        AlignmentDirectionalSchema.id,
+      ),
       'persistentFooterButtons': SchemaHelper.arraySchema(
         JsonWidgetDataSchema.id,
       ),
-      'onDrawerChanged': SchemaHelper.stringSchema,
-      'onEndDrawerChanged': SchemaHelper.stringSchema,
       'primary': SchemaHelper.boolSchema,
       'resizeToAvoidBottomInset': SchemaHelper.boolSchema,
       'restorationId': SchemaHelper.stringSchema,
