@@ -19,7 +19,7 @@ jobs:
       - name: Build Number
         run: echo "Build Number - $BUILD_NUMBER"
 
-  publish:
+  pages:
     needs: build_number
     runs-on: ubuntu-latest
 
