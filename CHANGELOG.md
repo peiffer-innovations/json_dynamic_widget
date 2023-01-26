@@ -1,3 +1,7 @@
+## [6.0.1] - January 24th, 2023
+
+* Added fixes for [Issue 129](https://github.com/peiffer-innovations/json_dynamic_widget/issues/129)
+
 ## [6.0.0] - January 24th, 2023
 
 * Flutter 3.7 compatibility
