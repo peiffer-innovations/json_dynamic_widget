@@ -1,3 +1,8 @@
+## [6.0.1+1] - January 31, 2023
+
+* Automated dependency updates
+
+
 ## [6.0.1] - January 24th, 2023
 
 * Added fixes for [Issue 129](https://github.com/peiffer-innovations/json_dynamic_widget/issues/129)
@@ -482,6 +487,7 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
