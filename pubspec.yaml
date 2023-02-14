@@ -3,19 +3,18 @@ description: 'A library to dynamically generate widgets within Flutter from JSON
 homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget'
 version: '6.0.1+1'
 
-environment: 
+environment:
   sdk: '>=2.19.0 <4.0.0'
 
-analyzer: 
-  exclude: 
+analyzer:
+  exclude:
     - 'lib/generated/**'
 
-
-dependencies: 
+dependencies:
   child_builder: '^2.0.1'
   collection: '^1.16.0'
   execution_timer: '^1.0.2'
-  flutter: 
+  flutter:
     sdk: 'flutter'
   form_validation: '^2.2.0+6'
   interpolation: '^2.1.2'
@@ -29,15 +28,25 @@ dependencies:
   uuid: '^3.0.7'
   yaon: '^1.0.2'
 
-false_secrets: 
+false_secrets:
   - 'example/web/index.html'
 
-dev_dependencies: 
+dev_dependencies:
   flutter_lints: '^2.0.1'
-  flutter_test: 
+  flutter_test:
     sdk: 'flutter'
 
-ignore_updates: 
+dependency_overrides:
+  scripted_test:
+    path: ../scripted_test
+  scripted_test_cli:
+    path: ../scripted_test/packages/cli
+  scripted_test_common:
+    path: ../scripted_test/packages/common
+  scripted_test_plugin_desktop:
+    path: ../scripted_test/packages/desktop
+
+ignore_updates:
   - 'archive'
   - 'async'
   - 'boolean_selector'
