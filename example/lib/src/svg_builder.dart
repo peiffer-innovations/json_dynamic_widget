@@ -60,13 +60,11 @@ class SvgBuilder extends JsonWidgetBuilder {
     return asset != null
         ? SvgPicture.asset(
             asset!,
-            color: color,
             height: height,
             width: width,
           )
         : SvgPicture.network(
             url!,
-            color: color,
             height: height,
             width: width,
           );
