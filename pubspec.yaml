@@ -23,7 +23,7 @@ dependencies:
   json_schema2: '^2.0.3+1'
   json_theme: '^5.0.0'
   logging: '^1.1.1'
-  meta: '^1.7.0'
+  meta: '^1.8.0'
   template_expressions: '^2.2.1+1'
   uuid: '^3.0.7'
   yaon: '^1.0.2'
