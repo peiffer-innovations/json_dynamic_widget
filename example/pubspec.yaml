@@ -24,15 +24,15 @@ dev_dependencies:
   flutter_test:
     sdk: 'flutter'
 
-dependency_overrides:
-  scripted_test:
-    path: ../../scripted_test
-  scripted_test_cli:
-    path: ../../scripted_test/packages/cli
-  scripted_test_common:
-    path: ../../scripted_test/packages/common
-  scripted_test_plugin_desktop:
-    path: ../../scripted_test/packages/desktop
+# dependency_overrides:
+#   scripted_test:
+#     path: ../../scripted_test
+#   scripted_test_cli:
+#     path: ../../scripted_test/packages/cli
+#   scripted_test_common:
+#     path: ../../scripted_test/packages/common
+#   scripted_test_plugin_desktop:
+#     path: ../../scripted_test/packages/desktop
 
 flutter:
   uses-material-design: true
