@@ -3,8 +3,7 @@
   "type": "theme",
   "args": {
     "data": {
-      "primaryColor": "#2c3ea4",
-      "primaryColorBrightness": "dark"
+      "primaryColor": "#2c3ea4"
     }
   },
   "child": {
@@ -43,70 +42,76 @@
               "args": {
                 "mainAxisSize": "min"
               },
-              "children": [{
-                "type": "list_tile",
-                "args": {
-                  "leading": {
-                    "type": "icon",
-                    "args": {
-                      "icon": {
-                        "codePoint": 57369,
-                        "fontFamily": "MaterialIcons"
+              "children": [
+                {
+                  "type": "list_tile",
+                  "args": {
+                    "leading": {
+                      "type": "icon",
+                      "args": {
+                        "icon": {
+                          "codePoint": 57369,
+                          "fontFamily": "MaterialIcons"
+                        },
+                        "size": 70
+                      }
+                    },
+                    "title": {
+                      "type": "text",
+                      "args": {
+                        "text": "Heart Shaker",
+                        "style": {
+                          "color": "#fff"
+                        }
+                      }
+                    },
+                    "subtitle": {
+                      "type": "text",
+                      "args": {
+                        "text": "TWICE",
+                        "style": {
+                          "color": "#fff"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "type": "button_bar",
+                  "children": [
+                    {
+                      "type": "elevated_button",
+                      "args": {
+                        "onPressed": "${noop()}"
                       },
-                      "size": 70
-                    }
-                  },
-                  "title": {
-                    "type": "text",
-                    "args": {
-                      "text": "Heart Shaker",
-                      "style": {
-                        "color": "#fff"
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "Edit",
+                          "style": {
+                            "color": "#fff"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "elevated_button",
+                      "args": {
+                        "onPressed": "${noop()}"
+                      },
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "Delete",
+                          "style": {
+                            "color": "#fff"
+                          }
+                        }
                       }
                     }
-                  },
-                  "subtitle": {
-                    "type": "text",
-                    "args": {
-                      "text": "TWICE",
-                      "style": {
-                        "color": "#fff"
-                      }
-                    }
-                  }
+                  ]
                 }
-              }, {
-                "type": "button_bar",
-                "children": [{
-                  "type": "elevated_button",
-                  "args": {
-                    "onPressed": "${noop()}"
-                  },
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "Edit",
-                      "style": {
-                        "color": "#fff"
-                      }
-                    }
-                  }
-                }, {
-                  "type": "elevated_button",
-                  "args": {
-                    "onPressed": "${noop()}"
-                  },
-                  "child": {
-                    "type": "text",
-                    "args": {
-                      "text": "Delete",
-                      "style": {
-                        "color": "#fff"
-                      }
-                    }
-                  }
-                }]
-              }]
+              ]
             }
           }
         }

@@ -7298,6 +7298,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 --------------------------------------------------------------------------------
 flutter_lints
+vector_graphics
+vector_graphics_codec
+vector_graphics_compiler
 
 Copyright 2013 The Flutter Authors. All rights reserved.
 
