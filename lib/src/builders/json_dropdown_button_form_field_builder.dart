@@ -262,83 +262,45 @@ class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
 
 class _JsonDropdownButtonFormFieldWidgetState
     extends State<_JsonDropdownButtonFormFieldWidget> {
-  InputDecoration? _decoration;
+  dynamic _value;
   List<DropdownMenuItem>? _items;
   DropdownButtonBuilder? _selectedItemBuilder;
-  dynamic _value;
+  InputDecoration? _decoration;
 
   @override
   void initState() {
     super.initState();
+    _value = _getValue(widget.builder);
+    _items = _getItems(widget.builder);
+    _selectedItemBuilder = _getSelectedItemBuilder(widget.builder);
+    _decoration = _getDecoration(widget.builder);
+  }
 
-    if (widget.builder.decoration != null) {
-      _decoration = InputDecorationDecoder.fromDynamic(
-        widget.builder.decoration,
-        childBuilder: widget.childBuilder,
-        context: context,
-        registry: widget.data.registry,
-      );
+  @override
+  void didUpdateWidget(covariant _JsonDropdownButtonFormFieldWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.builder.value != oldWidget.builder.value) {
+      setState(() {
+        _value = _getValue(widget.builder);
+      });
     }
-
-    final itemEntries = <String, dynamic>{};
-    if (widget.builder.items != null) {
-      final items = <DropdownMenuItem>[];
-
-      if (widget.builder.items is List) {
-        widget.builder.items.forEach((value) {
-          items.add(
-            DropdownMenuItem(
-              value: value,
-              child: Text(value.toString()),
-            ),
-          );
-          itemEntries[value] = value;
-        });
-      } else {
-        widget.builder.items.forEach((key, value) {
-          items.add(
-            DropdownMenuItem(
-              value: value,
-              child: Text(key),
-            ),
-          );
-          itemEntries[key] = value;
-        });
-      }
-
-      _items = items;
+    if (widget.builder.items != oldWidget.builder.items) {
+      setState(() {
+        _items = _getItems(widget.builder);
+        _selectedItemBuilder = _getSelectedItemBuilder(widget.builder);
+      });
     }
-
-    if (widget.builder.selectedItemBuilder != null) {
-      if (widget.builder.selectedItemBuilder is JsonWidgetData) {
-        _selectedItemBuilder = (BuildContext context) {
-          final widgets = <Widget>[];
-          itemEntries.forEach((key, value) {
-            widget.data.registry.setValue(
-              'dropdown_item_display',
-              key,
-              originator: null,
-            );
-            widget.data.registry.setValue(
-              'dropdown_item_value',
-              value,
-              originator: null,
-            );
-
-            widget.builder.selectedItemBuilder.recreate().build(
-                  childBuilder: widget.childBuilder,
-                  context: context,
-                );
-          });
-
-          return widgets;
-        };
-      } else {
-        _selectedItemBuilder = widget.builder.selectedItemBuilder;
-      }
+    if (widget.builder.selectedItemBuilder !=
+        oldWidget.builder.selectedItemBuilder) {
+      setState(() {
+        _selectedItemBuilder = _getSelectedItemBuilder(widget.builder);
+      });
     }
-
-    _value = widget.builder.value;
+    if (widget.builder.decoration != oldWidget.builder.decoration) {
+      setState(() {
+        _decoration = _getDecoration(widget.builder);
+      });
+    }
   }
 
   @override
@@ -417,4 +379,94 @@ class _JsonDropdownButtonFormFieldWidgetState
         style: widget.builder.style,
         value: _value,
       );
+
+  InputDecoration? _getDecoration(JsonDropdownButtonFormFieldBuilder builder) {
+    return widget.builder.decoration != null
+        ? InputDecorationDecoder.fromDynamic(
+            widget.builder.decoration,
+            childBuilder: widget.childBuilder,
+            context: context,
+            registry: widget.data.registry,
+          )
+        : null;
+  }
+
+  dynamic _getValue(JsonDropdownButtonFormFieldBuilder builder) {
+    return widget.builder.value;
+  }
+
+  List<DropdownMenuItem>? _getItems(
+      JsonDropdownButtonFormFieldBuilder builder) {
+    List<DropdownMenuItem>? items;
+    if (builder.items != null) {
+      items = [];
+      if (widget.builder.items is List) {
+        widget.builder.items.forEach((value) {
+          items!.add(
+            DropdownMenuItem(
+              value: value,
+              child: Text(value.toString()),
+            ),
+          );
+        });
+      } else {
+        widget.builder.items.forEach((key, value) {
+          items!.add(
+            DropdownMenuItem(
+              value: value,
+              child: Text(key),
+            ),
+          );
+        });
+      }
+    }
+    return items;
+  }
+
+  DropdownButtonBuilder? _getSelectedItemBuilder(
+      JsonDropdownButtonFormFieldBuilder builder) {
+    DropdownButtonBuilder? selectedItemBuilder;
+
+    final itemEntries = <String, dynamic>{};
+    if (builder.items != null && widget.builder.items is List) {
+      widget.builder.items.forEach((value) {
+        itemEntries[value] = value;
+      });
+    } else if (builder.items != null) {
+      widget.builder.items.forEach((key, value) {
+        itemEntries[key] = value;
+      });
+    }
+
+    if (widget.builder.selectedItemBuilder != null) {
+      if (widget.builder.selectedItemBuilder is JsonWidgetData) {
+        selectedItemBuilder = (BuildContext context) {
+          final widgets = <Widget>[];
+          itemEntries.forEach((key, value) {
+            widget.data.registry.setValue(
+              'dropdown_item_display',
+              key,
+              originator: null,
+            );
+            widget.data.registry.setValue(
+              'dropdown_item_value',
+              value,
+              originator: null,
+            );
+
+            widget.builder.selectedItemBuilder.recreate().build(
+                  childBuilder: widget.childBuilder,
+                  context: context,
+                );
+          });
+
+          return widgets;
+        };
+      } else {
+        selectedItemBuilder = widget.builder.selectedItemBuilder;
+      }
+    }
+
+    return selectedItemBuilder;
+  }
 }

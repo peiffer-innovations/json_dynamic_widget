@@ -1,3 +1,7 @@
+## [6.0.2] - March 5, 2023
+
+* Dropdown items will be rebuilt after recreation [Issue 141](https://github.com/peiffer-innovations/json_dynamic_widget/issues/141)
+
 ## [6.0.1+1] - January 31, 2023
 
 * Automated dependency updates
