@@ -196,7 +196,7 @@ $map
   }
 
   /// Convenience method that can build the widget this data object represents.
-  /// This is the equilivant of calling: [builder.build] and padding this in as
+  /// This is the equilivant of calling: [builder.build] and passing this in as
   /// the [data] parameter.
   Widget build({
     ChildWidgetBuilder? childBuilder,
