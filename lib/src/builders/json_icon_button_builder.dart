@@ -161,6 +161,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             const EdgeInsets.all(8.0),
+        selectedIcon: JsonWidgetData.fromDynamic(map['selectedIcon']),
         splashColor: ThemeDecoder.decodeColor(
           map['splashColor'],
           validate: false,
