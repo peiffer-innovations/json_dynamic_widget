@@ -145,7 +145,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
           map['hoverColor'],
           validate: false,
         ),
-        icon: JsonWidgetData.fromDynamic(map['icon']),
+        icon: JsonWidgetData.fromDynamic(map['icon'], registry),
         iconSize: JsonClass.parseDouble(map['iconSize'], 24.0)!,
         isSelected: map['isSelected'] == null
             ? null
@@ -161,7 +161,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             const EdgeInsets.all(8.0),
-        selectedIcon: JsonWidgetData.fromDynamic(map['selectedIcon']),
+        selectedIcon: JsonWidgetData.fromDynamic(map['selectedIcon'], registry),
         splashColor: ThemeDecoder.decodeColor(
           map['splashColor'],
           validate: false,
