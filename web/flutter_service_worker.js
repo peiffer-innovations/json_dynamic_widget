@@ -110,8 +110,8 @@ const RESOURCES = {
 "assets/NOTICES": "bce2327e686b45a20dcacc4fcbe5cb91",
 "assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
 "assets/AssetManifest.json": "0157840e3df2ba70bac5d41a1d55290e",
-"index.html": "e64d78d171c3a2c5955a261ae824da03",
-"/": "e64d78d171c3a2c5955a261ae824da03",
+"index.html": "1c9db13b3178b3e2abd5c78a38be947a",
+"/": "1c9db13b3178b3e2abd5c78a38be947a",
 "main.dart.js": "b266152f8b6f2df093359b19248f226d",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1"
