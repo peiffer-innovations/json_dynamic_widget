@@ -1,3 +1,8 @@
+## [6.0.2+1] - March 7, 2023
+
+* Automated dependency updates
+
+
 ## [6.0.2] - March 6th, 2023
 
 * Added support for selected icon on icon button
@@ -492,4 +497,5 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
