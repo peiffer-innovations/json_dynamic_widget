@@ -1,3 +1,8 @@
+## [6.0.3+1] - March 13, 2023
+
+* Automated dependency updates
+
+
 ## [6.0.3] - March 9th, 2023
 
 * Allow for maxLines = null for TextFormField
@@ -496,4 +501,5 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
