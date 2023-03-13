@@ -263,7 +263,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['maxLengthEnforcement'],
           validate: false,
         ),
-        maxLines: JsonClass.parseInt(map['maxLines'], 1),
+        maxLines: map.containsKey('maxLines')
+            ? JsonClass.parseInt(map['maxLines'], null)
+            : 1,
         minLines: JsonClass.parseInt(map['minLines']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],

@@ -1,3 +1,7 @@
+## [6.0.3] - March 9th, 2023
+
+* Allow for maxLines = null for TextFormField
+
 ## [6.0.2] - March 6th, 2023
 
 * Added support for selected icon on icon button
