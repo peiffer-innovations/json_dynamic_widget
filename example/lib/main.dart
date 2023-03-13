@@ -11,6 +11,7 @@ import 'package:example/src/dotted_border_builder.dart';
 import 'package:example/src/issue_24_page.dart';
 import 'package:example/src/svg_builder.dart';
 import 'package:example/src/untestable_full_widget_page.dart';
+import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -23,6 +24,7 @@ import 'src/full_widget_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  TimeKeeper.enabled = true;
 
   if (!kIsWeb &&
       (Platform.isLinux ||
@@ -282,6 +284,16 @@ class _RootPageState extends State<RootPage> {
 
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => _TimerPage(),
+              ),
+            ),
+            icon: const Icon(Icons.timer),
+          ),
+        ],
         title: const Text('Select Widget / Page'),
       ),
       body: ListView.builder(
@@ -365,5 +377,45 @@ class _RootPageState extends State<RootPage> {
         ),
       );
     }
+  }
+}
+
+class _TimerPage extends StatefulWidget {
+  @override
+  State createState() => _TimerPageState();
+}
+
+class _TimerPageState extends State<_TimerPage> {
+  final ScrollController _controller = ScrollController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    const encoder = JsonEncoder.withIndent('  ');
+
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Timers'),
+      ),
+      body: SizedBox.expand(
+        child: SingleChildScrollView(
+          controller: _controller,
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            encoder.convert(TimeKeeper.toJson(true)),
+            style: const TextStyle(
+              fontFamily: 'Courier New',
+              fontFamilyFallback: ['monospace', 'Courier'],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
