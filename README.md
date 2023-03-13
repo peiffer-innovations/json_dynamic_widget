@@ -10,6 +10,7 @@
 - [Introduction](#introduction)
 - [Understanding the Registry](#understanding-the-registry)
 - [Built In Widgets](#built-in-widgets)
+  - [Passing the nulls to the args](#passing-the-nulls-to-the-args)
 - [Using Expressions](#using-expressions)
   - [Using Variables](#using-variables)
   - [Dynamic Functions](#dynamic-functions)
@@ -274,6 +275,22 @@ const JsonWidgetBuilderContainer(
     }
   });
 ```
+
+### Passing the nulls to the args
+
+All explicit nulls like `{"key" : null}` are removed from the `args` on parsing level.
+<br>Sometimes `null` value and lack of value are two separate pieces of information and there is a need to pass it up to builder level.
+
+A special syntax must be used to fulfill that need:
+
+```
+{
+  "maxLines": "${null}"
+}
+```
+
+Example:
+[null_value_passing.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/null_value_passing.json)
 
 
 ## Using Expressions

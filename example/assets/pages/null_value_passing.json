@@ -1,0 +1,25 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Null value passing"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "child": {
+        "type": "text_form_field",
+        "args": {
+          "maxLines": "${null}"
+        }
+      }
+    }
+  }
+}
