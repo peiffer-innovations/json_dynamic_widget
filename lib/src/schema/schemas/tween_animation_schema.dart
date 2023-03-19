@@ -7,6 +7,7 @@ class TweenAnimationSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
+    r'$children': 1,
     r'$comment': 'https://api.flutter.dev/flutter/animation/Tween-class.html',
     'type': 'object',
     'title': 'TweenAnimation',

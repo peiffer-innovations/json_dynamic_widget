@@ -104,7 +104,6 @@ class JsonDynamicWidgetSchemas {
     TextButtonSchema.id: TextButtonSchema.schema,
     TextFormFieldSchema.id: TextFormFieldSchema.schema,
     TextSchema.id: TextSchema.schema,
-    TextSpanSchema.id: TextSpanSchema.schema,
     ThemeSchema.id: ThemeSchema.schema,
     TooltipSchema.id: TooltipSchema.schema,
     TweenAnimationSchema.id: TweenAnimationSchema.schema,

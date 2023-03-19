@@ -1,3 +1,9 @@
+## [6.0.4] - March 19th, 2023
+
+* Minor changes to the schemas
+* Updated to latest `template_expressions` to keep compatibility with Flutter
+
+
 ## [6.0.3+1] - March 13, 2023
 
 * Automated dependency updates

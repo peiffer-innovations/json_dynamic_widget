@@ -7,6 +7,7 @@ class InputErrorSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
+    r'$children': 0,
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/InputError-class.html',
     'title': 'InputError',

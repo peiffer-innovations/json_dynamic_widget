@@ -12,7 +12,7 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
     required this.baselineType,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
-  static const kNumSupportedChildren = 0;
+  static const kNumSupportedChildren = 1;
 
   static const type = 'baseline';
 

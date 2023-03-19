@@ -5,6 +5,7 @@ class CommentSchema {
   static final schema = {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
+    r'$children': 1,
     r'$comment':
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonCommentBuilder-class.html',
     'type': 'object',
