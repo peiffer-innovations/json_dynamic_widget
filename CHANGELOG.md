@@ -1,3 +1,8 @@
+## [6.0.4+2] - March 21, 2023
+
+* Automated dependency updates
+
+
 ## [6.0.4+1] - March 19th, 2023
 
 * Minor changes to the schemas
@@ -507,5 +512,6 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
