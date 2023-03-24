@@ -300,7 +300,7 @@ The library since version 4.0.0 has a tight integration with [expressions](https
 
 Variables can be defined on the `JsonWidgetRegistry` that is used to render the dynamic widgets.
 
-A variable can be used in any of the `child` / `children` / `args` values and for certain types of properties, a variable reference if the only way to actually assign that value.
+A variable can be used in any of the `child` / `children` / `args` values and for certain types of properties, a variable reference is the only way to actually assign that value.
 
 Widgets that accept user input will assign that user input to a variable named the value inside of the `id` option, if an `id` exists.  This allows widgets the ability to listen to input value updates.
 
@@ -311,7 +311,7 @@ ${dynamic['persons'][0]}
 ${'Hello ' + name}
 ```
 
-More examples is available at [variables.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/variables.json).
+More examples are available at [variables.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/variables.json).
 
 The built in variables are defined below:
 
