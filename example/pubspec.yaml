@@ -3,52 +3,45 @@ description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
 version: '1.0.0+30'
 
-environment: 
+environment:
   sdk: '>=2.19.0 <4.0.0'
 
-dependencies: 
+dependencies:
   child_builder: '^2.0.1'
   desktop_window: '^0.4.0'
   dotted_border: '^2.0.0+3'
   execution_timer: '^1.0.2+2'
-  flutter: 
+  flutter:
     sdk: 'flutter'
   flutter_svg: '^2.0.4'
   json_class: '^2.2.1+1'
-  json_dynamic_widget: 
+  json_dynamic_widget:
     path: '../'
   json_theme: '^5.0.2+1'
   logging: '^1.1.1'
-  yaon: '^1.0.2+2'
+  yaon: '^1.1.0'
 
-dev_dependencies: 
-  flutter_test: 
+dev_dependencies:
+  flutter_test:
     sdk: 'flutter'
 
-
-flutter: 
+flutter:
   uses-material-design: true
-  assets: 
+  assets:
     - 'assets/images/'
     - 'assets/pages/'
     - 'assets/secrets/'
     - 'assets/widgets/'
-  fonts: 
-    - 
-      family: 'lato'
-      fonts: 
-        - 
-          asset: 'assets/fonts/Lato-Regular.ttf'
+  fonts:
+    - family: 'lato'
+      fonts:
+        - asset: 'assets/fonts/Lato-Regular.ttf'
 
-    - 
-      family: 'metal'
-      fonts: 
-        - 
-          asset: 'assets/fonts/MetalMania-Regular.ttf'
+    - family: 'metal'
+      fonts:
+        - asset: 'assets/fonts/MetalMania-Regular.ttf'
 
-
-
-ignore_updates: 
+ignore_updates:
   - 'archive'
   - 'async'
   - 'boolean_selector'

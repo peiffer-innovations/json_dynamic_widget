@@ -18,7 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 import 'package:logging/logging.dart';
-import 'package:yaon/yaon.dart' as yaon;
+import 'package:yaon/yaon.dart';
 
 import 'src/full_widget_page.dart';
 
