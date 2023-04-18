@@ -1,7 +1,7 @@
 name: 'example'
 description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
-version: '1.0.0+32'
+version: '1.0.0+33'
 
 environment: 
   sdk: '>=2.19.0 <4.0.0'
@@ -17,7 +17,7 @@ dependencies:
   json_class: '^2.2.1+2'
   json_dynamic_widget: 
     path: '../'
-  json_theme: '^5.0.2+3'
+  json_theme: '^5.0.2+4'
   logging: '^1.1.1'
   yaon: '^1.1.0+2'
 
