@@ -77,7 +77,9 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonMaterialBuilder(
         animationDuration: JsonClass.parseDurationFromMillis(
-            map['animationDuration'], kThemeChangeDuration)!,
+          map['animationDuration'],
+          kThemeChangeDuration,
+        )!,
         borderOnForeground: map['borderOnForeground'] == null
             ? true
             : JsonClass.parseBool(
