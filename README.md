@@ -11,6 +11,7 @@
 - [Understanding the Registry](#understanding-the-registry)
 - [Built In Widgets](#built-in-widgets)
   - [Passing the nulls to the args](#passing-the-nulls-to-the-args)
+- [Encode widget into json widget](#encode-widget-into-json-widget)
 - [Using Expressions](#using-expressions)
   - [Using Variables](#using-variables)
   - [Dynamic Functions](#dynamic-functions)
@@ -292,6 +293,44 @@ A special syntax must be used to fulfill that need:
 Example:
 [null_value_passing.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/null_value_passing.json)
 
+## Encode widget into json widget
+Since 6.1.0 there is a possibility to encode widget into json widget. 
+That can drastically improve the time needed for the creation of the json widget views.
+
+It can be exported in a form of test like that:
+```
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:json_dynamic_widget/src/encoders/json_widget_encoders_widget.dart';
+
+void main() {
+  testWidgets('Generate widget', (WidgetTester tester) async {
+    final encoderWidget = JsonWidgetEncodersWidget(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: const [
+          Align(
+            alignment: Alignment.bottomCenter,
+            heightFactor: 2,
+            widthFactor: 1,
+          )
+        ],
+      ),
+    );
+    await tester.pumpWidget(encoderWidget);
+
+    final encoded = jsonEncode(encoderWidget.encode());
+
+    // ignore_for_file: avoid_print
+    print(encoded);
+    expect(true,true);
+  });
+}
+```
+
+The json widget data can be visible in the console.
 
 ## Using Expressions
 The library since version 4.0.0 has a tight integration with [expressions](https://pub.dev/packages/expressions) library. By integrating the `JsonWidgetRegistry` variables and functions with that library there is possible to define different kind of simple expressions placed between `${}`.

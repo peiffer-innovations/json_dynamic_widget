@@ -18,10 +18,15 @@ class SizedBoxSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'height': SchemaHelper.numberSchema,
-          'width': SchemaHelper.numberSchema,
+          SizedBoxSchemaPropertyKey.height: SchemaHelper.numberSchema,
+          SizedBoxSchemaPropertyKey.width: SchemaHelper.numberSchema,
         },
       },
     ],
   };
+}
+
+class SizedBoxSchemaPropertyKey {
+  static const height = 'height';
+  static const width = 'width';
 }

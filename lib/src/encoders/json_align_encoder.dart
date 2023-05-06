@@ -5,6 +5,11 @@ import 'package:json_theme/json_theme.dart';
 
 class JsonAlignEncoder extends JsonWidgetEncoder<Align> {
   @override
+  bool support(Type type) {
+    return type == Align;
+  }
+
+  @override
   dynamic encodeArgs(Align widget) {
     return {
       AlignSchemaPropertyKey.alignment:
