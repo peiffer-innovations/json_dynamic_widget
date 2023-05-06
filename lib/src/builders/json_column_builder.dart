@@ -17,7 +17,7 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
 
   static const kNumSupportedChildren = -1;
 
-  static const type = 'column';
+static const type = 'column';
 
   final CrossAxisAlignment crossAxisAlignment;
   final MainAxisAlignment mainAxisAlignment;

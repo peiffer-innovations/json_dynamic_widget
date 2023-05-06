@@ -18,17 +18,26 @@ class ColumnSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'crossAxisAlignment':
+          ColumnSchemaPropertyKey.crossAxisAlignment:
               SchemaHelper.objectSchema(CrossAxisAlignmentSchema.id),
-          'mainAxisAlignment':
+          ColumnSchemaPropertyKey.mainAxisAlignment:
               SchemaHelper.objectSchema(MainAxisAlignmentSchema.id),
-          'mainAxisSize': SchemaHelper.objectSchema(MainAxisSizeSchema.id),
-          'textBaseline': SchemaHelper.objectSchema(TextBaselineSchema.id),
-          'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
-          'verticalDirection':
+          ColumnSchemaPropertyKey.mainAxisSize: SchemaHelper.objectSchema(MainAxisSizeSchema.id),
+          ColumnSchemaPropertyKey.textBaseline: SchemaHelper.objectSchema(TextBaselineSchema.id),
+          ColumnSchemaPropertyKey.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id),
+          ColumnSchemaPropertyKey.verticalDirection:
               SchemaHelper.objectSchema(VerticalDirectionSchema.id),
         },
       },
     ],
   };
+}
+
+class ColumnSchemaPropertyKey {
+  static const crossAxisAlignment = 'crossAxisAlignment';
+  static const mainAxisAlignment = 'mainAxisAlignment';
+  static const mainAxisSize = 'mainAxisSize';
+  static const textBaseline = 'textBaseline';
+  static const textDirection = 'textDirection';
+  static const verticalDirection = 'verticalDirection';
 }

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 abstract class JsonWidgetEncoder<T extends Widget> {
-  bool support(Type type) {
-    return type == T;
-  }
+  bool support(Type type);
 
   String getType();
 

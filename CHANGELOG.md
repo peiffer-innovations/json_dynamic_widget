@@ -1,3 +1,7 @@
+## [6.1.0] - May 5, 2023
+
+* Added the possibility to encode widgets into json widgets
+
 ## [6.0.5+2] - May 16, 2023
 
 * Automated dependency updates

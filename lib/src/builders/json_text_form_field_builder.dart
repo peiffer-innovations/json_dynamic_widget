@@ -205,12 +205,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     JsonTextFormFieldBuilder? result;
     if (map != null) {
       result = JsonTextFormFieldBuilder(
-        autocorrect: map['autocorrect'] == null
-            ? true
-            : JsonClass.parseBool(map['autocorrect']),
-        autofillHints: map['autofillHints'] == null
-            ? null
-            : List<String>.from(map['autofillHints']),
+        autocorrect: map['autocorrect'] == null ? true : JsonClass.parseBool(map['autocorrect']),
+        autofillHints:
+            map['autofillHints'] == null ? null : List<String>.from(map['autofillHints']),
         autofocus: JsonClass.parseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
             ? ThemeDecoder.decodeAutovalidateMode(
@@ -235,18 +232,15 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         ),
         cursorWidth: JsonClass.parseDouble(map['cursorWidth'], 2)!,
         decoration: map['decoration'],
-        enableIMEPersonalizedLearning:
-            map['enableIMEPersonalizedLearning'] == null
-                ? true
-                : JsonClass.parseBool(map['enableIMEPersonalizedLearning']),
+        enableIMEPersonalizedLearning: map['enableIMEPersonalizedLearning'] == null
+            ? true
+            : JsonClass.parseBool(map['enableIMEPersonalizedLearning']),
         enableInteractiveSelection: map['enableInteractiveSelection'] == null
             ? true
             : JsonClass.parseBool(map['enableInteractiveSelection']),
-        enableSuggestions: map['enableSuggestions'] == null
-            ? true
-            : JsonClass.parseBool(map['enableSuggestions']),
-        enabled:
-            map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        enableSuggestions:
+            map['enableSuggestions'] == null ? true : JsonClass.parseBool(map['enableSuggestions']),
+        enabled: map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
         expands: JsonClass.parseBool(map['expands']),
         focusNode: map['focusNode'],
         inputFormatters: map['inputFormatters'],
@@ -291,9 +285,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         selectionControls: map['selectionControls'],
-        showCursor: map['showCursor'] == null
-            ? null
-            : JsonClass.parseBool(map['showCursor']),
+        showCursor: map['showCursor'] == null ? null : JsonClass.parseBool(map['showCursor']),
         smartDashesType: ThemeDecoder.decodeSmartDashesType(
           map['smartDashesType'],
           validate: false,
@@ -396,8 +388,7 @@ class _JsonTextFormFieldWidget extends StatefulWidget {
   final JsonWidgetData data;
 
   @override
-  _JsonTextFormFieldWidgetState createState() =>
-      _JsonTextFormFieldWidgetState();
+  _JsonTextFormFieldWidgetState createState() => _JsonTextFormFieldWidgetState();
 }
 
 class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
@@ -461,8 +452,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         cursorRadius: widget.builder.cursorRadius,
         cursorWidth: widget.builder.cursorWidth,
         decoration: _decoration ?? const InputDecoration(),
-        enableIMEPersonalizedLearning:
-            widget.builder.enableIMEPersonalizedLearning,
+        enableIMEPersonalizedLearning: widget.builder.enableIMEPersonalizedLearning,
         enableInteractiveSelection: widget.builder.enableInteractiveSelection,
         enableSuggestions: widget.builder.enableSuggestions,
         enabled: widget.builder.enabled,
@@ -504,8 +494,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         style: widget.builder.style,
         textAlign: widget.builder.textAlign ?? TextAlign.start,
         textAlignVertical: widget.builder.textAlignVertical,
-        textCapitalization:
-            widget.builder.textCapitalization ?? TextCapitalization.none,
+        textCapitalization: widget.builder.textCapitalization ?? TextCapitalization.none,
         textDirection: widget.builder.textDirection,
         textInputAction: widget.builder.textInputAction,
         validator: widget.builder.validator == null
