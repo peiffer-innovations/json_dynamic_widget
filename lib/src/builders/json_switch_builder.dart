@@ -259,7 +259,6 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
           ? null
           : (value) {
               final error = validator!.validate(
-                context: context,
                 label: label ?? '',
                 value: value?.toString(),
               );

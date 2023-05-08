@@ -361,7 +361,6 @@ class _JsonDropdownButtonFormFieldWidgetState
             ? null
             : (dynamic value) {
                 final error = widget.builder.validator!.validate(
-                  context: context,
                   label: _decoration?.labelText ?? '',
                   value: value?.toString(),
                 );

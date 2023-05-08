@@ -1,3 +1,8 @@
+## [6.0.5] - May 8th, 2023
+
+* Updated to `form_validation` v3.0.0.
+
+
 ## [6.0.4+7] - April 25, 2023
 
 * Automated dependency updates

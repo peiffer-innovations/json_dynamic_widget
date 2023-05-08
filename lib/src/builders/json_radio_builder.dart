@@ -276,7 +276,6 @@ class _JsonRadioWidgetState extends State<_JsonRadioWidget> {
           ? null
           : (value) {
               final error = widget.builder.validator!.validate(
-                context: context,
                 label: widget.builder.label ?? '',
                 value: value?.toString(),
               );
