@@ -3,7 +3,7 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
-  "version.json": "9cc3d163139742105fbbdb46770ce7f4",
+  "version.json": "a7d20ec0338735b2b6bd32316e1a0406",
 "assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
 "assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
@@ -111,8 +111,8 @@ const RESOURCES = {
 "canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
 "canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
-"index.html": "e35df3e93a6c7eddbf0ab50f5a06566b",
-"/": "e35df3e93a6c7eddbf0ab50f5a06566b",
+"index.html": "0f6f120afa34cfb1f358d6720dacc1a1",
+"/": "0f6f120afa34cfb1f358d6720dacc1a1",
 "favicon.png": "5dcef449791fa27946b3d35ad8803796",
 "icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
