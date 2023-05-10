@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:json_dynamic_widget/src/encoders/json_animated_align_encoder.dart';
 
 import 'json_align_encoder.dart';
 import 'json_column_encoder.dart';
@@ -9,6 +10,7 @@ abstract class JsonWidgetEncoders {
   static final List<JsonWidgetEncoder> _encoders = [
     JsonColumnEncoder(),
     JsonAlignEncoder(),
+    JsonAnimatedAlignEncoder(),
     JsonUnknownEncoder()
   ];
 
