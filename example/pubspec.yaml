@@ -1,7 +1,7 @@
 name: 'example'
 description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
-version: '1.0.0+35'
+version: '1.0.0+36'
 
 environment: 
   sdk: '>=2.19.0 <4.0.0'
@@ -19,7 +19,7 @@ dependencies:
     path: '../'
   json_theme: '^5.0.2+6'
   logging: '^1.1.1'
-  yaon: '^1.1.0+4'
+  yaon: '^1.1.1'
 
 dev_dependencies: 
   flutter_test: 
