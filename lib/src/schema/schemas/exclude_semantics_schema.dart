@@ -8,13 +8,16 @@ class ExcludeSemanticsSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/ExcludeSemantics-class.html',
     'type': 'object',
     'title': 'ExcludeSemantics',
     'additionalProperties': false,
     'properties': {
-      'excluding': SchemaHelper.boolSchema,
+      ExcludeSemanticsSchemaProperty.excluding: SchemaHelper.boolSchema,
     }
   };
+}
+
+class ExcludeSemanticsSchemaProperty {
+  static const excluding = 'excluding';
 }

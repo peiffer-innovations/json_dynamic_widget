@@ -13,35 +13,55 @@ class RadioSchema {
     'title': 'Radio',
     'additionalProperties': false,
     'properties': {
-      'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'autovalidate': SchemaHelper.boolSchema,
-      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
-      'autofocus': SchemaHelper.boolSchema,
-      'checkColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'enabled': SchemaHelper.boolSchema,
-      'fillColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
-      ),
-      'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'focusNode': SchemaHelper.stringSchema,
-      'groupValue': SchemaHelper.anySchema,
-      'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'id': SchemaHelper.stringSchema,
-      'label': SchemaHelper.stringSchema,
-      'materialTapTargetSize': SchemaHelper.objectSchema(
-        MaterialTapTargetSizeSchema.id,
-      ),
-      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
-      'onChanged': SchemaHelper.stringSchema,
-      'onSaved': SchemaHelper.stringSchema,
-      'overlayColor': SchemaHelper.objectSchema(
-        MaterialStatePropertyColorSchema.id,
-      ),
-      'toggleable': SchemaHelper.boolSchema,
-      'splashRadius': SchemaHelper.numberSchema,
-      'validators': SchemaHelper.anySchema,
-      'value': SchemaHelper.anySchema,
-      'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
+      RadioSchemaProperty.activeColor: SchemaHelper.objectSchema(ColorSchema.id),
+      RadioSchemaProperty.autovalidate: SchemaHelper.boolSchema,
+      RadioSchemaProperty.autovalidateMode: SchemaHelper.objectSchema(AutovalidateModeSchema.id),
+      RadioSchemaProperty.autofocus: SchemaHelper.boolSchema,
+      RadioSchemaProperty.checkColor: SchemaHelper.objectSchema(ColorSchema.id),
+      RadioSchemaProperty.enabled: SchemaHelper.boolSchema,
+      RadioSchemaProperty.fillColor: SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id,),
+      RadioSchemaProperty.focusColor: SchemaHelper.objectSchema(ColorSchema.id),
+      RadioSchemaProperty.focusNode: SchemaHelper.stringSchema,
+      RadioSchemaProperty.groupValue: SchemaHelper.anySchema,
+      RadioSchemaProperty.hoverColor: SchemaHelper.objectSchema(ColorSchema.id),
+      RadioSchemaProperty.id: SchemaHelper.stringSchema,
+      RadioSchemaProperty.label: SchemaHelper.stringSchema,
+      RadioSchemaProperty.materialTapTargetSize: SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id,),
+      RadioSchemaProperty.mouseCursor: SchemaHelper.objectSchema(MouseCursorSchema.id),
+      RadioSchemaProperty.onChanged: SchemaHelper.stringSchema,
+      RadioSchemaProperty.onSaved: SchemaHelper.stringSchema,
+      RadioSchemaProperty.overlayColor: SchemaHelper.objectSchema(MaterialStatePropertyColorSchema.id,),
+      RadioSchemaProperty.toggleable: SchemaHelper.boolSchema,
+      RadioSchemaProperty.splashRadius: SchemaHelper.numberSchema,
+      RadioSchemaProperty.validators: SchemaHelper.anySchema,
+      RadioSchemaProperty.value: SchemaHelper.anySchema,
+      RadioSchemaProperty.visualDensity: SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };
+}
+
+class RadioSchemaProperty {
+  static const activeColor = 'activeColor';
+  static const autovalidate = 'autovalidate';
+  static const autovalidateMode = 'autovalidateMode';
+  static const autofocus = 'autofocus';
+  static const checkColor = 'checkColor';
+  static const enabled = 'enabled';
+  static const fillColor = 'fillColor';
+  static const focusColor = 'focusColor';
+  static const focusNode = 'focusNode';
+  static const groupValue = 'groupValue';
+  static const hoverColor = 'hoverColor';
+  static const id = 'id';
+  static const label = 'label';
+  static const materialTapTargetSize = 'materialTapTargetSize';
+  static const mouseCursor = 'mouseCursor';
+  static const onChanged = 'onChanged';
+  static const onSaved = 'onSaved';
+  static const overlayColor = 'overlayColor';
+  static const toggleable = 'toggleable';
+  static const splashRadius = 'splashRadius';
+  static const validators = 'validators';
+  static const value = 'value';
+  static const visualDensity = 'visualDensity';
 }

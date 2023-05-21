@@ -8,17 +8,25 @@ class ScrollConfigurationSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/ScrollConfiguration-class.html',
     'title': 'ScrollConfiguration',
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'dragDevices': SchemaHelper.stringSchema,
-      'overscroll': SchemaHelper.boolSchema,
-      'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
-      'platform': SchemaHelper.objectSchema(TargetPlatformSchema.id),
-      'scrollbars': SchemaHelper.boolSchema,
+      ScrollConfigurationSchemaProperty.dragDevices: SchemaHelper.stringSchema,
+      ScrollConfigurationSchemaProperty.overscroll: SchemaHelper.boolSchema,
+      ScrollConfigurationSchemaProperty.physics: SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
+      ScrollConfigurationSchemaProperty.platform:
+          SchemaHelper.objectSchema(TargetPlatformSchema.id),
+      ScrollConfigurationSchemaProperty.scrollbars: SchemaHelper.boolSchema,
     }
   };
+}
+
+class ScrollConfigurationSchemaProperty {
+  static const dragDevices = 'dragDevices';
+  static const overscroll = 'overscroll';
+  static const physics = 'physics';
+  static const platform = 'platform';
+  static const scrollbars = 'scrollbars';
 }

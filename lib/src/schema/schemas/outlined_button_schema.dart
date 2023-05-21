@@ -14,15 +14,26 @@ class OutlinedButtonSchema {
     'title': 'OutlinedButton',
     'additionalProperties': false,
     'properties': {
-      'autofocus': SchemaHelper.boolSchema,
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'focusNode': SchemaHelper.stringSchema,
-      'onFocusChange': SchemaHelper.stringSchema,
-      'onHover': SchemaHelper.stringSchema,
-      'onLongPress': SchemaHelper.stringSchema,
-      'onPressed': SchemaHelper.stringSchema,
-      'statesController': SchemaHelper.stringSchema,
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
+      OutlinedButtonSchemaProperty.autofocus: SchemaHelper.boolSchema,
+      OutlinedButtonSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      OutlinedButtonSchemaProperty.focusNode: SchemaHelper.stringSchema,
+      OutlinedButtonSchemaProperty.onFocusChange: SchemaHelper.stringSchema,
+      OutlinedButtonSchemaProperty.onHover: SchemaHelper.stringSchema,
+      OutlinedButtonSchemaProperty.onLongPress: SchemaHelper.stringSchema,
+      OutlinedButtonSchemaProperty.onPressed: SchemaHelper.stringSchema,
+      OutlinedButtonSchemaProperty.statesController: SchemaHelper.stringSchema,
+      OutlinedButtonSchemaProperty.style: SchemaHelper.objectSchema(ButtonStyleSchema.id),
     }
   };
+}
+class OutlinedButtonSchemaProperty {
+  static const autofocus = 'autofocus';
+  static const clipBehavior = 'clipBehavior';
+  static const focusNode = 'focusNode';
+  static const onFocusChange = 'onFocusChange';
+  static const onHover = 'onHover';
+  static const onLongPress = 'onLongPress';
+  static const onPressed = 'onPressed';
+  static const statesController = 'statesController';
+  static const style = 'style';
 }

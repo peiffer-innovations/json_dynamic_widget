@@ -8,21 +8,32 @@ class TextButtonSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/material/TextButton-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/material/TextButton-class.html',
     'type': 'object',
     'title': 'TextButton',
     'additionalProperties': false,
     'properties': {
-      'autofocus': SchemaHelper.boolSchema,
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'focusNode': SchemaHelper.stringSchema,
-      'onFocusChange': SchemaHelper.stringSchema,
-      'onHover': SchemaHelper.stringSchema,
-      'onLongPress': SchemaHelper.stringSchema,
-      'onPressed': SchemaHelper.stringSchema,
-      'statesController': SchemaHelper.stringSchema,
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
+      TextButtonSchemaProperty.autofocus: SchemaHelper.boolSchema,
+      TextButtonSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      TextButtonSchemaProperty.focusNode: SchemaHelper.stringSchema,
+      TextButtonSchemaProperty.onFocusChange: SchemaHelper.stringSchema,
+      TextButtonSchemaProperty.onHover: SchemaHelper.stringSchema,
+      TextButtonSchemaProperty.onLongPress: SchemaHelper.stringSchema,
+      TextButtonSchemaProperty.onPressed: SchemaHelper.stringSchema,
+      TextButtonSchemaProperty.statesController: SchemaHelper.stringSchema,
+      TextButtonSchemaProperty.style: SchemaHelper.objectSchema(ButtonStyleSchema.id),
     }
   };
+}
+
+class TextButtonSchemaProperty {
+  static const autofocus = 'autofocus';
+  static const clipBehavior = 'clipBehavior';
+  static const focusNode = 'focusNode';
+  static const onFocusChange = 'onFocusChange';
+  static const onHover = 'onHover';
+  static const onLongPress = 'onLongPress';
+  static const onPressed = 'onPressed';
+  static const statesController = 'statesController';
+  static const style = 'style';
 }

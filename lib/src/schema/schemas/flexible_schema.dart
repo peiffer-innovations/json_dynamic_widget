@@ -18,10 +18,15 @@ class FlexibleSchema {
         'additionalProperties': false,
         'type': 'object',
         'properties': {
-          'fit': SchemaHelper.objectSchema(FlexFitSchema.id),
-          'flex': SchemaHelper.numberSchema,
+          FlexibleSchemaProperty.fit: SchemaHelper.objectSchema(FlexFitSchema.id),
+          FlexibleSchemaProperty.flex: SchemaHelper.numberSchema,
         },
       },
     ],
   };
+}
+
+class FlexibleSchemaProperty {
+  static const fit = 'fit';
+  static const flex = 'flex';
 }

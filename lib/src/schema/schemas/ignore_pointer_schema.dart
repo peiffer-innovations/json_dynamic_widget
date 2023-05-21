@@ -19,10 +19,15 @@ class IgnorePointerSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'ignoring': SchemaHelper.boolSchema,
-          'ignoringSemantics': SchemaHelper.boolSchema,
+          IgnorePointerSchemaProperty.ignoring: SchemaHelper.boolSchema,
+          IgnorePointerSchemaProperty.ignoringSemantics: SchemaHelper.boolSchema,
         },
       },
     ],
   };
+}
+
+class IgnorePointerSchemaProperty {
+  static const ignoring = 'ignoring';
+  static const ignoringSemantics = 'ignoringSemantics';
 }

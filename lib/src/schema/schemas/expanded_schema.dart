@@ -18,9 +18,13 @@ class ExpandedSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'flex': SchemaHelper.numberSchema,
+          ExpandedSchemaProperty.flex: SchemaHelper.numberSchema,
         },
       },
     ],
   };
+}
+
+class ExpandedSchemaProperty {
+  static const flex = 'flex';
 }

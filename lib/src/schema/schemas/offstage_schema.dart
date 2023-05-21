@@ -13,7 +13,11 @@ class OffstageSchema {
     'title': 'Offstage',
     'additionalProperties': false,
     'properties': {
-      'offstage': SchemaHelper.boolSchema,
+      OffstageSchemaProperty.offstage: SchemaHelper.boolSchema,
     }
   };
+}
+
+class OffstageSchemaProperty {
+  static const offstage = 'offstage';
 }

@@ -13,15 +13,25 @@ class ScrollbarSchema {
     'title': 'Scrollbar',
     'additionalProperties': false,
     'properties': {
-      'controller': SchemaHelper.stringSchema,
-      'interactive': SchemaHelper.boolSchema,
-      'notificationPredicate': SchemaHelper.stringSchema,
-      'radius': SchemaHelper.objectSchema(RadiusSchema.id),
-      'scrollbarOrientation': SchemaHelper.objectSchema(
+      ScrollbarSchemaProperty.controller: SchemaHelper.stringSchema,
+      ScrollbarSchemaProperty.interactive: SchemaHelper.boolSchema,
+      ScrollbarSchemaProperty.notificationPredicate: SchemaHelper.stringSchema,
+      ScrollbarSchemaProperty.radius: SchemaHelper.objectSchema(RadiusSchema.id),
+      ScrollbarSchemaProperty.scrollbarOrientation: SchemaHelper.objectSchema(
         ScrollbarOrientationSchema.id,
       ),
-      'thickness': SchemaHelper.numberSchema,
-      'thumbVisibility': SchemaHelper.boolSchema,
+      ScrollbarSchemaProperty.thickness: SchemaHelper.numberSchema,
+      ScrollbarSchemaProperty.thumbVisibility: SchemaHelper.boolSchema,
     },
   };
+}
+
+class ScrollbarSchemaProperty {
+  static const controller = 'controller';
+  static const interactive = 'interactive';
+  static const notificationPredicate = 'notificationPredicate';
+  static const radius = 'radius';
+  static const scrollbarOrientation = 'scrollbarOrientation';
+  static const thickness = 'thickness';
+  static const thumbVisibility = 'thumbVisibility';
 }

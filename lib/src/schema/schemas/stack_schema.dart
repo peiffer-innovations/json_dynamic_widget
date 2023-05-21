@@ -18,12 +18,19 @@ class StackSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-          'fit': SchemaHelper.objectSchema(StackFitSchema.id),
-          'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
+          StackSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+          StackSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+          StackSchemaProperty.fit: SchemaHelper.objectSchema(StackFitSchema.id),
+          StackSchemaProperty.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id),
         },
       },
     ],
   };
+}
+
+class StackSchemaProperty {
+  static const alignment = 'alignment';
+  static const clipBehavior = 'clipBehavior';
+  static const fit = 'fit';
+  static const textDirection = 'textDirection';
 }

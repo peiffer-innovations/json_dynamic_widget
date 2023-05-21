@@ -9,34 +9,58 @@ class IconButtonSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/material/IconButton-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/material/IconButton-class.html',
     'type': 'object',
     'title': 'IconButton',
     'additionalProperties': false,
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'autofocus': SchemaHelper.boolSchema,
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
-      'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
-      'disabledColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'enableFeedback': SchemaHelper.boolSchema,
-      'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'focusNode': SchemaHelper.anySchema,
-      'highlightColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'icon': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'iconSize': SchemaHelper.numberSchema,
-      'isSelected': SchemaHelper.boolSchema,
-      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
-      'onPressed': SchemaHelper.anySchema,
-      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'selectedIcon': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'splashColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'splashRadius': SchemaHelper.numberSchema,
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
-      'tooltip': SchemaHelper.stringSchema,
-      'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
+      IconButtonSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      IconButtonSchemaProperty.autofocus: SchemaHelper.boolSchema,
+      IconButtonSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+      IconButtonSchemaProperty.constraints: SchemaHelper.objectSchema(BoxConstraintsSchema.id),
+      IconButtonSchemaProperty.disabledColor: SchemaHelper.objectSchema(ColorSchema.id),
+      IconButtonSchemaProperty.enableFeedback: SchemaHelper.boolSchema,
+      IconButtonSchemaProperty.focusColor: SchemaHelper.objectSchema(ColorSchema.id),
+      IconButtonSchemaProperty.focusNode: SchemaHelper.anySchema,
+      IconButtonSchemaProperty.highlightColor: SchemaHelper.objectSchema(ColorSchema.id),
+      IconButtonSchemaProperty.hoverColor: SchemaHelper.objectSchema(ColorSchema.id),
+      IconButtonSchemaProperty.icon: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      IconButtonSchemaProperty.iconSize: SchemaHelper.numberSchema,
+      IconButtonSchemaProperty.isSelected: SchemaHelper.boolSchema,
+      IconButtonSchemaProperty.mouseCursor: SchemaHelper.objectSchema(MouseCursorSchema.id),
+      IconButtonSchemaProperty.onPressed: SchemaHelper.anySchema,
+      IconButtonSchemaProperty.padding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      IconButtonSchemaProperty.selectedIcon: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      IconButtonSchemaProperty.splashColor: SchemaHelper.objectSchema(ColorSchema.id),
+      IconButtonSchemaProperty.splashRadius: SchemaHelper.numberSchema,
+      IconButtonSchemaProperty.style: SchemaHelper.objectSchema(ButtonStyleSchema.id),
+      IconButtonSchemaProperty.tooltip: SchemaHelper.stringSchema,
+      IconButtonSchemaProperty.visualDensity: SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };
+}
+
+class IconButtonSchemaProperty {
+  static const alignment = 'alignment';
+  static const autofocus = 'autofocus';
+  static const color = 'color';
+  static const constraints = 'constraints';
+  static const disabledColor = 'disabledColor';
+  static const enableFeedback = 'enableFeedback';
+  static const focusColor = 'focusColor';
+  static const focusNode = 'focusNode';
+  static const highlightColor = 'highlightColor';
+  static const hoverColor = 'hoverColor';
+  static const icon = 'icon';
+  static const iconSize = 'iconSize';
+  static const isSelected = 'isSelected';
+  static const mouseCursor = 'mouseCursor';
+  static const onPressed = 'onPressed';
+  static const padding = 'padding';
+  static const selectedIcon = 'selectedIcon';
+  static const splashColor = 'splashColor';
+  static const splashRadius = 'splashRadius';
+  static const style = 'style';
+  static const tooltip = 'tooltip';
+  static const visualDensity = 'visualDensity';
 }

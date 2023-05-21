@@ -8,19 +8,29 @@ class LinearProgressIndicatorSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 0,
-    r'$comment':
-        'https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/material/LinearProgressIndicator-class.html',
     'type': 'object',
     'title': 'LinearProgressIndicator',
     'additionalProperties': false,
     'properties': {
-      'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
-      'minHeight': SchemaHelper.numberSchema,
-      'semanticsLabel': SchemaHelper.stringSchema,
-      'semanticsValue': SchemaHelper.stringSchema,
-      'value': SchemaHelper.numberSchema,
-      'valueColor': SchemaHelper.anySchema
+      LinearProgressIndicatorSchemaProperty.backgroundColor:
+          SchemaHelper.objectSchema(ColorSchema.id),
+      LinearProgressIndicatorSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+      LinearProgressIndicatorSchemaProperty.minHeight: SchemaHelper.numberSchema,
+      LinearProgressIndicatorSchemaProperty.semanticsLabel: SchemaHelper.stringSchema,
+      LinearProgressIndicatorSchemaProperty.semanticsValue: SchemaHelper.stringSchema,
+      LinearProgressIndicatorSchemaProperty.value: SchemaHelper.numberSchema,
+      LinearProgressIndicatorSchemaProperty.valueColor: SchemaHelper.anySchema
     },
   };
+}
+
+class LinearProgressIndicatorSchemaProperty {
+  static const backgroundColor = 'backgroundColor';
+  static const color = 'color';
+  static const minHeight = 'minHeight';
+  static const semanticsLabel = 'semanticsLabel';
+  static const semanticsValue = 'semanticsValue';
+  static const value = 'value';
+  static const valueColor = 'valueColor';
 }

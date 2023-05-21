@@ -14,8 +14,13 @@ class IntrinsicWidthSchema {
     'title': 'IntrinsicWidth',
     'additionalProperties': false,
     'properties': {
-      'stepHeight': SchemaHelper.numberSchema,
-      'stepWidth': SchemaHelper.numberSchema,
+      IntrinsicWidthSchemaProperty.stepHeight: SchemaHelper.numberSchema,
+      IntrinsicWidthSchemaProperty.stepWidth: SchemaHelper.numberSchema,
     }
   };
+}
+
+class IntrinsicWidthSchemaProperty {
+  static const stepHeight = 'stepHeight';
+  static const stepWidth = 'stepWidth';
 }

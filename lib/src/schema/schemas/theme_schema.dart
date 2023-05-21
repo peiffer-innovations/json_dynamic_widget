@@ -13,7 +13,11 @@ class ThemeSchema {
     'title': 'Theme',
     'additionalProperties': false,
     'properties': {
-      'data': SchemaHelper.objectSchema(ThemeDataSchema.id),
+      ThemeSchemaProperty.data: SchemaHelper.objectSchema(ThemeDataSchema.id),
     }
   };
+}
+
+class ThemeSchemaProperty {
+  static const data = 'data';
 }

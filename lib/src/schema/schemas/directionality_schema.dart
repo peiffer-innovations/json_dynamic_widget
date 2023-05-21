@@ -17,7 +17,11 @@ class DirectionalitySchema {
       'textDirection',
     ],
     'properties': {
-      'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
+      DirectionalitySchemaProperty.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id),
     }
   };
+}
+
+class DirectionalitySchemaProperty {
+  static const textDirection = 'textDirection';
 }

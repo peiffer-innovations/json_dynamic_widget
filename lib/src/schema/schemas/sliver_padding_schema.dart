@@ -8,8 +8,7 @@ class SliverPaddingSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/SliverPadding-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/SliverPadding-class.html',
     'type': 'object',
     'title': 'SliverPadding',
     'additionalProperties': false,
@@ -17,7 +16,11 @@ class SliverPaddingSchema {
       'padding',
     ],
     'properties': {
-      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      SilverPaddingSchemaProperty.padding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
     },
   };
+}
+
+class SilverPaddingSchemaProperty {
+  static const padding = 'padding';
 }

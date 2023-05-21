@@ -8,20 +8,30 @@ class PrimaryScrollControllerSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/PrimaryScrollController-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/PrimaryScrollController-class.html',
     'type': 'object',
     'title': 'PrimaryScrollController',
     'additionalProperties': false,
     'properties': {
-      'automaticallyInheritForPlatforms': SchemaHelper.arraySchema(
+      PrimaryScrollControllerSchemaProperty.automaticallyInheritForPlatforms:
+          SchemaHelper.arraySchema(
         TargetPlatformSchema.id,
       ),
-      'controller': SchemaHelper.stringSchema,
-      'debugLabel': SchemaHelper.stringSchema,
-      'initialScrollOffset': SchemaHelper.numberSchema,
-      'keepScrollOffset': SchemaHelper.boolSchema,
-      'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),
+      PrimaryScrollControllerSchemaProperty.controller: SchemaHelper.stringSchema,
+      PrimaryScrollControllerSchemaProperty.debugLabel: SchemaHelper.stringSchema,
+      PrimaryScrollControllerSchemaProperty.initialScrollOffset: SchemaHelper.numberSchema,
+      PrimaryScrollControllerSchemaProperty.keepScrollOffset: SchemaHelper.boolSchema,
+      PrimaryScrollControllerSchemaProperty.scrollDirection:
+          SchemaHelper.objectSchema(AxisSchema.id),
     }
   };
+}
+
+class PrimaryScrollControllerSchemaProperty {
+  static const automaticallyInheritForPlatforms = 'automaticallyInheritForPlatforms';
+  static const controller = 'controller';
+  static const debugLabel = 'debugLabel';
+  static const initialScrollOffset = 'initialScrollOffset';
+  static const keepScrollOffset = 'keepScrollOffset';
+  static const scrollDirection = 'scrollDirection';
 }

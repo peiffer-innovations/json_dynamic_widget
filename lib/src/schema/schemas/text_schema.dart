@@ -16,22 +16,39 @@ class TextSchema {
       'text',
     ],
     'properties': {
-      'locale': SchemaHelper.objectSchema(LocaleSchema.id),
-      'maxLines': SchemaHelper.numberSchema,
-      'overflow': SchemaHelper.objectSchema(TextOverflowSchema.id),
-      'selectionColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'semanticsLabel': SchemaHelper.stringSchema,
-      'softWrap': SchemaHelper.boolSchema,
-      'strutStyle': SchemaHelper.objectSchema(StrutStyleSchema.id),
-      'style': SchemaHelper.objectSchema(TextStyleSchema.id),
-      'text': SchemaHelper.stringSchema,
-      'textAlign': SchemaHelper.objectSchema(TextAlignSchema.id),
-      'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
-      'textHeightBehavior': SchemaHelper.objectSchema(
+      TextSchemaProperty.locale: SchemaHelper.objectSchema(LocaleSchema.id),
+      TextSchemaProperty.maxLines: SchemaHelper.numberSchema,
+      TextSchemaProperty.overflow: SchemaHelper.objectSchema(TextOverflowSchema.id),
+      TextSchemaProperty.selectionColor: SchemaHelper.objectSchema(ColorSchema.id),
+      TextSchemaProperty.semanticsLabel: SchemaHelper.stringSchema,
+      TextSchemaProperty.softWrap: SchemaHelper.boolSchema,
+      TextSchemaProperty.strutStyle: SchemaHelper.objectSchema(StrutStyleSchema.id),
+      TextSchemaProperty.style: SchemaHelper.objectSchema(TextStyleSchema.id),
+      TextSchemaProperty.text: SchemaHelper.stringSchema,
+      TextSchemaProperty.textAlign: SchemaHelper.objectSchema(TextAlignSchema.id),
+      TextSchemaProperty.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id),
+      TextSchemaProperty.textHeightBehavior: SchemaHelper.objectSchema(
         TextHeightBehaviorSchema.id,
       ),
-      'textScaleFactor': SchemaHelper.numberSchema,
-      'textWidthBasis': SchemaHelper.objectSchema(TextWidthBasisSchema.id),
+      TextSchemaProperty.textScaleFactor: SchemaHelper.numberSchema,
+      TextSchemaProperty.textWidthBasis: SchemaHelper.objectSchema(TextWidthBasisSchema.id),
     }
   };
+}
+
+class TextSchemaProperty {
+  static const locale = 'locale';
+  static const maxLines = 'maxLines';
+  static const overflow = 'overflow';
+  static const selectionColor = 'selectionColor';
+  static const semanticsLabel = 'semanticsLabel';
+  static const softWrap = 'softWrap';
+  static const strutStyle = 'strutStyle';
+  static const style = 'style';
+  static const text = 'text';
+  static const textAlign = 'textAlign';
+  static const textDirection = 'textDirection';
+  static const textHeightBehavior = 'textHeightBehavior';
+  static const textScaleFactor = 'textScaleFactor';
+  static const textWidthBasis = 'textWidthBasis';
 }

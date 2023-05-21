@@ -14,23 +14,40 @@ class InteractiveViewerSchema {
     'title': 'InteractiveViewer',
     'additionalProperties': false,
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'boundaryMargin': SchemaHelper.objectSchema(
-        EdgeInsetsGeometrySchema.id,
-      ),
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'constrained': SchemaHelper.boolSchema,
-      'interactionEndFrictionCoefficient': SchemaHelper.numberSchema,
-      'maxScale': SchemaHelper.numberSchema,
-      'minScale': SchemaHelper.numberSchema,
-      'onInteractionEnd': SchemaHelper.stringSchema,
-      'onInteractionStart': SchemaHelper.stringSchema,
-      'onInteractionUpdate': SchemaHelper.stringSchema,
-      'panAxis': SchemaHelper.objectSchema(PanAxisSchema.id),
-      'panEnabled': SchemaHelper.boolSchema,
-      'scaleEnabled': SchemaHelper.boolSchema,
-      'scaleFactor': SchemaHelper.numberSchema,
-      'transformationController': SchemaHelper.stringSchema,
+      InteractiveViewerSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      InteractiveViewerSchemaProperty.boundaryMargin: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      InteractiveViewerSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      InteractiveViewerSchemaProperty.constrained: SchemaHelper.boolSchema,
+      InteractiveViewerSchemaProperty.interactionEndFrictionCoefficient: SchemaHelper.numberSchema,
+      InteractiveViewerSchemaProperty.maxScale: SchemaHelper.numberSchema,
+      InteractiveViewerSchemaProperty.minScale: SchemaHelper.numberSchema,
+      InteractiveViewerSchemaProperty.onInteractionEnd: SchemaHelper.stringSchema,
+      InteractiveViewerSchemaProperty.onInteractionStart: SchemaHelper.stringSchema,
+      InteractiveViewerSchemaProperty.onInteractionUpdate: SchemaHelper.stringSchema,
+      InteractiveViewerSchemaProperty.panAxis: SchemaHelper.objectSchema(PanAxisSchema.id),
+      InteractiveViewerSchemaProperty.panEnabled: SchemaHelper.boolSchema,
+      InteractiveViewerSchemaProperty.scaleEnabled: SchemaHelper.boolSchema,
+      InteractiveViewerSchemaProperty.scaleFactor: SchemaHelper.numberSchema,
+      InteractiveViewerSchemaProperty.transformationController: SchemaHelper.stringSchema,
     }
   };
+}
+
+class InteractiveViewerSchemaProperty {
+  static const alignment = 'alignment';
+  static const boundaryMargin = 'boundaryMargin';
+  static const clipBehavior = 'clipBehavior';
+  static const constrained = 'constrained';
+  static const interactionEndFrictionCoefficient =
+      'interactionEndFrictionCoefficient';
+  static const maxScale = 'maxScale';
+  static const minScale = 'minScale';
+  static const onInteractionEnd = 'onInteractionEnd';
+  static const onInteractionStart = 'onInteractionStart';
+  static const onInteractionUpdate = 'onInteractionUpdate';
+  static const panAxis = 'panAxis';
+  static const panEnabled = 'panEnabled';
+  static const scaleEnabled = 'scaleEnabled';
+  static const scaleFactor = 'scaleFactor';
+  static const transformationController = 'transformationController';
 }

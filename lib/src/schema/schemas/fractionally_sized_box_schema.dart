@@ -8,15 +8,20 @@ class FractionallySizedBoxSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/FractionallySizedBox-class.html',
     'type': 'object',
     'title': 'FractionallySizedBox',
     'additionalProperties': false,
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'heightFactor': SchemaHelper.numberSchema,
-      'widthFactor': SchemaHelper.numberSchema,
+      FractionallySizedBoxSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      FractionallySizedBoxSchemaProperty.heightFactor: SchemaHelper.numberSchema,
+      FractionallySizedBoxSchemaProperty.widthFactor: SchemaHelper.numberSchema,
     }
   };
+}
+
+class FractionallySizedBoxSchemaProperty {
+  static const alignment = 'alignment';
+  static const heightFactor = 'heightFactor';
+  static const widthFactor = 'widthFactor';
 }

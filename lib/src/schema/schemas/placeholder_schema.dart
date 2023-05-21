@@ -14,10 +14,17 @@ class PlaceholderSchema {
     'title': 'Placeholder',
     'additionalProperties': false,
     'properties': {
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
-      'fallbackHeight': SchemaHelper.numberSchema,
-      'fallbackWidth': SchemaHelper.numberSchema,
-      'strokeWidth': SchemaHelper.numberSchema,
+      PlaceholderSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+      PlaceholderSchemaProperty.fallbackHeight: SchemaHelper.numberSchema,
+      PlaceholderSchemaProperty.fallbackWidth: SchemaHelper.numberSchema,
+      PlaceholderSchemaProperty.strokeWidth: SchemaHelper.numberSchema,
     }
   };
+}
+
+class PlaceholderSchemaProperty {
+  static const color = 'color';
+  static const fallbackHeight = 'fallbackHeight';
+  static const fallbackWidth = 'fallbackWidth';
+  static const strokeWidth = 'strokeWidth';
 }

@@ -14,7 +14,11 @@ class SaveContextSchema {
     'title': 'SaveContext',
     'additionalProperties': false,
     'properties': {
-      'key': SchemaHelper.stringSchema,
+      SaveContextSchemaProperty.key: SchemaHelper.stringSchema,
     },
   };
+}
+
+class SaveContextSchemaProperty {
+  static const key = 'key';
 }

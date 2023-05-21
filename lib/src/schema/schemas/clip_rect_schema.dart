@@ -18,10 +18,15 @@ class ClipRectSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-          'clipper': SchemaHelper.stringSchema,
+          ClipRectSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+          ClipRectSchemaProperty.clipper: SchemaHelper.stringSchema,
         },
       },
     ],
   };
+}
+
+class ClipRectSchemaProperty {
+  static const clipBehavior = 'clipBehavior';
+  static const clipper = 'clipper';
 }

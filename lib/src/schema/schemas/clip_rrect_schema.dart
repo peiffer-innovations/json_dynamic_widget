@@ -16,9 +16,15 @@ class ClipRRectSchema {
       'borderRadius',
     ],
     'properties': {
-      'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'clipper': SchemaHelper.stringSchema,
+      ClipRRectSchemaProperty.borderRadius: SchemaHelper.objectSchema(BorderRadiusSchema.id),
+      ClipRRectSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      ClipRRectSchemaProperty.clipper: SchemaHelper.stringSchema,
     },
   };
+}
+
+class ClipRRectSchemaProperty {
+  static const borderRadius = 'borderRadius';
+  static const clipBehavior = 'clipBehavior';
+  static const clipper = 'clipper';
 }

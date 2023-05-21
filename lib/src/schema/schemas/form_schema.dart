@@ -18,14 +18,21 @@ class FormSchema {
         'additionalProperties': false,
         'type': 'object',
         'properties': {
-          'autovalidate': SchemaHelper.boolSchema,
-          'autovalidateMode': SchemaHelper.objectSchema(
+          FormSchemaProperty.autovalidate: SchemaHelper.boolSchema,
+          FormSchemaProperty.autovalidateMode: SchemaHelper.objectSchema(
             AutovalidateModeSchema.id,
           ),
-          'onChanged': SchemaHelper.stringSchema,
-          'onWillPop': SchemaHelper.stringSchema,
+          FormSchemaProperty.onChanged: SchemaHelper.stringSchema,
+          FormSchemaProperty.onWillPop: SchemaHelper.stringSchema,
         },
       },
     ],
   };
+}
+
+class FormSchemaProperty {
+  static const autovalidate = 'autovalidate';
+  static const autovalidateMode = 'autovalidateMode';
+  static const onChanged = 'onChanged';
+  static const onWillPop = 'onWillPop';
 }

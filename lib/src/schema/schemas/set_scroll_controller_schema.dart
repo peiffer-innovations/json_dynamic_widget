@@ -14,10 +14,17 @@ class SetScrollControllerSchema {
     'title': 'SetScrollController',
     'additionalProperties': false,
     'properties': {
-      'debugLabel': SchemaHelper.stringSchema,
-      'initialScrollOffset': SchemaHelper.numberSchema,
-      'keepScrollOffset': SchemaHelper.boolSchema,
-      'key': SchemaHelper.stringSchema,
+      SetScrollControllerSchemaProperty.debugLabel: SchemaHelper.stringSchema,
+      SetScrollControllerSchemaProperty.initialScrollOffset: SchemaHelper.numberSchema,
+      SetScrollControllerSchemaProperty.keepScrollOffset: SchemaHelper.boolSchema,
+      SetScrollControllerSchemaProperty.key: SchemaHelper.stringSchema,
     }
   };
+}
+
+class SetScrollControllerSchemaProperty {
+  static const debugLabel = 'debugLabel';
+  static const initialScrollOffset = 'initialScrollOffset';
+  static const keepScrollOffset = 'keepScrollOffset';
+  static const key = 'key';  
 }

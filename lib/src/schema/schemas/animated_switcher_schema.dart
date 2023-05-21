@@ -8,8 +8,7 @@ class AnimatedSwitcherSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/AnimatedSwitcher-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/AnimatedSwitcher-class.html',
     'type': 'object',
     'title': 'AnimatedSwitcher',
     'additionalProperties': false,
@@ -18,13 +17,23 @@ class AnimatedSwitcherSchema {
       'duration',
     ],
     'properties': {
-      'child': SchemaHelper.stringSchema,
-      'duration': SchemaHelper.numberSchema,
-      'layoutBuilder': SchemaHelper.stringSchema,
-      'reverseDuration': SchemaHelper.numberSchema,
-      'switchInCurve': SchemaHelper.stringSchema,
-      'switchOutCurve': SchemaHelper.stringSchema,
-      'transitionBuilder': SchemaHelper.stringSchema,
+      AnimatedSwitcherSchemaProperty.child: SchemaHelper.stringSchema,
+      AnimatedSwitcherSchemaProperty.duration: SchemaHelper.numberSchema,
+      AnimatedSwitcherSchemaProperty.layoutBuilder: SchemaHelper.stringSchema,
+      AnimatedSwitcherSchemaProperty.reverseDuration: SchemaHelper.numberSchema,
+      AnimatedSwitcherSchemaProperty.switchInCurve: SchemaHelper.stringSchema,
+      AnimatedSwitcherSchemaProperty.switchOutCurve: SchemaHelper.stringSchema,
+      AnimatedSwitcherSchemaProperty.transitionBuilder: SchemaHelper.stringSchema,
     },
   };
+}
+
+class AnimatedSwitcherSchemaProperty {
+  static const child = 'child';
+  static const duration = 'duration';
+  static const layoutBuilder = 'layoutBuilder';
+  static const reverseDuration = 'reverseDuration';
+  static const switchInCurve = 'switchInCurve';
+  static const switchOutCurve = 'switchOutCurve';
+  static const transitionBuilder = 'transitionBuilder';
 }

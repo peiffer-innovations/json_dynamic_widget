@@ -14,35 +14,65 @@ class AppBarSchema {
     'title': 'AppBar',
     'additionalProperties': false,
     'properties': {
-      'actions': SchemaHelper.arraySchema(JsonWidgetDataSchema.id),
-      'actionsIconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
-      'automaticallyImplyLeading': SchemaHelper.boolSchema,
-      'backgroundColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'bottom': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'bottomOpacity': SchemaHelper.numberSchema,
-      'centerTitle': SchemaHelper.boolSchema,
-      'elevation': SchemaHelper.numberSchema,
-      'excludeHeaderSemantics': SchemaHelper.boolSchema,
-      'flexibleSpace': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'foregroundColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'iconTheme': SchemaHelper.objectSchema(IconThemeDataSchema.id),
-      'leading': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'leadingWidth': SchemaHelper.numberSchema,
-      'notificationPredicate': SchemaHelper.stringSchema,
-      'primary': SchemaHelper.boolSchema,
-      'scrolledUnderElevation': SchemaHelper.boolSchema,
-      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
-      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'systemOverlayStyle': SchemaHelper.objectSchema(
+      AppBarSchemaProperty.actions: SchemaHelper.arraySchema(JsonWidgetDataSchema.id),
+      AppBarSchemaProperty.actionsIconTheme: SchemaHelper.objectSchema(IconThemeDataSchema.id),
+      AppBarSchemaProperty.automaticallyImplyLeading: SchemaHelper.boolSchema,
+      AppBarSchemaProperty.backgroundColor: SchemaHelper.objectSchema(ColorSchema.id),
+      AppBarSchemaProperty.bottom: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      AppBarSchemaProperty.bottomOpacity: SchemaHelper.numberSchema,
+      AppBarSchemaProperty.centerTitle: SchemaHelper.boolSchema,
+      AppBarSchemaProperty.elevation: SchemaHelper.numberSchema,
+      AppBarSchemaProperty.excludeHeaderSemantics: SchemaHelper.boolSchema,
+      AppBarSchemaProperty.flexibleSpace: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      AppBarSchemaProperty.foregroundColor: SchemaHelper.objectSchema(ColorSchema.id),
+      AppBarSchemaProperty.iconTheme: SchemaHelper.objectSchema(IconThemeDataSchema.id),
+      AppBarSchemaProperty.leading: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      AppBarSchemaProperty.leadingWidth: SchemaHelper.numberSchema,
+      AppBarSchemaProperty.notificationPredicate: SchemaHelper.stringSchema,
+      AppBarSchemaProperty.primary: SchemaHelper.boolSchema,
+      AppBarSchemaProperty.scrolledUnderElevation: SchemaHelper.boolSchema,
+      AppBarSchemaProperty.shadowColor: SchemaHelper.objectSchema(ColorSchema.id),
+      AppBarSchemaProperty.shape: SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      AppBarSchemaProperty.surfaceTintColor: SchemaHelper.objectSchema(ColorSchema.id),
+      AppBarSchemaProperty.systemOverlayStyle: SchemaHelper.objectSchema(
         SystemUiOverlayStyleSchema.id,
       ),
-      'titleTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
-      'toolbarTextStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
-      'title': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'titleSpacing': SchemaHelper.numberSchema,
-      'toolbarHeight': SchemaHelper.numberSchema,
-      'toolbarOpacity': SchemaHelper.numberSchema,
+      AppBarSchemaProperty.titleTextStyle: SchemaHelper.objectSchema(TextStyleSchema.id),
+      AppBarSchemaProperty.toolbarTextStyle: SchemaHelper.objectSchema(TextStyleSchema.id),
+      AppBarSchemaProperty.title: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      AppBarSchemaProperty.titleSpacing: SchemaHelper.numberSchema,
+      AppBarSchemaProperty.toolbarHeight: SchemaHelper.numberSchema,
+      AppBarSchemaProperty.toolbarOpacity: SchemaHelper.numberSchema,
     },
   };
+}
+
+class AppBarSchemaProperty {
+  static const actions = 'actions';
+  static const actionsIconTheme = 'actionsIconTheme';
+  static const automaticallyImplyLeading = 'automaticallyImplyLeading';
+  static const backgroundColor = 'backgroundColor';
+  static const bottom = 'bottom';
+  static const bottomOpacity = 'bottomOpacity';
+  static const centerTitle = 'centerTitle';
+  static const elevation = 'elevation';
+  static const excludeHeaderSemantics = 'excludeHeaderSemantics';
+  static const flexibleSpace = 'flexibleSpace';
+  static const foregroundColor = 'foregroundColor';
+  static const iconTheme = 'iconTheme';
+  static const leading = 'leading';
+  static const leadingWidth = 'leadingWidth';
+  static const notificationPredicate = 'notificationPredicate';
+  static const primary = 'primary';
+  static const scrolledUnderElevation = 'scrolledUnderElevation';
+  static const shadowColor = 'shadowColor';
+  static const shape = 'shape';
+  static const surfaceTintColor = 'surfaceTintColor';
+  static const systemOverlayStyle = 'systemOverlayStyle';
+  static const titleTextStyle = 'titleTextStyle';
+  static const toolbarTextStyle = 'toolbarTextStyle';
+  static const title = 'title';
+  static const titleSpacing = 'titleSpacing';
+  static const toolbarHeight = 'toolbarHeight';
+  static const toolbarOpacity = 'toolbarOpacity';
 }

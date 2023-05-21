@@ -18,15 +18,27 @@ class AnimatedCrossFadeSchema {
       'duration',
     ],
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'crossFadeState': SchemaHelper.objectSchema(CrossFadeStateSchema.id),
-      'duration': SchemaHelper.numberSchema,
-      'excludeBottomFocus': SchemaHelper.boolSchema,
-      'firstCurve': SchemaHelper.stringSchema,
-      'layoutBuilder': SchemaHelper.stringSchema,
-      'reverseDuration': SchemaHelper.numberSchema,
-      'secondCurve': SchemaHelper.stringSchema,
-      'sizeCurve': SchemaHelper.stringSchema,
+      AnimatedCrossFadeSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      AnimatedCrossFadeSchemaProperty.crossFadeState: SchemaHelper.objectSchema(CrossFadeStateSchema.id),
+      AnimatedCrossFadeSchemaProperty.duration: SchemaHelper.numberSchema,
+      AnimatedCrossFadeSchemaProperty.excludeBottomFocus: SchemaHelper.boolSchema,
+      AnimatedCrossFadeSchemaProperty.firstCurve: SchemaHelper.stringSchema,
+      AnimatedCrossFadeSchemaProperty.layoutBuilder: SchemaHelper.stringSchema,
+      AnimatedCrossFadeSchemaProperty.reverseDuration: SchemaHelper.numberSchema,
+      AnimatedCrossFadeSchemaProperty.secondCurve: SchemaHelper.stringSchema,
+      AnimatedCrossFadeSchemaProperty.sizeCurve: SchemaHelper.stringSchema,
     },
   };
+}
+
+class AnimatedCrossFadeSchemaProperty {
+  static const alignment = 'alignment';
+  static const crossFadeState = 'crossFadeState';
+  static const duration = 'duration';
+  static const excludeBottomFocus = 'excludeBottomFocus';
+  static const firstCurve = 'firstCurve';
+  static const layoutBuilder = 'layoutBuilder';
+  static const reverseDuration = 'reverseDuration';
+  static const secondCurve = 'secondCurve';
+  static const sizeCurve = 'sizeCurve';
 }

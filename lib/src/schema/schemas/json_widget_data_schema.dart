@@ -22,12 +22,12 @@ class JsonWidgetDataSchema {
           'type',
         ],
         'properties': {
-          'args': {
+          JsonWidgetDataSchemaProperty.args: {
             'type': 'object',
             'additionalProperties': true,
           },
-          'child': SchemaHelper.anySchema,
-          'children': {
+          JsonWidgetDataSchemaProperty.child: SchemaHelper.anySchema,
+          JsonWidgetDataSchemaProperty.children: {
             'anyOf': [
               {
                 'type': 'string',
@@ -38,13 +38,13 @@ class JsonWidgetDataSchema {
               },
             ],
           },
-          'id': {
+          JsonWidgetDataSchemaProperty.id: {
             'type': 'string',
           },
-          'type': {
+          JsonWidgetDataSchemaProperty.type: {
             'type': 'string',
           },
-          'listen': {
+          JsonWidgetDataSchemaProperty.listen: {
             'type': 'array',
             'items': SchemaHelper.stringSchema,
           },
@@ -52,4 +52,13 @@ class JsonWidgetDataSchema {
       },
     ],
   };
+}
+
+class JsonWidgetDataSchemaProperty {
+  static const args = 'args';
+  static const child = 'child';
+  static const children = 'children';
+  static const id = 'id';
+  static const listen = 'listen';
+  static const type = 'type';
 }

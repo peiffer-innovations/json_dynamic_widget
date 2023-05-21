@@ -19,30 +19,51 @@ class ListViewSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'addAutomaticKeepAlives': SchemaHelper.boolSchema,
-          'addRepaintBoundaries': SchemaHelper.boolSchema,
-          'addSemanticIndexes': SchemaHelper.boolSchema,
-          'cacheExtent': SchemaHelper.numberSchema,
-          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-          'controller': SchemaHelper.stringSchema,
-          'dragStartBehavior': SchemaHelper.objectSchema(
+          ListViewSchemaProperty.addAutomaticKeepAlives: SchemaHelper.boolSchema,
+          ListViewSchemaProperty.addRepaintBoundaries: SchemaHelper.boolSchema,
+          ListViewSchemaProperty.addSemanticIndexes: SchemaHelper.boolSchema,
+          ListViewSchemaProperty.cacheExtent: SchemaHelper.numberSchema,
+          ListViewSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+          ListViewSchemaProperty.controller: SchemaHelper.stringSchema,
+          ListViewSchemaProperty.dragStartBehavior: SchemaHelper.objectSchema(
             DragStartBehaviorSchema.id,
           ),
-          'findChildIndexCallback': SchemaHelper.stringSchema,
-          'itemExtent': SchemaHelper.numberSchema,
-          'keyboardDismissBehavior': SchemaHelper.objectSchema(
+          ListViewSchemaProperty.findChildIndexCallback: SchemaHelper.stringSchema,
+          ListViewSchemaProperty.itemExtent: SchemaHelper.numberSchema,
+          ListViewSchemaProperty.keyboardDismissBehavior: SchemaHelper.objectSchema(
             ScrollViewKeyboardDismissBehaviorSchema.id,
           ),
-          'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-          'physics': SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
-          'primary': SchemaHelper.boolSchema,
-          'prototypeItem': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-          'restorationId': SchemaHelper.stringSchema,
-          'reverse': SchemaHelper.boolSchema,
-          'scrollDirection': SchemaHelper.objectSchema(AxisSchema.id),
-          'shrinkWrap': SchemaHelper.boolSchema,
+          ListViewSchemaProperty.padding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          ListViewSchemaProperty.physics: SchemaHelper.objectSchema(ScrollPhysicsSchema.id),
+          ListViewSchemaProperty.primary: SchemaHelper.boolSchema,
+          ListViewSchemaProperty.prototypeItem: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+          ListViewSchemaProperty.restorationId: SchemaHelper.stringSchema,
+          ListViewSchemaProperty.reverse: SchemaHelper.boolSchema,
+          ListViewSchemaProperty.scrollDirection: SchemaHelper.objectSchema(AxisSchema.id),
+          ListViewSchemaProperty.shrinkWrap: SchemaHelper.boolSchema,
         },
       },
     ],
   };
+}
+
+class ListViewSchemaProperty {
+  static const addAutomaticKeepAlives = 'addAutomaticKeepAlives';
+  static const addRepaintBoundaries = 'addRepaintBoundaries';
+  static const addSemanticIndexes = 'addSemanticIndexes';
+  static const cacheExtent = 'cacheExtent';
+  static const clipBehavior = 'clipBehavior';
+  static const controller = 'controller';
+  static const dragStartBehavior = 'dragStartBehavior';
+  static const findChildIndexCallback = 'findChildIndexCallback';
+  static const itemExtent = 'itemExtent';
+  static const keyboardDismissBehavior = 'keyboardDismissBehavior';
+  static const padding = 'padding';
+  static const physics = 'physics';
+  static const primary = 'primary';
+  static const prototypeItem = 'prototypeItem';
+  static const restorationId = 'restorationId';
+  static const reverse = 'reverse';
+  static const scrollDirection = 'scrollDirection';
+  static const shrinkWrap = 'shrinkWrap';
 }

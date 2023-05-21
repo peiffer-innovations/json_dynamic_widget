@@ -19,16 +19,16 @@ class DynamicSchema {
         'type': 'object',
         'additionalProperties': true,
         'properties': {
-          'dynamic': {
+          DynamicSchemaProperty.dynamic: {
             'type': 'object',
             'additionalProperties': false,
             'properties': {
-              'builderType': SchemaHelper.stringSchema,
-              'childTemplate': {
+              DynamicSchemaProperty.dynamicBuilderType: SchemaHelper.stringSchema,
+              DynamicSchemaProperty.dynamicChildTemplate: {
                 'type': 'object',
                 'additionalProperties': true,
               },
-              'initState': {
+              DynamicSchemaProperty.dynamicInitState: {
                 'oneOf': [
                   {
                     'type': 'null',
@@ -48,4 +48,11 @@ class DynamicSchema {
       }
     ],
   };
+}
+
+class DynamicSchemaProperty {
+  static const dynamic = 'dynamic';
+  static const dynamicBuilderType = 'dynamicBuilderType';
+  static const dynamicChildTemplate = 'dynamicChildTemplate';
+  static const dynamicInitState = 'dynamicInitState';
 }

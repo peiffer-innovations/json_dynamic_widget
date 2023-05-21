@@ -18,21 +18,37 @@ class MaterialSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'animationDuration': SchemaHelper.numberSchema,
-          'borderOnForeground': SchemaHelper.boolSchema,
-          'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
-          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-          'color': SchemaHelper.objectSchema(ColorSchema.id),
-          'elevation': SchemaHelper.numberSchema,
-          'margin': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-          'materialType': SchemaHelper.objectSchema(MaterialTypeSchema.id),
-          'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-          'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
-          'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
-          'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
-          'textStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
+          MaterialSchemaProperty.animationDuration: SchemaHelper.numberSchema,
+          MaterialSchemaProperty.borderOnForeground: SchemaHelper.boolSchema,
+          MaterialSchemaProperty.borderRadius: SchemaHelper.objectSchema(BorderRadiusSchema.id),
+          MaterialSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+          MaterialSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+          MaterialSchemaProperty.elevation: SchemaHelper.numberSchema,
+          MaterialSchemaProperty.margin: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          MaterialSchemaProperty.materialType: SchemaHelper.objectSchema(MaterialTypeSchema.id),
+          MaterialSchemaProperty.padding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          MaterialSchemaProperty.shadowColor: SchemaHelper.objectSchema(ColorSchema.id),
+          MaterialSchemaProperty.shape: SchemaHelper.objectSchema(ShapeBorderSchema.id),
+          MaterialSchemaProperty.surfaceTintColor: SchemaHelper.objectSchema(ColorSchema.id),
+          MaterialSchemaProperty.textStyle: SchemaHelper.objectSchema(TextStyleSchema.id),
         },
       },
     ],
   };
+}
+
+class MaterialSchemaProperty {
+  static const animationDuration = 'animationDuration';
+  static const borderOnForeground = 'borderOnForeground';
+  static const borderRadius = 'borderRadius';
+  static const clipBehavior = 'clipBehavior';
+  static const color = 'color';
+  static const elevation = 'elevation';
+  static const margin = 'margin';
+  static const materialType = 'materialType';
+  static const padding = 'padding';
+  static const shadowColor = 'shadowColor';
+  static const shape = 'shape';
+  static const surfaceTintColor = 'surfaceTintColor';
+  static const textStyle = 'textStyle';
 }

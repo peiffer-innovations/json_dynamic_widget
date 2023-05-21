@@ -14,12 +14,21 @@ class PositionedSchema {
     'title': 'Positioned',
     'additionalProperties': false,
     'properties': {
-      'bottom': SchemaHelper.numberSchema,
-      'height': SchemaHelper.numberSchema,
-      'left': SchemaHelper.numberSchema,
-      'right': SchemaHelper.numberSchema,
-      'top': SchemaHelper.numberSchema,
-      'width': SchemaHelper.numberSchema,
+      PositionedSchemaProperty.bottom: SchemaHelper.numberSchema,
+      PositionedSchemaProperty.height: SchemaHelper.numberSchema,
+      PositionedSchemaProperty.left: SchemaHelper.numberSchema,
+      PositionedSchemaProperty.right: SchemaHelper.numberSchema,
+      PositionedSchemaProperty.top: SchemaHelper.numberSchema,
+      PositionedSchemaProperty.width: SchemaHelper.numberSchema,
     },
   };
+}
+
+class PositionedSchemaProperty {
+  static const bottom = 'bottom';
+  static const height = 'height';
+  static const left = 'left';
+  static const right = 'right';
+  static const top = 'top';
+  static const width = 'width';
 }

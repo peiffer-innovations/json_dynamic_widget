@@ -18,14 +18,23 @@ class SafeAreaSchema {
         'title': 'SafeAreaSchema',
         'additionalProperties': false,
         'properties': {
-          'bottom': SchemaHelper.boolSchema,
-          'left': SchemaHelper.boolSchema,
-          'maintainBottomViewPadding': SchemaHelper.boolSchema,
-          'minimum': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-          'right': SchemaHelper.boolSchema,
-          'top': SchemaHelper.boolSchema,
+          SafeAreaSchemaProperty.bottom: SchemaHelper.boolSchema,
+          SafeAreaSchemaProperty.left: SchemaHelper.boolSchema,
+          SafeAreaSchemaProperty.maintainBottomViewPadding: SchemaHelper.boolSchema,
+          SafeAreaSchemaProperty.minimum: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          SafeAreaSchemaProperty.right: SchemaHelper.boolSchema,
+          SafeAreaSchemaProperty.top: SchemaHelper.boolSchema,
         },
       }
     ],
   };
+}
+
+class SafeAreaSchemaProperty {
+  static const bottom = 'bottom';
+  static const left = 'left';
+  static const maintainBottomViewPadding = 'maintainBottomViewPadding';
+  static const minimum = 'minimum';
+  static const right = 'right';
+  static const top = 'top';
 }

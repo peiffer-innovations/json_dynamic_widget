@@ -8,8 +8,7 @@ class FractionalTranslationSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/FractionalTranslation-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/FractionalTranslation-class.html',
     'type': 'object',
     'title': 'FractionalTranslation',
     'additionalProperties': false,
@@ -17,8 +16,13 @@ class FractionalTranslationSchema {
       'translation',
     ],
     'properties': {
-      'transformHitTests': SchemaHelper.boolSchema,
-      'translation': SchemaHelper.objectSchema(OffsetSchema.id),
+      FractionalTranslationSchemaProperty.transformHitTests: SchemaHelper.boolSchema,
+      FractionalTranslationSchemaProperty.translation: SchemaHelper.objectSchema(OffsetSchema.id),
     }
   };
+}
+
+class FractionalTranslationSchemaProperty {
+  static const transformHitTests = 'transformHitTests';
+  static const translation = 'translation';
 }

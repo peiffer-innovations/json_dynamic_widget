@@ -14,37 +14,64 @@ class CheckboxSchema {
     'title': 'Checkbox',
     'additionalProperties': false,
     'properties': {
-      'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'autofocus': SchemaHelper.boolSchema,
-      'autovalidate': SchemaHelper.boolSchema,
-      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
-      'checkColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'enabled': SchemaHelper.boolSchema,
-      'fillColor': SchemaHelper.stringSchema,
-      'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'focusNode': SchemaHelper.stringSchema,
-      'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'isError': SchemaHelper.boolSchema,
-      'label': SchemaHelper.stringSchema,
-      'materialTapTargetSize':
+      CheckboxSchemaProperty.activeColor: SchemaHelper.objectSchema(ColorSchema.id),
+      CheckboxSchemaProperty.autofocus: SchemaHelper.boolSchema,
+      CheckboxSchemaProperty.autovalidate: SchemaHelper.boolSchema,
+      CheckboxSchemaProperty.autovalidateMode: SchemaHelper.objectSchema(AutovalidateModeSchema.id),
+      CheckboxSchemaProperty.checkColor: SchemaHelper.objectSchema(ColorSchema.id),
+      CheckboxSchemaProperty.enabled: SchemaHelper.boolSchema,
+      CheckboxSchemaProperty.fillColor: SchemaHelper.stringSchema,
+      CheckboxSchemaProperty.focusColor: SchemaHelper.objectSchema(ColorSchema.id),
+      CheckboxSchemaProperty.focusNode: SchemaHelper.stringSchema,
+      CheckboxSchemaProperty.hoverColor: SchemaHelper.objectSchema(ColorSchema.id),
+      CheckboxSchemaProperty.isError: SchemaHelper.boolSchema,
+      CheckboxSchemaProperty.label: SchemaHelper.stringSchema,
+      CheckboxSchemaProperty.materialTapTargetSize:
           SchemaHelper.objectSchema(MaterialTapTargetSizeSchema.id),
-      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
-      'onChanged': SchemaHelper.stringSchema,
-      'onSaved': SchemaHelper.stringSchema,
-      'overlayColor': SchemaHelper.stringSchema,
-      'shape': SchemaHelper.objectSchema(OutlinedButtonSchema.id),
-      'side': SchemaHelper.objectSchema(BorderSideSchema.id),
-      'splashRadius': SchemaHelper.numberSchema,
-      'tristate': SchemaHelper.boolSchema,
-      'validators': {
+      CheckboxSchemaProperty.mouseCursor: SchemaHelper.objectSchema(MouseCursorSchema.id),
+      CheckboxSchemaProperty.onChanged: SchemaHelper.stringSchema,
+      CheckboxSchemaProperty.onSaved: SchemaHelper.stringSchema,
+      CheckboxSchemaProperty.overlayColor: SchemaHelper.stringSchema,
+      CheckboxSchemaProperty.shape: SchemaHelper.objectSchema(OutlinedButtonSchema.id),
+      CheckboxSchemaProperty.side: SchemaHelper.objectSchema(BorderSideSchema.id),
+      CheckboxSchemaProperty.splashRadius: SchemaHelper.numberSchema,
+      CheckboxSchemaProperty.tristate: SchemaHelper.boolSchema,
+      CheckboxSchemaProperty.validators: {
         'type': 'array',
         'items': {
           'type': 'object',
           'additionalProperties': true,
         },
       },
-      'value': SchemaHelper.boolSchema,
-      'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
+      CheckboxSchemaProperty.value: SchemaHelper.boolSchema,
+      CheckboxSchemaProperty.visualDensity: SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };
+}
+
+class CheckboxSchemaProperty {
+  static const activeColor = 'activeColor';
+  static const autofocus = 'autofocus';
+  static const autovalidate = 'autovalidate';
+  static const autovalidateMode = 'autovalidateMode';
+  static const checkColor = 'checkColor';
+  static const enabled = 'enabled';
+  static const fillColor = 'fillColor';
+  static const focusColor = 'focusColor';
+  static const focusNode = 'focusNode';
+  static const hoverColor = 'hoverColor';
+  static const isError = 'isError';
+  static const label = 'label';
+  static const materialTapTargetSize = 'materialTapTargetSize';
+  static const mouseCursor = 'mouseCursor';
+  static const onChanged = 'onChanged';
+  static const onSaved = 'onSaved';
+  static const overlayColor = 'overlayColor';
+  static const shape = 'shape';
+  static const side = 'side';
+  static const splashRadius = 'splashRadius';
+  static const tristate = 'tristate';
+  static const validators = 'validators';
+  static const value = 'value';
+  static const visualDensity = 'visualDensity';
 }

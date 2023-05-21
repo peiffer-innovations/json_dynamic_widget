@@ -18,11 +18,19 @@ class TweenAnimationSchema {
       'tween',
     ],
     'properties': {
-      'builder': SchemaHelper.stringSchema,
-      'curve': SchemaHelper.stringSchema,
-      'duration': SchemaHelper.numberSchema,
-      'onEnd': SchemaHelper.stringSchema,
-      'tween': SchemaHelper.stringSchema,
+      TweenAnimationSchemaProperty.builder: SchemaHelper.stringSchema,
+      TweenAnimationSchemaProperty.curve: SchemaHelper.stringSchema,
+      TweenAnimationSchemaProperty.duration: SchemaHelper.numberSchema,
+      TweenAnimationSchemaProperty.onEnd: SchemaHelper.stringSchema,
+      TweenAnimationSchemaProperty.tween: SchemaHelper.stringSchema,
     },
   };
+}
+
+class TweenAnimationSchemaProperty {
+  static const builder = 'builder';
+  static const curve = 'curve';
+  static const duration = 'duration';
+  static const onEnd = 'onEnd';
+  static const tween = 'tween';
 }

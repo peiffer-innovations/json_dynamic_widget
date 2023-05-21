@@ -18,17 +18,29 @@ class CardSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'borderOnForeground': SchemaHelper.boolSchema,
-          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-          'color': SchemaHelper.objectSchema(ColorSchema.id),
-          'elevation': SchemaHelper.numberSchema,
-          'margin': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-          'semanticContainer': SchemaHelper.boolSchema,
-          'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
-          'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
-          'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
+          CardSchemaProperty.borderOnForeground: SchemaHelper.boolSchema,
+          CardSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+          CardSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+          CardSchemaProperty.elevation: SchemaHelper.numberSchema,
+          CardSchemaProperty.margin: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+          CardSchemaProperty.semanticContainer: SchemaHelper.boolSchema,
+          CardSchemaProperty.shadowColor: SchemaHelper.objectSchema(ColorSchema.id),
+          CardSchemaProperty.shape: SchemaHelper.objectSchema(ShapeBorderSchema.id),
+          CardSchemaProperty.surfaceTintColor: SchemaHelper.objectSchema(ColorSchema.id),
         },
       },
     ],
   };
+}
+
+class CardSchemaProperty {
+  static const borderOnForeground = 'borderOnForeground';
+  static const clipBehavior = 'clipBehavior';
+  static const color = 'color';
+  static const elevation = 'elevation';
+  static const margin = 'margin';
+  static const semanticContainer = 'semanticContainer';
+  static const shadowColor = 'shadowColor';
+  static const shape = 'shape';
+  static const surfaceTintColor = 'surfaceTintColor';
 }

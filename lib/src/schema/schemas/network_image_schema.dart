@@ -17,29 +17,55 @@ class NetworkImageSchema {
       'src',
     ],
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'cacheHeight': SchemaHelper.numberSchema,
-      'cacheWidth': SchemaHelper.numberSchema,
-      'centerSlice': SchemaHelper.objectSchema(RectSchema.id),
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
-      'colorBlendMode': SchemaHelper.objectSchema(BlendModeSchema.id),
-      'errorBuilder': SchemaHelper.stringSchema,
-      'excludeFromSemantics': SchemaHelper.boolSchema,
-      'filterQuality': SchemaHelper.objectSchema(FilterQualitySchema.id),
-      'fit': SchemaHelper.objectSchema(BoxFitSchema.id),
-      'frameBuilder': SchemaHelper.stringSchema,
-      'gaplessPlayback': SchemaHelper.boolSchema,
-      'height': SchemaHelper.numberSchema,
-      'headers': SchemaHelper.anySchema,
-      'isAntiAlias': SchemaHelper.boolSchema,
-      'loadingBuilder': SchemaHelper.stringSchema,
-      'matchTextDirection': SchemaHelper.boolSchema,
-      'opacity': SchemaHelper.numberSchema,
-      'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),
-      'scale': SchemaHelper.numberSchema,
-      'semanticLabel': SchemaHelper.stringSchema,
-      'src': SchemaHelper.stringSchema,
-      'width': SchemaHelper.numberSchema,
+      NetworkImageSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      NetworkImageSchemaProperty.cacheHeight: SchemaHelper.numberSchema,
+      NetworkImageSchemaProperty.cacheWidth: SchemaHelper.numberSchema,
+      NetworkImageSchemaProperty.centerSlice: SchemaHelper.objectSchema(RectSchema.id),
+      NetworkImageSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+      NetworkImageSchemaProperty.colorBlendMode: SchemaHelper.objectSchema(BlendModeSchema.id),
+      NetworkImageSchemaProperty.errorBuilder: SchemaHelper.stringSchema,
+      NetworkImageSchemaProperty.excludeFromSemantics: SchemaHelper.boolSchema,
+      NetworkImageSchemaProperty.filterQuality: SchemaHelper.objectSchema(FilterQualitySchema.id),
+      NetworkImageSchemaProperty.fit: SchemaHelper.objectSchema(BoxFitSchema.id),
+      NetworkImageSchemaProperty.frameBuilder: SchemaHelper.stringSchema,
+      NetworkImageSchemaProperty.gaplessPlayback: SchemaHelper.boolSchema,
+      NetworkImageSchemaProperty.height: SchemaHelper.numberSchema,
+      NetworkImageSchemaProperty.headers: SchemaHelper.anySchema,
+      NetworkImageSchemaProperty.isAntiAlias: SchemaHelper.boolSchema,
+      NetworkImageSchemaProperty.loadingBuilder: SchemaHelper.stringSchema,
+      NetworkImageSchemaProperty.matchTextDirection: SchemaHelper.boolSchema,
+      NetworkImageSchemaProperty.opacity: SchemaHelper.numberSchema,
+      NetworkImageSchemaProperty.repeat: SchemaHelper.objectSchema(ImageRepeatSchema.id),
+      NetworkImageSchemaProperty.scale: SchemaHelper.numberSchema,
+      NetworkImageSchemaProperty.semanticLabel: SchemaHelper.stringSchema,
+      NetworkImageSchemaProperty.src: SchemaHelper.stringSchema,
+      NetworkImageSchemaProperty.width: SchemaHelper.numberSchema,
     },
   };
+}
+
+class NetworkImageSchemaProperty {
+  static const alignment = 'alignment';
+  static const cacheHeight = 'cacheHeight';
+  static const cacheWidth = 'cacheWidth';
+  static const centerSlice = 'centerSlice';
+  static const color = 'color';
+  static const colorBlendMode = 'colorBlendMode';
+  static const errorBuilder = 'errorBuilder';
+  static const excludeFromSemantics = 'excludeFromSemantics';
+  static const filterQuality = 'filterQuality';
+  static const fit = 'fit';
+  static const frameBuilder = 'frameBuilder';
+  static const gaplessPlayback = 'gaplessPlayback';
+  static const height = 'height';
+  static const headers = 'headers';
+  static const isAntiAlias = 'isAntiAlias';
+  static const loadingBuilder = 'loadingBuilder';
+  static const matchTextDirection = 'matchTextDirection';
+  static const opacity = 'opacity';
+  static const repeat = 'repeat';
+  static const scale = 'scale';
+  static const semanticLabel = 'semanticLabel';
+  static const src = 'src';
+  static const width = 'width';
 }

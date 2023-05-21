@@ -8,16 +8,20 @@ class DecoratedBoxSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/DecoratedBox-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/DecoratedBox-class.html',
     'title': 'DecoratedBox',
     'additionalProperties': false,
     'required': [
       'decoration',
     ],
     'properties': {
-      'decoration': SchemaHelper.objectSchema(BoxDecorationSchema.id),
-      'position': SchemaHelper.objectSchema(DecorationPositionSchema.id),
+      DecoratedBoxSchemaProperty.decoration: SchemaHelper.objectSchema(BoxDecorationSchema.id),
+      DecoratedBoxSchemaProperty.position: SchemaHelper.objectSchema(DecorationPositionSchema.id),
     }
   };
+}
+
+class DecoratedBoxSchemaProperty {
+  static const decoration = 'decoration';
+  static const position = 'position';
 }

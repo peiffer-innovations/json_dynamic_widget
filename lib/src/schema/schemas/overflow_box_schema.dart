@@ -8,17 +8,24 @@ class OverflowBoxSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/OverflowBox-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/OverflowBox-class.html',
     'type': 'object',
     'title': 'OverflowBox',
     'additionalProperties': false,
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'maxHeight': SchemaHelper.numberSchema,
-      'maxWidth': SchemaHelper.numberSchema,
-      'minHeight': SchemaHelper.numberSchema,
-      'minWidth': SchemaHelper.numberSchema,
+      OverflowBoxSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      OverflowBoxSchemaProperty.maxHeight: SchemaHelper.numberSchema,
+      OverflowBoxSchemaProperty.maxWidth: SchemaHelper.numberSchema,
+      OverflowBoxSchemaProperty.minHeight: SchemaHelper.numberSchema,
+      OverflowBoxSchemaProperty.minWidth: SchemaHelper.numberSchema,
     }
   };
+}
+
+class OverflowBoxSchemaProperty {
+  static const alignment = 'alignment';
+  static const maxHeight = 'maxHeight';
+  static const maxWidth = 'maxWidth';
+  static const minHeight = 'minHeight';
+  static const minWidth = 'minWidth';
 }

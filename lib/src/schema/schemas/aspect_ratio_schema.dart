@@ -17,7 +17,11 @@ class AspectRatioSchema {
       'aspectRatio',
     ],
     'properties': {
-      'aspectRatio': SchemaHelper.numberSchema,
+      AspectRatioSchemaProperty.aspectRatio: SchemaHelper.numberSchema,
     }
   };
+}
+
+class AspectRatioSchemaProperty {
+  static const aspectRatio = 'aspectRatio';
 }

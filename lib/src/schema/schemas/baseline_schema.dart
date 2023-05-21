@@ -22,10 +22,15 @@ class BaselineSchema {
           'baselineType',
         ],
         'properties': {
-          'baseline': SchemaHelper.numberSchema,
-          'baselineType': SchemaHelper.objectSchema(TextBaselineSchema.id),
+          BaseLineSchemaProperty.baseline: SchemaHelper.numberSchema,
+          BaseLineSchemaProperty.baselineType: SchemaHelper.objectSchema(TextBaselineSchema.id),
         },
       },
     ],
   };
+}
+
+class BaseLineSchemaProperty {
+  static const baseline = 'baseline';
+  static const baselineType = 'baselineType';
 }

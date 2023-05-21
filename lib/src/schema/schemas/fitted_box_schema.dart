@@ -18,11 +18,17 @@ class FittedBoxSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-          'fit': SchemaHelper.objectSchema(BoxFitSchema.id),
+          FitteBoxSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+          FitteBoxSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+          FitteBoxSchemaProperty.fit: SchemaHelper.objectSchema(BoxFitSchema.id),
         },
       },
     ],
   };
+}
+
+class FitteBoxSchemaProperty {
+  static const alignment = 'alignment';
+  static const clipBehavior = 'clipBehavior';
+  static const fit = 'fit';
 }

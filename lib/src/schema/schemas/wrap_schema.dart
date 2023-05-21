@@ -13,15 +13,25 @@ class WrapSchema {
     'title': 'Wrap',
     'additionalProperties': false,
     'properties': {
-      'alignment': SchemaHelper.objectSchema(WrapAlignmentSchema.id),
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'crossAxisAlignment':
-          SchemaHelper.objectSchema(WrapCrossAlignmentSchema.id),
-      'direction': SchemaHelper.objectSchema(AxisSchema.id),
-      'runAlignment': SchemaHelper.objectSchema(WrapAlignmentSchema.id),
-      'runSpacing': SchemaHelper.numberSchema,
-      'spacing': SchemaHelper.numberSchema,
-      'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id)
+      WrapSchemaProperty.alignment: SchemaHelper.objectSchema(WrapAlignmentSchema.id),
+      WrapSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      WrapSchemaProperty.crossAxisAlignment: SchemaHelper.objectSchema(WrapCrossAlignmentSchema.id),
+      WrapSchemaProperty.direction: SchemaHelper.objectSchema(AxisSchema.id),
+      WrapSchemaProperty.runAlignment: SchemaHelper.objectSchema(WrapAlignmentSchema.id),
+      WrapSchemaProperty.runSpacing: SchemaHelper.numberSchema,
+      WrapSchemaProperty.spacing: SchemaHelper.numberSchema,
+      WrapSchemaProperty.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id)
     },
   };
+}
+
+class WrapSchemaProperty {
+  static const alignment = 'alignment';
+  static const clipBehavior = 'clipBehavior';
+  static const crossAxisAlignment = 'crossAxisAlignment';
+  static const direction = 'direction';
+  static const runAlignment = 'runAlignment';
+  static const runSpacing = 'runSpacing';
+  static const spacing = 'spacing';
+  static const textDirection = 'textDirection';
 }

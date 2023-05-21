@@ -16,20 +16,36 @@ class RichTextSchema {
       'text',
     ],
     'properties': {
-      'locale': SchemaHelper.objectSchema(LocaleSchema.id),
-      'maxLines': SchemaHelper.numberSchema,
-      'overflow': SchemaHelper.objectSchema(TextOverflowSchema.id),
-      'selectionColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'selectionRegistrar': SchemaHelper.stringSchema,
-      'softWrap': SchemaHelper.boolSchema,
-      'strutStyle': SchemaHelper.objectSchema(StrutStyleSchema.id),
-      'text': SchemaHelper.objectSchema(TextSpanSchema.id),
-      'textAlign': SchemaHelper.objectSchema(TextAlignSchema.id),
-      'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
-      'textHeightBehavior':
+      RichTextSchemaProperty.locale: SchemaHelper.objectSchema(LocaleSchema.id),
+      RichTextSchemaProperty.maxLines: SchemaHelper.numberSchema,
+      RichTextSchemaProperty.overflow: SchemaHelper.objectSchema(TextOverflowSchema.id),
+      RichTextSchemaProperty.selectionColor: SchemaHelper.objectSchema(ColorSchema.id),
+      RichTextSchemaProperty.selectionRegistrar: SchemaHelper.stringSchema,
+      RichTextSchemaProperty.softWrap: SchemaHelper.boolSchema,
+      RichTextSchemaProperty.strutStyle: SchemaHelper.objectSchema(StrutStyleSchema.id),
+      RichTextSchemaProperty.text: SchemaHelper.objectSchema(TextSpanSchema.id),
+      RichTextSchemaProperty.textAlign: SchemaHelper.objectSchema(TextAlignSchema.id),
+      RichTextSchemaProperty.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id),
+      RichTextSchemaProperty.textHeightBehavior:
           SchemaHelper.objectSchema(TextHeightBehaviorSchema.id),
-      'textScaleFactor': SchemaHelper.numberSchema,
-      'textWidthBasis': SchemaHelper.objectSchema(TextWidthBasisSchema.id),
+      RichTextSchemaProperty.textScaleFactor: SchemaHelper.numberSchema,
+      RichTextSchemaProperty.textWidthBasis: SchemaHelper.objectSchema(TextWidthBasisSchema.id),
     }
   };
+}
+
+class RichTextSchemaProperty {
+  static const locale = 'locale';
+  static const maxLines = 'maxLines';
+  static const overflow = 'overflow';
+  static const selectionColor = 'selectionColor';
+  static const selectionRegistrar = 'selectionRegistrar';
+  static const softWrap = 'softWrap';
+  static const strutStyle = 'strutStyle';
+  static const text = 'text';
+  static const textAlign = 'textAlign';
+  static const textDirection = 'textDirection';
+  static const textHeightBehavior = 'textHeightBehavior';
+  static const textScaleFactor = 'textScaleFactor';
+  static const textWidthBasis = 'textWidthBasis';
 }

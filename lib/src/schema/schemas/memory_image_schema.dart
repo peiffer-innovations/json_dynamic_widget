@@ -8,8 +8,7 @@ class MemoryImageSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 0,
-    r'$comment':
-        'https://api.flutter.dev/flutter/painting/MemoryImage-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/painting/MemoryImage-class.html',
     'type': 'object',
     'title': 'MemoryImage',
     'additionalProperties': false,
@@ -17,27 +16,51 @@ class MemoryImageSchema {
       'image',
     ],
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'cacheHeight': SchemaHelper.numberSchema,
-      'cacheWidth': SchemaHelper.numberSchema,
-      'centerSlice': SchemaHelper.objectSchema(RectSchema.id),
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
-      'colorBlendMode': SchemaHelper.objectSchema(BlendModeSchema.id),
-      'errorBuilder': SchemaHelper.stringSchema,
-      'excludeFromSemantics': SchemaHelper.boolSchema,
-      'filterQuality': SchemaHelper.objectSchema(FilterQualitySchema.id),
-      'fit': SchemaHelper.objectSchema(BoxFitSchema.id),
-      'frameBuilder': SchemaHelper.stringSchema,
-      'gaplessPlayback': SchemaHelper.boolSchema,
-      'height': SchemaHelper.numberSchema,
-      'image': SchemaHelper.anySchema,
-      'isAntiAlias': SchemaHelper.boolSchema,
-      'matchTextDirection': SchemaHelper.boolSchema,
-      'opacity': SchemaHelper.numberSchema,
-      'repeat': SchemaHelper.objectSchema(ImageRepeatSchema.id),
-      'scale': SchemaHelper.numberSchema,
-      'semanticLabel': SchemaHelper.stringSchema,
-      'width': SchemaHelper.numberSchema,
+      MemoryImageSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      MemoryImageSchemaProperty.cacheHeight: SchemaHelper.numberSchema,
+      MemoryImageSchemaProperty.cacheWidth: SchemaHelper.numberSchema,
+      MemoryImageSchemaProperty.centerSlice: SchemaHelper.objectSchema(RectSchema.id),
+      MemoryImageSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+      MemoryImageSchemaProperty.colorBlendMode: SchemaHelper.objectSchema(BlendModeSchema.id),
+      MemoryImageSchemaProperty.errorBuilder: SchemaHelper.stringSchema,
+      MemoryImageSchemaProperty.excludeFromSemantics: SchemaHelper.boolSchema,
+      MemoryImageSchemaProperty.filterQuality: SchemaHelper.objectSchema(FilterQualitySchema.id),
+      MemoryImageSchemaProperty.fit: SchemaHelper.objectSchema(BoxFitSchema.id),
+      MemoryImageSchemaProperty.frameBuilder: SchemaHelper.stringSchema,
+      MemoryImageSchemaProperty.gaplessPlayback: SchemaHelper.boolSchema,
+      MemoryImageSchemaProperty.height: SchemaHelper.numberSchema,
+      MemoryImageSchemaProperty.image: SchemaHelper.anySchema,
+      MemoryImageSchemaProperty.isAntiAlias: SchemaHelper.boolSchema,
+      MemoryImageSchemaProperty.matchTextDirection: SchemaHelper.boolSchema,
+      MemoryImageSchemaProperty.opacity: SchemaHelper.numberSchema,
+      MemoryImageSchemaProperty.repeat: SchemaHelper.objectSchema(ImageRepeatSchema.id),
+      MemoryImageSchemaProperty.scale: SchemaHelper.numberSchema,
+      MemoryImageSchemaProperty.semanticLabel: SchemaHelper.stringSchema,
+      MemoryImageSchemaProperty.width: SchemaHelper.numberSchema,
     },
   };
+}
+
+class MemoryImageSchemaProperty {
+  static const alignment = 'alignment';
+  static const cacheHeight = 'cacheHeight';
+  static const cacheWidth = 'cacheWidth';
+  static const centerSlice = 'centerSlice';
+  static const color = 'color';
+  static const colorBlendMode = 'colorBlendMode';
+  static const errorBuilder = 'errorBuilder';
+  static const excludeFromSemantics = 'excludeFromSemantics';
+  static const filterQuality = 'filterQuality';
+  static const fit = 'fit';
+  static const frameBuilder = 'frameBuilder';
+  static const gaplessPlayback = 'gaplessPlayback';
+  static const height = 'height';
+  static const image = 'image';
+  static const isAntiAlias = 'isAntiAlias';
+  static const matchTextDirection = 'matchTextDirection';
+  static const opacity = 'opacity';
+  static const repeat = 'repeat';
+  static const scale = 'scale';
+  static const semanticLabel = 'semanticLabel';
+  static const width = 'width';
 }

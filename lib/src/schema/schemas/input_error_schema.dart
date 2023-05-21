@@ -17,7 +17,7 @@ class InputErrorSchema {
       'text',
     ],
     'properties': {
-      'text': {
+      InputErrorSchemaProperty.text: {
         'oneOf': [
           {
             'type': 'null',
@@ -27,4 +27,8 @@ class InputErrorSchema {
       },
     },
   };
+}
+
+class InputErrorSchemaProperty {
+  static const text = 'text';
 }

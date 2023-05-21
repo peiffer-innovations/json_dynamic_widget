@@ -8,8 +8,7 @@ class AnimatedOpacitySchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/AnimatedOpacity-class.html',
     'type': 'object',
     'title': 'AnimatedOpacity',
     'additionalProperties': false,
@@ -18,11 +17,19 @@ class AnimatedOpacitySchema {
       'opacity',
     ],
     'properties': {
-      'alwaysIncludeSemantics': SchemaHelper.boolSchema,
-      'curve': SchemaHelper.stringSchema,
-      'duration': SchemaHelper.numberSchema,
-      'onEnd': SchemaHelper.stringSchema,
-      'opacity': SchemaHelper.stringSchema,
+      AnimatedOpacitySchemaProperty.alwaysIncludeSemantics: SchemaHelper.boolSchema,
+      AnimatedOpacitySchemaProperty.curve: SchemaHelper.stringSchema,
+      AnimatedOpacitySchemaProperty.duration: SchemaHelper.numberSchema,
+      AnimatedOpacitySchemaProperty.onEnd: SchemaHelper.stringSchema,
+      AnimatedOpacitySchemaProperty.opacity: SchemaHelper.stringSchema,
     },
   };
+}
+
+class AnimatedOpacitySchemaProperty {
+  static const alwaysIncludeSemantics = 'alwaysIncludeSemantics';
+  static const curve = 'curve';
+  static const duration = 'duration';
+  static const onEnd = 'onEnd';
+  static const opacity = 'opacity';
 }

@@ -9,33 +9,56 @@ class PopupMenuButtonSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 0,
-    r'$comment':
-        'https://api.flutter.dev/flutter/material/PopupMenuButton-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/material/PopupMenuButton-class.html',
     'type': 'object',
     'title': 'PopupMenuButton',
     'additionalProperties': false,
     'properties': {
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
-      'constraints': SchemaHelper.objectSchema(BoxConstraintsSchema.id),
-      'elevation': SchemaHelper.numberSchema,
-      'enabled': SchemaHelper.boolSchema,
-      'enableFeedback': SchemaHelper.boolSchema,
-      'icon': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
-      'iconSize': SchemaHelper.numberSchema,
-      'initialValue': SchemaHelper.stringSchema,
-      'itemBuilder': SchemaHelper.stringSchema,
-      'offset': SchemaHelper.objectSchema(OffsetSchema.id),
-      'onCanceled': SchemaHelper.stringSchema,
-      'onOpened': SchemaHelper.stringSchema,
-      'onSelected': SchemaHelper.stringSchema,
-      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'position': SchemaHelper.objectSchema(PopupMenuPositionSchema.id),
-      'shadowColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'shape': SchemaHelper.objectSchema(ShapeBorderSchema.id),
-      'splashRadius': SchemaHelper.numberSchema,
-      'surfaceTintColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'tooltip': SchemaHelper.stringSchema,
+      PopupMenuButtonSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      PopupMenuButtonSchemaProperty.color: SchemaHelper.objectSchema(ColorSchema.id),
+      PopupMenuButtonSchemaProperty.constraints: SchemaHelper.objectSchema(BoxConstraintsSchema.id),
+      PopupMenuButtonSchemaProperty.elevation: SchemaHelper.numberSchema,
+      PopupMenuButtonSchemaProperty.enabled: SchemaHelper.boolSchema,
+      PopupMenuButtonSchemaProperty.enableFeedback: SchemaHelper.boolSchema,
+      PopupMenuButtonSchemaProperty.icon: SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      PopupMenuButtonSchemaProperty.iconSize: SchemaHelper.numberSchema,
+      PopupMenuButtonSchemaProperty.initialValue: SchemaHelper.stringSchema,
+      PopupMenuButtonSchemaProperty.itemBuilder: SchemaHelper.stringSchema,
+      PopupMenuButtonSchemaProperty.offset: SchemaHelper.objectSchema(OffsetSchema.id),
+      PopupMenuButtonSchemaProperty.onCanceled: SchemaHelper.stringSchema,
+      PopupMenuButtonSchemaProperty.onOpened: SchemaHelper.stringSchema,
+      PopupMenuButtonSchemaProperty.onSelected: SchemaHelper.stringSchema,
+      PopupMenuButtonSchemaProperty.padding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      PopupMenuButtonSchemaProperty.position: SchemaHelper.objectSchema(PopupMenuPositionSchema.id),
+      PopupMenuButtonSchemaProperty.shadowColor: SchemaHelper.objectSchema(ColorSchema.id),
+      PopupMenuButtonSchemaProperty.shape: SchemaHelper.objectSchema(ShapeBorderSchema.id),
+      PopupMenuButtonSchemaProperty.splashRadius: SchemaHelper.numberSchema,
+      PopupMenuButtonSchemaProperty.surfaceTintColor: SchemaHelper.objectSchema(ColorSchema.id),
+      PopupMenuButtonSchemaProperty.tooltip: SchemaHelper.stringSchema,
     }
   };
+}
+
+class PopupMenuButtonSchemaProperty {
+  static const clipBehavior = 'clipBehavior';
+  static const color = 'color';
+  static const constraints = 'constraints';
+  static const elevation = 'elevation';
+  static const enabled = 'enabled';
+  static const enableFeedback = 'enableFeedback';
+  static const icon = 'icon';
+  static const iconSize = 'iconSize';
+  static const initialValue = 'initialValue';
+  static const itemBuilder = 'itemBuilder';
+  static const offset = 'offset';
+  static const onCanceled = 'onCanceled';
+  static const onOpened = 'onOpened';
+  static const onSelected = 'onSelected';
+  static const padding = 'padding';
+  static const position = 'position';
+  static const shadowColor = 'shadowColor';
+  static const shape = 'shape';
+  static const splashRadius = 'splashRadius';
+  static const surfaceTintColor = 'surfaceTintColor';
+  static const tooltip = 'tooltip';
 }

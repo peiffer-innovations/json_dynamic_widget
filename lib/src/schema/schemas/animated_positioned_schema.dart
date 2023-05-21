@@ -8,8 +8,7 @@ class AnimatedPositionedSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/AnimatedPositioned-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/AnimatedPositioned-class.html',
     'type': 'object',
     'title': 'AnimatedPositioned',
     'additionalProperties': false,
@@ -17,15 +16,27 @@ class AnimatedPositionedSchema {
       'duration',
     ],
     'properties': {
-      'bottom': SchemaHelper.numberSchema,
-      'curve': SchemaHelper.stringSchema,
-      'duration': SchemaHelper.numberSchema,
-      'height': SchemaHelper.numberSchema,
-      'left': SchemaHelper.numberSchema,
-      'onEnd': SchemaHelper.stringSchema,
-      'right': SchemaHelper.numberSchema,
-      'top': SchemaHelper.numberSchema,
-      'width': SchemaHelper.numberSchema,
+      AnimatedPositionedSchemaProperty.bottom: SchemaHelper.numberSchema,
+      AnimatedPositionedSchemaProperty.curve: SchemaHelper.stringSchema,
+      AnimatedPositionedSchemaProperty.duration: SchemaHelper.numberSchema,
+      AnimatedPositionedSchemaProperty.height: SchemaHelper.numberSchema,
+      AnimatedPositionedSchemaProperty.left: SchemaHelper.numberSchema,
+      AnimatedPositionedSchemaProperty.onEnd: SchemaHelper.stringSchema,
+      AnimatedPositionedSchemaProperty.right: SchemaHelper.numberSchema,
+      AnimatedPositionedSchemaProperty.top: SchemaHelper.numberSchema,
+      AnimatedPositionedSchemaProperty.width: SchemaHelper.numberSchema,
     },
   };
+}
+
+class AnimatedPositionedSchemaProperty {
+  static const bottom = 'bottom';
+  static const curve = 'curve';
+  static const duration = 'duration';
+  static const height = 'height';
+  static const left = 'left';
+  static const onEnd = 'onEnd';
+  static const right = 'right';
+  static const top = 'top';
+  static const width = 'width';
 }

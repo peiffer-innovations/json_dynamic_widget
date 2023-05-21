@@ -16,8 +16,13 @@ class OpacitySchema {
       'opacity',
     ],
     'properties': {
-      'alwaysIncludeSemantics': SchemaHelper.boolSchema,
-      'opacity': SchemaHelper.numberSchema,
+      OpacitySchemaProperty.alwaysIncludeSemantics: SchemaHelper.boolSchema,
+      OpacitySchemaProperty.opacity: SchemaHelper.numberSchema,
     },
   };
+}
+
+class OpacitySchemaProperty {
+  static const alwaysIncludeSemantics = 'alwaysIncludeSemantics';
+  static const opacity = 'opacity';
 }

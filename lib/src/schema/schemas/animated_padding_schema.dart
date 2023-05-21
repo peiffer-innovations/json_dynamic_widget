@@ -18,10 +18,17 @@ class AnimatedPaddingSchema {
       'padding',
     ],
     'properties': {
-      'curve': SchemaHelper.stringSchema,
-      'duration': SchemaHelper.numberSchema,
-      'onEnd': SchemaHelper.stringSchema,
-      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      AnimatedPaddingSchemaProperty.curve: SchemaHelper.stringSchema,
+      AnimatedPaddingSchemaProperty.duration: SchemaHelper.numberSchema,
+      AnimatedPaddingSchemaProperty.onEnd: SchemaHelper.stringSchema,
+      AnimatedPaddingSchemaProperty.padding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
     },
   };
+}
+
+class AnimatedPaddingSchemaProperty {
+  static const curve = 'curve';
+  static const duration = 'duration';
+  static const onEnd = 'onEnd';
+  static const padding = 'padding';
 }

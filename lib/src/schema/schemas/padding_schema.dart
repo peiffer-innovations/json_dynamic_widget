@@ -16,7 +16,11 @@ class PaddingSchema {
       'padding',
     ],
     'properties': {
-      'padding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      PaddingSchemaProperty.padding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
     },
   };
+}
+
+class PaddingSchemaProperty {
+  static const padding = 'padding';
 }

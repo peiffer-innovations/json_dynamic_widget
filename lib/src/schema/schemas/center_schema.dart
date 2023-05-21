@@ -18,10 +18,15 @@ class CenterSchema {
         'type': 'object',
         'additionalProperties': false,
         'properties': {
-          'heightFactor': SchemaHelper.numberSchema,
-          'widthFactor': SchemaHelper.numberSchema,
+          CenterSchemaProperty.heightFactor: SchemaHelper.numberSchema,
+          CenterSchemaProperty.widthFactor: SchemaHelper.numberSchema,
         },
       },
     ],
   };
+}
+
+class CenterSchemaProperty {
+  static const heightFactor = 'heightFactor';
+  static const widthFactor = 'widthFactor';
 }

@@ -14,12 +14,21 @@ class SliverListSchema {
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'addAutomaticKeepAlives': SchemaHelper.boolSchema,
-      'addRepaintBoundaries': SchemaHelper.boolSchema,
-      'addSemanticIndexes': SchemaHelper.boolSchema,
-      'findChildIndexCallback': SchemaHelper.stringSchema,
-      'semanticIndexCallback': SchemaHelper.stringSchema,
-      'semanticIndexOffset': SchemaHelper.numberSchema,
+      SilverListSchemaProperty.addAutomaticKeepAlives: SchemaHelper.boolSchema,
+      SilverListSchemaProperty.addRepaintBoundaries: SchemaHelper.boolSchema,
+      SilverListSchemaProperty.addSemanticIndexes: SchemaHelper.boolSchema,
+      SilverListSchemaProperty.findChildIndexCallback: SchemaHelper.stringSchema,
+      SilverListSchemaProperty.semanticIndexCallback: SchemaHelper.stringSchema,
+      SilverListSchemaProperty.semanticIndexOffset: SchemaHelper.numberSchema,
     },
   };
+}
+
+class SilverListSchemaProperty {
+  static const addAutomaticKeepAlives = 'addAutomaticKeepAlives';
+  static const addRepaintBoundaries = 'addRepaintBoundaries';
+  static const addSemanticIndexes = 'addSemanticIndexes';
+  static const findChildIndexCallback = 'findChildIndexCallback';
+  static const semanticIndexCallback = 'semanticIndexCallback';
+  static const semanticIndexOffset = 'semanticIndexOffset';
 }

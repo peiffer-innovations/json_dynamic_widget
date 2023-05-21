@@ -13,68 +13,133 @@ class SemanticsSchema {
     'title': 'Semantics',
     'additionalProperties': false,
     'properties': {
-      'attributedDecreasedValue': SchemaHelper.stringSchema,
-      'attributedHint': SchemaHelper.stringSchema,
-      'attributedIncreasedValue': SchemaHelper.stringSchema,
-      'attributedLabel': SchemaHelper.stringSchema,
-      'attributedValue': SchemaHelper.stringSchema,
-      'button': SchemaHelper.boolSchema,
-      'customSemanticsActions': SchemaHelper.stringSchema,
-      'checked': SchemaHelper.boolSchema,
-      'container': SchemaHelper.boolSchema,
-      'currentValueLength': SchemaHelper.numberSchema,
-      'decreasedValue': SchemaHelper.stringSchema,
-      'enabled': SchemaHelper.boolSchema,
-      'excludeSemantics': SchemaHelper.boolSchema,
-      'explicitChildNodes': SchemaHelper.boolSchema,
-      'focusable': SchemaHelper.boolSchema,
-      'focused': SchemaHelper.boolSchema,
-      'header': SchemaHelper.boolSchema,
-      'hidden': SchemaHelper.boolSchema,
-      'hint': SchemaHelper.stringSchema,
-      'image': SchemaHelper.boolSchema,
-      'inMutuallyExclusiveGroup': SchemaHelper.boolSchema,
-      'increasedValue': SchemaHelper.stringSchema,
-      'keyboardKey': SchemaHelper.boolSchema,
-      'label': SchemaHelper.stringSchema,
-      'link': SchemaHelper.boolSchema,
-      'liveRegion': SchemaHelper.boolSchema,
-      'maxValueLength': SchemaHelper.numberSchema,
-      'mixed': SchemaHelper.boolSchema,
-      'multiline': SchemaHelper.boolSchema,
-      'namesRoute': SchemaHelper.boolSchema,
-      'obscured': SchemaHelper.boolSchema,
-      'onCopy': SchemaHelper.stringSchema,
-      'onCut': SchemaHelper.stringSchema,
-      'onDecrease': SchemaHelper.stringSchema,
-      'onDidGainAccessibilityFocus': SchemaHelper.stringSchema,
-      'onDidLoseAccessibilityFocus': SchemaHelper.stringSchema,
-      'onDismiss': SchemaHelper.stringSchema,
-      'onIncrease': SchemaHelper.stringSchema,
-      'onLongPress': SchemaHelper.stringSchema,
-      'onLongPressHint': SchemaHelper.stringSchema,
-      'onMoveCursorBackwardByCharacter': SchemaHelper.stringSchema,
-      'onMoveCursorForwardByCharacter': SchemaHelper.stringSchema,
-      'onPaste': SchemaHelper.stringSchema,
-      'onScrollDown': SchemaHelper.stringSchema,
-      'onScrollLeft': SchemaHelper.stringSchema,
-      'onScrollRight': SchemaHelper.stringSchema,
-      'onScrollUp': SchemaHelper.stringSchema,
-      'onSetSelection': SchemaHelper.stringSchema,
-      'onSetText': SchemaHelper.stringSchema,
-      'onTap': SchemaHelper.stringSchema,
-      'onTapHint': SchemaHelper.stringSchema,
-      'readOnly': SchemaHelper.boolSchema,
-      'scopesRoute': SchemaHelper.boolSchema,
-      'selected': SchemaHelper.boolSchema,
-      'slider': SchemaHelper.boolSchema,
-      'sortKey': SchemaHelper.objectSchema(OrdinalSortKeySchema.id),
-      'tagForChildren': SchemaHelper.objectSchema(SemanticsTagSchema.id),
-      'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
-      'textField': SchemaHelper.boolSchema,
-      'tooltip': SchemaHelper.stringSchema,
-      'toggled': SchemaHelper.boolSchema,
-      'value': SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.attributedDecreasedValue: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.attributedHint: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.attributedIncreasedValue: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.attributedLabel: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.attributedValue: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.button: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.customSemanticsActions: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.checked: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.container: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.currentValueLength: SchemaHelper.numberSchema,
+      SemanticsSchemaProperty.decreasedValue: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.enabled: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.excludeSemantics: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.explicitChildNodes: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.focusable: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.focused: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.header: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.hidden: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.hint: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.image: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.inMutuallyExclusiveGroup: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.increasedValue: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.keyboardKey: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.label: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.link: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.liveRegion: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.maxValueLength: SchemaHelper.numberSchema,
+      SemanticsSchemaProperty.mixed: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.multiline: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.namesRoute: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.obscured: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.onCopy: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onCut: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onDecrease: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onDidGainAccessibilityFocus: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onDidLoseAccessibilityFocus: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onDismiss: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onIncrease: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onLongPress: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onLongPressHint: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onMoveCursorBackwardByCharacter: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onMoveCursorForwardByCharacter: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onPaste: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onScrollDown: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onScrollLeft: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onScrollRight: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onScrollUp: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onSetSelection: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onSetText: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onTap: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.onTapHint: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.readOnly: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.scopesRoute: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.selected: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.slider: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.sortKey: SchemaHelper.objectSchema(OrdinalSortKeySchema.id),
+      SemanticsSchemaProperty.tagForChildren: SchemaHelper.objectSchema(SemanticsTagSchema.id),
+      SemanticsSchemaProperty.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id),
+      SemanticsSchemaProperty.textField: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.tooltip: SchemaHelper.stringSchema,
+      SemanticsSchemaProperty.toggled: SchemaHelper.boolSchema,
+      SemanticsSchemaProperty.value: SchemaHelper.stringSchema,
     }
   };
+}
+
+class SemanticsSchemaProperty {
+  static const attributedDecreasedValue = 'attributedDecreasedValue';
+  static const attributedHint = 'attributedHint';
+  static const attributedIncreasedValue = 'attributedIncreasedValue';
+  static const attributedLabel = 'attributedLabel';
+  static const attributedValue = 'attributedValue';
+  static const button = 'button';
+  static const customSemanticsActions = 'customSemanticsActions';
+  static const checked = 'checked';
+  static const container = 'container';
+  static const currentValueLength = 'currentValueLength';
+  static const decreasedValue = 'decreasedValue';
+  static const enabled = 'enabled';
+  static const excludeSemantics = 'excludeSemantics';
+  static const explicitChildNodes = 'explicitChildNodes';
+  static const focusable = 'focusable';
+  static const focused = 'focused';
+  static const header = 'header';
+  static const hidden = 'hidden';
+  static const hint = 'hint';
+  static const image = 'image';
+  static const inMutuallyExclusiveGroup = 'inMutuallyExclusiveGroup';
+  static const increasedValue = 'increasedValue';
+  static const keyboardKey = 'keyboardKey';
+  static const label = 'label';
+  static const link = 'link';
+  static const liveRegion = 'liveRegion';
+  static const maxValueLength = 'maxValueLength';
+  static const mixed = 'mixed';
+  static const multiline = 'multiline';
+  static const namesRoute = 'namesRoute';
+  static const obscured = 'obscured';
+  static const onCopy = 'onCopy';
+  static const onCut = 'onCut';
+  static const onDecrease = 'onDecrease';
+  static const onDidGainAccessibilityFocus = 'onDidGainAccessibilityFocus';
+  static const onDidLoseAccessibilityFocus = 'onDidLoseAccessibilityFocus';
+  static const onDismiss = 'onDismiss';
+  static const onIncrease = 'onIncrease';
+  static const onLongPress = 'onLongPress';
+  static const onLongPressHint = 'onLongPressHint';
+  static const onMoveCursorBackwardByCharacter = 'onMoveCursorBackwardByCharacter';
+  static const onMoveCursorForwardByCharacter = 'onMoveCursorForwardByCharacter';
+  static const onPaste = 'onPaste';
+  static const onScrollDown = 'onScrollDown';
+  static const onScrollLeft = 'onScrollLeft';
+  static const onScrollRight = 'onScrollRight';
+  static const onScrollUp = 'onScrollUp';
+  static const onSetSelection = 'onSetSelection';
+  static const onSetText = 'onSetText';
+  static const onTap = 'onTap';
+  static const onTapHint = 'onTapHint';
+  static const readOnly = 'readOnly';
+  static const scopesRoute = 'scopesRoute';
+  static const selected = 'selected';
+  static const slider = 'slider';
+  static const sortKey = 'sortKey';
+  static const tagForChildren = 'tagForChildren';
+  static const textDirection = 'textDirection';
+  static const textField = 'textField';
+  static const tooltip = 'tooltip';
+  static const toggled = 'toggled';
+  static const value = 'value';
 }

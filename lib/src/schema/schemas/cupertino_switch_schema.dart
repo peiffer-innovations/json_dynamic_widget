@@ -8,25 +8,25 @@ class CupertinoSwitchSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 0,
-    r'$comment':
-        'https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/cupertino/CupertinoSwitch-class.html',
     'type': 'object',
     'title': 'CupertinoSwitch',
     'additionalProperties': false,
     'properties': {
-      'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'autovalidate': SchemaHelper.boolSchema,
-      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
-      'dragStartBehavior':
+      CurpentinoSwitchSchemaProperty.activeColor: SchemaHelper.objectSchema(ColorSchema.id),
+      CurpentinoSwitchSchemaProperty.autovalidate: SchemaHelper.boolSchema,
+      CurpentinoSwitchSchemaProperty.autovalidateMode:
+          SchemaHelper.objectSchema(AutovalidateModeSchema.id),
+      CurpentinoSwitchSchemaProperty.dragStartBehavior:
           SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
-      'enabled': SchemaHelper.boolSchema,
-      'label': SchemaHelper.stringSchema,
-      'onChanged': SchemaHelper.stringSchema,
-      'onSaved': SchemaHelper.stringSchema,
-      'restorationId': SchemaHelper.stringSchema,
-      'thumbColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'trackColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'validators': {
+      CurpentinoSwitchSchemaProperty.enabled: SchemaHelper.boolSchema,
+      CurpentinoSwitchSchemaProperty.label: SchemaHelper.stringSchema,
+      CurpentinoSwitchSchemaProperty.onChanged: SchemaHelper.stringSchema,
+      CurpentinoSwitchSchemaProperty.onSaved: SchemaHelper.stringSchema,
+      CurpentinoSwitchSchemaProperty.restorationId: SchemaHelper.stringSchema,
+      CurpentinoSwitchSchemaProperty.thumbColor: SchemaHelper.objectSchema(ColorSchema.id),
+      CurpentinoSwitchSchemaProperty.trackColor: SchemaHelper.objectSchema(ColorSchema.id),
+      CurpentinoSwitchSchemaProperty.validators: {
         'type': 'array',
         'items': {
           'type': 'object',
@@ -37,4 +37,21 @@ class CupertinoSwitchSchema {
       'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
     },
   };
+}
+
+class CurpentinoSwitchSchemaProperty {
+  static const activeColor = 'activeColor';
+  static const autovalidate = 'autovalidate';
+  static const autovalidateMode = 'autovalidateMode';
+  static const dragStartBehavior = 'dragStartBehavior';
+  static const enabled = 'enabled';
+  static const label = 'label';
+  static const onChanged = 'onChanged';
+  static const onSaved = 'onSaved';
+  static const restorationId = 'restorationId';
+  static const thumbColor = 'thumbColor';
+  static const trackColor = 'trackColor';
+  static const validators = 'validators';
+  static const value = 'value';
+  static const visualDensity = 'visualDensity';
 }

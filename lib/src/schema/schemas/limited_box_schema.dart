@@ -14,8 +14,13 @@ class LimitedBoxSchema {
     'title': 'LimitedBox',
     'additionalProperties': false,
     'properties': {
-      'maxHeight': SchemaHelper.numberSchema,
-      'maxWidth': SchemaHelper.numberSchema,
+      LimitedBoxSchemaProperty.maxHeight: SchemaHelper.numberSchema,
+      LimitedBoxSchemaProperty.maxWidth: SchemaHelper.numberSchema,
     }
   };
+}
+
+class LimitedBoxSchemaProperty {
+  static const maxHeight = 'maxHeight';
+  static const maxWidth = 'maxWidth';
 }

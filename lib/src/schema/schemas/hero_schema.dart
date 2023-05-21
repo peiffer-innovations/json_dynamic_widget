@@ -16,11 +16,19 @@ class HeroSchema {
       'tag',
     ],
     'properties': {
-      'createRectTween': SchemaHelper.stringSchema,
-      'flightShuttleBuilder': SchemaHelper.stringSchema,
-      'placeholderBuilder': SchemaHelper.stringSchema,
-      'tag': SchemaHelper.anySchema,
-      'transitionOnUserGestures': SchemaHelper.boolSchema,
+      HeroSchemaProperty.createRectTween: SchemaHelper.stringSchema,
+      HeroSchemaProperty.flightShuttleBuilder: SchemaHelper.stringSchema,
+      HeroSchemaProperty.placeholderBuilder: SchemaHelper.stringSchema,
+      HeroSchemaProperty.tag: SchemaHelper.anySchema,
+      HeroSchemaProperty.transitionOnUserGestures: SchemaHelper.boolSchema,
     },
   };
+}
+
+class HeroSchemaProperty {
+  static const createRectTween = 'createRectTween';
+  static const flightShuttleBuilder = 'flightShuttleBuilder';
+  static const placeholderBuilder = 'placeholderBuilder';
+  static const tag = 'tag';
+  static const transitionOnUserGestures = 'transitionOnUserGestures';
 }

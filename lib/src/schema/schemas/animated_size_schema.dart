@@ -8,8 +8,7 @@ class AnimatedSizeSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/widgets/AnimatedSize-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/AnimatedSize-class.html',
     'type': 'object',
     'title': 'AnimatedSize',
     'additionalProperties': false,
@@ -17,11 +16,19 @@ class AnimatedSizeSchema {
       'duration',
     ],
     'properties': {
-      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'curve': SchemaHelper.stringSchema,
-      'duration': SchemaHelper.numberSchema,
-      'reverseDuration': SchemaHelper.numberSchema,
+      AnimatedSizeSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+      AnimatedSizeSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      AnimatedSizeSchemaProperty.curve: SchemaHelper.stringSchema,
+      AnimatedSizeSchemaProperty.duration: SchemaHelper.numberSchema,
+      AnimatedSizeSchemaProperty.reverseDuration: SchemaHelper.numberSchema,
     },
   };
+}
+
+class AnimatedSizeSchemaProperty {
+  static const alignment = 'alignment';
+  static const clipBehavior = 'clipBehavior';
+  static const curve = 'curve';
+  static const duration = 'duration';
+  static const reverseDuration = 'reverseDuration';
 }

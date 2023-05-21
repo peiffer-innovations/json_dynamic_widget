@@ -14,18 +14,29 @@ class ButtonBarSchema {
     'type': 'object',
     'additionalProperties': false,
     'properties': {
-      'alignment': SchemaHelper.objectSchema(MainAxisAlignmentSchema.id),
-      'buttonAlignedDropdown': SchemaHelper.boolSchema,
-      'buttonHeight': SchemaHelper.numberSchema,
-      'buttonMinWidth': SchemaHelper.numberSchema,
-      'buttonPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
-      'buttonTextTheme': SchemaHelper.objectSchema(ButtonTextThemeSchema.id),
-      'layoutBehavior':
-          SchemaHelper.objectSchema(ButtonBarLayoutBehaviorSchema.id),
-      'mainAxisSize': SchemaHelper.objectSchema(MainAxisSizeSchema.id),
-      'overflowButtonSpacing': SchemaHelper.numberSchema,
-      'overflowDirection':
-          SchemaHelper.objectSchema(VerticalDirectionSchema.id),
+      ButtonBarSchemaProperty.alignment: SchemaHelper.objectSchema(MainAxisAlignmentSchema.id),
+      ButtonBarSchemaProperty.buttonAlignedDropdown: SchemaHelper.boolSchema,
+      ButtonBarSchemaProperty.buttonHeight: SchemaHelper.numberSchema,
+      ButtonBarSchemaProperty.buttonMinWidth: SchemaHelper.numberSchema,
+      ButtonBarSchemaProperty.buttonPadding: SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
+      ButtonBarSchemaProperty.buttonTextTheme: SchemaHelper.objectSchema(ButtonTextThemeSchema.id),
+      ButtonBarSchemaProperty.layoutBehavior: SchemaHelper.objectSchema(ButtonBarLayoutBehaviorSchema.id),
+      ButtonBarSchemaProperty.mainAxisSize: SchemaHelper.objectSchema(MainAxisSizeSchema.id),
+      ButtonBarSchemaProperty.overflowButtonSpacing: SchemaHelper.numberSchema,
+      ButtonBarSchemaProperty.overflowDirection: SchemaHelper.objectSchema(VerticalDirectionSchema.id),
     },
   };
+}
+
+class ButtonBarSchemaProperty {
+  static const alignment = 'alignment';
+  static const buttonAlignedDropdown = 'buttonAlignedDropdown';
+  static const buttonHeight = 'buttonHeight';
+  static const buttonMinWidth = 'buttonMinWidth';
+  static const buttonPadding = 'buttonPadding';
+  static const buttonTextTheme = 'buttonTextTheme';
+  static const layoutBehavior = 'layoutBehavior';
+  static const mainAxisSize = 'mainAxisSize';
+  static const overflowButtonSpacing = 'overflowButtonSpacing';
+  static const overflowDirection = 'overflowDirection';
 }

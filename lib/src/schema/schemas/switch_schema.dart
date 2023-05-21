@@ -13,45 +13,75 @@ class SwitchSchema {
     'title': 'Switch',
     'additionalProperties': false,
     'properties': {
-      'activeColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'activeThumbImage': SchemaHelper.objectSchema(ImageProviderSchema.id),
-      'activeTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'autofocus': SchemaHelper.boolSchema,
-      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
-      'dragStartBehavior':
-          SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
-      'enabled': SchemaHelper.boolSchema,
-      'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'focusNode': SchemaHelper.stringSchema,
-      'hoverColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'inactiveThumbColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'inactiveThumbImage': SchemaHelper.objectSchema(ImageProviderSchema.id),
-      'inactiveTrackColor': SchemaHelper.objectSchema(ColorSchema.id),
-      'label': SchemaHelper.stringSchema,
-      'materialTapTargetSize': SchemaHelper.objectSchema(
+      SwitchSchemaProperty.activeColor: SchemaHelper.objectSchema(ColorSchema.id),
+      SwitchSchemaProperty.activeThumbImage: SchemaHelper.objectSchema(ImageProviderSchema.id),
+      SwitchSchemaProperty.activeTrackColor: SchemaHelper.objectSchema(ColorSchema.id),
+      SwitchSchemaProperty.autofocus: SchemaHelper.boolSchema,
+      SwitchSchemaProperty.autovalidateMode: SchemaHelper.objectSchema(AutovalidateModeSchema.id),
+      SwitchSchemaProperty.dragStartBehavior: SchemaHelper.objectSchema(DragStartBehaviorSchema.id),
+      SwitchSchemaProperty.enabled: SchemaHelper.boolSchema,
+      SwitchSchemaProperty.focusColor: SchemaHelper.objectSchema(ColorSchema.id),
+      SwitchSchemaProperty.focusNode: SchemaHelper.stringSchema,
+      SwitchSchemaProperty.hoverColor: SchemaHelper.objectSchema(ColorSchema.id),
+      SwitchSchemaProperty.inactiveThumbColor: SchemaHelper.objectSchema(ColorSchema.id),
+      SwitchSchemaProperty.inactiveThumbImage: SchemaHelper.objectSchema(ImageProviderSchema.id),
+      SwitchSchemaProperty.inactiveTrackColor: SchemaHelper.objectSchema(ColorSchema.id),
+      SwitchSchemaProperty.label: SchemaHelper.stringSchema,
+      SwitchSchemaProperty.materialTapTargetSize: SchemaHelper.objectSchema(
         MaterialTapTargetSizeSchema.id,
       ),
-      'mouseCursor': SchemaHelper.objectSchema(MouseCursorSchema.id),
-      'onActiveThumbImageError': SchemaHelper.stringSchema,
-      'onChanged': SchemaHelper.stringSchema,
-      'onInactiveThumbImageError': SchemaHelper.stringSchema,
-      'onSaved': SchemaHelper.stringSchema,
-      'overlayColor': SchemaHelper.objectSchema(
+      SwitchSchemaProperty.mouseCursor: SchemaHelper.objectSchema(MouseCursorSchema.id),
+      SwitchSchemaProperty.onActiveThumbImageError: SchemaHelper.stringSchema,
+      SwitchSchemaProperty.onChanged: SchemaHelper.stringSchema,
+      SwitchSchemaProperty.onInactiveThumbImageError: SchemaHelper.stringSchema,
+      SwitchSchemaProperty.onSaved: SchemaHelper.stringSchema,
+      SwitchSchemaProperty.overlayColor: SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
-      'splashRadius': SchemaHelper.numberSchema,
-      'thumbColor': SchemaHelper.objectSchema(
+      SwitchSchemaProperty.splashRadius: SchemaHelper.numberSchema,
+      SwitchSchemaProperty.thumbColor: SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
-      'thumbIcon': SchemaHelper.objectSchema(
+      SwitchSchemaProperty.thumbIcon: SchemaHelper.objectSchema(
         MaterialStatePropertyIconSchema.id,
       ),
-      'trackColor': SchemaHelper.objectSchema(
+      SwitchSchemaProperty.trackColor: SchemaHelper.objectSchema(
         MaterialStatePropertyColorSchema.id,
       ),
-      'validators': SchemaHelper.anySchema,
-      'value': SchemaHelper.boolSchema,
-      'visualDensity': SchemaHelper.objectSchema(VisualDensitySchema.id),
+      SwitchSchemaProperty.validators: SchemaHelper.anySchema,
+      SwitchSchemaProperty.value: SchemaHelper.boolSchema,
+      SwitchSchemaProperty.visualDensity: SchemaHelper.objectSchema(VisualDensitySchema.id),
     }
   };
+}
+
+class SwitchSchemaProperty {
+  static const activeColor = 'activeColor';
+  static const activeThumbImage = 'activeThumbImage';
+  static const activeTrackColor = 'activeTrackColor';
+  static const autofocus = 'autofocus';
+  static const autovalidateMode = 'autovalidateMode';
+  static const dragStartBehavior = 'dragStartBehavior';
+  static const enabled = 'enabled';
+  static const focusColor = 'focusColor';
+  static const focusNode = 'focusNode';
+  static const hoverColor = 'hoverColor';
+  static const inactiveThumbColor = 'inactiveThumbColor';
+  static const inactiveThumbImage = 'inactiveThumbImage';
+  static const inactiveTrackColor = 'inactiveTrackColor';
+  static const label = 'label';
+  static const materialTapTargetSize = 'materialTapTargetSize';
+  static const mouseCursor = 'mouseCursor';
+  static const onActiveThumbImageError = 'onActiveThumbImageError';
+  static const onChanged = 'onChanged';
+  static const onInactiveThumbImageError = 'onInactiveThumbImageError';
+  static const onSaved = 'onSaved';
+  static const overlayColor = 'overlayColor';
+  static const splashRadius = 'splashRadius';
+  static const thumbColor = 'thumbColor';
+  static const thumbIcon = 'thumbIcon';
+  static const trackColor = 'trackColor';
+  static const validators = 'validators';
+  static const value = 'value';
+  static const visualDensity = 'visualDensity';
 }

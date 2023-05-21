@@ -19,13 +19,21 @@ class IndexedStackSchema {
         'additionalProperties': false,
         'type': 'object',
         'properties': {
-          'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
-          'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-          'index': SchemaHelper.numberSchema,
-          'sizing': SchemaHelper.objectSchema(StackFitSchema.id),
-          'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
+          IndexedStackSchemaProperty.alignment: SchemaHelper.objectSchema(AlignmentSchema.id),
+          IndexedStackSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+          IndexedStackSchemaProperty.index: SchemaHelper.numberSchema,
+          IndexedStackSchemaProperty.sizing: SchemaHelper.objectSchema(StackFitSchema.id),
+          IndexedStackSchemaProperty.textDirection: SchemaHelper.objectSchema(TextDirectionSchema.id),
         },
       },
     ],
   };
+}
+
+class IndexedStackSchemaProperty {
+  static const alignment = 'alignment';
+  static const clipBehavior = 'clipBehavior';
+  static const index = 'index';
+  static const sizing = 'sizing';
+  static const textDirection = 'textDirection';
 }

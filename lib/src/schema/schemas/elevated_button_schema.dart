@@ -8,21 +8,32 @@ class ElevatedButtonSchema {
     r'$schema': 'http://json-schema.org/draft-06/schema#',
     r'$id': id,
     r'$children': 1,
-    r'$comment':
-        'https://api.flutter.dev/flutter/material/ElevatedButton-class.html',
+    r'$comment': 'https://api.flutter.dev/flutter/material/ElevatedButton-class.html',
     'type': 'object',
     'title': 'ElevatedButton',
     'additionalProperties': false,
     'properties': {
-      'autofocus': SchemaHelper.boolSchema,
-      'clipBehavior': SchemaHelper.objectSchema(ClipSchema.id),
-      'focusNode': SchemaHelper.stringSchema,
-      'onFocusChange': SchemaHelper.stringSchema,
-      'onHover': SchemaHelper.stringSchema,
-      'onLongPress': SchemaHelper.stringSchema,
-      'onPressed': SchemaHelper.stringSchema,
-      'statesController': SchemaHelper.stringSchema,
-      'style': SchemaHelper.objectSchema(ButtonStyleSchema.id),
+      ElevatedButtonSchemaProperty.autofocus: SchemaHelper.boolSchema,
+      ElevatedButtonSchemaProperty.clipBehavior: SchemaHelper.objectSchema(ClipSchema.id),
+      ElevatedButtonSchemaProperty.focusNode: SchemaHelper.stringSchema,
+      ElevatedButtonSchemaProperty.onFocusChange: SchemaHelper.stringSchema,
+      ElevatedButtonSchemaProperty.onHover: SchemaHelper.stringSchema,
+      ElevatedButtonSchemaProperty.onLongPress: SchemaHelper.stringSchema,
+      ElevatedButtonSchemaProperty.onPressed: SchemaHelper.stringSchema,
+      ElevatedButtonSchemaProperty.statesController: SchemaHelper.stringSchema,
+      ElevatedButtonSchemaProperty.style: SchemaHelper.objectSchema(ButtonStyleSchema.id),
     }
   };
+}
+
+class ElevatedButtonSchemaProperty {
+  static const autofocus = 'autofocus';
+  static const clipBehavior = 'clipBehavior';
+  static const focusNode = 'focusNode';
+  static const onFocusChange = 'onFocusChange';
+  static const onHover = 'onHover';
+  static const onLongPress = 'onLongPress';
+  static const onPressed = 'onPressed';
+  static const statesController = 'statesController';
+  static const style = 'style';
 }
