@@ -19,58 +19,92 @@
         "args": {
           "mainAxisSize": "min"
         },
-        "children": [{
-          "type": "row",
-          "args": {
-            "mainAxisSize": "min"
+        "children": [
+          {
+            "type": "row",
+            "args": {
+              "mainAxisSize": "min"
+            },
+            "children": [
+              {
+                "type": "checkbox",
+                "args": {
+                  "label": "Checked",
+                  "value": true
+                }
+              },
+              {
+                "type": "text",
+                "args": {
+                  "text": "Checked"
+                }
+              }
+            ]
           },
-          "children": [{
-            "type": "checkbox",
+          {
+            "type": "row",
             "args": {
-              "label": "Checked",
-              "value": true
-            }
-          }, {
-            "type": "text",
-            "args": {
-              "text": "Checked"
-            }
-          }]
-        }, {
-          "type": "row",
-          "args": {
-            "mainAxisSize": "min"
+              "mainAxisSize": "min"
+            },
+            "children": [
+              {
+                "type": "checkbox",
+                "args": {
+                  "label": "Not Checked",
+                  "value": false
+                }
+              },
+              {
+                "type": "text",
+                "args": {
+                  "text": "Not Checked"
+                }
+              }
+            ]
           },
-          "children": [{
-            "type": "checkbox",
+          {
+            "type": "row",
             "args": {
-              "label": "Not Checked",
-              "value": false
-            }
-          }, {
-            "type": "text",
-            "args": {
-              "text": "Not Checked"
-            }
-          }]
-        }, {
-          "type": "row",
-          "args": {
-            "mainAxisSize": "min"
+              "mainAxisSize": "min"
+            },
+            "children": [
+              {
+                "type": "checkbox",
+                "args": {
+                  "enabled": false,
+                  "label": "Disabled"
+                }
+              },
+              {
+                "type": "text",
+                "args": {
+                  "text": "Disabled"
+                }
+              }
+            ]
           },
-          "children": [{
-            "type": "checkbox",
+          {
+            "type": "row",
             "args": {
-              "enabled": false,
-              "label": "Disabled"
-            }
-          }, {
-            "type": "text",
-            "args": {
-              "text": "Disabled"
-            }
-          }]
-        }]
+              "mainAxisSize": "min"
+            },
+            "children": [
+              {
+                "type": "checkbox",
+                "args": {
+                  "label": "OnChanged example",
+                  "onChanged": "${setBooleanValue('changedValue')}"
+                }
+              },
+              {
+                "type": "text",
+                "args": {
+                  "text": "${'Checked: ' + ((changedValue ?? false) ? 'true' : 'false')}"
+                }
+              }
+            ]
+          }
+        ]
       }
     }
   }

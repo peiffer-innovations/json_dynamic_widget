@@ -3,8 +3,7 @@ import 'dart:io';
 
 import 'package:desktop_window/desktop_window.dart';
 import 'package:example/src/components/clipper.dart';
-import 'package:example/src/custom_function/show_dialog.dart'
-    as show_dialog_fun;
+import 'package:example/src/custom_function/show_dialog.dart' as show_dialog_fun;
 import 'package:example/src/custom_schemas/dotted_border_schema.dart';
 import 'package:example/src/custom_schemas/svg_schema.dart';
 import 'package:example/src/dotted_border_builder.dart';
@@ -27,10 +26,7 @@ void main() async {
   TimeKeeper.enabled = true;
 
   if (!kIsWeb &&
-      (Platform.isLinux ||
-          Platform.isFuchsia ||
-          Platform.isMacOS ||
-          Platform.isWindows)) {
+      (Platform.isLinux || Platform.isFuchsia || Platform.isMacOS || Platform.isWindows)) {
     await DesktopWindow.setWindowSize(const Size(1024, 768));
   }
 
@@ -69,8 +65,7 @@ void main() async {
   );
 
   registry.registerFunction('navigatePage', ({args, required registry}) async {
-    final jsonStr =
-        await rootBundle.loadString('assets/pages/${args![0]}.json');
+    final jsonStr = await rootBundle.loadString('assets/pages/${args![0]}.json');
     final jsonData = json.decode(jsonStr);
     await navigatorKey.currentState!.push(
       MaterialPageRoute(
@@ -84,13 +79,11 @@ void main() async {
     );
   });
   registry.registerFunctions({
-    'getImageAsset': ({args, required registry}) =>
-        'assets/images/image${args![0]}.jpg',
+    'getImageAsset': ({args, required registry}) => 'assets/images/image${args![0]}.jpg',
     'getImageId': ({args, required registry}) => 'image${args![0]}',
     'getImageNavigator': ({args, required registry}) => () async {
           registry.setValue('index', args![0]);
-          final dataStr =
-              await rootBundle.loadString('assets/pages/image_page.json');
+          final dataStr = await rootBundle.loadString('assets/pages/image_page.json');
           final imagePageJson = Map.unmodifiable(json.decode(dataStr));
           final imgRegistry = JsonWidgetRegistry(
             debugLabel: 'ImagePage',
@@ -173,6 +166,12 @@ void main() async {
       };
     },
     show_dialog_fun.key: show_dialog_fun.body,
+    'setBooleanValue': ({args, required registry}) {
+      return (bool? onChangedValue) {
+        final variableName = args![0];
+        registry.setValue(variableName, onChangedValue);
+      };
+    },
   });
 
   registry.setValue('customRect', Rect.largest);
