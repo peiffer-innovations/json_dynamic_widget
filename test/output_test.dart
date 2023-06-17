@@ -18,7 +18,7 @@ void main() {
       for (var i = 0; i < 3; i++) {
         try {
           final id = schema['\$id'];
-          final fileName = id.split('/').last;
+          final fileName = id!.toString().split('/').last;
 
           final file = File('${output.path}/$fileName');
           file.createSync(recursive: true);

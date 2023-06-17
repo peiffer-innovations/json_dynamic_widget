@@ -1,7 +1,7 @@
 import 'package:json_dynamic_widget/json_dynamic_widget_schemas.dart';
 
 class JsonDynamicWidgetSchemas {
-  static final Map<String, Map<String, dynamic>> all = Map.unmodifiable({
+  static final Map<String, Map<String, Object>> all = Map.unmodifiable({
     AlignSchema.id: AlignSchema.schema,
     AnimatedAlignSchema.id: AnimatedAlignSchema.schema,
     AnimatedContainerSchema.id: AnimatedContainerSchema.schema,

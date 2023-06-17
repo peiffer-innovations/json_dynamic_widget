@@ -1,3 +1,8 @@
+## [6.0.6] - June 17th, 2023
+
+* http 1.0.0 support
+
+
 ## [6.0.5+3] - May 30, 2023
 
 * Automated dependency updates

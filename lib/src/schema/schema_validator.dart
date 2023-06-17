@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:json_class/json_class.dart';
-import 'package:json_schema2/json_schema2.dart';
+import 'package:json_schema2/json_schema.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 
 import 'json_dynamic_widget_schemas.dart';
@@ -72,23 +72,22 @@ class SchemaValidator {
     required dynamic value,
   }) {
     var result = true;
-    RefProvider? refProvider;
-    refProvider = (String ref) {
-      final schema = SchemaCache().getSchema(ref);
-      if (schema == null) {
-        throw Exception('Unable to find schema: $ref');
-      }
+    final refProvider = RefProvider(
+      (ref) {
+        final schema = SchemaCache().getSchema(ref);
+        if (schema == null) {
+          throw Exception('Unable to find schema: [$ref].');
+        }
 
-      return JsonSchema.createSchema(
-        schema,
-        refProvider: refProvider,
-      );
-    };
+        return schema;
+      },
+      true,
+    );
 
     final schemaData = SchemaCache().getSchema(schemaId);
     assert(schemaData != null, 'Cannot find schema: $schemaId');
-    final jsonSchema = JsonSchema.createSchema(
-      schemaData,
+    final jsonSchema = JsonSchema.create(
+      schemaData!,
       refProvider: refProvider,
     );
 
@@ -96,7 +95,7 @@ class SchemaValidator {
         ? JsonClass.removeNull(Map<String, dynamic>.from(value))
         : value;
 
-    final errors = jsonSchema.validateWithErrors(processedValue);
+    final errors = jsonSchema.validate(processedValue).errors;
     if (errors.isNotEmpty == true) {
       const encoder = JsonEncoder.withIndent('  ');
       result = false;
