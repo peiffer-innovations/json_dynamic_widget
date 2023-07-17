@@ -439,9 +439,9 @@ class SvgBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        height: JsonClass.parseDouble(map['height']),
+        height: JsonClass.maybeParseDouble(map['height']),
         url: map['url'],
-        width: JsonClass.parseDouble(map['width']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

@@ -137,10 +137,16 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
             DragStartBehavior.start,
         drawerEdgeDragWidth:
             JsonClass.maybeParseDouble(map['drawerEdgeDragWidth']),
+<<<<<<< HEAD
         drawerEnableOpenDragGesture: JsonClass.parseBool(
           map['drawerEnableOpenDragGesture'],
           whenNull: true,
         ),
+=======
+        drawerEnableOpenDragGesture: map['drawerEnableOpenDragGesture'] == null
+            ? true
+            : JsonClass.parseBool(map['drawerEnableOpenDragGesture']),
+>>>>>>> 8a80c3af2eb63656de9c1d7c43bfeb5edf60434e
         drawerScrimColor: ThemeDecoder.decodeColor(
           map['drawerScrimColor'],
           validate: false,

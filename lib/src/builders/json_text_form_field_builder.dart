@@ -474,7 +474,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         keyboardType: widget.builder.keyboardType,
         maxLength: widget.builder.maxLength,
         maxLengthEnforcement: widget.builder.maxLengthEnforcement,
-        maxLines: widget.builder.maxLines,
+        maxLines: widget.builder.maxLines ?? 1,
         minLines: widget.builder.minLines,
         mouseCursor: widget.builder.mouseCursor,
         obscuringCharacter: widget.builder.obscuringCharacter,

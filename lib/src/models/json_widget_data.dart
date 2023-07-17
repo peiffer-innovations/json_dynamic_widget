@@ -127,9 +127,7 @@ class JsonWidgetData extends JsonClass {
             args: map['args'] ?? {},
             builder: () {
               return builder(
-                registry!
-                    .processArgs(args ?? <String, dynamic>{}, listenVariables)
-                    .value,
+                processedArgs.value,
                 registry: registry,
               )!;
             },

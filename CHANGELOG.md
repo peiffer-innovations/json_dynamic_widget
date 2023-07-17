@@ -1,3 +1,31 @@
+## [6.1.0] - July 17th, 2023
+
+* Updated to `json_class`` 3.0
+
+## [6.0.7] - July 12, 2023
+
+* Reducing amount of re-renderings  
+
+## [6.0.6+6] - July 11, 2023
+
+* Automated dependency updates
+
+
+## [6.0.6+5] - July 4, 2023
+
+* Automated dependency updates
+
+
+## [6.0.6+4] - June 27, 2023
+
+* Automated dependency updates
+
+
+## [6.0.6+3] - June 20, 2023
+
+* Automated dependency updates
+
+
 ## [6.0.6+2] - June 17th, 2023
 
 * http 1.0.0 support
@@ -563,6 +591,11 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
+
+
+
+
 
 
 
