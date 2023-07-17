@@ -108,7 +108,8 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
             ? null
             : JsonClass.parseBool(map['preferBelow']),
         richMessage: map['richMessage'],
-        showDuration: JsonClass.maybeParseDurationFromMillis(map['showDuration']),
+        showDuration:
+            JsonClass.maybeParseDurationFromMillis(map['showDuration']),
         textAlign: ThemeDecoder.decodeTextAlign(
           map['textAlign'],
           validate: false,
@@ -122,7 +123,8 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         verticalOffset: JsonClass.maybeParseDouble(map['verticalOffset']),
-        waitDuration: JsonClass.maybeParseDurationFromMillis(map['waitDuration']),
+        waitDuration:
+            JsonClass.maybeParseDurationFromMillis(map['waitDuration']),
       );
     }
 

@@ -102,9 +102,9 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(
                 map['constrained'],
               ),
-        interactionEndFrictionCoefficient:
-            JsonClass.maybeParseDouble(map['interactionEndFrictionCoefficient']) ??
-                0.0000135,
+        interactionEndFrictionCoefficient: JsonClass.maybeParseDouble(
+                map['interactionEndFrictionCoefficient']) ??
+            0.0000135,
         maxScale: JsonClass.maybeParseDouble(
           map['maxScale'],
           2.5,

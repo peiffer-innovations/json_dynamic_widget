@@ -51,7 +51,8 @@ $message
                 JsonClass.maybeParseDouble(delegate['childAspectRatio']) ?? 1.0,
             crossAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['crossAxisSpacing']) ?? 0.0,
-            mainAxisExtent: JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
+            mainAxisExtent:
+                JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
             mainAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['mainAxisSpacing']) ?? 0.0,
             maxCrossAxisExtent:
@@ -61,12 +62,14 @@ $message
 
         case 'fixed_cross_axis_count':
           result = SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: JsonClass.maybeParseInt(delegate['crossAxisCount'])!,
+            crossAxisCount:
+                JsonClass.maybeParseInt(delegate['crossAxisCount'])!,
             childAspectRatio:
                 JsonClass.maybeParseDouble(delegate['childAspectRatio']) ?? 1.0,
             crossAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['crossAxisSpacing']) ?? 0.0,
-            mainAxisExtent: JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
+            mainAxisExtent:
+                JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
             mainAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['mainAxisSpacing']) ?? 0.0,
           );

@@ -44,7 +44,8 @@ class JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonSetScrollControllerBuilder(
         debugLabel: map['debugLabel'],
-        initialScrollOffset: JsonClass.maybeParseDouble(map['initialScrollOffset']),
+        initialScrollOffset:
+            JsonClass.maybeParseDouble(map['initialScrollOffset']),
         keepScrollOffset: JsonClass.parseBool(
           map['keepScrollOffset'],
           whenNull: true,

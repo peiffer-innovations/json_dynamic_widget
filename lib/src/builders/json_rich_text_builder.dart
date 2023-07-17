@@ -125,7 +125,8 @@ class JsonRichTextBuilder extends JsonWidgetBuilder {
           map['textHeightBehavior'],
           validate: false,
         ),
-        textScaleFactor: JsonClass.maybeParseDouble(map['textScaleFactor']) ?? 1.0,
+        textScaleFactor:
+            JsonClass.maybeParseDouble(map['textScaleFactor']) ?? 1.0,
         textWidthBasis: ThemeDecoder.decodeTextWidthBasis(
               map['textWidthBasis'],
               validate: false,
