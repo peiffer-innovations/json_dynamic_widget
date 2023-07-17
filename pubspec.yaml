@@ -20,7 +20,7 @@ dependencies:
   interpolation: '^2.1.2'
   json_class: '^3.0.0+1'
   json_conditional: '^3.0.0'
-  json_schema2: '^5.1.2+2'
+  json_schema: '^5.1.2'
   json_theme: '^6.1.0'
   logging: '^1.2.0'
   meta: '^1.9.1'
