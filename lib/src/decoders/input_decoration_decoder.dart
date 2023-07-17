@@ -48,7 +48,7 @@ class InputDecorationDecoder {
             map['errorBorder'],
             validate: false,
           ),
-          errorMaxLines: JsonClass.parseInt(map['errorMaxLines']),
+          errorMaxLines: JsonClass.maybeParseInt(map['errorMaxLines']),
           errorStyle: ThemeDecoder.decodeTextStyle(
             map['errorStyle'],
             validate: false,
@@ -76,13 +76,13 @@ class InputDecorationDecoder {
             map['focusedErrorBorder'],
             validate: false,
           ),
-          helperMaxLines: JsonClass.parseInt(map['helperMaxLines']),
+          helperMaxLines: JsonClass.maybeParseInt(map['helperMaxLines']),
           helperStyle: ThemeDecoder.decodeTextStyle(
             map['helperStyle'],
             validate: false,
           ),
           helperText: map['helperText'],
-          hintMaxLines: JsonClass.parseInt(map['hintMaxLines']),
+          hintMaxLines: JsonClass.maybeParseInt(map['hintMaxLines']),
           hintStyle: ThemeDecoder.decodeTextStyle(
             map['hintStyle'],
             validate: false,

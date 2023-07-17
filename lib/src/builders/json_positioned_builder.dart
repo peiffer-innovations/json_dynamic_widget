@@ -46,12 +46,12 @@ class JsonPositionedBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonPositionedBuilder(
-        bottom: JsonClass.parseDouble(map['bottom']),
-        height: JsonClass.parseDouble(map['height']),
-        left: JsonClass.parseDouble(map['left']),
-        right: JsonClass.parseDouble(map['right']),
-        top: JsonClass.parseDouble(map['top']),
-        width: JsonClass.parseDouble(map['width']),
+        bottom: JsonClass.maybeParseDouble(map['bottom']),
+        height: JsonClass.maybeParseDouble(map['height']),
+        left: JsonClass.maybeParseDouble(map['left']),
+        right: JsonClass.maybeParseDouble(map['right']),
+        top: JsonClass.maybeParseDouble(map['top']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

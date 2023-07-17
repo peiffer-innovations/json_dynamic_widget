@@ -70,8 +70,8 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
         buttonAlignedDropdown: map['buttonAlignedDropdown'] == null
             ? null
             : JsonClass.parseBool(map['buttonAlignedDropdown']),
-        buttonHeight: JsonClass.parseDouble(map['buttonHeight']),
-        buttonMinWidth: JsonClass.parseDouble(map['buttonMinWidth']),
+        buttonHeight: JsonClass.maybeParseDouble(map['buttonHeight']),
+        buttonMinWidth: JsonClass.maybeParseDouble(map['buttonMinWidth']),
         buttonPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['buttonPadding'],
           validate: false,
@@ -89,7 +89,7 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         overflowButtonSpacing:
-            JsonClass.parseDouble(map['overflowButtonSpacing']),
+            JsonClass.maybeParseDouble(map['overflowButtonSpacing']),
         overflowDirection: ThemeDecoder.decodeVerticalDirection(
           map['overflowDirection'],
           validate: false,

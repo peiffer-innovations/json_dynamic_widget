@@ -69,22 +69,22 @@ class JsonIconBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        fill: JsonClass.parseDouble(map['fill']),
-        grade: JsonClass.parseDouble(map['grade']),
+        fill: JsonClass.maybeParseDouble(map['fill']),
+        grade: JsonClass.maybeParseDouble(map['grade']),
         icon: ThemeDecoder.decodeIconData(
           map['icon'],
           validate: false,
         ),
-        opticalSize: JsonClass.parseDouble(map['opticalSize']),
+        opticalSize: JsonClass.maybeParseDouble(map['opticalSize']),
         semanticLabel: map['semanticLabel'],
-        shadows: JsonClass.fromDynamicList(
+        shadows: JsonClass.maybeFromDynamicList(
           map['shadows'],
           (map) => ThemeDecoder.decodeShadow(
             map,
             validate: false,
           )!,
         ),
-        size: JsonClass.parseDouble(map['size']),
+        size: JsonClass.maybeParseDouble(map['size']),
         textDirection: ThemeDecoder.decodeTextDirection(
           map['textDirection'],
           validate: false,

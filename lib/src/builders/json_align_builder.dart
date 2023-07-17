@@ -45,8 +45,8 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
           map['alignment'],
           validate: false,
         ),
-        heightFactor: JsonClass.parseDouble(map['heightFactor']),
-        widthFactor: JsonClass.parseDouble(map['widthFactor']),
+        heightFactor: JsonClass.maybeParseDouble(map['heightFactor']),
+        widthFactor: JsonClass.maybeParseDouble(map['widthFactor']),
       );
     }
 

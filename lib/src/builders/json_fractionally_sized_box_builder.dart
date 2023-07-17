@@ -46,10 +46,10 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        heightFactor: JsonClass.parseDouble(
+        heightFactor: JsonClass.maybeParseDouble(
           map['heightFactor'],
         ),
-        widthFactor: JsonClass.parseDouble(
+        widthFactor: JsonClass.maybeParseDouble(
           map['widthFactor'],
         ),
       );

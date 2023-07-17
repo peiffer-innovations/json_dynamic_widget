@@ -154,7 +154,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
           map['overlayColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         toggleable: JsonClass.parseBool(map['toggleable']),
         validator: map['validators'] == null
             ? null

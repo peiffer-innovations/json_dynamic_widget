@@ -50,7 +50,7 @@ class JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
           map['data'],
           validate: false,
         )!,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
               map['duration'],
             ) ??
             kThemeAnimationDuration,

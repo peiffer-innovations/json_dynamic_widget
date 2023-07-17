@@ -56,12 +56,12 @@ class JsonAnimatedAlignBuilder extends JsonWidgetBuilder {
           validate: false,
         )!,
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
-        heightFactor: JsonClass.parseDouble(map['heightFactor']),
+        heightFactor: JsonClass.maybeParseDouble(map['heightFactor']),
         onEnd: map['onEnd'],
-        widthFactor: JsonClass.parseDouble(map['widthFactor']),
+        widthFactor: JsonClass.maybeParseDouble(map['widthFactor']),
       );
     }
 

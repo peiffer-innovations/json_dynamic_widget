@@ -64,7 +64,8 @@ class JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
               ],
         ),
         debugLabel: map['debugLabel'],
-        initialScrollOffset: JsonClass.parseDouble(map['initialScrollOffset']),
+        initialScrollOffset:
+            JsonClass.maybeParseDouble(map['initialScrollOffset']),
         keepScrollOffset: JsonClass.parseBool(
           map['keepScrollOffset'],
           whenNull: true,

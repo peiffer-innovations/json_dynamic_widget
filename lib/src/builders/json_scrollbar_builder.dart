@@ -71,7 +71,7 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
           map['scrollbarOrientation'],
           validate: false,
         ),
-        thickness: JsonClass.parseDouble(map['thickness']),
+        thickness: JsonClass.maybeParseDouble(map['thickness']),
         thumbVisibility: map['thumbVisibility'] == null
             ? null
             : JsonClass.parseBool(

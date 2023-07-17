@@ -88,8 +88,8 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonCustomScrollViewBuilder(
-        anchor: JsonClass.parseDouble(map['anchor']),
-        cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
+        anchor: JsonClass.maybeParseDouble(map['anchor']),
+        cacheExtent: JsonClass.maybeParseDouble(map['cacheExtent']),
         center:
             map['center'] is String ? ValueKey(map['center']) : map['center'],
         clipBehavior: ThemeDecoder.decodeClip(
@@ -125,7 +125,7 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Axis.vertical,
-        semanticChildCount: JsonClass.parseInt(map['semanticChildCount']),
+        semanticChildCount: JsonClass.maybeParseInt(map['semanticChildCount']),
         shrinkWrap: JsonClass.parseBool(map['shrinkWrap']),
       );
     }

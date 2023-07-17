@@ -34,11 +34,11 @@ class JsonLimitedBoxBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonLimitedBoxBuilder(
-        maxHeight: JsonClass.parseDouble(
+        maxHeight: JsonClass.maybeParseDouble(
               map['maxHeight'],
             ) ??
             double.infinity,
-        maxWidth: JsonClass.parseDouble(
+        maxWidth: JsonClass.maybeParseDouble(
               map['maxWidth'],
             ) ??
             double.infinity,

@@ -104,7 +104,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
         addSemanticIndexes: map['addSemanticIndexes'] == null
             ? true
             : JsonClass.parseBool(map['addSemanticIndexes']),
-        cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
+        cacheExtent: JsonClass.maybeParseDouble(map['cacheExtent']),
         clipBehavior: ThemeDecoder.decodeClip(
               map['clipBehavior'],
               validate: false,
@@ -117,7 +117,7 @@ class JsonListViewBuilder extends JsonWidgetBuilder {
             ) ??
             DragStartBehavior.start,
         findChildIndexCallback: map['findChildIndexCallback'],
-        itemExtent: JsonClass.parseDouble(map['itemExtent']),
+        itemExtent: JsonClass.maybeParseDouble(map['itemExtent']),
         keyboardDismissBehavior:
             ThemeDecoder.decodeScrollViewKeyboardDismissBehavior(
                   map['keyboardDismissBehavior'],

@@ -71,7 +71,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
   /// ```
   ///
   /// See also:
-  ///  * [JsonClass.parseDurationFromMillis]
+  ///  * [JsonClass.maybeParseDurationFromMillis]
   ///  * [ThemeDecoder.decodeBoxDecoration]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeTextAlign]
@@ -94,7 +94,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
         excludeFromSemantics: map['excludeFromSemantics'] == null
             ? null
             : JsonClass.parseBool(map['excludeFromSemantics']),
-        height: JsonClass.parseDouble(map['height']),
+        height: JsonClass.maybeParseDouble(map['height']),
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,
@@ -108,7 +108,8 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
             ? null
             : JsonClass.parseBool(map['preferBelow']),
         richMessage: map['richMessage'],
-        showDuration: JsonClass.parseDurationFromMillis(map['showDuration']),
+        showDuration:
+            JsonClass.maybeParseDurationFromMillis(map['showDuration']),
         textAlign: ThemeDecoder.decodeTextAlign(
           map['textAlign'],
           validate: false,
@@ -121,8 +122,9 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
           map['triggerMode'],
           validate: false,
         ),
-        verticalOffset: JsonClass.parseDouble(map['verticalOffset']),
-        waitDuration: JsonClass.parseDurationFromMillis(map['waitDuration']),
+        verticalOffset: JsonClass.maybeParseDouble(map['verticalOffset']),
+        waitDuration:
+            JsonClass.maybeParseDurationFromMillis(map['waitDuration']),
       );
     }
 

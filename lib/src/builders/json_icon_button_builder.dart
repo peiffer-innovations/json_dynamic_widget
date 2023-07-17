@@ -146,7 +146,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         icon: JsonWidgetData.fromDynamic(map['icon'], registry: registry),
-        iconSize: JsonClass.parseDouble(map['iconSize'], 24.0)!,
+        iconSize: JsonClass.maybeParseDouble(map['iconSize'], 24.0)!,
         isSelected: map['isSelected'] == null
             ? null
             : JsonClass.parseBool(map['isSelected']),
@@ -167,7 +167,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
           map['splashColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         style: ThemeDecoder.decodeButtonStyle(
           map['style'],
           validate: false,

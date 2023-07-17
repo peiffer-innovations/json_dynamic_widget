@@ -137,7 +137,7 @@ class JsonWidgetData extends JsonClass {
             child: child,
             children: map['children'] is String
                 ? registry.processArgs(map['children'], listenVariables).value
-                : JsonClass.fromDynamicList(
+                : JsonClass.maybeFromDynamicList(
                     map['children'],
                     (dynamic map) => JsonWidgetData.fromDynamic(
                       map,
@@ -322,6 +322,6 @@ $map
         'type': type,
         'id': id,
         'args': args,
-        'children': JsonClass.toJsonList(children),
+        'children': JsonClass.maybeToJsonList(children),
       });
 }

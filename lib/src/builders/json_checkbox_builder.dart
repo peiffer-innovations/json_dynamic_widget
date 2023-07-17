@@ -172,7 +172,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
           map['side'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         tristate: JsonClass.parseBool(map['tristate']),
         validator: map['validators'] == null
             ? null

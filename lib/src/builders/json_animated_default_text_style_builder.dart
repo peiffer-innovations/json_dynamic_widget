@@ -71,10 +71,10 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonAnimatedDefaultTextStyleBuilder(
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
-        maxLines: JsonClass.parseInt(map['maxLines']),
+        maxLines: JsonClass.maybeParseInt(map['maxLines']),
         onEnd: map['onEnd'],
         overflow: ThemeDecoder.decodeTextOverflow(
               map['overflow'],

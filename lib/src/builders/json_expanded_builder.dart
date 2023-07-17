@@ -31,7 +31,7 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonExpandedBuilder(
-        flex: JsonClass.parseInt(map['flex'], 1)!,
+        flex: JsonClass.maybeParseInt(map['flex']) ?? 1,
       );
     }
 

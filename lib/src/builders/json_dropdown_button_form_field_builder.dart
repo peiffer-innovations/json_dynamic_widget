@@ -165,7 +165,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
           map['dropdownColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseInt(map['elevation'], 8),
+        elevation: JsonClass.maybeParseInt(map['elevation']) ?? 8,
         enableFeedback: map['enableFeedback'] == null
             ? true
             : JsonClass.parseBool(map['enableFeedback']),
@@ -182,12 +182,12 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
           map['iconEnabledColor'],
           validate: false,
         ),
-        iconSize: JsonClass.parseDouble(map['iconSize'], 24.0),
+        iconSize: JsonClass.maybeParseDouble(map['iconSize'], 24.0),
         isDense:
             map['isDense'] == null ? true : JsonClass.parseBool(map['isDense']),
         isExpanded: JsonClass.parseBool(map['isExpanded']),
-        itemHeight: JsonClass.parseDouble(map['itemHeight']),
-        menuMaxHeight: JsonClass.parseDouble(map['menuMaxHeight']),
+        itemHeight: JsonClass.maybeParseDouble(map['itemHeight']),
+        menuMaxHeight: JsonClass.maybeParseDouble(map['menuMaxHeight']),
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
         onTap: map['onTap'],

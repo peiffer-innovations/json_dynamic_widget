@@ -49,15 +49,15 @@ class JsonPlaceholderBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             const Color(0xFF455A64),
-        fallbackHeight: JsonClass.parseDouble(
+        fallbackHeight: JsonClass.maybeParseDouble(
           map['fallbackHeight'],
           400.0,
         )!,
-        fallbackWidth: JsonClass.parseDouble(
+        fallbackWidth: JsonClass.maybeParseDouble(
           map['fallbackWidth'],
           400.0,
         )!,
-        strokeWidth: JsonClass.parseDouble(
+        strokeWidth: JsonClass.maybeParseDouble(
           map['strokeWidth'],
           2.0,
         )!,

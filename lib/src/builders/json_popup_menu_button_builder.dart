@@ -120,7 +120,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
           map['constraints'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(
+        elevation: JsonClass.maybeParseDouble(
           map['elevation'],
         ),
         enableFeedback: map['enableFeedback'] == null
@@ -137,7 +137,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
           map['icon'],
           registry: registry,
         ),
-        iconSize: JsonClass.parseDouble(map['iconSize']),
+        iconSize: JsonClass.maybeParseDouble(map['iconSize']),
         initialValue: map['initialValue'],
         itemBuilder: map['itemBuilder'],
         offset: ThemeDecoder.decodeOffset(
@@ -165,7 +165,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
           map['shape'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         surfaceTintColor: ThemeDecoder.decodeColor(
           map['surfaceTintColor'],
           validate: false,

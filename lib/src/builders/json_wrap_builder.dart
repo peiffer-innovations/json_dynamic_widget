@@ -83,8 +83,8 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
           map['runAlignment'],
           validate: false,
         ),
-        spacing: JsonClass.parseDouble(map['spacing']),
-        runSpacing: JsonClass.parseDouble(map['runSpacing']),
+        spacing: JsonClass.maybeParseDouble(map['spacing']),
+        runSpacing: JsonClass.maybeParseDouble(map['runSpacing']),
         textDirection: ThemeDecoder.decodeTextDirection(
           map['textDirection'],
           validate: false,
