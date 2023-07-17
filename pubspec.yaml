@@ -17,15 +17,15 @@ dependencies:
   execution_timer: '^1.0.3+1'
   flutter: 
     sdk: 'flutter'
-  form_validation: '^3.0.2+2'
+  form_validation: ^3.0.2+2
   interpolation: '^2.1.2'
-  json_class: '^2.2.2+1'
-  json_conditional: '^2.1.2+3'
+  json_class: ">=2.2.2+1 <4.0.0"
+  json_conditional: ">=2.1.2+3 <4.0.0"
   json_schema2: '^5.1.2+2'
-  json_theme: '^6.0.2+3'
+  json_theme: ^6.0.2+3
   logging: '^1.2.0'
   meta: '^1.9.1'
-  template_expressions: '^3.0.6+2'
+  template_expressions: ^3.0.6+2
   uuid: '^3.0.7'
   yaon: '^1.1.2+1'
 
