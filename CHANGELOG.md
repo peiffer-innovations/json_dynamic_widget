@@ -1,3 +1,7 @@
+## [6.0.7] - July 12, 2023
+
+* Reducing amount of re-renderings  
+
 ## [6.0.6+6] - July 11, 2023
 
 * Automated dependency updates
