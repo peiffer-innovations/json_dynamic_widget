@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 class DottedBorderBuilder extends JsonWidgetBuilder {
   const DottedBorderBuilder({
@@ -34,7 +30,7 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
           ? [0.0]
           : List<double>.from(
               map['dashPattern'].map(
-                (e) => JsonClass.parseDouble(e, 0.0),
+                (e) => JsonClass.maybeParseDouble(e, 0.0),
               ),
             ),
     );

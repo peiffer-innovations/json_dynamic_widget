@@ -3,9 +3,7 @@ import 'dart:math';
 
 import 'package:collection/collection.dart';
 import 'package:execution_timer/execution_timer.dart';
-import 'package:flutter/material.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/schema/schema_validator.dart';
 import 'package:logging/logging.dart';
 
 /// Registry for both the library provided as well as custom form builders that
@@ -414,8 +412,8 @@ class JsonWidgetRegistry {
             name: schemaId,
           ).start();
           try {
-            result = SchemaValidator().validate(
-              schemaId: container!.schemaId,
+            result = SchemaValidator.validate(
+              schemaId: schemaId,
               value: value,
               validate: validate,
             );

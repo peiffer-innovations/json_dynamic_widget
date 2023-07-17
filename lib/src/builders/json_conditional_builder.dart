@@ -1,7 +1,5 @@
 import 'dart:async';
 
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:json_conditional/json_conditional.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -52,7 +50,7 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
     JsonConditionalBuilder? result;
 
     if (map != null) {
-      final conditional = Conditional.fromDynamic(map['conditional'])!;
+      final conditional = Conditional.fromDynamic(map['conditional']);
       final keys = <String>{};
       _appendKeys(conditional, keys);
 

@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [SingleChildScrollView] widget.  See the
 /// [fromDynamic] for the format.
@@ -95,8 +91,9 @@ class JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
           map['physics'],
           validate: false,
         ),
-        primary:
-            map['primary'] == null ? null : JsonClass.parseBool(map['primary']),
+        primary: map['primary'] == null
+            ? null
+            : JsonClass.maybeParseBool(map['primary']),
         restorationId: map['restorationId'],
         reverse: JsonClass.parseBool(map['reverse']),
         scrollDirection: ThemeDecoder.decodeAxis(

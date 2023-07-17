@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [RichText] widget.  See the [fromDynamic] for the
 /// format.
@@ -88,7 +84,7 @@ class JsonRichTextBuilder extends JsonWidgetBuilder {
           map['local'],
           validate: false,
         ),
-        maxLines: JsonClass.parseInt(map['maxLines']),
+        maxLines: JsonClass.maybeParseInt(map['maxLines']),
         overflow: ThemeDecoder.decodeTextOverflow(
               map['overflow'],
               validate: false,
@@ -125,7 +121,8 @@ class JsonRichTextBuilder extends JsonWidgetBuilder {
           map['textHeightBehavior'],
           validate: false,
         ),
-        textScaleFactor: JsonClass.parseDouble(map['textScaleFactor']) ?? 1.0,
+        textScaleFactor:
+            JsonClass.maybeParseDouble(map['textScaleFactor']) ?? 1.0,
         textWidthBasis: ThemeDecoder.decodeTextWidthBasis(
               map['textWidthBasis'],
               validate: false,

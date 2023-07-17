@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Material] widget.  See the [fromDynamic] for the
 /// format.
@@ -76,15 +72,14 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     JsonMaterialBuilder? result;
     if (map != null) {
       result = JsonMaterialBuilder(
-        animationDuration: JsonClass.parseDurationFromMillis(
-          map['animationDuration'],
-          kThemeChangeDuration,
-        )!,
-        borderOnForeground: map['borderOnForeground'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['borderOnForeground'],
-              ),
+        animationDuration: JsonClass.maybeParseDurationFromMillis(
+              map['animationDuration'],
+            ) ??
+            kThemeChangeDuration,
+        borderOnForeground: JsonClass.parseBool(
+          map['borderOnForeground'],
+          whenNull: true,
+        ),
         borderRadius: ThemeDecoder.decodeBorderRadius(
           map['borderRadius'],
           validate: false,
@@ -98,7 +93,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(map['elevation'], 0)!,
+        elevation: JsonClass.maybeParseDouble(map['elevation']) ?? 0.0,
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,

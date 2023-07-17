@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Card] widget.  See the [fromDynamic] for the
 /// format.
@@ -61,11 +57,10 @@ class JsonCardBuilder extends JsonWidgetBuilder {
     JsonCardBuilder? result;
     if (map != null) {
       result = JsonCardBuilder(
-        borderOnForeground: map['borderOnForeground'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['borderOnForeground'],
-              ),
+        borderOnForeground: JsonClass.parseBool(
+          map['borderOnForeground'],
+          whenNull: true,
+        ),
         clipBehavior: ThemeDecoder.decodeClip(
           map['clipBehavior'],
           validate: false,
@@ -74,16 +69,15 @@ class JsonCardBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(map['elevation']),
+        elevation: JsonClass.maybeParseDouble(map['elevation']),
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,
         ),
-        semanticContainer: map['semanticContainer'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['semanticContainer'],
-              ),
+        semanticContainer: JsonClass.parseBool(
+          map['semanticContainer'],
+          whenNull: true,
+        ),
         shadowColor: ThemeDecoder.decodeColor(
           map['color'],
           validate: false,

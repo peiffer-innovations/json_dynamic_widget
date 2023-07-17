@@ -1,11 +1,6 @@
 import 'dart:convert';
-import 'dart:typed_data';
 
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Image] widget from memory.  See the [fromDynamic]
 /// for the format.
@@ -119,8 +114,8 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        cacheHeight: JsonClass.parseInt(map['cacheHeight']),
-        cacheWidth: JsonClass.parseInt(map['cacheWidth']),
+        cacheHeight: JsonClass.maybeParseInt(map['cacheHeight']),
+        cacheWidth: JsonClass.maybeParseInt(map['cacheWidth']),
         centerSlice: ThemeDecoder.decodeRect(
           map['centerSlice'],
           validate: false,
@@ -146,7 +141,7 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
         ),
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
-        height: JsonClass.parseDouble(map['height']),
+        height: JsonClass.maybeParseDouble(map['height']),
         isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
         image: image,
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
@@ -155,10 +150,10 @@ class JsonMemoryImageBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             ImageRepeat.noRepeat,
-        opacity: JsonClass.parseDouble(map['opacity']),
-        scale: JsonClass.parseDouble(map['scale'], 1.0)!,
+        opacity: JsonClass.maybeParseDouble(map['opacity']),
+        scale: JsonClass.maybeParseDouble(map['scale']) ?? 1.0,
         semanticLabel: map['semanticLabel'],
-        width: JsonClass.parseDouble(map['width']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

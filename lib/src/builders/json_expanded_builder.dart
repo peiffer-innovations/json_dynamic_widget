@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build an [Expanded] widget.  See the [fromDynamic] for the
@@ -31,7 +28,7 @@ class JsonExpandedBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonExpandedBuilder(
-        flex: JsonClass.parseInt(map['flex'], 1)!,
+        flex: JsonClass.maybeParseInt(map['flex']) ?? 1,
       );
     }
 

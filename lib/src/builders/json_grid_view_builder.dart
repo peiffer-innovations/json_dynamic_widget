@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [GridView] widget.  See the [fromDynamic] for the
 /// format.
@@ -119,16 +115,19 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonGridViewBuilder(
-        addAutomaticKeepAlives: map['addAutomaticKeepAlives'] == null
-            ? true
-            : JsonClass.parseBool(map['addAutomaticKeepAlives']),
-        addRepaintBoundaries: map['addRepaintBoundaries'] == null
-            ? true
-            : JsonClass.parseBool(map['addRepaintBoundaries']),
-        addSemanticIndexes: map['addSemanticIndexes'] == null
-            ? true
-            : JsonClass.parseBool(map['addSemanticIndexes']),
-        cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
+        addAutomaticKeepAlives: JsonClass.parseBool(
+          map['addAutomaticKeepAlives'],
+          whenNull: true,
+        ),
+        addRepaintBoundaries: JsonClass.parseBool(
+          map['addRepaintBoundaries'],
+          whenNull: true,
+        ),
+        addSemanticIndexes: JsonClass.parseBool(
+          map['addSemanticIndexes'],
+          whenNull: true,
+        ),
+        cacheExtent: JsonClass.maybeParseDouble(map['cacheExtent']),
         clipBehavior: ThemeDecoder.decodeClip(
               map['clipBehavior'],
               validate: false,

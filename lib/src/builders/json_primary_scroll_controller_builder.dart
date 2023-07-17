@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that creates a scroll controller and then creates a
 /// [PrimaryScrollController] widget on the tree.
@@ -64,7 +60,8 @@ class JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
               ],
         ),
         debugLabel: map['debugLabel'],
-        initialScrollOffset: JsonClass.parseDouble(map['initialScrollOffset']),
+        initialScrollOffset:
+            JsonClass.maybeParseDouble(map['initialScrollOffset']),
         keepScrollOffset: JsonClass.parseBool(
           map['keepScrollOffset'],
           whenNull: true,

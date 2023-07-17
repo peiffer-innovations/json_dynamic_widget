@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [ButtonBar] widget.  See the [fromDynamic] for the
 /// format.
@@ -69,9 +65,9 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
         ),
         buttonAlignedDropdown: map['buttonAlignedDropdown'] == null
             ? null
-            : JsonClass.parseBool(map['buttonAlignedDropdown']),
-        buttonHeight: JsonClass.parseDouble(map['buttonHeight']),
-        buttonMinWidth: JsonClass.parseDouble(map['buttonMinWidth']),
+            : JsonClass.maybeParseBool(map['buttonAlignedDropdown']),
+        buttonHeight: JsonClass.maybeParseDouble(map['buttonHeight']),
+        buttonMinWidth: JsonClass.maybeParseDouble(map['buttonMinWidth']),
         buttonPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['buttonPadding'],
           validate: false,
@@ -89,7 +85,7 @@ class JsonButtonBarBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         overflowButtonSpacing:
-            JsonClass.parseDouble(map['overflowButtonSpacing']),
+            JsonClass.maybeParseDouble(map['overflowButtonSpacing']),
         overflowDirection: ThemeDecoder.decodeVerticalDirection(
           map['overflowDirection'],
           validate: false,

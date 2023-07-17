@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [CustomScrollView] widget.  See the
 /// [fromDynamic] for the format.
@@ -88,8 +84,8 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonCustomScrollViewBuilder(
-        anchor: JsonClass.parseDouble(map['anchor']),
-        cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
+        anchor: JsonClass.maybeParseDouble(map['anchor']),
+        cacheExtent: JsonClass.maybeParseDouble(map['cacheExtent']),
         center:
             map['center'] is String ? ValueKey(map['center']) : map['center'],
         clipBehavior: ThemeDecoder.decodeClip(
@@ -112,8 +108,9 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
           map['physics'],
           validate: false,
         ),
-        primary:
-            map['primary'] == null ? null : JsonClass.parseBool(map['primary']),
+        primary: map['primary'] == null
+            ? null
+            : JsonClass.maybeParseBool(map['primary']),
         restorationId: map['restorationId'],
         reverse: JsonClass.parseBool(map['reverse']),
         scrollBehavior: ThemeDecoder.decodeScrollBehavior(
@@ -125,7 +122,7 @@ class JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Axis.vertical,
-        semanticChildCount: JsonClass.parseInt(map['semanticChildCount']),
+        semanticChildCount: JsonClass.maybeParseInt(map['semanticChildCount']),
         shrinkWrap: JsonClass.parseBool(map['shrinkWrap']),
       );
     }

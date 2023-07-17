@@ -1,6 +1,6 @@
 import 'package:json_theme/json_theme_schemas.dart' as jt;
 
-class IconSchema {
+class WrappedIconSchema {
   static const id =
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/icon.json';
 

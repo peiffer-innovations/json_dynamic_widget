@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 class Issue24Page extends StatefulWidget {

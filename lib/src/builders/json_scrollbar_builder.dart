@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Scrollbar] widget.  See the [fromDynamic] for the
 /// format.
@@ -59,7 +55,7 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
         controller: map['controller'],
         interactive: map['interactive'] == null
             ? null
-            : JsonClass.parseBool(
+            : JsonClass.maybeParseBool(
                 map['interactive'],
               ),
         notificationPredicate: map['notificationPredicate'],
@@ -71,10 +67,10 @@ class JsonScrollbarBuilder extends JsonWidgetBuilder {
           map['scrollbarOrientation'],
           validate: false,
         ),
-        thickness: JsonClass.parseDouble(map['thickness']),
+        thickness: JsonClass.maybeParseDouble(map['thickness']),
         thumbVisibility: map['thumbVisibility'] == null
             ? null
-            : JsonClass.parseBool(
+            : JsonClass.maybeParseBool(
                 map['thumbVisibility'],
               ),
       );

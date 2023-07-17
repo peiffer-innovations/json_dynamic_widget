@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Flexible] widget.  See the [fromDynamic] for the
 /// format.
@@ -43,7 +39,7 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             FlexFit.loose,
-        flex: JsonClass.parseInt(map['flex'], 1)!,
+        flex: JsonClass.maybeParseInt(map['flex']) ?? 1,
       );
     }
 

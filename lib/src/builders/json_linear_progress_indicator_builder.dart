@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [LinearProgressIndicator] widget.  See the
 /// [fromDynamic] for the format.
@@ -61,10 +57,10 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        minHeight: JsonClass.parseDouble(map['minHeight']),
+        minHeight: JsonClass.maybeParseDouble(map['minHeight']),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
-        value: JsonClass.parseDouble(map['value']),
+        value: JsonClass.maybeParseDouble(map['value']),
         valueColor: map['valueColor'] == null
             ? null
             : map['valueColor'] is Animation

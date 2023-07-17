@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [DropdownButtonFormField] widget.  See the
 /// [fromDynamic] for the format.
@@ -146,13 +142,13 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
           map['alignment'],
           validate: false,
         ),
-        autofocus: JsonClass.parseBool(map['autofocus']),
+        autofocus: JsonClass.maybeParseBool(map['autofocus']),
         autovalidateMode: map['autovalidate'] == null
             ? ThemeDecoder.decodeAutovalidateMode(
                 map['autovalidateMode'],
                 validate: false,
               )
-            : JsonClass.parseBool(map['autovalidate']) == true
+            : JsonClass.maybeParseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
         borderRadius: ThemeDecoder.decodeBorderRadius(
@@ -165,12 +161,14 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
           map['dropdownColor'],
           validate: false,
         ),
-        elevation: JsonClass.parseInt(map['elevation'], 8),
-        enableFeedback: map['enableFeedback'] == null
+        elevation: JsonClass.maybeParseInt(map['elevation']) ?? 8,
+        enableFeedback: JsonClass.parseBool(
+          map['enableFeedback'],
+          whenNull: true,
+        ),
+        enabled: map['enabled'] == null
             ? true
-            : JsonClass.parseBool(map['enableFeedback']),
-        enabled:
-            map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+            : JsonClass.maybeParseBool(map['enabled']),
         hint: JsonWidgetData.fromDynamic(map['hint']),
         icon: JsonWidgetData.fromDynamic(map['icon']),
         items: map['items'],
@@ -182,12 +180,14 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
           map['iconEnabledColor'],
           validate: false,
         ),
-        iconSize: JsonClass.parseDouble(map['iconSize'], 24.0),
-        isDense:
-            map['isDense'] == null ? true : JsonClass.parseBool(map['isDense']),
-        isExpanded: JsonClass.parseBool(map['isExpanded']),
-        itemHeight: JsonClass.parseDouble(map['itemHeight']),
-        menuMaxHeight: JsonClass.parseDouble(map['menuMaxHeight']),
+        iconSize: JsonClass.maybeParseDouble(map['iconSize'], 24.0),
+        isDense: JsonClass.parseBool(
+          map['isDense'],
+          whenNull: true,
+        ),
+        isExpanded: JsonClass.maybeParseBool(map['isExpanded']),
+        itemHeight: JsonClass.maybeParseDouble(map['itemHeight']),
+        menuMaxHeight: JsonClass.maybeParseDouble(map['menuMaxHeight']),
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
         onTap: map['onTap'],

@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [CircularProgressIndicator] widget.  See the
 /// [fromDynamic] for the format.
@@ -64,8 +60,8 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
         ),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
-        strokeWidth: JsonClass.parseDouble(map['strokeWidth'], 4.0)!,
-        value: JsonClass.parseDouble(map['value']),
+        strokeWidth: JsonClass.maybeParseDouble(map['strokeWidth']) ?? 4.0,
+        value: JsonClass.maybeParseDouble(map['value']),
         valueColor: map['valueColor'] == null
             ? null
             : map['valueColor'] is Animation

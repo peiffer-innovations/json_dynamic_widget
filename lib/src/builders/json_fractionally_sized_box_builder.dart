@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build a [FractionallySizedBox] widget.  See the [fromDynamic] for the
 /// format.
@@ -46,10 +42,10 @@ class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        heightFactor: JsonClass.parseDouble(
+        heightFactor: JsonClass.maybeParseDouble(
           map['heightFactor'],
         ),
-        widthFactor: JsonClass.parseDouble(
+        widthFactor: JsonClass.maybeParseDouble(
           map['widthFactor'],
         ),
       );

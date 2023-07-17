@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Wrap] widget.  See the [fromDynamic] for the
 /// format.
@@ -83,8 +79,8 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
           map['runAlignment'],
           validate: false,
         ),
-        spacing: JsonClass.parseDouble(map['spacing']),
-        runSpacing: JsonClass.parseDouble(map['runSpacing']),
+        spacing: JsonClass.maybeParseDouble(map['spacing']),
+        runSpacing: JsonClass.maybeParseDouble(map['runSpacing']),
         textDirection: ThemeDecoder.decodeTextDirection(
           map['textDirection'],
           validate: false,

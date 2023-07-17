@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Semantics] widget.  See the [fromDynamic] for the
 /// format.
@@ -216,52 +212,35 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSemanticsBuilder(
-        button:
-            map['button'] == null ? null : JsonClass.parseBool(map['button']),
-        checked:
-            map['checked'] == null ? null : JsonClass.parseBool(map['checked']),
+        button: JsonClass.maybeParseBool(map['button']),
+        checked: JsonClass.maybeParseBool(map['checked']),
         container: JsonClass.parseBool(map['container']),
-        currentValueLength: JsonClass.parseInt(map['currentValueLength']),
+        currentValueLength: JsonClass.maybeParseInt(map['currentValueLength']),
         decreasedValue: map['decreasedValue'],
-        enabled:
-            map['enabled'] == null ? null : JsonClass.parseBool(map['enabled']),
+        enabled: map['enabled'] == null
+            ? null
+            : JsonClass.maybeParseBool(map['enabled']),
         excludeSemantics: JsonClass.parseBool(map['excludeSemantics']),
         explicitChildNodes: JsonClass.parseBool(map['explicitChildNodes']),
-        focusable: map['focusable'] == null
-            ? null
-            : JsonClass.parseBool(map['focusable']),
-        focused:
-            map['focused'] == null ? null : JsonClass.parseBool(map['focused']),
-        header:
-            map['header'] == null ? null : JsonClass.parseBool(map['header']),
-        hidden:
-            map['hidden'] == null ? null : JsonClass.parseBool(map['hidden']),
+        focusable: JsonClass.maybeParseBool(map['focusable']),
+        focused: JsonClass.maybeParseBool(map['focused']),
+        header: JsonClass.maybeParseBool(map['header']),
+        hidden: JsonClass.maybeParseBool(map['hidden']),
         hint: map['hint'],
-        image: map['image'] == null ? null : JsonClass.parseBool(map['image']),
-        inMutuallyExclusiveGroup:
-            JsonClass.parseBool(map['inMutuallyExclusiveGroup']),
+        image: JsonClass.maybeParseBool(map['image']),
+        inMutuallyExclusiveGroup: JsonClass.maybeParseBool(
+          map['inMutuallyExclusiveGroup'],
+        ),
         increasedValue: map['increasedValue'],
-        keyboardKey: map['keyboardKey'] == null
-            ? null
-            : JsonClass.parseBool(map['keyboardKey']),
+        keyboardKey: JsonClass.maybeParseBool(map['keyboardKey']),
         label: map['label'],
-        link: map['link'] == null ? null : JsonClass.parseBool(map['link']),
-        liveRegion: map['liveRegion'] == null
-            ? null
-            : JsonClass.parseBool(map['liveRegion']),
-        maxValueLength: map['maxValueLength'] == null
-            ? null
-            : JsonClass.parseInt(map['maxValueLength']),
-        mixed: map['mixed'] == null ? null : JsonClass.parseBool(map['mixed']),
-        multiline: map['multiline'] == null
-            ? null
-            : JsonClass.parseBool(map['multiline']),
-        namesRoute: map['namesRoute'] == null
-            ? null
-            : JsonClass.parseBool(map['namesRoute']),
-        obscured: map['obscured'] == null
-            ? null
-            : JsonClass.parseBool(map['obscured']),
+        link: JsonClass.maybeParseBool(map['link']),
+        liveRegion: JsonClass.maybeParseBool(map['liveRegion']),
+        maxValueLength: JsonClass.maybeParseInt(map['maxValueLength']),
+        mixed: JsonClass.maybeParseBool(map['mixed']),
+        multiline: JsonClass.maybeParseBool(map['multiline']),
+        namesRoute: JsonClass.maybeParseBool(map['namesRoute']),
+        obscured: JsonClass.maybeParseBool(map['obscured']),
         onCopy: map['onCopy'],
         onCut: map['onCut'],
         onDecrease: map['onDecrease'],
@@ -282,17 +261,10 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
         onSetText: map['onSetText'],
         onTap: map['onTap'],
         onTapHint: map['onTapHint'],
-        readOnly: map['readOnly'] == null
-            ? null
-            : JsonClass.parseBool(map['readOnly']),
-        scopesRoute: map['scopesRoute'] == null
-            ? null
-            : JsonClass.parseBool(map['scopesRoute']),
-        selected: map['selected'] == null
-            ? null
-            : JsonClass.parseBool(map['selected']),
-        slider:
-            map['slider'] == null ? null : JsonClass.parseBool(map['slider']),
+        readOnly: JsonClass.maybeParseBool(map['readOnly']),
+        scopesRoute: JsonClass.maybeParseBool(map['scopesRoute']),
+        selected: JsonClass.maybeParseBool(map['selected']),
+        slider: JsonClass.maybeParseBool(map['slider']),
         sortKey: ThemeDecoder.decodeOrdinalSortKey(
           map['sortKey'],
           validate: false,
@@ -305,11 +277,8 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
           map['textDirection'],
           validate: false,
         ),
-        textField: map['textField'] == null
-            ? null
-            : JsonClass.parseBool(map['textField']),
-        toggled:
-            map['toggled'] == null ? null : JsonClass.parseBool(map['toggled']),
+        textField: JsonClass.maybeParseBool(map['textField']),
+        toggled: JsonClass.maybeParseBool(map['toggled']),
         tooltip: map['tooltip'],
         value: map['value'],
       );

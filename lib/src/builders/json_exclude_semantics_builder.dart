@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build an [MergeSemantics] widget.  See the [fromDynamic]
@@ -31,11 +28,10 @@ class JsonExcludeSemanticsBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonExcludeSemanticsBuilder(
-        excluding: map['excluding'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['excluding'],
-              ),
+        excluding: JsonClass.parseBool(
+          map['excluding'],
+          whenNull: true,
+        ),
       );
     }
 

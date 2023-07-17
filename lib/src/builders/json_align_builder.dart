@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Align] widget.  See the [fromDynamic] for the
 /// format.
@@ -45,8 +41,8 @@ class JsonAlignBuilder extends JsonWidgetBuilder {
           map['alignment'],
           validate: false,
         ),
-        heightFactor: JsonClass.parseDouble(map['heightFactor']),
-        widthFactor: JsonClass.parseDouble(map['widthFactor']),
+        heightFactor: JsonClass.maybeParseDouble(map['heightFactor']),
+        widthFactor: JsonClass.maybeParseDouble(map['widthFactor']),
       );
     }
 

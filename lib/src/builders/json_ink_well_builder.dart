@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [InkWell] widget.  See the [fromDynamic] for the
 /// format.
@@ -123,16 +119,18 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
           map['borderRadius'],
           validate: false,
         ),
-        canRequestFocus: map['canRequestFocus'] == null
-            ? true
-            : JsonClass.parseBool(map['canRequestFocus']),
+        canRequestFocus: JsonClass.parseBool(
+          map['canRequestFocus'],
+          whenNull: true,
+        ),
         customBorder: ThemeDecoder.decodeShapeBorder(
           map['customBorder'],
           validate: false,
         ),
-        enableFeedback: map['enableFeedback'] == null
-            ? true
-            : JsonClass.parseBool(map['enableFeedback']),
+        enableFeedback: JsonClass.parseBool(
+          map['enableFeedback'],
+          whenNull: true,
+        ),
         excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
@@ -164,7 +162,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
           map['overlayColor'],
           validate: false,
         ),
-        radius: JsonClass.parseDouble(map['radius']),
+        radius: JsonClass.maybeParseDouble(map['radius']),
         splashColor: ThemeDecoder.decodeColor(
           map['splashColor'],
           validate: false,

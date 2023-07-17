@@ -522,7 +522,7 @@ class JsonWidgetInternalBuildersBuilder {
   JsonWidgetInternalBuildersBuilder withIcon() {
     builders[JsonIconBuilder.type] = const JsonWidgetBuilderContainer(
       builder: JsonIconBuilder.fromDynamic,
-      schemaId: IconSchema.id,
+      schemaId: WrappedIconSchema.id,
     );
     return this;
   }

@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build a [FractionalTranslation] widget.  See the [fromDynamic] for the
 /// format.
@@ -38,11 +34,10 @@ class JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonFractionalTranslationBuilder(
-        transformHitTests: map['transformHitTests'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['transformHitTests'],
-              ),
+        transformHitTests: JsonClass.parseBool(
+          map['transformHitTests'],
+          whenNull: true,
+        ),
         translation: ThemeDecoder.decodeOffset(
           map['translation'],
           validate: false,

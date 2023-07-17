@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Checkbox] widget.  See the [fromDynamic] for the
 /// format.
@@ -126,15 +122,17 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
                 map['autovalidateMode'],
                 validate: false,
               )
-            : JsonClass.parseBool(map['autovalidate']) == true
+            : JsonClass.maybeParseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
         checkColor: ThemeDecoder.decodeColor(
           map['checkColor'],
           validate: false,
         ),
-        enabled:
-            map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        enabled: JsonClass.parseBool(
+          map['enabled'],
+          whenNull: true,
+        ),
         fillColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['fillColor'],
           validate: false,
@@ -172,12 +170,14 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
           map['side'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         tristate: JsonClass.parseBool(map['tristate']),
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
-        value: map['value'] == null ? null : JsonClass.parseBool(map['value']),
+        value: map['value'] == null
+            ? null
+            : JsonClass.maybeParseBool(map['value']),
         visualDensity: ThemeDecoder.decodeVisualDensity(
           map['visualDensity'],
           validate: false,

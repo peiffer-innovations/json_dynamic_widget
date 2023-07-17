@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Scaffold] widget.  See the [fromDynamic] for the
 /// format.
@@ -139,10 +135,12 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             DragStartBehavior.start,
-        drawerEdgeDragWidth: JsonClass.parseDouble(map['drawerEdgeDragWidth']),
-        drawerEnableOpenDragGesture: map['drawerEnableOpenDragGesture'] == null
-            ? true
-            : JsonClass.parseBool(map['drawerEnableOpenDragGesture']),
+        drawerEdgeDragWidth:
+            JsonClass.maybeParseDouble(map['drawerEdgeDragWidth']),
+        drawerEnableOpenDragGesture: JsonClass.parseBool(
+          map['drawerEnableOpenDragGesture'],
+          whenNull: true,
+        ),
         drawerScrimColor: ThemeDecoder.decodeColor(
           map['drawerScrimColor'],
           validate: false,
@@ -151,10 +149,10 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
           map['endDrawer'],
           registry: registry,
         ),
-        endDrawerEnableOpenDragGesture:
-            map['endDrawerEnableOpenDragGesture'] == null
-                ? true
-                : JsonClass.parseBool(map['endDrawerEnableOpenDragGesture']),
+        endDrawerEnableOpenDragGesture: JsonClass.parseBool(
+          map['endDrawerEnableOpenDragGesture'],
+          whenNull: true,
+        ),
         extendBody: JsonClass.parseBool(map['extendBody']),
         extendBodyBehindAppBar:
             JsonClass.parseBool(map['extendBodyBehindAppBar']),
@@ -181,18 +179,20 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
             AlignmentDirectional.centerEnd,
         persistentFooterButtons: map['persistentFooterButtons'] == null
             ? null
-            : JsonClass.fromDynamicList(
+            : JsonClass.maybeFromDynamicList(
                 map['persistentFooterButtons'],
                 (map) => JsonWidgetData.fromDynamic(
                   map['persistentFooterButtons'],
                   registry: registry,
                 )!,
               ),
-        primary:
-            map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
+        primary: JsonClass.parseBool(
+          map['primary'],
+          whenNull: true,
+        ),
         resizeToAvoidBottomInset: map['resizeToAvoidBottomInset'] == null
             ? null
-            : JsonClass.parseBool(map['resizeToAvoidBottomInset']),
+            : JsonClass.maybeParseBool(map['resizeToAvoidBottomInset']),
         restorationId: map['restorationId'],
       );
     }

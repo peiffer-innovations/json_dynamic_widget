@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build an [SliverList] widget.  See the [fromDynamic] for
@@ -65,7 +62,7 @@ class JsonSliverListBuilder extends JsonWidgetBuilder {
         findChildIndexCallback: map['findChildIndexCallback'],
         semanticIndexCallback: map['semanticIndexCallback'],
         semanticIndexOffset:
-            JsonClass.parseInt(map['semanticIndexOffset']) ?? 0,
+            JsonClass.maybeParseInt(map['semanticIndexOffset']) ?? 0,
       );
     }
 

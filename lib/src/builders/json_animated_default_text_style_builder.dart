@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [AnimatedDefaultTextStyle] widget.
 /// See the [fromDynamic] for the format.
@@ -71,17 +67,17 @@ class JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonAnimatedDefaultTextStyleBuilder(
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
-        maxLines: JsonClass.parseInt(map['maxLines']),
+        maxLines: JsonClass.maybeParseInt(map['maxLines']),
         onEnd: map['onEnd'],
         overflow: ThemeDecoder.decodeTextOverflow(
               map['overflow'],
               validate: false,
             ) ??
             TextOverflow.clip,
-        softWrap: JsonClass.parseBool(map['softWrap'] ?? true),
+        softWrap: JsonClass.maybeParseBool(map['softWrap'] ?? true),
         style: ThemeDecoder.decodeTextStyle(
           map['style'],
           validate: false,

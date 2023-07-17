@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [SafeArea] widget.  See the [fromDynamic] for the
 /// format.
@@ -50,12 +46,14 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonSafeAreaBuilder(
-        bottom: map['bottom'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['bottom'],
-              ),
-        left: map['left'] == null ? true : JsonClass.parseBool(map['left']),
+        bottom: JsonClass.parseBool(
+          map['bottom'],
+          whenNull: true,
+        ),
+        left: JsonClass.parseBool(
+          map['left'],
+          whenNull: true,
+        ),
         maintainBottomViewPadding: JsonClass.parseBool(
           map['maintainBottomViewPadding'],
         ),
@@ -64,8 +62,14 @@ class JsonSafeAreaBuilder extends JsonWidgetBuilder {
               validate: false,
             ) as EdgeInsets? ??
             EdgeInsets.zero,
-        right: map['right'] == null ? true : JsonClass.parseBool(map['right']),
-        top: map['top'] == null ? true : JsonClass.parseBool(map['top']),
+        right: JsonClass.parseBool(
+          map['right'],
+          whenNull: true,
+        ),
+        top: JsonClass.parseBool(
+          map['top'],
+          whenNull: true,
+        ),
       );
     }
 

@@ -1,6 +1,5 @@
 import 'package:execution_timer/execution_timer.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme_schemas.dart';
 
 /// Container for a [JsonWidgetBuilder] builder as well as an associated schema
 /// id.  The schema id will be used to validate the JSON args against the

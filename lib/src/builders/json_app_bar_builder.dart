@@ -1,9 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [AppBar] widget.  See the [fromDynamic] for the
 /// format.
@@ -121,7 +116,7 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonAppBarBuilder(
-        actions: JsonClass.fromDynamicList(
+        actions: JsonClass.maybeFromDynamicList(
           map['actions'],
           (map) => JsonWidgetData.fromDynamic(
             map,
@@ -132,9 +127,10 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['actionsIconTheme'],
           validate: false,
         ),
-        automaticallyImplyLeading: map['automaticallyImplyLeading'] == null
-            ? true
-            : JsonClass.parseBool(map['automaticallyImplyLeading']),
+        automaticallyImplyLeading: JsonClass.parseBool(
+          map['automaticallyImplyLeading'],
+          whenNull: true,
+        ),
         backgroundColor: ThemeDecoder.decodeColor(
           map['backgroundColor'],
           validate: false,
@@ -143,13 +139,14 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['bottom'],
           registry: registry,
         ),
-        bottomOpacity: JsonClass.parseDouble(map['bottomOpacity'], 1.0)!,
+        bottomOpacity: JsonClass.maybeParseDouble(map['bottomOpacity']) ?? 1.0,
         centerTitle: map['centerTitle'] == null
             ? null
-            : JsonClass.parseBool(map['centerTitle']),
-        elevation: JsonClass.parseDouble(map['elevation']),
-        excludeHeaderSemantics:
-            JsonClass.parseBool(map['excludeHeaderSemantics']),
+            : JsonClass.maybeParseBool(map['centerTitle']),
+        elevation: JsonClass.maybeParseDouble(map['elevation']),
+        excludeHeaderSemantics: JsonClass.parseBool(
+          map['excludeHeaderSemantics'],
+        ),
         flexibleSpace: JsonWidgetData.fromDynamic(
           map['flexibleSpace'],
           registry: registry,
@@ -162,12 +159,14 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['leading'],
           registry: registry,
         ),
-        leadingWidth: JsonClass.parseDouble(map['leadingWidth']),
+        leadingWidth: JsonClass.maybeParseDouble(map['leadingWidth']),
         notificationPredicate:
             map['notificationPredicate'] ?? defaultScrollNotificationPredicate,
-        primary:
-            map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
-        scrolledUnderElevation: JsonClass.parseDouble(
+        primary: JsonClass.parseBool(
+          map['primary'],
+          whenNull: true,
+        ),
+        scrolledUnderElevation: JsonClass.maybeParseDouble(
           map['scrolledUnderElevation'],
         ),
         shadowColor: ThemeDecoder.decodeColor(
@@ -198,12 +197,13 @@ class JsonAppBarBuilder extends JsonWidgetBuilder {
           map['title'],
           registry: registry,
         ),
-        titleSpacing: JsonClass.parseDouble(
+        titleSpacing: JsonClass.maybeParseDouble(
           map['titleSpacing'],
           NavigationToolbar.kMiddleSpacing,
         ),
-        toolbarHeight: JsonClass.parseDouble(map['toolbarHeight']),
-        toolbarOpacity: JsonClass.parseDouble(map['toolbarOpacity'], 1.0)!,
+        toolbarHeight: JsonClass.maybeParseDouble(map['toolbarHeight']),
+        toolbarOpacity:
+            JsonClass.maybeParseDouble(map['toolbarOpacity']) ?? 1.0,
       );
     }
 

@@ -1,10 +1,5 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:form_validation/form_validation.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [TextFormField] widget.  See the [fromDynamic] for
 /// the format.
@@ -205,9 +200,10 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
     JsonTextFormFieldBuilder? result;
     if (map != null) {
       result = JsonTextFormFieldBuilder(
-        autocorrect: map['autocorrect'] == null
-            ? true
-            : JsonClass.parseBool(map['autocorrect']),
+        autocorrect: JsonClass.parseBool(
+          map['autocorrect'],
+          whenNull: true,
+        ),
         autofillHints: map['autofillHints'] == null
             ? null
             : List<String>.from(map['autofillHints']),
@@ -217,7 +213,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
                 map['autovalidateMode'],
                 validate: false,
               )
-            : JsonClass.parseBool(map['autovalidate']) == true
+            : JsonClass.maybeParseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
         buildCounter: map['buildCounter'],
@@ -228,25 +224,29 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['cursorColor'],
           validate: false,
         ),
-        cursorHeight: JsonClass.parseDouble(map['cursorHeight']),
+        cursorHeight: JsonClass.maybeParseDouble(map['cursorHeight']),
         cursorRadius: ThemeDecoder.decodeRadius(
           map['cursorRadius'],
           validate: false,
         ),
-        cursorWidth: JsonClass.parseDouble(map['cursorWidth'], 2)!,
+        cursorWidth: JsonClass.maybeParseDouble(map['cursorWidth']) ?? 2.0,
         decoration: map['decoration'],
-        enableIMEPersonalizedLearning:
-            map['enableIMEPersonalizedLearning'] == null
-                ? true
-                : JsonClass.parseBool(map['enableIMEPersonalizedLearning']),
-        enableInteractiveSelection: map['enableInteractiveSelection'] == null
-            ? true
-            : JsonClass.parseBool(map['enableInteractiveSelection']),
-        enableSuggestions: map['enableSuggestions'] == null
-            ? true
-            : JsonClass.parseBool(map['enableSuggestions']),
-        enabled:
-            map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        enableIMEPersonalizedLearning: JsonClass.parseBool(
+          map['enableIMEPersonalizedLearning'],
+          whenNull: true,
+        ),
+        enableInteractiveSelection: JsonClass.parseBool(
+          map['enableInteractiveSelection'],
+          whenNull: true,
+        ),
+        enableSuggestions: JsonClass.parseBool(
+          map['enableSuggestions'],
+          whenNull: true,
+        ),
+        enabled: JsonClass.parseBool(
+          map['enabled'],
+          whenNull: true,
+        ),
         expands: JsonClass.parseBool(map['expands']),
         focusNode: map['focusNode'],
         inputFormatters: map['inputFormatters'],
@@ -258,20 +258,20 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['keyboardType'],
           validate: false,
         ),
-        maxLength: JsonClass.parseInt(map['maxLength']),
+        maxLength: JsonClass.maybeParseInt(map['maxLength']),
         maxLengthEnforcement: ThemeDecoder.decodeMaxLengthEnforcement(
           map['maxLengthEnforcement'],
           validate: false,
         ),
         maxLines: map.containsKey('maxLines')
-            ? JsonClass.parseInt(map['maxLines'], null)
+            ? JsonClass.maybeParseInt(map['maxLines'])
             : 1,
-        minLines: JsonClass.parseInt(map['minLines']),
+        minLines: JsonClass.maybeParseInt(map['minLines']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
           validate: false,
         ),
-        obscureText: JsonClass.parseBool(map['obscureText']),
+        obscureText: JsonClass.maybeParseBool(map['obscureText']),
         obscuringCharacter: map['obscuringCharacter'] ?? '•',
         onChanged: map['onChanged'],
         onEditingComplete: map['onEditingComplete'],
@@ -279,7 +279,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         onSaved: map['onSaved'],
         onTap: map['onTap'],
         onTapOutside: map['onTapOutside'],
-        readOnly: JsonClass.parseBool(map['readOnly']),
+        readOnly: JsonClass.maybeParseBool(map['readOnly']),
         restorationId: map['restorationId'],
         scrollPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
               map['scrollPadding'],
@@ -293,7 +293,7 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
         selectionControls: map['selectionControls'],
         showCursor: map['showCursor'] == null
             ? null
-            : JsonClass.parseBool(map['showCursor']),
+            : JsonClass.maybeParseBool(map['showCursor']),
         smartDashesType: ThemeDecoder.decodeSmartDashesType(
           map['smartDashesType'],
           validate: false,

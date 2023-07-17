@@ -1,10 +1,6 @@
-import 'package:child_builder/child_builder.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Switch] widget.  See the [fromDynamic] for the
 /// format.
@@ -147,7 +143,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
                 map['autovalidateMode'],
                 validate: false,
               )
-            : JsonClass.parseBool(map['autovalidate']) == true
+            : JsonClass.maybeParseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
@@ -155,8 +151,10 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             DragStartBehavior.start,
-        enabled:
-            map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        enabled: JsonClass.parseBool(
+          map['enabled'],
+          whenNull: true,
+        ),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
           validate: false,
@@ -195,7 +193,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
           map['overlayColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble('splashRadius'),
+        splashRadius: JsonClass.maybeParseDouble('splashRadius'),
         thumbColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['thumbColor'],
           validate: false,
@@ -211,7 +209,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
-        value: JsonClass.parseBool(map['value']),
+        value: JsonClass.maybeParseBool(map['value']),
         visualDensity: ThemeDecoder.decodeVisualDensity(
           map['visualDensity'],
           validate: false,

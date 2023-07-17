@@ -13,3 +13,10 @@ typedef JsonWidgetBuilderBuilder = JsonWidgetBuilder? Function(
 typedef DeferredBuilder = JsonWidgetBuilder Function(
   JsonWidgetBuilderBuilder builder,
 );
+
+typedef ParamDecoder = T Function<T>({
+  required ChildWidgetBuilder? childBuilder,
+  required BuildContext context,
+  required JsonWidgetRegistry registry,
+  required dynamic value,
+});

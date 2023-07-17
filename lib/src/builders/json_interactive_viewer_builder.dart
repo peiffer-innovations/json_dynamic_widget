@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [InteractiveViewer] widget.  See the [fromDynamic] for the
 /// format.
@@ -97,22 +93,16 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Clip.hardEdge,
-        constrained: map['constrained'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['constrained'],
-              ),
-        interactionEndFrictionCoefficient:
-            JsonClass.parseDouble(map['interactionEndFrictionCoefficient']) ??
-                0.0000135,
-        maxScale: JsonClass.parseDouble(
-          map['maxScale'],
-          2.5,
-        )!,
-        minScale: JsonClass.parseDouble(
-          map['minScale'],
-          0.8,
-        )!,
+        constrained: JsonClass.parseBool(
+          map['constrained'],
+          whenNull: true,
+        ),
+        interactionEndFrictionCoefficient: JsonClass.maybeParseDouble(
+              map['interactionEndFrictionCoefficient'],
+            ) ??
+            0.0000135,
+        maxScale: JsonClass.maybeParseDouble(map['maxScale']) ?? 2.5,
+        minScale: JsonClass.maybeParseDouble(map['minScale']) ?? 0.8,
         onInteractionEnd: map['onInteractionEnd'],
         onInteractionStart: map['onInteractionStart'],
         onInteractionUpdate: map['onInteractionUpdate'],
@@ -121,17 +111,15 @@ class JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             PanAxis.free,
-        panEnabled: map['panEnabled'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['panEnabled'],
-              ),
-        scaleEnabled: map['scaleEnabled'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['scaleEnabled'],
-              ),
-        scaleFactor: JsonClass.parseDouble(map['scaleFactor']) ?? 200.0,
+        panEnabled: JsonClass.parseBool(
+          map['panEnabled'],
+          whenNull: true,
+        ),
+        scaleEnabled: JsonClass.parseBool(
+          map['scaleEnabled'],
+          whenNull: true,
+        ),
+        scaleFactor: JsonClass.maybeParseDouble(map['scaleFactor']) ?? 200.0,
         transformationController: map['transformationController'],
       );
     }

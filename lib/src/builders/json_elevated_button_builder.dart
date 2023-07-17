@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [ElevatedButton] widget.  See the [fromDynamic] for
 /// the format.
@@ -66,11 +62,7 @@ class JsonElevatedButtonBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonElevatedButtonBuilder(
-        autofocus: map['autofocus'] == null
-            ? false
-            : JsonClass.parseBool(
-                map['autofocus'],
-              ),
+        autofocus: JsonClass.parseBool(map['autofocus']),
         clipBehavior: ThemeDecoder.decodeClip(
               map['clipBehavior'],
               validate: false,

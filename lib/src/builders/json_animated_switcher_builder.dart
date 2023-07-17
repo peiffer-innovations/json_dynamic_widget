@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build an [AnimatedSwitcher] widget.
@@ -60,12 +57,12 @@ class JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonAnimatedSwitcherBuilder(
         child: map['child'],
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
         layoutBuilder:
             map['layoutBuilder'] ?? AnimatedSwitcher.defaultLayoutBuilder,
-        reverseDuration: JsonClass.parseDurationFromMillis(
+        reverseDuration: JsonClass.maybeParseDurationFromMillis(
           map['reverseDuration'],
         ),
         switchInCurve: map['switchInCurve'] ?? Curves.linear,

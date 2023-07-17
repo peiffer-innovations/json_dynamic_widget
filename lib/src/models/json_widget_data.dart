@@ -1,9 +1,6 @@
 import 'dart:convert';
 
-import 'package:child_builder/child_builder.dart';
 import 'package:execution_timer/execution_timer.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
 import 'package:uuid/uuid.dart';
@@ -139,7 +136,7 @@ class JsonWidgetData extends JsonClass {
             child: child,
             children: map['children'] is String
                 ? registry.processArgs(map['children'], listenVariables).value
-                : JsonClass.fromDynamicList(
+                : JsonClass.maybeFromDynamicList(
                     map['children'],
                     (dynamic map) => JsonWidgetData.fromDynamic(
                       map,
@@ -324,6 +321,6 @@ $map
         'type': type,
         'id': id,
         'args': args,
-        'children': JsonClass.toJsonList(children),
+        'children': JsonClass.maybeToJsonList(children),
       });
 }

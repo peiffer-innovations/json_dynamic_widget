@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Tooltip] widget.  See the [fromDynamic] for the
 /// format.
@@ -71,7 +67,7 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
   /// ```
   ///
   /// See also:
-  ///  * [JsonClass.parseDurationFromMillis]
+  ///  * [JsonClass.maybeParseDurationFromMillis]
   ///  * [ThemeDecoder.decodeBoxDecoration]
   ///  * [ThemeDecoder.decodeEdgeInsetsGeometry]
   ///  * [ThemeDecoder.decodeTextAlign]
@@ -90,11 +86,11 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
         ),
         enableFeedback: map['enableFeedback'] == null
             ? null
-            : JsonClass.parseBool(map['enableFeedback']),
+            : JsonClass.maybeParseBool(map['enableFeedback']),
         excludeFromSemantics: map['excludeFromSemantics'] == null
             ? null
-            : JsonClass.parseBool(map['excludeFromSemantics']),
-        height: JsonClass.parseDouble(map['height']),
+            : JsonClass.maybeParseBool(map['excludeFromSemantics']),
+        height: JsonClass.maybeParseDouble(map['height']),
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,
@@ -106,9 +102,10 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
         ),
         preferBelow: map['preferBelow'] == null
             ? null
-            : JsonClass.parseBool(map['preferBelow']),
+            : JsonClass.maybeParseBool(map['preferBelow']),
         richMessage: map['richMessage'],
-        showDuration: JsonClass.parseDurationFromMillis(map['showDuration']),
+        showDuration:
+            JsonClass.maybeParseDurationFromMillis(map['showDuration']),
         textAlign: ThemeDecoder.decodeTextAlign(
           map['textAlign'],
           validate: false,
@@ -121,8 +118,9 @@ class JsonTooltipBuilder extends JsonWidgetBuilder {
           map['triggerMode'],
           validate: false,
         ),
-        verticalOffset: JsonClass.parseDouble(map['verticalOffset']),
-        waitDuration: JsonClass.parseDurationFromMillis(map['waitDuration']),
+        verticalOffset: JsonClass.maybeParseDouble(map['verticalOffset']),
+        waitDuration:
+            JsonClass.maybeParseDurationFromMillis(map['waitDuration']),
       );
     }
 

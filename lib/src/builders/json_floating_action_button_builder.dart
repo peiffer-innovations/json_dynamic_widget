@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build a [FloatingActionButton] widget.
 /// See the [fromDynamic] for the format.
@@ -107,9 +103,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonFloatingActionButtonBuilder(
-        autofocus: JsonClass.parseBool(
-          map['autofocus'],
-        ),
+        autofocus: JsonClass.parseBool(map['autofocus']),
         backgroundColor: ThemeDecoder.decodeColor(
           map['backgroundColor'],
           validate: false,
@@ -119,20 +113,20 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Clip.none,
-        disabledElevation: JsonClass.parseDouble(
+        disabledElevation: JsonClass.maybeParseDouble(
           map['disabledElevation'],
         ),
-        elevation: JsonClass.parseDouble(
+        elevation: JsonClass.maybeParseDouble(
           map['elevation'],
         ),
         enableFeedback: map['enableFeedback'] == null
             ? null
-            : JsonClass.parseBool(map['enableFeedback']),
+            : JsonClass.maybeParseBool(map['enableFeedback']),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
           validate: false,
         ),
-        focusElevation: JsonClass.parseDouble(
+        focusElevation: JsonClass.maybeParseDouble(
           map['focusElevation'],
         ),
         focusNode: map['focusNode'],
@@ -144,19 +138,17 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
             const FloatingActionButton(
               onPressed: null,
             ).heroTag,
-        highlightElevation: JsonClass.parseDouble(
+        highlightElevation: JsonClass.maybeParseDouble(
           map['highlightElevation'],
         ),
         hoverColor: ThemeDecoder.decodeColor(
           map['hoverColor'],
           validate: false,
         ),
-        hoverElevation: JsonClass.parseDouble(
+        hoverElevation: JsonClass.maybeParseDouble(
           map['hoverElevation'],
         ),
-        isExtended: JsonClass.parseBool(
-          map['isExtended'],
-        ),
+        isExtended: JsonClass.parseBool(map['isExtended']),
         materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
           map['materialTapTargetSize'],
           validate: false,

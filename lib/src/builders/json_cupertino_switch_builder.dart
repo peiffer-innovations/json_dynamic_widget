@@ -1,11 +1,7 @@
-import 'package:child_builder/child_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
-import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [CupertinoSwitch] widget.  See the [fromDynamic]
 /// for the format.
@@ -92,15 +88,17 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
                 map['autovalidateMode'],
                 validate: false,
               )
-            : JsonClass.parseBool(map['autovalidate']) == true
+            : JsonClass.maybeParseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
         dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
           map['dragStartBehavior'],
           validate: false,
         ),
-        enabled:
-            map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        enabled: JsonClass.parseBool(
+          map['enabled'],
+          whenNull: true,
+        ),
         label: map['label'],
         onChanged: map['onChanged'],
         onSaved: map['onSaved'],
@@ -116,7 +114,7 @@ class JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
         validator: map['validators'] == null
             ? null
             : Validator.fromDynamic({'validators': map['validators']}),
-        value: JsonClass.parseBool(map['value']),
+        value: JsonClass.maybeParseBool(map['value']),
         visualDensity: ThemeDecoder.decodeVisualDensity(
           map['visualDensity'],
           validate: false,

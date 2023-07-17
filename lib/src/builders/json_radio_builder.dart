@@ -1,11 +1,7 @@
 import 'dart:async';
 
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:form_validation/form_validation.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Radio]   See the [fromDynamic] for the
 /// format. Unlike other form fields, this requires the `id` for the radio
@@ -120,11 +116,13 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
                 map['autovalidateMode'],
                 validate: false,
               )
-            : JsonClass.parseBool(map['autovalidate']) == true
+            : JsonClass.maybeParseBool(map['autovalidate']) == true
                 ? AutovalidateMode.always
                 : AutovalidateMode.disabled,
-        enabled:
-            map['enabled'] == null ? true : JsonClass.parseBool(map['enabled']),
+        enabled: JsonClass.parseBool(
+          map['enabled'],
+          whenNull: true,
+        ),
         fillColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['fillColor'],
           validate: false,
@@ -154,7 +152,7 @@ class JsonRadioBuilder extends JsonWidgetBuilder {
           map['overlayColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         toggleable: JsonClass.parseBool(map['toggleable']),
         validator: map['validators'] == null
             ? null

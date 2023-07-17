@@ -1,9 +1,5 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 class SvgBuilder extends JsonWidgetBuilder {
   const SvgBuilder({
@@ -39,9 +35,9 @@ class SvgBuilder extends JsonWidgetBuilder {
         map['color'],
         validate: false,
       ),
-      height: JsonClass.parseDouble(map['height']),
+      height: JsonClass.maybeParseDouble(map['height']),
       url: map['url'],
-      width: JsonClass.parseDouble(map['width']),
+      width: JsonClass.maybeParseDouble(map['width']),
     );
   }
 

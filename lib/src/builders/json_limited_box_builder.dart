@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build a [LimitedBox] widget.  See the [fromDynamic] for the
@@ -34,11 +31,11 @@ class JsonLimitedBoxBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonLimitedBoxBuilder(
-        maxHeight: JsonClass.parseDouble(
+        maxHeight: JsonClass.maybeParseDouble(
               map['maxHeight'],
             ) ??
             double.infinity,
-        maxWidth: JsonClass.parseDouble(
+        maxWidth: JsonClass.maybeParseDouble(
               map['maxWidth'],
             ) ??
             double.infinity,

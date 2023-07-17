@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build an [AnimatedOpacity] widget.
@@ -47,15 +44,13 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonAnimatedOpacityBuilder(
-        alwaysIncludeSemantics: JsonClass.parseBool(
+        alwaysIncludeSemantics: JsonClass.maybeParseBool(
           map['alwaysIncludeSemantics'],
         ),
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
-          map['duration'],
-        )!,
+        duration: JsonClass.parseDurationFromMillis(map['duration']),
         onEnd: map['onEnd'],
-        opacity: JsonClass.parseDouble(map['opacity'])!,
+        opacity: JsonClass.parseDouble(map['opacity']),
       );
     }
 

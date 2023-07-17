@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [AnimatedCrossFade] widget.
 /// See the [fromDynamic] for the format. The ordering of the
@@ -71,7 +67,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
           map['crossFadeState'],
           validate: false,
         )!,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
         excludeBottomFocus: JsonClass.parseBool(
@@ -81,7 +77,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
         firstCurve: map['firstCurve'] ?? Curves.linear,
         layoutBuilder:
             map['layoutBuilder'] ?? AnimatedCrossFade.defaultLayoutBuilder,
-        reverseDuration: JsonClass.parseDurationFromMillis(
+        reverseDuration: JsonClass.maybeParseDurationFromMillis(
           map['reverseDuration'],
         ),
         secondCurve: map['secondCurve'] ?? Curves.linear,

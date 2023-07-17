@@ -1,10 +1,5 @@
-import 'dart:typed_data';
 
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Image] widget from a network URL.  See the
 /// [fromDynamic] for the format.
@@ -121,8 +116,8 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        cacheHeight: JsonClass.parseInt(map['cacheHeight']),
-        cacheWidth: JsonClass.parseInt(map['cacheWidth']),
+        cacheHeight: JsonClass.maybeParseInt(map['cacheHeight']),
+        cacheWidth: JsonClass.maybeParseInt(map['cacheWidth']),
         centerSlice: ThemeDecoder.decodeRect(
           map['centerSlice'],
           validate: false,
@@ -148,23 +143,23 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
         ),
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
-        height: JsonClass.parseDouble(map['height']),
+        height: JsonClass.maybeParseDouble(map['height']),
         headers: map['headers'] == null
             ? null
             : Map<String, String>.from(map['headers']),
         isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
         loadingBuilder: map['loadingBuilder'],
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
-        opacity: JsonClass.parseDouble(map['opacity']),
+        opacity: JsonClass.maybeParseDouble(map['opacity']),
         repeat: ThemeDecoder.decodeImageRepeat(
               map['imageRepeat'],
               validate: false,
             ) ??
             ImageRepeat.noRepeat,
-        scale: JsonClass.parseDouble(map['scale'], 1.0)!,
+        scale: JsonClass.maybeParseDouble(map['scale']) ?? 1.0,
         semanticLabel: map['semanticLabel'],
         src: map['src'],
-        width: JsonClass.parseDouble(map['width']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

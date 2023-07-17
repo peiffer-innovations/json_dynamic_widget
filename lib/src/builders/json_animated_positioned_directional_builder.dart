@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build an [AnimatedPositionedDirectional] widget.
@@ -59,17 +56,17 @@ class JsonAnimatedPositionedDirectionalBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonAnimatedPositionedDirectionalBuilder(
-        bottom: JsonClass.parseDouble(map['bottom']),
+        bottom: JsonClass.maybeParseDouble(map['bottom']),
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
-        end: JsonClass.parseDouble(map['end']),
-        height: JsonClass.parseDouble(map['height']),
+        end: JsonClass.maybeParseDouble(map['end']),
+        height: JsonClass.maybeParseDouble(map['height']),
         onEnd: map['onEnd'],
-        start: JsonClass.parseDouble(map['start']),
-        top: JsonClass.parseDouble(map['top']),
-        width: JsonClass.parseDouble(map['width']),
+        start: JsonClass.maybeParseDouble(map['start']),
+        top: JsonClass.maybeParseDouble(map['top']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

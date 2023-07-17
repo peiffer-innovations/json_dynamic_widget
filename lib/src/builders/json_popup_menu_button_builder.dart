@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build a [PopupMenuButton] widget.  See the [fromDynamic] for the
 /// format.
@@ -120,24 +116,23 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
           map['constraints'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(
+        elevation: JsonClass.maybeParseDouble(
           map['elevation'],
         ),
         enableFeedback: map['enableFeedback'] == null
             ? true
-            : JsonClass.parseBool(
+            : JsonClass.maybeParseBool(
                 map['enableFeedback'],
               ),
-        enabled: map['enabled'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['enabled'],
-              ),
+        enabled: JsonClass.parseBool(
+          map['enabled'],
+          whenNull: true,
+        ),
         icon: JsonWidgetData.fromDynamic(
           map['icon'],
           registry: registry,
         ),
-        iconSize: JsonClass.parseDouble(map['iconSize']),
+        iconSize: JsonClass.maybeParseDouble(map['iconSize']),
         initialValue: map['initialValue'],
         itemBuilder: map['itemBuilder'],
         offset: ThemeDecoder.decodeOffset(
@@ -165,7 +160,7 @@ class JsonPopupMenuButtonBuilder extends JsonWidgetBuilder {
           map['shape'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         surfaceTintColor: ThemeDecoder.decodeColor(
           map['surfaceTintColor'],
           validate: false,

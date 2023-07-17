@@ -12,12 +12,8 @@ import 'package:example/src/svg_builder.dart';
 import 'package:example/src/untestable_full_widget_page.dart';
 import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme_schemas.dart';
 import 'package:logging/logging.dart';
-import 'package:yaon/yaon.dart';
 
 import 'src/full_widget_page.dart';
 

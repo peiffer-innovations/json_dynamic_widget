@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Text] widget.  See the [fromDynamic] for the
 /// format.
@@ -86,7 +82,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
           map['local'],
           validate: false,
         ),
-        maxLines: JsonClass.parseInt(map['maxLines']),
+        maxLines: JsonClass.maybeParseInt(map['maxLines']),
         overflow: ThemeDecoder.decodeTextOverflow(
           map['overflow'],
           validate: false,
@@ -98,7 +94,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
         semanticsLabel: map['semanticsLabel'],
         softWrap: map['softWrap'] == null
             ? null
-            : JsonClass.parseBool(map['softWrap']),
+            : JsonClass.maybeParseBool(map['softWrap']),
         strutStyle: ThemeDecoder.decodeStrutStyle(
           map['strutStyle'],
           validate: false,
@@ -120,7 +116,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
           map['textHeightBehavior'],
           validate: false,
         ),
-        textScaleFactor: JsonClass.parseDouble(map['textScaleFactor']),
+        textScaleFactor: JsonClass.maybeParseDouble(map['textScaleFactor']),
         textWidthBasis: ThemeDecoder.decodeTextWidthBasis(
           map['textWidthBasis'],
           validate: false,

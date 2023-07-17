@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [ListTile] widget.  See the [fromDynamic] for the
 /// format.
@@ -134,23 +130,23 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['contentPadding'],
           validate: false,
         ),
-        dense: JsonClass.parseBool(map['dense']),
+        dense: JsonClass.maybeParseBool(map['dense']),
         enableFeedback: map['enableFeedback'] == null
             ? true
-            : JsonClass.parseBool(
+            : JsonClass.maybeParseBool(
                 map['enableFeedback'],
               ),
-        enabled: map['enabled'] == null
-            ? true
-            : JsonClass.parseBool(
-                map['enabled'],
-              ),
+        enabled: JsonClass.parseBool(
+          map['enabled'],
+          whenNull: true,
+        ),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
           validate: false,
         ),
         focusNode: map['focusNode'],
-        horizontalTitleGap: JsonClass.parseDouble(map['horizontalTitleGap']),
+        horizontalTitleGap:
+            JsonClass.maybeParseDouble(map['horizontalTitleGap']),
         hoverColor: ThemeDecoder.decodeColor(
           map['hoverColor'],
           validate: false,
@@ -164,8 +160,9 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['leading'],
           registry: registry,
         ),
-        minLeadingWidth: JsonClass.parseDouble(map['minLeadingWidth']),
-        minVerticalPadding: JsonClass.parseDouble(map['minVerticalPadding']),
+        minLeadingWidth: JsonClass.maybeParseDouble(map['minLeadingWidth']),
+        minVerticalPadding:
+            JsonClass.maybeParseDouble(map['minVerticalPadding']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
           validate: false,

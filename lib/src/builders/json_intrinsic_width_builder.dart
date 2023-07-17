@@ -1,6 +1,3 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Builder that can build an [IntrinsicWidth] widget.  See the [fromDynamic] for the
@@ -34,10 +31,10 @@ class JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonIntrinsicWidthBuilder(
-        stepHeight: JsonClass.parseDouble(
+        stepHeight: JsonClass.maybeParseDouble(
           map['stepHeight'],
         ),
-        stepWidth: JsonClass.parseDouble(
+        stepWidth: JsonClass.maybeParseDouble(
           map['stepWidth'],
         ),
       );

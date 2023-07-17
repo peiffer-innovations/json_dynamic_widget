@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [IconButton] widget.  See the [fromDynamic] for
 /// the format.
@@ -129,9 +125,10 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
           map['disabledColor'],
           validate: false,
         ),
-        enableFeedback: map['enableFeedback'] == null
-            ? true
-            : JsonClass.parseBool(map['enableFeedback']),
+        enableFeedback: JsonClass.parseBool(
+          map['enableFeedback'],
+          whenNull: true,
+        ),
         focusColor: ThemeDecoder.decodeColor(
           map['focusColor'],
           validate: false,
@@ -146,10 +143,8 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         icon: JsonWidgetData.fromDynamic(map['icon'], registry: registry),
-        iconSize: JsonClass.parseDouble(map['iconSize'], 24.0)!,
-        isSelected: map['isSelected'] == null
-            ? null
-            : JsonClass.parseBool(map['isSelected']),
+        iconSize: JsonClass.maybeParseDouble(map['iconSize']) ?? 24.0,
+        isSelected: JsonClass.maybeParseBool(map['isSelected']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
               map['mouseCursor'],
               validate: false,
@@ -167,7 +162,7 @@ class JsonIconButtonBuilder extends JsonWidgetBuilder {
           map['splashColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble(map['splashRadius']),
+        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
         style: ThemeDecoder.decodeButtonStyle(
           map['style'],
           validate: false,

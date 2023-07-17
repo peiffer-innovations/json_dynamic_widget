@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [Baseline] widget.  See the [fromDynamic] for the
 /// format.
@@ -39,7 +35,7 @@ class JsonBaselineBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonBaselineBuilder(
-        baseline: JsonClass.parseDouble(map['baseline'], 0)!,
+        baseline: JsonClass.maybeParseDouble(map['baseline']) ?? 0.0,
         baselineType: ThemeDecoder.decodeTextBaseline(
               map['baselineType'],
               validate: false,

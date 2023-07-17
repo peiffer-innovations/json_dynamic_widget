@@ -52,7 +52,6 @@ class JsonDynamicWidgetSchemas {
     GridViewSchema.id: GridViewSchema.schema,
     HeroSchema.id: HeroSchema.schema,
     IconButtonSchema.id: IconButtonSchema.schema,
-    IconSchema.id: IconSchema.schema,
     IgnorePointerSchema.id: IgnorePointerSchema.schema,
     IndexedStackSchema.id: IndexedStackSchema.schema,
     InkWellSchema.id: InkWellSchema.schema,
@@ -108,6 +107,7 @@ class JsonDynamicWidgetSchemas {
     TooltipSchema.id: TooltipSchema.schema,
     TweenAnimationSchema.id: TweenAnimationSchema.schema,
     WrapSchema.id: WrapSchema.schema,
+    WrappedIconSchema.id: WrappedIconSchema.schema,
   });
 
   static Map<String, dynamic>? lookup(String key) =>

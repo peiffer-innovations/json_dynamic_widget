@@ -1,8 +1,4 @@
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
 
 /// Builder that can build an [OverflowBox] widget.  See the [fromDynamic] for the
 /// format.
@@ -52,16 +48,16 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        maxHeight: JsonClass.parseDouble(
+        maxHeight: JsonClass.maybeParseDouble(
           map['maxHeight'],
         ),
-        maxWidth: JsonClass.parseDouble(
+        maxWidth: JsonClass.maybeParseDouble(
           map['maxWidth'],
         ),
-        minHeight: JsonClass.parseDouble(
+        minHeight: JsonClass.maybeParseDouble(
           map['minHeight'],
         ),
-        minWidth: JsonClass.parseDouble(
+        minWidth: JsonClass.maybeParseDouble(
           map['minWidth'],
         ),
       );
