@@ -90,10 +90,10 @@ class JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
           validate: false,
         )!,
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
-        elevation: JsonClass.parseDouble(
+        elevation: JsonClass.maybeParseDouble(
           map['elevation'],
         )!,
         onEnd: map['onEnd'],

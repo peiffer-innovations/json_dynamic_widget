@@ -139,7 +139,8 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             DragStartBehavior.start,
-        drawerEdgeDragWidth: JsonClass.parseDouble(map['drawerEdgeDragWidth']),
+        drawerEdgeDragWidth:
+            JsonClass.maybeParseDouble(map['drawerEdgeDragWidth']),
         drawerEnableOpenDragGesture: map['drawerEnableOpenDragGesture'] == null
             ? true
             : JsonClass.parseBool(map['drawerEnableOpenDragGesture']),
@@ -179,15 +180,13 @@ class JsonScaffoldBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             AlignmentDirectional.centerEnd,
-        persistentFooterButtons: map['persistentFooterButtons'] == null
-            ? null
-            : JsonClass.fromDynamicList(
-                map['persistentFooterButtons'],
-                (map) => JsonWidgetData.fromDynamic(
-                  map['persistentFooterButtons'],
-                  registry: registry,
-                )!,
-              ),
+        persistentFooterButtons: JsonClass.maybeFromDynamicList(
+          map['persistentFooterButtons'],
+          (map) => JsonWidgetData.fromDynamic(
+            map['persistentFooterButtons'],
+            registry: registry,
+          )!,
+        ),
         primary:
             map['primary'] == null ? true : JsonClass.parseBool(map['primary']),
         resizeToAvoidBottomInset: map['resizeToAvoidBottomInset'] == null

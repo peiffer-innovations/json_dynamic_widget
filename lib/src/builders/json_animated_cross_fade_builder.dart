@@ -71,7 +71,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
           map['crossFadeState'],
           validate: false,
         )!,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
         excludeBottomFocus: JsonClass.parseBool(
@@ -81,7 +81,7 @@ class JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
         firstCurve: map['firstCurve'] ?? Curves.linear,
         layoutBuilder:
             map['layoutBuilder'] ?? AnimatedCrossFade.defaultLayoutBuilder,
-        reverseDuration: JsonClass.parseDurationFromMillis(
+        reverseDuration: JsonClass.maybeParseDurationFromMillis(
           map['reverseDuration'],
         ),
         secondCurve: map['secondCurve'] ?? Curves.linear,

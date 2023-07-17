@@ -46,7 +46,7 @@ class JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonAnimatedPaddingBuilder(
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
         onEnd: map['onEnd'],

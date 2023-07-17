@@ -150,7 +150,7 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         focusNode: map['focusNode'],
-        horizontalTitleGap: JsonClass.parseDouble(map['horizontalTitleGap']),
+        horizontalTitleGap: JsonClass.maybeParseDouble(map['horizontalTitleGap']),
         hoverColor: ThemeDecoder.decodeColor(
           map['hoverColor'],
           validate: false,
@@ -164,8 +164,8 @@ class JsonListTileBuilder extends JsonWidgetBuilder {
           map['leading'],
           registry: registry,
         ),
-        minLeadingWidth: JsonClass.parseDouble(map['minLeadingWidth']),
-        minVerticalPadding: JsonClass.parseDouble(map['minVerticalPadding']),
+        minLeadingWidth: JsonClass.maybeParseDouble(map['minLeadingWidth']),
+        minVerticalPadding: JsonClass.maybeParseDouble(map['minVerticalPadding']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
           validate: false,

@@ -52,7 +52,7 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
     JsonConditionalBuilder? result;
 
     if (map != null) {
-      final conditional = Conditional.fromDynamic(map['conditional'])!;
+      final conditional = Conditional.fromDynamic(map['conditional']);
       final keys = <String>{};
       _appendKeys(conditional, keys);
 

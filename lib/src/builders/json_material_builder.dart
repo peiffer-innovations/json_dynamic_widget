@@ -76,10 +76,10 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
     JsonMaterialBuilder? result;
     if (map != null) {
       result = JsonMaterialBuilder(
-        animationDuration: JsonClass.parseDurationFromMillis(
-          map['animationDuration'],
-          kThemeChangeDuration,
-        )!,
+        animationDuration: JsonClass.maybeParseDurationFromMillis(
+              map['animationDuration'],
+            ) ??
+            kThemeChangeDuration,
         borderOnForeground: map['borderOnForeground'] == null
             ? true
             : JsonClass.parseBool(
@@ -98,7 +98,7 @@ class JsonMaterialBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(map['elevation'], 0)!,
+        elevation: JsonClass.maybeParseDouble(map['elevation'], 0)!,
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,

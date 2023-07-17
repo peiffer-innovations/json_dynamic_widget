@@ -69,7 +69,7 @@ class JsonSliverGridBuilder extends JsonWidgetBuilder {
         gridDelegate: map['gridDelegate'],
         semanticIndexCallback: map['semanticIndexCallback'],
         semanticIndexOffset:
-            JsonClass.parseInt(map['semanticIndexOffset']) ?? 0,
+            JsonClass.maybeParseInt(map['semanticIndexOffset']) ?? 0,
       );
     }
 

@@ -51,11 +51,11 @@ class JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
           map['alwaysIncludeSemantics'],
         ),
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
         onEnd: map['onEnd'],
-        opacity: JsonClass.parseDouble(map['opacity'])!,
+        opacity: JsonClass.maybeParseDouble(map['opacity'])!,
       );
     }
 

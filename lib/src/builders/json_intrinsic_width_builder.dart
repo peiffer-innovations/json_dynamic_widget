@@ -34,10 +34,10 @@ class JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonIntrinsicWidthBuilder(
-        stepHeight: JsonClass.parseDouble(
+        stepHeight: JsonClass.maybeParseDouble(
           map['stepHeight'],
         ),
-        stepWidth: JsonClass.parseDouble(
+        stepWidth: JsonClass.maybeParseDouble(
           map['stepWidth'],
         ),
       );

@@ -58,7 +58,7 @@ class JsonIndexedStackBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Clip.hardEdge,
-        index: JsonClass.parseInt(map['index'], 0),
+        index: JsonClass.maybeParseInt(map['index']) ?? 0,
         sizing: ThemeDecoder.decodeStackFit(
               map['sizing'],
               validate: false,

@@ -43,7 +43,7 @@ class JsonFlexibleBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             FlexFit.loose,
-        flex: JsonClass.parseInt(map['flex'], 1)!,
+        flex: JsonClass.maybeParseInt(map['flex']) ?? 1,
       );
     }
 

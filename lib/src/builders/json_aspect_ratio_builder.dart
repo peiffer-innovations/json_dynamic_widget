@@ -31,7 +31,7 @@ class JsonAspectRatioBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonAspectRatioBuilder(
-        aspectRatio: JsonClass.parseDouble(map['aspectRatio'], 1.0)!,
+        aspectRatio: JsonClass.maybeParseDouble(map['aspectRatio'], 1.0)!,
       );
     }
 

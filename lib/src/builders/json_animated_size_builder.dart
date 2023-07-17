@@ -59,10 +59,10 @@ class JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
           validate: false,
         ),
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
-        reverseDuration: JsonClass.parseDurationFromMillis(
+        reverseDuration: JsonClass.maybeParseDurationFromMillis(
           map['reverseDuration'],
         ),
       );

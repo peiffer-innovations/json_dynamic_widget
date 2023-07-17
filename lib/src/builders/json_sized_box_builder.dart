@@ -33,8 +33,8 @@ class JsonSizedBoxBuilder extends JsonWidgetBuilder {
     JsonSizedBoxBuilder? result;
     if (map != null) {
       result = JsonSizedBoxBuilder(
-        height: JsonClass.parseDouble(map['height']),
-        width: JsonClass.parseDouble(map['width']),
+        height: JsonClass.maybeParseDouble(map['height']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

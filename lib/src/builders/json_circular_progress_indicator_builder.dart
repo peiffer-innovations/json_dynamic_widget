@@ -64,8 +64,8 @@ class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
         ),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
-        strokeWidth: JsonClass.parseDouble(map['strokeWidth'], 4.0)!,
-        value: JsonClass.parseDouble(map['value']),
+        strokeWidth: JsonClass.maybeParseDouble(map['strokeWidth'], 4.0)!,
+        value: JsonClass.maybeParseDouble(map['value']),
         valueColor: map['valueColor'] == null
             ? null
             : map['valueColor'] is Animation

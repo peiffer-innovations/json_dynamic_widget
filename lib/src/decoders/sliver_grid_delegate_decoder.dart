@@ -48,27 +48,27 @@ $message
         case 'max_cross_axis_extent':
           result = SliverGridDelegateWithMaxCrossAxisExtent(
             childAspectRatio:
-                JsonClass.parseDouble(delegate['childAspectRatio']) ?? 1.0,
+                JsonClass.maybeParseDouble(delegate['childAspectRatio']) ?? 1.0,
             crossAxisSpacing:
-                JsonClass.parseDouble(delegate['crossAxisSpacing']) ?? 0.0,
-            mainAxisExtent: JsonClass.parseDouble(delegate['mainAxisExtent']),
+                JsonClass.maybeParseDouble(delegate['crossAxisSpacing']) ?? 0.0,
+            mainAxisExtent: JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
             mainAxisSpacing:
-                JsonClass.parseDouble(delegate['mainAxisSpacing']) ?? 0.0,
+                JsonClass.maybeParseDouble(delegate['mainAxisSpacing']) ?? 0.0,
             maxCrossAxisExtent:
-                JsonClass.parseDouble(delegate['maxCrossAxisExtent'])!,
+                JsonClass.maybeParseDouble(delegate['maxCrossAxisExtent'])!,
           );
           break;
 
         case 'fixed_cross_axis_count':
           result = SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: JsonClass.parseInt(delegate['crossAxisCount'])!,
+            crossAxisCount: JsonClass.maybeParseInt(delegate['crossAxisCount'])!,
             childAspectRatio:
-                JsonClass.parseDouble(delegate['childAspectRatio']) ?? 1.0,
+                JsonClass.maybeParseDouble(delegate['childAspectRatio']) ?? 1.0,
             crossAxisSpacing:
-                JsonClass.parseDouble(delegate['crossAxisSpacing']) ?? 0.0,
-            mainAxisExtent: JsonClass.parseDouble(delegate['mainAxisExtent']),
+                JsonClass.maybeParseDouble(delegate['crossAxisSpacing']) ?? 0.0,
+            mainAxisExtent: JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
             mainAxisSpacing:
-                JsonClass.parseDouble(delegate['mainAxisSpacing']) ?? 0.0,
+                JsonClass.maybeParseDouble(delegate['mainAxisSpacing']) ?? 0.0,
           );
           break;
 

@@ -164,7 +164,7 @@ class JsonInkWellBuilder extends JsonWidgetBuilder {
           map['overlayColor'],
           validate: false,
         ),
-        radius: JsonClass.parseDouble(map['radius']),
+        radius: JsonClass.maybeParseDouble(map['radius']),
         splashColor: ThemeDecoder.decodeColor(
           map['splashColor'],
           validate: false,

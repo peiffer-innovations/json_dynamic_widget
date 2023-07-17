@@ -36,7 +36,7 @@ class JsonOpacityBuilder extends JsonWidgetBuilder {
       result = JsonOpacityBuilder(
         alwaysIncludeSemantics:
             JsonClass.parseBool(map['alwaysIncludeSemantics']),
-        opacity: JsonClass.parseDouble(map['opacity'], 1.0)!,
+        opacity: JsonClass.maybeParseDouble(map['opacity'], 1.0)!,
       );
     }
 

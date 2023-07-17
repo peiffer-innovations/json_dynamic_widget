@@ -98,7 +98,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
           map['foregroundDecoration'],
           validate: false,
         ),
-        height: JsonClass.parseDouble(map['height']),
+        height: JsonClass.maybeParseDouble(map['height']),
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,
@@ -115,7 +115,7 @@ class JsonContainerBuilder extends JsonWidgetBuilder {
           map['transformAlignment'],
           validate: false,
         ),
-        width: JsonClass.parseDouble(map['width']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

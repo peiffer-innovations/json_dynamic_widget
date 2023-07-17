@@ -100,14 +100,14 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
           map['decoration'],
           validate: false,
         ),
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
         foregroundDecoration: ThemeDecoder.decodeBoxDecoration(
           map['foregroundDecoration'],
           validate: false,
         ),
-        height: JsonClass.parseDouble(map['height']),
+        height: JsonClass.maybeParseDouble(map['height']),
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,
@@ -125,7 +125,7 @@ class JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
           map['transformAlignment'],
           validate: false,
         ),
-        width: JsonClass.parseDouble(map['width']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

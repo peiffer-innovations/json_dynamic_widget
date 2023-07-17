@@ -119,10 +119,10 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Clip.none,
-        disabledElevation: JsonClass.parseDouble(
+        disabledElevation: JsonClass.maybeParseDouble(
           map['disabledElevation'],
         ),
-        elevation: JsonClass.parseDouble(
+        elevation: JsonClass.maybeParseDouble(
           map['elevation'],
         ),
         enableFeedback: map['enableFeedback'] == null
@@ -132,7 +132,7 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
           map['focusColor'],
           validate: false,
         ),
-        focusElevation: JsonClass.parseDouble(
+        focusElevation: JsonClass.maybeParseDouble(
           map['focusElevation'],
         ),
         focusNode: map['focusNode'],
@@ -144,14 +144,14 @@ class JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
             const FloatingActionButton(
               onPressed: null,
             ).heroTag,
-        highlightElevation: JsonClass.parseDouble(
+        highlightElevation: JsonClass.maybeParseDouble(
           map['highlightElevation'],
         ),
         hoverColor: ThemeDecoder.decodeColor(
           map['hoverColor'],
           validate: false,
         ),
-        hoverElevation: JsonClass.parseDouble(
+        hoverElevation: JsonClass.maybeParseDouble(
           map['hoverElevation'],
         ),
         isExtended: JsonClass.parseBool(

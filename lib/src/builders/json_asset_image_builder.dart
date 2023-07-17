@@ -113,8 +113,8 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        cacheHeight: JsonClass.parseInt(map['cacheHeight']),
-        cacheWidth: JsonClass.parseInt(map['cacheWidth']),
+        cacheHeight: JsonClass.maybeParseInt(map['cacheHeight']),
+        cacheWidth: JsonClass.maybeParseInt(map['cacheWidth']),
         centerSlice: ThemeDecoder.decodeRect(
           map['centerSlice'],
           validate: false,
@@ -140,7 +140,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
         ),
         frameBuilder: map['frameBuilder'],
         gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
-        height: JsonClass.parseDouble(map['height']),
+        height: JsonClass.maybeParseDouble(map['height']),
         isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
         matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
         name: map['name'],
@@ -150,9 +150,9 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             ImageRepeat.noRepeat,
-        scale: JsonClass.parseDouble(map['scale']),
+        scale: JsonClass.maybeParseDouble(map['scale']),
         semanticLabel: map['semanticLabel'],
-        width: JsonClass.parseDouble(map['width']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

@@ -86,7 +86,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
           map['local'],
           validate: false,
         ),
-        maxLines: JsonClass.parseInt(map['maxLines']),
+        maxLines: JsonClass.maybeParseInt(map['maxLines']),
         overflow: ThemeDecoder.decodeTextOverflow(
           map['overflow'],
           validate: false,
@@ -120,7 +120,7 @@ class JsonTextBuilder extends JsonWidgetBuilder {
           map['textHeightBehavior'],
           validate: false,
         ),
-        textScaleFactor: JsonClass.parseDouble(map['textScaleFactor']),
+        textScaleFactor: JsonClass.maybeParseDouble(map['textScaleFactor']),
         textWidthBasis: ThemeDecoder.decodeTextWidthBasis(
           map['textWidthBasis'],
           validate: false,

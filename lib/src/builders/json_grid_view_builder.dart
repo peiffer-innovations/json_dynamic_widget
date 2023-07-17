@@ -128,7 +128,7 @@ class JsonGridViewBuilder extends JsonWidgetBuilder {
         addSemanticIndexes: map['addSemanticIndexes'] == null
             ? true
             : JsonClass.parseBool(map['addSemanticIndexes']),
-        cacheExtent: JsonClass.parseDouble(map['cacheExtent']),
+        cacheExtent: JsonClass.maybeParseDouble(map['cacheExtent']),
         clipBehavior: ThemeDecoder.decodeClip(
               map['clipBehavior'],
               validate: false,

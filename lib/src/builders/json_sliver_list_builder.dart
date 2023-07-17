@@ -65,7 +65,7 @@ class JsonSliverListBuilder extends JsonWidgetBuilder {
         findChildIndexCallback: map['findChildIndexCallback'],
         semanticIndexCallback: map['semanticIndexCallback'],
         semanticIndexOffset:
-            JsonClass.parseInt(map['semanticIndexOffset']) ?? 0,
+            JsonClass.maybeParseInt(map['semanticIndexOffset']) ?? 0,
       );
     }
 

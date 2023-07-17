@@ -228,12 +228,12 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['cursorColor'],
           validate: false,
         ),
-        cursorHeight: JsonClass.parseDouble(map['cursorHeight']),
+        cursorHeight: JsonClass.maybeParseDouble(map['cursorHeight']),
         cursorRadius: ThemeDecoder.decodeRadius(
           map['cursorRadius'],
           validate: false,
         ),
-        cursorWidth: JsonClass.parseDouble(map['cursorWidth'], 2)!,
+        cursorWidth: JsonClass.maybeParseDouble(map['cursorWidth'], 2)!,
         decoration: map['decoration'],
         enableIMEPersonalizedLearning:
             map['enableIMEPersonalizedLearning'] == null
@@ -258,15 +258,13 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['keyboardType'],
           validate: false,
         ),
-        maxLength: JsonClass.parseInt(map['maxLength']),
+        maxLength: JsonClass.maybeParseInt(map['maxLength']),
         maxLengthEnforcement: ThemeDecoder.decodeMaxLengthEnforcement(
           map['maxLengthEnforcement'],
           validate: false,
         ),
-        maxLines: map.containsKey('maxLines')
-            ? JsonClass.parseInt(map['maxLines'], null)
-            : 1,
-        minLines: JsonClass.parseInt(map['minLines']),
+        maxLines: JsonClass.maybeParseInt(map['maxLines']),
+        minLines: JsonClass.maybeParseInt(map['minLines']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
           validate: false,
@@ -474,7 +472,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         keyboardType: widget.builder.keyboardType,
         maxLength: widget.builder.maxLength,
         maxLengthEnforcement: widget.builder.maxLengthEnforcement,
-        maxLines: widget.builder.maxLines,
+        maxLines: widget.builder.maxLines ?? 1,
         minLines: widget.builder.minLines,
         mouseCursor: widget.builder.mouseCursor,
         obscuringCharacter: widget.builder.obscuringCharacter,

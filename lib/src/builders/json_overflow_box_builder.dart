@@ -52,16 +52,16 @@ class JsonOverflowBoxBuilder extends JsonWidgetBuilder {
               validate: false,
             ) ??
             Alignment.center,
-        maxHeight: JsonClass.parseDouble(
+        maxHeight: JsonClass.maybeParseDouble(
           map['maxHeight'],
         ),
-        maxWidth: JsonClass.parseDouble(
+        maxWidth: JsonClass.maybeParseDouble(
           map['maxWidth'],
         ),
-        minHeight: JsonClass.parseDouble(
+        minHeight: JsonClass.maybeParseDouble(
           map['minHeight'],
         ),
-        minWidth: JsonClass.parseDouble(
+        minWidth: JsonClass.maybeParseDouble(
           map['minWidth'],
         ),
       );

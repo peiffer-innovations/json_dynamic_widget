@@ -59,17 +59,17 @@ class JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonAnimatedPositionedBuilder(
-        bottom: JsonClass.parseDouble(map['bottom']),
+        bottom: JsonClass.maybeParseDouble(map['bottom']),
         curve: map['curve'] ?? Curves.linear,
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
-        height: JsonClass.parseDouble(map['height']),
-        left: JsonClass.parseDouble(map['left']),
+        height: JsonClass.maybeParseDouble(map['height']),
+        left: JsonClass.maybeParseDouble(map['left']),
         onEnd: map['onEnd'],
-        right: JsonClass.parseDouble(map['right']),
-        top: JsonClass.parseDouble(map['top']),
-        width: JsonClass.parseDouble(map['width']),
+        right: JsonClass.maybeParseDouble(map['right']),
+        top: JsonClass.maybeParseDouble(map['top']),
+        width: JsonClass.maybeParseDouble(map['width']),
       );
     }
 

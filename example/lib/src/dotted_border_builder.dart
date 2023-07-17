@@ -34,7 +34,7 @@ class DottedBorderBuilder extends JsonWidgetBuilder {
           ? [0.0]
           : List<double>.from(
               map['dashPattern'].map(
-                (e) => JsonClass.parseDouble(e, 0.0),
+                (e) => JsonClass.maybeParseDouble(e, 0.0),
               ),
             ),
     );

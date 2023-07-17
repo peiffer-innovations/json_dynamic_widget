@@ -74,7 +74,7 @@ class JsonCardBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        elevation: JsonClass.parseDouble(map['elevation']),
+        elevation: JsonClass.maybeParseDouble(map['elevation']),
         margin: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['margin'],
           validate: false,

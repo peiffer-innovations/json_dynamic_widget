@@ -1,7 +1,6 @@
-## [6.0.7+1] - July 17, 2023
+## [6.1.0] - July 17th, 2023
 
-* Automated dependency updates
-
+* Updated to `json_class`` 3.0
 
 ## [6.0.7] - July 12, 2023
 

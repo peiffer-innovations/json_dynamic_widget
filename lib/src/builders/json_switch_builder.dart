@@ -195,7 +195,7 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
           map['overlayColor'],
           validate: false,
         ),
-        splashRadius: JsonClass.parseDouble('splashRadius'),
+        splashRadius: JsonClass.maybeParseDouble('splashRadius'),
         thumbColor: ThemeDecoder.decodeMaterialStatePropertyColor(
           map['thumbColor'],
           validate: false,

@@ -61,10 +61,10 @@ class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
           map['color'],
           validate: false,
         ),
-        minHeight: JsonClass.parseDouble(map['minHeight']),
+        minHeight: JsonClass.maybeParseDouble(map['minHeight']),
         semanticsLabel: map['semanticsLabel'],
         semanticsValue: map['semanticsValue'],
-        value: JsonClass.parseDouble(map['value']),
+        value: JsonClass.maybeParseDouble(map['value']),
         valueColor: map['valueColor'] == null
             ? null
             : map['valueColor'] is Animation

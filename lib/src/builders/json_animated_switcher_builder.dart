@@ -60,12 +60,12 @@ class JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
     if (map != null) {
       result = JsonAnimatedSwitcherBuilder(
         child: map['child'],
-        duration: JsonClass.parseDurationFromMillis(
+        duration: JsonClass.maybeParseDurationFromMillis(
           map['duration'],
         )!,
         layoutBuilder:
             map['layoutBuilder'] ?? AnimatedSwitcher.defaultLayoutBuilder,
-        reverseDuration: JsonClass.parseDurationFromMillis(
+        reverseDuration: JsonClass.maybeParseDurationFromMillis(
           map['reverseDuration'],
         ),
         switchInCurve: map['switchInCurve'] ?? Curves.linear,

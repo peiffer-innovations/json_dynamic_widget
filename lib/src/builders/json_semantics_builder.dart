@@ -221,7 +221,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
         checked:
             map['checked'] == null ? null : JsonClass.parseBool(map['checked']),
         container: JsonClass.parseBool(map['container']),
-        currentValueLength: JsonClass.parseInt(map['currentValueLength']),
+        currentValueLength: JsonClass.maybeParseInt(map['currentValueLength']),
         decreasedValue: map['decreasedValue'],
         enabled:
             map['enabled'] == null ? null : JsonClass.parseBool(map['enabled']),
@@ -251,7 +251,7 @@ class JsonSemanticsBuilder extends JsonWidgetBuilder {
             : JsonClass.parseBool(map['liveRegion']),
         maxValueLength: map['maxValueLength'] == null
             ? null
-            : JsonClass.parseInt(map['maxValueLength']),
+            : JsonClass.maybeParseInt(map['maxValueLength']),
         mixed: map['mixed'] == null ? null : JsonClass.parseBool(map['mixed']),
         multiline: map['multiline'] == null
             ? null
