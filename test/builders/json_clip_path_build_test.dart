@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonClipPathBuilder.type;
+    const type = JsonClipPathBuilder.kType;
 
     expect(type, 'clip_path');
     expect(

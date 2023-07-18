@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonGridViewBuilder.type;
+    const type = JsonGridViewBuilder.kType;
 
     expect(type, 'grid_view');
     expect(

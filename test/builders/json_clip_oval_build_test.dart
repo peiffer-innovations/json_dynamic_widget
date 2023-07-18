@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonClipOvalBuilder.type;
+    const type = JsonClipOvalBuilder.kType;
 
     expect(type, 'clip_oval');
     expect(

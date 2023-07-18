@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonSliverListBuilder.type;
+    const type = JsonSliverListBuilder.kType;
 
     expect(type, 'sliver_list');
     expect(

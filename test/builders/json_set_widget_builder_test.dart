@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonSetWidgetBuilder.type;
+    const type = JsonSetWidgetBuilder.kType;
 
     expect(type, 'set_widget');
     expect(

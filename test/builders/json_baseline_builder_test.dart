@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonBaselineBuilder.type;
+    const type = JsonBaselineBuilder.kType;
 
     expect(type, 'baseline');
     expect(

@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonStackBuilder.type;
+    const type = JsonStackBuilder.kType;
 
     expect(type, 'stack');
     expect(

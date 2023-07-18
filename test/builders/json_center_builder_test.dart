@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonCenterBuilder.type;
+    const type = JsonCenterBuilder.kType;
 
     expect(type, 'center');
     expect(

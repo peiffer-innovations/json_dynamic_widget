@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonSetScrollControllerBuilder.type;
+    const type = JsonSetScrollControllerBuilder.kType;
 
     expect(type, 'set_scroll_controller');
     expect(

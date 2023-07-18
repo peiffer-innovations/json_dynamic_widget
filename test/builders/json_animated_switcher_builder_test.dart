@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonAnimatedSwitcherBuilder.type;
+    const type = JsonAnimatedSwitcherBuilder.kType;
 
     expect(type, 'animated_switcher');
     expect(
@@ -12,12 +12,12 @@ void main() {
         {
           'child': JsonWidgetData(
             builder: () =>
-                JsonWidgetRegistry.instance.getWidgetBuilder('center')({})!,
+                JsonWidgetRegistry.instance.getWidgetBuilder('center')({}),
             type: type,
           ),
           'duration': 1000,
         },
-      )! is JsonAnimatedSwitcherBuilder,
+      ) is JsonAnimatedSwitcherBuilder,
       true,
     );
   });

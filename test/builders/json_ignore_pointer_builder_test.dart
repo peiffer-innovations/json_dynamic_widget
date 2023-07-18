@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonIgnorePointerBuilder.type;
+    const type = JsonIgnorePointerBuilder.kType;
 
     expect(type, 'ignore_pointer');
     expect(

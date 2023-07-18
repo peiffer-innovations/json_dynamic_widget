@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonAnimatedPhysicalModelBuilder.type;
+    const type = JsonAnimatedPhysicalModelBuilder.kType;
 
     expect(type, 'animated_physical_model');
     expect(

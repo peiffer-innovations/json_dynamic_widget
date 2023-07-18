@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonTweenAnimationBuilder.type;
+    const type = JsonTweenAnimationBuilder.kType;
 
     expect(type, 'tween_animation');
 

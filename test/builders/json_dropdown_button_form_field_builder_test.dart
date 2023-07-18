@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonDropdownButtonFormFieldBuilder.type;
+    const type = JsonDropdownButtonFormFieldBuilder.kType;
 
     expect(type, 'dropdown_button_form_field');
     expect(

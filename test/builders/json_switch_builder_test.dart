@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonSwitchBuilder.type;
+    const type = JsonSwitchBuilder.kType;
 
     expect(type, 'switch');
     expect(

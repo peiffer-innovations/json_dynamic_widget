@@ -269,7 +269,7 @@ const JsonWidgetBuilderContainer(
      builders: {
     ...JsonWidgetInternalBuildersBuilder().withColumn().build(),
     ...<String, JsonWidgetBuilderContainer>{
-      JsonCustomBuilder.type: JsonWidgetBuilderContainer(
+      JsonCustomBuilder.kType: JsonWidgetBuilderContainer(
           builder: JsonCustomBuilder.fromDynamic,
           schemaId: JsonCustomBuilderSchema.id)
     }
@@ -511,7 +511,7 @@ When registring the widget, you can create a new instance of the registry, or si
 ```dart
   var registry = JsonWidgetRegistry.instance;
   registry.registerCustomBuilder(
-    SvgBuilder.type,
+    SvgBuilder.kType,
     JsonWidgetBuilderContainer(
       builder: SvgBuilder.fromDynamic,
       schemaId: SvgSchema.id, // this is optional

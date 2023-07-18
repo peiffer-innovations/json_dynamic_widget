@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonOpacityBuilder.type;
+    const type = JsonOpacityBuilder.kType;
 
     expect(type, 'opacity');
     expect(

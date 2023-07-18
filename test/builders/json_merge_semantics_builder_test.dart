@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonMergeSemanticsBuilder.type;
+    const type = JsonMergeSemanticsBuilder.kType;
 
     expect(type, 'merge_semantics');
     expect(

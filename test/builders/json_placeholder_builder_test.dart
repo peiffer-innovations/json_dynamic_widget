@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonPlaceholderBuilder.type;
+    const type = JsonPlaceholderBuilder.kType;
 
     expect(type, 'placeholder');
     expect(

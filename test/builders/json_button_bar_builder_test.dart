@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonButtonBarBuilder.type;
+    const type = JsonButtonBarBuilder.kType;
 
     expect(type, 'button_bar');
     expect(

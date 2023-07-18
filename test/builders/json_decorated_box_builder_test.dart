@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonDecoratedBoxBuilder.type;
+    const type = JsonDecoratedBoxBuilder.kType;
 
     expect(type, 'decorated_box');
     expect(

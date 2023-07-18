@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonFractionalTranslationBuilder.type;
+    const type = JsonFractionalTranslationBuilder.kType;
 
     expect(type, 'fractional_translation');
     expect(

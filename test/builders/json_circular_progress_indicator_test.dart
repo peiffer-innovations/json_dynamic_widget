@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonCircularProgressIndicatorBuilder.type;
+    const type = JsonCircularProgressIndicatorBuilder.kType;
 
     expect(type, 'circular_progress_indicator');
     expect(

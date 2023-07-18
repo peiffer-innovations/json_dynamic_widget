@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonScrollbarBuilder.type;
+    const type = JsonScrollbarBuilder.kType;
 
     expect(type, 'scrollbar');
     expect(

@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonTextButtonBuilder.type;
+    const type = JsonTextButtonBuilder.kType;
 
     expect(type, 'text_button');
     expect(

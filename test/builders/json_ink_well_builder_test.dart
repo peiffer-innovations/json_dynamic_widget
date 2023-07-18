@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonInkWellBuilder.type;
+    const type = JsonInkWellBuilder.kType;
 
     expect(type, 'ink_well');
     expect(

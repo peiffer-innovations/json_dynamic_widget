@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonInteractiveViewerBuilder.type;
+    const type = JsonInteractiveViewerBuilder.kType;
 
     expect(type, 'interactive_viewer');
     expect(

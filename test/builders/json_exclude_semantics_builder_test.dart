@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonExcludeSemanticsBuilder.type;
+    const type = JsonExcludeSemanticsBuilder.kType;
 
     expect(type, 'exclude_semantics');
     expect(

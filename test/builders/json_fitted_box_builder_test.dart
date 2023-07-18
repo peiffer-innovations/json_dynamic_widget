@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonFittedBoxBuilder.type;
+    const type = JsonFittedBoxBuilder.kType;
 
     expect(type, 'fitted_box');
     expect(

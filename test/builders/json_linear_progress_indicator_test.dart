@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonLinearProgressIndicatorBuilder.type;
+    const type = JsonLinearProgressIndicatorBuilder.kType;
 
     expect(type, 'linear_progress_indicator');
     expect(

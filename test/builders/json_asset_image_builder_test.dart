@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonAssetImageBuilder.type;
+    const type = JsonAssetImageBuilder.kType;
 
     expect(type, 'asset_image');
     expect(

@@ -23,7 +23,7 @@ abstract class JsonWidgetBuilder {
     child: null,
     listenVariables: const {},
     registry: JsonWidgetRegistry.instance,
-    type: JsonSizedBoxBuilder.type,
+    type: JsonSizedBoxBuilder.kType,
   );
 
   final bool preferredSizeWidget;

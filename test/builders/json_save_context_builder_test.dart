@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonSaveContextBuilder.type;
+    const type = JsonSaveContextBuilder.kType;
 
     expect(type, 'save_context');
     expect(

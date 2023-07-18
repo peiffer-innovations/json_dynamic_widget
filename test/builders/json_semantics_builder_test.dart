@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonSemanticsBuilder.type;
+    const type = JsonSemanticsBuilder.kType;
 
     expect(type, 'semantics');
     expect(

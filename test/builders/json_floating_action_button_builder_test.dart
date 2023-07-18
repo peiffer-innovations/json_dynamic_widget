@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonFloatingActionButtonBuilder.type;
+    const type = JsonFloatingActionButtonBuilder.kType;
 
     expect(type, 'floating_action_button');
     expect(

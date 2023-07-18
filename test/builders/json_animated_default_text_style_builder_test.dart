@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonAnimatedDefaultTextStyleBuilder.type;
+    const type = JsonAnimatedDefaultTextStyleBuilder.kType;
 
     expect(type, 'animated_default_text_style');
     expect(

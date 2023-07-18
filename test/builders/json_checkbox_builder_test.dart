@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonCheckboxBuilder.type;
+    const type = JsonCheckboxBuilder.kType;
 
     expect(type, 'checkbox');
     expect(

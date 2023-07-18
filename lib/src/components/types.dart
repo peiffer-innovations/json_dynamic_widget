@@ -5,7 +5,7 @@ typedef JsonWidgetFunction = dynamic Function({
   required JsonWidgetRegistry registry,
 });
 
-typedef JsonWidgetBuilderBuilder = JsonWidgetBuilder? Function(
+typedef JsonWidgetBuilderBuilder = JsonWidgetBuilder Function(
   dynamic map, {
   JsonWidgetRegistry? registry,
 });

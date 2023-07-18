@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonThemeBuilder.type;
+    const type = JsonThemeBuilder.kType;
 
     expect(type, 'theme');
     expect(

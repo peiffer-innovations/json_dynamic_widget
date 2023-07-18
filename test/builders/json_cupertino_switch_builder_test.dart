@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonCupertinoSwitchBuilder.type;
+    const type = JsonCupertinoSwitchBuilder.kType;
 
     expect(type, 'cupertino_switch');
     expect(

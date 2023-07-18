@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('type', () {
-    const type = JsonAnimatedCrossFadeBuilder.type;
+    const type = JsonAnimatedCrossFadeBuilder.kType;
 
     expect(type, 'animated_cross_fade');
     expect(
