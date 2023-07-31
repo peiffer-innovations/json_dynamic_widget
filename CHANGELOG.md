@@ -1,3 +1,8 @@
+## [6.1.1] - July 31, 2023
+
+* Restored expands : true support
+
+
 ## [6.1.0+2] - August 1, 2023
 
 * Automated dependency updates
