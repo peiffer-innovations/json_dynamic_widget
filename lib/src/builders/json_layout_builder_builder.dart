@@ -1,74 +1,62 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [LayoutBuilder] widget.  See the [fromDynamic] for the
-/// format.
-class JsonLayoutBuilderBuilder extends JsonWidgetBuilder {
-  const JsonLayoutBuilderBuilder()
-      : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_layout_builder_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'layout_builder';
+/// Builder that can build an [LayoutBuilder] widget.
+@jsonWidget
+abstract class _JsonLayoutBuilderBuilder extends JsonWidgetBuilder {
+  const _JsonLayoutBuilderBuilder({
+    required super.numSupportedChildren,
+  });
 
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  /// }
-  /// ```
-  static JsonLayoutBuilderBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonLayoutBuilderBuilder? result;
-    if (map != null) {
-      result = const JsonLayoutBuilderBuilder();
-    }
+  @JsonParamDecoder('builder')
+  dynamic _decodeBuilder({
+    ChildWidgetBuilder? childBuilder,
+    required JsonWidgetData data,
+    required dynamic value,
+  }) =>
+      (
+        BuildContext context,
+        BoxConstraints constraints,
+      ) {
+        final id = data.id;
 
-    return result;
-  }
+        data.registry.setValue(
+          '$id.maxHeight',
+          constraints.maxHeight,
+          originator: '$id.maxHeight',
+        );
+        data.registry.setValue(
+          '$id.maxWidth',
+          constraints.maxWidth,
+          originator: '$id.maxWidth',
+        );
+        data.registry.setValue(
+          '$id.minHeight',
+          constraints.minHeight,
+          originator: '$id.minHeight',
+        );
+        data.registry.setValue(
+          '$id.minWidth',
+          constraints.minWidth,
+          originator: '$id.minWidth',
+        );
+
+        final child = getChild(data);
+
+        return data.children?.length != 1
+            ? const SizedBox()
+            : child.build(
+                childBuilder: childBuilder,
+                context: context,
+              );
+      };
 
   @override
-  Widget buildCustom({
+  LayoutBuilder buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    return LayoutBuilder(
-        key: key,
-        builder: (BuildContext context, BoxConstraints constraints) {
-          final id = data.id;
-
-          data.registry.setValue(
-            '$id.maxHeight',
-            constraints.maxHeight,
-            originator: '$id.maxHeight',
-          );
-          data.registry.setValue(
-            '$id.maxWidth',
-            constraints.maxWidth,
-            originator: '$id.maxWidth',
-          );
-          data.registry.setValue(
-            '$id.minHeight',
-            constraints.minHeight,
-            originator: '$id.minHeight',
-          );
-          data.registry.setValue(
-            '$id.minWidth',
-            constraints.minWidth,
-            originator: '$id.minWidth',
-          );
-
-          final child = getChild(data);
-
-          return data.children?.length != 1
-              ? const SizedBox()
-              : child.build(
-                  childBuilder: childBuilder,
-                  context: context,
-                );
-        });
-  }
+  });
 }

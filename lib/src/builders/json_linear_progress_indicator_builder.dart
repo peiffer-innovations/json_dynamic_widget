@@ -1,98 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [LinearProgressIndicator] widget.  See the
-/// [fromDynamic] for the format.
-class JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
-  const JsonLinearProgressIndicatorBuilder({
-    this.backgroundColor,
-    this.color,
-    this.minHeight,
-    this.semanticsLabel,
-    this.semanticsValue,
-    this.value,
-    this.valueColor,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_linear_progress_indicator_builder.g.dart';
 
-  static const kNumSupportedChildren = 0;
-  static const type = 'linear_progress_indicator';
-
-  final Color? backgroundColor;
-  final Color? color;
-  final double? minHeight;
-  final String? semanticsLabel;
-  final String? semanticsValue;
-  final double? value;
-  final Animation<Color>? valueColor;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "backgroundColor": "<Color>",
-  ///   "color": "<Color>",
-  ///   "minHeight": "<double>",
-  ///   "semanticsLabel": "<String>",
-  ///   "semanticsValue": "<String>",
-  ///   "value": "<double>",
-  ///   "valueColor": "<Animation<Color>> || <Color>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonLinearProgressIndicatorBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonLinearProgressIndicatorBuilder? result;
-
-    if (map != null) {
-      result = JsonLinearProgressIndicatorBuilder(
-        backgroundColor: ThemeDecoder.decodeColor(
-          map['backgroundColor'],
-          validate: false,
-        ),
-        color: ThemeDecoder.decodeColor(
-          map['color'],
-          validate: false,
-        ),
-        minHeight: JsonClass.maybeParseDouble(map['minHeight']),
-        semanticsLabel: map['semanticsLabel'],
-        semanticsValue: map['semanticsValue'],
-        value: JsonClass.maybeParseDouble(map['value']),
-        valueColor: map['valueColor'] == null
-            ? null
-            : map['valueColor'] is Animation
-                ? map['valueColor']
-                : AlwaysStoppedAnimation(
-                    ThemeDecoder.decodeColor(
-                      map['valueColor'],
-                      validate: false,
-                    )!,
-                  ),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [LinearProgressIndicator] widget.
+@jsonWidget
+abstract class _JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
+  const _JsonLinearProgressIndicatorBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  LinearProgressIndicator buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    return LinearProgressIndicator(
-      backgroundColor: backgroundColor,
-      color: color,
-      key: key,
-      minHeight: minHeight,
-      semanticsLabel: semanticsLabel,
-      semanticsValue: semanticsValue,
-      value: value,
-      valueColor: valueColor,
-    );
-  }
+  });
 }

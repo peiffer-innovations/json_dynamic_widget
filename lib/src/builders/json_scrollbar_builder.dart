@@ -1,109 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Scrollbar] widget.  See the [fromDynamic] for the
-/// format.
-class JsonScrollbarBuilder extends JsonWidgetBuilder {
-  const JsonScrollbarBuilder({
-    this.controller,
-    this.interactive,
-    this.notificationPredicate,
-    this.radius,
-    this.scrollbarOrientation,
-    this.thickness,
-    this.trackVisibility,
-    this.thumbVisibility,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_scrollbar_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'scrollbar';
-
-  final ScrollController? controller;
-  final bool? interactive;
-  final ScrollNotificationPredicate? notificationPredicate;
-  final Radius? radius;
-  final ScrollbarOrientation? scrollbarOrientation;
-  final double? thickness;
-  final bool? trackVisibility;
-  final bool? thumbVisibility;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "controller": "<ScrollController>",
-  ///   "interactive": "<bool>",
-  ///   "notificationPredicate": "<ScrollNotificationPredicate>",
-  ///   "radius": "<Radius>",
-  ///   "scrollbarOrientation": "<ScrollbarOrientation>",
-  ///   "thickness": "<double>",
-  ///   "trackVisibility": "<bool>",
-  ///   "thumbVisibility": "<bool>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeRadius]
-  ///  * [ThemeDecoder.decodeScrollbarOrientation]
-  static JsonScrollbarBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonScrollbarBuilder? result;
-    if (map != null) {
-      result = JsonScrollbarBuilder(
-        controller: map['controller'],
-        interactive: map['interactive'] == null
-            ? null
-            : JsonClass.maybeParseBool(
-                map['interactive'],
-              ),
-        notificationPredicate: map['notificationPredicate'],
-        radius: ThemeDecoder.decodeRadius(
-          map['radius'],
-          validate: false,
-        ),
-        scrollbarOrientation: ThemeDecoder.decodeScrollbarOrientation(
-          map['scrollbarOrientation'],
-          validate: false,
-        ),
-        thickness: JsonClass.maybeParseDouble(map['thickness']),
-        thumbVisibility: map['thumbVisibility'] == null
-            ? null
-            : JsonClass.maybeParseBool(
-                map['thumbVisibility'],
-              ),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [Scrollbar] widget.
+@jsonWidget
+abstract class _JsonScrollbarBuilder extends JsonWidgetBuilder {
+  const _JsonScrollbarBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  Scrollbar buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data).build(
-      childBuilder: childBuilder,
-      context: context,
-    );
-    return Scrollbar(
-      controller: controller,
-      // hoverThickness: @deprecated,
-      interactive: interactive,
-      // isAlwaysShown: @deprecated,
-      notificationPredicate: notificationPredicate,
-      radius: radius,
-      scrollbarOrientation: scrollbarOrientation,
-      // showTrackOnHover: @deprecated,
-      thickness: thickness,
-      thumbVisibility: thumbVisibility,
-      trackVisibility: trackVisibility,
-      key: key,
-      child: child,
-    );
-  }
+  });
 }

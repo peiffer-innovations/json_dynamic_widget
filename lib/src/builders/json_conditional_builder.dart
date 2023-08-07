@@ -3,68 +3,17 @@ import 'dart:async';
 import 'package:json_conditional/json_conditional.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+part 'json_conditional_builder.g.dart';
+
 /// Builder that builds either the actual child widget or clears the child
 /// widgets based on the result from the [conditional].
-///
-/// See the [fromDynamic] for the format.
-class JsonConditionalBuilder extends JsonWidgetBuilder {
-  const JsonConditionalBuilder({
-    required this.conditional,
-    required this.keys,
-    this.onFalse,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 1;
-  static const type = 'conditional';
-
-  final Conditional conditional;
-  final Set<String> keys;
-  final JsonWidgetData? onFalse;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "conditional": {
-  ///     "conditions": "<List<Conditional>>",
-  ///     "mode": "<EvaluationMode>",
-  ///     "values": "<Map<String, dynamic>>"
-  ///   },
-  ///   "onFalse": "<JsonWidgetData>"
-  /// }
-  /// ```
-  ///
-  /// The `conditional` value is required but the `onFalse` is not.  If the
-  /// `onFalse` is `null` then the build will return an empty [SizedBox] when
-  /// the `conditional` evaluates to [false].
-  ///
-  /// See also:
-  ///  * [Conditional.fromDynamic]
-  ///  * [EvaluationMode.fromCode]
-  ///  * [JsonWidgetData.fromDynamic]
-  static JsonConditionalBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
+@jsonWidget
+abstract class _JsonConditionalBuilder extends JsonWidgetBuilder {
+  _JsonConditionalBuilder({
+    required super.numSupportedChildren,
+    required JsonConditionalBuilderModel model,
   }) {
-    JsonConditionalBuilder? result;
-
-    if (map != null) {
-      final conditional = Conditional.fromDynamic(map['conditional']);
-      final keys = <String>{};
-      _appendKeys(conditional, keys);
-
-      result = JsonConditionalBuilder(
-        conditional: conditional,
-        keys: keys,
-        onFalse: JsonWidgetData.fromDynamic(
-          map['onFalse'],
-          registry: registry,
-        ),
-      );
-    }
-
-    return result;
+    _appendKeys(model.conditional, model.keys);
   }
 
   static void _appendKeys(
@@ -78,27 +27,19 @@ class JsonConditionalBuilder extends JsonWidgetBuilder {
   }
 
   @override
-  Widget buildCustom({
+  _Conditional buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    return _ConditionalWidget(
-      childBuilder: childBuilder,
-      conditional: conditional,
-      data: data,
-      keys: keys,
-      onFalse: onFalse,
-    );
-  }
+  });
 }
 
-class _ConditionalWidget extends StatefulWidget {
-  const _ConditionalWidget({
-    this.childBuilder,
+class _Conditional extends StatefulWidget {
+  const _Conditional({
+    @JsonBuilderParam() this.childBuilder,
     required this.conditional,
-    required this.data,
+    @JsonBuilderParam() required this.data,
     Key? key,
     required this.keys,
     this.onFalse,
@@ -111,10 +52,10 @@ class _ConditionalWidget extends StatefulWidget {
   final JsonWidgetData? onFalse;
 
   @override
-  _ConditionalWidgetState createState() => _ConditionalWidgetState();
+  State createState() => _ConditionalState();
 }
 
-class _ConditionalWidgetState extends State<_ConditionalWidget> {
+class _ConditionalState extends State<_Conditional> {
   late Conditional _conditional;
   late JsonWidgetData _data;
   late Set<String> _keys;
@@ -147,9 +88,9 @@ class _ConditionalWidgetState extends State<_ConditionalWidget> {
       _data = _data.recreate();
 
       final builder = _data.builder() as JsonConditionalBuilder;
-      _conditional = builder.conditional;
-      _keys = builder.keys;
-      _onFalse = builder.onFalse;
+      _conditional = builder.model.conditional;
+      _keys = builder.model.keys;
+      _onFalse = builder.model.onFalse;
 
       if (mounted == true) {
         setState(() {});

@@ -1,77 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [ClipRRect] widget.  See the [fromDynamic] for the
-/// format.
-class JsonClipRRectBuilder extends JsonWidgetBuilder {
-  const JsonClipRRectBuilder({
-    this.borderRadius,
-    required this.clipBehavior,
-    this.clipper,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_clip_rrect_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'clip_rrect';
-
-  final BorderRadius? borderRadius;
-  final Clip clipBehavior;
-  final CustomClipper<RRect>? clipper;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "borderRadius": "<BorderRadius>",
-  ///   "clipBehavior": "<Clip>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeBorderRadius]
-  ///  * [ThemeDecoder.decodeClip]
-  static JsonClipRRectBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonClipRRectBuilder? result;
-
-    if (map != null) {
-      result = JsonClipRRectBuilder(
-        borderRadius: ThemeDecoder.decodeBorderRadius(
-              map['borderRadius'],
-              validate: false,
-            ) ??
-            BorderRadius.zero,
-        clipBehavior: ThemeDecoder.decodeClip(
-              map['clipBehavior'],
-              validate: false,
-            ) ??
-            Clip.antiAlias,
-        clipper: map['clipper'],
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build a [ClipRect] widget.
+@jsonWidget
+abstract class _JsonClipRRectBuilder extends JsonWidgetBuilder {
+  const _JsonClipRRectBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  ClipRRect buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return ClipRRect(
-      borderRadius: borderRadius,
-      clipBehavior: clipBehavior,
-      clipper: clipper,
-      key: key,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

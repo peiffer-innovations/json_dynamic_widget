@@ -5,8 +5,6 @@ import 'package:desktop_window/desktop_window.dart';
 import 'package:example/src/components/clipper.dart';
 import 'package:example/src/custom_function/show_dialog.dart'
     as show_dialog_fun;
-import 'package:example/src/custom_schemas/dotted_border_schema.dart';
-import 'package:example/src/custom_schemas/svg_schema.dart';
 import 'package:example/src/dotted_border_builder.dart';
 import 'package:example/src/issue_24_page.dart';
 import 'package:example/src/svg_builder.dart';
@@ -74,7 +72,7 @@ void main() async {
           data: JsonWidgetData.fromDynamic(
             jsonData,
             registry: registry,
-          )!,
+          ),
         ),
       ),
     );
@@ -102,7 +100,7 @@ void main() async {
                 data: JsonWidgetData.fromDynamic(
                   imagePageJson,
                   registry: imgRegistry,
-                )!,
+                ),
               ),
             ),
           );
@@ -339,7 +337,7 @@ class _RootPageState extends State<RootPage> {
       await Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) => FullWidgetPage(
-            data: data!,
+            data: data,
           ),
         ),
       );
@@ -374,7 +372,7 @@ class _RootPageState extends State<RootPage> {
       await Navigator.of(context).push(
         MaterialPageRoute(
           builder: (BuildContext context) => UntestableFullWidgetPage(
-            data: data!,
+            data: data,
           ),
         ),
       );

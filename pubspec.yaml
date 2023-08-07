@@ -23,11 +23,12 @@ dependencies:
   json_dynamic_widget_annotations:
     path: ../json_dynamic_widget_annotations
   json_schema: '^5.1.2'
-  json_theme: '^6.0.1'
+  json_theme: '^6.2.1'
   logging: '^1.2.0'
   meta: '^1.9.1'
   template_expressions: '^3.1.0'
   uuid: '^3.0.7'
+  yaml_writer: ^1.0.3
   yaon: '^1.1.2+1'
 
 dev_dependencies:
@@ -42,6 +43,8 @@ dev_dependencies:
 dependency_overrides:
   json_dynamic_widget_annotations:
     path: ../json_dynamic_widget_annotations
+  json_dynamic_widget_codegen:
+    path: ../json_dynamic_widget_codegen
 
 ignore_updates:
   - 'archive'

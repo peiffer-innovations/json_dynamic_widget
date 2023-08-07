@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customText": "This is a short text."
+        "values": {
+          "customText": "This is a short text."
+        }
       },
       "child": {
         "type": "center",

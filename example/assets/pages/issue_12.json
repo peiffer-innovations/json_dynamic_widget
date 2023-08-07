@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customPadding": 16
+        "values": {
+          "customPadding": 16
+        }
       },
       "child": {
         "type": "elevated_button",

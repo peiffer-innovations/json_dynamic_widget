@@ -23,7 +23,7 @@ class _DynamicWidgetState extends State<Issue24Page> {
           final widget = JsonWidgetData.fromDynamic(
             widgetJson,
             registry: registry,
-          )!;
+          );
           return widget.build(
             context: context,
           );

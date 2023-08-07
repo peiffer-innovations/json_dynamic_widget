@@ -1,7 +1,9 @@
 {
   "type": "set_value",
   "args": {
-    "customColor": "#FF0000"
+    "values": {
+      "customColor": "#FF0000"
+    }
   },
   "child": {
     "type": "set_value",

@@ -2,15 +2,51 @@ import 'package:flutter/gestures.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Switch] widget.  See the [fromDynamic] for the
-/// format.
-class JsonSwitchBuilder extends JsonWidgetBuilder {
-  const JsonSwitchBuilder({
+part 'json_switch_builder.g.dart';
+
+/// Builder that can build an [Switch] widget.
+@jsonWidget
+abstract class _JsonSwitchBuilder extends JsonWidgetBuilder {
+  const _JsonSwitchBuilder({required super.numSupportedChildren});
+
+  /// Removes any / all values this builder may have set from the
+  /// [JsonWidgetRegistry].
+  @override
+  void remove(JsonWidgetData data) {
+    if (data.id.isNotEmpty == true) {
+      data.registry.removeValue(
+        data.id,
+        originator: data.id,
+      );
+    }
+
+    super.remove(data);
+  }
+
+  /// Builds the widget to render to the tree.  If the [data] object has a
+  /// non-empty `id` associated with it and the [enabled] property is [true]
+  /// then this will attach the selected value to the [JsonWidgetRegistry]
+  /// using the `id` as the key any time the selected value is changed.
+  ///
+  /// Likewise, this will set any error messages using the key '$id.error'.  An
+  /// empty string will be used to represent no error message.
+  @override
+  _Switch buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+
+class _Switch extends StatelessWidget {
+  const _Switch({
     this.activeColor,
     this.activeThumbImage,
     this.activeTrackColor,
     required this.autofocus,
     this.autovalidateMode,
+    @JsonBuilderParam() required this.data,
     required this.dragStartBehavior,
     required this.enabled,
     this.focusColor,
@@ -34,16 +70,14 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
     this.validator,
     this.value,
     this.visualDensity,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 0;
-  static const type = 'switch';
+  });
 
   final Color? activeColor;
   final ImageProvider<Object>? activeThumbImage;
   final Color? activeTrackColor;
   final bool autofocus;
   final AutovalidateMode? autovalidateMode;
+  final JsonWidgetData data;
   final DragStartBehavior dragStartBehavior;
   final bool enabled;
   final Color? focusColor;
@@ -68,186 +102,8 @@ class JsonSwitchBuilder extends JsonWidgetBuilder {
   final bool? value;
   final VisualDensity? visualDensity;
 
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "activeColor": "<Color>",
-  ///   "activeThumbImage": "<ImageProvider<Object>>",
-  ///   "activeTrackColor": "<Color>",
-  ///   "autofocus": "<bool>",
-  ///   "autovalidateMode": "<AutovalidateMode>",
-  ///   "dragStartBehavior": "<DragStartBehavior>",
-  ///   "enabled": "<bool>",
-  ///   "focusColor": "<Color>",
-  ///   "focusNode": "<FocusNode>",
-  ///   "hoverColor": "<Color>",
-  ///   "inactiveThumbColor": "<Color>",
-  ///   "inactiveThumbImage": "<ImageProvider<Object>>",
-  ///   "inactiveTrackColor": "<Color>",
-  ///   "label": "<String>",
-  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
-  ///   "mouseCursor": "<MouseCursor>",
-  ///   "onActiveThumbImageError": "<ImageErrorListener>",
-  ///   "onChanged": "<ValueCallback<bool>>",
-  ///   "onInctiveThumbImageError": "<ImageErrorListener>",
-  ///   "onSaved": "<ValueCallback<bool>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
-  ///   "splashRadius": "<double>",
-  ///   "thumbColor": "<MaterialStateProperty<Color>>",
-  ///   "thumbIcon": "<MaterialStateProperty<Icon>>",
-  ///   "trackColor": "<MaterialStateProperty<Color>>",
-  ///   "validators": "<List<ValueValidator>>",
-  ///   "value": "<bool>",
-  ///   "visualDensity": "<VisualDensity>"
-  /// }
-  /// ```
-  ///
-  /// As a note, the [FocusNode] and the [ValueCallback<bool>] cannot be decoded
-  /// via JSON.  Instead, the only way to bind those values to the builder is to
-  /// use a function or a variable reference via the [JsonWidgetRegistry].
-  ///
-  /// See also:
-  ///  * [buildCustom]
-  ///  * [ThemeDecoder.decodeAutovalidateMode]
-  ///  * [ThemeDecoder.decodeColor]
-  ///  * [ThemeDecoder.decodeDragStartBehavior]
-  ///  * [ThemeDecoder.decodeMaterialStatePropertyColor]
-  ///  * [ThemeDecoder.decodeMouseCursor]
-  ///  * [ThemeDecoder.decodeVisualDensity]
-  ///  * [Validator]
-  static JsonSwitchBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonSwitchBuilder? result;
-
-    if (map != null) {
-      result = JsonSwitchBuilder(
-        activeColor: ThemeDecoder.decodeColor(
-          map['activeColor'],
-          validate: false,
-        ),
-        activeThumbImage: ThemeDecoder.decodeImageProvider(
-          map['activeThumbImage'],
-          validate: false,
-        ),
-        activeTrackColor: ThemeDecoder.decodeColor(
-          map['activeTrackColor'],
-          validate: false,
-        ),
-        autofocus: JsonClass.parseBool(map['autofocus']),
-        autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(
-                map['autovalidateMode'],
-                validate: false,
-              )
-            : JsonClass.maybeParseBool(map['autovalidate']) == true
-                ? AutovalidateMode.always
-                : AutovalidateMode.disabled,
-        dragStartBehavior: ThemeDecoder.decodeDragStartBehavior(
-              map['dragStartBehavior'],
-              validate: false,
-            ) ??
-            DragStartBehavior.start,
-        enabled: JsonClass.parseBool(
-          map['enabled'],
-          whenNull: true,
-        ),
-        focusColor: ThemeDecoder.decodeColor(
-          map['focusColor'],
-          validate: false,
-        ),
-        focusNode: map['focusNode'],
-        hoverColor: ThemeDecoder.decodeColor(
-          map['hoverColor'],
-          validate: false,
-        ),
-        inactiveThumbColor: ThemeDecoder.decodeColor(
-          map['inactiveThumbColor'],
-          validate: false,
-        ),
-        inactiveThumbImage: ThemeDecoder.decodeImageProvider(
-          map['inactiveThumbImage'],
-          validate: false,
-        ),
-        inactiveTrackColor: ThemeDecoder.decodeColor(
-          map['inactiveTrackColor'],
-          validate: false,
-        ),
-        label: map['label'],
-        materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
-          map['materialTapTargetSize'],
-          validate: false,
-        ),
-        mouseCursor: ThemeDecoder.decodeMouseCursor(
-          map['mouseCursor'],
-          validate: false,
-        ),
-        onActiveThumbImageError: map['onActiveThumbImageError'],
-        onChanged: map['onChanged'],
-        onInactiveThumbImageError: map['onInactiveThumbImageError'],
-        onSaved: map['onSaved'],
-        overlayColor: ThemeDecoder.decodeMaterialStatePropertyColor(
-          map['overlayColor'],
-          validate: false,
-        ),
-        splashRadius: JsonClass.maybeParseDouble('splashRadius'),
-        thumbColor: ThemeDecoder.decodeMaterialStatePropertyColor(
-          map['thumbColor'],
-          validate: false,
-        ),
-        thumbIcon: ThemeDecoder.decodeMaterialStatePropertyIcon(
-          map['thumbIcon'],
-          validate: false,
-        ),
-        trackColor: ThemeDecoder.decodeMaterialStatePropertyColor(
-          map['trackColor'],
-          validate: false,
-        ),
-        validator: map['validators'] == null
-            ? null
-            : Validator.fromDynamic({'validators': map['validators']}),
-        value: JsonClass.maybeParseBool(map['value']),
-        visualDensity: ThemeDecoder.decodeVisualDensity(
-          map['visualDensity'],
-          validate: false,
-        ),
-      );
-    }
-
-    return result;
-  }
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
   @override
-  void remove(JsonWidgetData data) {
-    if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(
-        data.id,
-        originator: data.id,
-      );
-    }
-
-    super.remove(data);
-  }
-
-  /// Builds the widget to render to the tree.  If the [data] object has a
-  /// non-empty `id` associated with it and the [enabled] property is [true]
-  /// then this will attach the selected value to the [JsonWidgetRegistry]
-  /// using the `id` as the key any time the selected value is changed.
-  ///
-  /// Likewise, this will set any error messages using the key '$id.error'.  An
-  /// empty string will be used to represent no error message.
-  @override
-  Widget buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  }) {
+  Widget build(BuildContext context) {
     return FormField<bool>(
       autovalidateMode: autovalidateMode,
       enabled: enabled,

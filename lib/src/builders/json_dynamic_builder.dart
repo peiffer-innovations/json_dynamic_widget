@@ -31,9 +31,9 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     this.registry,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
-  static const kNumSupportedChildren = -1;
+  static const kNumSupportedChildren = NumSupportedChildren.many;
 
-  static const type = 'dynamic';
+  static const kType = 'dynamic';
   final String builderType;
 
   final String childTemplate;
@@ -55,9 +55,44 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   ///
   ///
   /// See also:
+  ///  * [JsonDynamicBuilder.maybeFromDynamic]
+  ///  * [JsonWidgetData.fromDynamic]
+  static JsonDynamicBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry? registry,
+  }) {
+    final result = maybeFromDynamic(
+      map,
+      registry: registry,
+    );
+
+    if (result == null) {
+      throw Exception(
+        '[JsonDynamicBuilder]: requested to parse from dynamic, but the input is null.',
+      );
+    }
+
+    return result;
+  }
+
+  /// Builds the builder from a Map-like dynamic structure. This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "dynamic" : {
+  ///     "builderType": "<String>",
+  ///     "childTemplate": "<Object>",
+  ///     "initState": "<List>"
+  ///   }
+  /// }
+  /// ```
+  ///
+  ///
+  /// See also:
   ///  * [JsonDynamicBuilder.fromDynamic]
   ///  * [JsonWidgetData.fromDynamic]
-  static JsonDynamicBuilder? fromDynamic(
+  static JsonDynamicBuilder? maybeFromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
@@ -116,7 +151,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     }
 
     return _DynamicWidget(
-      data: JsonWidgetData.fromDynamic(map, registry: data.registry)!,
+      data: JsonWidgetData.fromDynamic(map, registry: data.registry),
       childTemplate: childTemplate,
       childBuilder: childBuilder,
       key: key,
@@ -159,7 +194,7 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
             (e) => JsonWidgetData.fromDynamic(
               json.decode(e),
               registry: widget.data.registry,
-            )!,
+            ),
           );
       _data.children!.addAll(children);
     }
@@ -193,4 +228,52 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
       }
     }
   }
+}
+
+class DynamicSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/dynamic.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$id': id,
+    r'$children': -1,
+    'title': 'Dynamic',
+    'oneOf': [
+      {
+        'type': 'null',
+      },
+      {
+        'type': 'object',
+        'additionalProperties': true,
+        'properties': {
+          'dynamic': {
+            'type': 'object',
+            'additionalProperties': false,
+            'properties': {
+              'builderType': SchemaHelper.stringSchema,
+              'childTemplate': {
+                'type': 'object',
+                'additionalProperties': true,
+              },
+              'initState': {
+                'oneOf': [
+                  {
+                    'type': 'null',
+                  },
+                  {
+                    'type': 'array',
+                    'items': {
+                      'type': 'object',
+                      'additionalProperties': true,
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+      }
+    ],
+  };
 }

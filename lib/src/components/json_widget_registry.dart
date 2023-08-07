@@ -40,10 +40,10 @@ class JsonWidgetRegistry {
             (debugLabel ?? 'child_${++childCount}'),
         _parent = parent {
     _logger = Logger('REGISTRY ${this.debugLabel}');
-    _builders.addAll({
-      if (!overrideInternalBuilders) ...JsonWidgetInternalBuilders.defaults(),
-      if (builders != null) ...builders
-    });
+    if (!overrideInternalBuilders) {
+      DefaultRegistrar.registerDefaults(registry: this);
+    }
+    _builders.addAll({if (builders != null) ...builders});
     _functions.addAll({
       if (!overrideInternalFunctions) ...JsonWidgetInternalFunctions.defaults(),
       if (functions != null) ...functions

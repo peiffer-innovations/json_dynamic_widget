@@ -11,7 +11,7 @@ void main() {
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {},
-      )! is JsonWrapBuilder,
+      ) is JsonWrapBuilder,
       true,
     );
   });

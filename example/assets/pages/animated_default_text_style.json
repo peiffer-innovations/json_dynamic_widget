@@ -15,8 +15,10 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customTextStyle": {
-          "color": "#FF0000"
+        "values": {
+          "customTextStyle": {
+            "color": "#FF0000"
+          }
         }
       },
       "child": {

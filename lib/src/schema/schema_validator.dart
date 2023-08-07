@@ -5,24 +5,12 @@ import 'package:json_class/json_class.dart';
 import 'package:json_schema/json_schema.dart';
 import 'package:json_theme/json_theme_schemas.dart';
 
-import 'json_dynamic_widget_schemas.dart';
-
 /// Schema validator that can validate the JSON Theme objects while also being
 /// able to be extended to also perform validation against schemas that include
 /// JSON Theme objects.
 class SchemaValidator {
   factory SchemaValidator() => _instance;
-  SchemaValidator._internal() {
-    assert(() {
-      final cache = SchemaCache();
-
-      JsonDynamicWidgetSchemas.all.forEach(
-        (id, schema) => cache.addSchema(id, schema),
-      );
-
-      return true;
-    }());
-  }
+  SchemaValidator._internal();
   static final SchemaValidator _instance = SchemaValidator._internal();
 
   /// Allows the global disabling of validation in DEBUG builds.  This value is

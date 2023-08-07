@@ -1,26 +1,44 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Wrap] widget.  See the [fromDynamic] for the
-/// format.
-class JsonWrapBuilder extends JsonWidgetBuilder {
-  const JsonWrapBuilder({
+part 'json_wrap_builder.g.dart';
+
+/// Builder that can build an [Wrap] widget.
+@jsonWidget
+abstract class _JsonWrapBuilder extends JsonWidgetBuilder {
+  const _JsonWrapBuilder({
+    required super.numSupportedChildren,
+  });
+
+  @override
+  _Wrap buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+
+class _Wrap extends StatelessWidget {
+  const _Wrap({
     this.alignment,
+    @JsonBuilderParam() required this.childBuilder,
     this.clipBehavior,
     this.crossAxisAlignment,
+    @JsonBuilderParam() required this.data,
     this.direction,
     this.runAlignment,
     this.runSpacing,
     this.spacing,
+    super.key,
     this.textDirection,
     this.verticalDirection,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = -1;
-  static const type = 'wrap';
+  });
 
   final WrapAlignment? alignment;
+  final ChildWidgetBuilder? childBuilder;
   final Clip? clipBehavior;
   final WrapCrossAlignment? crossAxisAlignment;
+  final JsonWidgetData data;
   final Axis? direction;
   final WrapAlignment? runAlignment;
   final double? runSpacing;
@@ -28,81 +46,8 @@ class JsonWrapBuilder extends JsonWidgetBuilder {
   final TextDirection? textDirection;
   final VerticalDirection? verticalDirection;
 
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "alignment": "<WrapAlignment>",
-  ///   "clipBehavior": "<Clip>",
-  ///   "crossAxisAlignment": "<WrapCrossAlignment>",
-  ///   "direction": "<Axis>",
-  ///   "runAlignment": "<WrapAlignment>",
-  ///   "runSpacing": "<double>",
-  ///   "spacing": "<double>",
-  ///   "textDirection": "<TextDirection>",
-  ///   "verticalDirection": "<VerticalDirection>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeAxis]
-  ///  * [ThemeDecoder.decodeClip]
-  ///  * [ThemeDecoder.decodeTextDirection]
-  ///  * [ThemeDecoder.decodeWrapAlignment]
-  ///  * [ThemeDecoder.decodeVerticalDirection]
-  ///  * [ThemeDecoder.decodeWrapCrossAlignment]
-  static JsonWrapBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonWrapBuilder? result;
-    if (map != null) {
-      result = JsonWrapBuilder(
-        alignment: ThemeDecoder.decodeWrapAlignment(
-          map['alignment'],
-          validate: false,
-        ),
-        clipBehavior: ThemeDecoder.decodeClip(
-          map['clipBehavior'],
-          validate: false,
-        ),
-        crossAxisAlignment: ThemeDecoder.decodeWrapCrossAlignment(
-          map['crossAxisAlignment'],
-          validate: false,
-        ),
-        direction: ThemeDecoder.decodeAxis(
-          map['axis'],
-          validate: false,
-        ),
-        runAlignment: ThemeDecoder.decodeWrapAlignment(
-          map['runAlignment'],
-          validate: false,
-        ),
-        spacing: JsonClass.maybeParseDouble(map['spacing']),
-        runSpacing: JsonClass.maybeParseDouble(map['runSpacing']),
-        textDirection: ThemeDecoder.decodeTextDirection(
-          map['textDirection'],
-          validate: false,
-        ),
-        verticalDirection: ThemeDecoder.decodeVerticalDirection(
-          map['verticalDirection'],
-          validate: false,
-        ),
-      );
-    }
-
-    return result;
-  }
-
   @override
-  Widget buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  }) =>
-      Wrap(
+  Widget build(BuildContext context) => Wrap(
         alignment: alignment ?? WrapAlignment.start,
         clipBehavior: clipBehavior ?? Clip.none,
         crossAxisAlignment: crossAxisAlignment ?? WrapCrossAlignment.start,

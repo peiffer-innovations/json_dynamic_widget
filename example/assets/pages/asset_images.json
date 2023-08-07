@@ -18,7 +18,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 1
+            "values": {
+              "index": 1
+            }
           },
           "child": {
             "type": "ink_well",
@@ -56,7 +58,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 2
+            "values": {
+              "index": 2
+            }
           },
           "child": {
             "type": "ink_well",
@@ -94,7 +98,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 3
+            "values": {
+              "index": 3
+            }
           },
           "child": {
             "type": "ink_well",
@@ -132,7 +138,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 4
+            "values": {
+              "index": 4
+            }
           },
           "child": {
             "type": "ink_well",
@@ -170,7 +178,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 5
+            "values": {
+              "index": 5
+            }
           },
           "child": {
             "type": "ink_well",
@@ -208,7 +218,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 6
+            "values": {
+              "index": 6
+            }
           },
           "child": {
             "type": "ink_well",
@@ -246,7 +258,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 7
+            "values": {
+              "index": 7
+            }
           },
           "child": {
             "type": "ink_well",
@@ -284,7 +298,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 8
+            "values": {
+              "index": 8
+            }
           },
           "child": {
             "type": "ink_well",
@@ -322,7 +338,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 9
+            "values": {
+              "index": 9
+            }
           },
           "child": {
             "type": "ink_well",
@@ -360,7 +378,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 10
+            "values": {
+              "index": 10
+            }
           },
           "child": {
             "type": "ink_well",
@@ -398,7 +418,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 11
+            "values": {
+              "index": 11
+            }
           },
           "child": {
             "type": "ink_well",
@@ -436,7 +458,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 12
+            "values": {
+              "index": 12
+            }
           },
           "child": {
             "type": "ink_well",
@@ -474,7 +498,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 13
+            "values": {
+              "index": 13
+            }
           },
           "child": {
             "type": "ink_well",
@@ -512,7 +538,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 14
+            "values": {
+              "index": 14
+            }
           },
           "child": {
             "type": "ink_well",
@@ -550,7 +578,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 15
+            "values": {
+              "index": 15
+            }
           },
           "child": {
             "type": "ink_well",
@@ -588,7 +618,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 16
+            "values": {
+              "index": 16
+            }
           },
           "child": {
             "type": "ink_well",
@@ -626,7 +658,9 @@
         {
           "type": "set_value",
           "args": {
-            "index": 17
+            "values": {
+              "index": 17
+            }
           },
           "child": {
             "type": "ink_well",

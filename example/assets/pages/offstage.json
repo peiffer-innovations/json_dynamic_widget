@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "visible": false
+        "values": {
+          "visible": false
+        }
       },
       "child": {
         "type": "offstage",

@@ -1,20 +1,22 @@
 {
   "type": "set_value",
   "args": {
-    "double": 20.5,
-    "int": 10,
-    "list": [
-      1,
-      2,
-      3
-    ],
-    "map": {
-      "foo": "bar",
-      "baz": "biz",
-      "fiz": "wiz",
-      "miz": "siz"
-    },
-    "string": "String"
+    "values": {
+      "double": 20.5,
+      "int": 10,
+      "list": [
+        1,
+        2,
+        3
+      ],
+      "map": {
+        "foo": "bar",
+        "baz": "biz",
+        "fiz": "wiz",
+        "miz": "siz"
+      },
+      "string": "String"
+    }
   },
   "child": {
     "type": "scaffold",

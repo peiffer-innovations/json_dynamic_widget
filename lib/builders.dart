@@ -100,6 +100,6 @@ export 'src/builders/json_text_button_builder.dart';
 export 'src/builders/json_text_form_field_builder.dart';
 export 'src/builders/json_theme_builder.dart';
 export 'src/builders/json_tooltip_builder.dart';
-export 'src/builders/json_tween_animation_builder.dart';
+export 'src/builders/json_tween_animation_builder_builder.dart';
 export 'src/builders/json_widget_builder.dart';
 export 'src/builders/json_wrap_builder.dart';

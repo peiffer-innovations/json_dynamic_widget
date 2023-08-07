@@ -1,65 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Theme] widget.  See the [fromDynamic] for the
-/// format.
-class JsonThemeBuilder extends JsonWidgetBuilder {
-  const JsonThemeBuilder({
-    required this.theme,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_theme_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'theme';
-
-  final ThemeData theme;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "data": "<ThemeData>",
-  ///   "isMaterialAppTheme": "<bool>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeThemeData]
-  static JsonThemeBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonThemeBuilder? result;
-    if (map != null) {
-      result = JsonThemeBuilder(
-        theme: ThemeDecoder.decodeThemeData(
-              map['data'],
-              validate: false,
-            ) ??
-            ThemeData(),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [Theme] widget.
+@jsonWidget
+abstract class _JsonThemeBuilder extends JsonWidgetBuilder {
+  const _JsonThemeBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  Theme buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return Theme(
-      data: theme,
-      child: Builder(
-        key: key,
-        builder: (BuildContext context) => child.build(
-          childBuilder: childBuilder,
-          context: context,
-        ),
-      ),
-    );
-  }
+  });
 }

@@ -1,9 +1,25 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Image] widget using bundled assets.  See the
-/// [fromDynamic] for the format.
-class JsonAssetImageBuilder extends JsonWidgetBuilder {
-  JsonAssetImageBuilder({
+part 'json_asset_image_builder.g.dart';
+
+/// Builder that can build an [Image.asset] widget.
+@jsonWidget
+abstract class _JsonAssetImageBuilder extends JsonWidgetBuilder {
+  const _JsonAssetImageBuilder({
+    required super.numSupportedChildren,
+  });
+
+  @override
+  _AssetImage buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+
+class _AssetImage extends StatelessWidget {
+  _AssetImage({
     required this.alignment,
     this.cacheHeight,
     this.cacheWidth,
@@ -26,12 +42,7 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
     this.scale,
     this.semanticLabel,
     this.width,
-  })  : assert(name.isNotEmpty == true),
-        super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 0;
-
-  static const type = 'asset_image';
+  }) : assert(name.isNotEmpty == true);
 
   final Alignment alignment;
   final int? cacheHeight;
@@ -56,112 +67,8 @@ class JsonAssetImageBuilder extends JsonWidgetBuilder {
   final String? semanticLabel;
   final double? width;
 
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "alignment": "<Alignment>",
-  ///   "cacheHeight": "<int>",
-  ///   "cacheWidth": "<int>",
-  ///   "centerSlice": "<Rect>",
-  ///   "color": "<Color>",
-  ///   "colorBlendMode": "<BlendMode>",
-  ///   "errorBuilder": "<WidgetBuilder>",
-  ///   "excludeFromSemantics": "<bool>",
-  ///   "filterQuality": "<FilterQuality>",
-  ///   "fit": "<BoxFit>",
-  ///   "frameBuilder": "<ImageFrameBuilder>",
-  ///   "gaplessPlayback": "<bool>",
-  ///   "height": "<double>",
-  ///   "isAntiAlias": "<bool>",
-  ///   "matchTextDirection": "<bool>",
-  ///   "name": "<String>",
-  ///   "opacity": "<double>",
-  ///   "package": "<String>",
-  ///   "repeat": "<ImageRepeat>",
-  ///   "scale": "<double>",
-  ///   "semanticLabel": "<String>",
-  ///   "width": "<double>"
-  /// }
-  /// ```
-  ///
-  /// As a note, the [ImageErrorWidgetBuilder] and [ImageFrameBuilder] cannot be
-  /// decoded via JSON.  Instead, the only way to bind those values to the
-  /// builder is to use a function or a variable reference via the
-  /// [JsonWidgetRegistry].
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeAlignment]
-  ///  * [ThemeDecoder.decodeBlendMode]
-  ///  * [ThemeDecoder.decodeColor]
-  ///  * [ThemeDecoder.decodeImageRepeat]
-  static JsonAssetImageBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonAssetImageBuilder? result;
-
-    if (map != null) {
-      result = JsonAssetImageBuilder(
-        alignment: ThemeDecoder.decodeAlignment(
-              map['alignment'],
-              validate: false,
-            ) ??
-            Alignment.center,
-        cacheHeight: JsonClass.maybeParseInt(map['cacheHeight']),
-        cacheWidth: JsonClass.maybeParseInt(map['cacheWidth']),
-        centerSlice: ThemeDecoder.decodeRect(
-          map['centerSlice'],
-          validate: false,
-        ),
-        color: ThemeDecoder.decodeColor(
-          map['color'],
-          validate: false,
-        ),
-        colorBlendMode: ThemeDecoder.decodeBlendMode(
-          map['colorBlendMode'],
-          validate: false,
-        ),
-        errorBuilder: map['errorBuilder'],
-        excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
-        filterQuality: ThemeDecoder.decodeFilterQuality(
-              map['filterQuality'],
-              validate: false,
-            ) ??
-            FilterQuality.low,
-        fit: ThemeDecoder.decodeBoxFit(
-          map['fit'],
-          validate: false,
-        ),
-        frameBuilder: map['frameBuilder'],
-        gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
-        height: JsonClass.maybeParseDouble(map['height']),
-        isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
-        matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
-        name: map['name'],
-        package: map['package'],
-        repeat: ThemeDecoder.decodeImageRepeat(
-              map['imageRepeat'],
-              validate: false,
-            ) ??
-            ImageRepeat.noRepeat,
-        scale: JsonClass.maybeParseDouble(map['scale']),
-        semanticLabel: map['semanticLabel'],
-        width: JsonClass.maybeParseDouble(map['width']),
-      );
-    }
-
-    return result;
-  }
-
   @override
-  Widget buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  }) {
+  Widget build(BuildContext context) {
     return Image.asset(
       name,
       alignment: alignment,

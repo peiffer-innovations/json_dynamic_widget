@@ -1,72 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [DecoratedBox] widget.  See the [fromDynamic] for the
-/// format.
-class JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
-  const JsonDecoratedBoxBuilder({
-    required this.decoration,
-    required this.position,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_decorated_box_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'decorated_box';
-
-  final BoxDecoration decoration;
-  final DecorationPosition position;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "decoration": "<BoxDecoration>",
-  ///   "position": "<DecorationPosition>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeBoxDecoration]
-  ///  * [ThemeDecoder.decodeDecorationPosition]
-  static JsonDecoratedBoxBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonDecoratedBoxBuilder? result;
-
-    if (map != null) {
-      result = JsonDecoratedBoxBuilder(
-        decoration: ThemeDecoder.decodeBoxDecoration(
-          map['decoration'],
-          validate: false,
-        )!,
-        position: ThemeDecoder.decodeDecorationPosition(
-              map['position'],
-              validate: false,
-            ) ??
-            DecorationPosition.background,
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [DecoratedBox] widget.
+@jsonWidget
+abstract class _JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
+  const _JsonDecoratedBoxBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  DecoratedBox buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return DecoratedBox(
-      decoration: decoration,
-      key: key,
-      position: position,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

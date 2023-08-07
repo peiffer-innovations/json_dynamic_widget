@@ -15,11 +15,16 @@ abstract class JsonWidgetBuilder {
   const JsonWidgetBuilder({
     this.preferredSizeWidget = false,
     required this.numSupportedChildren,
-  }) : assert(numSupportedChildren >= -1);
+  });
 
   static final JsonWidgetData kDefaultChild = JsonWidgetData(
     args: const {},
-    builder: () => const JsonSizedBoxBuilder(),
+    builder: () => const JsonSizedBoxBuilder(
+      model: JsonSizedBoxBuilderModel(
+        height: null,
+        width: null,
+      ),
+    ),
     child: null,
     listenVariables: const {},
     registry: JsonWidgetRegistry.instance,
@@ -27,7 +32,7 @@ abstract class JsonWidgetBuilder {
   );
 
   final bool preferredSizeWidget;
-  final int numSupportedChildren;
+  final NumSupportedChildren numSupportedChildren;
 
   /// Builds the widget.  If there are dynamic keys on the [data] object, and
   /// the widget is not a [PreferredSizeWidget], then the returned widget will

@@ -1,94 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Stack] widget.  See the [fromDynamic] for the
-/// format.
-class JsonStackBuilder extends JsonWidgetBuilder {
-  const JsonStackBuilder({
-    required this.alignment,
-    required this.clipBehavior,
-    required this.fit,
-    this.textDirection,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_stack_builder.g.dart';
 
-  static const kNumSupportedChildren = -1;
-  static const type = 'stack';
-
-  final AlignmentGeometry alignment;
-  final Clip clipBehavior;
-  final StackFit fit;
-
-  final TextDirection? textDirection;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "alignment": "<Alignment>",
-  ///   "clipBehavior": "<Clip>",
-  ///   "fit": "<StackFit>",
-  ///   "textDirection": "<TextDirection>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeAlignment]
-  ///  * [ThemeDecoder.decodeClip]
-  ///  * [ThemeDecoder.decodeStackFit]
-  ///  * [ThemeDecoder.decodeTextDirection]
-  static JsonStackBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonStackBuilder? result;
-
-    if (map != null) {
-      result = JsonStackBuilder(
-        alignment: ThemeDecoder.decodeAlignment(
-              map['alignment'],
-              validate: false,
-            ) ??
-            AlignmentDirectional.topStart,
-        clipBehavior: ThemeDecoder.decodeClip(
-              map['clipBehavior'],
-              validate: false,
-            ) ??
-            Clip.hardEdge,
-        fit: ThemeDecoder.decodeStackFit(
-              map['fit'],
-              validate: false,
-            ) ??
-            StackFit.loose,
-        textDirection: ThemeDecoder.decodeTextDirection(
-          map['textDirection'],
-          validate: false,
-        ),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [Stack] widget.
+@jsonWidget
+abstract class _JsonStackBuilder extends JsonWidgetBuilder {
+  const _JsonStackBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  Stack buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    return Stack(
-      alignment: alignment,
-      clipBehavior: clipBehavior,
-      fit: fit,
-      key: key,
-      textDirection: textDirection,
-      children: [
-        for (var child in data.children ?? <JsonWidgetData>[])
-          child.build(
-            context: context,
-            childBuilder: childBuilder,
-          ),
-      ],
-    );
-  }
+  });
 }

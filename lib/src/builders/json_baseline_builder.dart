@@ -1,69 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Baseline] widget.  See the [fromDynamic] for the
-/// format.
-class JsonBaselineBuilder extends JsonWidgetBuilder {
-  const JsonBaselineBuilder({
-    required this.baseline,
-    required this.baselineType,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_baseline_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-
-  static const type = 'baseline';
-
-  final double baseline;
-  final TextBaseline baselineType;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "baseline": "<double>",
-  ///   "baselineType": "<TextBaseline>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonBaselineBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonBaselineBuilder? result;
-
-    if (map != null) {
-      result = JsonBaselineBuilder(
-        baseline: JsonClass.maybeParseDouble(map['baseline']) ?? 0.0,
-        baselineType: ThemeDecoder.decodeTextBaseline(
-              map['baselineType'],
-              validate: false,
-            ) ??
-            TextBaseline.alphabetic,
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build a [Baseline] widget.
+@jsonWidget
+abstract class _JsonBaselineBuilder extends JsonWidgetBuilder {
+  const _JsonBaselineBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  Baseline buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return Baseline(
-      baseline: baseline,
-      baselineType: baselineType,
-      key: key,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

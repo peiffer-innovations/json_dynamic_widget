@@ -1,3 +1,11 @@
+## 7.0.0
+
+* **BREAKING CHANGES**
+    * The values for `set_value` are no longer directly on the map and must be passed in with the key `values`.
+    * The values for `set_widget` are no longer directly on the map and must be passed in with the key `widgets`.
+    * To match the Flutter pattern for nullability, `fromDynamic` was made non-null and a new `maybeFromDynamic` was added to allow for a nullable response.
+
+
 ## [6.1.0] - July 17th, 2023
 
 * Updated to `json_class`` 3.0

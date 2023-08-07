@@ -1,99 +1,48 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+part 'json_set_scroll_controller_builder.g.dart';
+
 /// Builder that creates a scroll controller and then sets it as a variable
 /// using the "key" name.
-class JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
-  const JsonSetScrollControllerBuilder({
-    this.debugLabel,
-    this.initialScrollOffset,
-    required this.keepScrollOffset,
-    required this.key,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 1;
-  static const type = 'set_scroll_controller';
-
-  final String? debugLabel;
-  final double? initialScrollOffset;
-  final bool keepScrollOffset;
-  final String key;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "debugLabel": "<String>",
-  ///   "initialScrollOffset": "<double>",
-  ///   "keepScrollOffset": "<bool>",
-  ///   "key": "<String>"
-  /// }
-  /// ```
-  ///
-  /// Where the value of the `key` attribute is the key used on the
-  /// [JsonWidgetRegistry.setValue] to store the current [ScrollController].
-  static JsonSetScrollControllerBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonSetScrollControllerBuilder? result;
-
-    if (map != null) {
-      result = JsonSetScrollControllerBuilder(
-        debugLabel: map['debugLabel'],
-        initialScrollOffset:
-            JsonClass.maybeParseDouble(map['initialScrollOffset']),
-        keepScrollOffset: JsonClass.parseBool(
-          map['keepScrollOffset'],
-          whenNull: true,
-        ),
-        key: map['key'] ?? 'scrollController',
-      );
-    }
-
-    return result;
-  }
+@jsonWidget
+abstract class _JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
+  const _JsonSetScrollControllerBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  @JsonParamAlias(alias: 'key', name: 'varName')
+  _SetScrollController buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    assert(
-      data.children?.length == 1 || data.children?.isNotEmpty != true,
-      '[JsonSetScrollControllerBuilder] only supports zero or one child.',
-    );
-
-    return _JsonSetScrollControllerWidget(
-      builder: this,
-      childBuilder: childBuilder,
-      data: data,
-      key: key,
-    );
-  }
+  });
 }
 
-class _JsonSetScrollControllerWidget extends StatefulWidget {
-  const _JsonSetScrollControllerWidget({
-    required this.builder,
+class _SetScrollController extends StatefulWidget {
+  const _SetScrollController({
     required this.childBuilder,
-    required this.data,
-    Key? key,
-  }) : super(key: key);
+    @JsonBuilderParam() required this.data,
+    this.debugLabel,
+    this.initialScrollOffset,
+    super.key,
+    required this.keepScrollOffset,
+    this.varName = 'scrollController',
+  });
 
-  final JsonSetScrollControllerBuilder builder;
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
+  final String? debugLabel;
+  final double? initialScrollOffset;
+  final bool keepScrollOffset;
+  final String varName;
 
   @override
-  _JsonSetScrollControllerWidgetState createState() =>
-      _JsonSetScrollControllerWidgetState();
+  State createState() => _JsonSetScrollControllerWidgetState();
 }
 
-class _JsonSetScrollControllerWidgetState
-    extends State<_JsonSetScrollControllerWidget> {
+class _JsonSetScrollControllerWidgetState extends State<_SetScrollController> {
   late ScrollController _controller;
 
   @override
@@ -101,13 +50,13 @@ class _JsonSetScrollControllerWidgetState
     super.initState();
 
     _controller = ScrollController(
-      debugLabel: widget.builder.debugLabel,
-      initialScrollOffset: widget.builder.initialScrollOffset ?? 0,
-      keepScrollOffset: widget.builder.keepScrollOffset,
+      debugLabel: widget.debugLabel,
+      initialScrollOffset: widget.initialScrollOffset ?? 0,
+      keepScrollOffset: widget.keepScrollOffset,
     );
 
     widget.data.registry.setValue(
-      widget.builder.key,
+      widget.varName,
       _controller,
       originator: null,
     );
@@ -118,7 +67,7 @@ class _JsonSetScrollControllerWidgetState
   void dispose() {
     _controller.dispose();
     widget.data.registry.removeValue(
-      widget.builder.key,
+      widget.varName,
       originator: null,
     );
 

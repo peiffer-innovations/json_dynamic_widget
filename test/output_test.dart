@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:json_dynamic_widget/json_dynamic_widget_schemas.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 void main() {
   test('output', () async {
@@ -14,7 +14,8 @@ void main() {
     output.createSync(recursive: true);
 
     const encoder = JsonEncoder.withIndent('  ');
-    for (var schema in JsonDynamicWidgetSchemas.all.values) {
+    final registrar = DefaultRegistrar.registerDefaults();
+    for (var schema in registrar.schemas.values) {
       for (var i = 0; i < 3; i++) {
         try {
           final id = schema['\$id'];

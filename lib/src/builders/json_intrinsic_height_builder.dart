@@ -1,44 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [IntrinsicHeight] widget.  See the [fromDynamic] for the
-/// format.
-class JsonIntrinsicHeightBuilder extends JsonWidgetBuilder {
-  const JsonIntrinsicHeightBuilder()
-      : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_intrinsic_height_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'intrinsic_height';
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects an
-  /// empty JSON.
-  static JsonIntrinsicHeightBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonIntrinsicHeightBuilder? result;
-
-    if (map != null) {
-      result = const JsonIntrinsicHeightBuilder();
-    }
-
-    return result;
-  }
+/// Builder that can build an [IntrinsicHeight] widget.
+@jsonWidget
+abstract class _JsonIntrinsicHeightBuilder extends JsonWidgetBuilder {
+  const _JsonIntrinsicHeightBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  IntrinsicHeight buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return IntrinsicHeight(
-      key: key,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

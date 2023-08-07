@@ -1,68 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Flexible] widget.  See the [fromDynamic] for the
-/// format.
-class JsonFlexibleBuilder extends JsonWidgetBuilder {
-  const JsonFlexibleBuilder({
-    required this.fit,
-    required this.flex,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_flexible_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'flexible';
-
-  final FlexFit fit;
-  final int flex;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "fit": "<FlexFit>",
-  ///   "flex": "<int>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeFlexFit]
-  static JsonFlexibleBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonFlexibleBuilder? result;
-
-    if (map != null) {
-      result = JsonFlexibleBuilder(
-        fit: ThemeDecoder.decodeFlexFit(
-              map['fit'],
-              validate: false,
-            ) ??
-            FlexFit.loose,
-        flex: JsonClass.maybeParseInt(map['flex']) ?? 1,
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [Flexible] widget.
+@jsonWidget
+abstract class _JsonFlexibleBuilder extends JsonWidgetBuilder {
+  const _JsonFlexibleBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  Flexible buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return Flexible(
-      fit: fit,
-      flex: flex,
-      key: key,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customAlign": "topLeft"
+        "values": {
+          "customAlign": "topLeft"
+        }
       },
       "child": {
         "type": "animated_align",

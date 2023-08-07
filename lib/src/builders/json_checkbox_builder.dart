@@ -1,20 +1,53 @@
 import 'package:form_validation/form_validation.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Checkbox] widget.  See the [fromDynamic] for the
-/// format.
-class JsonCheckboxBuilder extends JsonWidgetBuilder {
-  const JsonCheckboxBuilder({
+part 'json_checkbox_builder.g.dart';
+
+@jsonWidget
+abstract class _JsonCheckboxBuilder extends JsonWidgetBuilder {
+  const _JsonCheckboxBuilder({
+    required super.numSupportedChildren,
+  });
+
+  @JsonParamDecoder('validator')
+  Validator? _decodeValidator({dynamic value}) => value is Map
+      ? Validator.fromDynamic({'validators': value['validators']})
+      : null;
+
+  /// Removes any / all values this builder may have set from the
+  /// [JsonWidgetRegistry].
+  @override
+  void remove(JsonWidgetData data) {
+    data.registry.removeValue(
+      data.id,
+      originator: data.id,
+    );
+
+    super.remove(data);
+  }
+
+  @override
+  _Checkbox buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+
+class _Checkbox extends StatelessWidget {
+  const _Checkbox({
     this.activeColor,
-    required this.autofocus,
+    this.autofocus = false,
     this.autovalidateMode,
     this.checkColor,
-    required this.enabled,
+    @JsonBuilderParam() required this.data,
+    this.enabled = true,
     this.fillColor,
     this.focusColor,
     this.focusNode,
     this.hoverColor,
-    required this.isError,
+    this.isError = false,
     this.label,
     this.materialTapTargetSize,
     this.mouseCursor,
@@ -24,20 +57,17 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
     this.shape,
     this.side,
     this.splashRadius,
-    required this.tristate,
+    this.tristate = false,
     this.validator,
     this.value,
     this.visualDensity,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 0;
-
-  static const type = 'checkbox';
+  });
 
   final Color? activeColor;
   final bool autofocus;
   final AutovalidateMode? autovalidateMode;
   final Color? checkColor;
+  final JsonWidgetData data;
   final bool enabled;
   final MaterialStateProperty<Color?>? fillColor;
   final Color? focusColor;
@@ -58,148 +88,6 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   final bool? value;
   final VisualDensity? visualDensity;
 
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "activeColor": "<Color>",
-  ///   "autofocus": "<bool>",
-  ///   "autovalidateMode": "<AutovalidateMode>",
-  ///   "checkColor": "<Color>",
-  ///   "enabled": "<bool>",
-  ///   "fillColor": "<MaterialStateProperty<Color>>",
-  ///   "focusColor": "<Color>",
-  ///   "focusNode": "<FocusNode>",
-  ///   "hoverColor": "<Color>",
-  ///   "isError": "<bool>",
-  ///   "label": "<String>",
-  ///   "materialTapTargetSize": "<MaterialTapTargetSize>",
-  ///   "mouseCursor": "<MouseCursor>",
-  ///   "onChanged": "<ValueChanged<bool>>",
-  ///   "onSaved": "<ValueChanged<onSaved>>",
-  ///   "overlayColor": "<MaterialStateProperty<Color>>",
-  ///   "shape": "<OutlinedBorder>",
-  ///   "side": "<BorderSide>",
-  ///   "splashRadius": "<double>",
-  ///   "tristate": "<bool>",
-  ///   "validators": "<ValueValidator[]>",
-  ///   "value": "<bool>",
-  ///   "visualDensity": "<VisualDensity>"
-  /// }
-  /// ```
-  ///
-  /// As a note, the [FocusNode] and [ValueChanged<bool>] cannot be decoded via
-  /// JSON.  Instead, the only way to bind those values to the builder is to use
-  /// a function or a variable reference via the [JsonWidgetRegistry].
-  ///
-  /// See also:
-  ///  * [buildCustom]
-  ///  * [ThemeDecoder.decodeAutovalidateMode]
-  ///  * [ThemeDecoder.decodeBorderSide]
-  ///  * [ThemeDecoder.decodeColor]
-  ///  * [ThemeDecoder.decodeMaterialStatePropertyColor]
-  ///  * [ThemeDecoder.decodeMaterialTapTargetSize]
-  ///  * [ThemeDecoder.decodeMouseCursor]
-  ///  * [ThemeDecoder.decodeOutlinedBorder]
-  ///  * [ThemeDecoder.decodeVisualDensity]
-  ///  * [Validator]
-  static JsonCheckboxBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonCheckboxBuilder? result;
-
-    if (map != null) {
-      result = JsonCheckboxBuilder(
-        activeColor: ThemeDecoder.decodeColor(
-          map['activeColor'],
-          validate: false,
-        ),
-        autofocus: JsonClass.parseBool(map['autofocus']),
-        autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(
-                map['autovalidateMode'],
-                validate: false,
-              )
-            : JsonClass.maybeParseBool(map['autovalidate']) == true
-                ? AutovalidateMode.always
-                : AutovalidateMode.disabled,
-        checkColor: ThemeDecoder.decodeColor(
-          map['checkColor'],
-          validate: false,
-        ),
-        enabled: JsonClass.parseBool(
-          map['enabled'],
-          whenNull: true,
-        ),
-        fillColor: ThemeDecoder.decodeMaterialStatePropertyColor(
-          map['fillColor'],
-          validate: false,
-        ),
-        focusColor: ThemeDecoder.decodeColor(
-          map['focusColor'],
-          validate: false,
-        ),
-        focusNode: map['focusNode'],
-        hoverColor: ThemeDecoder.decodeColor(
-          map['hoverColor'],
-          validate: false,
-        ),
-        isError: JsonClass.parseBool(map['isError']),
-        label: map['label'],
-        materialTapTargetSize: ThemeDecoder.decodeMaterialTapTargetSize(
-          map['materialTapTargetSize'],
-          validate: false,
-        ),
-        mouseCursor: ThemeDecoder.decodeMouseCursor(
-          map['mouseCursor'],
-          validate: false,
-        ),
-        onChanged: map['onChanged'],
-        onSaved: map['onSaved'],
-        overlayColor: ThemeDecoder.decodeMaterialStatePropertyColor(
-          map['overlayColor'],
-          validate: false,
-        ),
-        shape: ThemeDecoder.decodeOutlinedBorder(
-          map['shape'],
-          validate: false,
-        ),
-        side: ThemeDecoder.decodeBorderSide(
-          map['side'],
-          validate: false,
-        ),
-        splashRadius: JsonClass.maybeParseDouble(map['splashRadius']),
-        tristate: JsonClass.parseBool(map['tristate']),
-        validator: map['validators'] == null
-            ? null
-            : Validator.fromDynamic({'validators': map['validators']}),
-        value: map['value'] == null
-            ? null
-            : JsonClass.maybeParseBool(map['value']),
-        visualDensity: ThemeDecoder.decodeVisualDensity(
-          map['visualDensity'],
-          validate: false,
-        ),
-      );
-    }
-
-    return result;
-  }
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    data.registry.removeValue(
-      data.id,
-      originator: data.id,
-    );
-
-    super.remove(data);
-  }
-
   /// Builds the widget to render to the tree.  If the [data] object has a
   /// non-empty `id` associated with it and the [enabled] property is [true]
   /// then this will attach the selected value to the [JsonWidgetRegistry]
@@ -208,12 +96,7 @@ class JsonCheckboxBuilder extends JsonWidgetBuilder {
   /// Likewise, this will set any error messages using the key '$id.error'.  An
   /// empty string will be used to represent no error message.
   @override
-  Widget buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  }) {
+  Widget build(BuildContext context) {
     final initialValue = value ?? (tristate != true ? false : null);
 
     return FormField<bool>(

@@ -15,21 +15,23 @@
     "body": {
       "type": "set_widget",
       "args": {
-        "customFirstText": {
-          "type": "text",
-          "args": {
-            "text": "1",
-            "style": {
-              "fontSize": 64
+        "widgets": {
+          "customFirstText": {
+            "type": "text",
+            "args": {
+              "text": "1",
+              "style": {
+                "fontSize": 64
+              }
             }
-          }
-        },
-        "customSecondText": {
-          "type": "text",
-          "args": {
-            "text": "2",
-            "style": {
-              "fontSize": 64
+          },
+          "customSecondText": {
+            "type": "text",
+            "args": {
+              "text": "2",
+              "style": {
+                "fontSize": 64
+              }
             }
           }
         }

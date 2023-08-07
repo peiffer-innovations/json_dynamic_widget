@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customPadding": 1
+        "values": {
+          "customPadding": 1
+        }
       },
       "child": {
         "type": "animated_padding",

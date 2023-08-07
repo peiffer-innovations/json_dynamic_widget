@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customOpacity": 1
+        "values": {
+          "customOpacity": 1
+        }
       },
       "child": {
         "type": "animated_opacity",

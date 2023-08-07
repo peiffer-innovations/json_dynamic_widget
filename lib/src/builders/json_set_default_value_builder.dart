@@ -1,89 +1,84 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+part 'json_set_default_value_builder.g.dart';
+
 /// Builder that sets a value (or group of values) to the [JsonWidgetRegistry].
 /// This doesn't actually have a widget and instead simply returns the child's
-/// built widget.  See the [fromDynamic] for the format.
-///
-/// When used closely to the child the value is being set for, it's recommended
-/// to use the static reference to avoid the widget receiving the wrong value
-/// during build and rebuild cycles.
-class JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
-  const JsonSetDefaultValueBuilder({
-    this.values,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 1;
-  static const type = 'set_default_value';
-
-  final dynamic values;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "<key>": "<dynamic>"
-  /// }
-  /// ```
-  ///
-  /// Where the `key` is any arbitrary [String].  That `key` will be used as the
-  /// `key` on [JsonWidgetRegistry.setValue] and the [dynamic] value will be
-  /// used as the `value`.
-  static JsonSetDefaultValueBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonSetDefaultValueBuilder? result;
-
-    if (map != null) {
-      result = JsonSetDefaultValueBuilder(values: map);
-      registry ??= JsonWidgetRegistry.instance;
-      // result.values?.forEach((key, value) => registry.setValue(key, value));
-    }
-
-    return result;
-  }
+/// built widget.
+@jsonWidget
+abstract class _JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
+  const _JsonSetDefaultValueBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  void remove(JsonWidgetData data) {
-    values?.forEach(
-      (key, _) => data.registry.removeValue(
-        key,
-        originator: null,
-      ),
-    );
-
-    super.remove(data);
-  }
-
-  @override
-  Widget buildCustom({
+  _SetDefaultValue buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    assert(
-      data.children?.length == 1 || data.children?.isNotEmpty != true,
-      '[JsonSetDefaultValueBuilder] only supports zero or one child.',
-    );
-    values?.forEach((key, value) {
-      if (data.registry.getValue(key) == null) {
-        data.registry.setValue(
+  });
+}
+
+class _SetDefaultValue extends StatefulWidget {
+  const _SetDefaultValue({
+    @JsonBuilderParam() this.childBuilder,
+    @JsonBuilderParam() required this.data,
+    super.key,
+    this.values = const {},
+  });
+
+  final ChildWidgetBuilder? childBuilder;
+  final JsonWidgetData data;
+  final Map<String, dynamic> values;
+
+  @override
+  State createState() => _SetDefaultValueState();
+}
+
+class _SetDefaultValueState extends State<_SetDefaultValue> {
+  @override
+  void initState() {
+    super.initState();
+
+    widget.values.forEach((key, value) {
+      if (widget.data.registry.getValue(key) == null) {
+        widget.data.registry.setValue(
           key,
           value,
           originator: null,
         );
       }
     });
+  }
+
+  @override
+  void dispose() {
+    widget.values.forEach(
+      (key, _) => widget.data.registry.removeValue(
+        key,
+        originator: null,
+      ),
+    );
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final data = widget.data;
+    assert(
+      data.children?.length == 1 || data.children?.isNotEmpty != true,
+      '[JsonSetDefaultValueBuilder] only supports zero or one child.',
+    );
 
     var child = data.children?.isNotEmpty == true ? data.children![0] : null;
     child = child?.recreate();
 
     return child?.build(
-          childBuilder: childBuilder,
+          childBuilder: widget.childBuilder,
           context: context,
         ) ??
-        SizedBox(key: key);
+        const SizedBox();
   }
 }

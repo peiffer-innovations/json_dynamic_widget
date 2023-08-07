@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customHeight": 40
+        "values": {
+          "customHeight": 40
+        }
       },
       "child": {
         "type": "stack",

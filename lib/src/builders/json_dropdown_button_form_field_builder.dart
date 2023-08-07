@@ -36,8 +36,8 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     this.value,
   }) : super(numSupportedChildren: kNumSupportedChildren);
 
-  static const kNumSupportedChildren = 0;
-  static const type = 'dropdown_button_form_field';
+  static const kNumSupportedChildren = NumSupportedChildren.zero;
+  static const kType = 'dropdown_button_form_field';
 
   final Alignment? alignment;
   final bool? autofocus;
@@ -130,13 +130,101 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [Validator]
-  static JsonDropdownButtonFormFieldBuilder? fromDynamic(
+  static JsonDropdownButtonFormFieldBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry? registry,
+  }) {
+    final result = maybeFromDynamic(
+      map,
+      registry: registry,
+    );
+
+    if (result == null) {
+      throw Exception(
+        '[JsonDropdownButtonFormFieldBuilder]: requested to parse from dynamic, but the input is null.',
+      );
+    }
+
+    return result;
+  }
+
+  /// Builds the builder from a Map-like dynamic structure.  This expects the
+  /// JSON format to be of the following structure:
+  ///
+  /// ```json
+  /// {
+  ///   "alignment": "<Alignment>",
+  ///   "autofocus": "<bool>",
+  ///   "autovalidateMode": "<AutovalidateMode>",
+  ///   "borderRadius": "<BorderRadius>",
+  ///   "decoration": "<InputDecorationDecoder>",
+  ///   "disabledHint": "<JsonWidgetData>",
+  ///   "dropdownColor": "<Color>",
+  ///   "elevation": "<int>",
+  ///   "enabled": "<bool>",
+  ///   "focusColor": "<Color>",
+  ///   "focusNode": "<FocusNode>",
+  ///   "hint": "<JsonWidgetData>",
+  ///   "icon": "<JsonWidgetData>",
+  ///   "items": "<List<String>> || <Map<String, dynamic>>",
+  ///   "iconDisabledColor": "<Color>",
+  ///   "iconEnabledColor": "<Color>",
+  ///   "iconSize": "<double>",
+  ///   "isDense": "<bool>",
+  ///   "isExpanded": "<bool>",
+  ///   "itemHeight": "<double>",
+  ///   "onChanged": "<ValueChanged>",
+  ///   "onSaved": "<FormFieldSetter>",
+  ///   "onTap": "<VoidCallback>",
+  ///   "selectedItemBuilder": "<DropdownButtonBuilder> || <JsonWidgetData>",
+  ///   "validators": "<List<ValueValidator>>",
+  ///   "style": "<TextStyle>",
+  ///   "value": "<dynamic>"
+  /// }
+  /// ```
+  ///
+  /// As a note, the [FocusNode], [ValueChanged], [FormFieldSetter], and
+  /// [VoidCallback] objects cannot be decoded via JSON.  Instead, the only way
+  /// to bind those values to the builder is to use a function or a variable
+  /// reference via the [JsonWidgetRegistry].
+  ///
+  /// The `selectedItemBuilder` can be a [DropdownButtonBuilder] or
+  /// [JsonWidgetData].  The [DropdownButtonBuilder] cannot be decoded via JSON
+  /// and would have to be bound via the [JsonWidgetRegistry].  If a
+  /// [JsonWidgetData] object is used then the item's display will be bound to
+  /// the `dropdown_item_display` variable on the registry and the item's value
+  /// will be bound to `dropdown_item_value`.  This way the widget can associate
+  /// properties to those two keys for proper rendering.
+  ///
+  /// The `items` can be either a string array where the string will be used for
+  /// both the display and the value or a map of strings to values where the key
+  /// will be used as the display and the value will be the internal dropdown
+  /// value.
+  ///
+  /// If the [map] is `null` then `null` will be returned.
+  ///
+  /// See also:
+  ///  * [buildCustom]
+  ///  * [InputDecorationDecoder.fromDynamic]
+  ///  * [JsonWidgetData.fromDynamic]
+  ///  * [ThemeDecoder.decodeAutovalidateMode]
+  ///  * [ThemeDecoder.decodeColor]
+  ///  * [ThemeDecoder.decodeTextStyle]
+  ///  * [Validator]
+  static JsonDropdownButtonFormFieldBuilder? maybeFromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
     JsonDropdownButtonFormFieldBuilder? result;
 
     if (map != null) {
+      if (map is String) {
+        map = yaon.parse(
+          map,
+          normalize: true,
+        );
+      }
+
       result = JsonDropdownButtonFormFieldBuilder(
         alignment: ThemeDecoder.decodeAlignment(
           map['alignment'],
@@ -243,6 +331,55 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   }
 }
 
+class DropdownButtonFormFieldSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/dropdown_button_form_field.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$id': id,
+    r'$children': 0,
+    r'$comment':
+        'https://api.flutter.dev/flutter/material/DropdownButtonFormField-class.html',
+    'type': 'object',
+    'title': 'DropdownButtonFormField',
+    'additionalProperties': false,
+    'properties': {
+      'alignment': SchemaHelper.objectSchema(AlignmentSchema.id),
+      'autofocus': SchemaHelper.boolSchema,
+      'autovalidate': SchemaHelper.boolSchema,
+      'autovalidateMode': SchemaHelper.objectSchema(AutovalidateModeSchema.id),
+      'borderRadius': SchemaHelper.objectSchema(BorderRadiusSchema.id),
+      'decoration': SchemaHelper.anySchema,
+      'disabledHint': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      'dropdownColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'elevation': SchemaHelper.numberSchema,
+      'enableFeedback': SchemaHelper.boolSchema,
+      'enabled': SchemaHelper.boolSchema,
+      'focusColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'focusNode': SchemaHelper.stringSchema,
+      'hint': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      'icon': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
+      'items': SchemaHelper.anySchema,
+      'iconDisabledColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'iconEnabledColor': SchemaHelper.objectSchema(ColorSchema.id),
+      'iconSize': SchemaHelper.numberSchema,
+      'isDense': SchemaHelper.boolSchema,
+      'isExpanded': SchemaHelper.boolSchema,
+      'itemHeight': SchemaHelper.numberSchema,
+      'menuMaxHeight': SchemaHelper.boolSchema,
+      'onChanged': SchemaHelper.stringSchema,
+      'onSaved': SchemaHelper.stringSchema,
+      'onTap': SchemaHelper.stringSchema,
+      'selectedItemBuilder': SchemaHelper.anySchema,
+      'shadows': SchemaHelper.arraySchema(ShadowSchema.id),
+      'validators': SchemaHelper.anySchema,
+      'style': SchemaHelper.objectSchema(TextStyleSchema.id),
+      'value': SchemaHelper.anySchema,
+    },
+  };
+}
+
 class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
   const _JsonDropdownButtonFormFieldWidget({
     required this.builder,
@@ -262,10 +399,10 @@ class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
 
 class _JsonDropdownButtonFormFieldWidgetState
     extends State<_JsonDropdownButtonFormFieldWidget> {
-  dynamic _value;
+  InputDecoration? _decoration;
   List<DropdownMenuItem>? _items;
   DropdownButtonBuilder? _selectedItemBuilder;
-  InputDecoration? _decoration;
+  dynamic _value;
 
   @override
   void initState() {
@@ -302,82 +439,6 @@ class _JsonDropdownButtonFormFieldWidgetState
       });
     }
   }
-
-  @override
-  Widget build(BuildContext context) => DropdownButtonFormField(
-        alignment: widget.builder.alignment ?? AlignmentDirectional.centerStart,
-        autofocus: widget.builder.autofocus ?? false,
-        autovalidateMode: widget.builder.autovalidateMode,
-        borderRadius: widget.builder.borderRadius,
-        decoration: _decoration ?? const InputDecoration(),
-        disabledHint: widget.builder.disabledHint?.build(
-          childBuilder: widget.childBuilder,
-          context: context,
-        ),
-        dropdownColor: widget.builder.dropdownColor,
-        elevation: widget.builder.elevation ?? 8,
-        enableFeedback: widget.builder.enableFeedback,
-        focusColor: widget.builder.focusColor,
-        focusNode: widget.builder.focusNode,
-        hint: widget.builder.hint?.build(
-          childBuilder: widget.childBuilder,
-          context: context,
-        ),
-        icon: widget.builder.icon?.build(
-          childBuilder: widget.childBuilder,
-          context: context,
-        ),
-        items: _items,
-        iconDisabledColor: widget.builder.iconDisabledColor,
-        iconEnabledColor: widget.builder.iconEnabledColor,
-        iconSize: widget.builder.iconSize ?? 24,
-        isDense: widget.builder.isDense ?? true,
-        isExpanded: widget.builder.isExpanded ?? false,
-        itemHeight: widget.builder.itemHeight,
-        menuMaxHeight: widget.builder.menuMaxHeight,
-        onChanged: widget.builder.enabled != true
-            ? null
-            : (dynamic value) {
-                if (widget.builder.onChanged != null) {
-                  widget.builder.onChanged!(value);
-                }
-                _value = value;
-                if (mounted == true) {
-                  setState(() {});
-                }
-
-                if (widget.data.id.isNotEmpty == true) {
-                  widget.data.registry.setValue(
-                    widget.data.id,
-                    value,
-                    originator: widget.data.id,
-                  );
-                }
-              },
-        onSaved: widget.builder.onSaved,
-        onTap: widget.builder.onTap,
-        selectedItemBuilder: _selectedItemBuilder,
-        validator: widget.builder.validator == null
-            ? null
-            : (dynamic value) {
-                final error = widget.builder.validator!.validate(
-                  label: _decoration?.labelText ?? '',
-                  value: value?.toString(),
-                );
-
-                if (widget.data.id.isNotEmpty == true) {
-                  widget.data.registry.setValue(
-                    '${widget.data.id}.error',
-                    error ?? '',
-                    originator: widget.data.id,
-                  );
-                }
-
-                return error;
-              },
-        style: widget.builder.style,
-        value: _value,
-      );
 
   InputDecoration? _getDecoration(JsonDropdownButtonFormFieldBuilder builder) {
     return widget.builder.decoration != null
@@ -468,4 +529,80 @@ class _JsonDropdownButtonFormFieldWidgetState
 
     return selectedItemBuilder;
   }
+
+  @override
+  Widget build(BuildContext context) => DropdownButtonFormField(
+        alignment: widget.builder.alignment ?? AlignmentDirectional.centerStart,
+        autofocus: widget.builder.autofocus ?? false,
+        autovalidateMode: widget.builder.autovalidateMode,
+        borderRadius: widget.builder.borderRadius,
+        decoration: _decoration ?? const InputDecoration(),
+        disabledHint: widget.builder.disabledHint?.build(
+          childBuilder: widget.childBuilder,
+          context: context,
+        ),
+        dropdownColor: widget.builder.dropdownColor,
+        elevation: widget.builder.elevation ?? 8,
+        enableFeedback: widget.builder.enableFeedback,
+        focusColor: widget.builder.focusColor,
+        focusNode: widget.builder.focusNode,
+        hint: widget.builder.hint?.build(
+          childBuilder: widget.childBuilder,
+          context: context,
+        ),
+        icon: widget.builder.icon?.build(
+          childBuilder: widget.childBuilder,
+          context: context,
+        ),
+        items: _items,
+        iconDisabledColor: widget.builder.iconDisabledColor,
+        iconEnabledColor: widget.builder.iconEnabledColor,
+        iconSize: widget.builder.iconSize ?? 24,
+        isDense: widget.builder.isDense ?? true,
+        isExpanded: widget.builder.isExpanded ?? false,
+        itemHeight: widget.builder.itemHeight,
+        menuMaxHeight: widget.builder.menuMaxHeight,
+        onChanged: widget.builder.enabled != true
+            ? null
+            : (dynamic value) {
+                if (widget.builder.onChanged != null) {
+                  widget.builder.onChanged!(value);
+                }
+                _value = value;
+                if (mounted == true) {
+                  setState(() {});
+                }
+
+                if (widget.data.id.isNotEmpty == true) {
+                  widget.data.registry.setValue(
+                    widget.data.id,
+                    value,
+                    originator: widget.data.id,
+                  );
+                }
+              },
+        onSaved: widget.builder.onSaved,
+        onTap: widget.builder.onTap,
+        selectedItemBuilder: _selectedItemBuilder,
+        validator: widget.builder.validator == null
+            ? null
+            : (dynamic value) {
+                final error = widget.builder.validator!.validate(
+                  label: _decoration?.labelText ?? '',
+                  value: value?.toString(),
+                );
+
+                if (widget.data.id.isNotEmpty == true) {
+                  widget.data.registry.setValue(
+                    '${widget.data.id}.error',
+                    error ?? '',
+                    originator: widget.data.id,
+                  );
+                }
+
+                return error;
+              },
+        style: widget.builder.style,
+        value: _value,
+      );
 }

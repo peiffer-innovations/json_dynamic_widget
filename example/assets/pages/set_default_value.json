@@ -7,7 +7,9 @@
   "child": {
     "type": "set_value",
     "args": {
-      "nonDefault": "set_value"
+      "values": {
+        "nonDefault": "set_value"
+      }
     },
     "child": {
       "type": "set_default_value",

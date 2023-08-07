@@ -1,5 +1,4 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/json_dynamic_widget_schemas.dart';
 
 class InputDecorationDecoder {
   static const schemaId =
@@ -94,7 +93,7 @@ class InputDecorationDecoder {
           map['contentPadding'],
           validate: false,
         ),
-        counter: JsonWidgetData.fromDynamic(
+        counter: JsonWidgetData.maybeFromDynamic(
           map['counter'],
           registry: registry,
         )?.build(childBuilder: childBuilder, context: context),
@@ -162,7 +161,7 @@ class InputDecorationDecoder {
           map['hoverColor'],
           validate: false,
         ),
-        icon: JsonWidgetData.fromDynamic(
+        icon: JsonWidgetData.maybeFromDynamic(
           map['icon'],
           registry: registry,
         )?.build(
@@ -175,14 +174,14 @@ class InputDecorationDecoder {
           validate: false,
         ),
         labelText: map['labelText'],
-        prefix: JsonWidgetData.fromDynamic(
+        prefix: JsonWidgetData.maybeFromDynamic(
           map['prefix'],
           registry: registry,
         )?.build(
           childBuilder: childBuilder,
           context: context,
         ),
-        prefixIcon: JsonWidgetData.fromDynamic(
+        prefixIcon: JsonWidgetData.maybeFromDynamic(
           map['prefixIcon'],
           registry: registry,
         )?.build(
@@ -199,14 +198,14 @@ class InputDecorationDecoder {
         ),
         prefixText: map['prefixText'],
         semanticCounterText: map['semanticCounterText'],
-        suffix: JsonWidgetData.fromDynamic(
+        suffix: JsonWidgetData.maybeFromDynamic(
           map['suffix'],
           registry: registry,
         )?.build(
           childBuilder: childBuilder,
           context: context,
         ),
-        suffixIcon: JsonWidgetData.fromDynamic(
+        suffixIcon: JsonWidgetData.maybeFromDynamic(
           map['suffixIcon'],
           registry: registry,
         )?.build(

@@ -354,7 +354,9 @@
                             "child": {
                               "type": "set_value",
                               "args": {
-                                "etchColor": "#b6b9c8"
+                                "values": {
+                                  "etchColor": "#b6b9c8"
+                                }
                               },
                               "child": {
                                 "type": "stack",
@@ -653,7 +655,9 @@
                             "child": {
                               "type": "set_value",
                               "args": {
-                                "etchColor": "#b6b9c8"
+                                "values": {
+                                  "etchColor": "#b6b9c8"
+                                }
                               },
                               "child": {
                                 "type": "stack",

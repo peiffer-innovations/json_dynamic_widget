@@ -1,77 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build a [FractionallySizedBox] widget.  See the [fromDynamic] for the
-/// format.
-class JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
-  const JsonFractionallySizedBoxBuilder({
-    required this.alignment,
-    this.heightFactor,
-    this.widthFactor,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_fractionally_sized_box_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'fractionally_sized_box';
-
-  final AlignmentGeometry alignment;
-  final double? heightFactor;
-  final double? widthFactor;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "alignment": "<AlignmentGeometry>",
-  ///   "heightFactor": "<double>",
-  ///   "widthFactor": "<double>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeAlignment]
-  static JsonFractionallySizedBoxBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonFractionallySizedBoxBuilder? result;
-
-    if (map != null) {
-      result = JsonFractionallySizedBoxBuilder(
-        alignment: ThemeDecoder.decodeAlignment(
-              map['alignment'],
-              validate: false,
-            ) ??
-            Alignment.center,
-        heightFactor: JsonClass.maybeParseDouble(
-          map['heightFactor'],
-        ),
-        widthFactor: JsonClass.maybeParseDouble(
-          map['widthFactor'],
-        ),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [FractionallySizedBox] widget.
+@jsonWidget
+abstract class _JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
+  const _JsonFractionallySizedBoxBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  FractionallySizedBox buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return FractionallySizedBox(
-      alignment: alignment,
-      heightFactor: heightFactor,
-      key: key,
-      widthFactor: widthFactor,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

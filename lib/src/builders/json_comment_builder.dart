@@ -1,48 +1,32 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+part 'json_comment_builder.g.dart';
+
 /// Builder is just a placeholder to allow for placing comments in the JSON
-/// tree for human readability
-class JsonCommentBuilder extends JsonWidgetBuilder {
-  const JsonCommentBuilder()
-      : super(
-          numSupportedChildren: kNumSupportedChildren,
-        );
-
-  static const kNumSupportedChildren = 1;
-  static const type = 'comment';
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "...": "<...>"
-  /// }
-  /// ```
-  static JsonCommentBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonCommentBuilder? result;
-    if (map != null) {
-      result = const JsonCommentBuilder();
-    }
-
-    return result;
-  }
+/// tree for human readability.
+@jsonWidget
+abstract class _JsonCommentBuilder extends JsonWidgetBuilder {
+  const _JsonCommentBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  _Comment buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
+  });
+}
 
-    return child.build(
-      childBuilder: childBuilder,
-      context: context,
-    );
-  }
+class _Comment extends StatelessWidget {
+  const _Comment({
+    this.child,
+    super.key,
+  });
+
+  final Widget? child;
+
+  @override
+  Widget build(BuildContext context) => child ?? const SizedBox();
 }

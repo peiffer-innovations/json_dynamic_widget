@@ -1,26 +1,28 @@
 {
   "type": "set_value",
   "args": {
-    "people": [
-      {
-        "firstName": "John",
-        "lastName": "Smith",
-        "address": {
-          "street": "1234 Lane Ave",
-          "city": "Springfield",
-          "state": "OH"
+    "values": {
+      "people": [
+        {
+          "firstName": "John",
+          "lastName": "Smith",
+          "address": {
+            "street": "1234 Lane Ave",
+            "city": "Springfield",
+            "state": "OH"
+          }
+        },
+        {
+          "firstName": "Jane",
+          "lastName": "Smith",
+          "address": {
+            "street": "1234 Lane Ave",
+            "city": "Springfield",
+            "state": "MI"
+          }
         }
-      },
-      {
-        "firstName": "Jane",
-        "lastName": "Smith",
-        "address": {
-          "street": "1234 Lane Ave",
-          "city": "Springfield",
-          "state": "MI"
-        }
-      }
-    ]
+      ]
+    }
   },
   "child": {
     "type": "scaffold",

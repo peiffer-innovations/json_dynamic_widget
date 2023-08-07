@@ -1,62 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Center] widget.  See the [fromDynamic] for the
-/// format.
-class JsonCenterBuilder extends JsonWidgetBuilder {
-  const JsonCenterBuilder({
-    this.heightFactor,
-    this.widthFactor,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_center_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-
-  static const type = 'center';
-
-  final double? heightFactor;
-  final double? widthFactor;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "heightFactor": "<double>",
-  ///   "widthFactor": "<double>"
-  /// }
-  /// ```
-  static JsonCenterBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonCenterBuilder? result;
-
-    if (map != null) {
-      result = JsonCenterBuilder(
-        heightFactor: JsonClass.maybeParseDouble(map['heightFactor']),
-        widthFactor: JsonClass.maybeParseDouble(map['widthFactor']),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build a [Center] widget.
+@jsonWidget
+abstract class _JsonCenterBuilder extends JsonWidgetBuilder {
+  const _JsonCenterBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  Center buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return Center(
-      heightFactor: heightFactor,
-      key: key,
-      widthFactor: widthFactor,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

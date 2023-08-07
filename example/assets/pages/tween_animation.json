@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customSize": 50.0
+        "values": {
+          "customSize": 50.0
+        }
       },
       "child": {
         "type": "center",

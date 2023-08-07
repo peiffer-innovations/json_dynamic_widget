@@ -1,99 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [CircularProgressIndicator] widget.  See the
-/// [fromDynamic] for the format.
-class JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
-  const JsonCircularProgressIndicatorBuilder({
-    this.backgroundColor,
-    this.color,
-    this.semanticsLabel,
-    this.semanticsValue,
-    required this.strokeWidth,
-    this.value,
-    this.valueColor,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_circular_progress_indicator_builder.g.dart';
 
-  static const kNumSupportedChildren = 0;
-
-  static const type = 'circular_progress_indicator';
-
-  final Color? backgroundColor;
-  final Color? color;
-  final String? semanticsLabel;
-  final String? semanticsValue;
-  final double strokeWidth;
-  final double? value;
-  final Animation<Color>? valueColor;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "backgroundColor": "<Color>",
-  ///   "color": "<Color>",
-  ///   "semanticsLabel": "<String>",
-  ///   "semanticsValue": "<String>",
-  ///   "strokeWidth": "<double>",
-  ///   "value": "<double>",
-  ///   "valueColor": "<Animation<Color>> || <Color>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeTextBaseline]
-  static JsonCircularProgressIndicatorBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonCircularProgressIndicatorBuilder? result;
-
-    if (map != null) {
-      result = JsonCircularProgressIndicatorBuilder(
-        backgroundColor: ThemeDecoder.decodeColor(
-          map['backgroundColor'],
-          validate: false,
-        ),
-        color: ThemeDecoder.decodeColor(
-          map['color'],
-          validate: false,
-        ),
-        semanticsLabel: map['semanticsLabel'],
-        semanticsValue: map['semanticsValue'],
-        strokeWidth: JsonClass.maybeParseDouble(map['strokeWidth']) ?? 4.0,
-        value: JsonClass.maybeParseDouble(map['value']),
-        valueColor: map['valueColor'] == null
-            ? null
-            : map['valueColor'] is Animation
-                ? map['valueColor']
-                : AlwaysStoppedAnimation(
-                    ThemeDecoder.decodeColor(
-                      map['valueColor'],
-                      validate: false,
-                    )!,
-                  ),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build a [CircularProgressIndicator] widget.
+@jsonWidget
+abstract class _JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
+  const _JsonCircularProgressIndicatorBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  CircularProgressIndicator buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    return CircularProgressIndicator(
-      backgroundColor: backgroundColor,
-      color: color,
-      key: key,
-      semanticsLabel: semanticsLabel,
-      semanticsValue: semanticsValue,
-      strokeWidth: strokeWidth,
-      value: value,
-      valueColor: valueColor,
-    );
-  }
+  });
 }

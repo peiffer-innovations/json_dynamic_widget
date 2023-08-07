@@ -1,83 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [FittedBox] widget.  See the [fromDynamic] for the
-/// format.
-class JsonFittedBoxBuilder extends JsonWidgetBuilder {
-  const JsonFittedBoxBuilder({
-    required this.alignment,
-    required this.clipBehavior,
-    required this.fit,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_fitted_box_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'fitted_box';
-
-  final AlignmentGeometry alignment;
-  final Clip clipBehavior;
-  final BoxFit fit;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "alignment": "<Alignment>",
-  ///   "clipBehavior": "<Clip>",
-  ///   "fit": "<BoxFit>"
-  /// }
-  /// ```
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeAlignment]
-  ///  * [ThemeDecoder.decodeClip]
-  ///  * [ThemeDecoder.decodeBoxFit]
-  static JsonFittedBoxBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonFittedBoxBuilder? result;
-
-    if (map != null) {
-      result = JsonFittedBoxBuilder(
-        alignment: ThemeDecoder.decodeAlignment(
-              map['alignment'],
-              validate: false,
-            ) ??
-            Alignment.center,
-        clipBehavior: ThemeDecoder.decodeClip(
-              map['clipBehavior'],
-              validate: false,
-            ) ??
-            Clip.hardEdge,
-        fit: ThemeDecoder.decodeBoxFit(
-              map['fit'],
-              validate: false,
-            ) ??
-            BoxFit.contain,
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [FittedBox] widget.
+@jsonWidget
+abstract class _JsonFittedBoxBuilder extends JsonWidgetBuilder {
+  const _JsonFittedBoxBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  FittedBox buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return FittedBox(
-      alignment: alignment,
-      clipBehavior: clipBehavior,
-      fit: fit,
-      key: key,
-      child: child.build(
-        childBuilder: childBuilder,
-        context: context,
-      ),
-    );
-  }
+  });
 }

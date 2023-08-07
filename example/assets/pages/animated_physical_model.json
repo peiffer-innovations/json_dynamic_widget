@@ -16,7 +16,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customElevation": 0
+        "values": {
+          "customElevation": 0
+        }
       },
       "child": {
         "type": "set_value",

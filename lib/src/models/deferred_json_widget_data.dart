@@ -30,7 +30,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       var data = _registry.processArgs(_key, null).value;
 
       if (data is! JsonWidgetData) {
-        data = JsonWidgetData.fromDynamic(
+        data = JsonWidgetData.maybeFromDynamic(
           data,
           registry: registry,
         );

@@ -1,7 +1,9 @@
 {
   "type": "set_value",
   "args": {
-    "customBrightness": "dark"
+    "values": {
+      "customBrightness": "dark"
+    }
   },
   "child": {
     "type": "scaffold",

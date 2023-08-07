@@ -1,59 +1,30 @@
 import 'package:flutter/scheduler.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
+part 'json_measured_builder.g.dart';
+
 /// Builder that can build a widget that measures itself and writes the
-/// measurements to the [JsonWidgetRegistry]'s values.  See the [fromDynamic]
-/// for the format.
-class JsonMeasuredBuilder extends JsonWidgetBuilder {
-  const JsonMeasuredBuilder()
-      : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 1;
-  static const type = 'measured';
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  /// }
-  /// ```
-  static JsonMeasuredBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonMeasuredBuilder? result;
-    if (map != null) {
-      result = const JsonMeasuredBuilder();
-    }
-
-    return result;
-  }
+/// measurements to the [JsonWidgetRegistry]'s values.
+@jsonWidget
+abstract class _JsonMeasuredBuilder extends JsonWidgetBuilder {
+  const _JsonMeasuredBuilder({required super.numSupportedChildren});
 
   @override
-  Widget buildCustom({
+  _Measured buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) =>
-      _Measured(
-        builder: this,
-        childBuilder: childBuilder,
-        data: data,
-        key: key,
-      );
+  });
 }
 
 class _Measured extends StatefulWidget {
   const _Measured({
-    required this.builder,
-    required this.childBuilder,
-    required this.data,
+    @JsonBuilderParam() required this.childBuilder,
+    @JsonBuilderParam() required this.data,
     Key? key,
   }) : super(key: key);
 
-  final JsonMeasuredBuilder builder;
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
 

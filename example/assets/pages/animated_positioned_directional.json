@@ -15,7 +15,9 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customWidth": 100
+        "values": {
+          "customWidth": 100
+        }
       },
       "child": {
         "type": "stack",

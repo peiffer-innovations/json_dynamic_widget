@@ -55,7 +55,52 @@ class JsonWidgetData extends JsonClass {
   ///   "id": <String>
   /// }
   /// ```
-  static JsonWidgetData? fromDynamic(
+  static JsonWidgetData fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry? registry,
+  }) {
+    final result = maybeFromDynamic(map, registry: registry);
+    if (result == null) {
+      throw Exception(
+        '[JsonWidgetData]: requested to parse from dynamic, but the input is null.',
+      );
+    }
+
+    return result;
+  }
+
+  static List<JsonWidgetData> fromDynamicList(
+    dynamic list, {
+    JsonWidgetRegistry? registry,
+  }) {
+    final result = maybeFromDynamicList(list);
+    if (result == null) {
+      throw Exception(
+        '[JsonWidgetData]: requested to parse from dynamic list, but the input is null.',
+      );
+    }
+
+    return result;
+  }
+
+  /// Decodes a JSON object into a dynamic widget.  The structure is the same
+  /// for all dynamic widgets with the exception of the `args` value.  The
+  /// `args` depends on the specific `type`.
+  ///
+  /// In the given JSON object, only the `child` or the `children` can be passed
+  /// in; not both.  From an implementation perspective, there is no difference
+  /// between passing in a `child` or a `children` with a single element, this
+  /// will treat both of those identically.
+  ///
+  /// {
+  ///   "type": <String>,
+  ///   "args": <dynamic>,
+  ///   "child": <JsonWidgetData>,
+  ///   "children": <JsonWidgetData[]>,
+  ///   "id": <String>
+  /// }
+  /// ```
+  static JsonWidgetData? maybeFromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
@@ -104,12 +149,12 @@ class JsonWidgetData extends JsonClass {
             validate: args == null ? false : true,
           ));
 
-          var child = JsonWidgetData.fromDynamic(
+          var child = JsonWidgetData.maybeFromDynamic(
             map['child'],
             registry: registry,
           );
           if (type == 'scaffold' && map['args'] is Map && child == null) {
-            child = JsonWidgetData.fromDynamic(
+            child = JsonWidgetData.maybeFromDynamic(
               map['args']['body'],
               registry: registry,
             );
@@ -129,7 +174,7 @@ class JsonWidgetData extends JsonClass {
               return builder(
                 processedArgs.value,
                 registry: registry,
-              )!;
+              );
             },
             child: child,
             children: map['children'] is String
@@ -139,7 +184,7 @@ class JsonWidgetData extends JsonClass {
                     (dynamic map) => JsonWidgetData.fromDynamic(
                       map,
                       registry: registry,
-                    )!,
+                    ),
                   ),
             listenVariables: processedArgs.listenVariables,
             id: map['id'],
@@ -159,17 +204,45 @@ class JsonWidgetData extends JsonClass {
         if (errorValue is Map || errorValue is List) {
           errorValue = const JsonEncoder.withIndent('  ').convert(errorValue);
         }
-        _logger.severe('''
+        _logger.severe(
+          '''
 *** WIDGET PARSE ERROR ***
 $errorValue
 
 $map
-''', e, stack);
+''',
+          e,
+          stack,
+        );
         throw HandledJsonWidgetException(
           e,
           stack,
           data: errorValue,
         );
+      }
+    }
+
+    return result;
+  }
+
+  /// Returns a parsed list from a dynamic [Iterable].  If the passed in [list]
+  /// is `null` then this will return `null`.
+  static List<JsonWidgetData>? maybeFromDynamicList(
+    dynamic list, {
+    JsonWidgetRegistry? registry,
+  }) {
+    List<JsonWidgetData>? result;
+
+    if (list != null) {
+      if (list is! Iterable) {
+        throw Exception(
+          '[JsonWidgetData] An unsupported type was passed in to "maybeFromDynamic": ${list.runtimeType}.',
+        );
+      }
+
+      result = <JsonWidgetData>[];
+      for (var map in list) {
+        result.add(fromDynamic(map));
       }
     }
 
@@ -260,7 +333,7 @@ $map
           JsonWidgetData.fromDynamic(
             values,
             registry: registry,
-          )!
+          ),
         ];
       }
     } else if (originalChildren is String) {
@@ -287,7 +360,7 @@ $map
           JsonWidgetData.fromDynamic(
             values,
             registry: registry,
-          )!
+          ),
         ];
       }
     } else {
@@ -302,7 +375,7 @@ $map
               .processArgs(args ?? <String, dynamic>{}, listenVariables)
               .value,
           registry: registry,
-        )!;
+        );
       },
       children: children?.map((child) => child.recreate()).toList(),
       listenVariables: dynamicParamsResult.listenVariables,

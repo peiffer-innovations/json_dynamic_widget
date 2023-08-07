@@ -1,10 +1,12 @@
 {
   "type": "set_widget",
   "args": {
-    "variableWidget": {
-      "type": "text",
-      "args": {
-        "text": "This is a text."
+    "widgets": {
+      "variableWidget": {
+        "type": "text",
+        "args": {
+          "text": "This is a text."
+        }
       }
     }
   },

@@ -16,15 +16,13 @@ dynamic body({
         final title = JsonWidgetData.fromDynamic(
           dialogData.title,
           registry: registry,
-        )!
-            .build(
+        ).build(
           context: context,
         );
         final content = JsonWidgetData.fromDynamic(
           dialogData.content,
           registry: registry,
-        )!
-            .build(context: context);
+        ).build(context: context);
         final List<Widget> actions = dialogData.actions
             .map(
               (actionData) => TextButton(
@@ -35,8 +33,7 @@ dynamic body({
                 child: JsonWidgetData.fromDynamic(
                   actionData.title,
                   registry: registry,
-                )!
-                    .build(context: context),
+                ).build(context: context),
               ),
             )
             .toList();

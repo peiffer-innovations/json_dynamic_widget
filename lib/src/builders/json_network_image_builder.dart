@@ -1,10 +1,26 @@
-
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+part 'json_network_image_builder.g.dart';
 
 /// Builder that can build an [Image] widget from a network URL.  See the
 /// [fromDynamic] for the format.
-class JsonNetworkImageBuilder extends JsonWidgetBuilder {
-  JsonNetworkImageBuilder({
+@jsonWidget
+abstract class _JsonNetworkImageBuilder extends JsonWidgetBuilder {
+  const _JsonNetworkImageBuilder({
+    required super.numSupportedChildren,
+  });
+
+  @override
+  _NetworkImage buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+
+class _NetworkImage extends StatelessWidget {
+  _NetworkImage({
     required this.alignment,
     this.cacheHeight,
     this.cacheWidth,
@@ -28,11 +44,7 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
     this.semanticLabel,
     required this.src,
     this.width,
-  })  : assert(src.isNotEmpty == true),
-        super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = 0;
-  static const type = 'network_image';
+  });
 
   final Alignment alignment;
   final int? cacheHeight;
@@ -58,121 +70,8 @@ class JsonNetworkImageBuilder extends JsonWidgetBuilder {
   final String src;
   final double? width;
 
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "alignment": "<Alignment>",
-  ///   "cacheHeight": "<int>",
-  ///   "cacheWidth": "<int>",
-  ///   "centerSlice": "<Rect>",
-  ///   "color": "<Color>",
-  ///   "colorBlendMode": "<BlendMode>",
-  ///   "errorBuilder": "<WidgetBuilder>",
-  ///   "excludeFromSemantics": "<bool>",
-  ///   "filterQuality": "<FilterQuality>",
-  ///   "fit": "<BoxFit>",
-  ///   "frameBuilder": "<ImageFrameBuilder>",
-  ///   "gaplessPlayback": "<bool>",
-  ///   "height": "<double>",
-  ///   "headers": "<<Map<String, String>>",
-  ///   "isAntiAlias": "<bool>",
-  ///   "loadingBuilder": "<ImageLoadingBuilder>",
-  ///   "matchTextDirection": "<bool>",
-  ///   "opacity": "<double>",
-  ///   "repeat": "<ImageRepeat>",
-  ///   "scale": "<double>",
-  ///   "semanticLabel": "<String>",
-  ///   "src": "<String>",
-  ///   "width": "<double>"
-  /// }
-  /// ```
-  ///
-  /// The "image" attribute can be either a base64 encoded String, or a
-  /// [Uint8List] returned via a function or variable reference using the
-  /// [JsonWidgetRegistry].
-  ///
-  /// As a note, the [ImageErrorWidgetBuilder], [ImageFrameBuilder], and
-  /// [ImageLoadingBuilder] cannot be decoded via JSON.  Instead, the only way
-  /// to bind those values to the builder is to use a function or a variable
-  /// reference via the [JsonWidgetRegistry].
-  ///
-  /// See also:
-  ///  * [ThemeDecoder.decodeAlignment]
-  ///  * [ThemeDecoder.decodeBlendMode]
-  ///  * [ThemeDecoder.decodeColor]
-  ///  * [ThemeDecoder.decodeImageRepeat]
-  static JsonNetworkImageBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonNetworkImageBuilder? result;
-
-    if (map != null) {
-      result = JsonNetworkImageBuilder(
-        alignment: ThemeDecoder.decodeAlignment(
-              map['alignment'],
-              validate: false,
-            ) ??
-            Alignment.center,
-        cacheHeight: JsonClass.maybeParseInt(map['cacheHeight']),
-        cacheWidth: JsonClass.maybeParseInt(map['cacheWidth']),
-        centerSlice: ThemeDecoder.decodeRect(
-          map['centerSlice'],
-          validate: false,
-        ),
-        color: ThemeDecoder.decodeColor(
-          map['color'],
-          validate: false,
-        ),
-        colorBlendMode: ThemeDecoder.decodeBlendMode(
-          map['colorBlendMode'],
-          validate: false,
-        ),
-        errorBuilder: map['errorBuilder'],
-        excludeFromSemantics: JsonClass.parseBool(map['excludeFromSemantics']),
-        filterQuality: ThemeDecoder.decodeFilterQuality(
-              map['filterQuality'],
-              validate: false,
-            ) ??
-            FilterQuality.low,
-        fit: ThemeDecoder.decodeBoxFit(
-          map['fit'],
-          validate: false,
-        ),
-        frameBuilder: map['frameBuilder'],
-        gaplessPlayback: JsonClass.parseBool(map['gaplessPlayback']),
-        height: JsonClass.maybeParseDouble(map['height']),
-        headers: map['headers'] == null
-            ? null
-            : Map<String, String>.from(map['headers']),
-        isAntiAlias: JsonClass.parseBool(map['isAntiAlias']),
-        loadingBuilder: map['loadingBuilder'],
-        matchTextDirection: JsonClass.parseBool(map['matchTextDirection']),
-        opacity: JsonClass.maybeParseDouble(map['opacity']),
-        repeat: ThemeDecoder.decodeImageRepeat(
-              map['imageRepeat'],
-              validate: false,
-            ) ??
-            ImageRepeat.noRepeat,
-        scale: JsonClass.maybeParseDouble(map['scale']) ?? 1.0,
-        semanticLabel: map['semanticLabel'],
-        src: map['src'],
-        width: JsonClass.maybeParseDouble(map['width']),
-      );
-    }
-
-    return result;
-  }
-
   @override
-  Widget buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  }) {
+  Widget build(BuildContext context) {
     return Image.network(
       src,
       alignment: alignment,

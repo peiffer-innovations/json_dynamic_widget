@@ -1,105 +1,50 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [Form] widget.  See the [fromDynamic] for the
-/// format.
-class JsonFormBuilder extends JsonWidgetBuilder {
-  const JsonFormBuilder({
-    this.autovalidateMode,
-    this.onChanged,
-    this.onWillPop,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_form_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'form';
-
-  final AutovalidateMode? autovalidateMode;
-  final VoidCallback? onChanged;
-  final WillPopCallback? onWillPop;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "autovalidateMode": "<AutovalidateMode>",
-  ///   "onChanged": "<VoidCallback>",
-  ///   "onWillPop": "<WillPopCallback>"
-  /// }
-  /// ```
-  ///
-  /// As a note, the [VoidCallback] and [WillPopCallback] cannot be decoded via
-  /// JSON.  Instead, the only way to bind those values to the builder is to use
-  /// a function or a variable reference via the [JsonWidgetRegistry].
-  ///
-  /// See also:
-  ///  * [buildCustom]
-  ///  * [ThemeDecoder.decodeAutovalidateMode]
-  static JsonFormBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonFormBuilder? result;
-
-    if (map != null) {
-      result = JsonFormBuilder(
-        autovalidateMode: map['autovalidate'] == null
-            ? ThemeDecoder.decodeAutovalidateMode(
-                map['autovalidateMode'],
-                validate: false,
-              )
-            : JsonClass.maybeParseBool(map['autovalidate']) == true
-                ? AutovalidateMode.always
-                : AutovalidateMode.disabled,
-        onChanged: map['onChanged'],
-        onWillPop: map['onWillPop'],
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [Form] widget.
+@jsonWidget
+abstract class _JsonFormBuilder extends JsonWidgetBuilder {
+  const _JsonFormBuilder({
+    required super.numSupportedChildren,
+  });
 
   /// If the `id` on the [data] object is non-empty, this will ensure a
   /// [GlobalKey<FormState>] is placed on the [JsonWidgetRegistry] using the
   /// key: "${data.id}.key" so that handler functions can access the form's
   /// state.
   @override
-  Widget buildCustom({
+  _Form buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return _JsonFormWidget(
-      builder: this,
-      childBuilder: childBuilder,
-      data: data,
-      key: key,
-      child: child,
-    );
-  }
+  });
 }
 
-class _JsonFormWidget extends StatefulWidget {
-  const _JsonFormWidget({
-    required this.builder,
+class _Form extends StatefulWidget {
+  const _Form({
+    this.autovalidateMode,
     required this.child,
-    required this.childBuilder,
-    required this.data,
+    @JsonBuilderParam() required this.childBuilder,
+    @JsonBuilderParam() required this.data,
     Key? key,
+    this.onChanged,
+    this.onWillPop,
   }) : super(key: key);
 
-  final JsonFormBuilder builder;
-  final JsonWidgetData? child;
+  final AutovalidateMode? autovalidateMode;
+  final Widget? child;
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
+  final VoidCallback? onChanged;
+  final WillPopCallback? onWillPop;
 
   @override
-  _JsonFormWidgetState createState() => _JsonFormWidgetState();
+  _FormState createState() => _FormState();
 }
 
-class _JsonFormWidgetState extends State<_JsonFormWidget> {
+class _FormState extends State<_Form> {
   GlobalKey<FormState>? _key;
 
   @override
@@ -126,13 +71,10 @@ class _JsonFormWidgetState extends State<_JsonFormWidget> {
 
   @override
   Widget build(BuildContext context) => Form(
-        autovalidateMode: widget.builder.autovalidateMode,
+        autovalidateMode: widget.autovalidateMode,
         key: _key,
-        onChanged: widget.builder.onChanged,
-        onWillPop: widget.builder.onWillPop,
-        child: widget.child!.build(
-          childBuilder: widget.childBuilder,
-          context: context,
-        ),
+        onChanged: widget.onChanged,
+        onWillPop: widget.onWillPop,
+        child: widget.child ?? const SizedBox(),
       );
 }

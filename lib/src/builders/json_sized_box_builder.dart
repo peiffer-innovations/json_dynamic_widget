@@ -1,62 +1,19 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
-/// Builder that can build an [SizedBox] widget.  See the [fromDynamic] for the
-/// format.
-class JsonSizedBoxBuilder extends JsonWidgetBuilder {
-  const JsonSizedBoxBuilder({
-    this.height,
-    this.width,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+part 'json_sized_box_builder.g.dart';
 
-  static const kNumSupportedChildren = 1;
-  static const type = 'sized_box';
-
-  final double? height;
-  final double? width;
-
-  /// Builds the builder from a Map-like dynamic structure.  This expects the
-  /// JSON format to be of the following structure:
-  ///
-  /// ```json
-  /// {
-  ///   "height": "<double>",
-  ///   "width": "<double>"
-  /// }
-  /// ```
-  static JsonSizedBoxBuilder? fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry? registry,
-  }) {
-    JsonSizedBoxBuilder? result;
-    if (map != null) {
-      result = JsonSizedBoxBuilder(
-        height: JsonClass.maybeParseDouble(map['height']),
-        width: JsonClass.maybeParseDouble(map['width']),
-      );
-    }
-
-    return result;
-  }
+/// Builder that can build an [SizedBox] widget.
+@jsonWidget
+abstract class _JsonSizedBoxBuilder extends JsonWidgetBuilder {
+  const _JsonSizedBoxBuilder({
+    required super.numSupportedChildren,
+  });
 
   @override
-  Widget buildCustom({
+  SizedBox buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
-  }) {
-    final child = getChild(data);
-
-    return SizedBox(
-      height: height,
-      key: key,
-      width: width,
-      child: data.children?.length != 1
-          ? null
-          : child.build(
-              childBuilder: childBuilder,
-              context: context,
-            ),
-    );
-  }
+  });
 }
