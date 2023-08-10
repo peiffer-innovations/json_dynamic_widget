@@ -33,7 +33,6 @@
 
 Here's a list of first party plugins that exist for this library.
 
-* [json_dynamic_widget_plugin_charts_flutter](https://github.com/peiffer-innovations/json_dynamic_widget_plugin_charts_flutter)
 * [json_dynamic_widget_plugin_font_awesome](https://pub.dev/packages/json_dynamic_widget_plugin_font_awesome)
 * [json_dynamic_widget_plugin_ionicons](https://pub.dev/packages/json_dynamic_widget_plugin_ionicons)
 * [json_dynamic_widget_plugin_lottie](https://pub.dev/packages/json_dynamic_widget_plugin_lottie)
@@ -42,17 +41,10 @@ Here's a list of first party plugins that exist for this library.
 * [json_dynamic_widget_plugin_rive](https://pub.dev/packages/json_dynamic_widget_plugin_rive)
 * [json_dynamic_widget_plugin_svg](https://pub.dev/packages/json_dynamic_widget_plugin_svg)
 
-## Migration to 4.X.X version
-With 4.0.0 version the new syntax has been introduced for JSONs. The way of expressing `variables` and `functions` has been change. Total table of change and the way how to migrate the JSON definitions to support new format.
+## Migration to 7.X.X version
 
-| The change | Previous | New |
----|---|---
-Variables syntax|`{{varName}}`|`${varName}`
-Function syntax|`##func1(string,{{varName}})##`|`${func1('string', varName)}`
-Lack of static variables|`!{{staticVarName}}`|All listen variables can be defined as `"listen":["var1","var2"]` in JSON. Lack of the `staticVarName` in such an array is equivalent of static variable in the previous syntax
-Removed JsonPath from variables|`{{dynamic;$.person.firstName}}`|`${dynamic['person']['firstName']}`
-Removed `NamedFunctionArg`|`##myFunction(key:keyName, value:{{value}})##`|`${myFunction({"key":'keyName','value':value})}`
-Escaping of commas is not needed in function params|`##sayHello(Hello\\, {{firstName}}!)##`|`${sayHello('Hello, '+ firstName)}`
+**TODO**: Put migration info here...
+
 
 ## Introduction
 

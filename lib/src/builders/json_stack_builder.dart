@@ -5,9 +5,7 @@ part 'json_stack_builder.g.dart';
 /// Builder that can build an [Stack] widget.
 @jsonWidget
 abstract class _JsonStackBuilder extends JsonWidgetBuilder {
-  const _JsonStackBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonStackBuilder();
 
   @override
   Stack buildCustom({

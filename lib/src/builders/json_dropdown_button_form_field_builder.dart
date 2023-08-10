@@ -5,6 +5,46 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// [fromDynamic] for the format.
 class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   const JsonDropdownButtonFormFieldBuilder({
+    required this.args,
+  });
+
+  static const kType = 'dropdown_button_form_field';
+
+  final dynamic args;
+
+  static JsonDropdownButtonFormFieldBuilder fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry? registry,
+  }) =>
+      JsonDropdownButtonFormFieldBuilder(
+        args: map,
+      );
+
+  /// Builds the widget to render to the tree.  If the [data] object has a
+  /// non-empty `id` associated with it and the [enabled] property is [true]
+  /// then this will attach the selected value to the [JsonWidgetRegistry]
+  /// using the `id` as the key any time the selected value is changed.
+  ///
+  /// Likewise, this will set any error messages using the key '$id.error'.  An
+  /// empty string will be used to represent no error message.
+  @override
+  Widget buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  }) {
+    return _JsonDropdownButtonFormFieldWidget(
+      builder: this,
+      childBuilder: childBuilder,
+      data: data,
+      key: key,
+    );
+  }
+}
+
+class JsonDropdownButtonFormFieldBuilderModel {
+  const JsonDropdownButtonFormFieldBuilderModel({
     this.alignment,
     this.autofocus,
     this.autovalidateMode,
@@ -34,9 +74,8 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     this.validator,
     this.style,
     this.value,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
+  });
 
-  static const kNumSupportedChildren = NumSupportedChildren.zero;
   static const kType = 'dropdown_button_form_field';
 
   final Alignment? alignment;
@@ -130,7 +169,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [Validator]
-  static JsonDropdownButtonFormFieldBuilder fromDynamic(
+  static JsonDropdownButtonFormFieldBuilderModel fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
@@ -211,11 +250,11 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   ///  * [ThemeDecoder.decodeColor]
   ///  * [ThemeDecoder.decodeTextStyle]
   ///  * [Validator]
-  static JsonDropdownButtonFormFieldBuilder? maybeFromDynamic(
+  static JsonDropdownButtonFormFieldBuilderModel? maybeFromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
-    JsonDropdownButtonFormFieldBuilder? result;
+    JsonDropdownButtonFormFieldBuilderModel? result;
 
     if (map != null) {
       if (map is String) {
@@ -225,7 +264,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
         );
       }
 
-      result = JsonDropdownButtonFormFieldBuilder(
+      result = JsonDropdownButtonFormFieldBuilderModel(
         alignment: ThemeDecoder.decodeAlignment(
           map['alignment'],
           validate: false,
@@ -292,42 +331,6 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
     }
 
     return result;
-  }
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(
-        data.id,
-        originator: data.id,
-      );
-    }
-
-    super.remove(data);
-  }
-
-  /// Builds the widget to render to the tree.  If the [data] object has a
-  /// non-empty `id` associated with it and the [enabled] property is [true]
-  /// then this will attach the selected value to the [JsonWidgetRegistry]
-  /// using the `id` as the key any time the selected value is changed.
-  ///
-  /// Likewise, this will set any error messages using the key '$id.error'.  An
-  /// empty string will be used to represent no error message.
-  @override
-  Widget buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  }) {
-    return _JsonDropdownButtonFormFieldWidget(
-      builder: this,
-      childBuilder: childBuilder,
-      data: data,
-      key: key,
-    );
   }
 }
 
@@ -401,49 +404,70 @@ class _JsonDropdownButtonFormFieldWidgetState
     extends State<_JsonDropdownButtonFormFieldWidget> {
   InputDecoration? _decoration;
   List<DropdownMenuItem>? _items;
+  late JsonDropdownButtonFormFieldBuilderModel _model;
   DropdownButtonBuilder? _selectedItemBuilder;
   dynamic _value;
 
   @override
   void initState() {
     super.initState();
-    _value = _getValue(widget.builder);
-    _items = _getItems(widget.builder);
-    _selectedItemBuilder = _getSelectedItemBuilder(widget.builder);
-    _decoration = _getDecoration(widget.builder);
+
+    _model =
+        JsonDropdownButtonFormFieldBuilderModel.fromDynamic(widget.data.args);
+    _items = _getItems();
+    _selectedItemBuilder = _getSelectedItemBuilder();
+    _decoration = _getDecoration();
+    _value = _model.value;
   }
 
   @override
   void didUpdateWidget(covariant _JsonDropdownButtonFormFieldWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.builder.value != oldWidget.builder.value) {
-      setState(() {
-        _value = _getValue(widget.builder);
-      });
-    }
-    if (widget.builder.items != oldWidget.builder.items) {
-      setState(() {
-        _items = _getItems(widget.builder);
-        _selectedItemBuilder = _getSelectedItemBuilder(widget.builder);
-      });
-    }
-    if (widget.builder.selectedItemBuilder !=
-        oldWidget.builder.selectedItemBuilder) {
-      setState(() {
-        _selectedItemBuilder = _getSelectedItemBuilder(widget.builder);
-      });
-    }
-    if (widget.builder.decoration != oldWidget.builder.decoration) {
-      setState(() {
-        _decoration = _getDecoration(widget.builder);
-      });
-    }
+    _model =
+        JsonDropdownButtonFormFieldBuilderModel.fromDynamic(widget.data.args);
+    _items = _getItems();
+    _selectedItemBuilder = _getSelectedItemBuilder();
+    _decoration = _getDecoration();
+    _value = _model.value;
+    // if (_model.value != oldWidget.builder.value) {
+    //   setState(() {
+    //     _value = _getValue(_model);
+    //   });
+    // }
+    // if (_model.items != oldWidget.builder.items) {
+    //   setState(() {
+    //     _items = _getItems(_model);
+    //     _selectedItemBuilder = _getSelectedItemBuilder(_model);
+    //   });
+    // }
+    // if (_model.selectedItemBuilder !=
+    //     oldWidget.builder.selectedItemBuilder) {
+    //   setState(() {
+    //     _selectedItemBuilder = _getSelectedItemBuilder(_model);
+    //   });
+    // }
+    // if (_model.decoration != oldWidget.builder.decoration) {
+    //   setState(() {
+    //     _decoration = _getDecoration(_model);
+    //   });
+    // }
   }
 
-  InputDecoration? _getDecoration(JsonDropdownButtonFormFieldBuilder builder) {
-    return widget.builder.decoration != null
+  @override
+  void dispose() {
+    if (widget.data.id.isNotEmpty == true) {
+      widget.data.registry.removeValue(
+        widget.data.id,
+        originator: widget.data.id,
+      );
+    }
+    super.dispose();
+  }
+
+  InputDecoration? _getDecoration() {
+    return _model.decoration != null
         ? InputDecorationDecoder.fromDynamic(
-            widget.builder.decoration,
+            _model.decoration,
             childBuilder: widget.childBuilder,
             context: context,
             registry: widget.data.registry,
@@ -451,17 +475,12 @@ class _JsonDropdownButtonFormFieldWidgetState
         : null;
   }
 
-  dynamic _getValue(JsonDropdownButtonFormFieldBuilder builder) {
-    return widget.builder.value;
-  }
-
-  List<DropdownMenuItem>? _getItems(
-      JsonDropdownButtonFormFieldBuilder builder) {
+  List<DropdownMenuItem>? _getItems() {
     List<DropdownMenuItem>? items;
-    if (builder.items != null) {
+    if (_model.items != null) {
       items = [];
-      if (widget.builder.items is List) {
-        widget.builder.items.forEach((value) {
+      if (_model.items is List) {
+        _model.items.forEach((value) {
           items!.add(
             DropdownMenuItem(
               value: value,
@@ -470,7 +489,7 @@ class _JsonDropdownButtonFormFieldWidgetState
           );
         });
       } else {
-        widget.builder.items.forEach((key, value) {
+        _model.items.forEach((key, value) {
           items!.add(
             DropdownMenuItem(
               value: value,
@@ -483,23 +502,18 @@ class _JsonDropdownButtonFormFieldWidgetState
     return items;
   }
 
-  DropdownButtonBuilder? _getSelectedItemBuilder(
-      JsonDropdownButtonFormFieldBuilder builder) {
+  DropdownButtonBuilder? _getSelectedItemBuilder() {
     DropdownButtonBuilder? selectedItemBuilder;
 
     final itemEntries = <String, dynamic>{};
-    if (builder.items != null && widget.builder.items is List) {
-      widget.builder.items.forEach((value) {
+    if (_model.items is Iterable) {
+      _model.items.forEach((value) {
         itemEntries[value] = value;
-      });
-    } else if (builder.items != null) {
-      widget.builder.items.forEach((key, value) {
-        itemEntries[key] = value;
       });
     }
 
-    if (widget.builder.selectedItemBuilder != null) {
-      if (widget.builder.selectedItemBuilder is JsonWidgetData) {
+    if (_model.selectedItemBuilder != null) {
+      if (_model.selectedItemBuilder is JsonWidgetData) {
         selectedItemBuilder = (BuildContext context) {
           final widgets = <Widget>[];
           itemEntries.forEach((key, value) {
@@ -514,16 +528,17 @@ class _JsonDropdownButtonFormFieldWidgetState
               originator: null,
             );
 
-            widget.builder.selectedItemBuilder.recreate().build(
-                  childBuilder: widget.childBuilder,
-                  context: context,
-                );
+            _model.selectedItemBuilder.build(
+              childBuilder: widget.childBuilder,
+              context: context,
+              registry: widget.data.registry,
+            );
           });
 
           return widgets;
         };
       } else {
-        selectedItemBuilder = widget.builder.selectedItemBuilder;
+        selectedItemBuilder = _model.selectedItemBuilder;
       }
     }
 
@@ -532,41 +547,44 @@ class _JsonDropdownButtonFormFieldWidgetState
 
   @override
   Widget build(BuildContext context) => DropdownButtonFormField(
-        alignment: widget.builder.alignment ?? AlignmentDirectional.centerStart,
-        autofocus: widget.builder.autofocus ?? false,
-        autovalidateMode: widget.builder.autovalidateMode,
-        borderRadius: widget.builder.borderRadius,
+        alignment: _model.alignment ?? AlignmentDirectional.centerStart,
+        autofocus: _model.autofocus ?? false,
+        autovalidateMode: _model.autovalidateMode,
+        borderRadius: _model.borderRadius,
         decoration: _decoration ?? const InputDecoration(),
-        disabledHint: widget.builder.disabledHint?.build(
+        disabledHint: _model.disabledHint?.build(
           childBuilder: widget.childBuilder,
           context: context,
+          registry: widget.data.registry,
         ),
-        dropdownColor: widget.builder.dropdownColor,
-        elevation: widget.builder.elevation ?? 8,
-        enableFeedback: widget.builder.enableFeedback,
-        focusColor: widget.builder.focusColor,
-        focusNode: widget.builder.focusNode,
-        hint: widget.builder.hint?.build(
+        dropdownColor: _model.dropdownColor,
+        elevation: _model.elevation ?? 8,
+        enableFeedback: _model.enableFeedback,
+        focusColor: _model.focusColor,
+        focusNode: _model.focusNode,
+        hint: _model.hint?.build(
           childBuilder: widget.childBuilder,
           context: context,
+          registry: widget.data.registry,
         ),
-        icon: widget.builder.icon?.build(
+        icon: _model.icon?.build(
           childBuilder: widget.childBuilder,
           context: context,
+          registry: widget.data.registry,
         ),
         items: _items,
-        iconDisabledColor: widget.builder.iconDisabledColor,
-        iconEnabledColor: widget.builder.iconEnabledColor,
-        iconSize: widget.builder.iconSize ?? 24,
-        isDense: widget.builder.isDense ?? true,
-        isExpanded: widget.builder.isExpanded ?? false,
-        itemHeight: widget.builder.itemHeight,
-        menuMaxHeight: widget.builder.menuMaxHeight,
-        onChanged: widget.builder.enabled != true
+        iconDisabledColor: _model.iconDisabledColor,
+        iconEnabledColor: _model.iconEnabledColor,
+        iconSize: _model.iconSize ?? 24,
+        isDense: _model.isDense ?? true,
+        isExpanded: _model.isExpanded ?? false,
+        itemHeight: _model.itemHeight,
+        menuMaxHeight: _model.menuMaxHeight,
+        onChanged: _model.enabled != true
             ? null
             : (dynamic value) {
-                if (widget.builder.onChanged != null) {
-                  widget.builder.onChanged!(value);
+                if (_model.onChanged != null) {
+                  _model.onChanged!(value);
                 }
                 _value = value;
                 if (mounted == true) {
@@ -581,13 +599,13 @@ class _JsonDropdownButtonFormFieldWidgetState
                   );
                 }
               },
-        onSaved: widget.builder.onSaved,
-        onTap: widget.builder.onTap,
+        onSaved: _model.onSaved,
+        onTap: _model.onTap,
         selectedItemBuilder: _selectedItemBuilder,
-        validator: widget.builder.validator == null
+        validator: _model.validator == null
             ? null
             : (dynamic value) {
-                final error = widget.builder.validator!.validate(
+                final error = _model.validator!.validate(
                   label: _decoration?.labelText ?? '',
                   value: value?.toString(),
                 );
@@ -602,7 +620,7 @@ class _JsonDropdownButtonFormFieldWidgetState
 
                 return error;
               },
-        style: widget.builder.style,
+        style: _model.style,
         value: _value,
       );
 }

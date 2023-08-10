@@ -5,9 +5,7 @@ part 'json_positioned_builder.g.dart';
 /// Builder that can build an [Positioned] widget.
 @jsonWidget
 abstract class _JsonPositionedBuilder extends JsonWidgetBuilder {
-  const _JsonPositionedBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonPositionedBuilder();
 
   @override
   Positioned buildCustom({

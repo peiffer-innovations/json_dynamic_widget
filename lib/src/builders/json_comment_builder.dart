@@ -6,9 +6,7 @@ part 'json_comment_builder.g.dart';
 /// tree for human readability.
 @jsonWidget
 abstract class _JsonCommentBuilder extends JsonWidgetBuilder {
-  const _JsonCommentBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonCommentBuilder();
 
   @override
   _Comment buildCustom({

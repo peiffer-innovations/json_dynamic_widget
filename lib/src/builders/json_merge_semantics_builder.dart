@@ -5,9 +5,7 @@ part 'json_merge_semantics_builder.g.dart';
 /// Builder that can build an [MergeSemantics] widget.
 @jsonWidget
 abstract class _JsonMergeSemanticsBuilder extends JsonWidgetBuilder {
-  const _JsonMergeSemanticsBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonMergeSemanticsBuilder();
 
   @override
   MergeSemantics buildCustom({

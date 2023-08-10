@@ -7,7 +7,7 @@ part 'json_measured_builder.g.dart';
 /// measurements to the [JsonWidgetRegistry]'s values.
 @jsonWidget
 abstract class _JsonMeasuredBuilder extends JsonWidgetBuilder {
-  const _JsonMeasuredBuilder({required super.numSupportedChildren});
+  const _JsonMeasuredBuilder();
 
   @override
   _Measured buildCustom({
@@ -20,12 +20,14 @@ abstract class _JsonMeasuredBuilder extends JsonWidgetBuilder {
 
 class _Measured extends StatefulWidget {
   const _Measured({
-    @JsonBuilderParam() required this.childBuilder,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() required this.childBuilder,
+    this.child,
+    @JsonBuildArg() required this.data,
     Key? key,
   }) : super(key: key);
 
   final ChildWidgetBuilder? childBuilder;
+  final JsonWidgetData? child;
   final JsonWidgetData data;
 
   @override
@@ -61,11 +63,11 @@ class _MeasuredState extends State<_Measured> {
   @override
   Widget build(BuildContext context) => RepaintBoundary(
         key: _renderKey,
-        child: widget.data.children?.length != 1
-            ? const SizedBox()
-            : widget.data.children![0].build(
-                childBuilder: widget.childBuilder,
-                context: context,
-              ),
+        child: widget.child?.build(
+              childBuilder: widget.childBuilder,
+              context: context,
+              registry: widget.data.registry,
+            ) ??
+            const SizedBox(),
       );
 }

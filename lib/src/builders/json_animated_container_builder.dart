@@ -6,9 +6,7 @@ part 'json_animated_container_builder.g.dart';
 /// See the [fromDynamic] for the format.
 @jsonWidget
 abstract class _JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedContainerBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonAnimatedContainerBuilder();
 
   @override
   AnimatedContainer buildCustom({

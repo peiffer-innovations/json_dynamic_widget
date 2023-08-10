@@ -5,9 +5,7 @@ part 'json_outlined_button_builder.g.dart';
 /// Builder that can build an [OutlinedButton] widget.
 @jsonWidget
 abstract class _JsonOutlinedButtonBuilder extends JsonWidgetBuilder {
-  const _JsonOutlinedButtonBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonOutlinedButtonBuilder();
 
   @override
   OutlinedButton buildCustom({

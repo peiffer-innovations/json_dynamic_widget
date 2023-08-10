@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
 import 'package:meta/meta.dart';
@@ -14,25 +15,18 @@ abstract class JsonWidgetBuilder {
   /// [PreferredSizeWidget] or not.
   const JsonWidgetBuilder({
     this.preferredSizeWidget = false,
-    required this.numSupportedChildren,
   });
 
   static final JsonWidgetData kDefaultChild = JsonWidgetData(
     args: const {},
-    builder: () => const JsonSizedBoxBuilder(
-      model: JsonSizedBoxBuilderModel(
-        height: null,
-        width: null,
-      ),
-    ),
-    child: null,
+    builder: () => const JsonNoOpBuilder(args: <String, dynamic>{}),
+    // child: null,
     listenVariables: const {},
     registry: JsonWidgetRegistry.instance,
     type: JsonSizedBoxBuilder.kType,
   );
 
   final bool preferredSizeWidget;
-  final NumSupportedChildren numSupportedChildren;
 
   /// Builds the widget.  If there are dynamic keys on the [data] object, and
   /// the widget is not a [PreferredSizeWidget], then the returned widget will
@@ -46,8 +40,7 @@ abstract class JsonWidgetBuilder {
   }) {
     late Widget result;
 
-    if (preferredSizeWidget == true ||
-        data.listenVariables.isNotEmpty != true) {
+    if (preferredSizeWidget == true || data.listenVariables.isEmpty) {
       result = _buildWidget(
         childBuilder: childBuilder,
         context: context,
@@ -75,21 +68,21 @@ abstract class JsonWidgetBuilder {
     Key? key,
   });
 
-  /// Returns a non-null child for widgets that must always have child widgets.
-  /// This allows the widget to be built and rendered even if the child is
-  /// missing.
-  @protected
-  JsonWidgetData getChild(JsonWidgetData? data, {int index = 0}) {
-    late JsonWidgetData child;
+  // /// Returns a non-null child for widgets that must always have child widgets.
+  // /// This allows the widget to be built and rendered even if the child is
+  // /// missing.
+  // @protected
+  // JsonWidgetData getChild(JsonWidgetData? data, {int index = 0}) {
+  //   late JsonWidgetData child;
 
-    if (data?.children?.isNotEmpty == true && data!.children!.length > index) {
-      child = data.children![index];
-    } else {
-      child = kDefaultChild;
-    }
+  //   if (data?.children?.isNotEmpty == true && data!.children!.length > index) {
+  //     child = data.children![index];
+  //   } else {
+  //     child = kDefaultChild;
+  //   }
 
-    return child;
-  }
+  //   return child;
+  // }
 
   /// Called when a JSON widget is removed from the tree due to a conditional.
   /// Custom widgets may need to implement this to clean up values that may have
@@ -97,12 +90,12 @@ abstract class JsonWidgetBuilder {
   ///
   /// If you override this, make sure to end your method with a call to
   /// super.remove(data).
-  @mustCallSuper
-  void remove(JsonWidgetData data) {
-    for (var child in data.children ?? <JsonWidgetData>[]) {
-      child.builder().remove(child);
-    }
-  }
+  // @mustCallSuper
+  // void remove(JsonWidgetData data) {
+  //   for (var child in data.children ?? <JsonWidgetData>[]) {
+  //     child.builder().remove(child);
+  //   }
+  // }
 
   Widget _buildWidget({
     required ChildWidgetBuilder? childBuilder,
@@ -162,7 +155,7 @@ class _JsonWidgetStateful extends StatefulWidget {
   final JsonWidgetData data;
 
   @override
-  _JsonWidgetStatefulState createState() => _JsonWidgetStatefulState();
+  State createState() => _JsonWidgetStatefulState();
 }
 
 class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
@@ -179,7 +172,7 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
 
     _subscription = widget.data.registry.valueStream.listen((event) {
       if (_data.listenVariables.contains(event.id) == true) {
-        _data = _data.recreate();
+        // _data = _data.recreate();
         if (mounted == true) {
           setState(() {});
         }

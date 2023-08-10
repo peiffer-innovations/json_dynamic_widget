@@ -46,6 +46,8 @@ class CurvesValues {
   static const curves_key_linear_to_ease_out = 'linear_to_ease_out_curve';
   static const curves_key_slow_middle = 'slow_middle_curve';
 
+  static Curve? lookup(dynamic curve) => curve is Curve ? curve : values[curve];
+
   static const values = {
     curves_key_bounce_in: Curves.bounceIn,
     curves_key_bounce_in_out: Curves.bounceInOut,

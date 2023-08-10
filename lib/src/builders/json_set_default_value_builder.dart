@@ -7,9 +7,7 @@ part 'json_set_default_value_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
-  const _JsonSetDefaultValueBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSetDefaultValueBuilder();
 
   @override
   _SetDefaultValue buildCustom({
@@ -22,13 +20,15 @@ abstract class _JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
 
 class _SetDefaultValue extends StatefulWidget {
   const _SetDefaultValue({
-    @JsonBuilderParam() this.childBuilder,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() this.childBuilder,
+    this.child,
+    @JsonBuildArg() required this.data,
     super.key,
     this.values = const {},
   });
 
   final ChildWidgetBuilder? childBuilder;
+  final JsonWidgetData? child;
   final JsonWidgetData data;
   final Map<String, dynamic> values;
 
@@ -65,20 +65,11 @@ class _SetDefaultValueState extends State<_SetDefaultValue> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final data = widget.data;
-    assert(
-      data.children?.length == 1 || data.children?.isNotEmpty != true,
-      '[JsonSetDefaultValueBuilder] only supports zero or one child.',
-    );
-
-    var child = data.children?.isNotEmpty == true ? data.children![0] : null;
-    child = child?.recreate();
-
-    return child?.build(
-          childBuilder: widget.childBuilder,
-          context: context,
-        ) ??
-        const SizedBox();
-  }
+  Widget build(BuildContext context) =>
+      widget.child?.build(
+        childBuilder: widget.childBuilder,
+        context: context,
+        registry: widget.data.registry,
+      ) ??
+      const SizedBox();
 }

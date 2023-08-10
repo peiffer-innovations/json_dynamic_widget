@@ -7,12 +7,10 @@ part 'json_save_context_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSaveContextBuilder extends JsonWidgetBuilder {
-  const _JsonSaveContextBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSaveContextBuilder();
 
   @override
-  @JsonParamAlias(alias: 'key', name: 'varName')
+  @JsonArgAlias(alias: 'key', name: 'varName')
   _SaveContext buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
@@ -24,13 +22,13 @@ abstract class _JsonSaveContextBuilder extends JsonWidgetBuilder {
 class _SaveContext extends StatefulWidget {
   const _SaveContext({
     this.child,
-    @JsonBuilderParam() this.childBuilder,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() this.childBuilder,
+    @JsonBuildArg() required this.data,
     super.key,
     required this.varName,
   });
 
-  final Widget? child;
+  final JsonWidgetData? child;
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
   final String varName;
@@ -58,12 +56,12 @@ class _SaveContextState extends State<_SaveContext> {
             context,
             originator: widget.varName,
           );
-          return widget.data.children?.isNotEmpty == true
-              ? widget.data.children![0].build(
-                  childBuilder: widget.childBuilder,
-                  context: context,
-                )
-              : const SizedBox();
+          return widget.child?.build(
+                context: context,
+                childBuilder: widget.childBuilder,
+                registry: widget.data.registry,
+              ) ??
+              const SizedBox();
         },
       );
 }

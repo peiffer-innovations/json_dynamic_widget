@@ -17,44 +17,49 @@
       "args": {
         "values": {
           "customWidth": 100
-        }
-      },
-      "child": {
-        "type": "stack",
-        "children": [
-          {
-            "type": "directionality",
-            "args": {
-              "textDirection": "rtl"
-            },
-            "child": {
-              "type": "animated_positioned_directional",
-              "args": {
-                "duration": 1000,
-                "start": 100,
-                "width": "${customWidth}"
-              },
-              "child": {
-                "type": "text",
+        },
+        "child": {
+          "type": "stack",
+          "args": {
+            "children": [
+              {
+                "type": "directionality",
                 "args": {
-                  "text": "Hi! This should be a very very long message with right to left text direction."
+                  "textDirection": "rtl",
+                  "child": {
+                    "type": "animated_positioned_directional",
+                    "listen": [
+                      "customWidth"
+                    ],
+                    "args": {
+                      "duration": 1000,
+                      "start": 100,
+                      "width": "${customWidth}",
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "Hi! This should be a very very long message with right to left text direction."
+                        }
+                      }
+                    }
+                  }
                 }
               }
-            }
+            ]
           }
-        ]
+        }
       }
     },
     "floatingActionButton": {
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${set_value('customWidth', 200)}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${set_value('customWidth', 200)}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

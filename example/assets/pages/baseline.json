@@ -14,66 +14,78 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "container",
-        "args": {
-          "alignment": "center"
-        },
+      "args": {
         "child": {
-          "type": "column",
+          "type": "container",
           "args": {
-            "mainAxisSize": "min"
-          },
-          "children": [{
-            "type": "container",
-            "args": {
-              "color": "#000",
-              "padding": [16, 0]
-            },
+            "alignment": "center",
             "child": {
-              "type": "baseline",
+              "type": "column",
               "args": {
-                "baseline": 20,
-                "baselineType": "alphabetic"
-              },
-              "child": {
-                "type": "text",
-                "args": {
-                  "style": {
-                    "color": "#fff"
+                "mainAxisSize": "min",
+                "children": [
+                  {
+                    "type": "container",
+                    "args": {
+                      "color": "#000",
+                      "padding": [
+                        16,
+                        0
+                      ],
+                      "child": {
+                        "type": "baseline",
+                        "args": {
+                          "baseline": 20,
+                          "baselineType": "alphabetic",
+                          "child": {
+                            "type": "text",
+                            "args": {
+                              "style": {
+                                "color": "#fff"
+                              },
+                              "text": "alphabetic\nThe quick brown fox jumps over the lazy dog"
+                            }
+                          }
+                        }
+                      }
+                    }
                   },
-                  "text": "alphabetic\nThe quick brown fox jumps over the lazy dog"
-                }
+                  {
+                    "type": "sized_box",
+                    "args": {
+                      "height": 16
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "args": {
+                      "color": "#000",
+                      "padding": [
+                        16,
+                        0
+                      ],
+                      "child": {
+                        "type": "baseline",
+                        "args": {
+                          "baseline": 20,
+                          "baselineType": "ideographic",
+                          "child": {
+                            "type": "text",
+                            "args": {
+                              "style": {
+                                "color": "#fff"
+                              },
+                              "text": "ideographic\nThe quick brown fox jumps over the lazy dog"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
               }
             }
-          }, {
-            "type": "sized_box",
-            "args": {
-              "height": 16
-            }
-          }, {
-            "type": "container",
-            "args": {
-              "color": "#000",
-              "padding": [16, 0]
-            },
-            "child": {
-              "type": "baseline",
-              "args": {
-                "baseline": 20,
-                "baselineType": "ideographic"
-              },
-              "child": {
-                "type": "text",
-                "args": {
-                  "style": {
-                    "color": "#fff"
-                  },
-                  "text": "ideographic\nThe quick brown fox jumps over the lazy dog"
-                }
-              }
-            }
-          }]
+          }
         }
       }
     }

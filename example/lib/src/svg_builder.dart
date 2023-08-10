@@ -5,9 +5,7 @@ part 'svg_builder.g.dart';
 
 @jsonWidget
 abstract class _SvgBuilder extends JsonWidgetBuilder {
-  const _SvgBuilder({
-    required super.numSupportedChildren,
-  });
+  const _SvgBuilder();
 
   @override
   _Svg buildCustom({

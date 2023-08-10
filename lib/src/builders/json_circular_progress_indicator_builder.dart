@@ -5,9 +5,22 @@ part 'json_circular_progress_indicator_builder.g.dart';
 /// Builder that can build a [CircularProgressIndicator] widget.
 @jsonWidget
 abstract class _JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
-  const _JsonCircularProgressIndicatorBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonCircularProgressIndicatorBuilder();
+
+  @JsonArgDecoder('valueColor')
+  Animation<Color>? _decodeValueColor({
+    required dynamic value,
+  }) =>
+      value == null
+          ? null
+          : value is Animation<Color>
+              ? value
+              : AlwaysStoppedAnimation(
+                  ThemeDecoder.decodeColor(
+                    value,
+                    validate: false,
+                  )!,
+                );
 
   @override
   CircularProgressIndicator buildCustom({

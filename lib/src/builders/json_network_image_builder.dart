@@ -6,9 +6,7 @@ part 'json_network_image_builder.g.dart';
 /// [fromDynamic] for the format.
 @jsonWidget
 abstract class _JsonNetworkImageBuilder extends JsonWidgetBuilder {
-  const _JsonNetworkImageBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonNetworkImageBuilder();
 
   @override
   _NetworkImage buildCustom({
@@ -20,27 +18,27 @@ abstract class _JsonNetworkImageBuilder extends JsonWidgetBuilder {
 }
 
 class _NetworkImage extends StatelessWidget {
-  _NetworkImage({
-    required this.alignment,
+  const _NetworkImage({
+    this.alignment = Alignment.center,
     this.cacheHeight,
     this.cacheWidth,
     this.centerSlice,
     this.color,
     this.colorBlendMode,
     this.errorBuilder,
-    required this.excludeFromSemantics,
-    required this.filterQuality,
+    this.excludeFromSemantics = false,
+    this.filterQuality = FilterQuality.low,
     this.fit,
     this.frameBuilder,
-    required this.gaplessPlayback,
+    this.gaplessPlayback = false,
     this.height,
     this.headers,
-    required this.isAntiAlias,
+    this.isAntiAlias = false,
     this.loadingBuilder,
-    required this.matchTextDirection,
+    this.matchTextDirection = false,
     this.opacity,
-    required this.repeat,
-    required this.scale,
+    this.repeat = ImageRepeat.noRepeat,
+    this.scale = 1.0,
     this.semanticLabel,
     required this.src,
     this.width,

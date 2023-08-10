@@ -5,9 +5,7 @@ part 'json_sliver_grid_builder.g.dart';
 /// Builder that can build an [SliverGrid] widget.
 @jsonWidget
 abstract class _JsonSliverGridBuilder extends JsonWidgetBuilder {
-  const _JsonSliverGridBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSliverGridBuilder();
 
   @override
   _SliverGrid buildCustom({
@@ -23,8 +21,9 @@ class _SliverGrid extends StatelessWidget {
     required this.addAutomaticKeepAlives,
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,
-    @JsonBuilderParam() this.childBuilder,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() this.childBuilder,
+    this.children,
+    @JsonBuildArg() required this.data,
     this.findChildIndexCallback,
     this.gridDelegate,
     this.semanticIndexCallback,
@@ -35,6 +34,7 @@ class _SliverGrid extends StatelessWidget {
   final bool addRepaintBoundaries;
   final bool addSemanticIndexes;
   final ChildWidgetBuilder? childBuilder;
+  final List<JsonWidgetData>? children;
   final JsonWidgetData data;
   final ChildIndexGetter? findChildIndexCallback;
   final dynamic gridDelegate;
@@ -43,12 +43,13 @@ class _SliverGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final children = data.children ?? const <JsonWidgetData>[];
+    final children = this.children ?? const <JsonWidgetData>[];
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (context, index) => children[index].build(
           context: context,
           childBuilder: childBuilder,
+          registry: data.registry,
         ),
         addAutomaticKeepAlives: addAutomaticKeepAlives,
         addRepaintBoundaries: addRepaintBoundaries,

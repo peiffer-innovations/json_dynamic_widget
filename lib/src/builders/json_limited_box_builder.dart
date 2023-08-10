@@ -5,9 +5,7 @@ part 'json_limited_box_builder.g.dart';
 /// Builder that can build an [LimitedBox] widget.
 @jsonWidget
 abstract class _JsonLimitedBoxBuilder extends JsonWidgetBuilder {
-  const _JsonLimitedBoxBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonLimitedBoxBuilder();
 
   @override
   LimitedBox buildCustom({

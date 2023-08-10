@@ -14,15 +14,17 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "directionality",
-        "args": {
-          "textDirection": "rtl"
-        },
+      "args": {
         "child": {
-          "type": "text",
+          "type": "directionality",
           "args": {
-            "text": "This is\na random widget."
+            "textDirection": "rtl",
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "This is\na random widget."
+              }
+            }
           }
         }
       }

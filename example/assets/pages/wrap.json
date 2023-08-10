@@ -72,46 +72,51 @@
         "type": "material",
         "args": {
           "borderRadius": 8,
-          "color": "#ccc"
-        },
-        "child": {
-          "type": "padding",
-          "args": {
-            "padding": 16.0
-          },
+          "color": "#ccc",
           "child": {
-            "type": "text",
+            "type": "padding",
             "args": {
-              "text": "${value}"
+              "padding": 16.0,
+              "child": {
+                "type": "text",
+                "listen": [
+                  "value"
+                ],
+                "args": {
+                  "text": "${value}"
+                }
+              }
             }
           }
         }
       }
-    }
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
-        "args": {
-          "title": {
-            "type": "text",
-            "args": {
-              "text": "Wrap"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Wrap"
+              }
             }
           }
-        }
-      },
-      "body": {
-        "type": "single_child_scroll_view",
-        "child": {
-          "type": "wrap",
+        },
+        "body": {
+          "type": "single_child_scroll_view",
           "args": {
-            "runSpacing": 16.0,
-            "spacing": 16.0
-          },
-          "children": "${for_each(entries['values'], 'template')}"
+            "child": {
+              "type": "wrap",
+              "args": {
+                "runSpacing": 16.0,
+                "spacing": 16.0,
+                "children": "${for_each(entries['values'], 'template')}"
+              }
+            }
+          }
         }
       }
     }

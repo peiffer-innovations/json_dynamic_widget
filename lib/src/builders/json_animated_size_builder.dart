@@ -5,9 +5,7 @@ part 'json_animated_size_builder.g.dart';
 /// Builder that can build an [AnimatedSize] widget.
 @jsonWidget
 abstract class _JsonAnimatedSizeBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedSizeBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonAnimatedSizeBuilder();
 
   @override
   AnimatedSize buildCustom({

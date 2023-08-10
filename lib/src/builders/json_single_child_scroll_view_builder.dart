@@ -7,9 +7,7 @@ part 'json_single_child_scroll_view_builder.g.dart';
 /// Builder that can build an [SingleChildScrollView] widget.
 @jsonWidget
 abstract class _JsonSingleChildScrollViewBuilder extends JsonWidgetBuilder {
-  const _JsonSingleChildScrollViewBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSingleChildScrollViewBuilder();
 
   @override
   SingleChildScrollView buildCustom({

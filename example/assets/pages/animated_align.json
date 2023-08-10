@@ -17,20 +17,23 @@
       "args": {
         "values": {
           "customAlign": "topLeft"
-        }
-      },
-      "child": {
-        "type": "animated_align",
-        "args": {
-          "alignment": "${customAlign}",
-          "duration": 1000
         },
         "child": {
-          "type": "container",
+          "type": "animated_align",
+          "listen": [
+            "customAlign"
+          ],
           "args": {
-            "color": "#FF0000",
-            "height": 20,
-            "width": 20
+            "alignment": "${customAlign}",
+            "duration": 1000,
+            "child": {
+              "type": "container",
+              "args": {
+                "color": "#FF0000",
+                "height": 20,
+                "width": 20
+              }
+            }
           }
         }
       }
@@ -39,12 +42,12 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${set_value('customAlign', 'topCenter')}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${set_value('customAlign', 'topCenter')}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

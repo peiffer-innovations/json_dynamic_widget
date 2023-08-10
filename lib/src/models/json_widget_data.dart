@@ -9,20 +9,11 @@ class JsonWidgetData extends JsonClass {
   JsonWidgetData({
     this.args,
     required this.builder,
-    JsonWidgetData? child,
-    List<JsonWidgetData>? children,
     Set<String>? listenVariables,
     String? id,
-    this.originalChild,
-    this.originalChildren,
     JsonWidgetRegistry? registry,
     required this.type,
-  })  : assert(
-          child == null || children?.isNotEmpty != true,
-          'A JsonWidgetData may either contain a [child] or an array of [children], but not both.',
-        ),
-        children = children ?? (child == null ? null : [child]),
-        listenVariables = listenVariables ?? <String>{},
+  })  : listenVariables = listenVariables ?? <String>{},
         id = id ?? const Uuid().v4(),
         registry = registry ?? JsonWidgetRegistry.instance;
 
@@ -30,11 +21,8 @@ class JsonWidgetData extends JsonClass {
 
   final dynamic args;
   final JsonWidgetBuilder Function() builder;
-  final List<JsonWidgetData>? children;
   final Set<String> listenVariables;
   final String id;
-  final dynamic originalChild;
-  final dynamic originalChildren;
   final JsonWidgetRegistry registry;
   final String type;
 
@@ -87,16 +75,9 @@ class JsonWidgetData extends JsonClass {
   /// for all dynamic widgets with the exception of the `args` value.  The
   /// `args` depends on the specific `type`.
   ///
-  /// In the given JSON object, only the `child` or the `children` can be passed
-  /// in; not both.  From an implementation perspective, there is no difference
-  /// between passing in a `child` or a `children` with a single element, this
-  /// will treat both of those identically.
-  ///
   /// {
   ///   "type": <String>,
   ///   "args": <dynamic>,
-  ///   "child": <JsonWidgetData>,
-  ///   "children": <JsonWidgetData[]>,
   ///   "id": <String>
   /// }
   /// ```
@@ -107,20 +88,8 @@ class JsonWidgetData extends JsonClass {
     JsonWidgetData? result;
     registry ??= JsonWidgetRegistry.instance;
 
-    if (map is String && map.startsWith('{') && map.endsWith('}')) {
-      try {
-        map = json.decode(map);
-      } catch (e) {
-        // no-op; it probably just isn't a JSON string
-      }
-    }
     if (map is JsonWidgetData) {
       result = map;
-    } else if (map is String && map.startsWith('\${') && map.endsWith('}')) {
-      result = DeferredJsonWidgetData(
-        key: map,
-        registry: registry,
-      );
     } else if (map != null) {
       try {
         final type = map['type'];
@@ -137,59 +106,28 @@ class JsonWidgetData extends JsonClass {
             );
           }
           final builder = registry.getWidgetBuilder(type);
-          final args = map['args'];
+          final args = map['args'] as Map? ?? const {};
           final listenVariables = _getListenVariables(map);
 
-          // The validation needs to happen before we process the dynamic args or
-          // else there may be non-JSON compatible objects in the map which will
-          // always fail validation.
+          // The validation needs to happen before we process the dynamic args
+          // orelse there may be non-JSON compatible objects in the map which
+          // will always fail validation.
           assert(registry.validateBuilderSchema(
             type: type,
             value: args,
-            validate: args == null ? false : true,
+            validate: map.containsKey('args') ? true : false,
           ));
-
-          var child = JsonWidgetData.maybeFromDynamic(
-            map['child'],
-            registry: registry,
-          );
-          if (type == 'scaffold' && map['args'] is Map && child == null) {
-            child = JsonWidgetData.maybeFromDynamic(
-              map['args']['body'],
-              registry: registry,
-            );
-
-            final args = Map<String, dynamic>.from(map['args']);
-            map['child'] = args['body'];
-            args.remove('body');
-            map['args'] = args;
-          }
-
-          final processedArgs = registry.processArgs(
-              args ?? <String, dynamic>{}, listenVariables);
 
           result = JsonWidgetData(
             args: map['args'] ?? {},
             builder: () {
               return builder(
-                processedArgs.value,
+                args,
                 registry: registry,
               );
             },
-            child: child,
-            children: map['children'] is String
-                ? registry.processArgs(map['children'], listenVariables).value
-                : JsonClass.maybeFromDynamicList(
-                    map['children'],
-                    (dynamic map) => JsonWidgetData.fromDynamic(
-                      map,
-                      registry: registry,
-                    ),
-                  ),
-            listenVariables: processedArgs.listenVariables,
+            listenVariables: listenVariables,
             id: map['id'],
-            originalChild: map['child'],
-            originalChildren: map['children'],
             registry: registry,
             type: type,
           );
@@ -242,7 +180,10 @@ $map
 
       result = <JsonWidgetData>[];
       for (var map in list) {
-        result.add(fromDynamic(map));
+        result.add(fromDynamic(
+          map,
+          registry: registry,
+        ));
       }
     }
 
@@ -253,12 +194,12 @@ $map
   /// Changing the value of listen variables is causing [JsonWidgetData] to be
   /// rebuilt. Defining them in [map] is also stopping [ArgProcessor] from
   /// calculating the listen variables during processing.
-  static Set<String>? _getListenVariables(dynamic map) {
-    Set<String>? listenVariables;
-    if (map != null &&
-        map['listen'] != null &&
-        map['listen'] is Iterable<dynamic>) {
-      listenVariables = Set<String>.from(map['listen']);
+  static Set<String> _getListenVariables(dynamic map) {
+    final listenVariables = <String>{};
+
+    final listen = map?['listen'];
+    if (listen is Iterable) {
+      listenVariables.addAll(List<String>.from(listen));
     }
     return listenVariables;
   }
@@ -269,129 +210,36 @@ $map
   Widget build({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
+    JsonWidgetRegistry? registry,
   }) {
     return builder().build(
       childBuilder: childBuilder,
       context: context,
-      data: this,
+      data: copyWith(registry: registry),
     );
   }
 
   JsonWidgetData copyWith({
     dynamic args,
     JsonWidgetBuilder? builder,
-    List<JsonWidgetData>? children,
     Set<String>? listenVariables,
     String? id,
-    dynamic originalChild,
-    dynamic originalChildren,
     JsonWidgetRegistry? registry,
     String? type,
   }) =>
       JsonWidgetData(
         args: args ?? this.args,
         builder: builder as JsonWidgetBuilder Function()? ?? this.builder,
-        children: children ?? this.children,
         listenVariables: listenVariables ?? this.listenVariables,
         id: id ?? this.id,
-        originalChild: originalChild ?? this.originalChild,
-        originalChildren: originalChildren ?? this.originalChildren,
         registry: registry ?? this.registry,
         type: type ?? this.type,
       );
-
-  /// Recreates the data object based on the updated values and function
-  /// responces from the registry.  This should only be called within the
-  /// framework itself, external code should not need to call this.
-  JsonWidgetData recreate([JsonWidgetRegistry? newRegistry]) {
-    final registry = newRegistry ?? this.registry;
-    final builder = registry.getWidgetBuilder(type);
-    final dynamicParamsResult = registry.processArgs(args, listenVariables);
-
-    List<JsonWidgetData>? children;
-
-    if (originalChild is String) {
-      var values = registry.processArgs(originalChild, listenVariables).value;
-      if (values is String) {
-        try {
-          values = json.decode(values);
-        } catch (e) {
-          // no-op
-        }
-      }
-      if (values is List) {
-        children = List<JsonWidgetData>.from(
-          values.map(
-            (e) => JsonWidgetData.fromDynamic(
-              e,
-              registry: registry,
-            ),
-          ),
-        );
-      } else {
-        children = <JsonWidgetData>[
-          JsonWidgetData.fromDynamic(
-            values,
-            registry: registry,
-          ),
-        ];
-      }
-    } else if (originalChildren is String) {
-      var values =
-          registry.processArgs(originalChildren, listenVariables).value;
-      if (values is String) {
-        try {
-          values = json.decode(values);
-        } catch (e) {
-          // no-op
-        }
-      }
-      if (values is List) {
-        children = List<JsonWidgetData>.from(
-          values.map(
-            (e) => JsonWidgetData.fromDynamic(
-              e,
-              registry: registry,
-            ),
-          ),
-        );
-      } else {
-        children = <JsonWidgetData>[
-          JsonWidgetData.fromDynamic(
-            values,
-            registry: registry,
-          ),
-        ];
-      }
-    } else {
-      children = this.children;
-    }
-
-    return JsonWidgetData(
-      args: args,
-      builder: () {
-        return builder(
-          registry
-              .processArgs(args ?? <String, dynamic>{}, listenVariables)
-              .value,
-          registry: registry,
-        );
-      },
-      children: children?.map((child) => child.recreate()).toList(),
-      listenVariables: dynamicParamsResult.listenVariables,
-      id: id,
-      originalChild: originalChild,
-      originalChildren: originalChildren,
-      registry: registry,
-      type: type,
-    );
-  }
 
   @override
   Map<String, dynamic> toJson() => JsonClass.removeNull({
         'type': type,
         'id': id,
         'args': args,
-        'children': JsonClass.maybeToJsonList(children),
       });
 }

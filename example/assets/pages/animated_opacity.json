@@ -17,19 +17,23 @@
       "args": {
         "values": {
           "customOpacity": 1
-        }
-      },
-      "child": {
-        "type": "animated_opacity",
-        "args": {
-          "curve": "${slow_middle_curve}",
-          "duration": 1000,
-          "opacity": "${customOpacity}"
         },
         "child": {
-          "type": "container",
+          "type": "animated_opacity",
+          "listen": [
+            "slow_middle_curve",
+            "customOpacity"
+          ],
           "args": {
-            "color": "#FF0000"
+            "curve": "${slow_middle_curve}",
+            "duration": 1000,
+            "opacity": "${customOpacity}",
+            "child": {
+              "type": "container",
+              "args": {
+                "color": "#FF0000"
+              }
+            }
           }
         }
       }
@@ -38,12 +42,12 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${set_value('customOpacity', 0)}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${set_value('customOpacity', 0)}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

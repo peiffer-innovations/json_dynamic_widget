@@ -11,9 +11,7 @@ part 'json_set_value_builder.g.dart';
 /// during build and rebuild cycles.
 @jsonWidget
 abstract class _JsonSetValueBuilder extends JsonWidgetBuilder {
-  const _JsonSetValueBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSetValueBuilder();
 
   @override
   _SetValue buildCustom({
@@ -27,24 +25,22 @@ abstract class _JsonSetValueBuilder extends JsonWidgetBuilder {
 class _SetValue extends StatefulWidget {
   const _SetValue({
     this.child,
-    @JsonBuilderParam() this.childBuilder,
-    @JsonBuilderParam() required this.data,
-    @JsonBuilderParam() super.key,
+    @JsonBuildArg() this.childBuilder,
+    @JsonBuildArg() required this.data,
+    @JsonBuildArg() super.key,
     this.values,
   });
 
-  final Widget? child;
+  final JsonWidgetData? child;
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
-  final dynamic values;
+  final Map? values;
 
   @override
   State createState() => _SetValueState();
 }
 
 class _SetValueState extends State<_SetValue> {
-  JsonWidgetData? child;
-
   @override
   void initState() {
     super.initState();
@@ -56,11 +52,6 @@ class _SetValueState extends State<_SetValue> {
         originator: null,
       ),
     );
-
-    var child = widget.data.children?.isNotEmpty == true
-        ? widget.data.children![0]
-        : null;
-    child = child?.recreate();
   }
 
   @override
@@ -78,11 +69,6 @@ class _SetValueState extends State<_SetValue> {
         originator: null,
       ),
     );
-
-    var child = widget.data.children?.isNotEmpty == true
-        ? widget.data.children![0]
-        : null;
-    child = child?.recreate();
   }
 
   @override
@@ -97,9 +83,10 @@ class _SetValueState extends State<_SetValue> {
 
   @override
   Widget build(BuildContext context) {
-    return child?.build(
+    return widget.child?.build(
           childBuilder: widget.childBuilder,
           context: context,
+          registry: widget.data.registry,
         ) ??
         const SizedBox();
   }

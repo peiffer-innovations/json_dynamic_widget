@@ -65,6 +65,7 @@ export 'src/builders/json_measured_builder.dart';
 export 'src/builders/json_memory_image_builder.dart';
 export 'src/builders/json_merge_semantics_builder.dart';
 export 'src/builders/json_network_image_builder.dart';
+export 'src/builders/json_no_op_builder.dart';
 export 'src/builders/json_offstage_builder.dart';
 export 'src/builders/json_opacity_builder.dart';
 export 'src/builders/json_outlined_button_builder.dart';

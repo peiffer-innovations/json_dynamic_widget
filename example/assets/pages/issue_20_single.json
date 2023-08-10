@@ -8,25 +8,30 @@
           "text": "This is a text."
         }
       }
-    }
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
-        "args": {
-          "title": {
-            "type": "text",
-            "args": {
-              "text": "VariableWidget"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "VariableWidget"
+              }
             }
           }
+        },
+        "body": {
+          "type": "container",
+          "listen": [
+            "variableWidget"
+          ],
+          "args": {
+            "child": "${variableWidget}"
+          }
         }
-      },
-      "body": {
-        "type": "container",
-        "child": "${variableWidget}"
       }
     }
   }

@@ -1,18 +1,27 @@
 ## 7.0.0
 
-* **BREAKING CHANGES**
+This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.
+
+* **BREAKING JSON CHANGES**: The following changes can be automatically migrated via the migration CLI.
+    * Both `child` and `children` have moved into the `args` for all widgets.
+    * For `conditional` the `child` is no longer supported and must be in `args['onTrue']`.
+    * For `scaffold` the `child` is no longer supported and must be in `args['body']`.
     * The values for `set_value` are no longer directly on the map and must be passed in with the key `values`.
     * The values for `set_widget` are no longer directly on the map and must be passed in with the key `widgets`.
-    * To match the Flutter pattern for nullability, `fromDynamic` was made non-null and a new `maybeFromDynamic` was added to allow for a nullable response.
-
+* **BREAKING CODE CHANGES**:
+    * The `numSupportedWidgets` parameter was removed from `JsonWidgetData`.
+    * The framework no longer auto-listens to changes.  To have a widget updated when an underlying value changes, the `listen` value must be provided to the widget.
+* **Performance**: a performance improvement was made to move the dynamic arg parsing to render time rather than up front.
 
 ## [6.1.0] - July 17th, 2023
 
-* Updated to `json_class`` 3.0
+* Updated to `json_class` 3.0
+
 
 ## [6.0.7] - July 12, 2023
 
 * Reducing amount of re-renderings  
+
 
 ## [6.0.6+6] - July 11, 2023
 

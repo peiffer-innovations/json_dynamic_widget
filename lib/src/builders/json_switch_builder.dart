@@ -7,21 +7,7 @@ part 'json_switch_builder.g.dart';
 /// Builder that can build an [Switch] widget.
 @jsonWidget
 abstract class _JsonSwitchBuilder extends JsonWidgetBuilder {
-  const _JsonSwitchBuilder({required super.numSupportedChildren});
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(
-        data.id,
-        originator: data.id,
-      );
-    }
-
-    super.remove(data);
-  }
+  const _JsonSwitchBuilder();
 
   /// Builds the widget to render to the tree.  If the [data] object has a
   /// non-empty `id` associated with it and the [enabled] property is [true]
@@ -39,14 +25,14 @@ abstract class _JsonSwitchBuilder extends JsonWidgetBuilder {
   });
 }
 
-class _Switch extends StatelessWidget {
+class _Switch extends StatefulWidget {
   const _Switch({
     this.activeColor,
     this.activeThumbImage,
     this.activeTrackColor,
     required this.autofocus,
     this.autovalidateMode,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() required this.data,
     required this.dragStartBehavior,
     required this.enabled,
     this.focusColor,
@@ -103,72 +89,89 @@ class _Switch extends StatelessWidget {
   final VisualDensity? visualDensity;
 
   @override
+  State<StatefulWidget> createState() => _SwitchState();
+}
+
+class _SwitchState extends State<_Switch> {
+  @override
+  void dispose() {
+    if (widget.data.id.isNotEmpty == true) {
+      widget.data.registry.removeValue(
+        widget.data.id,
+        originator: widget.data.id,
+      );
+    }
+
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return FormField<bool>(
-      autovalidateMode: autovalidateMode,
-      enabled: enabled,
-      initialValue: value,
-      key: key,
-      validator: validator == null
+      autovalidateMode: widget.autovalidateMode,
+      enabled: widget.enabled,
+      initialValue: widget.value,
+      key: widget.key,
+      validator: widget.validator == null
           ? null
           : (value) {
-              final error = validator!.validate(
-                label: label ?? '',
+              final error = widget.validator!.validate(
+                label: widget.label ?? '',
                 value: value?.toString(),
               );
 
-              if (data.id.isNotEmpty == true) {
-                data.registry.setValue(
-                  '${data.id}.error',
+              if (widget.data.id.isNotEmpty == true) {
+                widget.data.registry.setValue(
+                  '${widget.data.id}.error',
                   error ?? '',
-                  originator: '${data.id}.error',
+                  originator: '${widget.data.id}.error',
                 );
               }
 
               return error;
             },
-      onSaved: onSaved,
+      onSaved: widget.onSaved,
       builder: (FormFieldState state) => MergeSemantics(
         child: Semantics(
-          label: label ?? '',
+          label: widget.label ?? '',
           child: Switch(
-            activeColor: activeColor,
-            activeThumbImage: activeThumbImage,
-            activeTrackColor: activeTrackColor,
-            autofocus: autofocus,
-            dragStartBehavior: dragStartBehavior,
-            focusColor: focusColor,
-            focusNode: focusNode,
-            hoverColor: hoverColor,
-            inactiveThumbColor: inactiveThumbColor,
-            inactiveThumbImage: inactiveThumbImage,
-            inactiveTrackColor: inactiveTrackColor,
-            materialTapTargetSize: materialTapTargetSize,
-            mouseCursor: mouseCursor,
-            onActiveThumbImageError: onActiveThumbImageError,
-            onChanged: enabled != true
+            activeColor: widget.activeColor,
+            activeThumbImage: widget.activeThumbImage,
+            activeTrackColor: widget.activeTrackColor,
+            autofocus: widget.autofocus,
+            dragStartBehavior: widget.dragStartBehavior,
+            focusColor: widget.focusColor,
+            focusNode: widget.focusNode,
+            hoverColor: widget.hoverColor,
+            inactiveThumbColor: widget.inactiveThumbColor,
+            inactiveThumbImage: widget.inactiveThumbImage,
+            inactiveTrackColor: widget.inactiveTrackColor,
+            materialTapTargetSize: widget.materialTapTargetSize,
+            mouseCursor: widget.mouseCursor,
+            onActiveThumbImageError: widget.onActiveThumbImageError,
+            onChanged: widget.enabled != true
                 ? null
                 : (value) {
-                    if (onChanged != null) {
-                      onChanged!(value);
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(value);
                     }
 
                     state.didChange(value);
 
-                    if (data.id.isNotEmpty == true) {
-                      data.registry.setValue(
-                        data.id,
+                    if (widget.data.id.isNotEmpty == true) {
+                      widget.data.registry.setValue(
+                        widget.data.id,
                         value,
-                        originator: data.id,
+                        originator: widget.data.id,
                       );
                     }
                   },
-            onInactiveThumbImageError: onInactiveThumbImageError,
-            overlayColor: overlayColor,
-            splashRadius: splashRadius,
-            thumbColor: thumbColor,
-            thumbIcon: thumbIcon,
-            trackColor: trackColor,
+            onInactiveThumbImageError: widget.onInactiveThumbImageError,
+            overlayColor: widget.overlayColor,
+            splashRadius: widget.splashRadius,
+            thumbColor: widget.thumbColor,
+            thumbIcon: widget.thumbIcon,
+            trackColor: widget.trackColor,
             value: state.value,
           ),
         ),

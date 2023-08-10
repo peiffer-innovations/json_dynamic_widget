@@ -9,22 +9,11 @@ part 'json_conditional_builder.g.dart';
 /// widgets based on the result from the [conditional].
 @jsonWidget
 abstract class _JsonConditionalBuilder extends JsonWidgetBuilder {
-  _JsonConditionalBuilder({
-    required super.numSupportedChildren,
-    required JsonConditionalBuilderModel model,
-  }) {
-    _appendKeys(model.conditional, model.keys);
-  }
+  const _JsonConditionalBuilder();
 
-  static void _appendKeys(
-    Conditional conditional,
-    Set<String> keys,
-  ) {
-    conditional.values?.forEach((key, _) => keys.add(key));
-    conditional.conditions?.forEach(
-      (conditional) => _appendKeys(conditional, keys),
-    );
-  }
+  @JsonArgDecoder('conditional')
+  Conditional _decodeConditiona({required dynamic value}) =>
+      Conditional.fromDynamic(value);
 
   @override
   _Conditional buildCustom({
@@ -37,39 +26,50 @@ abstract class _JsonConditionalBuilder extends JsonWidgetBuilder {
 
 class _Conditional extends StatefulWidget {
   const _Conditional({
-    @JsonBuilderParam() this.childBuilder,
+    @JsonBuildArg() this.childBuilder,
     required this.conditional,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() required this.data,
+    @JsonBuildArg() required this.model,
     Key? key,
-    required this.keys,
     this.onFalse,
+    this.onTrue,
   }) : super(key: key);
 
   final ChildWidgetBuilder? childBuilder;
   final Conditional conditional;
   final JsonWidgetData data;
-  final Set<String> keys;
+  final JsonConditionalBuilderModel model;
   final JsonWidgetData? onFalse;
+  final JsonWidgetData? onTrue;
 
   @override
   State createState() => _ConditionalState();
 }
 
 class _ConditionalState extends State<_Conditional> {
+  final Set<String> _keys = <String>{};
+
   late Conditional _conditional;
   late JsonWidgetData _data;
-  late Set<String> _keys;
-  JsonWidgetData? _onFalse;
   StreamSubscription<WidgetValueChanged>? _subscription;
+
+  static void _appendKeys(
+    Conditional conditional,
+    Set<String> keys,
+  ) {
+    conditional.values?.forEach((key, _) => keys.add(key));
+    conditional.conditions?.forEach(
+      (conditional) => _appendKeys(conditional, keys),
+    );
+  }
 
   @override
   void initState() {
     super.initState();
 
     _conditional = widget.conditional;
-    _keys = widget.keys;
+    _appendKeys(widget.conditional, _keys);
     _data = widget.data;
-    _onFalse = widget.onFalse;
     _subscription = widget.data.registry.valueStream.listen(
       _handleSubscription,
     );
@@ -85,12 +85,7 @@ class _ConditionalState extends State<_Conditional> {
 
   void _handleSubscription(WidgetValueChanged event) {
     if (_keys.contains(event.id) == true) {
-      _data = _data.recreate();
-
-      final builder = _data.builder() as JsonConditionalBuilder;
-      _conditional = builder.model.conditional;
-      _keys = builder.model.keys;
-      _onFalse = builder.model.onFalse;
+      _conditional = Conditional.fromDynamic(widget.model.conditional);
 
       if (mounted == true) {
         setState(() {});
@@ -102,29 +97,17 @@ class _ConditionalState extends State<_Conditional> {
   Widget build(BuildContext context) {
     final result = _conditional.evaluate(_data.registry.values);
 
-    final onTrue = _data.children?.isNotEmpty == true
-        ? _data.children![0]
-        : JsonWidgetBuilder.kDefaultChild;
+    final data = result ? widget.onTrue : widget.onFalse;
 
     Widget? child;
-    if (result == true) {
-      if (_onFalse?.builder != null) {
-        _onFalse!.builder().remove(_onFalse!);
-      }
-
-      child = onTrue.build(
-        childBuilder: widget.childBuilder,
+    if (data != null) {
+      child = data.build(
         context: context,
+        childBuilder: widget.childBuilder,
+        registry: data.registry,
       );
-    } else {
-      onTrue.builder().remove(onTrue);
-      child = _onFalse?.build(
-            childBuilder: widget.childBuilder,
-            context: context,
-          ) ??
-          const SizedBox();
     }
 
-    return child;
+    return child ?? const SizedBox();
   }
 }

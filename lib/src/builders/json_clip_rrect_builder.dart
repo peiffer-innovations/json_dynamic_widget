@@ -3,11 +3,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 part 'json_clip_rrect_builder.g.dart';
 
 /// Builder that can build a [ClipRect] widget.
-@jsonWidget
+@JsonWidget(type: 'clip_rrect')
 abstract class _JsonClipRRectBuilder extends JsonWidgetBuilder {
-  const _JsonClipRRectBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonClipRRectBuilder();
 
   @override
   ClipRRect buildCustom({

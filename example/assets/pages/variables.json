@@ -22,43 +22,48 @@
           }
         }
       ]
-    }
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
-        "args": {
-          "title": {
-            "type": "text",
-            "args": {
-              "text": "Variables"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Variables"
+              }
             }
           }
-        }
-      },
-      "body": {
-        "type": "center",
-        "child": {
-          "type": "row",
+        },
+        "body": {
+          "type": "center",
           "args": {
-            "mainAxisSize": "min"
-          },
-          "children": [
-            {
-              "type": "text",
+            "child": {
+              "type": "row",
               "args": {
-                "text": "Hello, "
-              }
-            },
-            {
-              "type": "text",
-              "args": {
-                "text": "${people[0]['firstName']}"
+                "mainAxisSize": "min",
+                "children": [
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "Hello, "
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "listen": [
+                      "people"
+                    ],
+                    "args": {
+                      "text": "${people[0]['firstName']}"
+                    }
+                  }
+                ]
               }
             }
-          ]
+          }
         }
       }
     }

@@ -5,9 +5,7 @@ part 'json_sized_box_builder.g.dart';
 /// Builder that can build an [SizedBox] widget.
 @jsonWidget
 abstract class _JsonSizedBoxBuilder extends JsonWidgetBuilder {
-  const _JsonSizedBoxBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSizedBoxBuilder();
 
   @override
   SizedBox buildCustom({

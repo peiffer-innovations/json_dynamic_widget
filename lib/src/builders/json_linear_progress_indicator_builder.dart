@@ -5,9 +5,7 @@ part 'json_linear_progress_indicator_builder.g.dart';
 /// Builder that can build an [LinearProgressIndicator] widget.
 @jsonWidget
 abstract class _JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
-  const _JsonLinearProgressIndicatorBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonLinearProgressIndicatorBuilder();
 
   @override
   LinearProgressIndicator buildCustom({

@@ -7,34 +7,7 @@ part 'json_set_widget_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSetWidgetBuilder extends JsonWidgetBuilder {
-  _JsonSetWidgetBuilder({
-    required JsonSetWidgetBuilderModel model,
-    required super.numSupportedChildren,
-    required JsonWidgetRegistry? registry,
-  }) : _model = model {
-    final innerRegistry = registry ?? JsonWidgetRegistry.instance;
-    _model.widgets?.forEach(
-      (key, value) => innerRegistry.setValue(
-        key,
-        value,
-        originator: null,
-      ),
-    );
-  }
-
-  final JsonSetWidgetBuilderModel _model;
-
-  @override
-  void remove(JsonWidgetData data) {
-    _model.widgets?.forEach(
-      (key, _) => data.registry.removeValue(
-        key,
-        originator: null,
-      ),
-    );
-
-    super.remove(data);
-  }
+  _JsonSetWidgetBuilder();
 
   @override
   _SetWidget buildCustom({
@@ -45,15 +18,74 @@ abstract class _JsonSetWidgetBuilder extends JsonWidgetBuilder {
   });
 }
 
-class _SetWidget extends StatelessWidget {
+class _SetWidget extends StatefulWidget {
   const _SetWidget({
     this.child,
-    required this.widgets,
+    @JsonBuildArg() this.childBuilder,
+    @JsonBuildArg() required this.data,
+    @JsonBuildArg() super.key,
+    this.widgets,
   });
 
-  final Widget? child;
-  final Map<String, Widget>? widgets;
+  final JsonWidgetData? child;
+  final ChildWidgetBuilder? childBuilder;
+  final JsonWidgetData data;
+  final Map? widgets;
 
   @override
-  Widget build(BuildContext context) => child ?? const SizedBox();
+  State createState() => _SetWidgetState();
+}
+
+class _SetWidgetState extends State<_SetWidget> {
+  JsonWidgetData? child;
+
+  @override
+  void initState() {
+    super.initState();
+
+    widget.widgets?.forEach(
+      (key, value) => widget.data.registry.setValue(
+        key,
+        value,
+        originator: null,
+      ),
+    );
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    oldWidget.widgets?.forEach((key, _) => oldWidget.data.registry.removeValue(
+          key,
+          originator: null,
+        ));
+
+    widget.widgets?.forEach(
+      (key, value) => widget.data.registry.setValue(
+        key,
+        value,
+        originator: null,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    widget.widgets?.forEach((key, _) => widget.data.registry.removeValue(
+          key,
+          originator: null,
+        ));
+
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.child?.build(
+          childBuilder: widget.childBuilder,
+          context: context,
+          registry: widget.data.registry,
+        ) ??
+        const SizedBox();
+  }
 }

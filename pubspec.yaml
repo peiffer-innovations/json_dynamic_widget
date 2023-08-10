@@ -45,6 +45,8 @@ dependency_overrides:
     path: ../json_dynamic_widget_annotations
   json_dynamic_widget_codegen:
     path: ../json_dynamic_widget_codegen
+  json_theme:
+    path: ../json_theme/json_theme
 
 ignore_updates:
   - 'archive'

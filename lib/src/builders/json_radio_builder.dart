@@ -10,25 +10,7 @@ part 'json_radio_builder.g.dart';
 /// no two widgets can share the same overall id.
 @jsonWidget
 abstract class _JsonRadioBuilder extends JsonWidgetBuilder {
-  const _JsonRadioBuilder({
-    required super.numSupportedChildren,
-  });
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    final id = data.args?['id']?.toString();
-
-    if (id != null && id.isNotEmpty == true) {
-      data.registry.removeValue(
-        id,
-        originator: id,
-      );
-    }
-
-    super.remove(data);
-  }
+  const _JsonRadioBuilder();
 
   @override
   _Radio buildCustom({
@@ -44,7 +26,7 @@ class _Radio extends StatefulWidget {
     this.activeColor,
     required this.autofocus,
     this.autovalidateMode,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() required this.data,
     required this.enabled,
     this.fillColor,
     this.focusColor,
@@ -117,6 +99,14 @@ class _RadioState extends State<_Radio> {
 
   @override
   void dispose() {
+    final id = widget.data.args?['id']?.toString();
+
+    if (id != null && id.isNotEmpty == true) {
+      widget.data.registry.removeValue(
+        id,
+        originator: id,
+      );
+    }
     for (var sub in _subscriptions) {
       sub.cancel();
     }

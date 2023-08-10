@@ -5,9 +5,7 @@ part 'json_sliver_list_builder.g.dart';
 /// Builder that can build an [SliverList] widget.
 @jsonWidget
 abstract class _JsonSliverListBuilder extends JsonWidgetBuilder {
-  const _JsonSliverListBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSliverListBuilder();
 
   @override
   _SliverList buildCustom({
@@ -24,6 +22,7 @@ class _SliverList extends StatelessWidget {
     required this.addRepaintBoundaries,
     required this.addSemanticIndexes,
     this.childBuilder,
+    this.children,
     required this.data,
     this.findChildIndexCallback,
     this.semanticIndexCallback,
@@ -34,6 +33,7 @@ class _SliverList extends StatelessWidget {
   final bool addRepaintBoundaries;
   final bool addSemanticIndexes;
   final ChildWidgetBuilder? childBuilder;
+  final List<JsonWidgetData>? children;
   final JsonWidgetData data;
   final ChildIndexGetter? findChildIndexCallback;
   final SemanticIndexCallback? semanticIndexCallback;
@@ -41,12 +41,13 @@ class _SliverList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final children = data.children ?? const <JsonWidgetData>[];
+    final children = this.children ?? const <JsonWidgetData>[];
     return SliverList(
       delegate: SliverChildBuilderDelegate(
         (context, index) => children[index].build(
           context: context,
           childBuilder: childBuilder,
+          registry: data.registry,
         ),
         addAutomaticKeepAlives: addAutomaticKeepAlives,
         addRepaintBoundaries: addRepaintBoundaries,

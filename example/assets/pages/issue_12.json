@@ -17,17 +17,20 @@
       "args": {
         "values": {
           "customPadding": 16
-        }
-      },
-      "child": {
-        "type": "elevated_button",
-        "args": {
-          "padding": "${customPadding}"
         },
         "child": {
-          "type": "text",
+          "type": "elevated_button",
+          "listen": [
+            "customPadding"
+          ],
           "args": {
-            "text": "Random Text"
+            "padding": "${customPadding}",
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "Random Text"
+              }
+            }
           }
         }
       }

@@ -5,9 +5,7 @@ part 'json_column_builder.g.dart';
 /// Builder that can build an [Column] widget.
 @jsonWidget
 abstract class _JsonColumnBuilder extends JsonWidgetBuilder {
-  const _JsonColumnBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonColumnBuilder();
 
   @override
   Column buildCustom({

@@ -277,6 +277,8 @@ class _RootPageState extends State<RootPage> {
     'wrap': _onJsonPageSelected,
   };
 
+  final Set<String> _visited = <String>{};
+
   @override
   Widget build(BuildContext context) {
     final names = _pages.keys.toList();
@@ -299,8 +301,17 @@ class _RootPageState extends State<RootPage> {
       body: ListView.builder(
         itemCount: _pages.length,
         itemBuilder: (BuildContext context, int index) => ListTile(
+          onTap: () {
+            setState(() => _visited.add(names[index]));
+            _pages[names[index]]!(context, names[index]);
+          },
           title: Text(names[index]),
-          onTap: () => _pages[names[index]]!(context, names[index]),
+          trailing: _visited.contains(names[index])
+              ? const Icon(
+                  Icons.check_circle,
+                  color: Colors.green,
+                )
+              : null,
         ),
       ),
     );

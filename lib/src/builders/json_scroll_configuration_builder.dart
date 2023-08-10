@@ -5,9 +5,7 @@ part 'json_scroll_configuration_builder.g.dart';
 /// Builder that can build an [ScrollConfiguration] widget.
 @jsonWidget
 abstract class _JsonScrollConfigurationBuilder extends JsonWidgetBuilder {
-  const _JsonScrollConfigurationBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonScrollConfigurationBuilder();
 
   @override
   ScrollConfiguration buildCustom({

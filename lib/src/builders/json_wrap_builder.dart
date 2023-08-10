@@ -5,9 +5,7 @@ part 'json_wrap_builder.g.dart';
 /// Builder that can build an [Wrap] widget.
 @jsonWidget
 abstract class _JsonWrapBuilder extends JsonWidgetBuilder {
-  const _JsonWrapBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonWrapBuilder();
 
   @override
   _Wrap buildCustom({
@@ -21,10 +19,11 @@ abstract class _JsonWrapBuilder extends JsonWidgetBuilder {
 class _Wrap extends StatelessWidget {
   const _Wrap({
     this.alignment,
-    @JsonBuilderParam() required this.childBuilder,
+    @JsonBuildArg() required this.childBuilder,
+    this.children,
     this.clipBehavior,
     this.crossAxisAlignment,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() required this.data,
     this.direction,
     this.runAlignment,
     this.runSpacing,
@@ -36,6 +35,7 @@ class _Wrap extends StatelessWidget {
 
   final WrapAlignment? alignment;
   final ChildWidgetBuilder? childBuilder;
+  final List<JsonWidgetData>? children;
   final Clip? clipBehavior;
   final WrapCrossAlignment? crossAxisAlignment;
   final JsonWidgetData data;
@@ -59,10 +59,11 @@ class _Wrap extends StatelessWidget {
         textDirection: textDirection,
         verticalDirection: verticalDirection ?? VerticalDirection.down,
         children: [
-          for (var child in data.children ?? <JsonWidgetData>[])
+          for (var child in children ?? <JsonWidgetData>[])
             child.build(
               context: context,
               childBuilder: childBuilder,
+              registry: data.registry,
             ),
         ],
       );

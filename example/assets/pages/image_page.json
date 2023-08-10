@@ -14,16 +14,24 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "hero",
-        "args": {
-          "tag": "${imageTag}"
-        },
+      "args": {
         "child": {
-          "type": "asset_image",
+          "type": "hero",
+          "listen": [
+            "imageTag"
+          ],
           "args": {
-            "fit": "fitWidth",
-            "name": "${imageAsset}"
+            "tag": "${imageTag}",
+            "child": {
+              "type": "asset_image",
+              "listen": [
+                "imageAsset"
+              ],
+              "args": {
+                "fit": "fitWidth",
+                "name": "${imageAsset}"
+              }
+            }
           }
         }
       }

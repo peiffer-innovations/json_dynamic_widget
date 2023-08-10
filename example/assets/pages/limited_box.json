@@ -14,20 +14,22 @@
     },
     "body": {
       "type": "list_view",
-      "children": [
-        {
-          "type": "limited_box",
-          "args": {
-            "maxHeight": 200.0
-          },
-          "child": {
-            "type": "container",
+      "args": {
+        "children": [
+          {
+            "type": "limited_box",
             "args": {
-              "color": "#000"
+              "maxHeight": 200.0,
+              "child": {
+                "type": "container",
+                "args": {
+                  "color": "#000"
+                }
+              }
             }
           }
-        }
-      ]
+        ]
+      }
     }
   }
 }

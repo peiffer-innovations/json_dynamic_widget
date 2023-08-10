@@ -18,39 +18,50 @@
       "args": {
         "values": {
           "customElevation": 0
-        }
-      },
-      "child": {
-        "type": "set_value",
-        "args": {
-          "customColor": "#FFF"
         },
         "child": {
           "type": "set_value",
           "args": {
-            "customBorderRadius": {
-              "type": "circular",
-              "radius": 10
-            }
-          },
-          "child": {
-            "type": "center",
+            "values": {
+              "customColor": "#FFF"
+            },
             "child": {
-              "type": "animated_physical_model",
+              "type": "set_value",
               "args": {
-                "animateColor": true,
-                "borderRadius": "${customBorderRadius}",
-                "color": "${customColor}",
-                "duration": 1000,
-                "elevation": "${customElevation}",
-                "shadowColor": "#000",
-                "shape": "rectangle"
-              },
-              "child": {
-                "type": "container",
-                "args": {
-                  "height": 100,
-                  "width": 100
+                "values": {
+                  "customBorderRadius": {
+                    "type": "circular",
+                    "radius": 10
+                  }
+                },
+                "child": {
+                  "type": "center",
+                  "args": {
+                    "child": {
+                      "type": "animated_physical_model",
+                      "listen": [
+                        "customBorderRadius",
+                        "customColor",
+                        "customElevation"
+                      ],
+                      "args": {
+                        "animateColor": true,
+                        "borderRadius": "${customBorderRadius}",
+                        "color": "${customColor}",
+                        "duration": 1000,
+                        "elevation": "${customElevation}",
+                        "shadowColor": "#000",
+                        "shape": "rectangle",
+                        "child": {
+                          "type": "container",
+                          "args": {
+                            "height": 100,
+                            "width": 100
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -62,12 +73,12 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${set_value('customElevation', 25)}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${set_value('customElevation', 25)}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

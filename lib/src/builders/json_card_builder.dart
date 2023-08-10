@@ -5,9 +5,7 @@ part 'json_card_builder.g.dart';
 /// Builder that can build a [Card] widget.
 @jsonWidget
 abstract class _JsonCardBuilder extends JsonWidgetBuilder {
-  const _JsonCardBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonCardBuilder();
 
   @override
   Card buildCustom({

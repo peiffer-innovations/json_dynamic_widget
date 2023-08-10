@@ -5,26 +5,12 @@ part 'json_checkbox_builder.g.dart';
 
 @jsonWidget
 abstract class _JsonCheckboxBuilder extends JsonWidgetBuilder {
-  const _JsonCheckboxBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonCheckboxBuilder();
 
-  @JsonParamDecoder('validator')
+  @JsonArgDecoder('validator')
   Validator? _decodeValidator({dynamic value}) => value is Map
       ? Validator.fromDynamic({'validators': value['validators']})
       : null;
-
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    data.registry.removeValue(
-      data.id,
-      originator: data.id,
-    );
-
-    super.remove(data);
-  }
 
   @override
   _Checkbox buildCustom({
@@ -35,13 +21,13 @@ abstract class _JsonCheckboxBuilder extends JsonWidgetBuilder {
   });
 }
 
-class _Checkbox extends StatelessWidget {
+class _Checkbox extends StatefulWidget {
   const _Checkbox({
     this.activeColor,
     this.autofocus = false,
     this.autovalidateMode,
     this.checkColor,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() required this.data,
     this.enabled = true,
     this.fillColor,
     this.focusColor,
@@ -88,6 +74,20 @@ class _Checkbox extends StatelessWidget {
   final bool? value;
   final VisualDensity? visualDensity;
 
+  @override
+  State createState() => _CheckboxState();
+}
+
+class _CheckboxState extends State<_Checkbox> {
+  @override
+  void dispose() {
+    widget.data.registry.removeValue(
+      widget.data.id,
+      originator: widget.data.id,
+    );
+    super.dispose();
+  }
+
   /// Builds the widget to render to the tree.  If the [data] object has a
   /// non-empty `id` associated with it and the [enabled] property is [true]
   /// then this will attach the selected value to the [JsonWidgetRegistry]
@@ -97,66 +97,66 @@ class _Checkbox extends StatelessWidget {
   /// empty string will be used to represent no error message.
   @override
   Widget build(BuildContext context) {
-    final initialValue = value ?? (tristate != true ? false : null);
+    final initialValue =
+        widget.value ?? (widget.tristate != true ? false : null);
 
     return FormField<bool>(
-      autovalidateMode: autovalidateMode,
-      enabled: enabled,
+      autovalidateMode: widget.autovalidateMode,
+      enabled: widget.enabled,
       initialValue: initialValue,
-      onSaved: onSaved,
-      validator: validator == null
+      onSaved: widget.onSaved,
+      validator: widget.validator == null
           ? null
           : (value) {
-              final error = validator!.validate(
-                label: label ?? '',
+              final error = widget.validator!.validate(
+                label: widget.label ?? '',
                 value: value?.toString(),
               );
 
-              data.registry.setValue(
-                '${data.id}.error',
+              widget.data.registry.setValue(
+                '${widget.data.id}.error',
                 error ?? '',
-                originator: data.id,
+                originator: widget.data.id,
               );
 
               return error;
             },
       builder: (FormFieldState state) => MergeSemantics(
         child: Semantics(
-          label: label ?? '',
+          label: widget.label ?? '',
           child: Checkbox(
-            activeColor: activeColor,
-            autofocus: autofocus,
-            checkColor: checkColor,
-            fillColor: fillColor,
-            focusColor: focusColor,
-            focusNode: focusNode,
-            hoverColor: hoverColor,
-            isError: isError,
-            key: key,
-            materialTapTargetSize: materialTapTargetSize,
-            mouseCursor: mouseCursor,
-            onChanged: enabled != true
+            activeColor: widget.activeColor,
+            autofocus: widget.autofocus,
+            checkColor: widget.checkColor,
+            fillColor: widget.fillColor,
+            focusColor: widget.focusColor,
+            focusNode: widget.focusNode,
+            hoverColor: widget.hoverColor,
+            isError: widget.isError,
+            materialTapTargetSize: widget.materialTapTargetSize,
+            mouseCursor: widget.mouseCursor,
+            onChanged: widget.enabled != true
                 ? null
                 : (value) {
-                    if (onChanged != null) {
-                      onChanged!(value);
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(value);
                     }
 
                     state.didChange(value);
 
-                    data.registry.setValue(
-                      data.id,
+                    widget.data.registry.setValue(
+                      widget.data.id,
                       value,
-                      originator: data.id,
+                      originator: widget.data.id,
                     );
                   },
-            overlayColor: overlayColor,
-            shape: shape,
-            side: side,
-            splashRadius: splashRadius,
-            tristate: tristate,
+            overlayColor: widget.overlayColor,
+            shape: widget.shape,
+            side: widget.side,
+            splashRadius: widget.splashRadius,
+            tristate: widget.tristate,
             value: state.value,
-            visualDensity: visualDensity,
+            visualDensity: widget.visualDensity,
           ),
         ),
       ),

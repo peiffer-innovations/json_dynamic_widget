@@ -5,9 +5,7 @@ part 'json_ink_well_builder.g.dart';
 /// Builder that can build an [InkWell] widget.
 @jsonWidget
 abstract class _JsonInkWellBuilder extends JsonWidgetBuilder {
-  const _JsonInkWellBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonInkWellBuilder();
 
   @override
   InkWell buildCustom({

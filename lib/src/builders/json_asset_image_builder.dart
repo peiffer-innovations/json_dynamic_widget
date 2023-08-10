@@ -5,9 +5,7 @@ part 'json_asset_image_builder.g.dart';
 /// Builder that can build an [Image.asset] widget.
 @jsonWidget
 abstract class _JsonAssetImageBuilder extends JsonWidgetBuilder {
-  const _JsonAssetImageBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonAssetImageBuilder();
 
   @override
   _AssetImage buildCustom({
@@ -20,25 +18,25 @@ abstract class _JsonAssetImageBuilder extends JsonWidgetBuilder {
 
 class _AssetImage extends StatelessWidget {
   _AssetImage({
-    required this.alignment,
+    this.alignment = Alignment.center,
     this.cacheHeight,
     this.cacheWidth,
     this.centerSlice,
     this.color,
     this.colorBlendMode,
     this.errorBuilder,
-    required this.excludeFromSemantics,
-    required this.filterQuality,
+    this.excludeFromSemantics = false,
+    this.filterQuality = FilterQuality.low,
     this.fit,
     this.frameBuilder,
-    required this.gaplessPlayback,
+    this.gaplessPlayback = false,
     this.height,
-    required this.isAntiAlias,
-    required this.matchTextDirection,
+    this.isAntiAlias = false,
+    this.matchTextDirection = false,
     required this.name,
     this.opacity,
     this.package,
-    required this.repeat,
+    this.repeat = ImageRepeat.noRepeat,
     this.scale,
     this.semanticLabel,
     this.width,

@@ -14,10 +14,12 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "text_form_field",
-        "args": {
-          "maxLines": "${null}"
+      "args": {
+        "child": {
+          "type": "text_form_field",
+          "args": {
+            "maxLines": "${null}"
+          }
         }
       }
     }

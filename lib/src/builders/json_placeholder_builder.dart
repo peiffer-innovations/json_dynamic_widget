@@ -5,9 +5,7 @@ part 'json_placeholder_builder.g.dart';
 /// Builder that can build an [Placeholder] widget.
 @jsonWidget
 abstract class _JsonPlaceholderBuilder extends JsonWidgetBuilder {
-  const _JsonPlaceholderBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonPlaceholderBuilder();
 
   @override
   Placeholder buildCustom({

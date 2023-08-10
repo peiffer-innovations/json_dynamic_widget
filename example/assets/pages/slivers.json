@@ -73,6 +73,9 @@
         "args": {
           "title": {
             "type": "text",
+            "listen": [
+              "value"
+            ],
             "args": {
               "text": "${value}"
             }
@@ -82,185 +85,202 @@
       "template": {
         "type": "padding",
         "args": {
-          "padding": 16.0
-        },
-        "child": {
-          "type": "material",
-          "args": {
-            "elevation": 2
-          },
+          "padding": 16.0,
           "child": {
-            "type": "container",
+            "type": "material",
             "args": {
-              "color": "#ccc"
-            },
-            "child": {
-              "type": "stack",
-              "args": {
-                "alignment": "center"
-              },
-              "children": [
-                {
-                  "type": "opacity",
-                  "args": {
-                    "opacity": 0.25
-                  },
+              "elevation": 2,
+              "child": {
+                "type": "container",
+                "args": {
+                  "color": "#ccc",
                   "child": {
-                    "type": "placeholder"
-                  }
-                },
-                {
-                  "type": "text",
-                  "args": {
-                    "text": "${value}"
+                    "type": "stack",
+                    "args": {
+                      "alignment": "center",
+                      "children": [
+                        {
+                          "type": "opacity",
+                          "args": {
+                            "opacity": 0.25,
+                            "child": {
+                              "type": "placeholder"
+                            }
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "listen": [
+                            "value"
+                          ],
+                          "args": {
+                            "text": "${value}"
+                          }
+                        }
+                      ]
+                    }
                   }
                 }
-              ]
+              }
             }
           }
         }
       }
-    }
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
-        "args": {
-          "title": {
-            "type": "text",
-            "args": {
-              "text": "Slivers"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Slivers"
+              }
             }
           }
-        }
-      },
-      "body": {
-        "type": "set_scroll_controller",
-        "args": {
-          "key": "controller"
         },
-        "child": {
-          "type": "scrollbar",
+        "body": {
+          "type": "set_scroll_controller",
           "args": {
-            "controller": "${controller}"
-          },
-          "child": {
-            "type": "padding",
-            "args": {
-              "padding": {
-                "left": 40,
-                "right": 40
-              }
-            },
+            "key": "controller",
             "child": {
-              "type": "custom_scroll_view",
+              "type": "scrollbar",
+              "listen": [
+                "controller"
+              ],
               "args": {
-                "controller": "${controller}"
-              },
-              "children": [
-                {
-                  "type": "sliver_padding",
+                "controller": "${controller}",
+                "child": {
+                  "type": "padding",
                   "args": {
                     "padding": {
-                      "top": 16
-                    }
-                  },
-                  "child": {
-                    "type": "sliver_to_box_adapter",
-                    "child": {
-                      "type": "list_tile",
-                      "args": {
-                        "subtitle": {
-                          "type": "text",
-                          "args": {
-                            "text": "max_cross_axis_extent"
-                          }
-                        },
-                        "title": {
-                          "type": "text",
-                          "args": {
-                            "text": "SliverGrid"
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "sliver_grid",
-                  "args": {
-                    "gridDelegate": {
-                      "childAspectRatio": 1.5,
-                      "crossAxisSpacing": 16.0,
-                      "mainAxisSpacing": 12.0,
-                      "maxCrossAxisExtent": 300,
-                      "type": "max_cross_axis_extent"
-                    }
-                  },
-                  "children": "${for_each(entries['values'], 'template')}"
-                },
-                {
-                  "type": "sliver_to_box_adapter",
-                  "child": {
-                    "type": "list_tile",
-                    "args": {
-                      "title": {
-                        "type": "text",
-                        "args": {
-                          "text": "SliverList"
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "sliver_list",
-                  "children": "${for_each(entries['values'], 'listTemplate')}"
-                },
-                {
-                  "type": "sliver_to_box_adapter",
-                  "child": {
-                    "type": "list_tile",
-                    "args": {
-                      "subtitle": {
-                        "type": "text",
-                        "args": {
-                          "text": "fixed_cross_axis_count"
-                        }
-                      },
-                      "title": {
-                        "type": "text",
-                        "args": {
-                          "text": "SliverGrid"
-                        }
-                      }
-                    }
-                  }
-                },
-                {
-                  "type": "sliver_padding",
-                  "args": {
-                    "padding": {
-                      "bottom": 16
-                    }
-                  },
-                  "child": {
-                    "type": "sliver_grid",
-                    "args": {
-                      "gridDelegate": {
-                        "crossAxisCount": 4,
-                        "childAspectRatio": 0.5,
-                        "crossAxisSpacing": 8.0,
-                        "mainAxisSpacing": 12.0,
-                        "type": "fixed_cross_axis_count"
-                      }
+                      "left": 40,
+                      "right": 40
                     },
-                    "children": "${for_each(entries['values'], 'template')}"
+                    "child": {
+                      "type": "custom_scroll_view",
+                      "listen": [
+                        "controller"
+                      ],
+                      "args": {
+                        "controller": "${controller}",
+                        "children": [
+                          {
+                            "type": "sliver_padding",
+                            "args": {
+                              "padding": {
+                                "top": 16
+                              },
+                              "child": {
+                                "type": "sliver_to_box_adapter",
+                                "args": {
+                                  "child": {
+                                    "type": "list_tile",
+                                    "args": {
+                                      "subtitle": {
+                                        "type": "text",
+                                        "args": {
+                                          "text": "max_cross_axis_extent"
+                                        }
+                                      },
+                                      "title": {
+                                        "type": "text",
+                                        "args": {
+                                          "text": "SliverGrid"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "sliver_grid",
+                            "args": {
+                              "gridDelegate": {
+                                "childAspectRatio": 1.5,
+                                "crossAxisSpacing": 16.0,
+                                "mainAxisSpacing": 12.0,
+                                "maxCrossAxisExtent": 300,
+                                "type": "max_cross_axis_extent"
+                              },
+                              "children": "${for_each(entries['values'], 'template')}"
+                            }
+                          },
+                          {
+                            "type": "sliver_to_box_adapter",
+                            "args": {
+                              "child": {
+                                "type": "list_tile",
+                                "args": {
+                                  "title": {
+                                    "type": "text",
+                                    "args": {
+                                      "text": "SliverList"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "sliver_list",
+                            "args": {
+                              "children": "${for_each(entries['values'], 'listTemplate')}"
+                            }
+                          },
+                          {
+                            "type": "sliver_to_box_adapter",
+                            "args": {
+                              "child": {
+                                "type": "list_tile",
+                                "args": {
+                                  "subtitle": {
+                                    "type": "text",
+                                    "args": {
+                                      "text": "fixed_cross_axis_count"
+                                    }
+                                  },
+                                  "title": {
+                                    "type": "text",
+                                    "args": {
+                                      "text": "SliverGrid"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "sliver_padding",
+                            "args": {
+                              "padding": {
+                                "bottom": 16
+                              },
+                              "child": {
+                                "type": "sliver_grid",
+                                "args": {
+                                  "gridDelegate": {
+                                    "crossAxisCount": 4,
+                                    "childAspectRatio": 0.5,
+                                    "crossAxisSpacing": 8.0,
+                                    "mainAxisSpacing": 12.0,
+                                    "type": "fixed_cross_axis_count"
+                                  },
+                                  "children": "${for_each(entries['values'], 'template')}"
+                                }
+                              }
+                            }
+                          }
+                        ]
+                      }
+                    }
                   }
                 }
-              ]
+              }
             }
           }
         }

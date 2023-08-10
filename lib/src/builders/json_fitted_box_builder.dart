@@ -5,9 +5,7 @@ part 'json_fitted_box_builder.g.dart';
 /// Builder that can build an [FittedBox] widget.
 @jsonWidget
 abstract class _JsonFittedBoxBuilder extends JsonWidgetBuilder {
-  const _JsonFittedBoxBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonFittedBoxBuilder();
 
   @override
   FittedBox buildCustom({

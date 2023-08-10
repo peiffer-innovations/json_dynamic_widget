@@ -7,9 +7,7 @@ part 'json_list_view_builder.g.dart';
 /// Builder that can build an [ListView] widget.
 @jsonWidget
 abstract class _JsonListViewBuilder extends JsonWidgetBuilder {
-  const _JsonListViewBuilder({
-    super.numSupportedChildren = NumSupportedChildren.many,
-  });
+  const _JsonListViewBuilder();
 
   @override
   _ListView buildCustom({
@@ -22,27 +20,28 @@ abstract class _JsonListViewBuilder extends JsonWidgetBuilder {
 
 class _ListView extends StatelessWidget {
   const _ListView({
-    required this.addAutomaticKeepAlives,
-    required this.addRepaintBoundaries,
-    required this.addSemanticIndexes,
+    this.addAutomaticKeepAlives = true,
+    this.addRepaintBoundaries = true,
+    this.addSemanticIndexes = true,
     this.cacheExtent,
-    @JsonBuilderParam() this.childBuilder,
-    required this.clipBehavior,
+    @JsonBuildArg() this.childBuilder,
+    this.children,
+    this.clipBehavior = Clip.hardEdge,
     this.controller,
-    @JsonBuilderParam() required this.data,
-    required this.dragStartBehavior,
+    @JsonBuildArg() required this.data,
+    this.dragStartBehavior = DragStartBehavior.start,
     this.findChildIndexCallback,
     this.itemExtent,
-    required this.keyboardDismissBehavior,
-    @JsonBuilderParam() required this.model,
+    this.keyboardDismissBehavior = ScrollViewKeyboardDismissBehavior.manual,
+    @JsonBuildArg() required this.model,
     this.padding,
     this.physics,
     required this.primary,
     this.prototypeItem,
     this.restorationId,
-    required this.reverse,
-    required this.scrollDirection,
-    required this.shrinkWrap,
+    this.reverse = false,
+    this.scrollDirection = Axis.vertical,
+    this.shrinkWrap = false,
   });
 
   final bool addAutomaticKeepAlives;
@@ -51,6 +50,7 @@ class _ListView extends StatelessWidget {
   final double? cacheExtent;
   final Clip clipBehavior;
   final ChildWidgetBuilder? childBuilder;
+  final List<JsonWidgetData>? children;
   final ScrollController? controller;
   final JsonWidgetData data;
   final DragStartBehavior dragStartBehavior;
@@ -69,7 +69,7 @@ class _ListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final children = data.children ?? const <JsonWidgetData>[];
+    final children = this.children ?? const <JsonWidgetData>[];
 
     return ListView.builder(
       addAutomaticKeepAlives: model.addAutomaticKeepAlives,
@@ -116,11 +116,12 @@ class _ListView extends StatelessWidget {
       prototypeItem: model.prototypeItem?.build(
         context: context,
         childBuilder: childBuilder,
+        registry: data.registry,
       ),
       restorationId: model.restorationId,
       reverse: model.reverse,
       scrollDirection: model.scrollDirection,
-      semanticChildCount: data.children?.length ?? 0,
+      semanticChildCount: children.length,
       shrinkWrap: model.shrinkWrap,
     );
   }

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 part 'json_memory_image_builder.g.dart';
@@ -5,9 +7,10 @@ part 'json_memory_image_builder.g.dart';
 /// Builder that can build an [Image] widget from memory.
 @jsonWidget
 abstract class _JsonMemoryImageBuilder extends JsonWidgetBuilder {
-  const _JsonMemoryImageBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonMemoryImageBuilder();
+
+  @JsonArgDecoder('image')
+  Uint8List _decodeImage({required dynamic value}) => base64.decode(value);
 
   @override
   _MemoryImage buildCustom({
@@ -20,25 +23,25 @@ abstract class _JsonMemoryImageBuilder extends JsonWidgetBuilder {
 
 class _MemoryImage extends StatelessWidget {
   const _MemoryImage({
-    required this.alignment,
+    this.alignment = Alignment.center,
     this.cacheHeight,
     this.cacheWidth,
     this.centerSlice,
     this.color,
     this.colorBlendMode,
     this.errorBuilder,
-    required this.excludeFromSemantics,
-    required this.filterQuality,
+    this.excludeFromSemantics = false,
+    this.filterQuality = FilterQuality.low,
     this.fit,
     this.frameBuilder,
-    required this.gaplessPlayback,
+    this.gaplessPlayback = false,
     this.height,
     required this.image,
-    required this.isAntiAlias,
-    required this.matchTextDirection,
+    this.isAntiAlias = false,
+    this.matchTextDirection = false,
     this.opacity,
-    required this.repeat,
-    required this.scale,
+    this.repeat = ImageRepeat.noRepeat,
+    this.scale = 1.0,
     this.semanticLabel,
     this.width,
   });

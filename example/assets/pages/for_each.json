@@ -73,59 +73,67 @@
         "args": {
           "subtitle": {
             "type": "text",
+            "listen": [
+              "key"
+            ],
             "args": {
               "text": "${key}"
             }
           },
           "title": {
             "type": "text",
+            "listen": [
+              "value"
+            ],
             "args": {
               "text": "${value}"
             }
           }
         }
       }
-    }
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
-        "args": {
-          "title": {
-            "type": "row",
-            "args": {
-              "crossAxisAlignment": "start",
-              "mainAxisAlignment": "start",
-              "mainAxisSize": "min"
-            },
-            "children": [
-              {
-                "type": "text",
-                "args": {
-                  "text": "For Each ("
-                }
-              },
-              {
-                "type": "text",
-                "args": {
-                  "text": "${length(entries['values'])}"
-                }
-              },
-              {
-                "type": "text",
-                "args": {
-                  "text": ")"
-                }
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "row",
+              "args": {
+                "crossAxisAlignment": "start",
+                "mainAxisAlignment": "start",
+                "mainAxisSize": "min",
+                "children": [
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "For Each ("
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "${length(entries['values'])}"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": ")"
+                    }
+                  }
+                ]
               }
-            ]
+            }
+          }
+        },
+        "body": {
+          "type": "list_view",
+          "args": {
+            "children": "${for_each(entries['values'], 'template')}"
           }
         }
-      },
-      "body": {
-        "type": "list_view",
-        "children": "${for_each(entries['values'], 'template')}"
       }
     }
   }

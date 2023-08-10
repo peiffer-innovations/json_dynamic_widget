@@ -5,9 +5,7 @@ part 'json_exclude_semantics_builder.g.dart';
 /// Builder that can build an [ExcludeSemantics] widget.
 @jsonWidget
 abstract class _JsonExcludeSemanticsBuilder extends JsonWidgetBuilder {
-  const _JsonExcludeSemanticsBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonExcludeSemanticsBuilder();
 
   @override
   ExcludeSemantics buildCustom({

@@ -5,9 +5,7 @@ part 'json_animated_padding_builder.g.dart';
 /// Builder that can build an [AnimatedPadding] widget.
 @jsonWidget
 abstract class _JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedPaddingBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonAnimatedPaddingBuilder();
 
   @override
   AnimatedPadding buildCustom({

@@ -6,12 +6,10 @@ part 'json_set_scroll_controller_builder.g.dart';
 /// using the "key" name.
 @jsonWidget
 abstract class _JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
-  const _JsonSetScrollControllerBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonSetScrollControllerBuilder();
 
   @override
-  @JsonParamAlias(alias: 'key', name: 'varName')
+  @JsonArgAlias(alias: 'key', name: 'varName')
   _SetScrollController buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
@@ -22,8 +20,9 @@ abstract class _JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
 
 class _SetScrollController extends StatefulWidget {
   const _SetScrollController({
+    this.child,
     required this.childBuilder,
-    @JsonBuilderParam() required this.data,
+    @JsonBuildArg() required this.data,
     this.debugLabel,
     this.initialScrollOffset,
     super.key,
@@ -31,6 +30,7 @@ class _SetScrollController extends StatefulWidget {
     this.varName = 'scrollController',
   });
 
+  final JsonWidgetData? child;
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
   final String? debugLabel;
@@ -60,7 +60,7 @@ class _JsonSetScrollControllerWidgetState extends State<_SetScrollController> {
       _controller,
       originator: null,
     );
-    widget.data.children?.forEach((e) => e.recreate());
+    // widget.data.children?.forEach((e) => e.recreate());
   }
 
   @override
@@ -77,12 +77,12 @@ class _JsonSetScrollControllerWidgetState extends State<_SetScrollController> {
   @override
   Widget build(BuildContext context) => Builder(
         builder: (BuildContext context) {
-          return widget.data.children?.isNotEmpty == true
-              ? widget.data.children![0].build(
-                  childBuilder: widget.childBuilder,
-                  context: context,
-                )
-              : const SizedBox();
+          return widget.child?.build(
+                childBuilder: widget.childBuilder,
+                context: context,
+                registry: widget.data.registry,
+              ) ??
+              const SizedBox();
         },
       );
 }

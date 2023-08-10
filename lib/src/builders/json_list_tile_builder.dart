@@ -5,9 +5,7 @@ part 'json_list_tile_builder.g.dart';
 /// Builder that can build an [ListTile] widget.
 @jsonWidget
 abstract class _JsonListTileBuilder extends JsonWidgetBuilder {
-  const _JsonListTileBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonListTileBuilder();
 
   @override
   ListTile buildCustom({

@@ -14,10 +14,12 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "linear_progress_indicator",
-        "args": {
-          "valueColor": "#00f"
+      "args": {
+        "child": {
+          "type": "linear_progress_indicator",
+          "args": {
+            "valueColor": "#00f"
+          }
         }
       }
     }

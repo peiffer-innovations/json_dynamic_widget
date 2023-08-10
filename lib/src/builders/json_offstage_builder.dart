@@ -5,9 +5,7 @@ part 'json_offstage_builder.g.dart';
 /// Builder that can build an [Offstage] widget.
 @jsonWidget
 abstract class _JsonOffstageBuilder extends JsonWidgetBuilder {
-  const _JsonOffstageBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonOffstageBuilder();
 
   @override
   Offstage buildCustom({

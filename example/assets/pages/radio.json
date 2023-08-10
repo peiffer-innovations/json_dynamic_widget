@@ -17,44 +17,56 @@
       "args": {
         "values": {
           "radioGroupValue": "radioValue1"
-        }
-      },
-      "child": {
-        "type": "column",
-        "children": [
-          {
-            "type": "text",
-            "args": {
-              "text": "${'Selected radio group value: ' + radioGroupValue ?? ''}"
-            }
-          },
-          {
-            "type": "radio",
-            "args": {
-              "groupValue": "${radioGroupValue}",
-              "id": "radioGroupValue",
-              "value": "radioValue1"
-            }
-          },
-          {
-            "type": "radio",
-            "args": {
-              "groupValue": "${radioGroupValue}",
-              "id": "radioGroupValue",
-              "value": "radioValue2"
-            }
-          },
-          {
-            "type": "radio",
-            "args": {
-              "groupValue": "${radioGroupValue}",
-              "id": "radioGroupValue",
-              "value": "radioValue3"
-            }
+        },
+        "child": {
+          "type": "column",
+          "args": {
+            "crossAxisAlignment": "start",
+            "children": [
+              {
+                "type": "text",
+                "listen": [
+                  "radioGroupValue"
+                ],
+                "args": {
+                  "text": "${'Selected radio group value: ' + radioGroupValue ?? ''}"
+                }
+              },
+              {
+                "type": "radio",
+                "listen": [
+                  "radioGroupValue"
+                ],
+                "args": {
+                  "groupValue": "${radioGroupValue}",
+                  "id": "radioGroupValue",
+                  "value": "radioValue1"
+                }
+              },
+              {
+                "type": "radio",
+                "listen": [
+                  "radioGroupValue"
+                ],
+                "args": {
+                  "groupValue": "${radioGroupValue}",
+                  "id": "radioGroupValue",
+                  "value": "radioValue2"
+                }
+              },
+              {
+                "type": "radio",
+                "listen": [
+                  "radioGroupValue"
+                ],
+                "args": {
+                  "groupValue": "${radioGroupValue}",
+                  "id": "radioGroupValue",
+                  "value": "radioValue3"
+                }
+              }
+            ]
           }
-        ],
-        "args": {
-          "crossAxisAlignment": "start"
         }
       }
     }

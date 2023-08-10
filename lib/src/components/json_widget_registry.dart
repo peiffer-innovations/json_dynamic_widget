@@ -40,6 +40,11 @@ class JsonWidgetRegistry {
             (debugLabel ?? 'child_${++childCount}'),
         _parent = parent {
     _logger = Logger('REGISTRY ${this.debugLabel}');
+    final cache = SchemaCache();
+    cache.addSchema(
+      JsonWidgetDataSchema.id,
+      JsonWidgetDataSchema.schema,
+    );
     if (!overrideInternalBuilders) {
       DefaultRegistrar.registerDefaults(registry: this);
     }

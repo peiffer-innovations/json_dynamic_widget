@@ -5,9 +5,7 @@ part 'json_animated_opacity_builder.g.dart';
 /// Builder that can build an [AnimatedOpacity] widget.
 @jsonWidget
 abstract class _JsonAnimatedOpacityBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedOpacityBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonAnimatedOpacityBuilder();
 
   @override
   AnimatedOpacity buildCustom({

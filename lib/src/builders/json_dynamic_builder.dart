@@ -29,9 +29,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     required this.builderType,
     required this.initState,
     this.registry,
-  }) : super(numSupportedChildren: kNumSupportedChildren);
-
-  static const kNumSupportedChildren = NumSupportedChildren.many;
+  });
 
   static const kType = 'dynamic';
   final String builderType;
@@ -112,17 +110,6 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     return result;
   }
 
-  /// Removes any / all values this builder may have set from the
-  /// [JsonWidgetRegistry].
-  @override
-  void remove(JsonWidgetData data) {
-    if (data.id.isNotEmpty == true) {
-      data.registry.removeValue(data.id);
-    }
-
-    super.remove(data);
-  }
-
   @override
   Widget buildCustom({
     ChildWidgetBuilder? childBuilder,
@@ -132,11 +119,11 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   }) {
     final args = Map.from(data.args);
     args.remove('dynamic');
+    args['children'] = [];
     final map = {
       'id': data.id,
       'type': builderType,
       'args': args,
-      'children': List.empty(),
     };
 
     if (data.registry.getValue(data.id) == null) {
@@ -154,6 +141,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
       data: JsonWidgetData.fromDynamic(map, registry: data.registry),
       childTemplate: childTemplate,
       childBuilder: childBuilder,
+      children: args['children'],
       key: key,
     );
   }
@@ -163,11 +151,13 @@ class _DynamicWidget extends StatefulWidget {
   const _DynamicWidget({
     this.childBuilder,
     required this.childTemplate,
+    required this.children,
     required this.data,
     Key? key,
   }) : super(key: key);
 
   final ChildWidgetBuilder? childBuilder;
+  final List<JsonWidgetData> children;
   final String childTemplate;
   final JsonWidgetData data;
 
@@ -180,12 +170,40 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
   late StreamSubscription<WidgetValueChanged>? _subscription;
 
   @override
+  void initState() {
+    super.initState();
+
+    _data = widget.data;
+    _subscription = widget.data.registry.valueStream.listen(
+      _handleSubscription,
+    );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _subscription?.cancel();
+    _subscription = null;
+    if (widget.data.id.isNotEmpty == true) {
+      widget.data.registry.removeValue(widget.data.id);
+    }
+  }
+
+  void _handleSubscription(WidgetValueChanged event) {
+    if (event.id == _data.id && event.originator != _data.id) {
+      if (mounted == true) {
+        setState(() {});
+      }
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final List<dynamic> childrenData = _data.registry.getValue(_data.id) ?? [];
     if (childrenData.isEmpty) {
-      _data.children!.clear();
+      widget.children.clear();
     } else {
-      _data.children!.clear();
+      widget.children.clear();
       final children = childrenData
           .map(
             (e) => Interpolation().eval(widget.childTemplate, e),
@@ -196,37 +214,14 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
               registry: widget.data.registry,
             ),
           );
-      _data.children!.addAll(children);
+      widget.children.addAll(children);
     }
 
-    return _data.build(context: context, childBuilder: widget.childBuilder);
-  }
-
-  @override
-  void dispose() {
-    _subscription?.cancel();
-    _subscription = null;
-
-    super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    _data = widget.data;
-    _subscription = widget.data.registry.valueStream.listen(
-      _handleSubscription,
+    return _data.build(
+      context: context,
+      childBuilder: widget.childBuilder,
+      registry: widget.data.registry,
     );
-  }
-
-  void _handleSubscription(WidgetValueChanged event) {
-    if (event.id == _data.id && event.originator != _data.id) {
-      _data = _data.recreate(_data.registry);
-      if (mounted == true) {
-        setState(() {});
-      }
-    }
   }
 }
 

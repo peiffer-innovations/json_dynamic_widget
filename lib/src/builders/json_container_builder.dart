@@ -5,9 +5,21 @@ part 'json_container_builder.g.dart';
 /// Builder that can build an [Container] widget.
 @jsonWidget
 abstract class _JsonContainerBuilder extends JsonWidgetBuilder {
-  const _JsonContainerBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonContainerBuilder();
+
+  @JsonArgDecoder('decoration')
+  Decoration? _decodeDecoration({required dynamic value}) =>
+      ThemeDecoder.decodeBoxDecoration(
+        value,
+        validate: false,
+      );
+
+  @JsonArgDecoder('foregroundDecoration')
+  Decoration? _decodeForegroundDecoration({required dynamic value}) =>
+      ThemeDecoder.decodeBoxDecoration(
+        value,
+        validate: false,
+      );
 
   @override
   Container buildCustom({

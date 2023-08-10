@@ -5,9 +5,7 @@ part 'json_text_button_builder.g.dart';
 /// Builder that can build an [TextButton] widget.
 @jsonWidget
 abstract class _JsonTextButtonBuilder extends JsonWidgetBuilder {
-  const _JsonTextButtonBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonTextButtonBuilder();
 
   @override
   TextButton buildCustom({

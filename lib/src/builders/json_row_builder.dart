@@ -5,9 +5,7 @@ part 'json_row_builder.g.dart';
 /// Builder that can build an [Row] widget.
 @jsonWidget
 abstract class _JsonRowBuilder extends JsonWidgetBuilder {
-  const _JsonRowBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonRowBuilder();
 
   @override
   Row buildCustom({

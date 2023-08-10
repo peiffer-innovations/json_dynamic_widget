@@ -34,15 +34,20 @@
               }
             }
           }
-        }
-      },
-      "child": {
-        "type": "center",
+        },
         "child": {
-          "type": "animated_switcher",
+          "type": "center",
           "args": {
-            "child": "${customFirstText}",
-            "duration": 1000
+            "child": {
+              "type": "animated_switcher",
+              "listen": [
+                "customFirstText"
+              ],
+              "args": {
+                "child": "${customFirstText}",
+                "duration": 1000
+              }
+            }
           }
         }
       }
@@ -51,12 +56,12 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${setWidgetByKey('customFirstText', 'customSecondText')}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${setWidgetByKey('customFirstText', 'customSecondText')}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

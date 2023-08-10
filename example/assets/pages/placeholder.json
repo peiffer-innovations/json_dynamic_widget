@@ -14,43 +14,45 @@
     },
     "body": {
       "type": "intrinsic_width",
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "stretch"
-        },
-        "children": [
-          {
-            "type": "elevated_button",
-            "args": {
-              "onPressed": "${simplePrintMessage()}"
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "Short"
+      "args": {
+        "child": {
+          "type": "column",
+          "args": {
+            "crossAxisAlignment": "stretch",
+            "children": [
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Short"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "placeholder",
+                "args": {
+                  "fallbackHeight": 100
+                }
+              },
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "The Longest text button"
+                    }
+                  }
+                }
               }
-            }
-          },
-          {
-            "type": "placeholder",
-            "args": {
-              "fallbackHeight": 100
-            }
-          },
-          {
-            "type": "elevated_button",
-            "args": {
-              "onPressed": "${simplePrintMessage()}"
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "The Longest text button"
-              }
-            }
+            ]
           }
-        ]
+        }
       }
     }
   }

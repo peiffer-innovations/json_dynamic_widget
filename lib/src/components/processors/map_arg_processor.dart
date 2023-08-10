@@ -77,9 +77,6 @@ class MapArgProcessor implements ArgProcessor {
   }
 
   bool _isJsonWidgetData(Map mapArg) {
-    return mapArg['type'] != null &&
-        (mapArg['child'] != null ||
-            mapArg['children'] != null ||
-            mapArg['args'] != null);
+    return mapArg['type'] != null && mapArg['args'] != null;
   }
 }

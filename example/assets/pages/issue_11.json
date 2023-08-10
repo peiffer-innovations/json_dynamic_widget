@@ -14,6 +14,9 @@
     },
     "body": {
       "type": "asset_image",
+      "listen": [
+        "customRect"
+      ],
       "args": {
         "centerSlice": "${customRect}",
         "name": "${getImageAsset(1)}"

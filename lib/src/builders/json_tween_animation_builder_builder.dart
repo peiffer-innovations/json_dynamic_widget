@@ -5,11 +5,9 @@ part 'json_tween_animation_builder_builder.g.dart';
 /// Builder that can build an [TweenAnimationBuilder] widget.
 @jsonWidget
 abstract class _JsonTweenAnimationBuilderBuilder extends JsonWidgetBuilder {
-  const _JsonTweenAnimationBuilderBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonTweenAnimationBuilderBuilder();
 
-  @JsonParamDecoder('tween')
+  @JsonArgDecoder('tween')
   Tween<Object> _decodeTween({
     required dynamic value,
   }) =>

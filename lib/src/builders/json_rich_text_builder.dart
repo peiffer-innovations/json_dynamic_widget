@@ -7,9 +7,7 @@ part 'json_rich_text_builder.g.dart';
 /// Builder that can build an [RichText] widget.
 @jsonWidget
 abstract class _JsonRichTextBuilder extends JsonWidgetBuilder {
-  const _JsonRichTextBuilder({
-    required super.numSupportedChildren,
-  });
+  const _JsonRichTextBuilder();
 
   @override
   RichText buildCustom({
