@@ -1,0 +1,234 @@
+{
+  "type": "set_widget",
+  "args": {
+    "widgets": {
+      "body": {
+        "type": "scaffold",
+        "args": {
+          "appBar": {
+            "type": "app_bar",
+            "args": {
+              "title": {
+                "type": "text",
+                "args": {
+                  "text": "Theme"
+                }
+              }
+            }
+          },
+          "body": {
+            "type": "safe_area",
+            "args": {
+              "bottom": true,
+              "top": true,
+              "child": {
+                "type": "padding",
+                "args": {
+                  "padding": 16,
+                  "child": {
+                    "type": "stack",
+                    "args": {
+                      "children": [
+                        {
+                          "type": "align",
+                          "args": {
+                            "alignment": "bottomLeft",
+                            "child": {
+                              "type": "elevated_button",
+                              "args": {
+                                "onPressed": "${set_value('theme', 'big_red')}",
+                                "child": {
+                                  "type": "text",
+                                  "args": {
+                                    "text": "Big Red"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "align",
+                          "args": {
+                            "alignment": "bottomRight",
+                            "child": {
+                              "type": "elevated_button",
+                              "args": {
+                                "onPressed": "${set_value('theme', 'cool_blue')}",
+                                "child": {
+                                  "type": "text",
+                                  "args": {
+                                    "text": "Cool Blue"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        {
+                          "type": "positioned",
+                          "args": {
+                            "bottom": 80,
+                            "left": 16,
+                            "right": 16,
+                            "top": 0,
+                            "child": {
+                              "type": "single_child_scroll_view",
+                              "args": {
+                                "padding": [
+                                  16,
+                                  0
+                                ],
+                                "child": {
+                                  "type": "column",
+                                  "args": {
+                                    "mainAxisSize": "min",
+                                    "children": [
+                                      {
+                                        "type": "checkbox"
+                                      },
+                                      {
+                                        "type": "sized_box",
+                                        "args": {
+                                          "height": 16.0
+                                        }
+                                      },
+                                      {
+                                        "type": "row",
+                                        "args": {
+                                          "mainAxisAlignment": "spaceEvenly",
+                                          "children": [
+                                            {
+                                              "type": "radio",
+                                              "args": {
+                                                "groupValue": "false",
+                                                "id": "radio",
+                                                "value": true
+                                              }
+                                            },
+                                            {
+                                              "type": "radio",
+                                              "args": {
+                                                "groupValue": "false",
+                                                "id": "radio",
+                                                "value": false
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": "Hello, World!"
+                                        }
+                                      },
+                                      {
+                                        "type": "sized_box",
+                                        "args": {
+                                          "height": 16.0
+                                        }
+                                      },
+                                      {
+                                        "type": "text_form_field",
+                                        "id": "text_form_field",
+                                        "args": {
+                                          "decoration": {
+                                            "hintText": "example@example.com",
+                                            "labelText": "Email Address"
+                                          }
+                                        }
+                                      },
+                                      {
+                                        "type": "sized_box",
+                                        "args": {
+                                          "height": 16.0
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "child": {
+      "type": "conditional",
+      "args": {
+        "conditional": {
+          "values": {
+            "theme": "big_red"
+          }
+        },
+        "onFalse": {
+          "type": "theme",
+          "listen": [
+            "body"
+          ],
+          "args": {
+            "data": {
+              "buttonTheme": {
+                "buttonColor": "#0d47a1",
+                "disabledColor": "#e0e0e0",
+                "textTheme": "primary"
+              },
+              "canvasColor": "#ffffff",
+              "colorSchemeSeed": "#37474f",
+              "fontFamily": "lato",
+              "iconTheme": {
+                "color": "#37474f"
+              },
+              "toggleButtonsTheme": {
+                "color": "#33691e"
+              }
+            },
+            "child": "${body}"
+          }
+        },
+        "onTrue": {
+          "type": "theme",
+          "listen": [
+            "body"
+          ],
+          "args": {
+            "data": {
+              "buttonTheme": {
+                "buttonColor": "#b71c1c",
+                "disabledColor": "#f8bbd0",
+                "textTheme": "primary"
+              },
+              "canvasColor": "#ffffff",
+              "colorSchemeSeed": "#b71c1c",
+              "fontFamily": "metal",
+              "iconTheme": {
+                "color": "#37474f"
+              },
+              "inputDecorationTheme": {
+                "border": {
+                  "type": "outline"
+                },
+                "errorStyle": {
+                  "color": "#880e4f"
+                }
+              },
+              "toggleButtonsTheme": {
+                "color": "#b71c1c"
+              }
+            },
+            "child": "${body}"
+          }
+        }
+      }
+    }
+  }
+}
