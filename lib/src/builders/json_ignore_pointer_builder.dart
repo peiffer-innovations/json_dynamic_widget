@@ -57,6 +57,8 @@ class JsonIgnorePointerBuilder extends JsonWidgetBuilder {
 
     return IgnorePointer(
       ignoring: ignoring,
+
+      // ignore: deprecated_member_use
       ignoringSemantics: ignoringSemantics,
       key: key,
       child: child.build(
