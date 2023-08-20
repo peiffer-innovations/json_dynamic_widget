@@ -1,6 +1,17 @@
-## [6.1.1] - July 31, 2023
+## [6.1.2] - August 20th, 2023
 
-* Restored expands : true support
+* Restored expands : true support (thanks [crisperit](https://github.com/crisperit)
+* Fix for Flutter 3.13 (thanks [leemankok](https://github.com/leemankok)
+
+
+## [6.1.0+4] - August 15, 2023
+
+* Automated dependency updates
+
+
+## [6.1.0+3] - August 8, 2023
+
+* Automated dependency updates
 
 
 ## [6.1.0+2] - August 1, 2023
@@ -606,6 +617,8 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
+
 
 
 
