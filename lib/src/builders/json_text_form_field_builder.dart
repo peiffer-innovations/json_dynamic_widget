@@ -263,7 +263,9 @@ class JsonTextFormFieldBuilder extends JsonWidgetBuilder {
           map['maxLengthEnforcement'],
           validate: false,
         ),
-        maxLines: JsonClass.maybeParseInt(map['maxLines']),
+        maxLines: map.containsKey('maxLines')
+            ? JsonClass.maybeParseInt(map['maxLines'])
+            : 1,
         minLines: JsonClass.maybeParseInt(map['minLines']),
         mouseCursor: ThemeDecoder.decodeMouseCursor(
           map['mouseCursor'],
@@ -472,7 +474,7 @@ class _JsonTextFormFieldWidgetState extends State<_JsonTextFormFieldWidget> {
         keyboardType: widget.builder.keyboardType,
         maxLength: widget.builder.maxLength,
         maxLengthEnforcement: widget.builder.maxLengthEnforcement,
-        maxLines: widget.builder.maxLines ?? 1,
+        maxLines: widget.builder.maxLines,
         minLines: widget.builder.minLines,
         mouseCursor: widget.builder.mouseCursor,
         obscuringCharacter: widget.builder.obscuringCharacter,
