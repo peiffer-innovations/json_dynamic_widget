@@ -7,7 +7,7 @@ import 'package:json_theme/json_theme.dart';
 /// format.
 class JsonClipRRectBuilder extends JsonWidgetBuilder {
   const JsonClipRRectBuilder({
-    this.borderRadius,
+    required this.borderRadius,
     required this.clipBehavior,
     this.clipper,
   }) : super(numSupportedChildren: kNumSupportedChildren);
@@ -15,7 +15,7 @@ class JsonClipRRectBuilder extends JsonWidgetBuilder {
   static const kNumSupportedChildren = 1;
   static const type = 'clip_rrect';
 
-  final BorderRadius? borderRadius;
+  final BorderRadius borderRadius;
   final Clip clipBehavior;
   final CustomClipper<RRect>? clipper;
 
