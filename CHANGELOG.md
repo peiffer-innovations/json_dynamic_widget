@@ -1,3 +1,8 @@
+## [6.1.2+1] - August 22, 2023
+
+* Automated dependency updates
+
+
 ## [6.1.2] - August 20th, 2023
 
 * Restored expands : true support (thanks [crisperit](https://github.com/crisperit)
@@ -617,6 +622,7 @@
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
