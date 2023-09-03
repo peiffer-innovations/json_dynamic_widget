@@ -5,11 +5,13 @@ part 'json_form_builder.g.dart';
 /// Builder that can build an [Form] widget.
 @jsonWidget
 abstract class _JsonFormBuilder extends JsonWidgetBuilder {
-  const _JsonFormBuilder();
+  const _JsonFormBuilder({
+    required super.args,
+  });
 
   /// If the `id` on the [data] object is non-empty, this will ensure a
   /// [GlobalKey<FormState>] is placed on the [JsonWidgetRegistry] using the
-  /// key: "${data.id}.key" so that handler functions can access the form's
+  /// key: "${data.jsonWidgetId}.key" so that handler functions can access the form's
   /// state.
   @override
   _Form buildCustom({
@@ -50,10 +52,10 @@ class _FormState extends State<_Form> {
     super.initState();
 
     _key = GlobalKey<FormState>();
-    widget.data.registry.setValue(
-      '${widget.data.id}.key',
+    widget.data.jsonWidgetRegistry.setValue(
+      '${widget.data.jsonWidgetId}.key',
       _key,
-      originator: '${widget.data.id}.key',
+      originator: '${widget.data.jsonWidgetId}.key',
     );
   }
 
@@ -61,9 +63,9 @@ class _FormState extends State<_Form> {
   void dispose() {
     super.dispose();
 
-    widget.data.registry.removeValue(
-      '${widget.data.id}.key',
-      originator: '${widget.data.id}.key',
+    widget.data.jsonWidgetRegistry.removeValue(
+      '${widget.data.jsonWidgetId}.key',
+      originator: '${widget.data.jsonWidgetId}.key',
     );
   }
 

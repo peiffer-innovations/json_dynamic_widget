@@ -5,7 +5,9 @@ part 'json_no_op_builder.g.dart';
 /// Builder that can build an widget that does nothing.
 @jsonWidget
 abstract class _JsonNoOpBuilder extends JsonWidgetBuilder {
-  const _JsonNoOpBuilder();
+  const _JsonNoOpBuilder({
+    required super.args,
+  });
 
   @override
   _NoOp buildCustom({

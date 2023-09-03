@@ -5,7 +5,9 @@ part 'json_intrinsic_height_builder.g.dart';
 /// Builder that can build an [IntrinsicHeight] widget.
 @jsonWidget
 abstract class _JsonIntrinsicHeightBuilder extends JsonWidgetBuilder {
-  const _JsonIntrinsicHeightBuilder();
+  const _JsonIntrinsicHeightBuilder({
+    required super.args,
+  });
 
   @override
   IntrinsicHeight buildCustom({

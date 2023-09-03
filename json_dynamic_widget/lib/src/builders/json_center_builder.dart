@@ -5,7 +5,9 @@ part 'json_center_builder.g.dart';
 /// Builder that can build a [Center] widget.
 @jsonWidget
 abstract class _JsonCenterBuilder extends JsonWidgetBuilder {
-  const _JsonCenterBuilder();
+  const _JsonCenterBuilder({
+    required super.args,
+  });
 
   @override
   Center buildCustom({

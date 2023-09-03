@@ -5,7 +5,9 @@ part 'json_tooltip_builder.g.dart';
 /// Builder that can build an [Tooltip] widget.
 @jsonWidget
 abstract class _JsonTooltipBuilder extends JsonWidgetBuilder {
-  const _JsonTooltipBuilder();
+  const _JsonTooltipBuilder({
+    required super.args,
+  });
 
   @override
   Tooltip buildCustom({

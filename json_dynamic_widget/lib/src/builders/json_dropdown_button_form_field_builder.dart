@@ -7,12 +7,19 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// [fromDynamic] for the format.
 class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   const JsonDropdownButtonFormFieldBuilder({
-    required this.args,
+    required super.args,
   });
 
-  static const kType = 'dropdown_button_form_field';
+  /// Constructor to build the widget via code rather than JSON.  This is used
+  /// to be able to encode widgets into JSON to help with the JSON generation.
+  /// It can also be used to more easily debug widgets that are not working as
+  /// expected.
+  factory JsonDropdownButtonFormFieldBuilder.fromModel(
+    JsonDropdownButtonFormFieldBuilderModel model,
+  ) =>
+      fromDynamic(model.toJson());
 
-  final dynamic args;
+  static const kType = 'dropdown_button_form_field';
 
   static JsonDropdownButtonFormFieldBuilder fromDynamic(
     dynamic map, {
@@ -20,6 +27,19 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   }) =>
       JsonDropdownButtonFormFieldBuilder(
         args: map,
+      );
+
+  @override
+  String get type => kType;
+
+  @override
+  JsonDropdownButtonFormFieldBuilderModel createModel({
+    ChildWidgetBuilder? childBuilder,
+    required JsonWidgetData data,
+  }) =>
+      JsonDropdownButtonFormFieldBuilderModel.fromDynamic(
+        data.jsonWidgetArgs,
+        registry: data.jsonWidgetRegistry,
       );
 
   /// Builds the widget to render to the tree.  If the [data] object has a
@@ -45,7 +65,7 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
   }
 }
 
-class JsonDropdownButtonFormFieldBuilderModel {
+class JsonDropdownButtonFormFieldBuilderModel extends JsonWidgetBuilderModel {
   const JsonDropdownButtonFormFieldBuilderModel({
     this.alignment,
     this.autofocus,
@@ -334,6 +354,42 @@ class JsonDropdownButtonFormFieldBuilderModel {
 
     return result;
   }
+
+  @override
+  Map<String, dynamic> toJson() => {
+        'alignment': ThemeEncoder.encodeAlignment(alignment),
+        'autofocus': autofocus,
+        'autovalidateMode':
+            ThemeEncoder.encodeAutovalidateMode(autovalidateMode),
+        'borderRadius': ThemeEncoder.encodeBorderRadius(borderRadius),
+        'decoration': decoration,
+        'disabledHint': disabledHint,
+        'dropdownColor': ThemeEncoder.encodeColor(dropdownColor),
+        'elevation': elevation,
+        'enableFeedback': enableFeedback,
+        'enabled': enabled,
+        'hint': hint?.toJson(),
+        'icon': icon?.toJson(),
+        'items': JsonClass.toJsonList(items),
+        'iconDisabledColor': ThemeEncoder.encodeColor(iconDisabledColor),
+        'iconEnabledColor': ThemeEncoder.encodeColor(iconEnabledColor),
+        'iconSize': iconSize,
+        'isDense': isDense,
+        'isExpanded': isExpanded,
+        'itemHeight': itemHeight,
+        'menuMaxHeight': menuMaxHeight,
+        'onChanged': onChanged,
+        'onSaved': onSaved,
+        'onTap': onTap,
+        'selectedItemBuilder': selectedItemBuilder,
+        'style': ThemeEncoder.encodeTextStyle(style),
+        'validator': validator == null
+            ? null
+            : {
+                'validators': validator!.toJson(),
+              },
+        'value': value,
+      };
 }
 
 class DropdownButtonFormFieldSchema {
@@ -341,7 +397,7 @@ class DropdownButtonFormFieldSchema {
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/dropdown_button_form_field.json';
 
   static final schema = {
-    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
     r'$children': 0,
     r'$comment':
@@ -415,14 +471,15 @@ class _JsonDropdownButtonFormFieldWidgetState
   void initState() {
     super.initState();
 
-    _model =
-        JsonDropdownButtonFormFieldBuilderModel.fromDynamic(widget.data.args);
+    _model = JsonDropdownButtonFormFieldBuilderModel.fromDynamic(
+      widget.data.jsonWidgetArgs,
+    );
     _items = _getItems();
     _selectedItemBuilder = _getSelectedItemBuilder();
     _decoration = _getDecoration();
     _value = _model.value;
-    _subscription = widget.data.registry.valueStream
-        .where((e) => !e.isSelfTriggered && e.id == widget.data.id)
+    _subscription = widget.data.jsonWidgetRegistry.valueStream
+        .where((e) => !e.isSelfTriggered && e.id == widget.data.jsonWidgetId)
         .listen((event) {
       _value = event.value;
       if (mounted) {
@@ -434,8 +491,9 @@ class _JsonDropdownButtonFormFieldWidgetState
   @override
   void didUpdateWidget(covariant _JsonDropdownButtonFormFieldWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    _model =
-        JsonDropdownButtonFormFieldBuilderModel.fromDynamic(widget.data.args);
+    _model = JsonDropdownButtonFormFieldBuilderModel.fromDynamic(
+      widget.data.jsonWidgetArgs,
+    );
     _items = _getItems();
     _selectedItemBuilder = _getSelectedItemBuilder();
     _decoration = _getDecoration();
@@ -445,10 +503,10 @@ class _JsonDropdownButtonFormFieldWidgetState
   @override
   void dispose() {
     _subscription.cancel();
-    if (widget.data.id.isNotEmpty == true) {
-      widget.data.registry.removeValue(
-        widget.data.id,
-        originator: widget.data.id,
+    if (widget.data.jsonWidgetId.isNotEmpty == true) {
+      widget.data.jsonWidgetRegistry.removeValue(
+        widget.data.jsonWidgetId,
+        originator: widget.data.jsonWidgetId,
       );
     }
     super.dispose();
@@ -460,7 +518,7 @@ class _JsonDropdownButtonFormFieldWidgetState
             _model.decoration,
             childBuilder: widget.childBuilder,
             context: context,
-            registry: widget.data.registry,
+            registry: widget.data.jsonWidgetRegistry,
           )
         : null;
   }
@@ -507,12 +565,12 @@ class _JsonDropdownButtonFormFieldWidgetState
         selectedItemBuilder = (BuildContext context) {
           final widgets = <Widget>[];
           itemEntries.forEach((key, value) {
-            widget.data.registry.setValue(
+            widget.data.jsonWidgetRegistry.setValue(
               'dropdown_item_display',
               key,
               originator: null,
             );
-            widget.data.registry.setValue(
+            widget.data.jsonWidgetRegistry.setValue(
               'dropdown_item_value',
               value,
               originator: null,
@@ -521,7 +579,7 @@ class _JsonDropdownButtonFormFieldWidgetState
             _model.selectedItemBuilder.build(
               childBuilder: widget.childBuilder,
               context: context,
-              registry: widget.data.registry,
+              registry: widget.data.jsonWidgetRegistry,
             );
           });
 
@@ -545,7 +603,7 @@ class _JsonDropdownButtonFormFieldWidgetState
         disabledHint: _model.disabledHint?.build(
           childBuilder: widget.childBuilder,
           context: context,
-          registry: widget.data.registry,
+          registry: widget.data.jsonWidgetRegistry,
         ),
         dropdownColor: _model.dropdownColor,
         elevation: _model.elevation ?? 8,
@@ -555,12 +613,12 @@ class _JsonDropdownButtonFormFieldWidgetState
         hint: _model.hint?.build(
           childBuilder: widget.childBuilder,
           context: context,
-          registry: widget.data.registry,
+          registry: widget.data.jsonWidgetRegistry,
         ),
         icon: _model.icon?.build(
           childBuilder: widget.childBuilder,
           context: context,
-          registry: widget.data.registry,
+          registry: widget.data.jsonWidgetRegistry,
         ),
         items: _items,
         iconDisabledColor: _model.iconDisabledColor,
@@ -581,11 +639,11 @@ class _JsonDropdownButtonFormFieldWidgetState
                   setState(() {});
                 }
 
-                if (widget.data.id.isNotEmpty == true) {
-                  widget.data.registry.setValue(
-                    widget.data.id,
+                if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                  widget.data.jsonWidgetRegistry.setValue(
+                    widget.data.jsonWidgetId,
                     value,
-                    originator: widget.data.id,
+                    originator: widget.data.jsonWidgetId,
                   );
                 }
               },
@@ -600,11 +658,11 @@ class _JsonDropdownButtonFormFieldWidgetState
                   value: value?.toString(),
                 );
 
-                if (widget.data.id.isNotEmpty == true) {
-                  widget.data.registry.setValue(
-                    '${widget.data.id}.error',
+                if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                  widget.data.jsonWidgetRegistry.setValue(
+                    '${widget.data.jsonWidgetId}.error',
                     error ?? '',
-                    originator: widget.data.id,
+                    originator: widget.data.jsonWidgetId,
                   );
                 }
 

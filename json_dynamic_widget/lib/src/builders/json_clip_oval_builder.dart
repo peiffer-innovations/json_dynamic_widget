@@ -5,7 +5,9 @@ part 'json_clip_oval_builder.g.dart';
 /// Builder that can build a [ClipOval] widget.
 @jsonWidget
 abstract class _JsonClipOvalBuilder extends JsonWidgetBuilder {
-  const _JsonClipOvalBuilder();
+  const _JsonClipOvalBuilder({
+    required super.args,
+  });
 
   @override
   ClipOval buildCustom({

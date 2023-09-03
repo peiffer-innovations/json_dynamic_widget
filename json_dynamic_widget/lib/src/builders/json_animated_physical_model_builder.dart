@@ -5,7 +5,9 @@ part 'json_animated_physical_model_builder.g.dart';
 /// Builder that can build an [AnimatedPhysicalModel] widget.
 @jsonWidget
 abstract class _JsonAnimatedPhysicalModelBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedPhysicalModelBuilder();
+  const _JsonAnimatedPhysicalModelBuilder({
+    required super.args,
+  });
 
   @override
   AnimatedPhysicalModel buildCustom({

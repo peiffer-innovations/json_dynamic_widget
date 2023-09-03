@@ -13,7 +13,7 @@ import 'package:json_dynamic_widget/src/models/processed_args.dart';
 ///
 /// The processor is processing every key/value of the [arg] using
 /// [JsonWidgetRegistry] processsors and it is aggregating all
-/// listen variable names. In case of passing [listenVariables] directly
+/// listen variable names. In case of passing [jsonWidgetListenVariables] directly
 /// then the aggregation step is skipped.
 class MapArgProcessor implements ArgProcessor {
   /// Processors used to resolve map key. For map value the [JsonWidgetRegistry]
@@ -30,11 +30,11 @@ class MapArgProcessor implements ArgProcessor {
   ProcessedArg process(
     JsonWidgetRegistry registry,
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
     final mapArg = arg as Map;
-    final calculateListenVariables = listenVariables == null;
-    final resultListenVariables = listenVariables ?? <String>{};
+    final calculateListenVariables = jsonWidgetListenVariables == null;
+    final resultListenVariables = jsonWidgetListenVariables ?? <String>{};
     final processedMapArg = {};
 
     if (_isJsonWidgetData(mapArg)) {
@@ -42,38 +42,41 @@ class MapArgProcessor implements ArgProcessor {
       // means the item is most likely a JsonWidgetData class, so we should
       // not process the args yet.  We should wait until the actual
       // JsonWidgetData gets built.
-      return ProcessedArg(value: arg, listenVariables: resultListenVariables);
+      return ProcessedArg(
+          value: arg, jsonWidgetListenVariables: resultListenVariables);
     }
 
     for (var key in mapArg.keys) {
-      final processedKeyArg = _processKey(registry, key, listenVariables);
+      final processedKeyArg =
+          _processKey(registry, key, jsonWidgetListenVariables);
       final processedValueArg =
-          registry.processArgs(mapArg[key], listenVariables);
+          registry.processArgs(mapArg[key], jsonWidgetListenVariables);
       processedMapArg[processedKeyArg.value] = processedValueArg.value;
       if (calculateListenVariables) {
-        resultListenVariables.addAll(processedKeyArg.listenVariables.toList());
+        resultListenVariables
+            .addAll(processedKeyArg.jsonWidgetListenVariables.toList());
         resultListenVariables.addAll(
-          processedValueArg.listenVariables.toList(),
+          processedValueArg.jsonWidgetListenVariables.toList(),
         );
       }
     }
     return ProcessedArg(
       value: processedMapArg,
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
     );
   }
 
   ProcessedArg _processKey(
     JsonWidgetRegistry registry,
     String key,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
     return _keyProcessors
         .firstWhere(
           (parser) => parser.support(key),
           orElse: () => RawArgProcessor(),
         )
-        .process(registry, key, listenVariables);
+        .process(registry, key, jsonWidgetListenVariables);
   }
 
   bool _isJsonWidgetData(Map mapArg) {

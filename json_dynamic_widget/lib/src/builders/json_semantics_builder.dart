@@ -7,7 +7,9 @@ part 'json_semantics_builder.g.dart';
 /// Builder that can build an [Semantics] widget.
 @jsonWidget
 abstract class _JsonSemanticsBuilder extends JsonWidgetBuilder {
-  const _JsonSemanticsBuilder();
+  const _JsonSemanticsBuilder({
+    required super.args,
+  });
 
   @JsonArgSchema('sortKey')
   static Map<String, dynamic> _inputDecorationSchema() {

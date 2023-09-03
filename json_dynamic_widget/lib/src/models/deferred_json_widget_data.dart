@@ -17,13 +17,10 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   JsonWidgetData? _data;
 
   @override
-  JsonWidgetBuilder? get args => data.args;
+  JsonWidgetBuilder? get jsonWidgetArgs => data.jsonWidgetArgs;
 
   @override
-  JsonWidgetBuilder Function() get builder => data.builder;
-
-  // @override
-  // List<JsonWidgetData>? get children => data.children;
+  JsonWidgetBuilder Function() get jsonWidgetBuilder => data.jsonWidgetBuilder;
 
   JsonWidgetData get data {
     var data = _data;
@@ -33,7 +30,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
       if (temp is! JsonWidgetData) {
         temp = JsonWidgetData.maybeFromDynamic(
           temp,
-          registry: registry,
+          registry: jsonWidgetRegistry,
         );
       }
       if (temp is! JsonWidgetData) {
@@ -42,17 +39,17 @@ class DeferredJsonWidgetData implements JsonWidgetData {
         );
       }
 
-      data = temp.copyWith(registry: registry);
+      data = temp.copyWith(jsonWidgetRegistry: jsonWidgetRegistry);
       _data = data;
     }
     return data;
   }
 
   @override
-  Set<String> get listenVariables => data.listenVariables;
+  Set<String> get jsonWidgetListenVariables => data.jsonWidgetListenVariables;
 
   @override
-  String get id => data.id;
+  String get jsonWidgetId => data.jsonWidgetId;
 
   @override
   Widget build({
@@ -66,36 +63,35 @@ class DeferredJsonWidgetData implements JsonWidgetData {
         // Always ignore the passed in registry.  This is deferred explicitly
         // because an ancestor widget or function wanted to pass down a custom
         // registry to the children.
-        registry: this.registry,
+        registry: jsonWidgetRegistry,
       );
 
   @override
   JsonWidgetData copyWith({
-    dynamic args,
-    JsonWidgetBuilder? builder,
-    List<JsonWidgetData>? children,
-    Set<String>? listenVariables,
-    String? id,
-    dynamic originalChild,
-    dynamic originalChildren,
-    JsonWidgetRegistry? registry,
-    String? type,
+    dynamic jsonWidgetArgs,
+    JsonWidgetBuilder? jsonWidgetBuilder,
+    Set<String>? jsonWidgetListenVariables,
+    String? jsonWidgetId,
+    JsonWidgetRegistry? jsonWidgetRegistry,
+    String? jsonWidgetType,
   }) =>
       JsonWidgetData(
-        args: args ?? this.args,
-        builder: builder as JsonWidgetBuilder Function()? ?? this.builder,
-        listenVariables: listenVariables ?? this.listenVariables,
-        id: id ?? this.id,
-        registry: registry ?? this.registry,
-        type: type ?? this.type,
+        jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
+        jsonWidgetBuilder: jsonWidgetBuilder as JsonWidgetBuilder Function()? ??
+            this.jsonWidgetBuilder,
+        jsonWidgetListenVariables:
+            jsonWidgetListenVariables ?? this.jsonWidgetListenVariables,
+        jsonWidgetId: jsonWidgetId ?? this.jsonWidgetId,
+        jsonWidgetRegistry: jsonWidgetRegistry ?? this.jsonWidgetRegistry,
+        jsonWidgetType: jsonWidgetType ?? this.jsonWidgetType,
       );
 
   @override
-  JsonWidgetRegistry get registry => _registry;
+  JsonWidgetRegistry get jsonWidgetRegistry => _registry;
 
   @override
   Map<String, dynamic> toJson() => data.toJson();
 
   @override
-  String get type => data.type;
+  String get jsonWidgetType => data.jsonWidgetType;
 }

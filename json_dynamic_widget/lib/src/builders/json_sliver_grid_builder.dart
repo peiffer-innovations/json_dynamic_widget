@@ -5,7 +5,9 @@ part 'json_sliver_grid_builder.g.dart';
 /// Builder that can build an [SliverGrid] widget.
 @jsonWidget
 abstract class _JsonSliverGridBuilder extends JsonWidgetBuilder {
-  const _JsonSliverGridBuilder();
+  const _JsonSliverGridBuilder({
+    required super.args,
+  });
 
   @override
   _SliverGrid buildCustom({
@@ -49,7 +51,7 @@ class _SliverGrid extends StatelessWidget {
         (context, index) => children[index].build(
           context: context,
           childBuilder: childBuilder,
-          registry: data.registry,
+          registry: data.jsonWidgetRegistry,
         ),
         addAutomaticKeepAlives: addAutomaticKeepAlives,
         addRepaintBoundaries: addRepaintBoundaries,

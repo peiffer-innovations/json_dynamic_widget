@@ -5,7 +5,9 @@ part 'json_scrollbar_builder.g.dart';
 /// Builder that can build an [Scrollbar] widget.
 @jsonWidget
 abstract class _JsonScrollbarBuilder extends JsonWidgetBuilder {
-  const _JsonScrollbarBuilder();
+  const _JsonScrollbarBuilder({
+    required super.args,
+  });
 
   @override
   Scrollbar buildCustom({

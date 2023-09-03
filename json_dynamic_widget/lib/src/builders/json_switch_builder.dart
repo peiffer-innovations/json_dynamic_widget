@@ -7,7 +7,9 @@ part 'json_switch_builder.g.dart';
 /// Builder that can build an [Switch] widget.
 @jsonWidget
 abstract class _JsonSwitchBuilder extends JsonWidgetBuilder {
-  const _JsonSwitchBuilder();
+  const _JsonSwitchBuilder({
+    required super.args,
+  });
 
   /// Builds the widget to render to the tree.  If the [data] object has a
   /// non-empty `id` associated with it and the [enabled] property is [true]
@@ -95,10 +97,10 @@ class _Switch extends StatefulWidget {
 class _SwitchState extends State<_Switch> {
   @override
   void dispose() {
-    if (widget.data.id.isNotEmpty == true) {
-      widget.data.registry.removeValue(
-        widget.data.id,
-        originator: widget.data.id,
+    if (widget.data.jsonWidgetId.isNotEmpty == true) {
+      widget.data.jsonWidgetRegistry.removeValue(
+        widget.data.jsonWidgetId,
+        originator: widget.data.jsonWidgetId,
       );
     }
 
@@ -120,11 +122,11 @@ class _SwitchState extends State<_Switch> {
                 value: value?.toString(),
               );
 
-              if (widget.data.id.isNotEmpty == true) {
-                widget.data.registry.setValue(
-                  '${widget.data.id}.error',
+              if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                widget.data.jsonWidgetRegistry.setValue(
+                  '${widget.data.jsonWidgetId}.error',
                   error ?? '',
-                  originator: '${widget.data.id}.error',
+                  originator: '${widget.data.jsonWidgetId}.error',
                 );
               }
 
@@ -158,11 +160,11 @@ class _SwitchState extends State<_Switch> {
 
                     state.didChange(value);
 
-                    if (widget.data.id.isNotEmpty == true) {
-                      widget.data.registry.setValue(
-                        widget.data.id,
+                    if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                      widget.data.jsonWidgetRegistry.setValue(
+                        widget.data.jsonWidgetId,
                         value,
-                        originator: widget.data.id,
+                        originator: widget.data.jsonWidgetId,
                       );
                     }
                   },

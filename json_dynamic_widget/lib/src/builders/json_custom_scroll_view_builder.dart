@@ -7,7 +7,9 @@ part 'json_custom_scroll_view_builder.g.dart';
 /// Builder that can build an [CustomScrollView] widget.
 @jsonWidget
 abstract class _JsonCustomScrollViewBuilder extends JsonWidgetBuilder {
-  const _JsonCustomScrollViewBuilder();
+  const _JsonCustomScrollViewBuilder({
+    required super.args,
+  });
 
   @JsonArgAlias(alias: 'children', name: 'slivers')
   @override

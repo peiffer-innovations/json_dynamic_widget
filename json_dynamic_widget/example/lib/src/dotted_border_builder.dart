@@ -5,7 +5,52 @@ part 'dotted_border_builder.g.dart';
 
 @jsonWidget
 abstract class _DottedBorderBuilder extends JsonWidgetBuilder {
-  const _DottedBorderBuilder();
+  const _DottedBorderBuilder({
+    required super.args,
+  });
+
+  @JsonArgEncoder('borderType')
+  static String _encodeBorderType(BorderType value) {
+    var result = 'circle';
+
+    switch (value) {
+      case BorderType.Circle:
+        result = 'circle';
+        break;
+      case BorderType.Oval:
+        result = 'oval';
+        break;
+      case BorderType.Rect:
+        result = 'rect';
+        break;
+      case BorderType.RRect:
+        result = 'rrect';
+        break;
+    }
+
+    return result;
+  }
+
+  @JsonArgEncoder('strokeCap')
+  static String _encodeStrokeCap(StrokeCap value) {
+    var result = 'butt';
+
+    switch (value) {
+      case StrokeCap.butt:
+        result = 'butt';
+        break;
+
+      case StrokeCap.round:
+        result = 'round';
+        break;
+
+      case StrokeCap.square:
+        result = 'square';
+        break;
+    }
+
+    return result;
+  }
 
   @JsonArgDecoder('borderType')
   BorderType _decodeBorderType({

@@ -7,7 +7,9 @@ part 'json_measured_builder.g.dart';
 /// measurements to the [JsonWidgetRegistry]'s values.
 @jsonWidget
 abstract class _JsonMeasuredBuilder extends JsonWidgetBuilder {
-  const _JsonMeasuredBuilder();
+  const _JsonMeasuredBuilder({
+    required super.args,
+  });
 
   @override
   _Measured buildCustom({
@@ -46,15 +48,15 @@ class _MeasuredState extends State<_Measured> {
           _renderKey.currentContext!.findRenderObject() as RenderBox?;
 
       if (boundary != null && boundary.hasSize == true) {
-        widget.data.registry.setValue(
-          '${widget.data.id}.height',
+        widget.data.jsonWidgetRegistry.setValue(
+          '${widget.data.jsonWidgetId}.height',
           boundary.size.height,
-          originator: '${widget.data.id}.height',
+          originator: '${widget.data.jsonWidgetId}.height',
         );
-        widget.data.registry.setValue(
-          '${widget.data.id}.width',
+        widget.data.jsonWidgetRegistry.setValue(
+          '${widget.data.jsonWidgetId}.width',
           boundary.size.width,
-          originator: '${widget.data.id}.width',
+          originator: '${widget.data.jsonWidgetId}.width',
         );
       }
     });
@@ -66,7 +68,7 @@ class _MeasuredState extends State<_Measured> {
         child: widget.child?.build(
               childBuilder: widget.childBuilder,
               context: context,
-              registry: widget.data.registry,
+              registry: widget.data.jsonWidgetRegistry,
             ) ??
             const SizedBox(),
       );

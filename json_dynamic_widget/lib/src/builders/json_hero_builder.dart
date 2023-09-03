@@ -5,7 +5,9 @@ part 'json_hero_builder.g.dart';
 /// Builder that can build an [Hero] widget.
 @jsonWidget
 abstract class _JsonHeroBuilder extends JsonWidgetBuilder {
-  const _JsonHeroBuilder();
+  const _JsonHeroBuilder({
+    required super.args,
+  });
 
   @override
   Hero buildCustom({

@@ -10,7 +10,9 @@ part 'json_radio_builder.g.dart';
 /// no two widgets can share the same overall id.
 @jsonWidget
 abstract class _JsonRadioBuilder extends JsonWidgetBuilder {
-  const _JsonRadioBuilder();
+  const _JsonRadioBuilder({
+    required super.args,
+  });
 
   @override
   _Radio buildCustom({
@@ -83,13 +85,13 @@ class _RadioState extends State<_Radio> {
     super.initState();
 
     _subscriptions.add(
-      widget.data.registry.valueStream
+      widget.data.jsonWidgetRegistry.valueStream
           .where((event) => event.id == widget.id)
           .listen(
         (event) {
           if (mounted == true) {
             _globalKey.currentState!.didChange(
-              widget.data.registry.getValue(widget.id),
+              widget.data.jsonWidgetRegistry.getValue(widget.id),
             );
           }
         },
@@ -99,10 +101,10 @@ class _RadioState extends State<_Radio> {
 
   @override
   void dispose() {
-    final id = widget.data.args?['id']?.toString();
+    final id = widget.data.jsonWidgetArgs?['id']?.toString();
 
     if (id != null && id.isNotEmpty == true) {
-      widget.data.registry.removeValue(
+      widget.data.jsonWidgetRegistry.removeValue(
         id,
         originator: id,
       );
@@ -131,8 +133,8 @@ class _RadioState extends State<_Radio> {
                 value: value?.toString(),
               );
 
-              if (widget.data.id.isNotEmpty == true) {
-                widget.data.registry.setValue(
+              if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                widget.data.jsonWidgetRegistry.setValue(
                   '${widget.id}.error',
                   error ?? '',
                   originator: '${widget.id}.error',
@@ -164,7 +166,7 @@ class _RadioState extends State<_Radio> {
                     state.didChange(value);
 
                     if (widget.id?.isNotEmpty == true) {
-                      widget.data.registry.setValue(
+                      widget.data.jsonWidgetRegistry.setValue(
                         widget.id!,
                         value,
                         originator: widget.id!,

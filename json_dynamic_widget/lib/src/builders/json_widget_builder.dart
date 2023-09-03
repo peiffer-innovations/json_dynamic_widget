@@ -14,19 +14,31 @@ abstract class JsonWidgetBuilder {
   /// Constructs the builder by stating whether the widget being built is a
   /// [PreferredSizeWidget] or not.
   const JsonWidgetBuilder({
+    required this.args,
     this.preferredSizeWidget = false,
   });
 
   static final JsonWidgetData kDefaultChild = JsonWidgetData(
-    args: const {},
-    builder: () => const JsonNoOpBuilder(args: <String, dynamic>{}),
+    jsonWidgetArgs: const {},
+    jsonWidgetBuilder: () => const JsonNoOpBuilder(
+      args: <String, dynamic>{},
+    ),
     // child: null,
-    listenVariables: const {},
-    registry: JsonWidgetRegistry.instance,
-    type: JsonSizedBoxBuilder.kType,
+    jsonWidgetListenVariables: const {},
+    jsonWidgetRegistry: JsonWidgetRegistry.instance,
+    jsonWidgetType: JsonSizedBoxBuilder.kType,
   );
 
+  final dynamic args;
   final bool preferredSizeWidget;
+
+  /// Returns the type of widget this widget contains.
+  String get type;
+
+  JsonWidgetBuilderModel createModel({
+    ChildWidgetBuilder? childBuilder,
+    required JsonWidgetData data,
+  });
 
   /// Builds the widget.  If there are dynamic keys on the [data] object, and
   /// the widget is not a [PreferredSizeWidget], then the returned widget will
@@ -40,7 +52,7 @@ abstract class JsonWidgetBuilder {
   }) {
     late Widget result;
 
-    if (preferredSizeWidget == true || data.listenVariables.isEmpty) {
+    if (preferredSizeWidget == true || data.jsonWidgetListenVariables.isEmpty) {
       result = _buildWidget(
         childBuilder: childBuilder,
         context: context,
@@ -51,7 +63,7 @@ abstract class JsonWidgetBuilder {
         childBuilder: childBuilder,
         customBuilder: _buildWidget,
         data: data,
-        key: ValueKey('json_widget_stateful.${data.id}'),
+        key: ValueKey('json_widget_stateful.${data.jsonWidgetId}'),
       );
     }
 
@@ -73,7 +85,7 @@ abstract class JsonWidgetBuilder {
     required BuildContext context,
     required JsonWidgetData data,
   }) {
-    final key = ValueKey(data.id);
+    final key = ValueKey(data.jsonWidgetId);
 
     dynamic exception;
     StackTrace? stackTrace;
@@ -141,8 +153,8 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
 
     _data = widget.data;
 
-    _subscription = widget.data.registry.valueStream.listen((event) {
-      if (_data.listenVariables.contains(event.id) == true) {
+    _subscription = widget.data.jsonWidgetRegistry.valueStream.listen((event) {
+      if (_data.jsonWidgetListenVariables.contains(event.id) == true) {
         // _data = _data.recreate();
         if (mounted == true) {
           setState(() {});
@@ -163,11 +175,11 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
   Widget build(BuildContext context) {
     Widget? result;
     try {
-      result = _data.builder().buildCustom(
+      result = _data.jsonWidgetBuilder().buildCustom(
             childBuilder: widget.childBuilder,
             context: context,
             data: _data,
-            key: ValueKey(_data.id),
+            key: ValueKey(_data.jsonWidgetId),
           );
 
       if (widget.childBuilder != null) {
@@ -181,11 +193,15 @@ $stack
 '''),
       );
       _logger.severe(
-        'Error building widget: [${_data.type}].',
+        'Error building widget: [${_data.jsonWidgetType}].',
         e,
         stack,
       );
     }
     return result;
   }
+}
+
+abstract class JsonWidgetBuilderModel extends JsonClass {
+  const JsonWidgetBuilderModel();
 }

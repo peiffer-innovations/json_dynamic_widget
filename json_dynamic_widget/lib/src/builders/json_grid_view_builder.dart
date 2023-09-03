@@ -7,7 +7,9 @@ part 'json_grid_view_builder.g.dart';
 /// Builder that can build an [GridView] widget.
 @jsonWidget
 abstract class _JsonGridViewBuilder extends JsonWidgetBuilder {
-  const _JsonGridViewBuilder();
+  const _JsonGridViewBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('gridDelegate')
   SliverGridDelegate _decodeGridDelecate({required dynamic value}) =>

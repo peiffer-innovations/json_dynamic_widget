@@ -11,9 +11,9 @@ void main() {
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
         {
           'child': JsonWidgetData(
-            builder: () =>
+            jsonWidgetBuilder: () =>
                 JsonWidgetRegistry.instance.getWidgetBuilder('center')({}),
-            type: type,
+            jsonWidgetType: type,
           ),
           'duration': 1000,
         },

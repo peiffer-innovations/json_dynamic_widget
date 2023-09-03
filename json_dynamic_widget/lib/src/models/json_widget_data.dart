@@ -8,24 +8,24 @@ import 'package:uuid/uuid.dart';
 
 class JsonWidgetData extends JsonClass {
   JsonWidgetData({
-    this.args,
-    required this.builder,
-    Set<String>? listenVariables,
-    String? id,
-    JsonWidgetRegistry? registry,
-    required this.type,
-  })  : listenVariables = listenVariables ?? <String>{},
-        id = id ?? const Uuid().v4(),
-        registry = registry ?? JsonWidgetRegistry.instance;
+    this.jsonWidgetArgs,
+    required this.jsonWidgetBuilder,
+    Set<String>? jsonWidgetListenVariables,
+    String? jsonWidgetId,
+    JsonWidgetRegistry? jsonWidgetRegistry,
+    required this.jsonWidgetType,
+  })  : jsonWidgetListenVariables = jsonWidgetListenVariables ?? <String>{},
+        jsonWidgetId = jsonWidgetId ?? const Uuid().v4(),
+        jsonWidgetRegistry = jsonWidgetRegistry ?? JsonWidgetRegistry.instance;
 
   static final Logger _logger = Logger('JsonWidgetData');
 
-  final dynamic args;
-  final JsonWidgetBuilder Function() builder;
-  final Set<String> listenVariables;
-  final String id;
-  final JsonWidgetRegistry registry;
-  final String type;
+  final dynamic jsonWidgetArgs;
+  final JsonWidgetBuilder Function() jsonWidgetBuilder;
+  final String jsonWidgetType;
+  final JsonWidgetRegistry jsonWidgetRegistry;
+  final Set<String> jsonWidgetListenVariables;
+  final String jsonWidgetId;
 
   /// Decodes a JSON object into a dynamic widget.  The structure is the same
   /// for all dynamic widgets with the exception of the `args` value.  The
@@ -107,7 +107,7 @@ class JsonWidgetData extends JsonClass {
           }
           final builder = registry.getWidgetBuilder(type);
           final args = map['args'] as Map? ?? const {};
-          final listenVariables = _getListenVariables(map);
+          final jsonWidgetListenVariables = _getListenVariables(map);
 
           // The validation needs to happen before we process the dynamic args
           // orelse there may be non-JSON compatible objects in the map which
@@ -121,17 +121,17 @@ class JsonWidgetData extends JsonClass {
           }
 
           result = JsonWidgetData(
-            args: map['args'] ?? {},
-            builder: () {
+            jsonWidgetArgs: map['args'] ?? {},
+            jsonWidgetBuilder: () {
               return builder(
                 args,
                 registry: registry,
               );
             },
-            listenVariables: listenVariables,
-            id: map['id'],
-            registry: registry,
-            type: type,
+            jsonWidgetListenVariables: jsonWidgetListenVariables,
+            jsonWidgetId: map['id'],
+            jsonWidgetRegistry: registry,
+            jsonWidgetType: type,
           );
         } finally {
           timer.stop();
@@ -202,13 +202,13 @@ $errorValue
   /// rebuilt. Defining them in [map] is also stopping [ArgProcessor] from
   /// calculating the listen variables during processing.
   static Set<String> _getListenVariables(dynamic map) {
-    final listenVariables = <String>{};
+    final jsonWidgetListenVariables = <String>{};
 
     final listen = map?['listen'];
     if (listen is Iterable) {
-      listenVariables.addAll(List<String>.from(listen));
+      jsonWidgetListenVariables.addAll(List<String>.from(listen));
     }
-    return listenVariables;
+    return jsonWidgetListenVariables;
   }
 
   /// Convenience method that can build the widget this data object represents.
@@ -219,34 +219,45 @@ $errorValue
     required BuildContext context,
     JsonWidgetRegistry? registry,
   }) {
-    return builder().build(
+    return jsonWidgetBuilder().build(
       childBuilder: childBuilder,
       context: context,
-      data: copyWith(registry: registry),
+      data: copyWith(jsonWidgetRegistry: registry),
     );
   }
 
   JsonWidgetData copyWith({
-    dynamic args,
-    JsonWidgetBuilder? builder,
-    Set<String>? listenVariables,
-    String? id,
-    JsonWidgetRegistry? registry,
-    String? type,
+    dynamic jsonWidgetArgs,
+    JsonWidgetBuilder? jsonWidgetBuilder,
+    Set<String>? jsonWidgetListenVariables,
+    String? jsonWidgetId,
+    JsonWidgetRegistry? jsonWidgetRegistry,
+    String? jsonWidgetType,
   }) =>
       JsonWidgetData(
-        args: args ?? this.args,
-        builder: builder as JsonWidgetBuilder Function()? ?? this.builder,
-        listenVariables: listenVariables ?? this.listenVariables,
-        id: id ?? this.id,
-        registry: registry ?? this.registry,
-        type: type ?? this.type,
+        jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
+        jsonWidgetBuilder: jsonWidgetBuilder as JsonWidgetBuilder Function()? ??
+            this.jsonWidgetBuilder,
+        jsonWidgetListenVariables:
+            jsonWidgetListenVariables ?? this.jsonWidgetListenVariables,
+        jsonWidgetId: jsonWidgetId ?? this.jsonWidgetId,
+        jsonWidgetRegistry: jsonWidgetRegistry ?? this.jsonWidgetRegistry,
+        jsonWidgetType: jsonWidgetType ?? this.jsonWidgetType,
       );
 
   @override
-  Map<String, dynamic> toJson() => JsonClass.removeNull({
-        'type': type,
-        'id': id,
-        'args': args,
-      });
+  Map<String, dynamic> toJson() {
+    final jsonWidgetArgs = this.jsonWidgetArgs;
+
+    return JsonClass.removeNull({
+      'type': jsonWidgetType,
+      'id': jsonWidgetId,
+      'listen': jsonWidgetListenVariables.isEmpty
+          ? null
+          : List<String>.from(jsonWidgetListenVariables),
+      'args': jsonWidgetArgs is JsonClass
+          ? jsonWidgetArgs.toJson()
+          : jsonWidgetArgs,
+    });
+  }
 }

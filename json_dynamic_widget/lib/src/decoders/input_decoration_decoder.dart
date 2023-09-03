@@ -5,7 +5,7 @@ class InputDecorationDecoder {
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/input_decoration.json';
 
   static final schema = {
-    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': schemaId,
     r'$children': 1,
     'title': 'InputDecoration',

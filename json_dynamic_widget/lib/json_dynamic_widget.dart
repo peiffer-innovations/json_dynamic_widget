@@ -39,3 +39,4 @@ export 'src/models/widget_value_changed.dart';
 export 'src/schema/json_dynamic_widget_schemas.dart';
 //
 export 'src/widgets/input_error.dart';
+export 'src/widgets/json_widget_exporter.dart';

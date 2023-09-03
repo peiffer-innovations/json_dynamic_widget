@@ -6,6 +6,7 @@ import 'package:example/src/components/clipper.dart';
 import 'package:example/src/custom_function/show_dialog.dart'
     as show_dialog_fun;
 import 'package:example/src/dotted_border_builder.dart';
+import 'package:example/src/export_example_page.dart';
 import 'package:example/src/issue_24_page.dart';
 import 'package:example/src/svg_builder.dart';
 import 'package:example/src/untestable_full_widget_page.dart';
@@ -199,6 +200,11 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   late final _pages = {
+    'widget to json': (context, _) async => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => const ExportExamplePage(),
+          ),
+        ),
     'align': _onJsonPageSelected,
     'animated_align': _onJsonPageSelected,
     'animated_container': _onJsonPageSelected,

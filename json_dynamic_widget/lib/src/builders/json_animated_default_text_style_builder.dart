@@ -5,7 +5,9 @@ part 'json_animated_default_text_style_builder.g.dart';
 /// Builder that can build an [AnimatedDefaultTextStyle] widget.
 @jsonWidget
 abstract class _JsonAnimatedDefaultTextStyleBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedDefaultTextStyleBuilder();
+  const _JsonAnimatedDefaultTextStyleBuilder({
+    required super.args,
+  });
 
   @override
   AnimatedDefaultTextStyle buildCustom({

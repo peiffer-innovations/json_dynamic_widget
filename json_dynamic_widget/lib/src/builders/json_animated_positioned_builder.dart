@@ -5,7 +5,9 @@ part 'json_animated_positioned_builder.g.dart';
 /// Builder that can build an [AnimatedPositioned] widget.
 @jsonWidget
 abstract class _JsonAnimatedPositionedBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedPositionedBuilder();
+  const _JsonAnimatedPositionedBuilder({
+    required super.args,
+  });
 
   @override
   AnimatedPositioned buildCustom({

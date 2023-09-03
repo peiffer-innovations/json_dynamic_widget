@@ -6,7 +6,9 @@ part 'json_set_scroll_controller_builder.g.dart';
 /// using the "key" name.
 @jsonWidget
 abstract class _JsonSetScrollControllerBuilder extends JsonWidgetBuilder {
-  const _JsonSetScrollControllerBuilder();
+  const _JsonSetScrollControllerBuilder({
+    required super.args,
+  });
 
   @override
   @JsonArgAlias(alias: 'key', name: 'varName')
@@ -55,7 +57,7 @@ class _JsonSetScrollControllerWidgetState extends State<_SetScrollController> {
       keepScrollOffset: widget.keepScrollOffset,
     );
 
-    widget.data.registry.setValue(
+    widget.data.jsonWidgetRegistry.setValue(
       widget.varName,
       _controller,
       originator: null,
@@ -66,7 +68,7 @@ class _JsonSetScrollControllerWidgetState extends State<_SetScrollController> {
   @override
   void dispose() {
     _controller.dispose();
-    widget.data.registry.removeValue(
+    widget.data.jsonWidgetRegistry.removeValue(
       widget.varName,
       originator: null,
     );
@@ -80,7 +82,7 @@ class _JsonSetScrollControllerWidgetState extends State<_SetScrollController> {
           return widget.child?.build(
                 childBuilder: widget.childBuilder,
                 context: context,
-                registry: widget.data.registry,
+                registry: widget.data.jsonWidgetRegistry,
               ) ??
               const SizedBox();
         },

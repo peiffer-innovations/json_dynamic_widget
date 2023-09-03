@@ -5,7 +5,9 @@ part 'json_decorated_box_builder.g.dart';
 /// Builder that can build an [DecoratedBox] widget.
 @jsonWidget
 abstract class _JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
-  const _JsonDecoratedBoxBuilder();
+  const _JsonDecoratedBoxBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('decoration')
   Decoration _decodeDecoration({required dynamic value}) =>

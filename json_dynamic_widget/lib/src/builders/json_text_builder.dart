@@ -5,7 +5,9 @@ part 'json_text_builder.g.dart';
 /// Builder that can build an [Text] widget.
 @jsonWidget
 abstract class _JsonTextBuilder extends JsonWidgetBuilder {
-  const _JsonTextBuilder();
+  const _JsonTextBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('text')
   String _decodeText({required dynamic value}) => value?.toString() ?? '';

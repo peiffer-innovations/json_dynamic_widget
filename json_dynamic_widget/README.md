@@ -61,6 +61,11 @@ dart run json_dynamic_widget:migrate_7 [path/to/files]
 
 The script will automatically migrate the files it finds and make a backup using the original name + `.bak`.  If you are satisfied with the output from the migration script, feel free to delete those backup files.
 
+---
+
+### Code Generation
+
+As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  
 
 ---
 

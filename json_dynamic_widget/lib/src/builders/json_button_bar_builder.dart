@@ -5,7 +5,9 @@ part 'json_button_bar_builder.g.dart';
 /// Builder that can build a [ButtonBar] widget.
 @jsonWidget
 abstract class _JsonButtonBarBuilder extends JsonWidgetBuilder {
-  const _JsonButtonBarBuilder();
+  const _JsonButtonBarBuilder({
+    required super.args,
+  });
 
   @override
   ButtonBar buildCustom({

@@ -5,7 +5,9 @@ part 'json_asset_image_builder.g.dart';
 /// Builder that can build an [Image.asset] widget.
 @jsonWidget
 abstract class _JsonAssetImageBuilder extends JsonWidgetBuilder {
-  const _JsonAssetImageBuilder();
+  const _JsonAssetImageBuilder({
+    required super.args,
+  });
 
   @override
   _AssetImage buildCustom({

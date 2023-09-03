@@ -5,7 +5,9 @@ part 'json_opacity_builder.g.dart';
 /// Builder that can build an [Opacity] widget.
 @jsonWidget
 abstract class _JsonOpacityBuilder extends JsonWidgetBuilder {
-  const _JsonOpacityBuilder();
+  const _JsonOpacityBuilder({
+    required super.args,
+  });
 
   @override
   Opacity buildCustom({

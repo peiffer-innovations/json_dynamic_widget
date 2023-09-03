@@ -7,7 +7,9 @@ part 'json_set_default_value_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSetDefaultValueBuilder extends JsonWidgetBuilder {
-  const _JsonSetDefaultValueBuilder();
+  const _JsonSetDefaultValueBuilder({
+    required super.args,
+  });
 
   @override
   _SetDefaultValue buildCustom({
@@ -42,8 +44,8 @@ class _SetDefaultValueState extends State<_SetDefaultValue> {
     super.initState();
 
     widget.values.forEach((key, value) {
-      if (widget.data.registry.getValue(key) == null) {
-        widget.data.registry.setValue(
+      if (widget.data.jsonWidgetRegistry.getValue(key) == null) {
+        widget.data.jsonWidgetRegistry.setValue(
           key,
           value,
           originator: null,
@@ -55,7 +57,7 @@ class _SetDefaultValueState extends State<_SetDefaultValue> {
   @override
   void dispose() {
     widget.values.forEach(
-      (key, _) => widget.data.registry.removeValue(
+      (key, _) => widget.data.jsonWidgetRegistry.removeValue(
         key,
         originator: null,
       ),
@@ -69,7 +71,7 @@ class _SetDefaultValueState extends State<_SetDefaultValue> {
       widget.child?.build(
         childBuilder: widget.childBuilder,
         context: context,
-        registry: widget.data.registry,
+        registry: widget.data.jsonWidgetRegistry,
       ) ??
       const SizedBox();
 }

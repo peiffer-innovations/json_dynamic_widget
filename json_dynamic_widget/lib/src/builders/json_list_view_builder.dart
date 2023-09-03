@@ -7,7 +7,9 @@ part 'json_list_view_builder.g.dart';
 /// Builder that can build an [ListView] widget.
 @jsonWidget
 abstract class _JsonListViewBuilder extends JsonWidgetBuilder {
-  const _JsonListViewBuilder();
+  const _JsonListViewBuilder({
+    required super.args,
+  });
 
   @override
   _ListView buildCustom({
@@ -36,7 +38,7 @@ class _ListView extends StatelessWidget {
     @JsonBuildArg() required this.model,
     this.padding,
     this.physics,
-    required this.primary,
+    this.primary,
     this.prototypeItem,
     this.restorationId,
     this.reverse = false,
@@ -60,7 +62,7 @@ class _ListView extends StatelessWidget {
   final JsonListViewBuilderModel model;
   final EdgeInsets? padding;
   final ScrollPhysics? physics;
-  final bool primary;
+  final bool? primary;
   final JsonWidgetData? prototypeItem;
   final String? restorationId;
   final bool reverse;
@@ -89,7 +91,7 @@ class _ListView extends StatelessWidget {
               if (value != null) {
                 for (var i = 0; i < children.length; i++) {
                   final child = children[i];
-                  if (child.id == value) {
+                  if (child.jsonWidgetId == value) {
                     result = i;
                     break;
                   }
@@ -116,7 +118,7 @@ class _ListView extends StatelessWidget {
       prototypeItem: model.prototypeItem?.build(
         context: context,
         childBuilder: childBuilder,
-        registry: data.registry,
+        registry: data.jsonWidgetRegistry,
       ),
       restorationId: model.restorationId,
       reverse: model.reverse,

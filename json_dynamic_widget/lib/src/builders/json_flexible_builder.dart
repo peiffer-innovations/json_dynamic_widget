@@ -5,7 +5,9 @@ part 'json_flexible_builder.g.dart';
 /// Builder that can build an [Flexible] widget.
 @jsonWidget
 abstract class _JsonFlexibleBuilder extends JsonWidgetBuilder {
-  const _JsonFlexibleBuilder();
+  const _JsonFlexibleBuilder({
+    required super.args,
+  });
 
   @override
   Flexible buildCustom({

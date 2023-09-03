@@ -5,7 +5,9 @@ part 'json_animated_theme_builder.g.dart';
 /// Builder that can build an [AnimatedTheme] widget.
 @jsonWidget
 abstract class _JsonAnimatedThemeBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedThemeBuilder();
+  const _JsonAnimatedThemeBuilder({
+    required super.args,
+  });
 
   @override
   AnimatedTheme buildCustom({

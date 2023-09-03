@@ -5,7 +5,9 @@ part 'json_input_error_builder.g.dart';
 /// Builder that can build an [InputError] widget.
 @jsonWidget
 abstract class _JsonInputErrorBuilder extends JsonWidgetBuilder {
-  const _JsonInputErrorBuilder();
+  const _JsonInputErrorBuilder({
+    required super.args,
+  });
 
   @JsonArgAlias(alias: 'text', name: 'error')
   @override

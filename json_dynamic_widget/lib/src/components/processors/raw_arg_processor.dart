@@ -12,11 +12,11 @@ class RawArgProcessor implements ArgProcessor {
   ProcessedArg process(
     JsonWidgetRegistry registry,
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
-    final resultListenVariables = listenVariables ?? <String>{};
+    final resultListenVariables = jsonWidgetListenVariables ?? <String>{};
     return ProcessedArg(
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
       value: arg,
     );
   }

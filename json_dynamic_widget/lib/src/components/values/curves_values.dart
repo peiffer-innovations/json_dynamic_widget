@@ -46,6 +46,22 @@ class CurvesValues {
   static const curves_key_linear_to_ease_out = 'linear_to_ease_out_curve';
   static const curves_key_slow_middle = 'slow_middle_curve';
 
+  static String? encode(dynamic curve) {
+    String? result;
+
+    if (curve is String) {
+      result = curve;
+    } else if (curve is Curve) {
+      try {
+        result = values.entries.firstWhere((e) => e.value == curve).key;
+      } catch (e) {
+        // no-op
+      }
+    }
+
+    return result;
+  }
+
   static Curve? lookup(dynamic curve) => curve is Curve ? curve : values[curve];
 
   static const values = {

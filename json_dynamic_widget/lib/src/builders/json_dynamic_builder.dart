@@ -25,6 +25,7 @@ class DynamicValuesFactory {
 /// See the [fromDynamic] for the format.
 class JsonDynamicBuilder extends JsonWidgetBuilder {
   const JsonDynamicBuilder({
+    required super.args,
     required this.childTemplate,
     required this.builderType,
     required this.initState,
@@ -37,6 +38,9 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   final String childTemplate;
   final Iterable<Map<String, dynamic>> initState;
   final JsonWidgetRegistry? registry;
+
+  @override
+  String get type => kType;
 
   /// Builds the builder from a Map-like dynamic structure. This expects the
   /// JSON format to be of the following structure:
@@ -99,6 +103,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
       final dynamicArgs = map['dynamic'];
       if (dynamicArgs != null && dynamicArgs['builderType'] != null) {
         result = JsonDynamicBuilder(
+          args: map,
           childTemplate: json.encode(dynamicArgs['childTemplate'] ?? {}),
           builderType: dynamicArgs['builderType'],
           initState: List.from(dynamicArgs['initState'] ?? []).map(
@@ -111,24 +116,33 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   }
 
   @override
+  JsonWidgetBuilderModel createModel({
+    ChildWidgetBuilder? childBuilder,
+    required JsonWidgetData data,
+  }) =>
+      throw UnsupportedError(
+        'The dynamic widget is too complex to support auto-encoding',
+      );
+
+  @override
   Widget buildCustom({
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
     Key? key,
   }) {
-    final args = Map.from(data.args);
+    final args = Map.from(data.jsonWidgetArgs);
     args.remove('dynamic');
     args['children'] = [];
     final map = {
-      'id': data.id,
+      'id': data.jsonWidgetId,
       'type': builderType,
       'args': args,
     };
 
-    if (data.registry.getValue(data.id) == null) {
-      data.registry.setValue(
-        data.id,
+    if (data.jsonWidgetRegistry.getValue(data.jsonWidgetId) == null) {
+      data.jsonWidgetRegistry.setValue(
+        data.jsonWidgetId,
         initState
             .map(
               (values) => DynamicValuesFactory.create(values),
@@ -138,7 +152,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     }
 
     return _DynamicWidget(
-      data: JsonWidgetData.fromDynamic(map, registry: data.registry),
+      data: JsonWidgetData.fromDynamic(map, registry: data.jsonWidgetRegistry),
       childTemplate: childTemplate,
       childBuilder: childBuilder,
       children: (args['children'] as List?)
@@ -177,7 +191,7 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
     super.initState();
 
     _data = widget.data;
-    _subscription = widget.data.registry.valueStream.listen(
+    _subscription = widget.data.jsonWidgetRegistry.valueStream.listen(
       _handleSubscription,
     );
   }
@@ -187,13 +201,14 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
     super.dispose();
     _subscription?.cancel();
     _subscription = null;
-    if (widget.data.id.isNotEmpty == true) {
-      widget.data.registry.removeValue(widget.data.id);
+    if (widget.data.jsonWidgetId.isNotEmpty == true) {
+      widget.data.jsonWidgetRegistry.removeValue(widget.data.jsonWidgetId);
     }
   }
 
   void _handleSubscription(WidgetValueChanged event) {
-    if (event.id == _data.id && event.originator != _data.id) {
+    if (event.id == _data.jsonWidgetId &&
+        event.originator != _data.jsonWidgetId) {
       if (mounted == true) {
         setState(() {});
       }
@@ -202,7 +217,8 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final List<dynamic> childrenData = _data.registry.getValue(_data.id) ?? [];
+    final List<dynamic> childrenData =
+        _data.jsonWidgetRegistry.getValue(_data.jsonWidgetId) ?? [];
     if (childrenData.isEmpty) {
       widget.children.clear();
     } else {
@@ -214,7 +230,7 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
           .map(
             (e) => JsonWidgetData.fromDynamic(
               json.decode(e),
-              registry: widget.data.registry,
+              registry: widget.data.jsonWidgetRegistry,
             ),
           );
       widget.children.addAll(children);
@@ -223,7 +239,7 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
     return _data.build(
       context: context,
       childBuilder: widget.childBuilder,
-      registry: widget.data.registry,
+      registry: widget.data.jsonWidgetRegistry,
     );
   }
 }
@@ -233,7 +249,7 @@ class DynamicSchema {
       'https://peiffer-innovations.github.io/flutter_json_schemas/schemas/json_dynamic_widget/dynamic.json';
 
   static final schema = {
-    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$schema': 'http://json-schema.org/draft-07/schema#',
     r'$id': id,
     r'$children': -1,
     'title': 'Dynamic',

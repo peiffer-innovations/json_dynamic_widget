@@ -5,7 +5,9 @@ part 'json_animated_switcher_builder.g.dart';
 /// Builder that can build an [AnimatedSwitcher] widget.
 @jsonWidget
 abstract class _JsonAnimatedSwitcherBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedSwitcherBuilder();
+  const _JsonAnimatedSwitcherBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('layoutBuilder')
   Widget Function(Widget?, List<Widget>) _decodeLayoutBuilder(

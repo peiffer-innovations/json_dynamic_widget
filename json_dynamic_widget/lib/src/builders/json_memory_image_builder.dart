@@ -7,7 +7,9 @@ part 'json_memory_image_builder.g.dart';
 /// Builder that can build an [Image] widget from memory.
 @jsonWidget
 abstract class _JsonMemoryImageBuilder extends JsonWidgetBuilder {
-  const _JsonMemoryImageBuilder();
+  const _JsonMemoryImageBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('image')
   Uint8List _decodeImage({required dynamic value}) => base64.decode(value);

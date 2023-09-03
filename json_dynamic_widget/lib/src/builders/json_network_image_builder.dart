@@ -6,7 +6,9 @@ part 'json_network_image_builder.g.dart';
 /// [fromDynamic] for the format.
 @jsonWidget
 abstract class _JsonNetworkImageBuilder extends JsonWidgetBuilder {
-  const _JsonNetworkImageBuilder();
+  const _JsonNetworkImageBuilder({
+    required super.args,
+  });
 
   @override
   _NetworkImage buildCustom({

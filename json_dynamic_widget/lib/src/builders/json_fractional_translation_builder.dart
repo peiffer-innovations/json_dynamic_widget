@@ -5,7 +5,9 @@ part 'json_fractional_translation_builder.g.dart';
 /// Builder that can build an [FractionalTranslation] widget.
 @jsonWidget
 abstract class _JsonFractionalTranslationBuilder extends JsonWidgetBuilder {
-  const _JsonFractionalTranslationBuilder();
+  const _JsonFractionalTranslationBuilder({
+    required super.args,
+  });
 
   @override
   FractionalTranslation buildCustom({

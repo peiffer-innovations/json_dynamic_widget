@@ -9,7 +9,9 @@ part 'json_cupertino_switch_builder.g.dart';
 /// Builder that can build an [CupertinoSwitch] widget.
 @jsonWidget
 abstract class _JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
-  const _JsonCupertinoSwitchBuilder();
+  const _JsonCupertinoSwitchBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('validators')
   Validator? _decodeValidators({required dynamic value}) => value == null
@@ -67,9 +69,9 @@ class _CupertinoSwitch extends StatefulWidget {
 class _CupertinoSwitchState extends State<_CupertinoSwitch> {
   @override
   void dispose() {
-    widget.data.registry.removeValue(
-      widget.data.id,
-      originator: widget.data.id,
+    widget.data.jsonWidgetRegistry.removeValue(
+      widget.data.jsonWidgetId,
+      originator: widget.data.jsonWidgetId,
     );
     super.dispose();
   }
@@ -97,11 +99,11 @@ class _CupertinoSwitchState extends State<_CupertinoSwitch> {
                 value: value?.toString(),
               );
 
-              if (widget.data.id.isNotEmpty == true) {
-                widget.data.registry.setValue(
-                  '${widget.data.id}.error',
+              if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                widget.data.jsonWidgetRegistry.setValue(
+                  '${widget.data.jsonWidgetId}.error',
                   error ?? '',
-                  originator: widget.data.id,
+                  originator: widget.data.jsonWidgetId,
                 );
               }
 
@@ -123,11 +125,11 @@ class _CupertinoSwitchState extends State<_CupertinoSwitch> {
 
                     state.didChange(value);
 
-                    if (widget.data.id.isNotEmpty == true) {
-                      widget.data.registry.setValue(
-                        widget.data.id,
+                    if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                      widget.data.jsonWidgetRegistry.setValue(
+                        widget.data.jsonWidgetId,
                         value,
-                        originator: widget.data.id,
+                        originator: widget.data.jsonWidgetId,
                       );
                     }
                   },

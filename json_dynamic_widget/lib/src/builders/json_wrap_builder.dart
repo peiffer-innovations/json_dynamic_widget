@@ -5,7 +5,9 @@ part 'json_wrap_builder.g.dart';
 /// Builder that can build an [Wrap] widget.
 @jsonWidget
 abstract class _JsonWrapBuilder extends JsonWidgetBuilder {
-  const _JsonWrapBuilder();
+  const _JsonWrapBuilder({
+    required super.args,
+  });
 
   @override
   _Wrap buildCustom({
@@ -63,7 +65,7 @@ class _Wrap extends StatelessWidget {
             child.build(
               context: context,
               childBuilder: childBuilder,
-              registry: data.registry,
+              registry: data.jsonWidgetRegistry,
             ),
         ],
       );

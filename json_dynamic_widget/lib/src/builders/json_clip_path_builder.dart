@@ -5,7 +5,9 @@ part 'json_clip_path_builder.g.dart';
 /// Builder that can build a [ClipPath] widget.
 @jsonWidget
 abstract class _JsonClipPathBuilder extends JsonWidgetBuilder {
-  const _JsonClipPathBuilder();
+  const _JsonClipPathBuilder({
+    required super.args,
+  });
 
   @override
   ClipPath buildCustom({

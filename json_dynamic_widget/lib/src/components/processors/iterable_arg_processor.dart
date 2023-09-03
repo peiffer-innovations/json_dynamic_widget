@@ -4,7 +4,7 @@ import 'package:json_dynamic_widget/src/models/processed_args.dart';
 
 /// Processor for iterable [arg].  The processor is processing every value of
 /// the [arg] using [JsonWidgetRegistry] processsors and it is aggregating all
-/// listen variable names. In case of passing [listenVariables] directly then
+/// listen variable names. In case of passing [jsonWidgetListenVariables] directly then
 /// the aggregation step is skipped.
 class IterableArgProcessor implements ArgProcessor {
   @override
@@ -14,24 +14,25 @@ class IterableArgProcessor implements ArgProcessor {
   ProcessedArg process(
     JsonWidgetRegistry registry,
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
-    final calculateListenVariables = listenVariables == null;
-    final resultListenVariables = listenVariables ?? <String>{};
+    final calculateListenVariables = jsonWidgetListenVariables == null;
+    final resultListenVariables = jsonWidgetListenVariables ?? <String>{};
 
     final iterableArg = arg as Iterable;
     final processedArgs = [];
     for (var arg in iterableArg) {
-      final processedArg = registry.processArgs(arg, listenVariables);
+      final processedArg = registry.processArgs(arg, jsonWidgetListenVariables);
       processedArgs.add(processedArg.value);
 
       if (calculateListenVariables) {
-        resultListenVariables.addAll(processedArg.listenVariables.toList());
+        resultListenVariables
+            .addAll(processedArg.jsonWidgetListenVariables.toList());
       }
     }
     return ProcessedArg(
       value: processedArgs,
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
     );
   }
 }

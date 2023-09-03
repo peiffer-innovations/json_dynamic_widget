@@ -5,7 +5,9 @@ part 'json_layout_builder_builder.g.dart';
 /// Builder that can build an [LayoutBuilder] widget.
 @jsonWidget
 abstract class _JsonLayoutBuilderBuilder extends JsonWidgetBuilder {
-  const _JsonLayoutBuilderBuilder();
+  const _JsonLayoutBuilderBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('builder')
   Widget Function(BuildContext context, BoxConstraints constraints)
@@ -19,24 +21,24 @@ abstract class _JsonLayoutBuilderBuilder extends JsonWidgetBuilder {
             BuildContext context,
             BoxConstraints constraints,
           ) {
-            final id = data.id;
+            final id = data.jsonWidgetId;
 
-            data.registry.setValue(
+            data.jsonWidgetRegistry.setValue(
               '$id.maxHeight',
               constraints.maxHeight,
               originator: '$id.maxHeight',
             );
-            data.registry.setValue(
+            data.jsonWidgetRegistry.setValue(
               '$id.maxWidth',
               constraints.maxWidth,
               originator: '$id.maxWidth',
             );
-            data.registry.setValue(
+            data.jsonWidgetRegistry.setValue(
               '$id.minHeight',
               constraints.minHeight,
               originator: '$id.minHeight',
             );
-            data.registry.setValue(
+            data.jsonWidgetRegistry.setValue(
               '$id.minWidth',
               constraints.minWidth,
               originator: '$id.minWidth',
@@ -45,7 +47,7 @@ abstract class _JsonLayoutBuilderBuilder extends JsonWidgetBuilder {
             return model.child?.build(
                   childBuilder: childBuilder,
                   context: context,
-                  registry: data.registry,
+                  registry: data.jsonWidgetRegistry,
                 ) ??
                 const SizedBox();
           };

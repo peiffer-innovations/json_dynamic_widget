@@ -5,7 +5,9 @@ part 'json_material_builder.g.dart';
 /// Builder that can build an [Material] widget.
 @jsonWidget
 abstract class _JsonMaterialBuilder extends JsonWidgetBuilder {
-  const _JsonMaterialBuilder();
+  const _JsonMaterialBuilder({
+    required super.args,
+  });
 
   @override
   _Material buildCustom({

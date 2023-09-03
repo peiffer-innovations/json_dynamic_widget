@@ -7,7 +7,9 @@ part 'json_set_widget_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSetWidgetBuilder extends JsonWidgetBuilder {
-  const _JsonSetWidgetBuilder();
+  const _JsonSetWidgetBuilder({
+    required super.args,
+  });
 
   @override
   _SetWidget buildCustom({
@@ -44,7 +46,7 @@ class _SetWidgetState extends State<_SetWidget> {
     super.initState();
 
     widget.widgets?.forEach(
-      (key, value) => widget.data.registry.setValue(
+      (key, value) => widget.data.jsonWidgetRegistry.setValue(
         key,
         value,
         originator: null,
@@ -55,13 +57,14 @@ class _SetWidgetState extends State<_SetWidget> {
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
-    oldWidget.widgets?.forEach((key, _) => oldWidget.data.registry.removeValue(
-          key,
-          originator: null,
-        ));
+    oldWidget.widgets
+        ?.forEach((key, _) => oldWidget.data.jsonWidgetRegistry.removeValue(
+              key,
+              originator: null,
+            ));
 
     widget.widgets?.forEach(
-      (key, value) => widget.data.registry.setValue(
+      (key, value) => widget.data.jsonWidgetRegistry.setValue(
         key,
         value,
         originator: null,
@@ -71,10 +74,11 @@ class _SetWidgetState extends State<_SetWidget> {
 
   @override
   void dispose() {
-    widget.widgets?.forEach((key, _) => widget.data.registry.removeValue(
-          key,
-          originator: null,
-        ));
+    widget.widgets
+        ?.forEach((key, _) => widget.data.jsonWidgetRegistry.removeValue(
+              key,
+              originator: null,
+            ));
 
     super.dispose();
   }
@@ -84,7 +88,7 @@ class _SetWidgetState extends State<_SetWidget> {
     return widget.child?.build(
           childBuilder: widget.childBuilder,
           context: context,
-          registry: widget.data.registry,
+          registry: widget.data.jsonWidgetRegistry,
         ) ??
         const SizedBox();
   }

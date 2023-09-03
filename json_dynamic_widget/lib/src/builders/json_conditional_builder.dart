@@ -9,7 +9,9 @@ part 'json_conditional_builder.g.dart';
 /// widgets based on the result from the [conditional].
 @jsonWidget
 abstract class _JsonConditionalBuilder extends JsonWidgetBuilder {
-  const _JsonConditionalBuilder();
+  const _JsonConditionalBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('conditional')
   Conditional _decodeConditiona({required dynamic value}) =>
@@ -70,7 +72,7 @@ class _ConditionalState extends State<_Conditional> {
     _conditional = widget.conditional;
     _appendKeys(widget.conditional, _keys);
     _data = widget.data;
-    _subscription = widget.data.registry.valueStream.listen(
+    _subscription = widget.data.jsonWidgetRegistry.valueStream.listen(
       _handleSubscription,
     );
   }
@@ -95,7 +97,7 @@ class _ConditionalState extends State<_Conditional> {
 
   @override
   Widget build(BuildContext context) {
-    final result = _conditional.evaluate(_data.registry.values);
+    final result = _conditional.evaluate(_data.jsonWidgetRegistry.values);
 
     final data = result ? widget.onTrue : widget.onFalse;
 
@@ -104,7 +106,7 @@ class _ConditionalState extends State<_Conditional> {
       child = data.build(
         context: context,
         childBuilder: widget.childBuilder,
-        registry: data.registry,
+        registry: data.jsonWidgetRegistry,
       );
     }
 

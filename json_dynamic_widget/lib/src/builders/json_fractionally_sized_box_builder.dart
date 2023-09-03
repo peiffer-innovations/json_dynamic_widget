@@ -5,7 +5,9 @@ part 'json_fractionally_sized_box_builder.g.dart';
 /// Builder that can build an [FractionallySizedBox] widget.
 @jsonWidget
 abstract class _JsonFractionallySizedBoxBuilder extends JsonWidgetBuilder {
-  const _JsonFractionallySizedBoxBuilder();
+  const _JsonFractionallySizedBoxBuilder({
+    required super.args,
+  });
 
   @override
   FractionallySizedBox buildCustom({

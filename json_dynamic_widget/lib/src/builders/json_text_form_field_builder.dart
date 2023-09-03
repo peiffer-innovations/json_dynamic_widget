@@ -5,7 +5,9 @@ part 'json_text_form_field_builder.g.dart';
 
 @jsonWidget
 abstract class _JsonTextFormFieldBuilder extends JsonWidgetBuilder {
-  const _JsonTextFormFieldBuilder();
+  const _JsonTextFormFieldBuilder({
+    required super.args,
+  });
 
   @JsonArgSchema('decoration')
   static Map<String, dynamic> _inputDecorationSchema() {
@@ -174,11 +176,13 @@ class _TextFormFieldState extends State<_TextFormField> {
       _controller.text = initialValue;
     }
 
-    widget.data.registry.valueStream
-        .where((event) => !event.isSelfTriggered && event.id == widget.data.id)
+    widget.data.jsonWidgetRegistry.valueStream
+        .where((event) =>
+            !event.isSelfTriggered && event.id == widget.data.jsonWidgetId)
         .listen(
       (event) {
-        final value = widget.data.registry.getValue(widget.data.id);
+        final value =
+            widget.data.jsonWidgetRegistry.getValue(widget.data.jsonWidgetId);
         final textValue = _controller.value.copyWith(
           text: value,
           selection: TextSelection(
@@ -195,12 +199,13 @@ class _TextFormFieldState extends State<_TextFormField> {
     );
 
     _controller.addListener(() {
-      if (widget.data.id.isNotEmpty == true && _text != _controller.text) {
+      if (widget.data.jsonWidgetId.isNotEmpty == true &&
+          _text != _controller.text) {
         _text = _controller.text;
-        widget.data.registry.setValue(
-          widget.data.id,
+        widget.data.jsonWidgetRegistry.setValue(
+          widget.data.jsonWidgetId,
           _text,
-          originator: widget.data.id,
+          originator: widget.data.jsonWidgetId,
         );
       }
     });
@@ -281,10 +286,10 @@ class _TextFormFieldState extends State<_TextFormField> {
                   value: value?.toString(),
                 );
 
-                widget.data.registry.setValue(
-                  '${widget.data.id}.error',
+                widget.data.jsonWidgetRegistry.setValue(
+                  '${widget.data.jsonWidgetId}.error',
                   error ?? '',
-                  originator: widget.data.id,
+                  originator: widget.data.jsonWidgetId,
                 );
 
                 return error;

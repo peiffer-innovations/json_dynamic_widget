@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:meta/meta_meta.dart';
 
 const jsonWidget = JsonWidget(
@@ -49,9 +51,40 @@ class JsonArgAlias {
 /// This requires the name (or alias) of the parameter from the Widget being
 /// built so the code generator knows to use this method and not try to use a
 /// default decoder.
+///
+/// The function that is annotated with this must be an instance function.
 @Target({TargetKind.method})
 class JsonArgDecoder {
   const JsonArgDecoder(this.param);
+
+  final String param;
+}
+
+/// An annotation to be placed on a `buildCustom` function to specify the
+/// default value to apply to a widget's parameter.  This will override any
+/// default value the widget itself may have.
+///
+/// The function that is annotated with this must be static and it must return a
+/// [String].
+@Target({TargetKind.method})
+class JsonDefaultParam {
+  const JsonDefaultParam(
+    this.name,
+    this.code,
+  );
+
+  final String code;
+  final String name;
+}
+
+/// An annotation to be placed on a function that can encode a particular value
+/// into a JSON representation.
+///
+/// The function that is annotated with this must be static and it must return a
+/// value that is supported by [JsonEncoder].
+@Target({TargetKind.method})
+class JsonArgEncoder {
+  const JsonArgEncoder(this.param);
 
   final String param;
 }
@@ -60,6 +93,9 @@ class JsonArgDecoder {
 /// a particular widget parameter.  This would typically be used in conjunction
 /// with the [JsonArgDecoder] to provide a schema for whatever the custom
 /// decoder supports.
+///
+/// The function that is annotated with this must be static and it must return a
+/// value that is supported by [JsonEncoder].
 @Target({TargetKind.method})
 class JsonArgSchema {
   const JsonArgSchema(this.param);
@@ -104,11 +140,13 @@ class JsonSchemaName {
 class JsonWidget {
   const JsonWidget({
     this.autoRegister = true,
+    this.jsonWidget,
     this.type,
     this.widget,
   });
 
   final bool autoRegister;
+  final String? jsonWidget;
   final String? type;
   final String? widget;
 }

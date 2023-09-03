@@ -7,7 +7,9 @@ part 'json_save_context_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSaveContextBuilder extends JsonWidgetBuilder {
-  const _JsonSaveContextBuilder();
+  const _JsonSaveContextBuilder({
+    required super.args,
+  });
 
   @override
   @JsonArgAlias(alias: 'key', name: 'varName')
@@ -40,7 +42,7 @@ class _SaveContext extends StatefulWidget {
 class _SaveContextState extends State<_SaveContext> {
   @override
   void dispose() {
-    widget.data.registry.removeValue(
+    widget.data.jsonWidgetRegistry.removeValue(
       widget.varName,
       originator: widget.varName,
     );
@@ -51,7 +53,7 @@ class _SaveContextState extends State<_SaveContext> {
   @override
   Widget build(BuildContext context) => Builder(
         builder: (BuildContext context) {
-          widget.data.registry.setValue(
+          widget.data.jsonWidgetRegistry.setValue(
             widget.varName,
             context,
             originator: widget.varName,
@@ -59,7 +61,7 @@ class _SaveContextState extends State<_SaveContext> {
           return widget.child?.build(
                 context: context,
                 childBuilder: widget.childBuilder,
-                registry: widget.data.registry,
+                registry: widget.data.jsonWidgetRegistry,
               ) ??
               const SizedBox();
         },

@@ -24,10 +24,10 @@ class ExpressionArgProcessor implements ArgProcessor {
   ProcessedArg process(
     JsonWidgetRegistry registry,
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
-    final calculateListenVariables = listenVariables == null;
-    var resultListenVariables = listenVariables ?? <String>{};
+    final calculateListenVariables = jsonWidgetListenVariables == null;
+    var resultListenVariables = jsonWidgetListenVariables ?? <String>{};
 
     final regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
     final expression = Expression.tryParse(regexpMatch.group(1)!);
@@ -36,11 +36,11 @@ class ExpressionArgProcessor implements ArgProcessor {
           ArgsExpressionEvaluator(registry, calculateListenVariables);
       arg = evaluator.evaluate(expression);
       if (calculateListenVariables) {
-        resultListenVariables = evaluator.listenVariables;
+        resultListenVariables = evaluator.jsonWidgetListenVariables;
       }
     }
     return ProcessedArg(
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
       value: arg,
     );
   }
@@ -57,9 +57,9 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
   final bool calculateListenVariables;
   final JsonWidgetRegistry registry;
 
-  final Set<String> _listenVariables = {};
+  final Set<String> _jsonWidgetListenVariables = {};
 
-  Set<String> get listenVariables => _listenVariables;
+  Set<String> get jsonWidgetListenVariables => _jsonWidgetListenVariables;
 
   dynamic evaluate(Expression expression) => super.eval(expression, {});
 
@@ -129,7 +129,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
       final function = registry.getFunction(variableName);
       if (function == null) {
         if (calculateListenVariables) {
-          _listenVariables.add(variableName);
+          _jsonWidgetListenVariables.add(variableName);
         }
         context[variableName] = registry.getValue(variableName);
       } else {

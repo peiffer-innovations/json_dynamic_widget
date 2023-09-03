@@ -94,7 +94,7 @@ class _JsonWidgetData extends JsonClass {
     this.args,
     this.child,
     this.children,
-    this.listenVariables,
+    this.jsonWidgetListenVariables,
     this.id,
     required this.type,
   });
@@ -102,7 +102,7 @@ class _JsonWidgetData extends JsonClass {
   final dynamic args;
   final dynamic child;
   final dynamic children;
-  final List<String>? listenVariables;
+  final List<String>? jsonWidgetListenVariables;
   final String? id;
   final String type;
 
@@ -126,7 +126,7 @@ class _JsonWidgetData extends JsonClass {
                     map['children'],
                     _JsonWidgetData.fromDynamic,
                   ),
-        listenVariables:
+        jsonWidgetListenVariables:
             map['listen'] == null ? null : List<String>.from(map['listen']),
         id: map['id'],
         type: map['type'].toString(),
@@ -200,10 +200,10 @@ $stack
           };
 
     final listen = <String>{
-      if (listenVariables != null) ...listenVariables!,
+      if (jsonWidgetListenVariables != null) ...jsonWidgetListenVariables!,
     };
     final processed = ArgProcessors.process(result, null);
-    listen.addAll(processed.listenVariables);
+    listen.addAll(processed.jsonWidgetListenVariables);
 
     return JsonClass.removeNull({
       'type': type,
@@ -230,7 +230,7 @@ abstract class ArgProcessor {
   /// The [registry] is giving functions and variables information context for
   /// the processing.
   ///
-  /// Passed [listenVariables] is the information about variables that
+  /// Passed [jsonWidgetListenVariables] is the information about variables that
   /// [JsonWidgetData] depends on. Passing that should be make the
   /// [ArgProcessor] to stop calculating these variable names. It is
   /// treated as a optimization.
@@ -239,7 +239,7 @@ abstract class ArgProcessor {
   /// that it depends on.
   ProcessedArg process(
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   );
 }
 
@@ -253,13 +253,14 @@ class ArgProcessors {
     RawArgProcessor(),
   ];
 
-  static ProcessedArg process(dynamic args, Set<String>? listenVariables) =>
+  static ProcessedArg process(
+          dynamic args, Set<String>? jsonWidgetListenVariables) =>
       defaults
           .firstWhere(
             (parser) => parser.support(args),
             orElse: () => RawArgProcessor(),
           )
-          .process(args, listenVariables);
+          .process(args, jsonWidgetListenVariables);
 }
 
 /// Processor that integrates https://pub.dev/packages/expressions library
@@ -284,19 +285,19 @@ class ExpressionArgProcessor implements ArgProcessor {
   @override
   ProcessedArg process(
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
-    var resultListenVariables = listenVariables ?? <String>{};
+    var resultListenVariables = jsonWidgetListenVariables ?? <String>{};
 
     final regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
     final expression = Expression.tryParse(regexpMatch.group(1)!);
     if (expression != null) {
       final evaluator = ArgsExpressionEvaluator(true);
       arg = evaluator.evaluate(expression);
-      resultListenVariables = evaluator.listenVariables;
+      resultListenVariables = evaluator.jsonWidgetListenVariables;
     }
     return ProcessedArg(
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
       value: arg,
     );
   }
@@ -311,9 +312,9 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
 
   final bool calculateListenVariables;
 
-  final Set<String> _listenVariables = {};
+  final Set<String> _jsonWidgetListenVariables = {};
 
-  Set<String> get listenVariables => _listenVariables;
+  Set<String> get jsonWidgetListenVariables => _jsonWidgetListenVariables;
 
   dynamic evaluate(Expression expression) => super.eval(expression, {});
 
@@ -368,7 +369,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
     String variableName,
   ) {
     if (!context.containsKey(variableName)) {
-      _listenVariables.add(variableName);
+      _jsonWidgetListenVariables.add(variableName);
     }
     return context;
   }
@@ -376,7 +377,7 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
 
 /// Processor for iterable [arg].  The processor is processing every value of
 /// the [arg] using [JsonWidgetRegistry] processsors and it is aggregating all
-/// listen variable names. In case of passing [listenVariables] directly then
+/// listen variable names. In case of passing [jsonWidgetListenVariables] directly then
 /// the aggregation step is skipped.
 class IterableArgProcessor implements ArgProcessor {
   @override
@@ -385,24 +386,26 @@ class IterableArgProcessor implements ArgProcessor {
   @override
   ProcessedArg process(
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
-    final calculateListenVariables = listenVariables == null;
-    final resultListenVariables = listenVariables ?? <String>{};
+    final calculateListenVariables = jsonWidgetListenVariables == null;
+    final resultListenVariables = jsonWidgetListenVariables ?? <String>{};
 
     final iterableArg = arg as Iterable;
     final processedArgs = [];
     for (var arg in iterableArg) {
-      final processedArg = ArgProcessors.process(arg, listenVariables);
+      final processedArg =
+          ArgProcessors.process(arg, jsonWidgetListenVariables);
       processedArgs.add(processedArg.value);
 
       if (calculateListenVariables) {
-        resultListenVariables.addAll(processedArg.listenVariables.toList());
+        resultListenVariables
+            .addAll(processedArg.jsonWidgetListenVariables.toList());
       }
     }
     return ProcessedArg(
       value: processedArgs,
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
     );
   }
 }
@@ -413,7 +416,7 @@ class IterableArgProcessor implements ArgProcessor {
 ///
 /// The processor is processing every key/value of the [arg] using
 /// [JsonWidgetRegistry] processsors and it is aggregating all
-/// listen variable names. In case of passing [listenVariables] directly
+/// listen variable names. In case of passing [jsonWidgetListenVariables] directly
 /// then the aggregation step is skipped.
 class MapArgProcessor implements ArgProcessor {
   /// Processors used to resolve map key. For map value the [JsonWidgetRegistry]
@@ -429,11 +432,11 @@ class MapArgProcessor implements ArgProcessor {
   @override
   ProcessedArg process(
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
     final mapArg = arg as Map;
-    final calculateListenVariables = listenVariables == null;
-    final resultListenVariables = listenVariables ?? <String>{};
+    final calculateListenVariables = jsonWidgetListenVariables == null;
+    final resultListenVariables = jsonWidgetListenVariables ?? <String>{};
     final processedMapArg = {};
 
     if (_isJsonWidgetData(mapArg)) {
@@ -441,37 +444,39 @@ class MapArgProcessor implements ArgProcessor {
       // means the item is most likely a JsonWidgetData class, so we should
       // not process the args yet.  We should wait until the actual
       // JsonWidgetData gets built.
-      return ProcessedArg(value: arg, listenVariables: resultListenVariables);
+      return ProcessedArg(
+          value: arg, jsonWidgetListenVariables: resultListenVariables);
     }
 
     for (var key in mapArg.keys) {
-      final processedKeyArg = _processKey(key, listenVariables);
+      final processedKeyArg = _processKey(key, jsonWidgetListenVariables);
       final processedValueArg =
-          ArgProcessors.process(mapArg[key], listenVariables);
+          ArgProcessors.process(mapArg[key], jsonWidgetListenVariables);
       processedMapArg[processedKeyArg.value] = processedValueArg.value;
       if (calculateListenVariables) {
-        resultListenVariables.addAll(processedKeyArg.listenVariables.toList());
+        resultListenVariables
+            .addAll(processedKeyArg.jsonWidgetListenVariables.toList());
         resultListenVariables.addAll(
-          processedValueArg.listenVariables.toList(),
+          processedValueArg.jsonWidgetListenVariables.toList(),
         );
       }
     }
     return ProcessedArg(
       value: processedMapArg,
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
     );
   }
 
   ProcessedArg _processKey(
     String key,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
     return _keyProcessors
         .firstWhere(
           (parser) => parser.support(key),
           orElse: () => RawArgProcessor(),
         )
-        .process(key, listenVariables);
+        .process(key, jsonWidgetListenVariables);
   }
 
   bool _isJsonWidgetData(Map mapArg) {
@@ -490,11 +495,11 @@ class RawArgProcessor implements ArgProcessor {
   @override
   ProcessedArg process(
     dynamic arg,
-    Set<String>? listenVariables,
+    Set<String>? jsonWidgetListenVariables,
   ) {
-    final resultListenVariables = listenVariables ?? <String>{};
+    final resultListenVariables = jsonWidgetListenVariables ?? <String>{};
     return ProcessedArg(
-      listenVariables: resultListenVariables,
+      jsonWidgetListenVariables: resultListenVariables,
       value: arg,
     );
   }
@@ -503,11 +508,11 @@ class RawArgProcessor implements ArgProcessor {
 @immutable
 class ProcessedArg {
   const ProcessedArg({
-    required this.listenVariables,
+    required this.jsonWidgetListenVariables,
     required this.value,
   });
 
-  final Set<String> listenVariables;
+  final Set<String> jsonWidgetListenVariables;
   final dynamic value;
 
   @override
@@ -517,7 +522,8 @@ class ProcessedArg {
     if (other is ProcessedArg) {
       result = true;
       result = result &&
-          listenVariables.toString() == other.listenVariables.toString();
+          jsonWidgetListenVariables.toString() ==
+              other.jsonWidgetListenVariables.toString();
       result = result && value?.toString() == other.value?.toString();
     }
 
@@ -526,8 +532,8 @@ class ProcessedArg {
 
   @override
   int get hashCode =>
-      (31 * (listenVariables.hashCode)) * (value?.hashCode ?? 0);
+      (31 * (jsonWidgetListenVariables.hashCode)) * (value?.hashCode ?? 0);
 
   @override
-  String toString() => 'ProcessedArg({$listenVariables}, {$value})';
+  String toString() => 'ProcessedArg({$jsonWidgetListenVariables}, {$value})';
 }

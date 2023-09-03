@@ -7,7 +7,9 @@ part 'json_gesture_detector_builder.g.dart';
 /// Builder that can build an [GestureDetector] widget.
 @jsonWidget
 abstract class _JsonGestureDetectorBuilder extends JsonWidgetBuilder {
-  const _JsonGestureDetectorBuilder();
+  const _JsonGestureDetectorBuilder({
+    required super.args,
+  });
 
   @override
   GestureDetector buildCustom({

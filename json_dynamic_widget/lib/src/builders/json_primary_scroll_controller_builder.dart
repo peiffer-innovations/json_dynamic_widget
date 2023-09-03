@@ -5,7 +5,9 @@ part 'json_primary_scroll_controller_builder.g.dart';
 /// Builder that can build an [PrimaryScrollController] widget.
 @jsonWidget
 abstract class _JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
-  const _JsonPrimaryScrollControllerBuilder();
+  const _JsonPrimaryScrollControllerBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('automaticallyInheritForPlatforms')
   Set<TargetPlatform> _decodeAutomaticallyInheritForPlatforms({

@@ -5,7 +5,9 @@ part 'json_container_builder.g.dart';
 /// Builder that can build an [Container] widget.
 @jsonWidget
 abstract class _JsonContainerBuilder extends JsonWidgetBuilder {
-  const _JsonContainerBuilder();
+  const _JsonContainerBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('decoration')
   Decoration? _decodeDecoration({required dynamic value}) =>

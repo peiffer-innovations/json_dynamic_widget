@@ -3,11 +3,11 @@ import 'package:meta/meta.dart';
 @immutable
 class ProcessedArg {
   const ProcessedArg({
-    required this.listenVariables,
+    required this.jsonWidgetListenVariables,
     required this.value,
   });
 
-  final Set<String> listenVariables;
+  final Set<String> jsonWidgetListenVariables;
   final dynamic value;
 
   @override
@@ -17,7 +17,8 @@ class ProcessedArg {
     if (other is ProcessedArg) {
       result = true;
       result = result &&
-          listenVariables.toString() == other.listenVariables.toString();
+          jsonWidgetListenVariables.toString() ==
+              other.jsonWidgetListenVariables.toString();
       result = result && value?.toString() == other.value?.toString();
     }
 
@@ -26,8 +27,8 @@ class ProcessedArg {
 
   @override
   int get hashCode =>
-      (31 * (listenVariables.hashCode)) * (value?.hashCode ?? 0);
+      (31 * (jsonWidgetListenVariables.hashCode)) * (value?.hashCode ?? 0);
 
   @override
-  String toString() => 'ProcessedArg({$listenVariables}, {$value})';
+  String toString() => 'ProcessedArg({$jsonWidgetListenVariables}, {$value})';
 }

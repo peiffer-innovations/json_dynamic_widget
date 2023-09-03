@@ -252,18 +252,19 @@ class JsonWidgetRegistry {
 
   /// Process [JsonWidgetData] args by using [_argProcessors].
   /// Default processors are definied in [ArgProcessors.defaults].
-  /// Passing [listenVariables] is skipping the step of calculating
+  /// Passing [jsonWidgetListenVariables] is skipping the step of calculating
   /// these variables during processing.
   /// Processing is mostly about executing pipeline of processors and finding
   /// first supported one. In case of not finding any processor
   /// [RawArgProcessor]is used instead.
-  ProcessedArg processArgs(dynamic args, Set<String>? listenVariables) {
+  ProcessedArg processArgs(
+      dynamic args, Set<String>? jsonWidgetListenVariables) {
     return _argProcessors
         .firstWhere(
           (parser) => parser.support(args),
           orElse: () => RawArgProcessor(),
         )
-        .process(this, args, listenVariables);
+        .process(this, args, jsonWidgetListenVariables);
   }
 
   /// Registers the widget type with the registry to that [type] can be used in

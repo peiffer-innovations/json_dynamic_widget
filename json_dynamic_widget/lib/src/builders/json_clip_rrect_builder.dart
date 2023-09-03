@@ -5,7 +5,9 @@ part 'json_clip_rrect_builder.g.dart';
 /// Builder that can build a [ClipRect] widget.
 @JsonWidget(type: 'clip_rrect')
 abstract class _JsonClipRRectBuilder extends JsonWidgetBuilder {
-  const _JsonClipRRectBuilder();
+  const _JsonClipRRectBuilder({
+    required super.args,
+  });
 
   @override
   ClipRRect buildCustom({

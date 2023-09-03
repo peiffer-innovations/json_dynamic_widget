@@ -5,7 +5,9 @@ part 'json_checkbox_builder.g.dart';
 
 @jsonWidget
 abstract class _JsonCheckboxBuilder extends JsonWidgetBuilder {
-  const _JsonCheckboxBuilder();
+  const _JsonCheckboxBuilder({
+    required super.args,
+  });
 
   @JsonArgDecoder('validator')
   Validator? _decodeValidator({dynamic value}) => value is Map
@@ -81,9 +83,9 @@ class _Checkbox extends StatefulWidget {
 class _CheckboxState extends State<_Checkbox> {
   @override
   void dispose() {
-    widget.data.registry.removeValue(
-      widget.data.id,
-      originator: widget.data.id,
+    widget.data.jsonWidgetRegistry.removeValue(
+      widget.data.jsonWidgetId,
+      originator: widget.data.jsonWidgetId,
     );
     super.dispose();
   }
@@ -113,10 +115,10 @@ class _CheckboxState extends State<_Checkbox> {
                 value: value?.toString(),
               );
 
-              widget.data.registry.setValue(
-                '${widget.data.id}.error',
+              widget.data.jsonWidgetRegistry.setValue(
+                '${widget.data.jsonWidgetId}.error',
                 error ?? '',
-                originator: widget.data.id,
+                originator: widget.data.jsonWidgetId,
               );
 
               return error;
@@ -144,10 +146,10 @@ class _CheckboxState extends State<_Checkbox> {
 
                     state.didChange(value);
 
-                    widget.data.registry.setValue(
-                      widget.data.id,
+                    widget.data.jsonWidgetRegistry.setValue(
+                      widget.data.jsonWidgetId,
                       value,
-                      originator: widget.data.id,
+                      originator: widget.data.jsonWidgetId,
                     );
                   },
             overlayColor: widget.overlayColor,
