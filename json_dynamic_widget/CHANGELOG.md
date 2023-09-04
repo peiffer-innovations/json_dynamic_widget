@@ -1,4 +1,4 @@
-## 7.0.0-dev2
+## 7.0.0-dev3
 
 This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.
 
@@ -14,7 +14,8 @@ This is a huge release with several breaking changes.  It brings in the ability 
 * **BREAKING CODE CHANGES**:
     * The `numSupportedWidgets` parameter was removed from `JsonWidgetData`.
 * **Performance**: a performance improvement was made to move the dynamic arg parsing to render time rather than up front.  This helps performance with large lists because the processing happens as the list is scrolled rather than up front.
-* **Code Generation**: A code generator is now in place to be able to create auto-bindings from widgets to the JSON data.  For more details, see the [Code Generation](docs/CODEGEN.md) guide
+* **Code Generation**: A code generator is now in place to be able to create auto-bindings from widgets to the JSON data.  For more details, see the [Code Generation](doc/CODEGEN.md) guide.
+* **JSON / YAML Generation**: Introduced in this version includes the ability to be able to generate JSON or YAML from Dart code.  For more information see the [Reverse Encoding](doc/REVERSE_ENCODING.md) guide.
 
 
 ## [6.1.0] - July 17th, 2023

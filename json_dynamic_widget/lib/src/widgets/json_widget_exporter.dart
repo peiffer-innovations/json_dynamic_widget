@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget/src/builders/json_exportable_builder.dart';
@@ -9,14 +10,16 @@ import 'package:yaml_writer/yaml_writer.dart';
 /// cannot decode the particular object, it should return `null`.
 typedef JsonTypeEncoder = dynamic Function(Object);
 
+enum ReverseEncodingMode {
+  json,
+  yaml,
+}
+
 class JsonWidgetExporter extends StatefulWidget {
   const JsonWidgetExporter({
     required this.child,
     super.key,
   });
-
-  static const kJson = 'json';
-  static const kYaml = 'yaml';
 
   final JsonExportable child;
 
@@ -60,7 +63,7 @@ class JsonWidgetExporterData extends State<JsonWidgetExporter> {
   String export({
     List<JsonTypeEncoder> encoders = const <JsonTypeEncoder>[],
     String indent = '',
-    String mode = JsonWidgetExporter.kJson,
+    ReverseEncodingMode mode = ReverseEncodingMode.json,
   }) {
     String? result;
 
@@ -89,14 +92,14 @@ class JsonWidgetExporterData extends State<JsonWidgetExporter> {
         },
       );
       switch (mode) {
-        case JsonWidgetExporter.kJson:
+        case ReverseEncodingMode.json:
           encoded = jsonEncoder.convert(data);
           break;
 
-        case JsonWidgetExporter.kYaml:
+        case ReverseEncodingMode.yaml:
           encoded = YAMLWriter(
             allowUnquotedStrings: true,
-            indentSize: indent.length,
+            indentSize: max(indent.length, 2),
           ).convert(
             // This is a bit of a hack.  The YAML writer doesn't support passing
             // in custom object encoders.  So to prevent this from failing, use

@@ -7,26 +7,6 @@ const jsonWidget = JsonWidget(
 );
 const jsonWidgetRegistrar = JsonWidgetRegistrar();
 
-/// An annotation that to be attached to a method that is the method that
-/// defines the Widget being built.  The default methods the code generator
-/// looks for are first `buildCustom` and then `_buildCustom`.  This can be used
-/// to provde a non-default build method.
-@Target({TargetKind.method})
-class JsonBuilder {
-  const JsonBuilder();
-}
-
-/// An annotation that informs the code generator that a particular widget
-/// parameter should be passed along from the building functions own parameter
-/// list rather that from the generated model.  This would typically only be
-/// attached to a `JsonWidgetData data` or `ChildWidgetBuilder childBuilder`
-/// parameter to let the widget being built have access to those build time
-/// values.
-@Target({TargetKind.parameter})
-class JsonBuildArg {
-  const JsonBuildArg();
-}
-
 /// An annotation to be placed on the building `buildCustom` function that can
 /// alias a particular parameter.  A typical use case for this would be to
 /// maintain JSON compatibility if a parameter is renamed, or to standardize
@@ -60,23 +40,6 @@ class JsonArgDecoder {
   final String param;
 }
 
-/// An annotation to be placed on a `buildCustom` function to specify the
-/// default value to apply to a widget's parameter.  This will override any
-/// default value the widget itself may have.
-///
-/// The function that is annotated with this must be static and it must return a
-/// [String].
-@Target({TargetKind.method})
-class JsonDefaultParam {
-  const JsonDefaultParam(
-    this.name,
-    this.code,
-  );
-
-  final String code;
-  final String name;
-}
-
 /// An annotation to be placed on a function that can encode a particular value
 /// into a JSON representation.
 ///
@@ -103,6 +66,43 @@ class JsonArgSchema {
   final String param;
 }
 
+/// An annotation that informs the code generator that a particular widget
+/// parameter should be passed along from the building functions own parameter
+/// list rather that from the generated model.  This would typically only be
+/// attached to a `JsonWidgetData data` or `ChildWidgetBuilder childBuilder`
+/// parameter to let the widget being built have access to those build time
+/// values.
+@Target({TargetKind.parameter})
+class JsonBuildArg {
+  const JsonBuildArg();
+}
+
+/// An annotation that to be attached to a method that is the method that
+/// defines the Widget being built.  The default methods the code generator
+/// looks for are first `buildCustom` and then `_buildCustom`.  This can be used
+/// to provde a non-default build method.
+@Target({TargetKind.method})
+class JsonBuilder {
+  const JsonBuilder();
+}
+
+/// An annotation to be placed on a `buildCustom` function to specify the
+/// default value to apply to a widget's parameter.  This will override any
+/// default value the widget itself may have.
+///
+/// The function that is annotated with this must be static and it must return a
+/// [String].
+@Target({TargetKind.method})
+class JsonDefaultParam {
+  const JsonDefaultParam(
+    this.name,
+    this.code,
+  );
+
+  final String code;
+  final String name;
+}
+
 /// An annotation to be placed on the custom Widget building function to
 /// instruct the code generator to use a positional parameter when building the
 /// widget rather than a named parameter.
@@ -127,6 +127,11 @@ class JsonSchemaName {
 /// An annotation to be placed on a class requesting the dynamic widget code
 /// generator to generate the dynamic code.
 ///
+/// The [widget] can be used to name the widget that is being used in things
+/// like the schema.  This can be used to rename a private widget that wraps a
+/// standard widget so that it looks like the standard widget in the
+/// documentation and to any downstream tools.
+///
 /// The [autoRegister] can be set to `false` to skip adding the widget to the
 /// default registrar.
 ///
@@ -136,6 +141,9 @@ class JsonSchemaName {
 /// the default type may be undesireable.  `ClipRRrect` becoming `clip_r_rect`
 /// for instance.  In that case, `JsonWidget(type: 'clip_rrect')` could set the
 /// actual type to `clip_rrect`.
+///
+/// The [jsonWidget] defines the name of the generated reverse encodable widget
+/// if you would like to use a name that is different from the default.
 @Target({TargetKind.classType})
 class JsonWidget {
   const JsonWidget({

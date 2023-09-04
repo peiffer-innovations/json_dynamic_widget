@@ -29,7 +29,7 @@ class _ExportExamplePageState extends State<ExportExamplePage> {
             onPressed: () {
               final data = _exportKey.currentState!.export(
                 indent: '  ',
-                mode: JsonWidgetExporter.kYaml,
+                mode: ReverseEncodingMode.yaml,
               );
               Clipboard.setData(ClipboardData(text: data));
               ScaffoldMessenger.of(context).showSnackBar(
