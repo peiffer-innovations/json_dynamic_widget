@@ -11,6 +11,10 @@ abstract class _JsonSemanticsBuilder extends JsonWidgetBuilder {
     required super.args,
   });
 
+  @JsonArgEncoder('sortKey')
+  static Map<String, dynamic>? _encodeSortKey(SemanticsSortKey? value) =>
+      value is OrdinalSortKey ? ThemeEncoder.encodeOrdinalSortKey(value) : null;
+
   @JsonArgSchema('sortKey')
   static Map<String, dynamic> _inputDecorationSchema() {
     final schema = OrdinalSortKeySchema.schema;
@@ -25,6 +29,7 @@ abstract class _JsonSemanticsBuilder extends JsonWidgetBuilder {
         validate: false,
       );
 
+  @JsonDefaultParam('sortKey', 'null')
   @override
   Semantics buildCustom({
     ChildWidgetBuilder? childBuilder,

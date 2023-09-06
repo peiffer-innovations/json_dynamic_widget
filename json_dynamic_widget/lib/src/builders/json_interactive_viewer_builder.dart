@@ -17,6 +17,7 @@ abstract class _JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
   }) =>
       JsonClass.maybeParseDouble(value) ?? 0.0000135;
 
+  @JsonDefaultParam('interactionEndFrictionCoefficient', '0.0000135')
   @override
   InteractiveViewer buildCustom({
     ChildWidgetBuilder? childBuilder,

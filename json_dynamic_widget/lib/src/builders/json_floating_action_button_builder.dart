@@ -15,13 +15,10 @@ abstract class _JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
   @JsonArgSchema('heroTag')
   static Map<String, dynamic> _heroTagSchema() => SchemaHelper.stringSchema;
 
-  @JsonArgDecoder('heroTag')
-  Object _decodeHeroTag({
-    required dynamic value,
-  }) =>
-      value ?? const _DefaultHeroTag();
-
-  @JsonDefaultParam('heroTag', "'<default FloatingActionButton tag>'")
+  @JsonDefaultParam(
+    'heroTag',
+    "'<default JsonWidget FloatingActionButton tag>'",
+  )
   @override
   FloatingActionButton buildCustom({
     ChildWidgetBuilder? childBuilder,
@@ -29,10 +26,4 @@ abstract class _JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
     required JsonWidgetData data,
     Key? key,
   });
-}
-
-class _DefaultHeroTag {
-  const _DefaultHeroTag();
-  @override
-  String toString() => '<default FloatingActionButton tag>';
 }

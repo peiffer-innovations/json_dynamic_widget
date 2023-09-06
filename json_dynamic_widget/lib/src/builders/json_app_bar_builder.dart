@@ -9,18 +9,6 @@ abstract class _JsonAppBarBuilder extends JsonWidgetBuilder {
     required super.args,
   }) : super(preferredSizeWidget: true);
 
-  // @JsonArgEncoder('notificationPredicate')
-  // static String? _encodeNotificationPredicate(
-  //   bool Function(ScrollNotification) value,
-  // ) =>
-  //     null; // A function cannot be encoded ever.
-
-  // @JsonArgDecoder('notificationPredicate')
-  // bool Function(ScrollNotification) _decodeNotificationPredicate({
-  //   required dynamic value,
-  // }) =>
-  //     value ?? defaultScrollNotificationPredicate;
-
   @override
   AppBar buildCustom({
     ChildWidgetBuilder? childBuilder,

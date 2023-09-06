@@ -4,7 +4,6 @@ import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
-import 'package:uuid/uuid.dart';
 
 class JsonWidgetData extends JsonClass {
   JsonWidgetData({
@@ -251,7 +250,9 @@ $errorValue
 
     return JsonClass.removeNull({
       'type': jsonWidgetType,
-      'id': jsonWidgetId,
+      // Skips the id if it's a valid (auto generated) UUID to avoid spamming
+      // the emitted JSON
+      'id': Uuid.isValidUUID(fromString: jsonWidgetId) ? null : jsonWidgetId,
       'listen': jsonWidgetListenVariables.isEmpty
           ? null
           : List<String>.from(jsonWidgetListenVariables),

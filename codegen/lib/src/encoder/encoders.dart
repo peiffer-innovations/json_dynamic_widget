@@ -85,6 +85,7 @@ String encode(
   ClassElement classElement,
   ParameterElement element, {
   required Map<String, String> aliases,
+  required Map<String, String> defaults,
 }) {
   final displayName = element.displayName;
   final name = aliases[displayName] ?? element.name;
@@ -101,8 +102,10 @@ String encode(
     );
   }
 
+  final defaultValueCode = defaults[name] ?? element.defaultValueCode;
+
   return '''
-  '$name': $result,
+  '$name': ${defaultValueCode == null ? result : '$defaultValueCode == $displayName ? null : $result'},
 ''';
 }
 

@@ -3,10 +3,6 @@
 <!-- START doctoc -->
 <!-- END doctoc -->
 
-
-**NOTE**: This documentation is still a work in progress!!!
-
-
 ## Introduction
 
 As of version 7.0.0, this package can perform reverse encoding where it can accept a widget tree and encode that into JSON to allow developers to try things out via Flutter's standard tools like hot reload and then be able to export the JSON or YAML for the widget tree.
@@ -80,8 +76,136 @@ Reverse encoding requires two widgets on the tree for it to work.  The parent is
   }
 ```
 
+**Example Output**
+```yaml
+type: scaffold
+args: 
+  appBar: 
+    type: 'app_bar'
+    args: 
+      title: 
+        type: text
+        args: 
+          text: Example
+
+  body: 
+    type: 'list_view'
+    args: 
+      clipBehavior: hardEdge
+      dragStartBehavior: start
+      keyboardDismissBehavior: manual
+      scrollDirection: vertical
+      children: 
+        - 
+          type: 'list_tile'
+          args: 
+            subtitle: 
+              type: text
+              args: 
+                text: 1
+            title: 
+              type: text
+              args: 
+                text: ListTile
+
+        - 
+          type: 'list_tile'
+          args: 
+            subtitle: 
+              type: text
+              args: 
+                text: 2
+            title: 
+              type: text
+              args: 
+                text: ListTile
+
+        - 
+          type: 'list_tile'
+          args: 
+            subtitle: 
+              type: text
+              args: 
+                text: 3
+            title: 
+              type: text
+              args: 
+                text: ListTile
+
+        - 
+          type: 'list_tile'
+          args: 
+            subtitle: 
+              type: text
+              args: 
+                text: 4
+            title: 
+              type: text
+              args: 
+                text: ListTile
+
+
+  drawerDragStartBehavior: start
+  floatingActionButton: 
+    type: 'floating_action_button'
+    args: 
+      clipBehavior: none
+      heroTag: null
+      onPressed: '${null}'
+      child: 
+        type: icon
+        args: 
+          icon: 
+            codePoint: 57415
+            fontFamily: MaterialIcons
+            matchTextDirection: false
+
+  persistentFooterAlignment: centerEnd
+
+```
+
 ---
 
-## Advanced
+## Building an Encodable Widget Tree
 
-TODO: Documents...
+For every widget that can be built by this core library, there exists a `Json...` version of the widget that can be used to build an encodable tree.  A few examples:
+
+* `AppBar` => `JsonAppBar`
+* `Container` => `JsonContainer`
+* `Scaffold` => `JsonScaffold`
+* `Text` => `JsonText`
+* ... etc
+
+
+
+---
+
+## Custom Encoding
+
+To be able to provide your own encoding, utilize the [@JsonArgEncoder](./ANNOTATIONS.md#jsonargencoder) annotation.  Take the following example from the [dotted_border_builder.dart](../example/lib/src/dotted_border_builder.dart):
+
+```dart
+@JsonArgEncoder('borderType')
+static String _encodeBorderType(BorderType value) {
+  var result = 'circle';
+
+  switch (value) {
+    case BorderType.Circle:
+      result = 'circle';
+      break;
+    case BorderType.Oval:
+      result = 'oval';
+      break;
+    case BorderType.Rect:
+      result = 'rect';
+      break;
+    case BorderType.RRect:
+      result = 'rrect';
+      break;
+  }
+
+  return result;
+}
+```
+
+For the `DottedBorder`, when the widget is requested to be encoded, that function will be called and passed in the value used to build the `DottedBorder` widget to produce the final encoded JSON / YAML.

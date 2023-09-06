@@ -457,6 +457,7 @@ return ${widget.getDisplayString(withNullability: false)}(
           paramDecoders: paramDecoders,
           paramDefaults: paramDefaults,
           params: params,
+          positionedParams: positionedParams,
         );
 
         con.lambda = true;
@@ -685,18 +686,22 @@ return result;
           if (param.displayName != 'key') {
             final name = aliases[param.displayName] ?? param.displayName;
             final encoder = paramEncoders[name];
+
+            final defaultValueCode =
+                paramDefaults[name] ?? param.defaultValueCode;
             if (encoder != null) {
               customEncoders.write('''
 final ${name}Encoded = ${element.name}.${encoder.name}($name);
 ''');
               buf.write('''
-'$name': ${name}Encoded,
+'$name': ${defaultValueCode == null ? '' : '$defaultValueCode == ${name}Encoded ? null : '}${name}Encoded,
 ''');
             } else {
               final encoder = encode(
                 element,
                 param,
                 aliases: aliases,
+                defaults: paramDefaults,
               );
 
               buf.write(encoder);
@@ -706,9 +711,9 @@ final ${name}Encoded = ${element.name}.${encoder.name}($name);
           m.body = Code('''
 ${customEncoders.toString()}
 
-return {
+return JsonClass.removeNull({
 ${buf.toString()}
-};
+});
 ''');
         }
       }));
@@ -872,11 +877,37 @@ void _buildConstructorParams({
   required Map<String, MethodElement> paramDecoders,
   required Map<String, String> paramDefaults,
   required List<ParameterElement> params,
+  List<String>? positionedParams,
 }) {
+  positionedParams?.forEach((paramName) {
+    if (/*!kChildNames.containsKey(p.name) && */ paramName != 'key') {
+      con.requiredParameters.add(
+        Parameter(
+          (param) {
+            final p = params.firstWhere((p) => p.name == paramName);
+            param.name = p.name;
+            param.named = false;
+
+            var defaultValueCode = paramDefaults[p.name] ?? p.defaultValueCode;
+            if (defaultValueCode == 'const <Widget>[]') {
+              defaultValueCode = 'const <JsonWidgetData>[]';
+            }
+
+            param.defaultTo = defaultValueCode == null ||
+                    (!paramDefaults.containsKey(p.name) &&
+                        paramDecoders.containsKey(p.name))
+                ? null
+                : Code(defaultValueCode);
+            param.toThis = true;
+          },
+        ),
+      );
+    }
+  });
+
   for (var p in params) {
     final annotation = builderParamChecker.firstAnnotationOf(p);
-    if (annotation != null) {
-      // comes from the build method, not the data map.
+    if (annotation != null || positionedParams?.contains(p.name) == true) {
       continue;
     }
 
@@ -889,15 +920,16 @@ void _buildConstructorParams({
             param.required = !paramDefaults.containsKey(p.name) &&
                 (p.isRequired || paramDecoders.containsKey(p.name));
 
-            var defaultValueCode = p.defaultValueCode;
+            var defaultValueCode = paramDefaults[p.name] ?? p.defaultValueCode;
             if (defaultValueCode == 'const <Widget>[]') {
               defaultValueCode = 'const <JsonWidgetData>[]';
             }
 
-            param.defaultTo =
-                defaultValueCode == null || paramDecoders.containsKey(p.name)
-                    ? null
-                    : Code(defaultValueCode);
+            param.defaultTo = defaultValueCode == null ||
+                    (!paramDefaults.containsKey(p.name) &&
+                        paramDecoders.containsKey(p.name))
+                ? null
+                : Code(defaultValueCode);
             param.toThis = true;
           },
         ),

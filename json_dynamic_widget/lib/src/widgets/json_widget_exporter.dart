@@ -97,15 +97,30 @@ class JsonWidgetExporterData extends State<JsonWidgetExporter> {
           break;
 
         case ReverseEncodingMode.yaml:
-          encoded = YAMLWriter(
+          final lines = YAMLWriter(
             allowUnquotedStrings: true,
             indentSize: max(indent.length, 2),
-          ).convert(
-            // This is a bit of a hack.  The YAML writer doesn't support passing
-            // in custom object encoders.  So to prevent this from failing, use
-            // the JSON encoder / decoder and then write the YAML.
-            json.decode(jsonEncoder.convert(data)),
-          );
+          )
+              .convert(
+                // This is a bit of a hack.  The YAML writer doesn't support passing
+                // in custom object encoders.  So to prevent this from failing, use
+                // the JSON encoder / decoder and then write the YAML.
+                json.decode(jsonEncoder.convert(data)),
+              )
+              .split('\n');
+
+          final buf = StringBuffer();
+          for (var i = 0; i < lines.length; i++) {
+            final line = lines[i];
+            if (line.trim() == '-') {
+              ++i;
+              buf.writeln('${line.trimRight()} ${lines[i].trim()}');
+            } else {
+              buf.writeln(line);
+            }
+          }
+
+          encoded = buf.toString();
           break;
 
         default:

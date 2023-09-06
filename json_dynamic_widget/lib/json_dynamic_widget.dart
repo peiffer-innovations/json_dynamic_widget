@@ -5,6 +5,7 @@ export 'package:flutter/services.dart';
 export 'package:json_class/json_class.dart';
 export 'package:json_theme/json_theme.dart';
 export 'package:json_theme/json_theme_schemas.dart';
+export 'package:uuid/uuid.dart';
 export 'package:yaon/yaon.dart';
 
 export 'src/builders/json_sized_box_builder.dart';

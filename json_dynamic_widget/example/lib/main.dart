@@ -3,12 +3,11 @@ import 'dart:io';
 
 import 'package:desktop_window/desktop_window.dart';
 import 'package:example/src/components/clipper.dart';
+import 'package:example/src/components/example_registrar.dart';
 import 'package:example/src/custom_function/show_dialog.dart'
     as show_dialog_fun;
-import 'package:example/src/dotted_border_builder.dart';
 import 'package:example/src/export_example_page.dart';
 import 'package:example/src/issue_24_page.dart';
-import 'package:example/src/svg_builder.dart';
 import 'package:example/src/untestable_full_widget_page.dart';
 import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/foundation.dart';
@@ -41,27 +40,9 @@ void main() async {
 
   final navigatorKey = GlobalKey<NavigatorState>();
 
-  // This is needed to adding custom schema validations
-  final schemaCache = SchemaCache();
-  schemaCache.addSchema(SvgSchema.id, SvgSchema.schema);
-  schemaCache.addSchema(DottedBorderSchema.id, DottedBorderSchema.schema);
-
   final registry = JsonWidgetRegistry.instance;
   registry.navigatorKey = navigatorKey;
-  registry.registerCustomBuilder(
-    DottedBorderBuilder.kType,
-    const JsonWidgetBuilderContainer(
-      builder: DottedBorderBuilder.fromDynamic,
-      schemaId: DottedBorderSchema.id,
-    ),
-  );
-  registry.registerCustomBuilder(
-    SvgBuilder.kType,
-    const JsonWidgetBuilderContainer(
-      builder: SvgBuilder.fromDynamic,
-      schemaId: SvgSchema.id,
-    ),
-  );
+  ExampleRegistrar().register(registry);
 
   registry.registerFunction('navigatePage', ({args, required registry}) async {
     final jsonStr =

@@ -15,6 +15,17 @@
 
 An annotation to be placed on the building `buildCustom` function that can alias a particular parameter.  A typical use case for this would be to maintain JSON compatibility if a parameter is renamed, or to standardize names across a family of widgets (like aliasing `slivers` to `children` on `SliverGrid`` for consistency).
 
+**Example**:
+```dart
+@JsonArgAlias(alias: 'children', name: 'slivers')
+@override
+CustomScrollView buildCustom({
+  ChildWidgetBuilder? childBuilder,
+  required BuildContext context,
+  required JsonWidgetData data,
+  Key? key,
+});
+```
 
 ---
 
@@ -30,6 +41,33 @@ This requires the name (or alias) of the parameter from the Widget being built s
 
 The function that is annotated with this must be an instance function.
 
+**Example**:
+```dart
+@JsonArgDecoder('strokeCap')
+StrokeCap _decodeStrokeCap({
+  required value,
+}) {
+  var result = StrokeCap.butt;
+
+  if (value is String) {
+    switch (value) {
+      case 'butt':
+        result = StrokeCap.butt;
+        break;
+
+      case 'round':
+        result = StrokeCap.round;
+        break;
+
+      case 'square':
+        result = StrokeCap.square;
+        break;
+    }
+  }
+
+  return result;
+}
+```
 
 ---
 
@@ -43,6 +81,30 @@ An annotation to be placed on a function that can encode a particular value into
 
 The function that is annotated with this must be static and it must return a value that is supported by [JsonEncoder].
 
+**Example**:
+```dart
+@JsonArgEncoder('strokeCap')
+static String _encodeStrokeCap(StrokeCap value) {
+  var result = 'butt';
+
+  switch (value) {
+    case StrokeCap.butt:
+      result = 'butt';
+      break;
+
+    case StrokeCap.round:
+      result = 'round';
+      break;
+
+    case StrokeCap.square:
+      result = 'square';
+      break;
+  }
+
+  return result;
+}
+```
+
 ---
 
 ## JsonArgSchema
@@ -55,6 +117,16 @@ An annotation to be placed on a function that can provide the schema for a parti
 
 The function that is annotated with this must be static and it must return a value that is supported by `JsonEncoder`.
 
+**Example**:
+```dart
+@JsonArgSchema('sortKey')
+static Map<String, dynamic> _inputDecorationSchema() {
+  final schema = OrdinalSortKeySchema.schema;
+  SchemaCache().addSchema(OrdinalSortKeySchema.id, schema);
+  return SchemaHelper.objectSchema(OrdinalSortKeySchema.id);
+}
+```
+
 ---
 
 ## JsonBuildArg
@@ -65,6 +137,20 @@ The function that is annotated with this must be static and it must return a val
 
 An annotation that informs the code generator that a particular widget parameter should be passed along from the building functions own parameter list rather that from the generated model.  This would typically only be attached to a `JsonWidgetData data` or `ChildWidgetBuilder childBuilder` parameter to let the widget being built have access to those build time values.
 
+**Example**:
+```dart
+class _Conditional extends StatefulWidget {
+  const _Conditional({
+    @JsonBuildArg() this.childBuilder,
+    required this.conditional,
+    @JsonBuildArg() required this.data,
+    @JsonBuildArg() required this.model,
+    Key? key,
+    this.onFalse,
+    this.onTrue,
+  }) : super(key: key);
+```
+
 ---
 
 ## JsonBuilder
@@ -74,6 +160,17 @@ An annotation that informs the code generator that a particular widget parameter
 **Description**:
 
 An annotation that to be attached to a method that is the method that defines the Widget being built.  The default methods the code generator looks for are first `buildCustom` and then `_buildCustom`.  This can be used to provde a non-default build method.
+
+**Example**:
+```dart
+@JsonBuilder
+_MyWidget _buildMyWidget({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+```
 
 ---
 
@@ -87,6 +184,22 @@ An annotation to be placed on a `buildCustom` function to specify the default va
 
 The function that is annotated with this must be static and it must return a `String`.
 
+**Example**:
+```dart
+@JsonDefaultParam(
+  'strokeAlign',
+  'CircularProgressIndicator.strokeAlignCenter',
+)
+@JsonDefaultParam('valueColor', 'null')
+@override
+CircularProgressIndicator buildCustom({
+  ChildWidgetBuilder? childBuilder,
+  required BuildContext context,
+  required JsonWidgetData data,
+  Key? key,
+});
+```
+
 ---
 
 ## JsonPositionedParam
@@ -99,6 +212,33 @@ An annotation to be placed on the custom Widget building function to instruct th
 
 Two examples of needing this are `Icon` and `Text`.
 
+```dart
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+part 'json_text_builder.g.dart';
+
+/// Builder that can build an [Text] widget.
+@jsonWidget
+abstract class _JsonTextBuilder extends JsonWidgetBuilder {
+  const _JsonTextBuilder({
+    required super.args,
+  });
+
+  @JsonArgDecoder('text')
+  String _decodeText({required dynamic value}) => value?.toString() ?? '';
+
+  @JsonPositionedParam('data')
+  @JsonArgAlias(alias: 'text', name: 'data')
+  @override
+  Text buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+```
+
 ---
 
 ## JsonSchemaName
@@ -109,11 +249,31 @@ Two examples of needing this are `Icon` and `Text`.
 
 An annotation to be placed on the custom Widget building function to change the default name of the outputted Schema class.
 
+**Example**:
+```dart
+@jsonWidget
+abstract class _JsonIconBuilder extends JsonWidgetBuilder {
+  const _JsonIconBuilder({
+    required super.args,
+  });
+
+  @override
+  @JsonPositionedParam('icon')
+  @JsonSchemaName('WrappedIconSchema')
+  Icon buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+```
+
 ---
 
 ## JsonWidget
 
-**Target**: `chass`
+**Target**: `class`
 
 **Description**:
 
@@ -127,15 +287,60 @@ The `type` can override the widget JSON type that is generated for the widget.  
 
 The `jsonWidget` defines the name of the generated reverse encodable widget if you would like to use a name that is different from the default.
 
+**Example**:
+```dart
+@jsonWidget
+abstract class _JsonIconBuilder extends JsonWidgetBuilder {
+  const _JsonIconBuilder({
+    required super.args,
+  });
+
+  @override
+  @JsonPositionedParam('icon')
+  @JsonSchemaName('WrappedIconSchema')
+  Icon buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+
+```
 ---
 
 ## JsonWidgetRegistrar
 
-**Target**: `chass`
+**Target**: `class`
 
 **Description**:
 
 An annotation to be placed on a class requesting the dynamic widget code generator to generate the registration code for the class.
+
+**Example**:
+```dart
+import 'package:json_dynamic_widget/builders.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+part 'default_registrar.g.dart';
+
+@jsonWidgetRegistrar
+abstract class _DefaultRegistrar {
+  @JsonWidgetRegistration(
+    builder: 'JsonDropdownButtonFormFieldBuilder',
+    schema: 'DropdownButtonFormFieldSchema',
+    widget: 'DropdownButtonFormField',
+  )
+  void withDropdownButtonFormField();
+
+  @JsonWidgetRegistration(
+    builder: 'JsonDynamicBuilder',
+    schema: 'DynamicSchema',
+    widget: 'Dynamic',
+  )
+  void withDynamic();
+}
+```
 
 ---
 
@@ -146,3 +351,28 @@ An annotation to be placed on a class requesting the dynamic widget code generat
 **Description**:
 
 An annotation to be placed on a method that registers a custom Widget within the class annotated by [JsonWidgetRegistrar].
+
+**Example**:
+```dart
+import 'package:json_dynamic_widget/builders.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+part 'default_registrar.g.dart';
+
+@jsonWidgetRegistrar
+abstract class _DefaultRegistrar {
+  @JsonWidgetRegistration(
+    builder: 'JsonDropdownButtonFormFieldBuilder',
+    schema: 'DropdownButtonFormFieldSchema',
+    widget: 'DropdownButtonFormField',
+  )
+  void withDropdownButtonFormField();
+
+  @JsonWidgetRegistration(
+    builder: 'JsonDynamicBuilder',
+    schema: 'DynamicSchema',
+    widget: 'Dynamic',
+  )
+  void withDynamic();
+}
+```

@@ -53,20 +53,20 @@ class _ExportExamplePageState extends State<ExportExamplePage> {
         child: JsonExportable(
           child: JsonScaffold(
             appBar: JsonAppBar(
-              title: JsonText(data: 'Example'),
+              title: JsonText('Example'),
             ),
             body: JsonListView(
               children: [
                 for (var i = 0; i < _count; i++)
                   JsonListTile(
-                    subtitle: JsonText(data: '${i + 1}'),
-                    title: JsonText(data: 'ListTile'),
+                    subtitle: JsonText('${i + 1}'),
+                    title: JsonText('ListTile'),
                   ),
               ],
             ),
             floatingActionButton: JsonFloatingActionButton(
               onPressed: () => setState(() => _count++),
-              child: JsonIcon(icon: Icons.add),
+              child: JsonIcon(Icons.add),
             ),
           ),
         ),

@@ -15,6 +15,7 @@ abstract class _JsonAnimatedCrossFadeBuilder extends JsonWidgetBuilder {
   }) =>
       value ?? AnimatedCrossFade.defaultLayoutBuilder;
 
+  @JsonDefaultParam('layoutBuilder', 'AnimatedCrossFade.defaultLayoutBuilder')
   @override
   AnimatedCrossFade buildCustom({
     ChildWidgetBuilder? childBuilder,
