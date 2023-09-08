@@ -56,34 +56,36 @@
                                 },
                                 "content": {
                                   "type": "form",
-                                  "child": {
-                                    "type": "single_child_scroll_view",
-                                    "args": {
-                                      "padding": [
-                                        16,
-                                        0
-                                      ]
-                                    },
+                                  "args": {
                                     "child": {
-                                      "type": "container",
+                                      "type": "single_child_scroll_view",
                                       "args": {
-                                        "alignment": "topCenter",
-                                        "width": "infinity"
-                                      },
-                                      "child": {
-                                        "type": "text_form_field",
-                                        "id": "edit_message_{id}",
-                                        "args": {
-                                          "initialValue": "{message}",
-                                          "decoration": {
-                                            "hintText": "Write a message"
-                                          },
-                                          "validators": [
-                                            {
-                                              "type": "required"
-                                            }
-                                          ]
-                                        }
+                                        "child": {
+                                          "type": "container",
+                                          "args": {
+                                            "child": {
+                                              "type": "text_form_field",
+                                              "id": "edit_message_{id}",
+                                              "args": {
+                                                "initialValue": "{message}",
+                                                "decoration": {
+                                                  "hintText": "Write a message"
+                                                },
+                                                "validators": [
+                                                  {
+                                                    "type": "required"
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            "alignment": "topCenter",
+                                            "width": "infinity"
+                                          }
+                                        },
+                                        "padding": [
+                                          16,
+                                          0
+                                        ]
                                       }
                                     }
                                   }
@@ -106,33 +108,33 @@
                                   "message": "${edit_message_{id}}"
                                 }
                               }
-                            }
-                          },
-                          "child": {
-                            "id": "{id}",
-                            "type": "list_tile",
-                            "args": {
-                              "trailing": {
-                                "type": "icon_button",
-                                "args": {
-                                  "icon": {
-                                    "type": "icon",
-                                    "args": {
-                                      "icon": {
-                                        "codePoint": 61912,
-                                        "fontFamily": "MaterialIcons",
-                                        "size": 50
+                            },
+                            "child": {
+                              "id": "{id}",
+                              "type": "list_tile",
+                              "args": {
+                                "trailing": {
+                                  "type": "icon_button",
+                                  "args": {
+                                    "icon": {
+                                      "type": "icon",
+                                      "args": {
+                                        "icon": {
+                                          "codePoint": 61912,
+                                          "fontFamily": "MaterialIcons",
+                                          "size": 50
+                                        }
                                       }
-                                    }
-                                  },
-                                  "onPressed": "${show_dialog('dialogContext', 'editDialogData{id}')}"
-                                }
-                              },
-                              "onLongPress": "${dynamic('remove{id}Element')}",
-                              "title": {
-                                "type": "text",
-                                "args": {
-                                  "text": "{message}"
+                                    },
+                                    "onPressed": "${show_dialog('dialogContext', 'editDialogData{id}')}"
+                                  }
+                                },
+                                "onLongPress": "${dynamic('remove{id}Element')}",
+                                "title": {
+                                  "type": "text",
+                                  "args": {
+                                    "text": "{message}"
+                                  }
                                 }
                               }
                             }

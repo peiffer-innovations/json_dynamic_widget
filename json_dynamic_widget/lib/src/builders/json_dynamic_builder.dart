@@ -155,10 +155,6 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
       data: JsonWidgetData.fromDynamic(map, registry: data.jsonWidgetRegistry),
       childTemplate: childTemplate,
       childBuilder: childBuilder,
-      children: (args['children'] as List?)
-              ?.map((e) => JsonWidgetData.fromDynamic(e))
-              .toList() ??
-          const <JsonWidgetData>[],
       key: key,
     );
   }
@@ -168,13 +164,11 @@ class _DynamicWidget extends StatefulWidget {
   const _DynamicWidget({
     this.childBuilder,
     required this.childTemplate,
-    required this.children,
     required this.data,
     Key? key,
   }) : super(key: key);
 
   final ChildWidgetBuilder? childBuilder;
-  final List<JsonWidgetData> children;
   final String childTemplate;
   final JsonWidgetData data;
 
@@ -191,6 +185,7 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
     super.initState();
 
     _data = widget.data;
+    _data.jsonWidgetArgs['children'] = _getChildrenData();
     _subscription = widget.data.jsonWidgetRegistry.valueStream.listen(
       _handleSubscription,
     );
@@ -207,40 +202,43 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
   }
 
   void _handleSubscription(WidgetValueChanged event) {
-    if (event.id == _data.jsonWidgetId &&
-        event.originator != _data.jsonWidgetId) {
+    if (event.id == widget.data.jsonWidgetId &&
+        event.originator != widget.data.jsonWidgetId) {
       if (mounted == true) {
-        setState(() {});
+        setState(() {
+          _data.jsonWidgetArgs['children'] = _getChildrenData();
+        });
       }
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final List<dynamic> childrenData =
-        _data.jsonWidgetRegistry.getValue(_data.jsonWidgetId) ?? [];
-    if (childrenData.isEmpty) {
-      widget.children.clear();
-    } else {
-      widget.children.clear();
-      final children = childrenData
-          .map(
-            (e) => Interpolation().eval(widget.childTemplate, e),
-          )
-          .map(
-            (e) => JsonWidgetData.fromDynamic(
-              json.decode(e),
-              registry: widget.data.jsonWidgetRegistry,
-            ),
-          );
-      widget.children.addAll(children);
-    }
-
-    return _data.build(
+    return widget.data.build(
       context: context,
       childBuilder: widget.childBuilder,
       registry: widget.data.jsonWidgetRegistry,
     );
+  }
+
+  List<JsonWidgetData> _getChildrenData() {
+    final List<dynamic> childrenValues =
+        widget.data.jsonWidgetRegistry.getValue(widget.data.jsonWidgetId) ?? [];
+    final newChildren = <JsonWidgetData>[];
+    if (childrenValues.isNotEmpty) {
+      childrenValues
+          .map(
+            (values) => Interpolation().eval(widget.childTemplate, values),
+          )
+          .map(
+            (childJson) => JsonWidgetData.fromDynamic(
+              json.decode(childJson),
+              registry: widget.data.jsonWidgetRegistry,
+            ),
+          )
+          .forEach((childWidgetData) => newChildren.add(childWidgetData));
+    }
+    return newChildren;
   }
 }
 
