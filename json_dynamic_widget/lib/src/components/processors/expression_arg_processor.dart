@@ -26,7 +26,8 @@ class ExpressionArgProcessor implements ArgProcessor {
     dynamic arg,
     Set<String>? jsonWidgetListenVariables,
   ) {
-    final calculateListenVariables = jsonWidgetListenVariables == null;
+    final calculateListenVariables =
+        jsonWidgetListenVariables == null || jsonWidgetListenVariables.isEmpty;
     var resultListenVariables = jsonWidgetListenVariables ?? <String>{};
 
     final regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
