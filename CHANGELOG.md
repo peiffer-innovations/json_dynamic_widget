@@ -1,3 +1,8 @@
+## [6.1.3] - September 9th, 2023
+
+* Temporarialy switch to [json_schema2](https://pub.dev/packages/json_schema2) until [this issue](https://github.com/Workiva/json_schema/issues/172) is resolved.
+
+
 ## [6.1.2+1] - August 22, 2023
 
 * Automated dependency updates
