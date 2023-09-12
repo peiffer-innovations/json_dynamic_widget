@@ -8,6 +8,8 @@
 - [First Party Plugins](#first-party-plugins)
 - [Migration to 7.X.X version](#migration-to-7xx-version)
   - [Code Generation](#code-generation)
+    - [< 7.0.0](#-700)
+    - [>= 7.0.0](#-700-1)
   - [Code Generation Annotations](#code-generation-annotations)
   - [Migration CLI](#migration-cli)
 - [Usage](#usage)
