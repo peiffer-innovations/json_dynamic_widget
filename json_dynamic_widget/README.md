@@ -56,16 +56,7 @@ As of `7.0.0` a code generator exists to simplify the creation of the dynamic wi
 
 The following table shows the code required to render a `Column` prior to the `7.0.0` vs the code required after the `7.0.0` release using the code generator.
 
-<table>
-<tr>
-
-<th> < 7.0.0 </th>
-<th> >= 7.0.0 </th>
-</tr>
-
-<tr>
-<td>
-
+#### < 7.0.0
 ```dart
 import 'package:child_builder/child_builder.dart';
 import 'package:flutter/material.dart';
@@ -196,8 +187,8 @@ class ColumnSchema {
   };
 }
 ```
-</td>
-<td style="vertical-align: top">
+
+#### >= 7.0.0
 
 ```dart
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
@@ -219,10 +210,6 @@ abstract class _JsonColumnBuilder extends JsonWidgetBuilder {
   });
 }
 ```
-
-</td>
-</tr>
-</table>
 
 ---
 
