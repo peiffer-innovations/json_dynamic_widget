@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/generate_toc.yml
       - '**/*.md'
+  workflow_dispatch:
 
 jobs:
   build:
