@@ -1,4 +1,4 @@
-## 7.0.0-dev3
+## [7.0.0] - TBD
 
 This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.
 
@@ -17,6 +17,54 @@ This is a huge release with several breaking changes.  It brings in the ability 
 * **Code Generation**: A code generator is now in place to be able to create auto-bindings from widgets to the JSON data.  For more details, see the [Code Generation](doc/CODEGEN.md) guide.
 * **JSON / YAML Generation**: Introduced in this version includes the ability to be able to generate JSON or YAML from Dart code.  For more information see the [Reverse Encoding](doc/REVERSE_ENCODING.md) guide.
 * **Annotations** See the [Annotations](doc/ANNOTATIONS.md) guide for information on the new code generation / reverse encoding annotations that are supported.
+
+
+## [6.1.4] - September 12th, 2023
+
+* Switch back to [json_schema](https://pub.dev/packages/json_schema)
+
+
+## [6.1.3+1] - September 12, 2023
+
+* Automated dependency updates
+
+
+## [6.1.3] - September 9th, 2023
+
+* Temporarialy switch to [json_schema2](https://pub.dev/packages/json_schema2) until [this issue](https://github.com/Workiva/json_schema/issues/172) is resolved.
+
+
+## [6.1.2+1] - August 22, 2023
+
+* Automated dependency updates
+
+
+## [6.1.2] - August 20th, 2023
+
+* Restored expands : true support (thanks [crisperit](https://github.com/crisperit)
+* Fix for Flutter 3.13 (thanks [leemankok](https://github.com/leemankok)
+
+
+## [6.1.0+4] - August 15, 2023
+
+* Automated dependency updates
+
+
+## [6.1.0+3] - August 8, 2023
+
+* Automated dependency updates
+
+
+## [6.1.0+2] - August 1, 2023
+
+* Automated dependency updates
+
+
+## [6.1.0+1] - July 18, 2023
+
+* Automated dependency updates
+
+>>>>>>> fabcc57c6772a1015dbb260dc2cb5a28bfade292:CHANGELOG.md
 
 ## [6.1.0] - July 17th, 2023
 
@@ -613,6 +661,12 @@ This is a huge release with several breaking changes.  It brings in the ability 
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
+
+
+
+
+
 
 
 

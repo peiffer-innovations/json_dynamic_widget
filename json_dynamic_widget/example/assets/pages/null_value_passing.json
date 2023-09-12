@@ -18,7 +18,8 @@
         "child": {
           "type": "text_form_field",
           "args": {
-            "maxLines": "${null}"
+            "maxLines": "${null}",
+            "minLines": "${null}"
           }
         }
       }

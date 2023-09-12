@@ -244,6 +244,7 @@ class _RootPageState extends State<RootPage> {
     'linear_progress_indicator': _onJsonPageSelected,
     'list_view': _onJsonPageSelected,
     'measured': _onJsonPageSelected,
+    'null_value_passing': _onJsonPageSelected,
     'offstage': _onJsonPageSelected,
     'opacity': _onJsonPageSelected,
     'overflow_box': _onJsonPageSelected,
