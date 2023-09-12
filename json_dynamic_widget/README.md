@@ -56,7 +56,30 @@ Here's a list of first party plugins that exist for this library.
 
 As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  The code generator can generate the Dart / Flutter code to build widgets or it can be used in reverse to generate the JSON / YAML from the Dart / Flutter code.  For more advanced information on the code generator, see the [Code Generator](doc/CODE_GENERATOR.md) document.
 
-The following table shows the code required to render a `Column` prior to the `7.0.0` vs the code required after the `7.0.0` release using the code generator.
+The code that is now required to build a custom widget with the release of `7.0.0` is followed by the code that used to be required prior to `7.0.0`.
+
+#### >= 7.0.0
+
+```dart
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+part 'json_column_builder.g.dart';
+
+@jsonWidget
+abstract class _JsonColumnBuilder extends JsonWidgetBuilder {
+  const _JsonColumnBuilder({
+    required super.args,
+  });
+
+  @override
+  Column buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+```
 
 #### < 7.0.0
 ```dart
@@ -187,29 +210,6 @@ class ColumnSchema {
       },
     ],
   };
-}
-```
-
-#### >= 7.0.0
-
-```dart
-import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-
-part 'json_column_builder.g.dart';
-
-@jsonWidget
-abstract class _JsonColumnBuilder extends JsonWidgetBuilder {
-  const _JsonColumnBuilder({
-    required super.args,
-  });
-
-  @override
-  Column buildCustom({
-    ChildWidgetBuilder? childBuilder,
-    required BuildContext context,
-    required JsonWidgetData data,
-    Key? key,
-  });
 }
 ```
 
