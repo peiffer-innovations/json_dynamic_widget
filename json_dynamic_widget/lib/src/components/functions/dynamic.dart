@@ -30,10 +30,12 @@ class DynamicFunction {
     final DynamicOperation dynamicOperation,
     final JsonWidgetRegistry registry,
   ) {
-    final childrenJson =
-        json.encode(registry.getValue(dynamicOperation.builder));
-    final childrenData =
-        List<Map<String, dynamic>>.from(json.decode(childrenJson));
+    final childrenJson = json.encode(
+      registry.getValue(dynamicOperation.builder),
+    );
+    final childrenData = List<Map<String, dynamic>>.from(
+      json.decode(childrenJson),
+    );
     final index = dynamicOperation.findIndex(childrenData);
     dynamicOperation.execute(childrenData, index);
     registry.setValue(
@@ -102,13 +104,22 @@ abstract class DynamicOperation extends JsonClass {
     switch (type) {
       case DynamicOperationType.add:
         return AddDynamicOperation(
-            builder: json[builderKey], target: target, values: values);
+          builder: json[builderKey],
+          target: target,
+          values: values,
+        );
       case DynamicOperationType.remove:
         return RemoveDynamicOperation(
-            builder: json[builderKey], target: target, values: values);
+          builder: json[builderKey],
+          target: target,
+          values: values,
+        );
       case DynamicOperationType.edit:
         return EditDynamicOperation(
-            builder: json[builderKey], target: target, values: values);
+          builder: json[builderKey],
+          target: target,
+          values: values,
+        );
       default:
         throw UnimplementedError();
     }

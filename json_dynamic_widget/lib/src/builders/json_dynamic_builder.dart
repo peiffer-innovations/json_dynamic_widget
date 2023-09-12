@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:interpolation/interpolation.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:uuid/uuid.dart';
 
 /// Creates values used to parameterize child templates.
 /// It generates 'id' field if not exist via [Uuid.v4].
@@ -193,12 +192,12 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
 
   @override
   void dispose() {
-    super.dispose();
     _subscription?.cancel();
     _subscription = null;
     if (widget.data.jsonWidgetId.isNotEmpty == true) {
       widget.data.jsonWidgetRegistry.removeValue(widget.data.jsonWidgetId);
     }
+    super.dispose();
   }
 
   void _handleSubscription(WidgetValueChanged event) {
@@ -210,15 +209,6 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
         });
       }
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return widget.data.build(
-      context: context,
-      childBuilder: widget.childBuilder,
-      registry: widget.data.jsonWidgetRegistry,
-    );
   }
 
   List<JsonWidgetData> _getChildrenData() {
@@ -239,6 +229,15 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
           .forEach((childWidgetData) => newChildren.add(childWidgetData));
     }
     return newChildren;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return widget.data.build(
+      context: context,
+      childBuilder: widget.childBuilder,
+      registry: widget.data.jsonWidgetRegistry,
+    );
   }
 }
 

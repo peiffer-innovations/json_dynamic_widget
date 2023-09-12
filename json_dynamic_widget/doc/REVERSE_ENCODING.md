@@ -91,10 +91,6 @@ args:
   body: 
     type: 'list_view'
     args: 
-      clipBehavior: hardEdge
-      dragStartBehavior: start
-      keyboardDismissBehavior: manual
-      scrollDirection: vertical
       children: 
         - 
           type: 'list_tile'
@@ -145,12 +141,9 @@ args:
                 text: ListTile
 
 
-  drawerDragStartBehavior: start
   floatingActionButton: 
     type: 'floating_action_button'
     args: 
-      clipBehavior: none
-      heroTag: null
       onPressed: '${null}'
       child: 
         type: icon
@@ -159,8 +152,6 @@ args:
             codePoint: 57415
             fontFamily: MaterialIcons
             matchTextDirection: false
-
-  persistentFooterAlignment: centerEnd
 
 ```
 

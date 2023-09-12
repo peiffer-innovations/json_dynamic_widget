@@ -5,10 +5,6 @@ part 'json_set_value_builder.g.dart';
 /// Builder that sets a value (or group of values) to the [JsonWidgetRegistry].
 /// This doesn't actually have a widget and instead simply returns the child's
 /// built widget.
-///
-/// When used closely to the child the value is being set for, it's recommended
-/// to use the static reference to avoid the widget receiving the wrong value
-/// during build and rebuild cycles.
 @jsonWidget
 abstract class _JsonSetValueBuilder extends JsonWidgetBuilder {
   const _JsonSetValueBuilder({
@@ -28,6 +24,7 @@ class _SetValue extends StatefulWidget {
   const _SetValue({
     this.child,
     @JsonBuildArg() this.childBuilder,
+    this.cleanup = true,
     @JsonBuildArg() required this.data,
     @JsonBuildArg() super.key,
     this.values,
@@ -35,6 +32,10 @@ class _SetValue extends StatefulWidget {
 
   final JsonWidgetData? child;
   final ChildWidgetBuilder? childBuilder;
+
+  /// Set to `true` to remove the values that were set when this is disposed.
+  /// Set to `false` to keep the values this set even after this is disposed.
+  final bool cleanup;
   final JsonWidgetData data;
   final Map? values;
 
@@ -76,11 +77,14 @@ class _SetValueState extends State<_SetValue> {
 
   @override
   void dispose() {
-    widget.values
-        ?.forEach((key, _) => widget.data.jsonWidgetRegistry.removeValue(
-              key,
-              originator: null,
-            ));
+    if (widget.cleanup) {
+      widget.values?.forEach(
+        (key, _) => widget.data.jsonWidgetRegistry.removeValue(
+          key,
+          originator: null,
+        ),
+      );
+    }
 
     super.dispose();
   }

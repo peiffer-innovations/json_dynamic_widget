@@ -38,6 +38,7 @@
                             "edit_message_{id}"
                           ],
                           "args": {
+                            "cleanup": false,
                             "values": {
                               "editDialogData{id}": {
                                 "actions": [

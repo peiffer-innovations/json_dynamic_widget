@@ -10,8 +10,9 @@ dynamic body({
         final String dialogDataVarName = args[1];
 
         final BuildContext context = registry.getValue(buildContextVarName);
-        final dialogData =
-            DialogData.fromJson(registry.getValue(dialogDataVarName));
+        final dialogData = DialogData.fromJson(
+          registry.getValue(dialogDataVarName),
+        );
 
         final title = JsonWidgetData.fromDynamic(
           dialogData.title,
