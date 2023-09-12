@@ -7,7 +7,11 @@
 - [Adding the Required Dependencies](#adding-the-required-dependencies)
 - [Building a Custom Widget](#building-a-custom-widget)
   - [Simple Widget](#simple-widget)
-  - [Aliasing Properties](#aliasing-properties)
+  - [Aliasing Parameters](#aliasing-parameters)
+  - [Custom Codecs](#custom-codecs)
+  - [Positioned Widget Parameters](#positioned-widget-parameters)
+  - [Changing the Widget Type](#changing-the-widget-type)
+  - [Fully Custom Widget](#fully-custom-widget)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
