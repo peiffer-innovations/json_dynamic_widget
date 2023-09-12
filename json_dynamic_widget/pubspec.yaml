@@ -37,13 +37,13 @@ dev_dependencies:
     sdk: 'flutter'
   json_dynamic_widget_codegen: '^0.9.1'
 
-dependency_overrides:
-  dynamic_widget_annotation:
-    path: ../annotation
-  json_dynamic_widget_codegen:
-    path: ../codegen
-  # json_theme:
-  #   path: ../../json_theme/json_theme
+# dependency_overrides:
+#   dynamic_widget_annotation:
+#     path: ../annotation
+#   json_dynamic_widget_codegen:
+#     path: ../codegen
+#   json_theme:
+#     path: ../../json_theme/json_theme
 
 ignore_updates:
   - 'archive'
