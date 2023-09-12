@@ -16,4 +16,4 @@ jobs:
         with:
           COMMIT_MESSAGE: '[actions skip]: TOC'
           GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-          TARGET_PATHS: README.md
+          TARGET_PATHS: README.md,annotation/README.md,codegen/README.md,json_dynamic_widget/README.md,json_dynamic_widget/doc/*.md

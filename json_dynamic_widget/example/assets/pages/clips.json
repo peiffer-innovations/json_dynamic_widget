@@ -1,0 +1,183 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Clips"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "list_view",
+      "args": {
+        "children": [
+          {
+            "type": "list_tile",
+            "args": {
+              "title": {
+                "type": "center",
+                "args": {
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "ClipRect"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "center",
+            "id": "clip_rect",
+            "args": {
+              "child": {
+                "type": "clip_rect",
+                "args": {
+                  "child": {
+                    "type": "container",
+                    "args": {
+                      "child": {
+                        "type": "align",
+                        "args": {
+                          "alignment": "topLeft",
+                          "heightFactor": 0.75,
+                          "widthFactor": 0.75,
+                          "child": {
+                            "type": "network_image",
+                            "args": {
+                              "src": "https://i.ibb.co/1vXpqVs/flutter-logo.jpg"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "list_tile",
+            "id": "clip_rrect",
+            "args": {
+              "title": {
+                "type": "center",
+                "args": {
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "ClipRRect"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "center",
+            "args": {
+              "child": {
+                "type": "clip_rrect",
+                "args": {
+                  "borderRadius": 16.0,
+                  "child": {
+                    "type": "container",
+                    "args": {
+                      "color": "#ff0000",
+                      "height": 100.0,
+                      "width": 100.0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "list_tile",
+            "id": "clip_oval",
+            "args": {
+              "title": {
+                "type": "center",
+                "args": {
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "ClipOval"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "center",
+            "args": {
+              "child": {
+                "type": "clip_oval",
+                "args": {
+                  "child": {
+                    "type": "network_image",
+                    "args": {
+                      "src": "https://i.ibb.co/1vXpqVs/flutter-logo.jpg"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "list_tile",
+            "id": "clip_path",
+            "args": {
+              "title": {
+                "type": "center",
+                "args": {
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "ClipPath"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "center",
+            "args": {
+              "child": {
+                "type": "clip_path",
+                "listen": [
+                  "clipper"
+                ],
+                "args": {
+                  "clipper": "${clipper}",
+                  "child": {
+                    "type": "container",
+                    "args": {
+                      "color": "#ff0000",
+                      "height": 100.0,
+                      "width": 100.0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "sized_box",
+            "args": {
+              "height": 20.0
+            }
+          }
+        ]
+      }
+    }
+  }
+}

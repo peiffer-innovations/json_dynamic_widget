@@ -1,0 +1,65 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "IntrinsicWidth"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "intrinsic_width",
+      "args": {
+        "child": {
+          "type": "column",
+          "args": {
+            "crossAxisAlignment": "stretch",
+            "children": [
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Short"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "A bit Longer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "The Longest text button"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "type": "set_value",
+  "args": {
+    "values": {
+      "entries": {
+        "values": [
+          "align",
+          "animated_align",
+          "animated_container",
+          "animated_cross_fade",
+          "animated_default_text_style",
+          "animated_opacity",
+          "animated_padding",
+          "animated_physical_model",
+          "animated_positioned",
+          "animated_positioned_directional",
+          "animated_size",
+          "animated_switcher",
+          "animated_theme",
+          "aspect_ratio",
+          "asset_images",
+          "bank_example",
+          "baseline",
+          "buttons",
+          "card",
+          "center",
+          "checkbox",
+          "circular_progress_indicator",
+          "clips",
+          "conditional",
+          "cupertino_switch",
+          "decorated_box",
+          "directionality",
+          "dynamic",
+          "fitted_box",
+          "for_each",
+          "form",
+          "fractional_translation",
+          "fractionally_sized_box",
+          "gestures",
+          "images",
+          "indexed_stack",
+          "input_error",
+          "interactive_viewer",
+          "intrinsic_height",
+          "intrinsic_width",
+          "issue_10",
+          "issue_11",
+          "issue_12",
+          "issue_20_list",
+          "issue_20_single",
+          "issue_24",
+          "issue_30",
+          "layout_builder",
+          "limited_box",
+          "linear_progress_indicator",
+          "list_view",
+          "measured",
+          "offstage",
+          "opacity",
+          "overflow_box",
+          "placeholder",
+          "popup_menu_button",
+          "simple_page",
+          "switch",
+          "theme",
+          "tween_animation",
+          "variables"
+        ]
+      },
+      "template": {
+        "type": "padding",
+        "args": {
+          "padding": 16.0,
+          "child": {
+            "type": "material",
+            "args": {
+              "elevation": 2,
+              "child": {
+                "type": "container",
+                "args": {
+                  "color": "#ccc",
+                  "child": {
+                    "type": "stack",
+                    "args": {
+                      "alignment": "center",
+                      "children": [
+                        {
+                          "type": "opacity",
+                          "args": {
+                            "opacity": 0.25,
+                            "child": {
+                              "type": "placeholder"
+                            }
+                          }
+                        },
+                        {
+                          "type": "text",
+                          "listen": [
+                            "value"
+                          ],
+                          "args": {
+                            "text": "${value}"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "GridView"
+              }
+            }
+          }
+        },
+        "body": {
+          "type": "column",
+          "args": {
+            "mainAxisSize": "min",
+            "children": [
+              {
+                "type": "row",
+                "args": {
+                  "mainAxisSize": "min",
+                  "children": [
+                    {
+                      "type": "elevated_button",
+                      "args": {
+                        "onPressed": "${set_value('index', 0)}",
+                        "child": {
+                          "type": "text",
+                          "args": {
+                            "text": "Fixed Child Size"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "sized_box",
+                      "args": {
+                        "width": 16
+                      }
+                    },
+                    {
+                      "type": "elevated_button",
+                      "args": {
+                        "onPressed": "${set_value('index', 1)}",
+                        "child": {
+                          "type": "text",
+                          "args": {
+                            "text": "Fixed Child Count"
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "sized_box",
+                "args": {
+                  "height": "16"
+                }
+              },
+              {
+                "type": "expanded",
+                "args": {
+                  "child": {
+                    "type": "indexed_stack",
+                    "listen": [
+                      "index"
+                    ],
+                    "args": {
+                      "index": "${index}",
+                      "children": [
+                        {
+                          "type": "grid_view",
+                          "args": {
+                            "gridDelegate": {
+                              "childAspectRatio": 1.5,
+                              "crossAxisSpacing": 16.0,
+                              "mainAxisSpacing": 12.0,
+                              "maxCrossAxisExtent": 300,
+                              "type": "max_cross_axis_extent"
+                            },
+                            "children": "${for_each(entries['values'], 'template')}"
+                          }
+                        },
+                        {
+                          "type": "grid_view",
+                          "args": {
+                            "gridDelegate": {
+                              "crossAxisCount": 4,
+                              "childAspectRatio": 0.5,
+                              "crossAxisSpacing": 8.0,
+                              "mainAxisSpacing": 12.0,
+                              "type": "fixed_cross_axis_count"
+                            },
+                            "children": "${for_each(entries['values'], 'template')}"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

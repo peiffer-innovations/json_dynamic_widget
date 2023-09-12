@@ -1,0 +1,469 @@
+{
+  "type": "layout_builder",
+  "id": "screen",
+  "args": {
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "LayoutBuilder"
+              }
+            }
+          }
+        },
+        "body": {
+          "type": "layout_builder",
+          "id": "body",
+          "args": {
+            "child": {
+              "type": "list_view",
+              "args": {
+                "children": [
+                  {
+                    "type": "container",
+                    "id": "scroll_pre_container",
+                    "args": {
+                      "color": "999",
+                      "height": 100.0,
+                      "child": {
+                        "type": "center",
+                        "args": {
+                          "child": {
+                            "type": "column",
+                            "args": {
+                              "mainAxisSize": "min",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "args": {
+                                    "style": {
+                                      "fontWeight": "bold"
+                                    },
+                                    "text": "pre-container"
+                                  }
+                                },
+                                {
+                                  "type": "row",
+                                  "args": {
+                                    "mainAxisSize": "min",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": "("
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "container.minWidth"
+                                        ],
+                                        "args": {
+                                          "text": "${container.minWidth}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": " x "
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "container.minHeight"
+                                        ],
+                                        "args": {
+                                          "text": "${container.minHeight}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": ") <= ("
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "container.maxWidth"
+                                        ],
+                                        "args": {
+                                          "text": "${container.maxWidth}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": " x "
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "container.maxHeight"
+                                        ],
+                                        "args": {
+                                          "text": "${container.maxHeight}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": ")"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "id": "scroll_screen",
+                    "args": {
+                      "color": "aaa",
+                      "height": 100.0,
+                      "child": {
+                        "type": "center",
+                        "args": {
+                          "child": {
+                            "type": "column",
+                            "args": {
+                              "mainAxisSize": "min",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "args": {
+                                    "style": {
+                                      "fontWeight": "bold"
+                                    },
+                                    "text": "screen"
+                                  }
+                                },
+                                {
+                                  "type": "row",
+                                  "args": {
+                                    "mainAxisSize": "min",
+                                    "children": [
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": "("
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "screen.minWidth"
+                                        ],
+                                        "args": {
+                                          "text": "${screen.minWidth}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": " x "
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "screen.minHeight"
+                                        ],
+                                        "args": {
+                                          "text": "${screen.minHeight}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": ") <= ("
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "screen.maxWidth"
+                                        ],
+                                        "args": {
+                                          "text": "${screen.maxWidth}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": " x "
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "listen": [
+                                          "screen.maxHeight"
+                                        ],
+                                        "args": {
+                                          "text": "${screen.maxHeight}"
+                                        }
+                                      },
+                                      {
+                                        "type": "text",
+                                        "args": {
+                                          "text": ")"
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "id": "scroll_body",
+                    "args": {
+                      "color": "bbb",
+                      "height": 100.0,
+                      "child": {
+                        "type": "container",
+                        "args": {
+                          "child": {
+                            "type": "center",
+                            "args": {
+                              "child": {
+                                "type": "column",
+                                "args": {
+                                  "mainAxisSize": "min",
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "args": {
+                                        "style": {
+                                          "fontWeight": "bold"
+                                        },
+                                        "text": "body"
+                                      }
+                                    },
+                                    {
+                                      "type": "row",
+                                      "args": {
+                                        "mainAxisSize": "min",
+                                        "children": [
+                                          {
+                                            "type": "text",
+                                            "args": {
+                                              "text": "("
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "listen": [
+                                              "body.minWidth"
+                                            ],
+                                            "args": {
+                                              "text": "${body.minWidth}"
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "args": {
+                                              "text": " x "
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "listen": [
+                                              "body.minHeight"
+                                            ],
+                                            "args": {
+                                              "text": "${body.minHeight}"
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "args": {
+                                              "text": ") <= ("
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "listen": [
+                                              "body.maxWidth"
+                                            ],
+                                            "args": {
+                                              "text": "${body.maxWidth}"
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "args": {
+                                              "text": " x "
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "listen": [
+                                              "body.maxHeight"
+                                            ],
+                                            "args": {
+                                              "text": "${body.maxHeight}"
+                                            }
+                                          },
+                                          {
+                                            "type": "text",
+                                            "args": {
+                                              "text": ")"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  {
+                    "type": "container",
+                    "id": "scroll_container",
+                    "args": {
+                      "alignment": "center",
+                      "child": {
+                        "type": "container",
+                        "args": {
+                          "color": "ccc",
+                          "height": 100.0,
+                          "width": 300.0,
+                          "child": {
+                            "type": "layout_builder",
+                            "id": "container",
+                            "args": {
+                              "child": {
+                                "type": "center",
+                                "args": {
+                                  "child": {
+                                    "type": "column",
+                                    "args": {
+                                      "mainAxisSize": "min",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "args": {
+                                            "style": {
+                                              "fontWeight": "bold"
+                                            },
+                                            "text": "container"
+                                          }
+                                        },
+                                        {
+                                          "type": "row",
+                                          "args": {
+                                            "mainAxisSize": "min",
+                                            "children": [
+                                              {
+                                                "type": "text",
+                                                "args": {
+                                                  "text": "("
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "listen": [
+                                                  "container.minWidth"
+                                                ],
+                                                "args": {
+                                                  "text": "${container.minWidth}"
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "args": {
+                                                  "text": " x "
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "listen": [
+                                                  "container.minHeight"
+                                                ],
+                                                "args": {
+                                                  "text": "${container.minHeight}"
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "args": {
+                                                  "text": ") <= ("
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "listen": [
+                                                  "container.maxWidth"
+                                                ],
+                                                "args": {
+                                                  "text": "${container.maxWidth}"
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "args": {
+                                                  "text": " x "
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "listen": [
+                                                  "container.maxHeight"
+                                                ],
+                                                "args": {
+                                                  "text": "${container.maxHeight}"
+                                                }
+                                              },
+                                              {
+                                                "type": "text",
+                                                "args": {
+                                                  "text": ")"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

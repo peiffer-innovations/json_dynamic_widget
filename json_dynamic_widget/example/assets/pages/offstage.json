@@ -1,0 +1,55 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Offstage"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "values": {
+          "visible": false
+        },
+        "child": {
+          "type": "offstage",
+          "listen": [
+            "visible"
+          ],
+          "args": {
+            "offstage": "${visible}",
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "This is a visible text"
+              }
+            }
+          }
+        }
+      }
+    },
+    "floatingActionButton": {
+      "type": "floating_action_button",
+      "args": {
+        "onPressed": "${negateBool('visible')}",
+        "child": {
+          "type": "icon",
+          "args": {
+            "icon": {
+              "codePoint": 57369,
+              "fontFamily": "MaterialIcons"
+            },
+            "size": 50
+          }
+        }
+      }
+    }
+  }
+}

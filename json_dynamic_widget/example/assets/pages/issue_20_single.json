@@ -1,0 +1,38 @@
+{
+  "type": "set_widget",
+  "args": {
+    "widgets": {
+      "variableWidget": {
+        "type": "text",
+        "args": {
+          "text": "This is a text."
+        }
+      }
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "VariableWidget"
+              }
+            }
+          }
+        },
+        "body": {
+          "type": "container",
+          "listen": [
+            "variableWidget"
+          ],
+          "args": {
+            "child": "${variableWidget}"
+          }
+        }
+      }
+    }
+  }
+}

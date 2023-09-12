@@ -1,0 +1,129 @@
+{
+  "type": "set_value",
+  "args": {
+    "values": {
+      "double": 20.5,
+      "int": 10,
+      "list": [
+        1,
+        2,
+        3
+      ],
+      "map": {
+        "foo": "bar",
+        "baz": "biz",
+        "fiz": "wiz",
+        "miz": "siz"
+      },
+      "string": "String"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Length"
+              }
+            }
+          }
+        },
+        "body": {
+          "type": "list_view",
+          "args": {
+            "children": [
+              {
+                "type": "list_tile",
+                "args": {
+                  "subtitle": {
+                    "type": "text",
+                    "args": {
+                      "text": "${length(string)}"
+                    }
+                  },
+                  "title": {
+                    "type": "text",
+                    "args": {
+                      "text": "String (5)"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "list_tile",
+                "args": {
+                  "subtitle": {
+                    "type": "text",
+                    "args": {
+                      "text": "${length(int)}"
+                    }
+                  },
+                  "title": {
+                    "type": "text",
+                    "args": {
+                      "text": "int (10)"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "list_tile",
+                "args": {
+                  "subtitle": {
+                    "type": "text",
+                    "args": {
+                      "text": "${length(double)}"
+                    }
+                  },
+                  "title": {
+                    "type": "text",
+                    "args": {
+                      "text": "double (20)"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "list_tile",
+                "args": {
+                  "subtitle": {
+                    "type": "text",
+                    "args": {
+                      "text": "${length(map)}"
+                    }
+                  },
+                  "title": {
+                    "type": "text",
+                    "args": {
+                      "text": "Map (4)"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "list_tile",
+                "args": {
+                  "subtitle": {
+                    "type": "text",
+                    "args": {
+                      "text": "${length(list)}"
+                    }
+                  },
+                  "title": {
+                    "type": "text",
+                    "args": {
+                      "text": "List (3)"
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

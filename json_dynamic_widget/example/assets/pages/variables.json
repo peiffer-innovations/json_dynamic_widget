@@ -1,0 +1,71 @@
+{
+  "type": "set_value",
+  "args": {
+    "values": {
+      "people": [
+        {
+          "firstName": "John",
+          "lastName": "Smith",
+          "address": {
+            "street": "1234 Lane Ave",
+            "city": "Springfield",
+            "state": "OH"
+          }
+        },
+        {
+          "firstName": "Jane",
+          "lastName": "Smith",
+          "address": {
+            "street": "1234 Lane Ave",
+            "city": "Springfield",
+            "state": "MI"
+          }
+        }
+      ]
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Variables"
+              }
+            }
+          }
+        },
+        "body": {
+          "type": "center",
+          "args": {
+            "child": {
+              "type": "row",
+              "args": {
+                "mainAxisSize": "min",
+                "children": [
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "Hello, "
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "listen": [
+                      "people"
+                    ],
+                    "args": {
+                      "text": "${people[0]['firstName']}"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

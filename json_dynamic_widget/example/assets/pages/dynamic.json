@@ -1,0 +1,320 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Dynamic"
+          }
+        }
+      }
+    },
+    "resizeToAvoidBottomInset": true,
+    "body": {
+      "type": "column",
+      "args": {
+        "mainAxisSize": "max",
+        "children": [
+          {
+            "type": "expanded",
+            "id": "messages",
+            "args": {
+              "child": {
+                "type": "save_context",
+                "args": {
+                  "key": "dialogContext",
+                  "child": {
+                    "type": "dynamic",
+                    "id": "items",
+                    "args": {
+                      "dynamic": {
+                        "builderType": "list_view",
+                        "childTemplate": {
+                          "type": "set_value",
+                          "listen": [
+                            "edit_message_{id}"
+                          ],
+                          "args": {
+                            "cleanup": false,
+                            "values": {
+                              "editDialogData{id}": {
+                                "actions": [
+                                  {
+                                    "title": {
+                                      "type": "text",
+                                      "args": {
+                                        "text": "Submit"
+                                      }
+                                    },
+                                    "onPressed": "${dynamic('edit{id}Element')}"
+                                  }
+                                ],
+                                "title": {
+                                  "type": "text",
+                                  "args": {
+                                    "text": "Edit"
+                                  }
+                                },
+                                "content": {
+                                  "type": "form",
+                                  "args": {
+                                    "child": {
+                                      "type": "single_child_scroll_view",
+                                      "args": {
+                                        "child": {
+                                          "type": "container",
+                                          "args": {
+                                            "child": {
+                                              "type": "text_form_field",
+                                              "id": "edit_message_{id}",
+                                              "args": {
+                                                "initialValue": "{message}",
+                                                "decoration": {
+                                                  "hintText": "Write a message"
+                                                },
+                                                "validators": [
+                                                  {
+                                                    "type": "required"
+                                                  }
+                                                ]
+                                              }
+                                            },
+                                            "alignment": "topCenter",
+                                            "width": "infinity"
+                                          }
+                                        },
+                                        "padding": [
+                                          16,
+                                          0
+                                        ]
+                                      }
+                                    }
+                                  }
+                                }
+                              },
+                              "remove{id}Element": {
+                                "type": "remove",
+                                "builder": "items",
+                                "target": {
+                                  "id": "{id}"
+                                }
+                              },
+                              "edit{id}Element": {
+                                "type": "edit",
+                                "builder": "items",
+                                "target": {
+                                  "id": "{id}"
+                                },
+                                "values": {
+                                  "message": "${edit_message_{id}}"
+                                }
+                              }
+                            },
+                            "child": {
+                              "id": "{id}",
+                              "type": "list_tile",
+                              "args": {
+                                "trailing": {
+                                  "type": "icon_button",
+                                  "args": {
+                                    "icon": {
+                                      "type": "icon",
+                                      "args": {
+                                        "icon": {
+                                          "codePoint": 61912,
+                                          "fontFamily": "MaterialIcons",
+                                          "size": 50
+                                        }
+                                      }
+                                    },
+                                    "onPressed": "${show_dialog('dialogContext', 'editDialogData{id}')}"
+                                  }
+                                },
+                                "onLongPress": "${dynamic('remove{id}Element')}",
+                                "title": {
+                                  "type": "text",
+                                  "args": {
+                                    "text": "{message}"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "initState": [
+                          {
+                            "id": "1",
+                            "message": "First"
+                          },
+                          {
+                            "id": "2",
+                            "message": "Second"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "form",
+            "args": {
+              "child": {
+                "type": "single_child_scroll_view",
+                "args": {
+                  "padding": [
+                    16,
+                    0
+                  ],
+                  "child": {
+                    "type": "container",
+                    "args": {
+                      "alignment": "topCenter",
+                      "width": "infinity",
+                      "child": {
+                        "type": "container",
+                        "args": {
+                          "constraints": {
+                            "maxWidth": 450
+                          },
+                          "child": {
+                            "type": "column",
+                            "args": {
+                              "mainAxisSize": "min",
+                              "children": [
+                                {
+                                  "type": "sized_box",
+                                  "args": {
+                                    "height": 16
+                                  }
+                                },
+                                {
+                                  "type": "sized_box",
+                                  "args": {
+                                    "height": 8
+                                  }
+                                },
+                                {
+                                  "type": "material",
+                                  "args": {
+                                    "borderRadius": 16,
+                                    "color": "#fff",
+                                    "elevation": 4,
+                                    "margin": [
+                                      0,
+                                      8
+                                    ],
+                                    "padding": 16,
+                                    "child": {
+                                      "type": "column",
+                                      "args": {
+                                        "mainAxisSize": "min",
+                                        "children": [
+                                          {
+                                            "type": "row",
+                                            "args": {
+                                              "children": [
+                                                {
+                                                  "type": "flexible",
+                                                  "args": {
+                                                    "child": {
+                                                      "type": "text_form_field",
+                                                      "id": "form_message",
+                                                      "args": {
+                                                        "decoration": {
+                                                          "hintText": "Write a message",
+                                                          "labelText": "Message",
+                                                          "suffixIcon": {
+                                                            "type": "icon_button",
+                                                            "args": {
+                                                              "icon": {
+                                                                "type": "icon",
+                                                                "args": {
+                                                                  "icon": {
+                                                                    "codePoint": 57704,
+                                                                    "fontFamily": "MaterialIcons",
+                                                                    "size": 50
+                                                                  }
+                                                                }
+                                                              },
+                                                              "onPressed": "${set_value('form_message','')}"
+                                                            }
+                                                          }
+                                                        },
+                                                        "validators": [
+                                                          {
+                                                            "type": "required"
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "set_value",
+                                  "listen": [
+                                    "form_message"
+                                  ],
+                                  "args": {
+                                    "values": {
+                                      "dynamicItemsAdd": {
+                                        "type": "add",
+                                        "builder": "items",
+                                        "target": {
+                                          "index": 0
+                                        },
+                                        "values": {
+                                          "message": "${form_message}"
+                                        }
+                                      }
+                                    },
+                                    "child": {
+                                      "type": "elevated_button",
+                                      "args": {
+                                        "onPressed": "${dynamic('dynamicItemsAdd')}",
+                                        "child": {
+                                          "type": "container",
+                                          "args": {
+                                            "alignment": "center",
+                                            "width": "infinity",
+                                            "child": {
+                                              "type": "text",
+                                              "args": {
+                                                "text": "Add message"
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

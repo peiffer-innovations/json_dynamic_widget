@@ -1,0 +1,28 @@
+{
+  "type": "set_value",
+  "args": {
+    "values": {
+      "customBrightness": "dark"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "listen": [
+            "customBrightness"
+          ],
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Test"
+              }
+            },
+            "systemOverlayStyle": "${customBrightness}"
+          }
+        }
+      }
+    }
+  }
+}

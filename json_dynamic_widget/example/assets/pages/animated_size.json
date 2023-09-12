@@ -1,0 +1,68 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "AnimatedSize"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "values": {
+          "customText": "This is a short text."
+        },
+        "child": {
+          "type": "center",
+          "args": {
+            "child": {
+              "type": "container",
+              "args": {
+                "decoration": {
+                  "border": {
+                    "color": "#000"
+                  }
+                },
+                "child": {
+                  "type": "animated_size",
+                  "args": {
+                    "duration": 1000,
+                    "reverseDuration": 3000,
+                    "child": {
+                      "type": "text",
+                      "listen": [
+                        "customText"
+                      ],
+                      "args": {
+                        "text": "${customText}"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "floatingActionButton": {
+      "type": "elevated_button",
+      "id": "press_me_button",
+      "args": {
+        "onPressed": "${set_value('customText', 'This is not a short text. This is a very very long text.')}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
+        }
+      }
+    }
+  }
+}

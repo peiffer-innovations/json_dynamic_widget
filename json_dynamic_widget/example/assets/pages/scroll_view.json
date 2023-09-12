@@ -1,0 +1,988 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Scroll View"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "row",
+      "args": {
+        "children": [
+          {
+            "type": "expanded",
+            "args": {
+              "child": {
+                "type": "primary_scroll_controller",
+                "args": {
+                  "child": {
+                    "type": "scrollbar",
+                    "id": "left",
+                    "args": {
+                      "scrollbarOrientation": "left",
+                      "child": {
+                        "type": "comment",
+                        "args": {
+                          "comments": [
+                            "As of Flutter 2.2, Desktop applications get a default",
+                            "scrollbar.  So when a manual scrollbar is added, like it",
+                            "is above, two scrollbars will get rendered.  The",
+                            "scroll_configuration below solves the problem by",
+                            "disabling the default scrollbar.",
+                            "",
+                            "For more info, see the announcement on the change here:",
+                            "https://docs.flutter.dev/release/breaking-changes/default-desktop-scrollbars"
+                          ],
+                          "child": {
+                            "type": "scroll_configuration",
+                            "args": {
+                              "scrollbars": false,
+                              "child": {
+                                "type": "list_view",
+                                "args": {
+                                  "primary": true,
+                                  "children": [
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "One"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Two"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Three"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Four"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Five"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Six"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Seven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Eight"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Nine"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Ten"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Eleven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twelve"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Fourteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Fifteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Sixteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Seventeen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Eighteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Nineteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty One"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Two"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Three"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Four"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Five"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Six"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Seven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Eight"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Nine"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty One"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Two"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Three"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Four"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Five"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Six"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Seven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Eight"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Nine"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "container",
+            "args": {
+              "color": "#999",
+              "width": 2
+            }
+          },
+          {
+            "type": "expanded",
+            "args": {
+              "child": {
+                "type": "set_scroll_controller",
+                "args": {
+                  "key": "controller",
+                  "child": {
+                    "type": "scrollbar",
+                    "id": "right",
+                    "listen": [
+                      "controller"
+                    ],
+                    "args": {
+                      "controller": "${controller}",
+                      "scrollbarOrientation": "right",
+                      "child": {
+                        "type": "comment",
+                        "args": {
+                          "comments": [
+                            "As of Flutter 2.2, Desktop applications get a default",
+                            "scrollbar.  So when a manual scrollbar is added, like it",
+                            "is above, two scrollbars will get rendered.  The",
+                            "scroll_configuration below solves the problem by",
+                            "disabling the default scrollbar.",
+                            "",
+                            "For more info, see the announcement on the change here:",
+                            "https://docs.flutter.dev/release/breaking-changes/default-desktop-scrollbars"
+                          ],
+                          "child": {
+                            "type": "scroll_configuration",
+                            "args": {
+                              "scrollbars": false,
+                              "child": {
+                                "type": "list_view",
+                                "listen": [
+                                  "controller"
+                                ],
+                                "args": {
+                                  "controller": "${controller}",
+                                  "children": [
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "One"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Two"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Three"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Four"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Five"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Six"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Seven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Eight"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Nine"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Ten"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Eleven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twelve"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Fourteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Fifteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Sixteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Seventeen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Eighteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Nineteen"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty One"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Two"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Three"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Four"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Five"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Six"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Seven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Eight"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Twenty Nine"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty One"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Two"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Three"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Four"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Five"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Six"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Seven"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Eight"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "type": "list_tile",
+                                      "args": {
+                                        "title": {
+                                          "type": "text",
+                                          "args": {
+                                            "text": "Thirty Nine"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

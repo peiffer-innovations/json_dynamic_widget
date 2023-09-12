@@ -1,0 +1,140 @@
+{
+  "type": "set_value",
+  "args": {
+    "values": {
+      "entries": {
+        "values": [
+          "align",
+          "animated_align",
+          "animated_container",
+          "animated_cross_fade",
+          "animated_default_text_style",
+          "animated_opacity",
+          "animated_padding",
+          "animated_physical_model",
+          "animated_positioned",
+          "animated_positioned_directional",
+          "animated_size",
+          "animated_switcher",
+          "animated_theme",
+          "aspect_ratio",
+          "asset_images",
+          "bank_example",
+          "baseline",
+          "buttons",
+          "card",
+          "center",
+          "checkbox",
+          "circular_progress_indicator",
+          "clips",
+          "conditional",
+          "cupertino_switch",
+          "decorated_box",
+          "directionality",
+          "dynamic",
+          "fitted_box",
+          "for_each",
+          "form",
+          "fractional_translation",
+          "fractionally_sized_box",
+          "gestures",
+          "images",
+          "indexed_stack",
+          "input_error",
+          "interactive_viewer",
+          "intrinsic_height",
+          "intrinsic_width",
+          "issue_10",
+          "issue_11",
+          "issue_12",
+          "issue_20_list",
+          "issue_20_single",
+          "issue_24",
+          "issue_30",
+          "layout_builder",
+          "limited_box",
+          "linear_progress_indicator",
+          "list_view",
+          "measured",
+          "offstage",
+          "opacity",
+          "overflow_box",
+          "placeholder",
+          "popup_menu_button",
+          "simple_page",
+          "switch",
+          "theme",
+          "tween_animation",
+          "variables"
+        ]
+      },
+      "template": {
+        "type": "list_tile",
+        "args": {
+          "subtitle": {
+            "type": "text",
+            "listen": [
+              "key"
+            ],
+            "args": {
+              "text": "${key}"
+            }
+          },
+          "title": {
+            "type": "text",
+            "listen": [
+              "value"
+            ],
+            "args": {
+              "text": "${value}"
+            }
+          }
+        }
+      }
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "row",
+              "args": {
+                "crossAxisAlignment": "start",
+                "mainAxisAlignment": "start",
+                "mainAxisSize": "min",
+                "children": [
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "For Each ("
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": "${length(entries['values'])}"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "args": {
+                      "text": ")"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "body": {
+          "type": "list_view",
+          "args": {
+            "children": "${for_each(entries['values'], 'template')}"
+          }
+        }
+      }
+    }
+  }
+}

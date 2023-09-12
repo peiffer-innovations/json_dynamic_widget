@@ -1,0 +1,44 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "List of English words"
+          }
+        },
+        "actions": [
+          {
+            "type": "icon_button",
+            "args": {
+              "icon": {
+                "type": "icon",
+                "args": {
+                  "icon": {
+                    "codePoint": 59418,
+                    "fontFamily": "MaterialIcons"
+                  }
+                }
+              },
+              "onPressed": "${simplePrintMessage()}"
+            }
+          }
+        ]
+      }
+    },
+    "body": {
+      "type": "center",
+      "args": {
+        "child": {
+          "type": "circular_progress_indicator",
+          "args": {
+            "valueColor": "#f00"
+          }
+        }
+      }
+    }
+  }
+}

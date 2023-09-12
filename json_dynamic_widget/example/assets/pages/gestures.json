@@ -1,0 +1,100 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Gestures"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "args": {
+        "child": {
+          "type": "column",
+          "args": {
+            "mainAxisSize": "min",
+            "children": [
+              {
+                "type": "row",
+                "args": {
+                  "mainAxisSize": "min",
+                  "children": [
+                    {
+                      "type": "checkbox",
+                      "id": "ignore",
+                      "args": {
+                        "label": "Ignore Gestures",
+                        "value": false
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "args": {
+                        "text": "Ignore taps"
+                      }
+                    }
+                  ]
+                }
+              },
+              {
+                "type": "sized_box",
+                "args": {
+                  "height": "16"
+                }
+              },
+              {
+                "type": "ignore_pointer",
+                "listen": [
+                  "ignore"
+                ],
+                "args": {
+                  "ignoring": "${ignore}",
+                  "child": {
+                    "type": "gesture_detector",
+                    "args": {
+                      "onDoubleTap": "${set_value('gesture', 'double_tap')}",
+                      "onTap": "${set_value('gesture', 'tap')}",
+                      "child": {
+                        "type": "padding",
+                        "args": {
+                          "padding": 20,
+                          "child": {
+                            "type": "text",
+                            "args": {
+                              "text": "Tap Me!"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "sized_box",
+                "args": {
+                  "height": "16"
+                }
+              },
+              {
+                "type": "text",
+                "listen": [
+                  "gesture"
+                ],
+                "args": {
+                  "text": "${gesture}"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

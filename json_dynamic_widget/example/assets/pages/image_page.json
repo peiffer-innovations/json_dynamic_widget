@@ -1,0 +1,40 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Image Page"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "center",
+      "args": {
+        "child": {
+          "type": "hero",
+          "listen": [
+            "imageTag"
+          ],
+          "args": {
+            "tag": "${imageTag}",
+            "child": {
+              "type": "asset_image",
+              "listen": [
+                "imageAsset"
+              ],
+              "args": {
+                "fit": "fitWidth",
+                "name": "${imageAsset}"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
