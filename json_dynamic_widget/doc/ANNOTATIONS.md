@@ -21,8 +21,6 @@
 
 ---
 
-**NOTE**: This documentation is still a work in progress!!!
-
 ## JsonArgAlias
 
 **Target**: `method`

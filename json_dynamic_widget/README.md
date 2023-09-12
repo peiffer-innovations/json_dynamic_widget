@@ -47,6 +47,190 @@ Here's a list of first party plugins that exist for this library.
 
 **NOTE**: There are [several breaking](CHANGELOG.md) changes in this release from the JSON Schema perspective.  Almost all of them can be automatically migrated from v6 to v7 using the [Migration CLI](#migration-cli).
 
+---
+
+### Code Generation
+
+As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  The code generator can generate the Dart / Flutter code to build widgets or it can be used in reverse to generate the JSON / YAML from the Dart / Flutter code.  For more advanced information on the code generator, see the [Code Generator](doc/CODE_GENERATOR.md) document.
+
+The following table shows the code required to render a `Column` prior to the `7.0.0` vs the code required after the `7.0.0` release using the code generator.
+
+<table>
+<tr>
+
+<th> < 7.0.0 </th>
+<th> >= 7.0.0 </th>
+</tr>
+
+<tr>
+<td>
+
+```dart
+import 'package:child_builder/child_builder.dart';
+import 'package:flutter/material.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_theme/json_theme.dart';
+import 'package:json_theme/json_theme_schemas.dart';
+
+class JsonColumnBuilder extends JsonWidgetBuilder {
+  const JsonColumnBuilder({
+    required this.crossAxisAlignment,
+    required this.mainAxisAlignment,
+    required this.mainAxisSize,
+    this.textBaseline,
+    this.textDirection,
+    required this.verticalDirection,
+  }) : super(numSupportedChildren: kNumSupportedChildren);
+
+  static const kNumSupportedChildren = -1;
+
+  static const type = 'column';
+
+  final CrossAxisAlignment crossAxisAlignment;
+  final MainAxisAlignment mainAxisAlignment;
+  final MainAxisSize mainAxisSize;
+  final TextBaseline? textBaseline;
+  final TextDirection? textDirection;
+  final VerticalDirection verticalDirection;
+
+  static JsonColumnBuilder? fromDynamic(
+    dynamic map, {
+    JsonWidgetRegistry? registry,
+  }) {
+    JsonColumnBuilder? result;
+
+    if (map != null) {
+      result = JsonColumnBuilder(
+        crossAxisAlignment: ThemeDecoder.decodeCrossAxisAlignment(
+              map['crossAxisAlignment'],
+              validate: false,
+            ) ??
+            CrossAxisAlignment.center,
+        mainAxisAlignment: ThemeDecoder.decodeMainAxisAlignment(
+              map['mainAxisAlignment'],
+              validate: false,
+            ) ??
+            MainAxisAlignment.start,
+        mainAxisSize: ThemeDecoder.decodeMainAxisSize(
+              map['mainAxisSize'],
+              validate: false,
+            ) ??
+            MainAxisSize.max,
+        textBaseline: ThemeDecoder.decodeTextBaseline(
+          map['textBaseline'],
+          validate: false,
+        ),
+        textDirection: ThemeDecoder.decodeTextDirection(
+          map['textDirection'],
+          validate: false,
+        ),
+        verticalDirection: ThemeDecoder.decodeVerticalDirection(
+              map['verticalDirection'],
+              validate: false,
+            ) ??
+            VerticalDirection.down,
+      );
+    }
+
+    return result;
+  }
+
+  @override
+  Widget buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  }) {
+    return Column(
+      crossAxisAlignment: crossAxisAlignment,
+      key: key,
+      mainAxisAlignment: mainAxisAlignment,
+      mainAxisSize: mainAxisSize,
+      textBaseline: textBaseline,
+      textDirection: textDirection,
+      verticalDirection: verticalDirection,
+      children: [
+        for (var child in data.children ?? <JsonWidgetData>[])
+          child.build(
+            context: context,
+            childBuilder: childBuilder,
+          ),
+      ],
+    );
+  }
+}
+
+class ColumnSchema {
+  static const id =
+      'https://peiffer-innovations.github.io/flutter_json_schemas'
+        '/schemas/json_dynamic_widget/column.json';
+
+  static final schema = {
+    r'$schema': 'http://json-schema.org/draft-06/schema#',
+    r'$id': id,
+    r'$children': -1,
+    r'$comment': 'https://api.flutter.dev/flutter/widgets/Column-class.html',
+    'title': 'Column',
+    'oneOf': [
+      {
+        'type': 'null',
+      },
+      {
+        'type': 'object',
+        'additionalProperties': false,
+        'properties': {
+          'crossAxisAlignment':
+              SchemaHelper.objectSchema(CrossAxisAlignmentSchema.id),
+          'mainAxisAlignment':
+              SchemaHelper.objectSchema(MainAxisAlignmentSchema.id),
+          'mainAxisSize': SchemaHelper.objectSchema(MainAxisSizeSchema.id),
+          'textBaseline': SchemaHelper.objectSchema(TextBaselineSchema.id),
+          'textDirection': SchemaHelper.objectSchema(TextDirectionSchema.id),
+          'verticalDirection':
+              SchemaHelper.objectSchema(VerticalDirectionSchema.id),
+        },
+      },
+    ],
+  };
+}
+```
+</td>
+<td style="vertical-align: top">
+
+```dart
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+part 'json_column_builder.g.dart';
+
+@jsonWidget
+abstract class _JsonColumnBuilder extends JsonWidgetBuilder {
+  const _JsonColumnBuilder({
+    required super.args,
+  });
+
+  @override
+  Column buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+```
+
+</td>
+</tr>
+</table>
+
+---
+
+### Code Generation Annotations
+
+See the [Annotations](doc/ANNOTATIONS.md) guide for information on all of the code generation annotations available for use.
+
+---
+
 ### Migration CLI
 
 This version comes with a script that can migrate existing JSON / YAML files from v6 to v7 automatically.  To run the script, first add the package as a dependency:
@@ -65,13 +249,7 @@ The script will automatically migrate the files it finds and make a backup using
 
 ---
 
-### Code Generation
-
-As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  
-
----
-
-## Introduction
+## Usage
 
 **Important Note**: Because this library allows for dynamic building of Icons, Flutter's built in tree shaker for icons no longer has the ability to guarantee what icons are referenced vs not.  Once you include this as a dependency, you must add the `--no-tree-shake-icons` as a build flag or your builds will fail.
 
@@ -85,33 +263,30 @@ This library provides Widgets that are capable of building themselves from JSON 
 ```json
 {
   "type": "<lower_case_type>",
+  "id": "<optional-id>",
+  "listen": [
+    "var1",
+    "var2",
+    "..."
+  ],
   "args": {
     "...": "..."
   },
-  "child": {
-    "...": "..."
-  },
-  "children": [{
-    "...": "..."
-  }],
-  "listen": []
 }
 ```
 
 ```yaml
 ---
-type: "<lower_case_type>"
+type: <lower_case_type>
+id: <optional-id>
+listen: 
+  - var1
+  - var2
+  - ...
 args:
-  "...": "..."
-child:
-  "...": "..."
-children:
-- "...": "..."
-listen: []
+  ...: ...
 
 ```
-
-Where the `child` and `children` are mutually exclusive.  From a purely technical standpoint, there's no difference between passing in a `child` or a `children` with exactly one element.
 
 The `listen` array is used to define variable names that specified `JsonWidgetData` listen to. Thanks to that `JsonWidgetData` will be rebuilt with every change of such a variables.
 In case of not defining such a array the `JsonWidgetRegistry` will try to built such a array dynamically and use any met variable. Good practice is to define it by a hand to reduce amount of rebuilds.
@@ -309,9 +484,13 @@ A special syntax must be used to fulfill that need:
 Example:
 [null_value_passing.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/example/assets/pages/null_value_passing.json)
 
+---
 
 ## Using Expressions
+
 The library since version 4.0.0 has a tight integration with [expressions](https://pub.dev/packages/expressions) library. By integrating the `JsonWidgetRegistry` variables and functions with that library there is possible to define different kind of simple expressions placed between `${}`.
+
+---
 
 ### Using Variables
 
@@ -336,9 +515,11 @@ Variable Name        | Example | Description
 ---------------------|---------|------------
 `${curveName}_curve` | <ul><li>`${linear_curve}`</li><li>`${bounce_in_curve}`</li></ul> | Provides a `const` instance of any of the [Curves](https://api.flutter.dev/flutter/animation/Curves-class.html#constants) const values. The name of the Curve constant should be transformed into snake_case.
 
+---
+
 ### Dynamic Functions
 
-#### **Basic function usage**
+#### Basic function usage
 Like any other expression functions defined in `JsonWidgetRegistry` can be used in JSON by placing their name and params between `${}`. For example:
 ```
 ${sayHello('Hello,' + firstName)}
@@ -353,7 +534,7 @@ print(args[0]);
 Hello, Ted!
 ```
 
-#### **Named args in functions**
+#### Named args in functions
 
 Additionally we can pass a map to the function:
 ```
@@ -372,13 +553,13 @@ This allows function that take multiple, optional, values to be more easily crea
 ${myFunction(value, null, null, null, '#ff0000')}
 ```
 
-#### **Complex function calls**
+#### Complex function calls
 This is possible to construct really complex function calls:
 ```
 ${func1(func2(func3()+' text'+var1), func4(1+2))}
 ```
 
-#### **Built functions**
+#### Built functions
 The built in functions are defined below:
 
 Function Name    | Example | Args | Description
@@ -410,23 +591,37 @@ To select manually the internal functions it is recommended to use `JsonWidgetIn
   });
 ```
 
+---
+
 ## Creating Custom Widgets
 
 Creating a custom widget requires first creating a `JsonWidgetBuilder` for the widget you would like to add.
 
-For example, if you would like to create a new widget that can render a SVG, you would create a `SvgWidgetBuilder` like the following:
+For example, if you would like to create a new widget that can render a SVG, you would create a `SvgBuilder` like the following:
 
 ```dart
-import 'package:child_builder/child_builder.dart';
-import 'package:flutter/material.dart';
-import 'package:json_class/json_class.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_theme/json_theme.dart';
-import 'package:meta/meta.dart';
-import 'package:websafe_svg/websafe_svg.dart';
 
-class SvgBuilder extends JsonWidgetBuilder {
-  SvgBuilder({
+part 'svg_builder.g.dart';
+
+@jsonWidget
+abstract class _SvgBuilder extends JsonWidgetBuilder {
+  const _SvgBuilder({
+    required super.args,
+  });
+
+  @override
+  _Svg buildCustom({
+    ChildWidgetBuilder? childBuilder,
+    required BuildContext context,
+    required JsonWidgetData data,
+    Key? key,
+  });
+}
+
+class _Svg extends StatelessWidget {
+  const _Svg({
     this.asset,
     this.color,
     this.height,
@@ -435,58 +630,22 @@ class SvgBuilder extends JsonWidgetBuilder {
   })  : assert(asset == null || url == null),
         assert(asset != null || url != null);
 
-  static const type = 'svg';
-
-  final String asset;
-  final Color color;
-  final double height;
-  final String url;
-  final double width;
-
-  static SvgBuilder fromDynamic(
-    dynamic map, {
-    JsonWidgetRegistry registry,
-  }) {
-    SvgBuilder result;
-
-    if (map != null) {
-      result = SvgBuilder(
-        asset: map['asset'],
-        color: ThemeDecoder.decodeColor(
-          map['color'],
-          validate: false,
-        ),
-        height: JsonClass.maybeParseDouble(map['height']),
-        url: map['url'],
-        width: JsonClass.maybeParseDouble(map['width']),
-      );
-    }
-
-    return result;
-  }
+  final String? asset;
+  final Color? color;
+  final double? height;
+  final String? url;
+  final double? width;
 
   @override
-  Widget buildCustom({
-    ChildWidgetBuilder childBuilder,
-    @required BuildContext context,
-    @required JsonWidgetData data,
-    Key key,
-  }) {
-    assert(
-      data.children?.isNotEmpty != true,
-      '[SvgBuilder] does not support children.',
-    );
-
+  Widget build(BuildContext context) {
     return asset != null
-        ? WebsafeSvg.asset(
-            asset,
-            color: color,
+        ? SvgPicture.asset(
+            asset!,
             height: height,
             width: width,
           )
-        : WebsafeSvg.network(
-            url,
-            color: color,
+        : SvgPicture.network(
+            url!,
             height: height,
             width: width,
           );
@@ -494,49 +653,12 @@ class SvgBuilder extends JsonWidgetBuilder {
 }
 ```
 
-Widget builders can also have well defined JSON schemas associated to them.  If a widget builder has an associated JSON schema then in DEBUG modes, the JSON for the widget will be processed through the schema validator before attempting to build the widget.  This can assist with debugging by catching JSON errors early.
-
-An example schema for the `SvgWidgetBuilder` might look something like this:
-```dart
-import 'package:json_theme/json_theme_schemas.dart';
-
-class SvgSchema {
-  static const id =
-      'https://your-url-here.com/schemas/svg';
-
-  static final schema = {
-    r'$schema': 'http://json-schema.org/draft-06/schema#',
-    r'$id': '$id',
-    'title': 'SvgBuilder',
-    'type': 'object',
-    'additionalProperties': false,
-    'properties': {
-      'asset': SchemaHelper.stringSchema,
-      'color': SchemaHelper.objectSchema(ColorSchema.id),
-      'height': SchemaHelper.numberSchema,
-      'url': SchemaHelper.stringSchema,
-      'width': SchemaHelper.numberSchema,
-    },
-  };
-}
+Next, you will need to run the code generator command to generate the glue / binding code.  To run the code generator, execute:
+```shell
+dart run build_runner build --delete-conflicting-outputs
 ```
 
-Once the builder has been created, it needs to be registered with a `JsonWidgetRegistry`.  This must be done before you ever reference the widget.  It's recommended, but not required, that this registration happen in your app's `main` function.
-
-When registring the widget, you can create a new instance of the registry, or simply get a reference to the default instance, which is the approach below follows.
-
-```dart
-  var registry = JsonWidgetRegistry.instance;
-  registry.registerCustomBuilder(
-    SvgBuilder.kType,
-    JsonWidgetBuilderContainer(
-      builder: SvgBuilder.fromDynamic,
-      schemaId: SvgSchema.id, // this is optional
-    ),
-  );
-```
-
-Once the widget is registered, you can safely use the registry to build the widget from JSON.  For this example widget, the following JSON would construct an instance:
+Once the code is generated, you can safely use the registry to build the widget from JSON.  For this example widget, the following JSON would construct an instance:
 
 ```json
 {
@@ -549,6 +671,8 @@ Once the widget is registered, you can safely use the registry to build the widg
   }
 }
 ```
+
+---
 
 ## Creating Custom Arg Processor
 Custom arg processors are allowing to extend JSON syntax with custom one.
