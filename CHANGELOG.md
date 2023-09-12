@@ -1,3 +1,8 @@
+## [6.1.4] - September 12th, 2023
+
+* Switch back to [json_schema](https://pub.dev/packages/json_schema)
+
+
 ## [6.1.3+1] - September 12, 2023
 
 * Automated dependency updates
