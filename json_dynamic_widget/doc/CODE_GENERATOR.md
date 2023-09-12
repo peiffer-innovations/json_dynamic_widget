@@ -4,6 +4,11 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
 
+- [Adding the Required Dependencies](#adding-the-required-dependencies)
+- [Building a Custom Widget](#building-a-custom-widget)
+  - [Simple Widget](#simple-widget)
+  - [Aliasing Properties](#aliasing-properties)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
