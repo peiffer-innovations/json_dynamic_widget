@@ -54,7 +54,7 @@ Here's a list of first party plugins that exist for this library.
 
 ### Code Generation
 
-As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  The code generator can generate the Dart / Flutter code to build widgets or it can be used in reverse to generate the JSON / YAML from the Dart / Flutter code.  For more advanced information on the code generator, see the [Code Generator](doc/CODE_GENERATOR.md) document.
+As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  The code generator can generate the Dart / Flutter code to build widgets or it can be used in reverse to generate the JSON / YAML from the Dart / Flutter code.  For more advanced information on the code generator, see the [Code Generator](doc/CODE_GENERATOR.md) document.  For more information on the JSON / YAML generator see [Reverse Encoding](doc/REVERSE_ENCODING.md).
 
 The code that is now required to build a custom widget with the release of `7.0.0` is followed by the code that used to be required prior to `7.0.0`.
 
