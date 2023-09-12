@@ -1,3 +1,11 @@
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [json_dynamic_widget_annotations](#json_dynamic_widget_annotations)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 # json_dynamic_widget_annotations
 
 Annotations to allow for the code generation provided by the [json_dynamic_widget_codegen] package.

@@ -1,7 +1,23 @@
 # Code Generation Annotations
 
-<!-- START doctoc -->
-<!-- END doctoc -->
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+**Table of Contents**
+
+- [JsonArgAlias](#jsonargalias)
+- [JsonArgDecoder](#jsonargdecoder)
+- [JsonArgEncoder](#jsonargencoder)
+- [JsonArgSchema](#jsonargschema)
+- [JsonBuildArg](#jsonbuildarg)
+- [JsonBuilder](#jsonbuilder)
+- [JsonDefaultParam](#jsondefaultparam)
+- [JsonPositionedParam](#jsonpositionedparam)
+- [JsonSchemaName](#jsonschemaname)
+- [JsonWidget](#jsonwidget)
+- [JsonWidgetRegistrar](#jsonwidgetregistrar)
+- [JsonWidgetRegistration](#jsonwidgetregistration)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
 

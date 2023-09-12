@@ -6,7 +6,9 @@
 
 - [Live Example](#live-example)
 - [First Party Plugins](#first-party-plugins)
-- [Migration to 4.X.X version](#migration-to-4xx-version)
+- [Migration to 7.X.X version](#migration-to-7xx-version)
+  - [Migration CLI](#migration-cli)
+  - [Code Generation](#code-generation)
 - [Introduction](#introduction)
 - [Understanding the Registry](#understanding-the-registry)
 - [Built In Widgets](#built-in-widgets)
