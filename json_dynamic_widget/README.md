@@ -54,7 +54,7 @@ Here's a list of first party plugins that exist for this library.
 
 ### Code Generation
 
-As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  The code generator can generate the Dart / Flutter code to build widgets or it can be used in reverse to generate the JSON / YAML from the Dart / Flutter code.  For more advanced information on the code generator, see the [Code Generator](doc/CODE_GENERATOR.md) document.  For more information on the JSON / YAML generator see [Reverse Encoding](doc/REVERSE_ENCODING.md).
+As of `7.0.0` a code generator exists to simplify the creation of the dynamic widgets.  The code generator can generate the Dart / Flutter code to build widgets or it can be used in reverse to generate the JSON / YAML from the Dart / Flutter code.  For more advanced information on the code generator, see the [Code Generator](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/doc/CODE_GENERATOR.md) document.  For more information on the JSON / YAML generator see [Reverse Encoding](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/doc/REVERSE_ENCODING.md).
 
 The code that is now required to build a custom widget with the release of `7.0.0` is followed by the code that used to be required prior to `7.0.0`.
 
@@ -217,7 +217,7 @@ class ColumnSchema {
 
 ### Code Generation Annotations
 
-See the [Annotations](doc/ANNOTATIONS.md) guide for information on all of the code generation annotations available for use.
+See the [Annotations](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/doc/ANNOTATIONS.md) guide for information on all of the code generation annotations available for use.
 
 ---
 
@@ -235,7 +235,7 @@ Then run:
 dart run json_dynamic_widget:migrate_7 [path/to/files]
 ```
 
-The script will automatically migrate the files it finds and make a backup using the original name + `.bak`.  If you are satisfied with the output from the migration script, feel free to delete those backup files.
+The script will automatically migrate the files it finds and make a backup using the original name + `.bak`.  If you are satisfied with the output from the migration script, feel free to delete those backup files.  For more information, see the [Migration CLI](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/doc/MIGRATION_CLI.md) documentation
 
 ---
 

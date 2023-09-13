@@ -1,8 +1,8 @@
-## [7.0.0-dev4] - TBD
+## [7.0.0-dev5] - TBD
 
 This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.
 
-* **BREAKING JSON CHANGES**: The following changes can be automatically migrated via the [migration CLI](./README.md#migration-cli).
+* **BREAKING JSON CHANGES**: The following changes can be automatically migrated via the [migration CLI](doc/MIGRATION_CLI.md)
     * Both `child` and `children` have moved into the `args` for all widgets.
     * For `conditional` the `child` is no longer supported and must be in `args['onTrue']`.
     * For `scaffold` the `child` is no longer supported and must be in `args['body']`.
