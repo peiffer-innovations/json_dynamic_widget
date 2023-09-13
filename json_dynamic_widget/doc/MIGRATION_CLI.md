@@ -3,6 +3,13 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 **Table of Contents**
+
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Add dependency to pubspec:](#add-dependency-to-pubspec)
+- [Run migration CLI](#run-migration-cli)
+- [Breaking Changes supported by the CLI](#breaking-changes-supported-by-the-cli)
+
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ---
