@@ -7,6 +7,7 @@
 - [Introduction](#introduction)
 - [Building an Encodable Widget Tree](#building-an-encodable-widget-tree)
 - [Custom Encoding](#custom-encoding)
+- [Providing dynamic args for encoding](#providing-dynamic-args-for-encoding)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
