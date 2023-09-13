@@ -66,7 +66,8 @@ class JsonDropdownButtonFormFieldBuilder extends JsonWidgetBuilder {
 }
 
 class JsonDropdownButtonFormFieldBuilderModel extends JsonWidgetBuilderModel {
-  const JsonDropdownButtonFormFieldBuilderModel({
+  const JsonDropdownButtonFormFieldBuilderModel(
+    super.args, {
     this.alignment,
     this.autofocus,
     this.autovalidateMode,
@@ -193,10 +194,12 @@ class JsonDropdownButtonFormFieldBuilderModel extends JsonWidgetBuilderModel {
   ///  * [Validator]
   static JsonDropdownButtonFormFieldBuilderModel fromDynamic(
     dynamic map, {
+    Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
   }) {
     final result = maybeFromDynamic(
       map,
+      args: args,
       registry: registry,
     );
 
@@ -274,6 +277,7 @@ class JsonDropdownButtonFormFieldBuilderModel extends JsonWidgetBuilderModel {
   ///  * [Validator]
   static JsonDropdownButtonFormFieldBuilderModel? maybeFromDynamic(
     dynamic map, {
+    Map<String, dynamic> args = const {},
     JsonWidgetRegistry? registry,
   }) {
     JsonDropdownButtonFormFieldBuilderModel? result;
@@ -287,6 +291,7 @@ class JsonDropdownButtonFormFieldBuilderModel extends JsonWidgetBuilderModel {
       }
 
       result = JsonDropdownButtonFormFieldBuilderModel(
+        args,
         alignment: ThemeDecoder.decodeAlignment(
           map['alignment'],
           validate: false,
@@ -389,6 +394,7 @@ class JsonDropdownButtonFormFieldBuilderModel extends JsonWidgetBuilderModel {
                 'validators': validator!.toJson(),
               },
         'value': value,
+        ...args,
       };
 }
 

@@ -18,6 +18,11 @@ class _ExportExamplePageState extends State<ExportExamplePage> {
 
   @override
   Widget build(BuildContext context) {
+    final registry = JsonWidgetRegistry();
+
+    registry.setValue('count', _count);
+    registry.setValue('increment', () => () => setState(() => _count++));
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -59,12 +64,27 @@ class _ExportExamplePageState extends State<ExportExamplePage> {
               children: [
                 for (var i = 0; i < _count; i++)
                   JsonListTile(
-                    subtitle: JsonText('${i + 1}'),
+                    subtitle: JsonText(
+                      args: {
+                        'text': r'${i + 1}',
+                      },
+                      registry: JsonWidgetRegistry(
+                        parent: registry,
+                        values: {
+                          'i': i,
+                        },
+                      ),
+                      '${i + 1}',
+                    ),
                     title: JsonText('ListTile'),
                   ),
               ],
             ),
             floatingActionButton: JsonFloatingActionButton(
+              args: {
+                'onPressed': r'${increment()}',
+              },
+              registry: registry,
               onPressed: () => setState(() => _count++),
               child: JsonIcon(Icons.add),
             ),

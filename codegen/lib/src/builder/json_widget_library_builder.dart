@@ -451,6 +451,19 @@ return ${widget.getDisplayString(withNullability: false)}(
       c.name = jsonWidgetName;
       c.extend = const Reference('JsonWidgetData');
       c.constructors.add(Constructor((con) {
+        con.optionalParameters.add(Parameter((p) {
+          p.name = 'args';
+          p.required = false;
+          p.named = true;
+          p.type = const Reference('Map<String, dynamic>');
+          p.defaultTo = const Code('const {}');
+        }));
+        con.optionalParameters.add(Parameter((p) {
+          p.name = 'registry';
+          p.required = false;
+          p.named = true;
+          p.type = const Reference('JsonWidgetRegistry?');
+        }));
         _buildConstructorParams(
           builderParamChecker: builderParamChecker,
           con: con,
@@ -467,19 +480,27 @@ return ${widget.getDisplayString(withNullability: false)}(
         for (var p in params) {
           final annotation = builderParamChecker.firstAnnotationOf(p);
           if (annotation == null && p.name != 'key') {
-            modelLines.writeln('${p.name}: ${p.name},');
+            modelLines.writeln("'${aliases[p.name] ?? p.name}': ${p.name},");
           }
         }
 
         con.initializers.add(Code(
           '''
 super(
-  jsonWidgetArgs: ${name.substring(1)}Model(
-    $modelLines
+  jsonWidgetArgs: ${name.substring(1)}Model.fromDynamic({
+      $modelLines
+      ...args,    
+    },
+    args: args,
+    registry: registry,
   ),
   jsonWidgetBuilder: () => ${name.substring(1)}(
-    args: ${name.substring(1)}Model(
-      $modelLines
+    args: ${name.substring(1)}Model.fromDynamic({
+        $modelLines
+        ...args,
+      },
+      args: args,
+      registry: registry,
     ),
   ),
   jsonWidgetType: ${name.substring(1)}.kType,
@@ -541,6 +562,12 @@ super(
           (con) {
             con.constant = true;
 
+            con.requiredParameters.add(Parameter((p) {
+              p.name = 'args';
+              p.named = false;
+              p.toSuper = true;
+            }));
+
             _buildConstructorParams(
               builderParamChecker: builderParamChecker,
               con: con,
@@ -580,6 +607,16 @@ super(
             m.optionalParameters.add(
               Parameter(
                 (p) {
+                  p.name = 'args';
+                  p.type = const Reference('Map<String, dynamic>');
+                  p.defaultTo = const Code('const {}');
+                  p.named = true;
+                },
+              ),
+            );
+            m.optionalParameters.add(
+              Parameter(
+                (p) {
                   p.name = 'registry';
                   p.type = const Reference('JsonWidgetRegistry?');
                   p.named = true;
@@ -587,7 +624,7 @@ super(
               ),
             );
             m.body = Code('''
-final result = maybeFromDynamic(map, registry: registry,);
+final result = maybeFromDynamic(map, args: args, registry: registry,);
 
 if (result == null) {
   throw Exception('[${name.substring(1)}]: requested to parse from dynamic, but the input is null.',);
@@ -611,6 +648,16 @@ return result;
                   p.name = 'map';
                   p.type = const Reference('dynamic');
                   p.named = false;
+                },
+              ),
+            );
+            m.optionalParameters.add(
+              Parameter(
+                (p) {
+                  p.name = 'args';
+                  p.type = const Reference('Map<String, dynamic>');
+                  p.defaultTo = const Code('const {}');
+                  p.named = true;
                 },
               ),
             );
@@ -657,6 +704,7 @@ if (map != null) {
     registry ??= JsonWidgetRegistry.instance;
     map = registry.processArgs(map, <String>{}).value;
     result = ${c.name}(
+      args,
       ${lines.join(',')}${lines.isNotEmpty ? ',' : ''}
     );
   }
@@ -684,7 +732,7 @@ return result;
             continue;
           }
           if (param.displayName != 'key') {
-            final name = aliases[param.displayName] ?? param.displayName;
+            final name = aliases[param.name] ?? param.name;
             final encoder = paramEncoders[name];
 
             final defaultValueCode =
@@ -713,6 +761,7 @@ ${customEncoders.toString()}
 
 return JsonClass.removeNull({
 ${buf.toString()}
+...args,
 });
 ''');
         }
@@ -880,7 +929,7 @@ void _buildConstructorParams({
   List<String>? positionedParams,
 }) {
   positionedParams?.forEach((paramName) {
-    if (/*!kChildNames.containsKey(p.name) && */ paramName != 'key') {
+    if (paramName != 'key') {
       con.requiredParameters.add(
         Parameter(
           (param) {
@@ -915,19 +964,20 @@ void _buildConstructorParams({
       con.optionalParameters.add(
         Parameter(
           (param) {
-            param.name = p.name;
+            final name = p.name;
+            param.name = name;
             param.named = true;
-            param.required = !paramDefaults.containsKey(p.name) &&
-                (p.isRequired || paramDecoders.containsKey(p.name));
+            param.required = !paramDefaults.containsKey(name) &&
+                (p.isRequired || paramDecoders.containsKey(name));
 
-            var defaultValueCode = paramDefaults[p.name] ?? p.defaultValueCode;
+            var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
             if (defaultValueCode == 'const <Widget>[]') {
               defaultValueCode = 'const <JsonWidgetData>[]';
             }
 
             param.defaultTo = defaultValueCode == null ||
-                    (!paramDefaults.containsKey(p.name) &&
-                        paramDecoders.containsKey(p.name))
+                    (!paramDefaults.containsKey(name) &&
+                        paramDecoders.containsKey(name))
                 ? null
                 : Code(defaultValueCode);
             param.toThis = true;

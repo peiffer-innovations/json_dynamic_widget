@@ -1,4 +1,4 @@
-## [7.0.0-dev5] - TBD
+## [7.0.0-dev6] - TBD
 
 This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.
 

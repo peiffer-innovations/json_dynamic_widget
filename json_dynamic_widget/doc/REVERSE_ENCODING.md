@@ -19,6 +19,19 @@ Reverse encoding requires two widgets on the tree for it to work.  The parent is
 **Example**
 
 ```dart
+import 'package:json_dynamic_widget/builders.dart';
+import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+
+class ExportExamplePage extends StatefulWidget {
+  const ExportExamplePage({
+    super.key,
+  });
+
+  @override
+  State createState() => _ExportExamplePageState();
+}
+
+class _ExportExamplePageState extends State<ExportExamplePage> {
   final GlobalKey<JsonWidgetExporterData> _exportKey =
       GlobalKey<JsonWidgetExporterData>();
 
@@ -26,6 +39,11 @@ Reverse encoding requires two widgets on the tree for it to work.  The parent is
 
   @override
   Widget build(BuildContext context) {
+    final registry = JsonWidgetRegistry();
+
+    registry.setValue('count', _count);
+    registry.setValue('increment', () => () => setState(() => _count++));
+
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -37,7 +55,7 @@ Reverse encoding requires two widgets on the tree for it to work.  The parent is
             onPressed: () {
               final data = _exportKey.currentState!.export(
                 indent: '  ',
-                mode: JsonWidgetExporter.kYaml,
+                mode: ReverseEncodingMode.yaml,
               );
               Clipboard.setData(ClipboardData(text: data));
               ScaffoldMessenger.of(context).showSnackBar(
@@ -61,26 +79,42 @@ Reverse encoding requires two widgets on the tree for it to work.  The parent is
         child: JsonExportable(
           child: JsonScaffold(
             appBar: JsonAppBar(
-              title: JsonText(data: 'Example'),
+              title: JsonText('Example'),
             ),
             body: JsonListView(
               children: [
                 for (var i = 0; i < _count; i++)
                   JsonListTile(
-                    subtitle: JsonText(data: '${i + 1}'),
-                    title: JsonText(data: 'ListTile'),
+                    subtitle: JsonText(
+                      args: {
+                        'text': r'${i + 1}',
+                      },
+                      registry: JsonWidgetRegistry(
+                        parent: registry,
+                        values: {
+                          'i': i,
+                        },
+                      ),
+                      '${i + 1}',
+                    ),
+                    title: JsonText('ListTile'),
                   ),
               ],
             ),
             floatingActionButton: JsonFloatingActionButton(
+              args: {
+                'onPressed': r'${increment()}',
+              },
+              registry: registry,
               onPressed: () => setState(() => _count++),
-              child: JsonIcon(icon: Icons.add),
+              child: JsonIcon(Icons.add),
             ),
           ),
         ),
       ),
     );
   }
+}
 ```
 
 **Example Output**
@@ -99,49 +133,56 @@ args:
     type: 'list_view'
     args: 
       children: 
-        - 
-          type: 'list_tile'
+        - type: 'list_tile'
           args: 
             subtitle: 
               type: text
               args: 
-                text: 1
+                text: '${i + 1}'
             title: 
               type: text
               args: 
                 text: ListTile
 
-        - 
-          type: 'list_tile'
+        - type: 'list_tile'
           args: 
             subtitle: 
               type: text
               args: 
-                text: 2
+                text: '${i + 1}'
             title: 
               type: text
               args: 
                 text: ListTile
 
-        - 
-          type: 'list_tile'
+        - type: 'list_tile'
           args: 
             subtitle: 
               type: text
               args: 
-                text: 3
+                text: '${i + 1}'
             title: 
               type: text
               args: 
                 text: ListTile
 
-        - 
-          type: 'list_tile'
+        - type: 'list_tile'
           args: 
             subtitle: 
               type: text
               args: 
-                text: 4
+                text: '${i + 1}'
+            title: 
+              type: text
+              args: 
+                text: ListTile
+
+        - type: 'list_tile'
+          args: 
+            subtitle: 
+              type: text
+              args: 
+                text: '${i + 1}'
             title: 
               type: text
               args: 
@@ -151,7 +192,7 @@ args:
   floatingActionButton: 
     type: 'floating_action_button'
     args: 
-      onPressed: '${null}'
+      onPressed: '${increment()}'
       child: 
         type: icon
         args: 
@@ -159,7 +200,6 @@ args:
             codePoint: 57415
             fontFamily: MaterialIcons
             matchTextDirection: false
-
 ```
 
 ---
@@ -207,3 +247,67 @@ static String _encodeBorderType(BorderType value) {
 ```
 
 For the `DottedBorder`, when the widget is requested to be encoded, that function will be called and passed in the value used to build the `DottedBorder` widget to produce the final encoded JSON / YAML.
+
+---
+
+## Providing dynamic args for encoding
+
+Every `Json` based Widget that can be used for encoding supports the ability to accept an `args` parameter.  Any value passed in `args` will be used in place of any named parameter of the same name.  This can allow for the encoder to provide fully capable results rather than having to return `${null}` for any unencodable value.
+
+For example, to encode a proper button, take the following example:
+
+```dart
+void _increment() => setState(() => ++_count);
+
+Widget build(BuildContext context) {
+  final registry = JsonWidgetRegistry(
+    values: {
+      // Note that this isn't the _increment function directly, rather it is a
+      // function that returns the _increment function due to how things work
+      // with the registry vs being directly populated.
+      'increment': () => _increment,
+    },
+  );
+
+  return JsonElevatedButton(
+    args: {
+      // Here, we execute the increment function to populate it from the
+      // registry to the dynamic widget.
+      'onTap': r'${increment()}', 
+    },
+    // Make sure we pass in the registry we set the increment value on or else
+    // it will fail to find that value and throw an exception.
+    registry: registry, 
+    // the args value overrides this.  You could also pass _increment if you
+    // wanted to test things both with and without the registry and args.
+    onTap: null, 
+    child: JsonText('Increment'),
+  );
+}
+```
+
+When that is requested to be encoded, you will get back:
+
+```yaml
+type: elevated_button
+args:
+  onTap: '${increment()}'
+  child:
+    type: text
+    args:
+      text: Increment
+```
+
+Had we not passed in the `args` and simply passed in the `_increment` function to the `onTap` directly, the resulting encoded value would not have worked the same as it would not have been able to encode the `onTap` field and would have returned `${null}` as such:
+
+```yaml
+type: elevated_button
+args:
+  onTap: '${null}'
+  child:
+    type: text
+    args:
+      text: Increment
+```
+
+In many cases, that may be exactly what you are looking for as you can replace all the `${null}` values with what you need later.  It's just important to understand what the encoder can vs cannot encode, and also understand the process by which you can inform the encoder of dynamic values you would like to have encoded directly.

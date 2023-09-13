@@ -87,13 +87,13 @@ String encode(
   required Map<String, String> aliases,
   required Map<String, String> defaults,
 }) {
-  final displayName = element.displayName;
-  final name = aliases[displayName] ?? element.name;
+  final displayName = element.name;
+  final name = aliases[element.name] ?? element.name;
 
   final typeStr = element.type.getDisplayString(withNullability: false);
 
   final encoder = kEncoders[typeStr];
-  var result = element.displayName;
+  var result = displayName;
 
   if (encoder != null) {
     result = encoder(

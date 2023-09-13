@@ -203,5 +203,7 @@ $stack
 }
 
 abstract class JsonWidgetBuilderModel extends JsonClass {
-  const JsonWidgetBuilderModel();
+  const JsonWidgetBuilderModel(this.args);
+
+  final Map<String, dynamic> args;
 }
