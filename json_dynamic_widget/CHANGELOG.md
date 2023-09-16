@@ -1,4 +1,4 @@
-## [7.0.0-dev6] - TBD
+## [7.0.0] - September 16th, 2023
 
 This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.
 
