@@ -66,9 +66,9 @@ jobs:
         uses: peiffer-innovations/actions-pub-publish@v1.0.2
         with:
           credentials: ${{ secrets.CREDENTIAL_JSON }}
-          path: json_theme
+          path: json_dynamic_widget
 
       - uses: peiffer-innovations/actions-dart-version-autotag@v2
         with:
-          path: json_theme
+          path: json_dynamic_widget
           token: ${{ secrets.REPO_TOKEN }}
