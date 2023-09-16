@@ -1,3 +1,7 @@
+## [1.0.0] - September 16th, 2023
+
+* Release
+
 ## [0.9.2] - September 13th, 2023
 
 * Updated to be able to provide a registry and dynamic args for reverse encoding
