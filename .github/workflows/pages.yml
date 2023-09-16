@@ -1,9 +1,12 @@
 name: Flutter Pages Deployer
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
-  workflow_dispatch:
+    paths:
+      - .github/workflows/pages.yml
+      - json_dynamic_widget/pubspec.yaml
 
 jobs:
   build_number:
@@ -19,19 +22,33 @@ jobs:
       - name: Build Number
         run: echo "Build Number - $BUILD_NUMBER"
 
-  pages:
+  publish:
     needs: build_number
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
 
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: Run Codegen
+        run: |
+          flutter packages get
+          dart run build_runner build --delete-conflicting-outputs -v
+        working-directory: json_dynamic_widget
+
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
+        with:
+          path: json_dynamic_widget
 
       - name: Web
         uses: peiffer-innovations/actions-flutter-deploy-pages@v1
         with:
+          build_flags: --no-tree-shake-icons
           build_mode: release
           build_number: ${{ needs.build_number.outputs.buildnumber }}
           deploy_path: web
