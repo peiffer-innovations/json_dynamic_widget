@@ -36,5 +36,5 @@ jobs:
           build_number: ${{ needs.build_number.outputs.buildnumber }}
           deploy_path: web
           repo_url: https://github.com/${{ github.repository }}
-          source_path: example
+          source_path: json_dynamic_widget/example
           token: ${{ secrets.GITHUB_TOKEN }}

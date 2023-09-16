@@ -1,0 +1,26 @@
+name: Annotation Publisher
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - annotation/pubspec.yaml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Validate
+        uses: peiffer-innovations/actions-flutter-validate@v1
+        with:
+          path: annotation
+
+      - name: Publish
+        uses: peiffer-innovations/actions-pub-publish@v1.0.2
+        with:
+          credentials: ${{ secrets.CREDENTIAL_JSON }}
+          path: annotation

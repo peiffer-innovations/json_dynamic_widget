@@ -1,0 +1,26 @@
+name: Codegen Publisher
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - codegen/pubspec.yaml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Validate
+        uses: peiffer-innovations/actions-flutter-validate@v1
+        with:
+          path: codegen
+
+      - name: Publish
+        uses: peiffer-innovations/actions-pub-publish@v1.0.2
+        with:
+          credentials: ${{ secrets.CREDENTIAL_JSON }}
+          path: codegen
