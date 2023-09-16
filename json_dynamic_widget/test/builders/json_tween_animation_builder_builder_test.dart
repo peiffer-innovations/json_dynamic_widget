@@ -6,7 +6,7 @@ void main() {
   test('type', () {
     const type = JsonTweenAnimationBuilderBuilder.kType;
 
-    expect(type, 'tween_animation');
+    expect(type, 'tween_animation_builder');
 
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)(
