@@ -1,3 +1,8 @@
+## [7.0.0+3] - September 19, 2023
+
+* Automated dependency updates
+
+
 ## [7.0.0+2] - September 16th, 2023
 
 This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.
@@ -661,6 +666,7 @@ This is a huge release with several breaking changes.  It brings in the ability 
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
