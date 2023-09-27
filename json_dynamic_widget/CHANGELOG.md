@@ -1,3 +1,8 @@
+## [7.0.1] - September 27th, 2023
+
+* Fix for [https://github.com/peiffer-innovations/json_dynamic_widget/issues/216]
+
+
 ## [7.0.0+2] - September 16th, 2023
 
 This is a huge release with several breaking changes.  It brings in the ability to automatically create the widget JSON / YAML binding via a code generator.

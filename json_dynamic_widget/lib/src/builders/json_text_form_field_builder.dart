@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/gestures.dart';
 import 'package:form_validation/form_validation.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
@@ -54,14 +57,19 @@ class _TextFormField extends StatefulWidget {
     this.autofocus = false,
     this.autovalidateMode,
     this.buildCounter,
+    this.canRequestFocus = true,
+    this.clipBehavior = Clip.hardEdge,
+    this.contentInsertionConfiguration,
     this.contextMenuBuilder,
     required this.controller,
     this.cursorColor,
     this.cursorHeight,
+    this.cursorOpacityAnimates,
     this.cursorRadius,
     this.cursorWidth = 2.0,
     @JsonBuildArg() required this.data,
     this.decoration,
+    this.dragStartBehavior = DragStartBehavior.start,
     this.enableIMEPersonalizedLearning = true,
     this.enableInteractiveSelection,
     this.enableSuggestions = true,
@@ -72,6 +80,7 @@ class _TextFormField extends StatefulWidget {
     this.inputFormatters,
     this.keyboardAppearance,
     this.keyboardType,
+    this.magnifierConfiguration,
     this.maxLength,
     this.maxLengthEnforcement,
     this.maxLines = 1,
@@ -79,6 +88,7 @@ class _TextFormField extends StatefulWidget {
     this.mouseCursor,
     this.obscureText = false,
     this.obscuringCharacter = '•',
+    this.onAppPrivateCommand,
     this.onChanged,
     this.onEditingComplete,
     this.onFieldSubmitted,
@@ -87,13 +97,17 @@ class _TextFormField extends StatefulWidget {
     this.onTapOutside,
     this.readOnly = false,
     this.restorationId,
+    this.scribbleEnabled = true,
     this.scrollController,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.scrollPhysics,
     this.selectionControls,
+    this.selectionHeightStyle = BoxHeightStyle.tight,
+    this.selectionWidthStyle = BoxWidthStyle.tight,
     this.showCursor,
     this.smartDashesType,
     this.smartQuotesType,
+    this.spellCheckConfiguration,
     this.strutStyle,
     this.style,
     this.textAlign = TextAlign.start,
@@ -101,6 +115,7 @@ class _TextFormField extends StatefulWidget {
     this.textCapitalization = TextCapitalization.none,
     this.textDirection,
     this.textInputAction,
+    this.undoController,
     this.validators,
   });
 
@@ -109,14 +124,19 @@ class _TextFormField extends StatefulWidget {
   final bool autofocus;
   final AutovalidateMode? autovalidateMode;
   final InputCounterWidgetBuilder? buildCounter;
+  final bool canRequestFocus;
+  final Clip clipBehavior;
+  final ContentInsertionConfiguration? contentInsertionConfiguration;
   final EditableTextContextMenuBuilder? contextMenuBuilder;
   final TextEditingController? controller;
   final Color? cursorColor;
   final double? cursorHeight;
+  final bool? cursorOpacityAnimates;
   final Radius? cursorRadius;
   final double cursorWidth;
   final JsonWidgetData data;
   final dynamic decoration;
+  final DragStartBehavior dragStartBehavior;
   final bool enableIMEPersonalizedLearning;
   final bool? enableInteractiveSelection;
   final bool enableSuggestions;
@@ -127,13 +147,15 @@ class _TextFormField extends StatefulWidget {
   final List<TextInputFormatter>? inputFormatters;
   final Brightness? keyboardAppearance;
   final TextInputType? keyboardType;
+  final TextMagnifierConfiguration? magnifierConfiguration;
   final int? maxLength;
   final MaxLengthEnforcement? maxLengthEnforcement;
-  final int maxLines;
+  final int? maxLines;
   final int? minLines;
   final MouseCursor? mouseCursor;
   final bool obscureText;
   final String obscuringCharacter;
+  final AppPrivateCommandCallback? onAppPrivateCommand;
   final ValueChanged<String>? onChanged;
   final VoidCallback? onEditingComplete;
   final ValueChanged<String>? onFieldSubmitted;
@@ -142,13 +164,17 @@ class _TextFormField extends StatefulWidget {
   final TapRegionCallback? onTapOutside;
   final bool readOnly;
   final String? restorationId;
+  final bool scribbleEnabled;
   final ScrollController? scrollController;
   final EdgeInsets scrollPadding;
   final ScrollPhysics? scrollPhysics;
   final TextSelectionControls? selectionControls;
+  final BoxHeightStyle selectionHeightStyle;
+  final BoxWidthStyle selectionWidthStyle;
   final bool? showCursor;
   final SmartDashesType? smartDashesType;
   final SmartQuotesType? smartQuotesType;
+  final SpellCheckConfiguration? spellCheckConfiguration;
   final StrutStyle? strutStyle;
   final TextStyle? style;
   final TextAlign textAlign;
@@ -156,6 +182,7 @@ class _TextFormField extends StatefulWidget {
   final TextCapitalization textCapitalization;
   final TextDirection? textDirection;
   final TextInputAction? textInputAction;
+  final UndoHistoryController? undoController;
   final Validator? validators;
 
   @override
@@ -226,13 +253,18 @@ class _TextFormFieldState extends State<_TextFormField> {
         autofocus: widget.autofocus,
         autovalidateMode: widget.autovalidateMode,
         buildCounter: widget.buildCounter,
+        canRequestFocus: widget.canRequestFocus,
+        clipBehavior: widget.clipBehavior,
+        contentInsertionConfiguration: widget.contentInsertionConfiguration,
         contextMenuBuilder: widget.contextMenuBuilder,
         controller: _controller,
         cursorColor: widget.cursorColor,
         cursorHeight: widget.cursorHeight,
+        cursorOpacityAnimates: widget.cursorOpacityAnimates,
         cursorRadius: widget.cursorRadius,
         cursorWidth: widget.cursorWidth,
         decoration: widget.decoration,
+        dragStartBehavior: widget.dragStartBehavior,
         enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
         enableInteractiveSelection: widget.enableInteractiveSelection,
         enableSuggestions: widget.enableSuggestions,
@@ -243,6 +275,7 @@ class _TextFormFieldState extends State<_TextFormField> {
         inputFormatters: widget.inputFormatters,
         keyboardAppearance: widget.keyboardAppearance,
         keyboardType: widget.keyboardType,
+        magnifierConfiguration: widget.magnifierConfiguration,
         maxLength: widget.maxLength,
         maxLengthEnforcement: widget.maxLengthEnforcement,
         maxLines: widget.maxLines,
@@ -250,6 +283,7 @@ class _TextFormFieldState extends State<_TextFormField> {
         mouseCursor: widget.mouseCursor,
         obscuringCharacter: widget.obscuringCharacter,
         obscureText: widget.obscureText,
+        onAppPrivateCommand: widget.onAppPrivateCommand,
         onChanged: widget.enabled != true
             ? null
             : (value) {
@@ -264,13 +298,17 @@ class _TextFormFieldState extends State<_TextFormField> {
         onTapOutside: widget.onTapOutside,
         readOnly: widget.readOnly,
         restorationId: widget.restorationId,
+        scribbleEnabled: widget.scribbleEnabled,
         scrollController: widget.scrollController,
         scrollPadding: widget.scrollPadding,
         scrollPhysics: widget.scrollPhysics,
         selectionControls: widget.selectionControls,
+        selectionHeightStyle: widget.selectionHeightStyle,
+        selectionWidthStyle: widget.selectionWidthStyle,
         showCursor: widget.showCursor,
         smartDashesType: widget.smartDashesType,
         smartQuotesType: widget.smartQuotesType,
+        spellCheckConfiguration: widget.spellCheckConfiguration,
         strutStyle: widget.strutStyle,
         style: widget.style,
         textAlign: widget.textAlign,
@@ -278,6 +316,8 @@ class _TextFormFieldState extends State<_TextFormField> {
         textCapitalization: widget.textCapitalization,
         textDirection: widget.textDirection,
         textInputAction: widget.textInputAction,
+        // @deprecated toolbarOptions
+        undoController: widget.undoController,
         validator: widget.validators == null
             ? null
             : (value) {

@@ -260,8 +260,15 @@ String _defaultDecoder(
   return '''
 () {
   dynamic parsed = $funName(map['$name']);
-  ${defaultValueCode == null ? '' : 'parsed ??= $defaultValueCode;'}
-  ${!element.type.nullable && defaultValueCode == null ? "if (parsed == null) { throw Exception('Null value encountered for required parameter: [$name].'); }" : ''}
+
+  ${element.type.nullable && defaultValueCode != null ? '''
+  if (!map.containsKey('$name')) {
+    parsed ??= $defaultValueCode;
+  }
+''' : '''
+    ${defaultValueCode == null ? '' : 'parsed ??= $defaultValueCode;'}
+'''}
+  ${!element.type.nullable && defaultValueCode == null ? "if (parsed == null) { throw Exception('Null value encountered for required parameter: [$name].',); }" : ''}
   return parsed;
 }()
 ''';
@@ -276,8 +283,14 @@ String _themeDecoder(
   return '''
 () {
   dynamic parsed = $funName(map['$name'], validate: false,);
-  ${defaultValueCode == null ? '' : 'parsed ??= $defaultValueCode;'}
-  ${!element.type.nullable && defaultValueCode == null ? "if (parsed == null) { throw Exception('Null value encountered for required parameter: [$name].'); }" : ''}
+  ${element.type.nullable && defaultValueCode != null ? '''
+  if (!map.containsKey('$name')) {
+    parsed ??= $defaultValueCode;
+  }
+''' : '''
+    ${defaultValueCode == null ? '' : 'parsed ??= $defaultValueCode;'}
+'''}
+  ${!element.type.nullable && defaultValueCode == null ? "if (parsed == null) { throw Exception('Null value encountered for required parameter: [$name].',); }" : ''}
   return parsed;
 }()
 ''';

@@ -18,6 +18,7 @@
         "child": {
           "type": "text_form_field",
           "args": {
+            "expands": true,
             "maxLines": "${null}",
             "minLines": "${null}"
           }

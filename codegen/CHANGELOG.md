@@ -1,3 +1,7 @@
+## [1.0.1] - September 27th, 2023
+
+* Fix for [https://github.com/peiffer-innovations/json_dynamic_widget/issues/216]
+
 ## [1.0.0] - September 16th, 2023
 
 * Release
