@@ -7,6 +7,7 @@ import 'package:example/src/components/example_registrar.dart';
 import 'package:example/src/custom_function/show_dialog.dart'
     as show_dialog_fun;
 import 'package:example/src/export_example_page.dart';
+import 'package:example/src/issue_220_page.dart';
 import 'package:example/src/issue_24_page.dart';
 import 'package:example/src/untestable_full_widget_page.dart';
 import 'package:execution_timer/execution_timer.dart';
@@ -238,6 +239,11 @@ class _RootPageState extends State<RootPage> {
         ),
     'issue_30': _onJsonPageSelected,
     'issue_109': _onJsonPageSelected,
+    'issue_220': (context, _) async => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => const Issue220Page(),
+          ),
+        ),
     'layout_builder': _onJsonPageSelected,
     'length': _onJsonPageSelected,
     'limited_box': _onJsonPageSelected,

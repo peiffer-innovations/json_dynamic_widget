@@ -9,6 +9,10 @@ abstract class _JsonContainerBuilder extends JsonWidgetBuilder {
     required super.args,
   });
 
+  @JsonArgEncoder('decoration')
+  static Map<String, dynamic>? _encodeDecoration(dynamic value) =>
+      value is BoxDecoration ? ThemeEncoder.encodeBoxDecoration(value) : null;
+
   @JsonArgDecoder('decoration')
   Decoration? _decodeDecoration({required dynamic value}) =>
       ThemeDecoder.decodeBoxDecoration(

@@ -9,6 +9,7 @@ abstract class _JsonHeroBuilder extends JsonWidgetBuilder {
     required super.args,
   });
 
+  @JsonDefaultParam('tag', "'(default)'")
   @override
   Hero buildCustom({
     ChildWidgetBuilder? childBuilder,
