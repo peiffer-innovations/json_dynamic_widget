@@ -25,8 +25,12 @@ class JsonWidgetRegistrarBuilder
     const registrationChecker = TypeChecker.fromRuntime(JsonWidgetRegistration);
 
     final manualRegistrations = <String, WidgetInfo>{};
+    MethodElement? registerMethod;
     for (var m in element.methods) {
       final annotation = registrationChecker.firstAnnotationOf(m);
+      if (m.name == 'register') {
+        registerMethod = m;
+      }
       if (annotation != null) {
         manualRegistrations[m.name] = WidgetInfo(
           autoRegister: true,
@@ -106,8 +110,11 @@ class JsonWidgetRegistrarBuilder
           }),
         );
         m.returns = const Reference('void');
-
-        m.body = const Code('''
+        if (registerMethod != null) {
+          m.annotations.add(const CodeExpression(Code('override')));
+        }
+        m.body = Code('''
+${registerMethod == null ? '' : 'super.register(registry);'}
 for (var b in _builders.entries) {
   registry.registerCustomBuilder(b.key, b.value);
 }

@@ -1,3 +1,9 @@
+## [1.0.2] - October 18th, 2023
+
+* Updated to call `super.register` if it exists on the registrar
+* Fix for [https://github.com/peiffer-innovations/json_dynamic_widget/issues/219]
+
+
 ## [1.0.1+1] - October 3, 2023
 
 * Automated dependency updates

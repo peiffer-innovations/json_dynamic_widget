@@ -1,3 +1,8 @@
+## [7.0.3] - October 18th, 2023
+
+* Regenerated code based off of some fixes from the code generator package.
+
+
 ## [7.0.2] - October 8th, 2023
 
 * Fix for [Issue 220](https://github.com/peiffer-innovations/json_dynamic_widget/issues/220)

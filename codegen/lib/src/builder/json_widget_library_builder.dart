@@ -742,7 +742,7 @@ return result;
 final ${name}Encoded = ${element.name}.${encoder.name}($name);
 ''');
               buf.write('''
-'$name': ${defaultValueCode == null ? '' : '$defaultValueCode == ${name}Encoded ? null : '}${name}Encoded,
+'$name': ${defaultValueCode == null ? '' : '$defaultValueCode == $name ? null : '}${name}Encoded,
 ''');
             } else {
               final encoder = encode(
