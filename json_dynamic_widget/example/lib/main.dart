@@ -4,9 +4,9 @@ import 'dart:io';
 import 'package:desktop_window/desktop_window.dart';
 import 'package:example/src/components/clipper.dart';
 import 'package:example/src/components/example_registrar.dart';
-import 'package:example/src/custom_function/show_dialog.dart'
-    as show_dialog_fun;
+import 'package:example/src/custom_function/show_dialog.dart' as show_dialog_fun;
 import 'package:example/src/export_example_page.dart';
+import 'package:example/src/issue_219_page.dart';
 import 'package:example/src/issue_220_page.dart';
 import 'package:example/src/issue_24_page.dart';
 import 'package:example/src/untestable_full_widget_page.dart';
@@ -22,10 +22,7 @@ void main() async {
   TimeKeeper.enabled = true;
 
   if (!kIsWeb &&
-      (Platform.isLinux ||
-          Platform.isFuchsia ||
-          Platform.isMacOS ||
-          Platform.isWindows)) {
+      (Platform.isLinux || Platform.isFuchsia || Platform.isMacOS || Platform.isWindows)) {
     await DesktopWindow.setWindowSize(const Size(1024, 768));
   }
 
@@ -46,8 +43,7 @@ void main() async {
   ExampleRegistrar().register(registry);
 
   registry.registerFunction('navigatePage', ({args, required registry}) async {
-    final jsonStr =
-        await rootBundle.loadString('assets/pages/${args![0]}.json');
+    final jsonStr = await rootBundle.loadString('assets/pages/${args![0]}.json');
     final jsonData = json.decode(jsonStr);
     await navigatorKey.currentState!.push(
       MaterialPageRoute(
@@ -61,13 +57,11 @@ void main() async {
     );
   });
   registry.registerFunctions({
-    'getImageAsset': ({args, required registry}) =>
-        'assets/images/image${args![0]}.jpg',
+    'getImageAsset': ({args, required registry}) => 'assets/images/image${args![0]}.jpg',
     'getImageId': ({args, required registry}) => 'image${args![0]}',
     'getImageNavigator': ({args, required registry}) => () async {
           registry.setValue('index', args![0]);
-          final dataStr =
-              await rootBundle.loadString('assets/pages/image_page.json');
+          final dataStr = await rootBundle.loadString('assets/pages/image_page.json');
           final imagePageJson = Map.unmodifiable(json.decode(dataStr));
           final imgRegistry = JsonWidgetRegistry(
             debugLabel: 'ImagePage',
@@ -239,6 +233,11 @@ class _RootPageState extends State<RootPage> {
         ),
     'issue_30': _onJsonPageSelected,
     'issue_109': _onJsonPageSelected,
+    'issue_219': (context, _) async => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => const Issue219Page(),
+          ),
+        ),
     'issue_220': (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => const Issue220Page(),
