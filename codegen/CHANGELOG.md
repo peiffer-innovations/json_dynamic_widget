@@ -1,3 +1,8 @@
+## [1.0.2+1] - October 24, 2023
+
+* Automated dependency updates
+
+
 ## [1.0.2] - October 18th, 2023
 
 * Updated to call `super.register` if it exists on the registrar
@@ -30,4 +35,5 @@
 
 * Initial release
     * Documentation coming in an upcoming 1.0.0 release
+
 
