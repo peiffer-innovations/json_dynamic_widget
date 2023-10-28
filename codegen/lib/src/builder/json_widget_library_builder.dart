@@ -738,12 +738,16 @@ return result;
             final name = aliases[param.name] ?? param.name;
             final encoder = paramEncoders[name];
 
-            final defaultValueCode =
+            var defaultValueCode =
                 paramDefaults[name] ?? param.defaultValueCode;
+            if (defaultValueCode == 'const <Widget>[]') {
+              defaultValueCode = 'const <JsonWidgetData>[]';
+            }
             if (encoder != null) {
               customEncoders.write('''
 final ${name}Encoded = ${element.name}.${encoder.name}(${param.name});
 ''');
+
               buf.write('''
 '${param.name}': ${defaultValueCode == null ? '' : '$defaultValueCode == $name ? null : '}${name}Encoded,
 ''');
@@ -851,11 +855,13 @@ ${buf.toString()}
     );
 
     return '''
+// ignore_for_file: avoid_init_to_null
 // ignore_for_file: deprecated_member_use
 ${widgetName.startsWith('_') ? '// ignore_for_file: library_private_types_in_public_api' : ''}
 // ignore_for_file: prefer_const_constructors
 // ignore_for_file: prefer_const_constructors_in_immutables
 // ignore_for_file: prefer_final_locals
+// ignore_for_file: prefer_if_null_operators
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: unused_local_variable
 

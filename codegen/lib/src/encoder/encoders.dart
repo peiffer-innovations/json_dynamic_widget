@@ -102,7 +102,10 @@ String encode(
     );
   }
 
-  final defaultValueCode = defaults[name] ?? element.defaultValueCode;
+  var defaultValueCode = defaults[name] ?? element.defaultValueCode;
+  if (defaultValueCode == 'const <Widget>[]') {
+    defaultValueCode = 'const <JsonWidgetData>[]';
+  }
 
   return '''
   '${element.name}': ${defaultValueCode == null ? result : '$defaultValueCode == $displayName ? null : $result'},
