@@ -1,3 +1,8 @@
+## [7.0.3+1] - October 28th, 2023
+
+* Dependency updates
+
+
 ## [7.0.3] - October 18th, 2023
 
 * Regenerated code based off of some fixes from the code generator package.
