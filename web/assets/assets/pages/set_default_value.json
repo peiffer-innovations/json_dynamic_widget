@@ -1,73 +1,89 @@
 {
   "type": "set_default_value",
   "args": {
-    "default": "set_default_value",
-    "nonDefault": "set_default_value"
-  },
-  "child": {
-    "type": "set_value",
-    "args": {
-      "nonDefault": "set_value"
+    "values": {
+      "default": "set_default_value",
+      "nonDefault": "set_default_value"
     },
     "child": {
-      "type": "set_default_value",
+      "type": "set_value",
       "args": {
-        "nonDefault": "set_value"
-      },
-      "child": {
-        "type": "scaffold",
-        "args": {
-          "appBar": {
-            "type": "app_bar",
-            "args": {
-              "title": {
-                "type": "text",
-                "args": {
-                  "text": "Set Default Value"
-                }
-              }
-            }
-          },
-          "body": {
-            "type": "center",
+        "values": {
+          "nonDefault": "set_value"
+        },
+        "child": {
+          "type": "set_default_value",
+          "args": {
+            "values": {
+              "nonDefault": "set_value"
+            },
             "child": {
-              "type": "list_view",
-              "children": [
-                {
-                  "type": "list_tile",
+              "type": "scaffold",
+              "args": {
+                "appBar": {
+                  "type": "app_bar",
                   "args": {
-                    "subtitle": {
-                      "type": "text",
-                      "args": {
-                        "text": "${default}"
-                      }
-                    },
                     "title": {
                       "type": "text",
                       "args": {
-                        "text": "default"
+                        "text": "Set Default Value"
                       }
                     }
                   }
                 },
-                {
-                  "type": "list_tile",
+                "body": {
+                  "type": "center",
                   "args": {
-                    "subtitle": {
-                      "type": "text",
+                    "child": {
+                      "type": "list_view",
                       "args": {
-                        "text": "${nonDefault}"
-                      }
-                    },
-                    "title": {
-                      "type": "text",
-                      "args": {
-                        "text": "nonDefault"
+                        "children": [
+                          {
+                            "type": "list_tile",
+                            "args": {
+                              "subtitle": {
+                                "type": "text",
+                                "listen": [
+                                  "default"
+                                ],
+                                "args": {
+                                  "text": "${default}"
+                                }
+                              },
+                              "title": {
+                                "type": "text",
+                                "args": {
+                                  "text": "default"
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "list_tile",
+                            "args": {
+                              "subtitle": {
+                                "type": "text",
+                                "listen": [
+                                  "nonDefault"
+                                ],
+                                "args": {
+                                  "text": "${nonDefault}"
+                                }
+                              },
+                              "title": {
+                                "type": "text",
+                                "args": {
+                                  "text": "nonDefault"
+                                }
+                              }
+                            }
+                          }
+                        ]
                       }
                     }
                   }
                 }
-              ]
+              }
             }
           }
         }

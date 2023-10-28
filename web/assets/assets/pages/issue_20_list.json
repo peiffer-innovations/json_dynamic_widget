@@ -1,30 +1,37 @@
 {
   "type": "set_widget",
   "args": {
-    "variableWidgetList": {
-      "type": "text",
-      "args": {
-        "text": "This is a text."
-      }
-    }
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
+    "widgets": {
+      "variableWidgetList": {
+        "type": "text",
         "args": {
-          "title": {
-            "type": "text",
-            "args": {
-              "text": "VariableWidgetList"
+          "text": "This is a text."
+        }
+      }
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "VariableWidgetList"
+              }
             }
           }
+        },
+        "body": {
+          "type": "list_view",
+          "listen": [
+            "variableWidgetList"
+          ],
+          "args": {
+            "child": "${variableWidgetList}"
+          }
         }
-      },
-      "body": {
-        "type": "list_view",
-        "child": "${variableWidgetList}"
       }
     }
   }

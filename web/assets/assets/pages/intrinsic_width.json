@@ -14,49 +14,51 @@
     },
     "body": {
       "type": "intrinsic_width",
-      "child": {
-        "type": "column",
-        "args": {
-          "crossAxisAlignment": "stretch"
-        },
-        "children": [
-          {
-            "type": "elevated_button",
-            "args": {
-              "onPressed": "${simplePrintMessage()}"
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "Short"
+      "args": {
+        "child": {
+          "type": "column",
+          "args": {
+            "crossAxisAlignment": "stretch",
+            "children": [
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "Short"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "A bit Longer"
+                    }
+                  }
+                }
+              },
+              {
+                "type": "elevated_button",
+                "args": {
+                  "onPressed": "${simplePrintMessage()}",
+                  "child": {
+                    "type": "text",
+                    "args": {
+                      "text": "The Longest text button"
+                    }
+                  }
+                }
               }
-            }
-          },
-          {
-            "type": "elevated_button",
-            "args": {
-              "onPressed": "${simplePrintMessage()}"
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "A bit Longer"
-              }
-            }
-          },
-          {
-            "type": "elevated_button",
-            "args": {
-              "onPressed": "${simplePrintMessage()}"
-            },
-            "child": {
-              "type": "text",
-              "args": {
-                "text": "The Longest text button"
-              }
-            }
+            ]
           }
-        ]
+        }
       }
     }
   }

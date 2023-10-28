@@ -1,21 +1,26 @@
 {
   "type": "set_value",
   "args": {
-    "customBrightness": "dark"
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
-        "args": {
-          "title": {
-            "type": "text",
-            "args": {
-              "text": "Test"
-            }
-          },
-          "systemOverlayStyle": "${customBrightness}"
+    "values": {
+      "customBrightness": "dark"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "listen": [
+            "customBrightness"
+          ],
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Test"
+              }
+            },
+            "systemOverlayStyle": "${customBrightness}"
+          }
         }
       }
     }

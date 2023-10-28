@@ -14,22 +14,24 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "decorated_box",
-        "args": {
-          "decoration": {
-            "border": {
-              "color": "#6d78b6",
-              "width": 1
-            },
-            "shape": "rectangle"
-          },
-          "position": "foreground"
-        },
+      "args": {
         "child": {
-          "type": "text",
+          "type": "decorated_box",
           "args": {
-            "text": "This is a random widget"
+            "decoration": {
+              "border": {
+                "color": "#6d78b6",
+                "width": 1
+              },
+              "shape": "rectangle"
+            },
+            "position": "foreground",
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "This is a random widget"
+              }
+            }
           }
         }
       }

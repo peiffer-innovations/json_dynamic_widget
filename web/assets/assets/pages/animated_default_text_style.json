@@ -15,22 +15,29 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customTextStyle": {
-          "color": "#FF0000"
-        }
-      },
-      "child": {
-        "type": "center",
+        "values": {
+          "customTextStyle": {
+            "color": "#FF0000"
+          }
+        },
         "child": {
-          "type": "animated_default_text_style",
+          "type": "center",
           "args": {
-            "duration": 1500,
-            "style": "${customTextStyle}"
-          },
-          "child": {
-            "type": "text",
-            "args": {
-              "text": "Random text"
+            "child": {
+              "type": "animated_default_text_style",
+              "listen": [
+                "customTextStyle"
+              ],
+              "args": {
+                "duration": 1500,
+                "style": "${customTextStyle}",
+                "child": {
+                  "type": "text",
+                  "args": {
+                    "text": "Random text"
+                  }
+                }
+              }
             }
           }
         }
@@ -40,12 +47,12 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${updateCustomTextStyle()}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${updateCustomTextStyle()}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

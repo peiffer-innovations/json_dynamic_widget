@@ -15,38 +15,45 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customHeight": 40
-      },
-      "child": {
-        "type": "stack",
-        "children": [
-          {
-            "type": "animated_positioned",
-            "args": {
-              "duration": 1000,
-              "height": "${customHeight}"
-            },
-            "child": {
-              "type": "container",
-              "args": {
-                "color": "#FF0000",
-                "width": 100
+        "values": {
+          "customHeight": 40
+        },
+        "child": {
+          "type": "stack",
+          "args": {
+            "children": [
+              {
+                "type": "animated_positioned",
+                "listen": [
+                  "customHeight"
+                ],
+                "args": {
+                  "duration": 1000,
+                  "height": "${customHeight}",
+                  "child": {
+                    "type": "container",
+                    "args": {
+                      "color": "#FF0000",
+                      "width": 100
+                    }
+                  }
+                }
               }
-            }
+            ]
           }
-        ]
+        }
       }
     },
     "floatingActionButton": {
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${set_value('customHeight', 100)}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${set_value('customHeight', 100)}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

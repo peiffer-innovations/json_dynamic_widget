@@ -15,34 +15,39 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customCrossFadeState": "showFirst"
-      },
-      "child": {
-        "type": "center",
+        "values": {
+          "customCrossFadeState": "showFirst"
+        },
         "child": {
-          "type": "animated_cross_fade",
+          "type": "center",
           "args": {
-            "crossFadeState": "${customCrossFadeState}",
-            "duration": 1000
-          },
-          "children": [
-            {
-              "type": "container",
+            "child": {
+              "type": "animated_cross_fade",
+              "listen": [
+                "customCrossFadeState"
+              ],
               "args": {
-                "color": "#FF0000",
-                "height": 100,
-                "width": 100
-              }
-            },
-            {
-              "type": "container",
-              "args": {
-                "color": "#FFF000",
-                "height": 100,
-                "width": 100
+                "crossFadeState": "${customCrossFadeState}",
+                "duration": 1000,
+                "firstChild": {
+                  "type": "container",
+                  "args": {
+                    "color": "#FF0000",
+                    "height": 100,
+                    "width": 100
+                  }
+                },
+                "secondChild": {
+                  "type": "container",
+                  "args": {
+                    "color": "#FFF000",
+                    "height": 100,
+                    "width": 100
+                  }
+                }
               }
             }
-          ]
+          }
         }
       }
     },
@@ -50,12 +55,12 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${set_value('customCrossFadeState', 'showSecond')}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${set_value('customCrossFadeState', 'showSecond')}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

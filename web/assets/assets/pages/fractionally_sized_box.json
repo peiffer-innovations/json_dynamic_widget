@@ -15,17 +15,17 @@
     "body": {
       "type": "container",
       "args": {
-        "alignment": "center"
-      },
-      "child": {
-        "type": "fractionally_sized_box",
-        "args": {
-          "widthFactor": 0.7
-        },
+        "alignment": "center",
         "child": {
-          "type": "text",
+          "type": "fractionally_sized_box",
           "args": {
-            "text": "Fractional Sized Box Demo"
+            "widthFactor": 0.7,
+            "child": {
+              "type": "text",
+              "args": {
+                "text": "Fractional Sized Box Demo"
+              }
+            }
           }
         }
       }

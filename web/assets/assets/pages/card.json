@@ -1,117 +1,120 @@
 {
-  "_designCredit": "https://www.woolha.com/tutorials/flutter-card-widget-example",
   "type": "theme",
   "args": {
     "data": {
       "primaryColor": "#2c3ea4"
-    }
-  },
-  "child": {
-    "type": "scaffold",
-    "args": {
-      "appBar": {
-        "type": "app_bar",
-        "args": {
-          "title": {
-            "type": "text",
-            "args": {
-              "text": "Card"
+    },
+    "child": {
+      "type": "scaffold",
+      "args": {
+        "appBar": {
+          "type": "app_bar",
+          "args": {
+            "title": {
+              "type": "text",
+              "args": {
+                "text": "Card"
+              }
             }
           }
-        }
-      },
-      "body": {
-        "type": "center",
-        "child": {
-          "type": "container",
+        },
+        "body": {
+          "type": "center",
           "args": {
-            "width": "240"
-          },
-          "child": {
-            "type": "card",
-            "args": {
-              "color": "#E91E63",
-              "elevation": 10,
-              "shape": {
-                "type": "rounded",
-                "borderRadius": 15
-              }
-            },
             "child": {
-              "type": "column",
+              "type": "container",
               "args": {
-                "mainAxisSize": "min"
-              },
-              "children": [
-                {
-                  "type": "list_tile",
+                "width": "240",
+                "child": {
+                  "type": "card",
                   "args": {
-                    "leading": {
-                      "type": "icon",
-                      "args": {
-                        "icon": {
-                          "codePoint": 57369,
-                          "fontFamily": "MaterialIcons"
-                        },
-                        "size": 70
-                      }
+                    "color": "#E91E63",
+                    "elevation": 10,
+                    "shape": {
+                      "type": "rounded",
+                      "borderRadius": 15
                     },
-                    "title": {
-                      "type": "text",
+                    "child": {
+                      "type": "column",
                       "args": {
-                        "text": "Heart Shaker",
-                        "style": {
-                          "color": "#fff"
-                        }
-                      }
-                    },
-                    "subtitle": {
-                      "type": "text",
-                      "args": {
-                        "text": "TWICE",
-                        "style": {
-                          "color": "#fff"
-                        }
+                        "mainAxisSize": "min",
+                        "children": [
+                          {
+                            "type": "list_tile",
+                            "args": {
+                              "leading": {
+                                "type": "icon",
+                                "args": {
+                                  "icon": {
+                                    "codePoint": 57369,
+                                    "fontFamily": "MaterialIcons"
+                                  },
+                                  "size": 70
+                                }
+                              },
+                              "title": {
+                                "type": "text",
+                                "args": {
+                                  "text": "Heart Shaker",
+                                  "style": {
+                                    "color": "#fff"
+                                  }
+                                }
+                              },
+                              "subtitle": {
+                                "type": "text",
+                                "args": {
+                                  "text": "TWICE",
+                                  "style": {
+                                    "color": "#fff"
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          {
+                            "type": "button_bar",
+                            "args": {
+                              "children": [
+                                {
+                                  "type": "elevated_button",
+                                  "args": {
+                                    "onPressed": "${noop()}",
+                                    "child": {
+                                      "type": "text",
+                                      "args": {
+                                        "text": "Edit",
+                                        "style": {
+                                          "color": "#fff"
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                {
+                                  "type": "elevated_button",
+                                  "args": {
+                                    "onPressed": "${noop()}",
+                                    "child": {
+                                      "type": "text",
+                                      "args": {
+                                        "text": "Delete",
+                                        "style": {
+                                          "color": "#fff"
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
                       }
                     }
                   }
-                },
-                {
-                  "type": "button_bar",
-                  "children": [
-                    {
-                      "type": "elevated_button",
-                      "args": {
-                        "onPressed": "${noop()}"
-                      },
-                      "child": {
-                        "type": "text",
-                        "args": {
-                          "text": "Edit",
-                          "style": {
-                            "color": "#fff"
-                          }
-                        }
-                      }
-                    },
-                    {
-                      "type": "elevated_button",
-                      "args": {
-                        "onPressed": "${noop()}"
-                      },
-                      "child": {
-                        "type": "text",
-                        "args": {
-                          "text": "Delete",
-                          "style": {
-                            "color": "#fff"
-                          }
-                        }
-                      }
-                    }
-                  ]
                 }
-              ]
+              }
             }
           }
         }

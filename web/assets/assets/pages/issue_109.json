@@ -14,51 +14,57 @@
     },
     "body": {
       "type": "form",
-      "child": {
-        "type": "column",
-        "children": [
-          {
-            "type": "list_tile",
-            "args": {
-              "title": {
-                "type": "exclude_semantics",
-                "child": {
-                  "type": "text_form_field",
-                  "id": "ID#ORDER_NUMBER",
-                  "args": {
-                    "decoration": {
-                      "labelText": "Order number"
-                    },
-                    "validators": [
-                      {
-                        "type": "required"
+      "args": {
+        "child": {
+          "type": "column",
+          "args": {
+            "children": [
+              {
+                "type": "list_tile",
+                "args": {
+                  "title": {
+                    "type": "exclude_semantics",
+                    "args": {
+                      "child": {
+                        "type": "text_form_field",
+                        "id": "ID#ORDER_NUMBER",
+                        "args": {
+                          "decoration": {
+                            "labelText": "Order number"
+                          },
+                          "validators": [
+                            {
+                              "type": "required"
+                            }
+                          ]
+                        }
                       }
-                    ]
+                    }
+                  }
+                }
+              },
+              {
+                "type": "outlined_button",
+                "id": "submit_button",
+                "args": {
+                  "onPressed": "${validateForm('form_context')}",
+                  "child": {
+                    "type": "save_context",
+                    "args": {
+                      "key": "form_context",
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "Submit"
+                        }
+                      }
+                    }
                   }
                 }
               }
-            }
-          },
-          {
-            "type": "outlined_button",
-            "id": "submit_button",
-            "args": {
-              "onPressed": "${validateForm('form_context')}"
-            },
-            "child": {
-              "type": "save_context",
-              "args": {
-                "key": "form_context"
-              },
-              "child": {
-                "type": "text",
-                "args": {
-                  "text": "Submit"
-                }
-              }
-            }
+            ]
           }
-        ]
+        }
       }
     }
   }

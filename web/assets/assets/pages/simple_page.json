@@ -14,10 +14,12 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Hello World!"
+      "args": {
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Hello World!"
+          }
         }
       }
     }

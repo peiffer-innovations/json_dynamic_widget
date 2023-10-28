@@ -15,29 +15,36 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customText": "This is a short text."
-      },
-      "child": {
-        "type": "center",
+        "values": {
+          "customText": "This is a short text."
+        },
         "child": {
-          "type": "container",
+          "type": "center",
           "args": {
-            "decoration": {
-              "border": {
-                "color": "#000"
-              }
-            }
-          },
-          "child": {
-            "type": "animated_size",
-            "args": {
-              "duration": 1000,
-              "reverseDuration": 3000
-            },
             "child": {
-              "type": "text",
+              "type": "container",
               "args": {
-                "text": "${customText}"
+                "decoration": {
+                  "border": {
+                    "color": "#000"
+                  }
+                },
+                "child": {
+                  "type": "animated_size",
+                  "args": {
+                    "duration": 1000,
+                    "reverseDuration": 3000,
+                    "child": {
+                      "type": "text",
+                      "listen": [
+                        "customText"
+                      ],
+                      "args": {
+                        "text": "${customText}"
+                      }
+                    }
+                  }
+                }
               }
             }
           }
@@ -48,12 +55,12 @@
       "type": "elevated_button",
       "id": "press_me_button",
       "args": {
-        "onPressed": "${set_value('customText', 'This is not a short text. This is a very very long text.')}"
-      },
-      "child": {
-        "type": "text",
-        "args": {
-          "text": "Press Me!"
+        "onPressed": "${set_value('customText', 'This is not a short text. This is a very very long text.')}",
+        "child": {
+          "type": "text",
+          "args": {
+            "text": "Press Me!"
+          }
         }
       }
     }

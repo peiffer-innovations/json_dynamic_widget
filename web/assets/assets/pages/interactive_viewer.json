@@ -17,12 +17,12 @@
       "args": {
         "boundaryMargin": 20.0,
         "maxScale": 1.6,
-        "minScale": 0.1
-      },
-      "child": {
-        "type": "container",
-        "args": {
-          "color": "#000"
+        "minScale": 0.1,
+        "child": {
+          "type": "container",
+          "args": {
+            "color": "#000"
+          }
         }
       }
     }

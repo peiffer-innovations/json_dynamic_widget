@@ -14,124 +14,136 @@
     },
     "body": {
       "type": "column",
-      "children": [
-        {
-          "type": "expanded",
-          "child": {
-            "type": "center",
-            "child": {
-              "type": "elevated_button",
-              "args": {
-                "onLongPress": "${simplePrintMessage()}",
-                "style": {
-                  "foregroundColor": {
-                    "pressed": "FF2196F3",
-                    "focused": "FF2196F3",
-                    "empty": "FFF44336"
-                  }
-                }
-              },
+      "args": {
+        "children": [
+          {
+            "type": "expanded",
+            "args": {
               "child": {
-                "type": "text",
+                "type": "center",
                 "args": {
-                  "text": "ElevatedButton"
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "expanded",
-          "child": {
-            "type": "center",
-            "child": {
-              "type": "text_button",
-              "args": {
-                "onLongPress": "${simplePrintMessage()}",
-                "style": {
-                  "foregroundColor": {
-                    "pressed": "FF2196F3",
-                    "focused": "FF2196F3",
-                    "empty": "FFF44336"
-                  }
-                }
-              },
-              "child": {
-                "type": "text",
-                "args": {
-                  "text": "TextButton"
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "expanded",
-          "child": {
-            "type": "center",
-            "child": {
-              "type": "outlined_button",
-              "args": {
-                "onLongPress": "${simplePrintMessage()}",
-                "style": {
-                  "foregroundColor": {
-                    "pressed": "FF2196F3",
-                    "focused": "FF2196F3",
-                    "empty": "FFF44336"
-                  }
-                }
-              },
-              "child": {
-                "type": "text",
-                "args": {
-                  "text": "OutlinedButton"
-                }
-              }
-            }
-          }
-        },
-        {
-          "type": "expanded",
-          "child": {
-            "type": "center",
-            "child": {
-              "type": "icon_button",
-              "args": {
-                "icon": {
-                  "type": "icon",
-                  "args": {
-                    "icon": {
-                      "codePoint": 58712,
-                      "fontFamily": "MaterialIcons"
+                  "child": {
+                    "type": "elevated_button",
+                    "args": {
+                      "onLongPress": "${simplePrintMessage()}",
+                      "style": {
+                        "foregroundColor": {
+                          "pressed": "FF2196F3",
+                          "focused": "FF2196F3",
+                          "empty": "FFF44336"
+                        }
+                      },
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "ElevatedButton"
+                        }
+                      }
                     }
                   }
-                },
-                "onPressed": "${simplePrintMessage()}"
-              },
+                }
+              }
+            }
+          },
+          {
+            "type": "expanded",
+            "args": {
               "child": {
-                "type": "text",
+                "type": "center",
                 "args": {
-                  "text": "OutlinedButton"
+                  "child": {
+                    "type": "text_button",
+                    "args": {
+                      "onLongPress": "${simplePrintMessage()}",
+                      "style": {
+                        "foregroundColor": {
+                          "pressed": "FF2196F3",
+                          "focused": "FF2196F3",
+                          "empty": "FFF44336"
+                        }
+                      },
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "TextButton"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "expanded",
+            "args": {
+              "child": {
+                "type": "center",
+                "args": {
+                  "child": {
+                    "type": "outlined_button",
+                    "args": {
+                      "onLongPress": "${simplePrintMessage()}",
+                      "style": {
+                        "foregroundColor": {
+                          "pressed": "FF2196F3",
+                          "focused": "FF2196F3",
+                          "empty": "FFF44336"
+                        }
+                      },
+                      "child": {
+                        "type": "text",
+                        "args": {
+                          "text": "OutlinedButton"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "expanded",
+            "args": {
+              "child": {
+                "type": "center",
+                "args": {
+                  "child": {
+                    "type": "icon_button",
+                    "args": {
+                      "icon": {
+                        "type": "icon",
+                        "args": {
+                          "icon": {
+                            "codePoint": 58712,
+                            "fontFamily": "MaterialIcons"
+                          }
+                        }
+                      },
+                      "onPressed": "${simplePrintMessage()}"
+                    }
+                  }
                 }
               }
             }
           }
-        }
-      ]
+        ]
+      }
     },
     "floatingActionButton": {
       "type": "floating_action_button",
       "args": {
-        "onPressed": "${simplePrintMessage()}"
-      },
-      "child": {
-        "type": "icon",
-        "args": {
-          "icon": {
-            "codePoint": 57369,
-            "fontFamily": "MaterialIcons"
-          },
-          "size": 50
+        "onPressed": "${simplePrintMessage()}",
+        "child": {
+          "type": "icon",
+          "args": {
+            "icon": {
+              "codePoint": 57369,
+              "fontFamily": "MaterialIcons"
+            },
+            "size": 50
+          }
         }
       }
     }

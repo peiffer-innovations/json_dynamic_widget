@@ -15,24 +15,28 @@
     "body": {
       "type": "set_value",
       "args": {
-        "customSize": 50.0
-      },
-      "child": {
-        "type": "center",
+        "values": {
+          "customSize": 50.0
+        },
         "child": {
-          "type": "tween_animation",
+          "type": "center",
           "args": {
-            "builder": "${getCustomTweenBuilder()}",
-            "duration": 1000,
-            "tween": "${getCustomTween(customSize)}"
-          },
-          "child": {
-            "type": "icon",
-            "args": {
-              "color": "#0000FF",
-              "icon": {
-                "codePoint": "0xe5db",
-                "fontFamily": "MaterialIcons"
+            "child": {
+              "type": "tween_animation_builder",
+              "args": {
+                "builder": "${getCustomTweenBuilder()}",
+                "duration": 1000,
+                "tween": "${getCustomTween(customSize)}",
+                "child": {
+                  "type": "icon",
+                  "args": {
+                    "color": "#0000FF",
+                    "icon": {
+                      "codePoint": "0xe5db",
+                      "fontFamily": "MaterialIcons"
+                    }
+                  }
+                }
               }
             }
           }

@@ -2,129 +2,134 @@
 const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
-const RESOURCES = {
-  "version.json": "a7d20ec0338735b2b6bd32316e1a0406",
-"assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
-"assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
+
+const RESOURCES = {"main.dart.js": "7382e19c4829bc00afb8b8cbb4cf1c52",
+"assets/AssetManifest.json": "017ba48b4c3446d6f15f228d1c41a122",
 "assets/assets/fonts/MetalMania-Regular.ttf": "925d9f3005602e32f9ad6ccbabb730a1",
 "assets/assets/fonts/Lato-Regular.ttf": "2d36b1a925432bae7f3c53a340868c6e",
-"assets/assets/pages/image_page.json": "5dd6feec0c8b1a1fbe806be7f3756359",
-"assets/assets/pages/issue_11.json": "a86bf0efda298ebab66eede6aae5a194",
-"assets/assets/pages/images.json": "a1d2f8925f0a6b26dbe1478deaee9eca",
-"assets/assets/pages/set_default_value.json": "e5259302d609c3f0094a8200b224ff27",
-"assets/assets/pages/checkbox.json": "178ec66d1d4f5af1dcca14da46a1e3f4",
-"assets/assets/pages/issue_20_list.json": "ec2e3499036c1342ccf467ec15e23f6f",
-"assets/assets/pages/animated_switcher.json": "6ca5f6b26ed1a7367aa849a980f8e6f9",
-"assets/assets/pages/theme.json": "ac9881af3fbba5c8967c0ebde8d059c5",
-"assets/assets/pages/switch.json": "769aeaf2027194176f82e5c4b973903d",
-"assets/assets/pages/variables.json": "665093244aff4b4fc2bfac3b10bc2efc",
-"assets/assets/pages/bank_example.json": "a2331a7b92be9883856efbb44bdda0da",
-"assets/assets/pages/layout_builder.json": "354471899ff55b0e081aebbb0a887722",
-"assets/assets/pages/overflow_box.json": "fb08fc868d15965009f4820335484c44",
-"assets/assets/pages/opacity.json": "03db9231df110e1534e83cd0759cbc94",
-"assets/assets/pages/animated_default_text_style.json": "7096ba5824a216e4d701366de654a812",
-"assets/assets/pages/simple_page.json": "218a96e4287cb0ac7b31fc5769013697",
-"assets/assets/pages/fitted_box.json": "99c069d207b4253f3193e5365b8d32ed",
-"assets/assets/pages/directionality.json": "6835c8e2dd7c38f2851732b53e51c6ec",
-"assets/assets/pages/linear_progress_indicator.json": "aa27d81870d32a4170afcf0143d841d5",
-"assets/assets/pages/cupertino_switch.yaml": "813363b03ed142f918ca5d91c928aaa5",
-"assets/assets/pages/length.json": "9f85a8899adef8de3dff7a52379dba5d",
-"assets/assets/pages/dynamic.json": "e958a1c595c2a00148e540f88868b56d",
-"assets/assets/pages/fractionally_sized_box.json": "ac4c7ae9ff95d797918016e57515d595",
-"assets/assets/pages/semantics.json": "4c49f0f35e426c3c524f57b3fd38b512",
-"assets/assets/pages/interactive_viewer.json": "14e65ff967c97908bb9ee30130c6e078",
-"assets/assets/pages/issue_12.json": "f7de0d58d41fb734139a3b025b42cc5a",
-"assets/assets/pages/intrinsic_height.json": "def62c44706f74b86f35b844e004f801",
-"assets/assets/pages/animated_padding.json": "102ecbf739afdd48ce9bfd4e73e006d1",
-"assets/assets/pages/scroll_view.json": "f548c684c293841897d48abd82e6dacc",
-"assets/assets/pages/card.json": "d347b4d508ea6ac2069347d3d664e48f",
-"assets/assets/pages/placeholder.json": "3ea188224c59c9375af12031bc4c6dda",
-"assets/assets/pages/list_view.json": "ffc64a252307dd45c79d9c9c6bb61eaa",
-"assets/assets/pages/center.json": "b9fae0ffc52b196ed2a8107113d2e794",
-"assets/assets/pages/offstage.json": "a60fe265c03ed1cfa8de64d8c8c42046",
-"assets/assets/pages/decorated_box.json": "bc51bd8f7facba4ee026d88a9e19af75",
-"assets/assets/pages/asset_images.json": "bd2336b614a4c7f22027eeb9977e389d",
-"assets/assets/pages/intrinsic_width.json": "06c0c2559c2970493796c72202051096",
-"assets/assets/pages/aspect_ratio.json": "1a48ae48bf258aaf4d0fbfb21d9a67f8",
-"assets/assets/pages/animated_cross_fade.json": "686068f255ab0b28ff1410e3a609baf6",
-"assets/assets/pages/conditional.json": "0cc413adbb3f22c68ac41348ec0a6329",
-"assets/assets/pages/input_error.json": "9ed4f5f7b305d243c8921e5e1e864fe1",
-"assets/assets/pages/limited_box.json": "d789904eeeb04a93ddd1f916b8e6cfcf",
-"assets/assets/pages/wrap.json": "795d0fd007cdeba1c76d5581a1e52525",
-"assets/assets/pages/issue_10.json": "b5e0fb1b7f8fb188b07a0d8b1bcaeb7b",
-"assets/assets/pages/tween_animation.json": "f607e2fc43ea7e17faed41b851477b35",
-"assets/assets/pages/buttons.json": "123e358ce3967af392ee6b0b2d53a8b8",
-"assets/assets/pages/fractional_translation.json": "bd3b6afe62d8f9ce632ced50c5a4e52c",
-"assets/assets/pages/rich_text.json": "5e8d976ef979bb239dd3d83fae478f14",
-"assets/assets/pages/for_each.json": "505991298708ae7866ba74b30dd02d5b",
-"assets/assets/pages/animated_positioned.json": "46db627cfa06bc7dd89058111b0a4c0d",
-"assets/assets/pages/animated_align.json": "0e1cc608882e1e2f5eea0a5e859af86c",
-"assets/assets/pages/issue_30.json": "2bdc5acb23999bd114d68f73705e53aa",
-"assets/assets/pages/clips.json": "0bee4001678ab24b0bb75547a09a5f2d",
+"assets/assets/widgets/issue_24.json": "2eb6583967287684e788533f5ca89634",
+"assets/assets/pages/issue_20_list.json": "d40af957a1dc3d9e004a82a1eadea1aa",
+"assets/assets/pages/dynamic.json": "4c176e47958853eebb65a9d2cf43b68f",
+"assets/assets/pages/simple_page.json": "57a1f5f0153c49e6c871e6a3b079c3af",
+"assets/assets/pages/clips.json": "5b56d3b8c9eed32752b1d64239806471",
+"assets/assets/pages/issue_20_single.json": "77e44cd0cf829a5e09783d999dcd7944",
+"assets/assets/pages/align.json": "08bfde49f014abbbeece279bbb090840",
+"assets/assets/pages/animated_size.json": "d971fe52031a45d9a393ceba4b3235ba",
+"assets/assets/pages/tooltip.json": "5d5b8cc0f5178e168fb6e8185c8bd757",
+"assets/assets/pages/intrinsic_height.json": "5eb1f181744ec3503f3b7fcfe540502d",
+"assets/assets/pages/variables.json": "56d71c5b7041d21b38cbae60cb3e4112",
+"assets/assets/pages/grid_view.json": "95f671a9f0db65c1bc35157c82e3e7f0",
+"assets/assets/pages/for_each.json": "91eb17f1bb2030bba1b4dd54f1d83337",
+"assets/assets/pages/interactive_viewer.json": "6a63b98e9cdce15b2bc6fc503e26449f",
+"assets/assets/pages/null_value_passing.json": "ff557f8bced1cd671dc7d3dbb2ae238a",
+"assets/assets/pages/card.json": "0ff481186ea3da532d7e9f8848ca5ef5",
+"assets/assets/pages/asset_images.json": "571abd923bb5cfacb7d4252988bd853e",
+"assets/assets/pages/images.json": "36331822a92e456f680c49d9d39e7bbf",
+"assets/assets/pages/issue_109.json": "93d554e1b4554d4c9947ee0b9cde2378",
+"assets/assets/pages/measured.json": "ae0493829c52c2e04dc76b605c9f024f",
+"assets/assets/pages/length.json": "8aa525de6a845d05340d33ee6fc8af5d",
+"assets/assets/pages/animated_physical_model.json": "a8b6538ee200b62ec769d1447b94c1bd",
+"assets/assets/pages/buttons.json": "da172f8ea5f08361e2ac122069b74819",
+"assets/assets/pages/animated_positioned_directional.json": "4731fb9cf921196482a6a13df02d3748",
+"assets/assets/pages/issue_12.json": "a7b6ceab94d564300f6e71984e60f2cd",
+"assets/assets/pages/image_page.json": "d2bfcc1a4989e09487577b833268aa7b",
+"assets/assets/pages/decorated_box.json": "81732452d18523a70a4333b3bc743b4f",
+"assets/assets/pages/placeholder.json": "e638d3b9c0be52e78644db04bc44c2a8",
+"assets/assets/pages/animated_theme.json": "1eb27e43d7c8a6d13ea8f1f0c611b09e",
+"assets/assets/pages/animated_default_text_style.json": "52d88ddb0a7dd3b3c831fff5ffa971de",
+"assets/assets/pages/tween_animation.json": "c9a01589bf9a51fdac2e3011ff66e81f",
+"assets/assets/pages/intrinsic_width.json": "3d1b0dc97526fc31edbca7e2d0904dd8",
+"assets/assets/pages/input_error.json": "dac5ffa016d6c7a551758f5ed8a275b7",
 "assets/assets/pages/popup_menu_button.json": "c4f44e40fdaa3e956be5cff9b4df15df",
-"assets/assets/pages/slivers.json": "efaf68bed22ab4e6d558dc7a66d68075",
-"assets/assets/pages/tooltip.json": "202ac79237a2da9c91f44fe5020d929e",
-"assets/assets/pages/indexed_stack.json": "30da761a35696365b35b2ac2f4962b30",
-"assets/assets/pages/issue_109.json": "8405e42b900a08da6b56c24132463f75",
-"assets/assets/pages/animated_size.json": "283047cfac763cfe41c794c3cbe3eebe",
-"assets/assets/pages/align.json": "b485f4a4f73d9326d3c001ecd391febe",
-"assets/assets/pages/grid_view.json": "283082fd8ea638655bf6f0af6dab5882",
-"assets/assets/pages/animated_theme.json": "4b27a23a9c0afa60f87156c937c637bc",
-"assets/assets/pages/radio.json": "b56581ecc99b0c9c2920be4fbf58e8f9",
-"assets/assets/pages/animated_physical_model.json": "3a89321215726549a663210e4d01553f",
-"assets/assets/pages/null_value_passing.json": "3a352b3e616144c36fafea925e108bd3",
-"assets/assets/pages/baseline.json": "3fe9abf09a5af2695fd73c3692113a22",
-"assets/assets/pages/form.json": "cf39f2918c81d49234bd25e23bce2928",
-"assets/assets/pages/animated_container.json": "0921eaca4fd4295fb937b4da4c1d21df",
-"assets/assets/pages/circular_progress_indicator.json": "4f696c1ada9aae3eef306dca0274a0dd",
-"assets/assets/pages/gestures.json": "d2a8c816a2521435ec13591967065304",
-"assets/assets/pages/measured.json": "e172c20252bdd2075a57ce7c0ba6d958",
-"assets/assets/pages/issue_20_single.json": "1da8461b2eaa0586a6a3be1e55353ec5",
-"assets/assets/pages/animated_opacity.json": "871ea2083b2a93964117b5b20b960e4e",
-"assets/assets/pages/animated_positioned_directional.json": "2afbb17361ec58e56de8c53708f7c064",
+"assets/assets/pages/animated_cross_fade.json": "0137d1daaf1977780f621bc2e00cbcc0",
+"assets/assets/pages/animated_align.json": "81740eea57062d61f3a0e4bc38322fff",
+"assets/assets/pages/issue_30.json": "2bdc5acb23999bd114d68f73705e53aa",
+"assets/assets/pages/overflow_box.json": "bbcf224f50300322a2f2f40e2b2f9bd5",
+"assets/assets/pages/opacity.json": "7fac17b353511effd69ddb958a0e96ba",
+"assets/assets/pages/center.json": "91b2a2e9b74ce66ff310f2f467ef780e",
+"assets/assets/pages/switch.json": "54c0f804625ded4c39b934566ed5b86d",
+"assets/assets/pages/animated_opacity.json": "83611e11a4a3e27c6f71247710a016be",
+"assets/assets/pages/semantics.json": "5e4faa4f693e3862a3053a1841e7f352",
+"assets/assets/pages/issue_11.json": "ca977078fcd3a4bca2a062afb47ab4ca",
+"assets/assets/pages/fractionally_sized_box.json": "4fab280a90f6669b5b0f3f00fffdaeaa",
+"assets/assets/pages/scroll_view.json": "2328fcf19ae8ab2e9dc14361192918fa",
+"assets/assets/pages/radio.json": "5c2031437f182c674674ffdb7ddb7026",
+"assets/assets/pages/theme.json": "9ddaf26c0559b244b704025c49cd2356",
+"assets/assets/pages/limited_box.json": "24250c05b93e88deb4e09371ee5a87d8",
+"assets/assets/pages/directionality.json": "da378a21ace52a57b72c84ced5075227",
+"assets/assets/pages/offstage.json": "fc459c184ab75257eac574db0c554ce7",
+"assets/assets/pages/slivers.json": "0000377ee71bda23dfb5aa297dd7441b",
+"assets/assets/pages/circular_progress_indicator.json": "9e5c8bd2dad36d68a7bb19a03afa8182",
+"assets/assets/pages/animated_padding.json": "951173aa2bfd1f85939b10dda63230ab",
+"assets/assets/pages/list_view.json": "2387889b6e140ddee1f04ef78e59acbb",
+"assets/assets/pages/checkbox.json": "27a0ac939a71d09c8a84f0a1e9a94c21",
+"assets/assets/pages/animated_positioned.json": "b955633ea31c0d1b0daec482e3b99955",
+"assets/assets/pages/linear_progress_indicator.json": "ea2740996508e64c2723d787c892f8b6",
+"assets/assets/pages/cupertino_switch.yaml": "505e98d04d04261e49c853431fe4ef15",
+"assets/assets/pages/animated_switcher.json": "d24be4fa4076ae23f70a57d7a26104f1",
+"assets/assets/pages/rich_text.json": "f8e77f6bfa9a037644aa8fc5266635ef",
+"assets/assets/pages/wrap.json": "001b737618074671f403ab1b2d6e7577",
+"assets/assets/pages/baseline.json": "886b50b1b559ec51057994b1fe3afad9",
+"assets/assets/pages/gestures.json": "114c4ed3b2b428b7526f25651ef8ece5",
+"assets/assets/pages/indexed_stack.json": "20e7fe368d6039e6dd05ee6f89dea371",
+"assets/assets/pages/fitted_box.json": "353dd5781d74ebcd59ae060a92c545f7",
+"assets/assets/pages/fractional_translation.json": "fc40712de7c0d2b5277fe1f28d1657e9",
+"assets/assets/pages/layout_builder.json": "bdc32d1af15d25ba89c536087e22646e",
+"assets/assets/pages/issue_10.json": "b39997e460fb758601189385c77d7cba",
+"assets/assets/pages/bank_example.json": "985ae618c8b7afda3c66b4afb7a2496c",
+"assets/assets/pages/aspect_ratio.json": "1876401f10ffbaa21633e5210f754d5a",
+"assets/assets/pages/conditional.json": "14f743238ed9abd70f69664409d8d677",
+"assets/assets/pages/form.json": "576a166f8629adc84be2e58fa0412113",
+"assets/assets/pages/animated_container.json": "1d9df4f2f5eb599106bdcaef26069a06",
+"assets/assets/pages/set_default_value.json": "790ed77a3dd3c01ab1ca0a2023b6d720",
 "assets/assets/images/image9.jpg": "d4bca3468f462344ec7848569d428f6f",
-"assets/assets/images/image12.jpg": "fc5f5ce6cc1839caceba61dea24dfd97",
-"assets/assets/images/image10.jpg": "182da97ea5d0f162c77919451e1adc34",
-"assets/assets/images/image8.jpg": "143b8d86b86c4e9a9d534a2571644c9c",
-"assets/assets/images/image15.jpg": "62265d6c8a5c180b5f8d8fd38778d4dd",
-"assets/assets/images/image13.jpg": "447faeebf8c418128e7837f0c7771aa3",
-"assets/assets/images/image11.jpg": "7cc720ee31b70b43b17bc85c8925ba78",
-"assets/assets/images/image4.jpg": "534ce2f5ff5e40e97adee7e8b64d1f49",
-"assets/assets/images/profile.jpg": "0a07fd15b5f822a326230c211451f611",
-"assets/assets/images/image2.jpg": "359677aebb7126b359c557a38a45f2df",
-"assets/assets/images/image6.jpg": "35041a1b17ba4dc6e39be43a192068db",
-"assets/assets/images/image17.jpg": "9a5ceb6a65fc25de9b997bb2d9e12013",
-"assets/assets/images/image1.jpg": "c746344e7d2dccea6d4b7138de5317f3",
-"assets/assets/images/image7.jpg": "e17532bdf7cfbb7c7def0aa13732d1d7",
-"assets/assets/images/visa.svg": "45180370eb48dfdbdf59b3be4a3c0b59",
-"assets/assets/images/image16.jpg": "2453145aa04982321678b360448a7224",
 "assets/assets/images/image14.jpg": "1cabc1330ae62e177103c9afe088277a",
+"assets/assets/images/image11.jpg": "7cc720ee31b70b43b17bc85c8925ba78",
+"assets/assets/images/image13.jpg": "447faeebf8c418128e7837f0c7771aa3",
 "assets/assets/images/image3.jpg": "c82a612fb7053c3036dfb31160a69d44",
 "assets/assets/images/image5.jpg": "8d9babc0336b7855a0e32ddb04974793",
-"assets/assets/widgets/issue_24.json": "77bf723a8ec7a8b5314f0833fab4e74a",
-"assets/NOTICES": "586a84b78a64baf24a7ed048b5ac13ad",
-"assets/AssetManifest.json": "017ba48b4c3446d6f15f228d1c41a122",
-"main.dart.js": "1721f69470ccad1b166ec8ea0bf465de",
-"flutter.js": "a85fcf6324d3c4d3ae3be1ae4931e9c5",
-"canvaskit/profiling/canvaskit.js": "c21852696bc1cc82e8894d851c01921a",
-"canvaskit/profiling/canvaskit.wasm": "371bc4e204443b0d5e774d64a046eb99",
-"canvaskit/canvaskit.js": "97937cb4c2c2073c968525a3e08c86a3",
-"canvaskit/canvaskit.wasm": "3de12d898ec208a5f31362cc00f09b9e",
+"assets/assets/images/image2.jpg": "359677aebb7126b359c557a38a45f2df",
+"assets/assets/images/image12.jpg": "fc5f5ce6cc1839caceba61dea24dfd97",
+"assets/assets/images/image7.jpg": "e17532bdf7cfbb7c7def0aa13732d1d7",
+"assets/assets/images/image10.jpg": "182da97ea5d0f162c77919451e1adc34",
+"assets/assets/images/image1.jpg": "c746344e7d2dccea6d4b7138de5317f3",
+"assets/assets/images/profile.jpg": "0a07fd15b5f822a326230c211451f611",
+"assets/assets/images/image15.jpg": "62265d6c8a5c180b5f8d8fd38778d4dd",
+"assets/assets/images/image4.jpg": "534ce2f5ff5e40e97adee7e8b64d1f49",
+"assets/assets/images/visa.svg": "45180370eb48dfdbdf59b3be4a3c0b59",
+"assets/assets/images/image16.jpg": "2453145aa04982321678b360448a7224",
+"assets/assets/images/image6.jpg": "35041a1b17ba4dc6e39be43a192068db",
+"assets/assets/images/image17.jpg": "9a5ceb6a65fc25de9b997bb2d9e12013",
+"assets/assets/images/image8.jpg": "143b8d86b86c4e9a9d534a2571644c9c",
+"assets/AssetManifest.bin": "029a4c4f377d10774f9c921c4217a66d",
+"assets/fonts/MaterialIcons-Regular.otf": "e7069dfd19b331be16bed984668fe080",
+"assets/FontManifest.json": "b7320a7ef5ad634fc22b163a16c8a309",
+"assets/NOTICES": "640eba6147802e1341cd2d6b7e34df27",
+"assets/shaders/ink_sparkle.frag": "f8b80e740d33eb157090be4e995febdf",
 "manifest.json": "15f73b7e8a8209c2206210b3ac8dea1b",
-"index.html": "0f6f120afa34cfb1f358d6720dacc1a1",
-"/": "0f6f120afa34cfb1f358d6720dacc1a1",
-"favicon.png": "5dcef449791fa27946b3d35ad8803796",
-"icons/Icon-192.png": "ac9a721a12bbc803b44f645561ecb1e1",
-"icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1"
-};
-
+"index.html": "95c1cf462acadb9683d02bd2eb7e8b8e",
+"/": "95c1cf462acadb9683d02bd2eb7e8b8e",
+"icons/Icon-maskable-512.png": "4387a4ae70489a2ba2d8d361bc0adfac",
+"icons/Icon-512.png": "4387a4ae70489a2ba2d8d361bc0adfac",
+"icons/Icon-192.png": "1f36ad884a84edadf7fc291583733ca6",
+"icons/Icon-maskable-192.png": "1f36ad884a84edadf7fc291583733ca6",
+"favicon.png": "0ed3078186d3fa4e8257777838727366",
+"version.json": "81399d27d9764dd5bf80701a7f3bcff4",
+"canvaskit/canvaskit.wasm": "42df12e09ecc0d5a4a34a69d7ee44314",
+"canvaskit/skwasm.worker.js": "51253d3321b11ddb8d73fa8aa87d3b15",
+"canvaskit/chromium/canvaskit.wasm": "be0e3b33510f5b7b0cc76cc4d3e50048",
+"canvaskit/chromium/canvaskit.js": "96ae916cd2d1b7320fff853ee22aebb0",
+"canvaskit/skwasm.wasm": "1a074e8452fe5e0d02b112e22cdcf455",
+"canvaskit/canvaskit.js": "bbf39143dfd758d8d847453b120c8ebb",
+"canvaskit/skwasm.js": "95f16c6690f955a45b2317496983dbe9",
+"flutter.js": "6fef97aeca90b426343ba6c5c9dc5d4a"};
 // The application shell files that are downloaded before a service worker can
 // start.
-const CORE = [
-  "main.dart.js",
+const CORE = ["main.dart.js",
 "index.html",
 "assets/AssetManifest.json",
 "assets/FontManifest.json"];
+
 // During install, the TEMP cache is populated with the application shell files.
 self.addEventListener("install", (event) => {
   self.skipWaiting();
@@ -135,7 +140,6 @@ self.addEventListener("install", (event) => {
     })
   );
 });
-
 // During activate, the cache is populated with the temp files downloaded in
 // install. If this service worker is upgrading from one with a saved
 // MANIFEST, then use this to retain unchanged resource files.
@@ -157,6 +161,8 @@ self.addEventListener("activate", function(event) {
         await caches.delete(TEMP);
         // Save the manifest to make future upgrades efficient.
         await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
+        // Claim client to enable caching on first launch
+        self.clients.claim();
         return;
       }
       var oldManifest = await manifest.json();
@@ -182,6 +188,8 @@ self.addEventListener("activate", function(event) {
       await caches.delete(TEMP);
       // Save the manifest to make future upgrades efficient.
       await manifestCache.put('manifest', new Response(JSON.stringify(RESOURCES)));
+      // Claim client to enable caching on first launch
+      self.clients.claim();
       return;
     } catch (err) {
       // On an unhandled exception the state of the cache cannot be guaranteed.
@@ -192,7 +200,6 @@ self.addEventListener("activate", function(event) {
     }
   }());
 });
-
 // The fetch handler redirects requests for RESOURCE files to the service
 // worker cache.
 self.addEventListener("fetch", (event) => {
@@ -232,7 +239,6 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
-
 self.addEventListener('message', (event) => {
   // SkipWaiting can be used to immediately activate a waiting service worker.
   // This will also require a page refresh triggered by the main worker.
@@ -245,7 +251,6 @@ self.addEventListener('message', (event) => {
     return;
   }
 });
-
 // Download offline will check the RESOURCES for all files not in the cache
 // and populate them.
 async function downloadOffline() {
@@ -266,7 +271,6 @@ async function downloadOffline() {
   }
   return contentCache.addAll(resources);
 }
-
 // Attempt to download the resource online before falling back to
 // the offline cache.
 function onlineFirst(event) {

@@ -14,28 +14,30 @@
     },
     "body": {
       "type": "center",
-      "child": {
-        "type": "rich_text",
-        "args": {
-          "text": {
-            "children": [
-              {
-                "text": "Hello "
-              },
-              {
-                "style": {
-                  "fontSize": 20.0,
-                  "fontWeight": "bold"
+      "args": {
+        "child": {
+          "type": "rich_text",
+          "args": {
+            "text": {
+              "children": [
+                {
+                  "text": "Hello "
                 },
-                "text": "RICH TEXT"
-              },
-              {
-                "text": " World!"
+                {
+                  "style": {
+                    "fontSize": 20.0,
+                    "fontWeight": "bold"
+                  },
+                  "text": "RICH TEXT"
+                },
+                {
+                  "text": " World!"
+                }
+              ],
+              "style": {
+                "color": "#000000",
+                "fontSize": 12.0
               }
-            ],
-            "style": {
-              "color": "#000000",
-              "fontSize": 12.0
             }
           }
         }
