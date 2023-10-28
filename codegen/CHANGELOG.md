@@ -1,4 +1,4 @@
-## [1.0.3] - October 28th, 2023
+## [1.0.3+1] - October 28th, 2023
 
 * Better (more correct) fix for [https://github.com/peiffer-innovations/json_dynamic_widget/issues/219]
 

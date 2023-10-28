@@ -482,7 +482,7 @@ return ${widget.getDisplayString(withNullability: false)}(
           final annotation = builderParamChecker.firstAnnotationOf(p);
           if (annotation == null && p.name != 'key') {
             modelLines.writeln(
-              "'${aliases[p.name] ?? p.name}': ${aliases[p.name] ?? p.name},",
+              "'${aliases[p.name] ?? p.name}': ${p.name},",
             );
           }
         }
@@ -682,7 +682,7 @@ return result;
                 continue;
               }
               if (param.name != 'key') {
-                lines.add('${aliases[param.name] ?? param.name}: ${decode(
+                lines.add('${param.name}: ${decode(
                   element,
                   param,
                   aliases: aliases,
@@ -742,10 +742,10 @@ return result;
                 paramDefaults[name] ?? param.defaultValueCode;
             if (encoder != null) {
               customEncoders.write('''
-final ${name}Encoded = ${element.name}.${encoder.name}($name);
+final ${name}Encoded = ${element.name}.${encoder.name}(${param.name});
 ''');
               buf.write('''
-'$name': ${defaultValueCode == null ? '' : '$defaultValueCode == $name ? null : '}${name}Encoded,
+'${param.name}': ${defaultValueCode == null ? '' : '$defaultValueCode == $name ? null : '}${name}Encoded,
 ''');
             } else {
               final encoder = encode(
@@ -912,7 +912,7 @@ void _buildClassFields({
               f.docs.add(docs);
             }
             f.modifier = FieldModifier.final$;
-            f.name = aliases[p.name] ?? p.name;
+            f.name = p.name;
             f.type = Reference(
               method == null ? type : 'dynamic',
             );
@@ -939,7 +939,7 @@ void _buildConstructorParams({
           (param) {
             final name = aliases[paramName] ?? paramName;
             final p = params.firstWhere((p) => p.name == paramName);
-            param.name = name;
+            param.name = paramName;
             param.named = false;
 
             var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
@@ -970,7 +970,7 @@ void _buildConstructorParams({
         Parameter(
           (param) {
             final name = aliases[p.name] ?? p.name;
-            param.name = name;
+            param.name = p.name;
             param.named = true;
             param.required = !paramDefaults.containsKey(name) &&
                 (p.isRequired || paramDecoders.containsKey(name));
@@ -1006,8 +1006,8 @@ void _buildCustomParamBuilder({
   final method = paramDecoders[aliases[param.name] ?? param.name];
   final annotation = builderParamChecker.firstAnnotationOf(param);
 
-  final name = aliases[param.name] ?? param.name;
-  final prefix = positioned ? '' : '$name: ';
+  final name = param.name;
+  final prefix = positioned ? '' : '${param.name}: ';
 
   if (annotation != null || param.name == 'key' || param.name == 'context') {
     lines.add('$prefix${param.name}');
@@ -1101,12 +1101,12 @@ ${prefix}model.${param.name} == null ? null : <PreferredSizeWidget>[
       } else if (field.name == 'registry') {
         decoderParams.add('registry: data.jsonWidgetRegistry,');
       } else if (field.name == 'value') {
-        decoderParams.add('value: model.${aliases[param.name] ?? param.name},');
+        decoderParams.add('value: model.${param.name},');
       }
     }
 
     buf.write('''
-final ${name}Decoded = ${paramDecoders[name]!.name}(
+final ${name}Decoded = ${paramDecoders[aliases[name] ?? name]!.name}(
   ${decoderParams.join('\n')}
 );
 ''');

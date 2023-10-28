@@ -1,8 +1,8 @@
 include: package:flutter_lints/flutter.yaml
 
-analyzer:
-  exclude:
-    - '**/*.g.dart'
+# analyzer:
+#   exclude:
+#     - '**/*.g.dart'
 
 linter:
   rules:

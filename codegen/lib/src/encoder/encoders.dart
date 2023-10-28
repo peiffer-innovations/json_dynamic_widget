@@ -105,7 +105,7 @@ String encode(
   final defaultValueCode = defaults[name] ?? element.defaultValueCode;
 
   return '''
-  '$name': ${defaultValueCode == null ? result : '$defaultValueCode == $displayName ? null : $result'},
+  '${element.name}': ${defaultValueCode == null ? result : '$defaultValueCode == $displayName ? null : $result'},
 ''';
 }
 
