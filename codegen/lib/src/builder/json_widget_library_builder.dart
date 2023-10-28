@@ -465,6 +465,7 @@ return ${widget.getDisplayString(withNullability: false)}(
           p.type = const Reference('JsonWidgetRegistry?');
         }));
         _buildConstructorParams(
+          aliases: aliases,
           builderParamChecker: builderParamChecker,
           con: con,
           paramDecoders: paramDecoders,
@@ -480,7 +481,9 @@ return ${widget.getDisplayString(withNullability: false)}(
         for (var p in params) {
           final annotation = builderParamChecker.firstAnnotationOf(p);
           if (annotation == null && p.name != 'key') {
-            modelLines.writeln("'${aliases[p.name] ?? p.name}': ${p.name},");
+            modelLines.writeln(
+              "'${aliases[p.name] ?? p.name}': ${aliases[p.name] ?? p.name},",
+            );
           }
         }
 
@@ -569,6 +572,7 @@ super(
             }));
 
             _buildConstructorParams(
+              aliases: aliases,
               builderParamChecker: builderParamChecker,
               con: con,
               paramDecoders: paramDecoders,
@@ -677,9 +681,8 @@ return result;
                 // comes from the build method, not the data map.
                 continue;
               }
-              if (/*!kChildNames.containsKey(param.name) &&*/ param.name !=
-                  'key') {
-                lines.add('${param.name}: ${decode(
+              if (param.name != 'key') {
+                lines.add('${aliases[param.name] ?? param.name}: ${decode(
                   element,
                   param,
                   aliases: aliases,
@@ -909,7 +912,7 @@ void _buildClassFields({
               f.docs.add(docs);
             }
             f.modifier = FieldModifier.final$;
-            f.name = p.name;
+            f.name = aliases[p.name] ?? p.name;
             f.type = Reference(
               method == null ? type : 'dynamic',
             );
@@ -921,6 +924,7 @@ void _buildClassFields({
 }
 
 void _buildConstructorParams({
+  required Map<String, String> aliases,
   required TypeChecker builderParamChecker,
   required ConstructorBuilder con,
   required Map<String, MethodElement> paramDecoders,
@@ -933,18 +937,19 @@ void _buildConstructorParams({
       con.requiredParameters.add(
         Parameter(
           (param) {
+            final name = aliases[paramName] ?? paramName;
             final p = params.firstWhere((p) => p.name == paramName);
-            param.name = p.name;
+            param.name = name;
             param.named = false;
 
-            var defaultValueCode = paramDefaults[p.name] ?? p.defaultValueCode;
+            var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
             if (defaultValueCode == 'const <Widget>[]') {
               defaultValueCode = 'const <JsonWidgetData>[]';
             }
 
             param.defaultTo = defaultValueCode == null ||
-                    (!paramDefaults.containsKey(p.name) &&
-                        paramDecoders.containsKey(p.name))
+                    (!paramDefaults.containsKey(name) &&
+                        paramDecoders.containsKey(name))
                 ? null
                 : Code(defaultValueCode);
             param.toThis = true;
@@ -964,7 +969,7 @@ void _buildConstructorParams({
       con.optionalParameters.add(
         Parameter(
           (param) {
-            final name = p.name;
+            final name = aliases[p.name] ?? p.name;
             param.name = name;
             param.named = true;
             param.required = !paramDefaults.containsKey(name) &&
@@ -1001,7 +1006,8 @@ void _buildCustomParamBuilder({
   final method = paramDecoders[aliases[param.name] ?? param.name];
   final annotation = builderParamChecker.firstAnnotationOf(param);
 
-  final prefix = positioned ? '' : '${param.name}: ';
+  final name = aliases[param.name] ?? param.name;
+  final prefix = positioned ? '' : '$name: ';
 
   if (annotation != null || param.name == 'key' || param.name == 'context') {
     lines.add('$prefix${param.name}');
@@ -1009,28 +1015,28 @@ void _buildCustomParamBuilder({
     final type = param.type.getDisplayString(withNullability: true);
     if (type == 'Widget') {
       lines.add('''
-${prefix}model.${param.name}.build(
+${prefix}model.$name.build(
   childBuilder: childBuilder,
   context: context,
 )
 ''');
     } else if (type == 'Widget?') {
       lines.add('''
-${prefix}model.${param.name}?.build(
+${prefix}model.$name?.build(
   childBuilder: childBuilder,
   context: context,
 )
 ''');
     } else if (type == 'PreferredSizeWidget') {
       lines.add('''
-${prefix}model.${param.name}.build(
+${prefix}model.$name.build(
   childBuilder: childBuilder,
   context: context,
 ) as PreferredSizeWidget
 ''');
     } else if (type == 'PreferredSizeWidget?') {
       lines.add('''
-${prefix}model.${param.name}?.build(
+${prefix}model.$name?.build(
   childBuilder: childBuilder,
   context: context,
 ) as PreferredSizeWidget?
@@ -1038,7 +1044,7 @@ ${prefix}model.${param.name}?.build(
     } else if (type == 'List<Widget>') {
       lines.add('''
 $prefix[
-  for (var d in model.${param.name})
+  for (var d in model.$name)
     d.build(
     childBuilder: childBuilder,
     context: context,
@@ -1047,8 +1053,8 @@ $prefix[
 ''');
     } else if (type == 'List<Widget>?') {
       lines.add('''
-${prefix}model.${param.name} == null ? null : [
-  for (var d in model.${param.name}!)
+${prefix}model.$name == null ? null : [
+  for (var d in model.$name!)
     d.build(
     childBuilder: childBuilder,
     context: context,
@@ -1058,7 +1064,7 @@ ${prefix}model.${param.name} == null ? null : [
     } else if (type == 'List<PreferredSizeWidget>') {
       lines.add('''
 $prefix<PreferredSizeWidget>[
-  for (var d in model.${param.name})
+  for (var d in model.$name)
     d.build(
     childBuilder: childBuilder,
     context: context,
@@ -1068,7 +1074,7 @@ $prefix<PreferredSizeWidget>[
     } else if (type == 'List<PreferredSizeWidget>?') {
       lines.add('''
 ${prefix}model.${param.name} == null ? null : <PreferredSizeWidget>[
-  for (var d in model.${param.name}!)
+  for (var d in model.$name!)
     d.build(
     childBuilder: childBuilder,
     context: context,
@@ -1076,12 +1082,11 @@ ${prefix}model.${param.name} == null ? null : <PreferredSizeWidget>[
   ]
 ''');
     } else {
-      lines.add('${prefix}model.${param.name}');
+      lines.add('${prefix}model.$name');
     }
   } else {
-    final pName = aliases[param.name] ?? param.name;
-    final pPrefix = positioned ? '' : '$pName: ';
-    lines.add('$pPrefix${pName}Decoded');
+    final pPrefix = positioned ? '' : '$name: ';
+    lines.add('$pPrefix${name}Decoded');
 
     final decoderParams = <String>[];
     for (var field in method.parameters) {
@@ -1096,12 +1101,12 @@ ${prefix}model.${param.name} == null ? null : <PreferredSizeWidget>[
       } else if (field.name == 'registry') {
         decoderParams.add('registry: data.jsonWidgetRegistry,');
       } else if (field.name == 'value') {
-        decoderParams.add('value: model.${param.name},');
+        decoderParams.add('value: model.${aliases[param.name] ?? param.name},');
       }
     }
 
     buf.write('''
-final ${pName}Decoded = ${paramDecoders[pName]!.name}(
+final ${name}Decoded = ${paramDecoders[name]!.name}(
   ${decoderParams.join('\n')}
 );
 ''');
