@@ -40,16 +40,11 @@ jobs:
           dart run build_runner build --delete-conflicting-outputs -v
         working-directory: json_dynamic_widget
 
-      - name: Run Codegen
+      - name: Run Codegen (example)
         run: |
           flutter packages get
           dart run build_runner build --delete-conflicting-outputs -v
         working-directory: json_dynamic_widget/example
-
-      - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
-        with:
-          path: json_dynamic_widget
 
       - name: Web
         uses: peiffer-innovations/actions-flutter-deploy-pages@v1
