@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Generate Build Number
         id: buildnumber
-        uses: einaregilsson/build-number@v3
+        uses: onyxmueller/build-tag-number@v1
         with:
           token: ${{secrets.GITHUB_TOKEN}}
       - name: Build Number
