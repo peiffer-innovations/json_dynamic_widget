@@ -45,6 +45,7 @@ Here's a list of first party plugins that exist for this library.
 * [json_dynamic_widget_plugin_markdown](https://pub.dev/packages/json_dynamic_widget_plugin_markdown)
 * [json_dynamic_widget_plugin_rive](https://pub.dev/packages/json_dynamic_widget_plugin_rive)
 * [json_dynamic_widget_plugin_svg](https://pub.dev/packages/json_dynamic_widget_plugin_svg)
+* [json_dynamic_widget_plugin_js](https://pub.dev/packages/json_dynamic_widget_plugin_js)
 
 ## Migration to 7.X.X version
 

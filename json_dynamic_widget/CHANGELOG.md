@@ -1,3 +1,7 @@
+## [7.0.3+2] - October 29th, 2023
+
+* Linked json_dynamic_widget_plugin_js plugin
+
 ## [7.0.3+1] - October 28th, 2023
 
 * Dependency updates
