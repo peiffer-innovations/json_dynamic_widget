@@ -126,8 +126,8 @@ class _JsonWidgetStateful extends StatefulWidget {
     required this.childBuilder,
     required this.customBuilder,
     required this.data,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ChildWidgetBuilder? childBuilder;
   final Widget? Function({

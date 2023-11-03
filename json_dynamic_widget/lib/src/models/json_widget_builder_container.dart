@@ -1,4 +1,3 @@
-import 'package:execution_timer/execution_timer.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// Container for a [JsonWidgetBuilder] builder as well as an associated schema
@@ -25,9 +24,5 @@ class JsonWidgetBuilderContainer {
         dynamic map, {
         JsonWidgetRegistry? registry,
       }) =>
-          TimeKeeper.measureSync(
-            schemaId ?? 'unknown',
-            (_) => _builder(map, registry: registry),
-            group: 'JsonWidgetBuilderBuilder.build',
-          );
+          _builder(map, registry: registry);
 }

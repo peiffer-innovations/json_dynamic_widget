@@ -30,7 +30,7 @@ class JsonWidgetRegistry {
     Map<String, JsonWidgetBuilderContainer>? builders,
     bool overrideInternalBuilders = false,
     String? debugLabel,
-    this.disableValidation = false,
+    bool? disableValidation,
     Map<String, JsonWidgetFunction>? functions,
     bool overrideInternalFunctions = false,
     this.navigatorKey,
@@ -39,6 +39,7 @@ class JsonWidgetRegistry {
     Map<String, dynamic>? values,
   })  : debugLabel = (parent != null ? '${parent.debugLabel}.' : '') +
             (debugLabel ?? 'child_${++childCount}'),
+        disableValidation = !SchemaValidator.enabled,
         _parent = parent {
     _logger = Logger('REGISTRY ${this.debugLabel}');
     final cache = SchemaCache();

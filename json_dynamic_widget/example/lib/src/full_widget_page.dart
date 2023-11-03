@@ -2,9 +2,9 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 class FullWidgetPage extends StatelessWidget {
   const FullWidgetPage({
-    Key? key,
+    super.key,
     required this.data,
-  }) : super(key: key);
+  });
 
   final JsonWidgetData data;
 

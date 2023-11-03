@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class InputError extends StatefulWidget {
   const InputError({
     this.error,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final String? error;
 

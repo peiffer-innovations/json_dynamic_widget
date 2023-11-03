@@ -28,10 +28,10 @@ class _Form extends StatefulWidget {
     required this.child,
     @JsonBuildArg() required this.childBuilder,
     @JsonBuildArg() required this.data,
-    Key? key,
+    super.key,
     this.onChanged,
     this.onWillPop,
-  }) : super(key: key);
+  });
 
   final AutovalidateMode? autovalidateMode;
   final Widget? child;

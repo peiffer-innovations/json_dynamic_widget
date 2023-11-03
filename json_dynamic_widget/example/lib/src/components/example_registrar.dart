@@ -8,18 +8,4 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 part 'example_registrar.g.dart';
 
 @jsonWidgetRegistrar
-abstract class _ExampleRegistrar {
-  @JsonWidgetRegistration(
-    builder: 'DottedBorderBuilder',
-    schema: 'DottedBorderSchema',
-    widget: 'DottedBorder',
-  )
-  void withDropdownButtonFormField();
-
-  @JsonWidgetRegistration(
-    builder: 'SvgBuilder',
-    schema: 'SvgSchema',
-    widget: 'Svg',
-  )
-  void withDynamic();
-}
+abstract class _ExampleRegistrar {}

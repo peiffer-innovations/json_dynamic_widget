@@ -65,12 +65,10 @@ class DynamicFunction {
 /// Operation which defines adding of the new child into [JsonDynamicBuilder].
 class AddDynamicOperation extends DynamicOperation {
   AddDynamicOperation({
-    required String builder,
-    Map<String, dynamic> target = targetDefault,
+    required super.builder,
+    super.target = targetDefault,
     required Map<String, dynamic> values,
   }) : super(
-          builder: builder,
-          target: target,
           values: DynamicValuesFactory.create(values),
         );
 
@@ -196,10 +194,10 @@ enum DynamicOperationType { add, remove, edit }
 /// Operation which defines editing the child of [JsonDynamicBuilder].
 class EditDynamicOperation extends DynamicOperation {
   EditDynamicOperation({
-    required String builder,
-    required Map<String, dynamic> target,
-    required Map<String, dynamic> values,
-  }) : super(builder: builder, target: target, values: values);
+    required super.builder,
+    required super.target,
+    required super.values,
+  });
 
   @override
   DynamicOperationType get type => DynamicOperationType.edit;
@@ -213,10 +211,10 @@ class EditDynamicOperation extends DynamicOperation {
 /// Operation which defines removing the child of [JsonDynamicBuilder].
 class RemoveDynamicOperation extends DynamicOperation {
   RemoveDynamicOperation({
-    required String builder,
-    required Map<String, dynamic> target,
-    required Map<String, dynamic> values,
-  }) : super(builder: builder, target: target, values: values);
+    required super.builder,
+    required super.target,
+    required super.values,
+  });
 
   @override
   DynamicOperationType get type => DynamicOperationType.remove;

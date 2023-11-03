@@ -452,8 +452,8 @@ class _JsonDropdownButtonFormFieldWidget extends StatefulWidget {
     required this.builder,
     this.childBuilder,
     required this.data,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final JsonDropdownButtonFormFieldBuilder builder;
   final ChildWidgetBuilder? childBuilder;

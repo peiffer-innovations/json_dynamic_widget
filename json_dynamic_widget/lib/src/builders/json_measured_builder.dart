@@ -25,8 +25,8 @@ class _Measured extends StatefulWidget {
     @JsonBuildArg() required this.childBuilder,
     this.child,
     @JsonBuildArg() required this.data,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData? child;

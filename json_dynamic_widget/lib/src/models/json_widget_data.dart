@@ -96,6 +96,7 @@ class JsonWidgetData extends JsonClass {
         final timer = ExecutionWatch(
           group: 'JsonWidgetData.fromDynamic',
           name: type,
+          precision: TimerPrecision.microsecond,
         ).start();
         try {
           if (type is! String) {

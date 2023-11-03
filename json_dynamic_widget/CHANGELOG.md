@@ -1,3 +1,9 @@
+## [7.0.4] - November 2nd, 2023
+
+* Update to [flutter_lints](https://pub.dev/packages/flutter_lints) `3.0.0`
+* Increased precision on the timer to microseconds
+
+
 ## [7.0.3+1] - October 28th, 2023
 
 * Dependency updates

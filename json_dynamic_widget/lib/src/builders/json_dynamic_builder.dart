@@ -164,8 +164,8 @@ class _DynamicWidget extends StatefulWidget {
     this.childBuilder,
     required this.childTemplate,
     required this.data,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final ChildWidgetBuilder? childBuilder;
   final String childTemplate;

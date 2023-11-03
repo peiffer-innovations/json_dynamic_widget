@@ -32,10 +32,10 @@ class _Conditional extends StatefulWidget {
     required this.conditional,
     @JsonBuildArg() required this.data,
     @JsonBuildArg() required this.model,
-    Key? key,
+    super.key,
     this.onFalse,
     this.onTrue,
-  }) : super(key: key);
+  });
 
   final ChildWidgetBuilder? childBuilder;
   final Conditional conditional;
