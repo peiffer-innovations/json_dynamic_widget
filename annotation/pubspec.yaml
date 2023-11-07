@@ -1,24 +1,25 @@
 name: 'dynamic_widget_annotation'
 description: 'Annotations for the json_dynamic_widget library.'
 homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget/tree/main/annotation'
-version: '1.1.1'
+version: '1.1.1+1'
 
-environment:
+environment: 
   sdk: '>=3.0.0 <4.0.0'
 
-analyzer:
-  exclude:
+analyzer: 
+  exclude: 
     - 'lib/generated/**'
     - 'lib/**/*.g.dart'
 
-dependencies:
+
+dependencies: 
   meta: '^1.9.1'
 
-dev_dependencies:
-  flutter_lints: '^3.0.0'
-  test: '^1.24.7'
+dev_dependencies: 
+  flutter_lints: '^3.0.1'
+  test: '^1.24.9'
 
-ignore_updates:
+ignore_updates: 
   - 'archive'
   - 'async'
   - 'boolean_selector'

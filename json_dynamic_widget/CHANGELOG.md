@@ -1,3 +1,8 @@
+## [7.0.4+2] - November 7, 2023
+
+* Automated dependency updates
+
+
 ## [7.0.4+1] - November 2nd, 2023
 
 * Update to [flutter_lints](https://pub.dev/packages/flutter_lints) `3.0.0`
@@ -693,6 +698,7 @@ This is a huge release with several breaking changes.  It brings in the ability 
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 

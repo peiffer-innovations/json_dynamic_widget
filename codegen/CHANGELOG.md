@@ -1,3 +1,8 @@
+## [1.0.4+1] - November 7, 2023
+
+* Automated dependency updates
+
+
 ## [1.0.4] - November 2nd, 2023
 
 * Update to [flutter_lints](https://pub.dev/packages/flutter_lints) `3.0.0`
@@ -40,4 +45,5 @@
 
 * Initial release
     * Documentation coming in an upcoming 1.0.0 release
+
 
