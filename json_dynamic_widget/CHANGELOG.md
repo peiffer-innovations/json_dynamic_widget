@@ -1,6 +1,6 @@
-## [7.0.4+2] - November 7, 2023
+## [7.0.5] - November 12th, 2023
 
-* Automated dependency updates
+* Dependency updates
 
 
 ## [7.0.4+1] - November 2nd, 2023
