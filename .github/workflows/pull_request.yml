@@ -30,15 +30,14 @@ jobs:
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
         with:
-          path: annotations
-          
+          path: annotation
+
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
         with:
           path: codegen
-          
+
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
         with:
           path: json_dynamic_widget
-          
