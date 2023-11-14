@@ -1,3 +1,8 @@
+## [7.0.5+1] - November 14, 2023
+
+* Automated dependency updates
+
+
 ## [7.0.5] - November 12th, 2023
 
 * Dependency updates
@@ -698,6 +703,7 @@ This is a huge release with several breaking changes.  It brings in the ability 
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
 
 
