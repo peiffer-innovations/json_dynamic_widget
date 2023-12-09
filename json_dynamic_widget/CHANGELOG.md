@@ -1,3 +1,9 @@
+## [7.0.6] - December 8th, 2023
+
+* Fix for [Issue 243](https://github.com/peiffer-innovations/json_dynamic_widget/issues/243)
+* Fix for [Issue 241](https://github.com/peiffer-innovations/json_dynamic_widget/issues/241) (documentation only)
+
+
 ## [7.0.5+1] - November 14, 2023
 
 * Automated dependency updates

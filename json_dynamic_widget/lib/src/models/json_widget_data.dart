@@ -61,7 +61,7 @@ class JsonWidgetData extends JsonClass {
     dynamic list, {
     JsonWidgetRegistry? registry,
   }) {
-    final result = maybeFromDynamicList(list);
+    final result = maybeFromDynamicList(list, registry: registry);
     if (result == null) {
       throw Exception(
         '[JsonWidgetData]: requested to parse from dynamic list, but the input is null.',
