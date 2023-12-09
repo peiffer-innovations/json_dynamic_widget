@@ -1,5 +1,0 @@
-repos:
-  - repo: https://github.com/peiffer-innovations/flutter-precommit-hook
-    rev: v1.0.3
-    hooks:
-      - id: flutter-precommit

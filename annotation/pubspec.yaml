@@ -12,7 +12,7 @@ analyzer:
     - 'lib/**/*.g.dart'
 
 dependencies:
-  meta: '^1.9.1'
+  meta: '^1.10.0'
 
 dev_dependencies:
   flutter_lints: '^3.0.1'
@@ -41,5 +41,6 @@ ignore_updates:
   - 'term_glyph'
   - 'test_api'
   - 'typed_data'
+  - 'uuid'
   - 'vector_math'
   - 'webdriver'

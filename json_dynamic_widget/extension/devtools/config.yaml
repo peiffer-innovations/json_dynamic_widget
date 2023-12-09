@@ -1,0 +1,8 @@
+name: json_dynamic_widget
+issueTracker: <link_to_your_issue_tracker.com>
+version: 0.0.1
+# materialIconCodePoint: '0xe176' # code
+# materialIconCodePoint: '0xe1c7' # developer_mode
+materialIconCodePoint: '0xf000' # dynamic_form_outlined
+# materialIconCodePoint: '0xe234' # engineering
+# materialIconCodePoint: '0xe2f2' # handyman
