@@ -25,20 +25,20 @@ abstract class _JsonFormBuilder extends JsonWidgetBuilder {
 class _Form extends StatefulWidget {
   const _Form({
     this.autovalidateMode,
+    this.canPop,
     required this.child,
     @JsonBuildArg() required this.childBuilder,
     @JsonBuildArg() required this.data,
     super.key,
     this.onChanged,
-    this.onWillPop,
   });
 
   final AutovalidateMode? autovalidateMode;
+  final bool? canPop;
   final Widget? child;
   final ChildWidgetBuilder? childBuilder;
   final JsonWidgetData data;
   final VoidCallback? onChanged;
-  final WillPopCallback? onWillPop;
 
   @override
   _FormState createState() => _FormState();
@@ -72,9 +72,9 @@ class _FormState extends State<_Form> {
   @override
   Widget build(BuildContext context) => Form(
         autovalidateMode: widget.autovalidateMode,
+        canPop: widget.canPop,
         key: _key,
         onChanged: widget.onChanged,
-        onWillPop: widget.onWillPop,
         child: widget.child ?? const SizedBox(),
       );
 }
