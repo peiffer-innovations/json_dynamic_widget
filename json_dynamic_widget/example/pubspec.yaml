@@ -30,6 +30,10 @@ dev_dependencies:
   json_dynamic_widget_codegen: '^1.0.5'
   yaml_writer: '^1.0.3'
 
+dependency_overrides: 
+  json_dynamic_widget_codegen: 
+    path: '../../codegen'
+
 icons_launcher: 
   image_path: 'assets-src/icon.png'
   platforms: 
