@@ -63752,7 +63752,7 @@ if(s==null)A.C(A.a_("[JsonExampleWidgetBuilder]: requested to parse from dynamic
 return new A.a6l(new A.aRJ(),null)}}
 A.I1.prototype={
 H(){var s=A.q(t.N,t.z)
-s.i(0,"data","example")
+s.i(0,"name","example")
 s.v(0,this.a)
 return A.aF(s,!0)}}
 A.vG.prototype={
