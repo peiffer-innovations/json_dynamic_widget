@@ -1,3 +1,8 @@
+## [7.0.6+4] - December 27th, 2023
+
+* Codegen dependency updates
+
+
 ## [7.0.6+3] - December 26, 2023
 
 * Automated dependency updates
