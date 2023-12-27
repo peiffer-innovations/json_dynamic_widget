@@ -27,7 +27,7 @@ dev_dependencies:
   flutter_test: 
     sdk: 'flutter'
   icons_launcher: '^2.1.6'
-  json_dynamic_widget_codegen: '^1.0.4+4'
+  json_dynamic_widget_codegen: '^1.0.5'
   yaml_writer: '^1.0.3'
 
 icons_launcher: 
