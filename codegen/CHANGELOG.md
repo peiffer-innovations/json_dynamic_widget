@@ -1,3 +1,8 @@
+## [1.0.5+1] - January 9, 2024
+
+* Automated dependency updates
+
+
 ## [1.0.5] - December 27, 2023
 
 * Fix for [https://github.com/peiffer-innovations/json_dynamic_widget/issues/219]
@@ -69,6 +74,7 @@
 
 * Initial release
     * Documentation coming in an upcoming 1.0.0 release
+
 
 
 
