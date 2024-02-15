@@ -91,10 +91,16 @@ void launch() async {
         },
     'noop': ({args, required registry}) => () {},
     'validateForm': ({args, required registry}) => () {
+          print(args![0]);
+          print(args![1]);
           final BuildContext context = registry.getValue(args![0]);
 
           final valid = Form.of(context).validate();
           registry.setValue('form_validation', valid);
+          if (valid) {
+            // perform some api calls
+            print(args![1]);
+          }
         },
     'updateCustomTextStyle': ({args, required registry}) => () {
           registry.setValue(

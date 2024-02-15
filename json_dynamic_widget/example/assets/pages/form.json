@@ -249,7 +249,7 @@
                                 "type": "elevated_button",
                                 "id": "submit_button",
                                 "args": {
-                                  "onPressed": "${validateForm('form_context')}",
+                                  "onPressed": "${validateForm('form_context', email_address)}",
                                   "child": {
                                     "type": "container",
                                     "args": {
