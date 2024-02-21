@@ -60,7 +60,7 @@ Attempting to migrate the files found in:
       output.writeAsStringSync(content);
       if (isYaml) {
         file.writeAsStringSync(
-          YAMLWriter(
+          YamlWriter(
             allowUnquotedStrings: true,
             indentSize: 2,
           ).convert(data),

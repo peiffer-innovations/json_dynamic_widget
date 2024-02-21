@@ -9,8 +9,19 @@ abstract class _JsonContainerBuilder extends JsonWidgetBuilder {
     required super.args,
   });
 
+  @JsonArgSchema('decoration')
+  static Map<String, dynamic> _decorationSchema() => BoxDecorationSchema.schema;
+
+  @JsonArgSchema('foregroundDecoration')
+  static Map<String, dynamic> _foregroundDecorationSchema() =>
+      BoxDecorationSchema.schema;
+
   @JsonArgEncoder('decoration')
   static Map<String, dynamic>? _encodeDecoration(dynamic value) =>
+      value is BoxDecoration ? ThemeEncoder.encodeBoxDecoration(value) : null;
+
+  @JsonArgEncoder('foregroundDecoration')
+  static Map<String, dynamic>? _encodeForegroundDecoration(dynamic value) =>
       value is BoxDecoration ? ThemeEncoder.encodeBoxDecoration(value) : null;
 
   @JsonArgDecoder('decoration')

@@ -1,6 +1,7 @@
-## [7.0.6+6] - February 20, 2024
+## [7.1.0] - February 20, 2024
 
-* Automated dependency updates
+* Updated for Flutter 3.19
+* Fixed `decoration` and `foregroundDecoration` on `animated_container` and `container`.
 
 
 ## [7.0.6+5] - January 16, 2024
@@ -739,33 +740,3 @@ This is a huge release with several breaking changes.  It brings in the ability 
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

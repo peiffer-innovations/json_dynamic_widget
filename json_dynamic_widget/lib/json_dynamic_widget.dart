@@ -1,6 +1,7 @@
 export 'package:child_builder/child_builder.dart';
 export 'package:dynamic_widget_annotation/dynamic_widget_annotation.dart';
 export 'package:flutter/material.dart';
+export 'package:flutter/rendering.dart';
 export 'package:flutter/services.dart';
 export 'package:json_class/json_class.dart';
 export 'package:json_theme/json_theme.dart';

@@ -97,7 +97,7 @@ class JsonWidgetExporterData extends State<JsonWidgetExporter> {
           break;
 
         case ReverseEncodingMode.yaml:
-          final lines = YAMLWriter(
+          final lines = YamlWriter(
             allowUnquotedStrings: true,
             indentSize: max(indent.length, 2),
           )

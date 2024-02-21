@@ -327,6 +327,7 @@ class _RootPageState extends State<RootPage> {
     String pageId,
     String extension,
   ) async {
+    final nav = Navigator.of(context);
     final registry = JsonWidgetRegistry.instance.copyWith();
     final pageStr = await rootBundle.loadString(
       'assets/pages/$pageId$extension',
@@ -344,7 +345,7 @@ class _RootPageState extends State<RootPage> {
     );
 
     if (mounted) {
-      await Navigator.of(context).push(
+      await nav.push(
         MaterialPageRoute(
           builder: (BuildContext context) => FullWidgetPage(
             data: data,
@@ -365,6 +366,7 @@ class _RootPageState extends State<RootPage> {
     String themeId,
   ) async {
     final registry = JsonWidgetRegistry.instance.copyWith();
+    final nav = Navigator.of(context);
     final pageStr = await rootBundle.loadString('assets/pages/$themeId.json');
     final dataJson = json.decode(pageStr);
 
@@ -379,7 +381,7 @@ class _RootPageState extends State<RootPage> {
     );
 
     if (mounted) {
-      await Navigator.of(context).push(
+      await nav.push(
         MaterialPageRoute(
           builder: (BuildContext context) => UntestableFullWidgetPage(
             data: data,
