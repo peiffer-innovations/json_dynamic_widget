@@ -1,3 +1,8 @@
+## [1.0.5+5] - March 5, 2024
+
+* Automated dependency updates
+
+
 ## [1.0.5+4] - February 27, 2024
 
 * Automated dependency updates
@@ -89,6 +94,7 @@
 
 * Initial release
     * Documentation coming in an upcoming 1.0.0 release
+
 
 
 

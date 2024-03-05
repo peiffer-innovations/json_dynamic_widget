@@ -1,3 +1,8 @@
+## [7.1.0+2] - March 5, 2024
+
+* Automated dependency updates
+
+
 ## [7.1.0+1] - February 27, 2024
 
 * Automated dependency updates
@@ -745,4 +750,5 @@ This is a huge release with several breaking changes.  It brings in the ability 
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
+
 
