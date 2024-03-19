@@ -1,7 +1,7 @@
 name: 'json_dynamic_widget_codegen'
 description: 'A library autogenerate JSON widget builders.'
 homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget/tree/main/codegen'
-version: '1.0.5+5'
+version: '1.0.5+6'
 
 environment: 
   sdk: '>=3.0.0 <4.0.0'
@@ -20,9 +20,9 @@ dependencies:
   json_theme: '^6.4.1'
   recase: '^4.1.0'
   source_gen: '^1.5.0'
-  template_expressions: '^3.2.0'
+  template_expressions: '^3.2.0+1'
   yaml_writer: '^2.0.0'
-  yaon: '^1.1.4+4'
+  yaon: '^1.1.4+5'
 
 dev_dependencies: 
   flutter_lints: '^3.0.1'
