@@ -43638,7 +43638,7 @@ A.aZl.prototype={
 $1(a){var s=A.hX().b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/a5c24f538d05aaf66f7972fb23959d8cafb9f95a/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/e76c956498841e1ab458577d3892003e553e4f3c/":s)+a},
 $S:27}
 A.aZy.prototype={
 $1(a){this.a.remove()
