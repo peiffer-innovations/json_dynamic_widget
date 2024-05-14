@@ -1,3 +1,7 @@
+## [7.1.0+8] - May 14, 2024
+
+* Flutter 3.22 migration
+
 ## [7.1.0+7] - April 9, 2024
 
 * Automated dependency updates

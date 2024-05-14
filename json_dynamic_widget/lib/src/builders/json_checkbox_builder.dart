@@ -57,7 +57,7 @@ class _Checkbox extends StatefulWidget {
   final Color? checkColor;
   final JsonWidgetData data;
   final bool enabled;
-  final MaterialStateProperty<Color?>? fillColor;
+  final WidgetStateProperty<Color?>? fillColor;
   final Color? focusColor;
   final FocusNode? focusNode;
   final Color? hoverColor;
@@ -67,7 +67,7 @@ class _Checkbox extends StatefulWidget {
   final MouseCursor? mouseCursor;
   final ValueChanged<bool?>? onChanged;
   final ValueChanged<bool?>? onSaved;
-  final MaterialStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<Color?>? overlayColor;
   final OutlinedBorder? shape;
   final BorderSide? side;
   final double? splashRadius;

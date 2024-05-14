@@ -54,7 +54,7 @@ class _Radio extends StatefulWidget {
   final AutovalidateMode? autovalidateMode;
   final JsonWidgetData data;
   final bool enabled;
-  final MaterialStateProperty<Color?>? fillColor;
+  final WidgetStateProperty<Color?>? fillColor;
   final Color? focusColor;
   final FocusNode? focusNode;
   final dynamic groupValue;
@@ -65,7 +65,7 @@ class _Radio extends StatefulWidget {
   final MouseCursor? mouseCursor;
   final ValueChanged<dynamic>? onChanged;
   final ValueChanged<dynamic>? onSaved;
-  final MaterialStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<Color?>? overlayColor;
   final bool toggleable;
   final double? splashRadius;
   final Validator? validator;
