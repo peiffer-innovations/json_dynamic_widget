@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Dependencies
-        uses: peiffer-innovations/actions-dart-dependency-updater@v1.0.18
+        uses: peiffer-innovations/actions-dart-dependency-updater@v1
         with:
           merge: true
           paths: annotation,codegen,json_dynamic_widget,json_dynamic_widget/example

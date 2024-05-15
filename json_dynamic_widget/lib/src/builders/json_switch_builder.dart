@@ -81,11 +81,11 @@ class _Switch extends StatefulWidget {
   final ValueChanged<bool>? onChanged;
   final ImageErrorListener? onInactiveThumbImageError;
   final ValueChanged<bool?>? onSaved;
-  final MaterialStateProperty<Color?>? overlayColor;
+  final WidgetStateProperty<Color?>? overlayColor;
   final double? splashRadius;
-  final MaterialStateProperty<Color?>? thumbColor;
-  final MaterialStateProperty<Icon?>? thumbIcon;
-  final MaterialStateProperty<Color?>? trackColor;
+  final WidgetStateProperty<Color?>? thumbColor;
+  final WidgetStateProperty<Icon?>? thumbIcon;
+  final WidgetStateProperty<Color?>? trackColor;
   final Validator? validator;
   final bool value;
   final VisualDensity? visualDensity;

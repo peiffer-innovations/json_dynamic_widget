@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
-import 'package:meta/meta.dart';
 
 /// Builder that builds dynamic widgets from JSON or other Map-like structures.
 /// Applications can register their own types and builders through the

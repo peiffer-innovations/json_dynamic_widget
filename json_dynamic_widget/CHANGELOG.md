@@ -1,3 +1,9 @@
+## [7.2.0] - May 14th, 2024
+
+* Flutter 3.22
+* Swapped MaterialState*** with WidgetState***
+
+
 ## [7.1.0+7] - April 9, 2024
 
 * Automated dependency updates

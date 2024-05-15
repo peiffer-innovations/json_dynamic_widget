@@ -14,7 +14,7 @@ jobs:
 
     
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
@@ -39,7 +39,7 @@ jobs:
           path: json_dynamic_widget
 
       - name: Checkout Schemas
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: peiffer-innovations/flutter_json_schemas
           token: ${{ secrets.REPO_TOKEN }}
