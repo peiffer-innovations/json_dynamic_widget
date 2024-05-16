@@ -1,8 +1,15 @@
-name: Flutter Pull Request Checker
+name: Pull Request Checker
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: [main]
+
+permissions:
+  # Only need to read contents
+  contents: read
+  # Require writing security events to upload SARIF file to security tab
+  security-events: write
 
 jobs:
   build:
@@ -10,34 +17,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Setup Flutter
-        uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-
-      - name: Run Codegen
-        run: |
-          flutter packages get
-          dart run build_runner build --delete-conflicting-outputs -v
-        working-directory: json_dynamic_widget
-
-      - name: Run Codegen Example
-        run: |
-          flutter packages get
-          dart run build_runner build --delete-conflicting-outputs -v
-        working-directory: json_dynamic_widget/example
 
       - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
-        with:
-          path: annotation
-
-      - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
-        with:
-          path: codegen
-
-      - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
-        with:
-          path: json_dynamic_widget
+        uses: peiffer-innovations/actions-flutter-validate@v2
