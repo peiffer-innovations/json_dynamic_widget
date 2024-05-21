@@ -1,17 +1,17 @@
 name: 'json_dynamic_widget_codegen'
 description: 'A library autogenerate JSON widget builders.'
 homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget/tree/main/codegen'
-version: '1.0.6'
+version: '1.0.6+1'
 
-environment:
+environment: 
   sdk: '>=3.0.0 <4.0.0'
 
-analyzer:
-  exclude:
+analyzer: 
+  exclude: 
     - 'lib/generated/**'
     - 'lib/**/*.g.dart'
 
-dependencies:
+dependencies: 
   analyzer: '^6.2.0'
   build: '^2.4.1'
   code_builder: '^4.10.0'
@@ -20,18 +20,18 @@ dependencies:
   json_theme: '^6.5.0+1'
   recase: '^4.1.0'
   source_gen: '^1.5.0'
-  template_expressions: '^3.2.0+3'
+  template_expressions: '^3.2.0+7'
   yaml_writer: '^2.0.0'
-  yaon: '^1.1.4+6'
+  yaon: '^1.1.4+10'
 
 dependency_overrides: 
-  meta: ^1.15.0
+  meta: '^1.15.0'
 
-dev_dependencies:
+dev_dependencies: 
   flutter_lints: '^4.0.0'
   test: '^1.25.5'
 
-ignore_updates:
+ignore_updates: 
   - 'analyzer'
   - 'archive'
   - 'async'

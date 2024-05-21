@@ -1,3 +1,8 @@
+## [7.2.0+1] - May 21, 2024
+
+* Automated dependency updates
+
+
 ## [7.2.0] - May 14th, 2024
 
 * Flutter 3.22
@@ -781,10 +786,3 @@ This is a huge release with several breaking changes.  It brings in the ability 
 ## [0.9.9] - July 18th, 2020
 
 * Initial release
-
-
-
-
-
-
-
