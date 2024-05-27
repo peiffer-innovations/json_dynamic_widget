@@ -1,3 +1,8 @@
+## [1.0.6+1] - May 27, 2024
+
+* Automated dependency updates
+
+
 ## [1.0.6] - May 14th, 2024
 
 * Flutter 3.22
@@ -114,17 +119,3 @@
 
 * Initial release
     * Documentation coming in an upcoming 1.0.0 release
-
-
-
-
-
-
-
-
-
-
-
-
-
-
