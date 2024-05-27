@@ -1,95 +1,90 @@
 name: 'example'
 description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
-version: '1.0.0+59'
+version: '1.0.0+60'
 
-environment:
+environment: 
   sdk: '>=3.0.0 <4.0.0'
 
-dependencies:
+dependencies: 
   child_builder: '^2.0.2'
   desktop_window: '^0.4.0'
   dotted_border: '^2.1.0'
   execution_timer: '^1.1.0+6'
-  flutter:
+  flutter: 
     sdk: 'flutter'
   flutter_svg: '^2.0.10+1'
   json_class: '^3.0.0+13'
-  json_dynamic_widget:
+  json_dynamic_widget: 
     path: '../'
-  json_theme: '^6.4.1+1'
+  json_theme: '^6.5.0+1'
   logging: '^1.2.0'
-  yaon: '^1.1.4+6'
+  yaon: '^1.1.4+10'
 
-dev_dependencies:
-  build_runner: '^2.4.9'
+dev_dependencies: 
+  build_runner: '^2.4.10'
   flutter_lints: '^4.0.0'
-  flutter_test:
+  flutter_test: 
     sdk: 'flutter'
   icons_launcher: '^2.1.7'
-  json_dynamic_widget_codegen: '^1.0.5+7'
+  json_dynamic_widget_codegen: '^1.0.6'
   yaml_writer: '^2.0.0'
 
-dependency_overrides:
-  json_dynamic_widget_codegen:
+dependency_overrides: 
+  json_dynamic_widget_codegen: 
     path: '../../codegen'
 
-icons_launcher:
+icons_launcher: 
   image_path: 'assets-src/icon.png'
-  platforms:
-    android:
+  platforms: 
+    android: 
       enable: true
-    ios:
+    ios: 
       enable: true
-    linux:
+    linux: 
       enable: true
-    macos:
+    macos: 
       enable: true
-    web:
+    web: 
       enable: true
-    windows:
+    windows: 
       enable: true
 
-flutter:
+flutter: 
   uses-material-design: true
-  assets:
+  assets: 
     - 'assets/images/'
     - 'assets/pages/'
     - 'assets/secrets/'
     - 'assets/widgets/'
-  fonts:
+  fonts: 
     - family: 'lato'
-      fonts:
+      fonts: 
         - asset: 'assets/fonts/Lato-Regular.ttf'
     - family: 'metal'
-      fonts:
+      fonts: 
         - asset: 'assets/fonts/MetalMania-Regular.ttf'
 
-permittedLicenses:
-  - Apache-2.0
-  - BSD-2-Clause
-  - BSD-3-Clause
-  - MIT
-  - MIT-Modern-Variant
-  - MPL-2.0
-  - Zlib
+permittedLicenses: 
+  - 'Apache-2.0'
+  - 'BSD-2-Clause'
+  - 'BSD-3-Clause'
+  - 'MIT'
+  - 'MIT-Modern-Variant'
+  - 'MPL-2.0'
+  - 'Zlib'
 
-# The [license_checker](https://pub.dev/packages/license_checker) package cannot
-# detect the built in Flutter packages because they aren't published to pub.dev
-# and do not have a LICENSE file in their respective folders.  So this section
-# informs the license_checker that all the built in Flutter packages all have
-# the same BSD-3-Clause license as Flutter itself. 
 packageLicenseOverride: 
-  flutter: BSD-3-Clause
-  flutter_driver: BSD-3-Clause
-  flutter_goldens: BSD-3-Clause
-  flutter_localizations: BSD-3-Clause
-  flutter_web_plugins: BSD-3-Clause
-  flutter_test: BSD-3-Clause
-  fuchsia_remote_debug_protocol: BSD-3-Clause
-  integration_test: BSD-3-Clause
+  flutter: 'BSD-3-Clause'
+  flutter_driver: 'BSD-3-Clause'
+  flutter_goldens: 'BSD-3-Clause'
+  flutter_localizations: 'BSD-3-Clause'
+  flutter_web_plugins: 'BSD-3-Clause'
+  flutter_test: 'BSD-3-Clause'
+  fuchsia_remote_debug_protocol: 'BSD-3-Clause'
+  integration_test: 'BSD-3-Clause'
 
-ignore_updates:
+ignore_updates: 
   - 'archive'
   - 'async'
   - 'boolean_selector'
