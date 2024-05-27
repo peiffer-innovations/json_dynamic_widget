@@ -16,21 +16,17 @@ jobs:
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           path: annotation
-          sarif_category: annotation
-          sarif_file: annotation.sarif
+          skip_sarif: true
 
       - name: Validate codegen
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           path: codegen
-          sarif_category: codegen
-          sarif_file: codegen.sarif
+          skip_sarif: true
 
       - name: Validate json_dynamic_widget
         uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           generate_code: true
           path: json_dynamic_widget
-          sarif_category: json_dynamic_widget
-          sarif_file: json_dynamic_widget.sarif
 
