@@ -31,6 +31,30 @@ dev_dependencies:
   flutter_lints: '^4.0.0'
   test: '^1.25.5'
 
+permittedLicenses:
+  - Apache-2.0
+  - BSD-2-Clause
+  - BSD-3-Clause
+  - MIT
+  - MIT-Modern-Variant
+  - MPL-2.0
+  - Zlib
+
+# The [license_checker](https://pub.dev/packages/license_checker) package cannot
+# detect the built in Flutter packages because they aren't published to pub.dev
+# and do not have a LICENSE file in their respective folders.  So this section
+# informs the license_checker that all the built in Flutter packages all have
+# the same BSD-3-Clause license as Flutter itself. 
+packageLicenseOverride: 
+  flutter: BSD-3-Clause
+  flutter_driver: BSD-3-Clause
+  flutter_goldens: BSD-3-Clause
+  flutter_localizations: BSD-3-Clause
+  flutter_web_plugins: BSD-3-Clause
+  flutter_test: BSD-3-Clause
+  fuchsia_remote_debug_protocol: BSD-3-Clause
+  integration_test: BSD-3-Clause
+
 ignore_updates:
   - 'analyzer'
   - 'archive'
