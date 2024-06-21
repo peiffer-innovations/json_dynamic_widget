@@ -290,6 +290,9 @@ class JsonDropdownButtonFormFieldBuilderModel extends JsonWidgetBuilderModel {
         );
       }
 
+      registry ??= JsonWidgetRegistry.instance;
+      map = registry.processArgs(map, <String>{}).value;
+
       result = JsonDropdownButtonFormFieldBuilderModel(
         args,
         alignment: ThemeDecoder.decodeAlignment(
@@ -479,6 +482,7 @@ class _JsonDropdownButtonFormFieldWidgetState
 
     _model = JsonDropdownButtonFormFieldBuilderModel.fromDynamic(
       widget.data.jsonWidgetArgs,
+      registry: widget.data.jsonWidgetRegistry,
     );
     _items = _getItems();
     _selectedItemBuilder = _getSelectedItemBuilder();

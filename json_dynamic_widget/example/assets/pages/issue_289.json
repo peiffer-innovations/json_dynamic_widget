@@ -1,0 +1,50 @@
+{
+  "type": "scaffold",
+  "args": {
+    "appBar": {
+      "type": "app_bar",
+      "args": {
+        "title": {
+          "type": "text",
+          "args": {
+            "text": "Example"
+          }
+        }
+      }
+    },
+    "body": {
+      "type": "set_value",
+      "args": {
+        "values": {
+          "index": [
+            "abc",
+            "pqr",
+            "stu"
+          ]
+        },
+        "child": {
+          "type": "expanded",
+          "args": {
+            "child": {
+              "type": "dropdown_button_form_field",
+              "listen": [
+                "index"
+              ],
+              "args": {
+                "decoration": {
+                  "labelText": "Select Island"
+                },
+                "items": "${index}",
+                "validators": [
+                  {
+                    "type": "required"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
