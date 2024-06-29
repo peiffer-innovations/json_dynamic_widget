@@ -99,6 +99,16 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
   }) {
     JsonDynamicBuilder? result;
     if (map != null) {
+      if (map is String) {
+        map = yaon.parse(
+          map,
+          normalize: true,
+        );
+      }
+
+      registry ??= JsonWidgetRegistry.instance;
+      map = registry.processArgs(map, <String>{}).value;
+      
       final dynamicArgs = map['dynamic'];
       if (dynamicArgs != null && dynamicArgs['builderType'] != null) {
         result = JsonDynamicBuilder(
