@@ -38,6 +38,7 @@
 
 Here's a list of first party plugins that exist for this library.
 
+* [json_dynamic_widget_plugin_components](https://pub.dev/packages/json_dynamic_widget_plugin_components)
 * [json_dynamic_widget_plugin_font_awesome](https://pub.dev/packages/json_dynamic_widget_plugin_font_awesome)
 * [json_dynamic_widget_plugin_ionicons](https://pub.dev/packages/json_dynamic_widget_plugin_ionicons)
 * [json_dynamic_widget_plugin_js](https://pub.dev/packages/json_dynamic_widget_plugin_js)
