@@ -2,6 +2,11 @@
 
 * Fixed issue #289 - `JsonDropdownButtonFormFieldBuilder` not processing args
   
+## [7.2.0+6] - June 25, 2024
+
+* Automated dependency updates
+
+
 ## [7.2.0+5] - June 18, 2024
 
 * Automated dependency updates

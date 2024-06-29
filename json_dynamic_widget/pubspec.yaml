@@ -35,7 +35,7 @@ dev_dependencies:
   flutter_lints: '^4.0.0'
   flutter_test: 
     sdk: 'flutter'
-  json_dynamic_widget_codegen: '^1.0.6+3'
+  json_dynamic_widget_codegen: '^1.0.6+4'
 
 dependency_overrides: 
   json_dynamic_widget_codegen: 
