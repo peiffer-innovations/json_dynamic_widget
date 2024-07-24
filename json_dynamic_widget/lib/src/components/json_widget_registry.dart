@@ -50,7 +50,7 @@ class JsonWidgetRegistry {
     if (!overrideInternalBuilders) {
       DefaultRegistrar.registerDefaults(registry: this);
     }
-    _builders.addAll({if (builders != null) ...builders});
+    widgetBuilders.addAll({if (builders != null) ...builders});
     _functions.addAll({
       if (!overrideInternalFunctions) ...JsonWidgetInternalFunctions.defaults(),
       if (functions != null) ...functions
@@ -69,7 +69,7 @@ class JsonWidgetRegistry {
 
   static int childCount = 0;
 
-  final _builders = <String, JsonWidgetBuilderContainer>{};
+  final widgetBuilders = <String, JsonWidgetBuilderContainer>{};
   final String debugLabel;
 
   final bool disableValidation;
@@ -151,7 +151,7 @@ class JsonWidgetRegistry {
     Map<String, dynamic>? values,
   }) =>
       JsonWidgetRegistry(
-        builders: builders ?? Map.from(_builders),
+        builders: builders ?? Map.from(widgetBuilders),
         debugLabel: debugLabel ?? this.debugLabel,
         disableValidation: disableValidation ?? this.disableValidation,
         functions: functions ?? _functions,
@@ -238,7 +238,7 @@ class JsonWidgetRegistry {
   /// If no builder is registered for the given [type] then this will throw an
   /// [Exception].
   JsonWidgetBuilderBuilder getWidgetBuilder(String type) {
-    final container = _builders[type];
+    final container = widgetBuilders[type];
 
     final builder = container?.builder ?? _parent?.getWidgetBuilder(type);
 
@@ -279,7 +279,7 @@ class JsonWidgetRegistry {
     String type,
     JsonWidgetBuilderContainer container,
   ) =>
-      _builders[type] = container;
+      widgetBuilders[type] = container;
 
   /// Registers the custom builders.  This is a convenience method that calls
   /// [registerCustomBuilder] for each entry in [containers].
@@ -389,7 +389,7 @@ class JsonWidgetRegistry {
   /// associated builder, if one exists.  If the [type] is not registered then
   /// this will [null].
   JsonWidgetBuilderContainer? unregisterCustomBuilder(String type) =>
-      _builders.remove(type);
+      widgetBuilders.remove(type);
 
   JsonWidgetFunction? unregisterFunction(String key) {
     assert(key.isNotEmpty == true);
@@ -412,7 +412,7 @@ class JsonWidgetRegistry {
 
     if (kDebugMode) {
       if (disableValidation != true) {
-        final container = _builders[type];
+        final container = widgetBuilders[type];
         final schemaId = container?.schemaId;
         if (schemaId != null) {
           final timer = ExecutionWatch(
