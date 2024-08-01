@@ -8,7 +8,7 @@ export 'package:json_theme/json_theme.dart';
 export 'package:json_theme/json_theme_schemas.dart';
 export 'package:uuid/uuid.dart';
 export 'package:yaon/yaon.dart';
-
+export 'builders.dart';
 export 'src/builders/json_sized_box_builder.dart';
 export 'src/builders/json_widget_builder.dart';
 export 'src/components/default_registrar.dart';
