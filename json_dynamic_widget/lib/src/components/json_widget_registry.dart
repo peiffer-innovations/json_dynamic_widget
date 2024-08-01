@@ -33,6 +33,7 @@ class JsonWidgetRegistry {
     bool? disableValidation,
     Map<String, JsonWidgetFunction>? functions,
     bool overrideInternalFunctions = false,
+    this.onBuildWidgetFailed,
     this.navigatorKey,
     JsonWidgetRegistry? parent,
     List<ArgProcessor>? argProcessors,
@@ -80,7 +81,7 @@ class JsonWidgetRegistry {
   final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
   late List<ArgProcessor> _argProcessors;
-
+  final Widget Function(Object error, BuildContext context)? onBuildWidgetFailed;
   StreamController<void>? _disposeStreamController =
       StreamController<void>.broadcast();
   late Logger _logger;

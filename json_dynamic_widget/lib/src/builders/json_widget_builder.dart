@@ -101,6 +101,12 @@ abstract class JsonWidgetBuilder {
     });
 
     if (widget == null) {
+      if (data.jsonWidgetRegistry.onBuildWidgetFailed != null) {
+        return data.jsonWidgetRegistry.onBuildWidgetFailed!(
+          exception,
+          context,
+        );
+      }
       if (exception is HandledJsonWidgetException) {
         throw exception;
       } else {
