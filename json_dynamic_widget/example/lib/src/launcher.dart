@@ -250,6 +250,7 @@ class _RootPageState extends State<RootPage> {
             builder: (BuildContext context) => const Issue220Page(),
           ),
         ),
+    'issue_289': _onJsonPageSelected,
     'layout_builder': _onJsonPageSelected,
     'length': _onJsonPageSelected,
     'limited_box': _onJsonPageSelected,
