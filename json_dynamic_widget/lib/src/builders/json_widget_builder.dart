@@ -103,8 +103,9 @@ abstract class JsonWidgetBuilder {
     if (widget == null) {
       if (data.jsonWidgetRegistry.onBuildWidgetFailed != null) {
         return data.jsonWidgetRegistry.onBuildWidgetFailed!(
-          exception,
           context,
+          exception,
+          stackTrace,
         );
       }
       if (exception is HandledJsonWidgetException) {

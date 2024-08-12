@@ -81,7 +81,7 @@ class JsonWidgetRegistry {
   final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
   late List<ArgProcessor> _argProcessors;
-  final Widget Function(Object error, BuildContext context)? onBuildWidgetFailed;
+  final Widget Function(BuildContext context, dynamic error, [StackTrace? stackTrace])? onBuildWidgetFailed;
   StreamController<void>? _disposeStreamController =
       StreamController<void>.broadcast();
   late Logger _logger;
