@@ -91,7 +91,23 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
       throw Exception('Unable to locate a default constructor.');
     }
 
-    for (var m in element.methods) {
+    final methodsList = <MethodElement>[];
+    methodsList.addAll(element.methods);
+    List<MethodElement> interfaceVisitor(List<InterfaceType> interfaces) {
+      final list = <MethodElement>[];
+      for (final interface in interfaces) {
+        list.addAll(interface.methods);
+        list.addAll(interfaceVisitor(interface.interfaces));
+      }
+      return list;
+    }
+
+    for (final mixin in element.mixins) {
+      methodsList.addAll(mixin.methods);
+      methodsList.addAll(interfaceVisitor(mixin.interfaces));
+    }
+
+    for (var m in methodsList) {
       final annotation = builderChecker.firstAnnotationOf(m);
       if (annotation != null) {
         method = m;
@@ -99,7 +115,7 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
       }
     }
     if (method == null) {
-      for (var m in element.methods) {
+      for (var m in methodsList) {
         if (m.name == 'buildCustom') {
           method = m;
           break;
@@ -146,7 +162,7 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
     const paramEncoderChecker = TypeChecker.fromRuntime(JsonArgEncoder);
     const paramDecoderChecker = TypeChecker.fromRuntime(JsonArgDecoder);
     const paramSchemaChecker = TypeChecker.fromRuntime(JsonArgSchema);
-    for (var m in element.methods) {
+    for (var m in methodsList) {
       final paramEncoderAnnotation = paramEncoderChecker.firstAnnotationOf(m);
       final paramDecoderAnnotation = paramDecoderChecker.firstAnnotationOf(m);
       final schemaAnnotation = paramSchemaChecker.firstAnnotationOf(m);
@@ -745,7 +761,7 @@ return result;
             }
             if (encoder != null) {
               customEncoders.write('''
-final ${name}Encoded = ${element.name}.${encoder.name}(${param.name});
+final ${name}Encoded = ${encoder.enclosingElement.name}.${encoder.name}(${param.name});
 ''');
 
               buf.write('''
@@ -807,8 +823,9 @@ ${buf.toString()}
             final schema = fun == null ? 'SchemaHelper.anySchema' : fun(param);
             properties.write("'$name': $schema,\n");
           } else {
+            if (!sMethod.isStatic) throw 'Schema only supports static methods';
             properties.write(
-              "'$name': ${element.name}.${sMethod.displayName}(),",
+              "'$name': ${sMethod.enclosingElement.name}.${sMethod.displayName}(),",
             );
           }
         }
