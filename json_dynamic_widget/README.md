@@ -223,6 +223,35 @@ See the [Annotations](https://github.com/peiffer-innovations/json_dynamic_widget
 
 ---
 
+### Widget composition
+
+To share the same arguments/annotations between multiple builders you can create mixins with the values you need.
+
+In the following example, `_ColumnBuilder` and `_RowBuilder` shares the same properties (encode/decode/schema) of `children` when genreated.
+
+```dart
+mixin ChildrenArguments {
+  @JsonArgDecoder('children')
+  List<Widget> _decodeChildren({required value}) { ... };
+
+  @JsonArgEncoder('children')
+  static String _encodeChildren(List<Widget> value) { ... };
+
+  @JsonArgSchema('children')
+  static Map<String, dynamic> _childrenSchema() => { ... };
+}
+
+
+@jsonWidget
+abstract class _ColumnBuilder extends JsonWidgetBuilder with ChildrenArguments { ... }
+
+@jsonWidget
+abstract class _RowBuilder extends JsonWidgetBuilder with ChildrenArguments { ... }
+
+```
+
+--- 
+
 ### Migration CLI
 
 This version comes with a script that can migrate existing JSON / YAML files from v6 to v7 automatically.  To run the script, first add the package as a dependency:
