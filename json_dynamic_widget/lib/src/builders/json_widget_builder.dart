@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
 
@@ -103,9 +102,10 @@ abstract class JsonWidgetBuilder {
     if (widget == null) {
       if (data.jsonWidgetRegistry.onBuildWidgetFailed != null) {
         return data.jsonWidgetRegistry.onBuildWidgetFailed!(
-          context,
-          exception,
-          stackTrace,
+          data: data,
+          context: context,
+          error: exception,
+          stackTrace: stackTrace,
         );
       }
       if (exception is HandledJsonWidgetException) {
