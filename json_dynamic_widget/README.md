@@ -11,6 +11,7 @@
     - [>= 7.0.0](#-700)
     - [< 7.0.0](#-700-1)
   - [Code Generation Annotations](#code-generation-annotations)
+  - [Widget composition](#widget-composition)
   - [Migration CLI](#migration-cli)
 - [Usage](#usage)
 - [Understanding the Registry](#understanding-the-registry)
@@ -222,6 +223,35 @@ class ColumnSchema {
 See the [Annotations](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/doc/ANNOTATIONS.md) guide for information on all of the code generation annotations available for use.
 
 ---
+
+### Widget composition
+
+To share the same arguments/annotations between multiple builders you can create mixins with the values you need.
+
+In the following example, `_ColumnBuilder` and `_RowBuilder` shares the same properties (encode/decode/schema) of `children` when genreated.
+
+```dart
+mixin ChildrenArguments {
+  @JsonArgDecoder('children')
+  List<Widget> _decodeChildren({required value}) { ... };
+
+  @JsonArgEncoder('children')
+  static String _encodeChildren(List<Widget> value) { ... };
+
+  @JsonArgSchema('children')
+  static Map<String, dynamic> _childrenSchema() => { ... };
+}
+
+
+@jsonWidget
+abstract class _ColumnBuilder extends JsonWidgetBuilder with ChildrenArguments { ... }
+
+@jsonWidget
+abstract class _RowBuilder extends JsonWidgetBuilder with ChildrenArguments { ... }
+
+```
+
+--- 
 
 ### Migration CLI
 
