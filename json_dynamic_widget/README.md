@@ -11,6 +11,7 @@
     - [>= 7.0.0](#-700)
     - [< 7.0.0](#-700-1)
   - [Code Generation Annotations](#code-generation-annotations)
+  - [Widget composition](#widget-composition)
   - [Migration CLI](#migration-cli)
 - [Usage](#usage)
 - [Understanding the Registry](#understanding-the-registry)
