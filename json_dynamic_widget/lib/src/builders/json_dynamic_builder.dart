@@ -108,7 +108,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
 
       registry ??= JsonWidgetRegistry.instance;
       map = registry.processArgs(map, <String>{}).value;
-      
+
       final dynamicArgs = map['dynamic'];
       if (dynamicArgs != null && dynamicArgs['builderType'] != null) {
         result = JsonDynamicBuilder(

@@ -100,15 +100,15 @@ abstract class JsonWidgetBuilder {
     });
 
     if (widget == null) {
-      if (data.jsonWidgetRegistry.onBuildWidgetFailed != null) {
-        return data.jsonWidgetRegistry.onBuildWidgetFailed!(
+      final onBuildWidgetFailed = data.jsonWidgetRegistry.onBuildWidgetFailed;
+      if (onBuildWidgetFailed != null) {
+        widget = onBuildWidgetFailed(
           data: data,
           context: context,
           error: exception,
           stackTrace: stackTrace,
         );
-      }
-      if (exception is HandledJsonWidgetException) {
+      } else if (exception is HandledJsonWidgetException) {
         throw exception;
       } else {
         throw HandledJsonWidgetException(
