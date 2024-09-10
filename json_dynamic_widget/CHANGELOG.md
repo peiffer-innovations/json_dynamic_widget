@@ -1,7 +1,8 @@
-## [7.2.2+1] - September 10, 2024
+## [7.3.0] - September 10, 2024
 
-* Automated dependency updates
-
+* Rebuilt with Flutter 3.24
+* Removed deprecated `ButtonBar` and replaced it with `OverflowBar`
+* [Thauanny](https://github.com/Thauanny): Added error callback when en error happens building wigets 
 
 ## [7.2.1] - June 21, 2024
 

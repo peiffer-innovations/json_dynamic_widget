@@ -1,4 +1,3 @@
-import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 class JsonDynamicWidgetSchemas {
@@ -21,7 +20,6 @@ class JsonDynamicWidgetSchemas {
     AspectRatioSchema.id: AspectRatioSchema.schema,
     AssetImageSchema.id: AssetImageSchema.schema,
     BaselineSchema.id: BaselineSchema.schema,
-    ButtonBarSchema.id: ButtonBarSchema.schema,
     CardSchema.id: CardSchema.schema,
     CenterSchema.id: CenterSchema.schema,
     CheckboxSchema.id: CheckboxSchema.schema,
@@ -74,6 +72,7 @@ class JsonDynamicWidgetSchemas {
     OffstageSchema.id: OffstageSchema.schema,
     OpacitySchema.id: OpacitySchema.schema,
     OutlinedButtonSchema.id: OutlinedButtonSchema.schema,
+    OverflowBarSchema.id: OverflowBarSchema.schema,
     OverflowBoxSchema.id: OverflowBoxSchema.schema,
     PaddingSchema.id: PaddingSchema.schema,
     PlaceholderSchema.id: PlaceholderSchema.schema,

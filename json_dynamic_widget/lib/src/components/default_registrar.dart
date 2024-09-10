@@ -1,5 +1,4 @@
 // ignore: unused_import
-import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 part 'default_registrar.g.dart';

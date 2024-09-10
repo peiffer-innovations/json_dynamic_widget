@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
-import 'package:json_dynamic_widget/src/builders/json_exportable_builder.dart';
 import 'package:logging/logging.dart';
 import 'package:yaml_writer/yaml_writer.dart';
 

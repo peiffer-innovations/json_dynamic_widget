@@ -1,4 +1,3 @@
-import 'package:json_dynamic_widget/builders.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 /// https://github.com/peiffer-innovations/json_dynamic_widget/issues/220

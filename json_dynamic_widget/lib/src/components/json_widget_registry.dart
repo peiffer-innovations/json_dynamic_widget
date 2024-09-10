@@ -27,16 +27,16 @@ class JsonWidgetRegistry {
   /// It allows to extend the default syntax with custom one by passing
   /// [argProcessors].
   JsonWidgetRegistry({
+    List<ArgProcessor>? argProcessors,
     Map<String, JsonWidgetBuilderContainer>? builders,
     bool overrideInternalBuilders = false,
     String? debugLabel,
     bool? disableValidation,
     Map<String, JsonWidgetFunction>? functions,
     bool overrideInternalFunctions = false,
-    this.onBuildWidgetFailed,
     this.navigatorKey,
+    this.onBuildWidgetFailed,
     JsonWidgetRegistry? parent,
-    List<ArgProcessor>? argProcessors,
     Map<String, dynamic>? values,
   })  : debugLabel = (parent != null ? '${parent.debugLabel}.' : '') +
             (debugLabel ?? 'child_${++childCount}'),
@@ -74,16 +74,21 @@ class JsonWidgetRegistry {
   final String debugLabel;
 
   final bool disableValidation;
+  final Widget Function({
+    BuildContext context,
+    JsonWidgetData data,
+    dynamic error,
+    StackTrace? stackTrace,
+  })? onBuildWidgetFailed;
+
   final _functions = <String, JsonWidgetFunction>{};
   final _internalValues = <String, dynamic>{}..addAll(
       CurvesValues.values,
     );
   final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
+
   late List<ArgProcessor> _argProcessors;
-  final Widget Function({
-      BuildContext context, JsonWidgetData data, dynamic error,
-      StackTrace? stackTrace})? onBuildWidgetFailed;
   StreamController<void>? _disposeStreamController =
       StreamController<void>.broadcast();
   late Logger _logger;
