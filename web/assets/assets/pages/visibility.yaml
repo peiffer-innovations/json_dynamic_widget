@@ -1,0 +1,36 @@
+type: scaffold
+args:
+  appBar:
+    type: 'app_bar'
+    args:
+      title:
+        type: text
+        args:
+          text: Visibility
+
+  body:
+    type: center
+    args:
+      child:
+        type: column
+        args:
+          mainAxisSize: min
+          children:
+            - type: 'cupertino_switch'
+              id: visible
+              args:
+                label: Visible
+                value: true
+            - type: visibility
+              listen:
+                - visible
+              args:
+                replacement:
+                  type: text
+                  args:
+                    text: Widget is not visible... :(
+                visible: ${visible}
+                child:
+                  type: text
+                  args:
+                    text: Widget is Visible!
