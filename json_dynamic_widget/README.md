@@ -467,6 +467,7 @@ Widget Builders | Example Location
 [theme](https://pub.dev/documentation/json_dynamic_widget/latest/builders/JsonThemeBuilder-class.html) | [theme.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/example/assets/pages/theme.json)
 [tooltip](https://pub.dev/documentation/json_dynamic_widget/latest/builders/JsonTooltipBuilder-class.html) | [tooltip.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/example/assets/pages/tooltip.json)
 [tween_animation](https://pub.dev/documentation/json_dynamic_widget/latest/builders/JsonTweenAnimationBuilder-class.html) | [tween_animation.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/example/assets/pages/tween_animation.json)
+[visibility](https://pub.dev/documentation/json_dynamic_widget/latest/builders/JsonVisibilityBuilder-class.html) | [visibility.yaml](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/example/assets/pages/visibility.yaml)
 [wrap](https://pub.dev/documentation/json_dynamic_widget/latest/builders/JsonWrapBuilder-class.html) | [wrap.json](https://github.com/peiffer-innovations/json_dynamic_widget/blob/main/json_dynamic_widget/example/assets/pages/wrap.json)
 
 All the internal builders are added to the registry by default.

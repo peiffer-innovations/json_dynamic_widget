@@ -106,6 +106,7 @@ class JsonDynamicWidgetSchemas {
     ThemeSchema.id: ThemeSchema.schema,
     TooltipSchema.id: TooltipSchema.schema,
     TweenAnimationBuilderSchema.id: TweenAnimationBuilderSchema.schema,
+    VisibilitySchema.id: VisibilitySchema.schema,
     WrapSchema.id: WrapSchema.schema,
     WrappedIconSchema.id: WrappedIconSchema.schema,
   });

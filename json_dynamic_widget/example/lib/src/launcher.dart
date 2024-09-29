@@ -274,6 +274,7 @@ class _RootPageState extends State<RootPage> {
     'tooltip': _onJsonPageSelected,
     'tween_animation': _onJsonPageSelected,
     'variables': _onJsonPageSelected,
+    'visibility': _onYamlPageSelected,
     'wrap': _onJsonPageSelected,
   };
 
