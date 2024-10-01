@@ -1,3 +1,8 @@
+## [7.3.1+1] - October 1, 2024
+
+* Automated dependency updates
+
+
 ## [7.3.1] - September 29, 2024
 
 * Added `Visibility` widget per request via [Issue 324](https://github.com/peiffer-innovations/json_dynamic_widget/issues/324)
