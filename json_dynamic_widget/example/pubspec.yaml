@@ -1,14 +1,14 @@
 name: 'example'
 description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
-version: '1.0.0+70'
+version: '1.0.0+71'
 
 environment: 
   sdk: '>=3.0.0 <4.0.0'
 
 dependencies: 
   child_builder: '^2.0.2'
-  desktop_window: '^0.4.0'
+  desktop_window: '^0.4.1'
   dotted_border: '^2.1.0'
   execution_timer: '^1.1.0+8'
   flutter: 
@@ -17,7 +17,7 @@ dependencies:
   json_class: '^3.0.0+16'
   json_dynamic_widget: 
     path: '../'
-  json_theme: '^6.5.3'
+  json_theme: '^6.5.3+1'
   logging: '^1.2.0'
   yaon: '^1.1.4+10'
 
@@ -27,7 +27,7 @@ dev_dependencies:
   flutter_test: 
     sdk: 'flutter'
   icons_launcher: '^3.0.0'
-  json_dynamic_widget_codegen: '^1.0.6+7'
+  json_dynamic_widget_codegen: '^1.0.6+8'
   yaml_writer: '^2.0.0'
 
 dependency_overrides: 
