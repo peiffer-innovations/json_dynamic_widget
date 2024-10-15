@@ -1,3 +1,8 @@
+## [7.3.1+3] - October 15, 2024
+
+* Automated dependency updates
+
+
 ## [7.3.1+2] - October 8, 2024
 
 * Automated dependency updates
