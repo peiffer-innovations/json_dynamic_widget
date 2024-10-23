@@ -6,10 +6,12 @@
 
 - [Live Example](#live-example)
 - [First Party Plugins](#first-party-plugins)
+- [IDE Extensions](#ide-extensions)
+  - [Visual Studio Code](#visual-studio-code)
 - [Migration to 7.X.X version](#migration-to-7xx-version)
   - [Code Generation](#code-generation)
     - [>= 7.0.0](#-700)
-    - [< 7.0.0](#-700-1)
+    - [< 7.0.0](#-700)
   - [Code Generation Annotations](#code-generation-annotations)
   - [Widget composition](#widget-composition)
   - [Migration CLI](#migration-cli)
@@ -48,6 +50,11 @@ Here's a list of first party plugins that exist for this library.
 * [json_dynamic_widget_plugin_markdown](https://pub.dev/packages/json_dynamic_widget_plugin_markdown)
 * [json_dynamic_widget_plugin_rive](https://pub.dev/packages/json_dynamic_widget_plugin_rive)
 * [json_dynamic_widget_plugin_svg](https://pub.dev/packages/json_dynamic_widget_plugin_svg)
+
+## IDE Extensions
+The list of all supported IDE extensions for this library.
+### Visual Studio Code
+* [JSON Dynamic Widget Helper](https://marketplace.visualstudio.com/items?itemName=cem256.json-dynamic-widget-helper)
 
 ## Migration to 7.X.X version
 
