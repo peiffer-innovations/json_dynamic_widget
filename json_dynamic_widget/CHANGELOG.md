@@ -1,3 +1,8 @@
+## [7.3.1+8] - November 12, 2024
+
+* Automated dependency updates
+
+
 ## [7.3.1+7] - November 11, 2024
 
 * Added docs regarding available IDE extensions #332
