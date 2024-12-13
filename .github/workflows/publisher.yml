@@ -25,18 +25,18 @@ jobs:
         run: |
           flutter packages get
           dart run build_runner build --delete-conflicting-outputs -v
-        working-directory: json_dynamic_widget
+        working-directory: packages/json_dynamic_widget
 
       - name: Run Codegen Example
         run: |
           flutter packages get
           dart run build_runner build --delete-conflicting-outputs -v
-        working-directory: json_dynamic_widget/example
+        working-directory: packages/json_dynamic_widget/example
 
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
         with:
-          path: json_dynamic_widget
+          path: packages/json_dynamic_widget
 
       - name: Checkout Schemas
         uses: actions/checkout@v4
@@ -52,23 +52,23 @@ jobs:
           git config --global user.name "action"
           git config --global user.email "noop@github.com"
           git config --global url."https://action:${{secrets.REPO_TOKEN}}@github.com/".insteadOf https://github.com/
-          rm -rf ../schemas/schemas/json_dynamic_widget
-          mkdir ../schemas/schemas/json_dynamic_widget
-          cp output/* ../schemas/schemas/json_dynamic_widget
-          cd ../schemas
+          rm -rf ../../schemas/schemas/json_dynamic_widget
+          mkdir ../../schemas/schemas/json_dynamic_widget
+          cp output/* ../../schemas/schemas/json_dynamic_widget
+          cd ../../schemas
           git add .
           git commit --allow-empty -m "json_dynamic_widget: schema update"
           git push origin HEAD:gh-pages
           cd ..
-        working-directory: json_dynamic_widget
+        working-directory: packages/json_dynamic_widget
 
       - name: Publish
         uses: peiffer-innovations/actions-pub-publish@v1.0.2
         with:
           credentials: ${{ secrets.CREDENTIAL_JSON }}
-          path: json_dynamic_widget
+          path: packages/json_dynamic_widget
 
       - uses: peiffer-innovations/actions-dart-version-autotag@v2
         with:
-          path: json_dynamic_widget
+          path: packages/json_dynamic_widget
           token: ${{ secrets.REPO_TOKEN }}

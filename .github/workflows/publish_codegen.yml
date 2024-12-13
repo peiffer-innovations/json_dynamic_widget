@@ -17,10 +17,10 @@ jobs:
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v1
         with:
-          path: codegen
+          path: packages/codegen
 
       - name: Publish
         uses: peiffer-innovations/actions-pub-publish@v1.0.2
         with:
           credentials: ${{ secrets.CREDENTIAL_JSON }}
-          path: codegen
+          path: packages/codegen

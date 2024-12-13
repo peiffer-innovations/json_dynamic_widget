@@ -1,0 +1,11 @@
+name: json_dynamic_widget_workspace
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+workspace:
+  - packages/annotation
+  - packages/codegen
+  - packages/json_dynamic_widget
+  - packages/json_dynamic_widget/example
