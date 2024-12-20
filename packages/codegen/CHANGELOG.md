@@ -1,3 +1,8 @@
+## [2.0.0+1] - December 20th, 2024
+
+* Compatibility with analyzer `>= 6.5.0`
+
+
 ## [2.0.0] - December 12th, 2024
 
 * Flutter 3.27
