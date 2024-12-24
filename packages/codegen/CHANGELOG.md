@@ -1,3 +1,8 @@
+## [2.0.0+2] - December 24, 2024
+
+* Automated dependency updates
+
+
 ## [2.0.0+1] - December 20th, 2024
 
 * Compatibility with analyzer `>= 6.5.0`
