@@ -1,4 +1,4 @@
-name: 'example'
+name: 'json_dynamic_widget_example'
 description: 'Example app for the JsonDynamicWidget library'
 publish_to: 'none'
 version: '1.0.0+82'
