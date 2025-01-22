@@ -2,12 +2,14 @@
   "type": "set_widget",
   "args": {
     "widgets": {
-      "variableWidgetList": {
-        "type": "text",
-        "args": {
-          "text": "This is a text."
+      "variableWidgetList": [
+        {
+          "type": "text",
+          "args": {
+            "text": "This is a text."
+          }
         }
-      }
+      ]
     },
     "child": {
       "type": "scaffold",
@@ -29,7 +31,7 @@
             "variableWidgetList"
           ],
           "args": {
-            "child": "${variableWidgetList}"
+            "children": "${variableWidgetList}"
           }
         }
       }

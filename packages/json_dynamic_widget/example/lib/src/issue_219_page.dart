@@ -18,7 +18,11 @@ class Issue219Page extends StatelessWidget {
           builder: JsonExampleWidgetBuilder.fromDynamic,
         ));
 
-    return const SizedBox();
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('Issue 219'),
+        ),
+        body: const SizedBox());
   }
 }
 

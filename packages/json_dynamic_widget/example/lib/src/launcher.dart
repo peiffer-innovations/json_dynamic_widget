@@ -2,18 +2,18 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:desktop_window/desktop_window.dart';
-import 'package:example/src/components/clipper.dart';
-import 'package:example/src/components/example_registrar.dart';
-import 'package:example/src/custom_function/show_dialog.dart'
-    as show_dialog_fun;
-import 'package:example/src/export_example_page.dart';
-import 'package:example/src/issue_219_page.dart';
-import 'package:example/src/issue_220_page.dart';
-import 'package:example/src/issue_24_page.dart';
-import 'package:example/src/untestable_full_widget_page.dart';
 import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/foundation.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget_example/src/components/clipper.dart';
+import 'package:json_dynamic_widget_example/src/components/example_registrar.dart';
+import 'package:json_dynamic_widget_example/src/custom_function/show_dialog.dart'
+    as show_dialog_fun;
+import 'package:json_dynamic_widget_example/src/export_example_page.dart';
+import 'package:json_dynamic_widget_example/src/issue_219_page.dart';
+import 'package:json_dynamic_widget_example/src/issue_220_page.dart';
+import 'package:json_dynamic_widget_example/src/issue_24_page.dart';
+import 'package:json_dynamic_widget_example/src/untestable_full_widget_page.dart';
 import 'package:logging/logging.dart';
 
 import 'full_widget_page.dart';

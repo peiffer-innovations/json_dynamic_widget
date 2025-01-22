@@ -1,6 +1,5 @@
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
-import 'package:analyzer/dart/element/type.dart';
+import 'package:json_dynamic_widget_codegen/src/extension/dart_type_extension.dart';
 import 'package:json_theme/codegen.dart';
 
 typedef ParameterDecoder = String Function(
@@ -219,8 +218,7 @@ String decode(
   if (defaultValueCode != null) {
     if (defaultValueCode == 'null') {
       defaultValueCode = null;
-    } else if (element.type.getDisplayString(withNullability: false) ==
-        'double') {
+    } else if (element.type.toNonNullableString() == 'double') {
       if (int.tryParse(defaultValueCode) != null) {
         defaultValueCode = '$defaultValueCode.0';
       }
@@ -229,7 +227,7 @@ String decode(
   var result =
       "map['$name']${defaultValueCode == null ? '' : '?? $defaultValueCode'}";
 
-  final typeStr = element.type.getDisplayString(withNullability: false);
+  final typeStr = element.type.toNonNullableString();
 
   var decoded = false;
   if (paramDecoders.contains(name)) {
@@ -312,7 +310,3 @@ String _widgetDecoder(
   return parsed;
 }()
 ''';
-
-extension DartTypeNullable on DartType {
-  bool get nullable => nullabilitySuffix == NullabilitySuffix.question;
-}
