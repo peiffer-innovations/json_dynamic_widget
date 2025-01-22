@@ -1,6 +1,5 @@
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/nullability_suffix.dart';
-import 'package:analyzer/dart/element/type.dart';
+import 'package:json_dynamic_widget_codegen/json_dynamic_widget_codegen.dart';
 import 'package:json_theme/codegen.dart';
 
 typedef ParameterEncoder = String Function(
@@ -90,7 +89,7 @@ String encode(
   final displayName = element.name;
   final name = aliases[element.name] ?? element.name;
 
-  final typeStr = element.type.getDisplayString(withNullability: false);
+  final typeStr = element.type.toNonNullableString();
 
   final encoder = kEncoders[typeStr];
   var result = displayName;
@@ -110,8 +109,4 @@ String encode(
   return '''
   '${element.name}': ${defaultValueCode == null ? result : '$defaultValueCode == $displayName ? null : $result'},
 ''';
-}
-
-extension DartTypeNullable on DartType {
-  bool get nullable => nullabilitySuffix == NullabilitySuffix.question;
 }
