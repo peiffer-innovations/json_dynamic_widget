@@ -188,14 +188,27 @@ class _JsonDynamicWidgetDevToolsExtensionState
               ];
               return Column(
                 children: [
-                  constraints.maxWidth > 250
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: buttons)
-                      : Column(
-                          children: buttons,
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.symmetric(
+                        horizontal: BorderSide(
+                          color: Theme.of(context).dividerColor.darken(0.5),
+                          width: 1.0,
                         ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: constraints.maxWidth > 250
+                          ? Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: buttons)
+                          : Column(
+                              children: buttons,
+                            ),
+                    ),
+                  ),
                   Expanded(
                     child: CodeTheme(
                       data: CodeThemeData(styles: vs2015Theme),
@@ -219,14 +232,28 @@ class _JsonDynamicWidgetDevToolsExtensionState
               );
             },
           ),
-          Scrollbar(
+          LayoutBuilder(builder: (context, constraints) {
+            return Scrollbar(
               scrollbarOrientation: ScrollbarOrientation.bottom,
               thumbVisibility: true,
               controller: _scrollControllerRight,
               child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  controller: _scrollControllerRight,
-                  child: _buildJsonWidgetPreview(context))),
+                scrollDirection: Axis.horizontal,
+                controller: _scrollControllerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    ConstrainedBox(
+                      constraints:
+                          BoxConstraints(minWidth: constraints.maxWidth),
+                      child: _buildJsonWidgetPreview(context),
+                    )
+                  ],
+                ),
+              ),
+            );
+          }),
         ],
       ),
     );
@@ -252,13 +279,8 @@ class _JsonDynamicWidgetDevToolsExtensionState
     });
   }
 
-  void _copyWidget() {
-    Clipboard.setData(ClipboardData(text: _controller.text))
-        .then((_) => ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                content: Text(
-              'Copied to clipboard',
-              textAlign: TextAlign.right,
-            ))));
+  void _copyWidget() async {
+    await Clipboard.setData(ClipboardData(text: _controller.text));
   }
 
   void _formatWidget() {
