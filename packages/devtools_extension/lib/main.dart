@@ -6,6 +6,7 @@ import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_highlight/themes/vs2015.dart';
 import 'package:highlight/languages/json.dart';
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_dynamic_widget_devtools_extension/animated_button.dart';
 
 void main() {
   runApp(JsonDynamicWidgetDevToolsExtension());
@@ -138,6 +139,9 @@ class _JsonDynamicWidgetDevToolsExtensionState
   }
 
   final ScrollController _scrollControllerRight = ScrollController();
+  final _copyButtonKey = GlobalKey<AnimatedButtonState>();
+  final _refreshButtonKey = GlobalKey<AnimatedButtonState>();
+  final _formatButtonKey = GlobalKey<AnimatedButtonState>();
 
   @override
   Widget build(BuildContext context) {
@@ -166,24 +170,33 @@ class _JsonDynamicWidgetDevToolsExtensionState
         children: [
           LayoutBuilder(
             builder: (context, constraints) {
-              if (constraints.maxWidth < 40) {
+              if (constraints.maxWidth < 60) {
                 return Container();
               }
               var buttons = [
-                DevToolsButton(
-                  label: constraints.maxWidth > 80 ? "Refresh" : "",
-                  icon: Icons.refresh,
-                  onPressed: () => _refreshWidget(),
+                _buildAnimatedButton(
+                  _refreshButtonKey,
+                  constraints.maxWidth,
+                  "Refresh",
+                  "Refreshed",
+                  Icons.refresh,
+                  _refreshWidget,
                 ),
-                DevToolsButton(
-                  label: constraints.maxWidth > 80 ? "Copy" : "",
-                  icon: Icons.copy,
-                  onPressed: () => _copyWidget(),
+                _buildAnimatedButton(
+                  _copyButtonKey,
+                  constraints.maxWidth,
+                  "Copy",
+                  "Copied",
+                  Icons.copy,
+                  _copyWidget,
                 ),
-                DevToolsButton(
-                  label: constraints.maxWidth > 80 ? "Format" : "",
-                  icon: Icons.format_indent_increase,
-                  onPressed: () => _formatWidget(),
+                _buildAnimatedButton(
+                  _formatButtonKey,
+                  constraints.maxWidth,
+                  "Format",
+                  "Formatted",
+                  Icons.format_indent_increase,
+                  _formatWidget,
                 ),
               ];
               return Column(
@@ -201,6 +214,7 @@ class _JsonDynamicWidgetDevToolsExtensionState
                       padding: EdgeInsets.all(10),
                       child: constraints.maxWidth > 250
                           ? Row(
+                              spacing: 10,
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: buttons)
@@ -256,6 +270,27 @@ class _JsonDynamicWidgetDevToolsExtensionState
           }),
         ],
       ),
+    );
+  }
+
+  AnimatedButton _buildAnimatedButton(
+    GlobalKey<AnimatedButtonState> key,
+    double maxWidth,
+    String text,
+    String successText,
+    IconData icon,
+    VoidCallback onPressed,
+  ) {
+    final buttonText = maxWidth > 100 ? text : "";
+    final buttonSuccessText = maxWidth > 100 ? successText : "";
+    key.currentState?.setButtonTexts(buttonText, buttonSuccessText);
+
+    return AnimatedButton(
+      key: key,
+      text: buttonText,
+      successsText: buttonSuccessText,
+      icon: icon,
+      onPressed: () => onPressed(),
     );
   }
 
