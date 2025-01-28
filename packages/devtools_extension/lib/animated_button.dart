@@ -6,12 +6,13 @@ class AnimatedButton extends StatefulWidget {
   final String text;
   final IconData icon;
   final String successsText;
+  final String tooltip;
   const AnimatedButton({
     super.key,
     required this.onPressed,
     required this.text,
     required this.successsText,
-    required this.icon,
+    required this.icon, required this.tooltip,
   });
 
   @override
@@ -96,6 +97,7 @@ class AnimatedButtonState extends State<AnimatedButton>
         color: _colorTweenAnimation.value,
         icon: _currentIcon,
         label: _currentText,
+        tooltip: widget.tooltip,
       ),
     );
   }

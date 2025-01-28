@@ -4,9 +4,11 @@ import 'package:devtools_app_shared/ui.dart';
 import 'package:devtools_extensions/devtools_extensions.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_highlight/themes/vs2015.dart';
-import 'package:highlight/languages/json.dart';
+import 'package:highlight/languages/json.dart' as json_lang;
+import 'package:highlight/languages/yaml.dart' as yaml_lang;
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:json_dynamic_widget_devtools_extension/animated_button.dart';
+import 'package:yaml_writer/yaml_writer.dart';
 
 void main() {
   runApp(JsonDynamicWidgetDevToolsExtension());
@@ -22,8 +24,9 @@ class JsonDynamicWidgetDevToolsExtension extends StatefulWidget {
 
 class _JsonDynamicWidgetDevToolsExtensionState
     extends State<JsonDynamicWidgetDevToolsExtension> {
-  final _controller = CodeController(
-    language: json,
+  bool _isJsonFormat = true;
+  var _controller = CodeController(
+    language: json_lang.json,
     text: """
 {
     "type": "center",
@@ -173,30 +176,49 @@ class _JsonDynamicWidgetDevToolsExtensionState
               if (constraints.maxWidth < 60) {
                 return Container();
               }
+              var toggleButtonMaxWidth = _estimateButtonMaxWidth("JSON");
+              var previewButtonMaxWidth = _estimateButtonMaxWidth("Previewed");
+              var copyButtonMaxWidth = _estimateButtonMaxWidth("Copied");
+              var formatButtonMaxWidth = _estimateButtonMaxWidth("Formatted");
               var buttons = [
-                _buildAnimatedButton(
-                  _refreshButtonKey,
-                  constraints.maxWidth,
-                  "Refresh",
-                  "Refreshed",
-                  Icons.refresh,
-                  _refreshWidget,
+                DevToolsButton(
+                  onPressed: () => _toggleFormat(),
+                  icon: Icons.swap_horiz,
+                  label: constraints.maxWidth >= toggleButtonMaxWidth
+                      ? (_isJsonFormat ? "YAML" : "JSON")
+                      : '',
+                  tooltip:
+                      'Switch to ${_isJsonFormat ? "YAML" : "JSON"} format',
                 ),
                 _buildAnimatedButton(
                   _copyButtonKey,
                   constraints.maxWidth,
+                  copyButtonMaxWidth,
                   "Copy",
                   "Copied",
                   Icons.copy,
+                  "Copy to clipboard",
                   _copyWidget,
                 ),
                 _buildAnimatedButton(
                   _formatButtonKey,
                   constraints.maxWidth,
+                  formatButtonMaxWidth,
                   "Format",
                   "Formatted",
                   Icons.format_indent_increase,
+                  "Format the ${_isJsonFormat ? "JSON" : "YAML"}",
                   _formatWidget,
+                ),
+                _buildAnimatedButton(
+                  _refreshButtonKey,
+                  constraints.maxWidth,
+                  previewButtonMaxWidth,
+                  "Preview",
+                  "Previewed",
+                  Icons.remove_red_eye,
+                  "Preview the widget",
+                  _previewWidget,
                 ),
               ];
               return Column(
@@ -212,7 +234,11 @@ class _JsonDynamicWidgetDevToolsExtensionState
                     ),
                     child: Padding(
                       padding: EdgeInsets.all(10),
-                      child: constraints.maxWidth > 250
+                      child: constraints.maxWidth >
+                              toggleButtonMaxWidth +
+                                  previewButtonMaxWidth +
+                                  copyButtonMaxWidth +
+                                  formatButtonMaxWidth
                           ? Row(
                               spacing: 10,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -276,13 +302,15 @@ class _JsonDynamicWidgetDevToolsExtensionState
   AnimatedButton _buildAnimatedButton(
     GlobalKey<AnimatedButtonState> key,
     double maxWidth,
+    double buttonMaxWidth,
     String text,
     String successText,
     IconData icon,
+    String tooltip,
     VoidCallback onPressed,
   ) {
-    final buttonText = maxWidth > 100 ? text : "";
-    final buttonSuccessText = maxWidth > 100 ? successText : "";
+    final buttonText = maxWidth > buttonMaxWidth ? text : "";
+    final buttonSuccessText = maxWidth > buttonMaxWidth ? successText : "";
     key.currentState?.setButtonTexts(buttonText, buttonSuccessText);
 
     return AnimatedButton(
@@ -290,6 +318,7 @@ class _JsonDynamicWidgetDevToolsExtensionState
       text: buttonText,
       successsText: buttonSuccessText,
       icon: icon,
+      tooltip: tooltip,
       onPressed: () => onPressed(),
     );
   }
@@ -297,7 +326,7 @@ class _JsonDynamicWidgetDevToolsExtensionState
   Widget _buildJsonWidgetPreview(BuildContext context) {
     Widget widget = Center(child: Text("No widget to preview"));
     try {
-      var data = jsonDecode(_controller.text);
+      var data = yaon.parse(_controller.text);
       widget = JsonWidgetData.fromDynamic(data).build(context: context);
     } catch (ex) {
       widget = Center(child: Text("Error: $ex"));
@@ -308,7 +337,7 @@ class _JsonDynamicWidgetDevToolsExtensionState
     );
   }
 
-  void _refreshWidget() {
+  void _previewWidget() {
     setState(() {
       _widgetKey = UniqueKey();
     });
@@ -319,8 +348,44 @@ class _JsonDynamicWidgetDevToolsExtensionState
   }
 
   void _formatWidget() {
-    var data = jsonDecode(_controller.text);
-    var encoder = JsonEncoder.withIndent("    ");
-    _controller.text = encoder.convert(data);
+    var data = yaon.parse(_controller.text);
+    if (_isJsonFormat) {
+      var jsonText = JsonEncoder.withIndent('    ').convert(data);
+      _controller.text = jsonText;
+    } else {
+      var yamlText = YamlWriter(indentSize: 4).write(data);
+      _controller.text = yamlText;
+    }
+  }
+
+  double _estimateButtonMaxWidth(String text) {
+    final TextPainter textPainter = TextPainter(
+      text: TextSpan(text: text, style: Theme.of(context).textTheme.bodyMedium),
+      maxLines: 1,
+      textDirection: TextDirection.ltr,
+    );
+    textPainter.layout();
+    var textWidths = textPainter.size.width;
+    var paddings = 25;
+    var iconsWidth = Theme.of(context).iconTheme.size ?? 24;
+    return textWidths + paddings + iconsWidth;
+  }
+
+  void _toggleFormat() {
+    var data = yaon.parse(_controller.text, normalize: true);
+    var newText = _controller.text;
+    if (_isJsonFormat) {
+      newText = YamlWriter(indentSize: 4).write(data);
+    } else {
+      var jsonText = JsonEncoder.withIndent('    ').convert(data);
+      newText = jsonText;
+    }
+    setState(() {
+      _isJsonFormat = !_isJsonFormat;
+      _controller = CodeController(
+        text: newText,
+        language: _isJsonFormat ? json_lang.json : yaml_lang.yaml,
+      );
+    });
   }
 }
