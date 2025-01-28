@@ -1,9 +1,8 @@
-# DevTools extension for json-dynamic-widget
+# DevTools extension
+Adds a DevTools extension for the [json_dynamic_widget](https://pub.dev/packages/json_dynamic_widget) package.
 
-## Functionalities ToDo
-- [ ] Display registry variables
-- [ ] Show original JSON as written
-- [ ] Show processed JSON after template processing
+## Functionality
+Allows to edit the widget data in JSON or YAML format together with the preview of the built widget.
 
 ## Development
 It is recommended to use Simulated DevTools Environment to develop this extension.

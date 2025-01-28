@@ -7,12 +7,15 @@ class AnimatedButton extends StatefulWidget {
   final IconData icon;
   final String successsText;
   final String tooltip;
+  final Color textColor;
   const AnimatedButton({
     super.key,
     required this.onPressed,
     required this.text,
     required this.successsText,
-    required this.icon, required this.tooltip,
+    required this.icon,
+    required this.tooltip,
+    required this.textColor,
   });
 
   @override
@@ -36,7 +39,7 @@ class AnimatedButtonState extends State<AnimatedButton>
     _currentText = _normalText;
     _successText = widget.successsText;
     _currentIcon = widget.icon;
-    _colorTween = ColorTween(begin: Colors.white, end: Colors.green);
+    _colorTween = ColorTween(begin: widget.textColor, end: Colors.green);
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 700),
       vsync: this,

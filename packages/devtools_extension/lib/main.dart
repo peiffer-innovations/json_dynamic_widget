@@ -189,6 +189,7 @@ class _JsonDynamicWidgetDevToolsExtensionState
                       : '',
                   tooltip:
                       'Switch to ${_isJsonFormat ? "YAML" : "JSON"} format',
+                  color: Colors.white70,
                 ),
                 _buildAnimatedButton(
                   _copyButtonKey,
@@ -314,13 +315,13 @@ class _JsonDynamicWidgetDevToolsExtensionState
     key.currentState?.setButtonTexts(buttonText, buttonSuccessText);
 
     return AnimatedButton(
-      key: key,
-      text: buttonText,
-      successsText: buttonSuccessText,
-      icon: icon,
-      tooltip: tooltip,
-      onPressed: () => onPressed(),
-    );
+        key: key,
+        text: buttonText,
+        successsText: buttonSuccessText,
+        icon: icon,
+        tooltip: tooltip,
+        onPressed: () => onPressed(),
+        textColor: Colors.white70);
   }
 
   Widget _buildJsonWidgetPreview(BuildContext context) {

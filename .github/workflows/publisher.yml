@@ -62,6 +62,11 @@ jobs:
           cd ..
         working-directory: packages/json_dynamic_widget
 
+      - name: Build DevTools
+        run: |
+          dart run devtools_extensions build_and_copy --source=. --dest=../json_dynamic_widget/extension/devtools
+        working-directory: packages/devtools_extension
+
       - name: Publish
         uses: peiffer-innovations/actions-pub-publish@v1.0.2
         with:
