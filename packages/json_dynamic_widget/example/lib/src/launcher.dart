@@ -13,6 +13,7 @@ import 'package:json_dynamic_widget_example/src/export_example_page.dart';
 import 'package:json_dynamic_widget_example/src/issue_219_page.dart';
 import 'package:json_dynamic_widget_example/src/issue_220_page.dart';
 import 'package:json_dynamic_widget_example/src/issue_24_page.dart';
+import 'package:json_dynamic_widget_example/src/issue_356_page.dart';
 import 'package:json_dynamic_widget_example/src/untestable_full_widget_page.dart';
 import 'package:logging/logging.dart';
 
@@ -251,6 +252,11 @@ class _RootPageState extends State<RootPage> {
           ),
         ),
     'issue_289': _onJsonPageSelected,
+    'issue_356': (context, _) async => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => Issue356Page(),
+          ),
+        ),
     'layout_builder': _onJsonPageSelected,
     'length': _onJsonPageSelected,
     'limited_box': _onJsonPageSelected,

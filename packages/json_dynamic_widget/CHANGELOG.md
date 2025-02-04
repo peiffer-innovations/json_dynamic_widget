@@ -1,3 +1,9 @@
+## [8.0.0+3] - February 3rd, 2025
+
+* Added example for Issue 356
+* Updated Android build scripts in the example to work with the latest Android Studio
+
+
 ## [8.0.0+2] - January 28, 2025
 
 * Automated dependency updates
