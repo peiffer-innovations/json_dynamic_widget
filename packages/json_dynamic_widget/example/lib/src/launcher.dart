@@ -350,6 +350,7 @@ class _RootPageState extends State<RootPage> {
     final data = JsonWidgetData.fromDynamic(
       dataJson,
       registry: registry,
+      passToDevTools: true,
     );
 
     if (mounted) {

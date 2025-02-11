@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:execution_timer/execution_timer.dart';
 import 'package:flutter/foundation.dart';
@@ -46,12 +47,16 @@ class JsonWidgetData extends JsonClass {
   static JsonWidgetData fromDynamic(
     dynamic map, {
     JsonWidgetRegistry? registry,
+    bool passToDevTools = false,
   }) {
     final result = maybeFromDynamic(map, registry: registry);
     if (result == null) {
       throw Exception(
         '[JsonWidgetData]: requested to parse from dynamic, but the input is null.',
       );
+    }
+    if (passToDevTools) {
+      postEvent('ext.jsonWidgetData.set', {'data': result.toJson()});
     }
 
     return result;
