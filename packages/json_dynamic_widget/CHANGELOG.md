@@ -1,3 +1,8 @@
+## [8.0.0+4] - February 11, 2025
+
+* Automated dependency updates
+
+
 ## [8.0.0+3] - February 3rd, 2025
 
 * Added example for Issue 356
