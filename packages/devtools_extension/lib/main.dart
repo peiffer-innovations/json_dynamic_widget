@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:devtools_app_shared/ui.dart';
 import 'package:devtools_extensions/devtools_extensions.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:flutter_highlight/themes/vs2015.dart';
 import 'package:highlight/languages/json.dart' as json_lang;
@@ -25,6 +26,7 @@ class JsonDynamicWidgetDevToolsExtension extends StatefulWidget {
 class _JsonDynamicWidgetDevToolsExtensionState
     extends State<JsonDynamicWidgetDevToolsExtension> {
   bool _isJsonFormat = true;
+  final JsonWidgetRegistry _jsonWidgetRegistry = JsonWidgetRegistry.instance;
   var _controller = CodeController(
     language: json_lang.json,
     text: """
@@ -139,6 +141,27 @@ class _JsonDynamicWidgetDevToolsExtensionState
   @override
   void initState() {
     super.initState();
+
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      final vmService = await serviceManager.onServiceAvailable;
+
+      vmService.onExtensionEvent.listen((event) {
+        final isUpdateEvent = event.extensionKind == 'ext.jsonWidgetData.set';
+        if (!isUpdateEvent) return;
+
+        var jsonWidgetData = event.extensionData!.data['data'];
+
+        setState(() {
+          if (_isJsonFormat) {
+            _controller.text =
+                JsonEncoder.withIndent('    ').convert(jsonWidgetData);
+          } else {
+            _controller.text = YamlWriter(indentSize: 4).write(jsonWidgetData);
+          }
+          _previewWidget();
+        });
+      });
+    });
   }
 
   final ScrollController _scrollControllerRight = ScrollController();
@@ -285,11 +308,7 @@ class _JsonDynamicWidgetDevToolsExtensionState
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    ConstrainedBox(
-                      constraints:
-                          BoxConstraints(minWidth: constraints.maxWidth),
-                      child: _buildJsonWidgetPreview(context),
-                    )
+                    _buildJsonWidgetPreview(context, constraints),
                   ],
                 ),
               ),
@@ -324,11 +343,16 @@ class _JsonDynamicWidgetDevToolsExtensionState
         textColor: Colors.white70);
   }
 
-  Widget _buildJsonWidgetPreview(BuildContext context) {
+  Widget _buildJsonWidgetPreview(
+      BuildContext context, BoxConstraints constraints) {
     Widget widget = Center(child: Text("No widget to preview"));
     try {
       var data = yaon.parse(_controller.text);
-      widget = JsonWidgetData.fromDynamic(data).build(context: context);
+      widget = SizedBox(
+          width: constraints.maxWidth,
+          height: constraints.maxHeight,
+          child: JsonWidgetData.fromDynamic(data)
+              .build(context: context, registry: _jsonWidgetRegistry));
     } catch (ex) {
       widget = Center(child: Text("Error: $ex"));
     }
