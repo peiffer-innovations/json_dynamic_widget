@@ -1,3 +1,7 @@
+## [2.0.0+3] - February 13th, 2025
+
+* Compatibility with analyzer `7.x.x`
+
 ## [2.0.0+2] - January 14, 2025
 
 * Automated dependency updates
