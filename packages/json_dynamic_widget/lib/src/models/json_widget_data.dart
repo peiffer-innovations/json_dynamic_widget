@@ -55,7 +55,7 @@ class JsonWidgetData extends JsonClass {
         '[JsonWidgetData]: requested to parse from dynamic, but the input is null.',
       );
     }
-    if (passToDevTools) {
+    if (kDebugMode && passToDevTools) {
       postEvent('ext.jsonWidgetData.set', {'data': result.toJson()});
     }
 
