@@ -36,7 +36,7 @@ dev_dependencies:
   flutter_lints: '^5.0.0'
   flutter_test:
     sdk: 'flutter'
-  json_dynamic_widget_codegen: '^2.0.0+2'
+  json_dynamic_widget_codegen: '^2.1.0'
 
 permittedLicenses:
   - 'Apache-2.0'
