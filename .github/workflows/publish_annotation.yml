@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - annotation/pubspec.yaml
+      - packages/annotation/pubspec.yaml
 
 jobs:
   build:

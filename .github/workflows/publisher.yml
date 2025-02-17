@@ -5,7 +5,7 @@ on:
     branches: [main]
     paths:
       - .github/workflows/publisher.yml
-      - json_dynamic_widget/pubspec.yaml
+      - packages/json_dynamic_widget/pubspec.yaml
   workflow_dispatch:
 
 jobs:

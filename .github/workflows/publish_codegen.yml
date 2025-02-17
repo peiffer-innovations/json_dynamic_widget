@@ -5,7 +5,7 @@ on:
   push:
     branches: [main]
     paths:
-      - codegen/pubspec.yaml
+      - packages/codegen/pubspec.yaml
 
 jobs:
   build:
