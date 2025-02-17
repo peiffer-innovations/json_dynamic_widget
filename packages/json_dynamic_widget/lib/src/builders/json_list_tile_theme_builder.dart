@@ -5,9 +5,7 @@ part 'json_list_tile_theme_builder.g.dart';
 /// Builder that can build an [ListTileTheme] widget.
 @jsonWidget
 abstract class _JsonListTileThemeBuilder extends JsonWidgetBuilder {
-  const _JsonListTileThemeBuilder({
-    required super.args,
-  });
+  const _JsonListTileThemeBuilder({required super.args});
 
   @override
   ListTileTheme buildCustom({

@@ -14,9 +14,7 @@ class InputDecorationDecoder {
     'properties': {
       'alignLabelWithHint': SchemaHelper.stringSchema,
       'border': SchemaHelper.objectSchema(InputBorderSchema.id),
-      'contentPadding': SchemaHelper.objectSchema(
-        EdgeInsetsGeometrySchema.id,
-      ),
+      'contentPadding': SchemaHelper.objectSchema(EdgeInsetsGeometrySchema.id),
       'counter': SchemaHelper.objectSchema(JsonWidgetDataSchema.id),
       'counterStyle': SchemaHelper.objectSchema(TextStyleSchema.id),
       'counterText': SchemaHelper.stringSchema,
@@ -75,10 +73,7 @@ class InputDecorationDecoder {
     if (map != null) {
       result = InputDecoration(
         alignLabelWithHint: JsonClass.maybeParseBool(map['alignLabelWithHint']),
-        border: ThemeDecoder.decodeInputBorder(
-          map['border'],
-          validate: false,
-        ),
+        border: ThemeDecoder.decodeInputBorder(map['border'], validate: false),
         contentPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
           map['contentPadding'],
           validate: false,
@@ -96,10 +91,7 @@ class InputDecorationDecoder {
           map['disabledBorder'],
           validate: false,
         ),
-        enabled: JsonClass.parseBool(
-          map['enabled'],
-          whenNull: true,
-        ),
+        enabled: JsonClass.parseBool(map['enabled'], whenNull: true),
         enabledBorder: ThemeDecoder.decodeInputBorder(
           map['enabledBorder'],
           validate: false,
@@ -114,10 +106,7 @@ class InputDecorationDecoder {
           validate: false,
         ),
         errorText: map['errorText'],
-        fillColor: ThemeDecoder.decodeColor(
-          map['fillColor'],
-          validate: false,
-        ),
+        fillColor: ThemeDecoder.decodeColor(map['fillColor'], validate: false),
         filled: JsonClass.maybeParseBool(map['filled']),
         floatingLabelBehavior: ThemeDecoder.decodeFloatingLabelBehavior(
           map['floatingLabelBehavior'],
@@ -154,10 +143,7 @@ class InputDecorationDecoder {
         icon: JsonWidgetData.maybeFromDynamic(
           map['icon'],
           registry: registry,
-        )?.build(
-          childBuilder: childBuilder,
-          context: context,
-        ),
+        )?.build(childBuilder: childBuilder, context: context),
         isDense: JsonClass.maybeParseBool(map['isDense']),
         labelStyle: ThemeDecoder.decodeTextStyle(
           map['labelStyle'],
@@ -167,17 +153,11 @@ class InputDecorationDecoder {
         prefix: JsonWidgetData.maybeFromDynamic(
           map['prefix'],
           registry: registry,
-        )?.build(
-          childBuilder: childBuilder,
-          context: context,
-        ),
+        )?.build(childBuilder: childBuilder, context: context),
         prefixIcon: JsonWidgetData.maybeFromDynamic(
           map['prefixIcon'],
           registry: registry,
-        )?.build(
-          childBuilder: childBuilder,
-          context: context,
-        ),
+        )?.build(childBuilder: childBuilder, context: context),
         prefixIconConstraints: ThemeDecoder.decodeBoxConstraints(
           map['prefixIconConstraints'],
           validate: false,
@@ -191,17 +171,11 @@ class InputDecorationDecoder {
         suffix: JsonWidgetData.maybeFromDynamic(
           map['suffix'],
           registry: registry,
-        )?.build(
-          childBuilder: childBuilder,
-          context: context,
-        ),
+        )?.build(childBuilder: childBuilder, context: context),
         suffixIcon: JsonWidgetData.maybeFromDynamic(
           map['suffixIcon'],
           registry: registry,
-        )?.build(
-          childBuilder: childBuilder,
-          context: context,
-        ),
+        )?.build(childBuilder: childBuilder, context: context),
         suffixIconConstraints: ThemeDecoder.decodeBoxConstraints(
           map['suffixIconConstraints'],
           validate: false,

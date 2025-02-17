@@ -1,3 +1,9 @@
+## [8.0.0] - February 17th, 2025
+
+* Flutter 3.29
+* Support for Analyzer `>=6<8`
+
+
 ## [8.0.0+4] - February 11, 2025
 
 * Automated dependency updates

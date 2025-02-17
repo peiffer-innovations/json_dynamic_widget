@@ -4,7 +4,7 @@ homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget'
 version: '2.0.0'
 
 environment:
-  sdk: ^3.6.0
+  sdk: '^3.7.0'
 resolution: workspace
 
 analyzer:

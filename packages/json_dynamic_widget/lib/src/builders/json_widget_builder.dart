@@ -18,9 +18,7 @@ abstract class JsonWidgetBuilder {
 
   static final JsonWidgetData kDefaultChild = JsonWidgetData(
     jsonWidgetArgs: const {},
-    jsonWidgetBuilder: () => const JsonNoOpBuilder(
-      args: <String, dynamic>{},
-    ),
+    jsonWidgetBuilder: () => const JsonNoOpBuilder(args: <String, dynamic>{}),
     // child: null,
     jsonWidgetListenVariables: const {},
     jsonWidgetRegistry: JsonWidgetRegistry.instance,
@@ -87,17 +85,20 @@ abstract class JsonWidgetBuilder {
 
     dynamic exception;
     StackTrace? stackTrace;
-    var widget = runZonedGuarded(() {
-      return buildCustom(
-        childBuilder: childBuilder,
-        context: context,
-        data: data,
-        key: key,
-      );
-    }, (e, stack) {
-      exception = e;
-      stackTrace = stack;
-    });
+    var widget = runZonedGuarded(
+      () {
+        return buildCustom(
+          childBuilder: childBuilder,
+          context: context,
+          data: data,
+          key: key,
+        );
+      },
+      (e, stack) {
+        exception = e;
+        stackTrace = stack;
+      },
+    );
 
     if (widget == null) {
       final onBuildWidgetFailed = data.jsonWidgetRegistry.onBuildWidgetFailed;
@@ -140,7 +141,8 @@ class _JsonWidgetStateful extends StatefulWidget {
     required ChildWidgetBuilder childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
-  }) customBuilder;
+  })
+  customBuilder;
   final JsonWidgetData data;
 
   @override
@@ -182,21 +184,23 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
     Widget? result;
     try {
       result = _data.jsonWidgetBuilder().buildCustom(
-            childBuilder: widget.childBuilder,
-            context: context,
-            data: _data,
-            key: ValueKey(_data.jsonWidgetId),
-          );
+        childBuilder: widget.childBuilder,
+        context: context,
+        data: _data,
+        key: ValueKey(_data.jsonWidgetId),
+      );
 
       if (widget.childBuilder != null) {
         result = widget.childBuilder!(context, result);
       }
     } catch (e, stack) {
       result = SingleChildScrollView(
-        child: ErrorWidget.withDetails(message: '''
+        child: ErrorWidget.withDetails(
+          message: '''
 $e
 $stack
-'''),
+''',
+        ),
       );
       _logger.severe(
         'Error building widget: [${_data.jsonWidgetType}].',

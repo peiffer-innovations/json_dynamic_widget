@@ -8,9 +8,7 @@ part 'json_text_form_field_builder.g.dart';
 
 @jsonWidget
 abstract class _JsonTextFormFieldBuilder extends JsonWidgetBuilder {
-  const _JsonTextFormFieldBuilder({
-    required super.args,
-  });
+  const _JsonTextFormFieldBuilder({required super.args});
 
   @JsonArgSchema('decoration')
   static Map<String, dynamic> _inputDecorationSchema() {
@@ -35,11 +33,8 @@ abstract class _JsonTextFormFieldBuilder extends JsonWidgetBuilder {
       const InputDecoration();
 
   @JsonArgDecoder('validators')
-  Validator? _decodeValidators({required dynamic value}) => value == null
-      ? null
-      : Validator.fromDynamic(
-          {'validators': value},
-        );
+  Validator? _decodeValidators({required dynamic value}) =>
+      value == null ? null : Validator.fromDynamic({'validators': value});
 
   @override
   _TextFormField buildCustom({
@@ -204,26 +199,24 @@ class _TextFormFieldState extends State<_TextFormField> {
     }
 
     widget.data.jsonWidgetRegistry.valueStream
-        .where((event) =>
-            !event.isSelfTriggered && event.id == widget.data.jsonWidgetId)
-        .listen(
-      (event) {
-        final value =
-            widget.data.jsonWidgetRegistry.getValue(widget.data.jsonWidgetId);
-        final textValue = _controller.value.copyWith(
-          text: value,
-          selection: TextSelection(
-            baseOffset: value.length,
-            extentOffset: value.length,
-          ),
-          composing: TextRange(
-            start: 0,
-            end: value.length,
-          ),
-        );
-        _controller.value = textValue;
-      },
-    );
+        .where(
+          (event) =>
+              !event.isSelfTriggered && event.id == widget.data.jsonWidgetId,
+        )
+        .listen((event) {
+          final value = widget.data.jsonWidgetRegistry.getValue(
+            widget.data.jsonWidgetId,
+          );
+          final textValue = _controller.value.copyWith(
+            text: value,
+            selection: TextSelection(
+              baseOffset: value.length,
+              extentOffset: value.length,
+            ),
+            composing: TextRange(start: 0, end: value.length),
+          );
+          _controller.value = textValue;
+        });
 
     _controller.addListener(() {
       if (widget.data.jsonWidgetId.isNotEmpty == true &&
@@ -248,91 +241,93 @@ class _TextFormFieldState extends State<_TextFormField> {
 
   @override
   Widget build(BuildContext context) => TextFormField(
-        autocorrect: widget.autocorrect,
-        autofillHints: widget.autofillHints,
-        autofocus: widget.autofocus,
-        autovalidateMode: widget.autovalidateMode,
-        buildCounter: widget.buildCounter,
-        canRequestFocus: widget.canRequestFocus,
-        clipBehavior: widget.clipBehavior,
-        contentInsertionConfiguration: widget.contentInsertionConfiguration,
-        contextMenuBuilder: widget.contextMenuBuilder,
-        controller: _controller,
-        cursorColor: widget.cursorColor,
-        cursorHeight: widget.cursorHeight,
-        cursorOpacityAnimates: widget.cursorOpacityAnimates,
-        cursorRadius: widget.cursorRadius,
-        cursorWidth: widget.cursorWidth,
-        decoration: widget.decoration,
-        dragStartBehavior: widget.dragStartBehavior,
-        enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
-        enableInteractiveSelection: widget.enableInteractiveSelection,
-        enableSuggestions: widget.enableSuggestions,
-        enabled: widget.enabled,
-        expands: widget.expands,
-        focusNode: widget.focusNode,
-        // initialValue: <controller is required, so this can never be set>,
-        inputFormatters: widget.inputFormatters,
-        keyboardAppearance: widget.keyboardAppearance,
-        keyboardType: widget.keyboardType,
-        magnifierConfiguration: widget.magnifierConfiguration,
-        maxLength: widget.maxLength,
-        maxLengthEnforcement: widget.maxLengthEnforcement,
-        maxLines: widget.maxLines,
-        minLines: widget.minLines,
-        mouseCursor: widget.mouseCursor,
-        obscuringCharacter: widget.obscuringCharacter,
-        obscureText: widget.obscureText,
-        onAppPrivateCommand: widget.onAppPrivateCommand,
-        onChanged: widget.enabled != true
+    autocorrect: widget.autocorrect,
+    autofillHints: widget.autofillHints,
+    autofocus: widget.autofocus,
+    autovalidateMode: widget.autovalidateMode,
+    buildCounter: widget.buildCounter,
+    canRequestFocus: widget.canRequestFocus,
+    clipBehavior: widget.clipBehavior,
+    contentInsertionConfiguration: widget.contentInsertionConfiguration,
+    contextMenuBuilder: widget.contextMenuBuilder,
+    controller: _controller,
+    cursorColor: widget.cursorColor,
+    cursorHeight: widget.cursorHeight,
+    cursorOpacityAnimates: widget.cursorOpacityAnimates,
+    cursorRadius: widget.cursorRadius,
+    cursorWidth: widget.cursorWidth,
+    decoration: widget.decoration,
+    dragStartBehavior: widget.dragStartBehavior,
+    enableIMEPersonalizedLearning: widget.enableIMEPersonalizedLearning,
+    enableInteractiveSelection: widget.enableInteractiveSelection,
+    enableSuggestions: widget.enableSuggestions,
+    enabled: widget.enabled,
+    expands: widget.expands,
+    focusNode: widget.focusNode,
+    // initialValue: <controller is required, so this can never be set>,
+    inputFormatters: widget.inputFormatters,
+    keyboardAppearance: widget.keyboardAppearance,
+    keyboardType: widget.keyboardType,
+    magnifierConfiguration: widget.magnifierConfiguration,
+    maxLength: widget.maxLength,
+    maxLengthEnforcement: widget.maxLengthEnforcement,
+    maxLines: widget.maxLines,
+    minLines: widget.minLines,
+    mouseCursor: widget.mouseCursor,
+    obscuringCharacter: widget.obscuringCharacter,
+    obscureText: widget.obscureText,
+    onAppPrivateCommand: widget.onAppPrivateCommand,
+    onChanged:
+        widget.enabled != true
             ? null
             : (value) {
-                if (widget.onChanged != null) {
-                  widget.onChanged!(value);
-                }
-              },
-        onEditingComplete: widget.onEditingComplete,
-        onFieldSubmitted: widget.onFieldSubmitted,
-        onSaved: widget.onSaved,
-        onTap: widget.onTap,
-        onTapOutside: widget.onTapOutside,
-        readOnly: widget.readOnly,
-        restorationId: widget.restorationId,
-        scribbleEnabled: widget.scribbleEnabled,
-        scrollController: widget.scrollController,
-        scrollPadding: widget.scrollPadding,
-        scrollPhysics: widget.scrollPhysics,
-        selectionControls: widget.selectionControls,
-        selectionHeightStyle: widget.selectionHeightStyle,
-        selectionWidthStyle: widget.selectionWidthStyle,
-        showCursor: widget.showCursor,
-        smartDashesType: widget.smartDashesType,
-        smartQuotesType: widget.smartQuotesType,
-        spellCheckConfiguration: widget.spellCheckConfiguration,
-        strutStyle: widget.strutStyle,
-        style: widget.style,
-        textAlign: widget.textAlign,
-        textAlignVertical: widget.textAlignVertical,
-        textCapitalization: widget.textCapitalization,
-        textDirection: widget.textDirection,
-        textInputAction: widget.textInputAction,
-        // @deprecated toolbarOptions
-        undoController: widget.undoController,
-        validator: widget.validators == null
+              if (widget.onChanged != null) {
+                widget.onChanged!(value);
+              }
+            },
+    onEditingComplete: widget.onEditingComplete,
+    onFieldSubmitted: widget.onFieldSubmitted,
+    onSaved: widget.onSaved,
+    onTap: widget.onTap,
+    onTapOutside: widget.onTapOutside,
+    readOnly: widget.readOnly,
+    restorationId: widget.restorationId,
+    scribbleEnabled: widget.scribbleEnabled,
+    scrollController: widget.scrollController,
+    scrollPadding: widget.scrollPadding,
+    scrollPhysics: widget.scrollPhysics,
+    selectionControls: widget.selectionControls,
+    selectionHeightStyle: widget.selectionHeightStyle,
+    selectionWidthStyle: widget.selectionWidthStyle,
+    showCursor: widget.showCursor,
+    smartDashesType: widget.smartDashesType,
+    smartQuotesType: widget.smartQuotesType,
+    spellCheckConfiguration: widget.spellCheckConfiguration,
+    strutStyle: widget.strutStyle,
+    style: widget.style,
+    textAlign: widget.textAlign,
+    textAlignVertical: widget.textAlignVertical,
+    textCapitalization: widget.textCapitalization,
+    textDirection: widget.textDirection,
+    textInputAction: widget.textInputAction,
+    // @deprecated toolbarOptions
+    undoController: widget.undoController,
+    validator:
+        widget.validators == null
             ? null
             : (value) {
-                final error = widget.validators!.validate(
-                  label: widget.decoration?.labelText ?? '',
-                  value: value?.toString(),
-                );
+              final error = widget.validators!.validate(
+                label: widget.decoration?.labelText ?? '',
+                value: value?.toString(),
+              );
 
-                widget.data.jsonWidgetRegistry.setValue(
-                  '${widget.data.jsonWidgetId}.error',
-                  error ?? '',
-                  originator: widget.data.jsonWidgetId,
-                );
+              widget.data.jsonWidgetRegistry.setValue(
+                '${widget.data.jsonWidgetId}.error',
+                error ?? '',
+                originator: widget.data.jsonWidgetId,
+              );
 
-                return error;
-              },
-      );
+              return error;
+            },
+  );
 }

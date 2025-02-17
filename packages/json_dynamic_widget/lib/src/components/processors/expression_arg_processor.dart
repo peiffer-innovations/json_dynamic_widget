@@ -33,8 +33,10 @@ class ExpressionArgProcessor implements ArgProcessor {
     final regexpMatch = _matchRegexp.firstMatch(arg.toString())!;
     final expression = Expression.tryParse(regexpMatch.group(1)!);
     if (expression != null) {
-      final evaluator =
-          ArgsExpressionEvaluator(registry, calculateListenVariables);
+      final evaluator = ArgsExpressionEvaluator(
+        registry,
+        calculateListenVariables,
+      );
       arg = evaluator.evaluate(expression);
       if (calculateListenVariables) {
         resultListenVariables = evaluator.jsonWidgetListenVariables;
@@ -50,10 +52,7 @@ class ExpressionArgProcessor implements ArgProcessor {
 /// Modification added to [ExpressionEvaluator] which integrates
 /// [JsonWidgetRegistry] variables and functions.
 class ArgsExpressionEvaluator extends ExpressionEvaluator {
-  ArgsExpressionEvaluator(
-    this.registry,
-    this.calculateListenVariables,
-  );
+  ArgsExpressionEvaluator(this.registry, this.calculateListenVariables);
 
   final bool calculateListenVariables;
   final JsonWidgetRegistry registry;
@@ -65,17 +64,11 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
   dynamic evaluate(Expression expression) => super.eval(expression, {});
 
   @override
-  dynamic evalVariable(
-    Variable variable,
-    Map<String, dynamic> context,
-  ) {
+  dynamic evalVariable(Variable variable, Map<String, dynamic> context) {
     final variableName = variable.identifier.name;
     return super.evalVariable(
       variable,
-      _updateContextIfNeeded(
-        context,
-        variableName,
-      ),
+      _updateContextIfNeeded(context, variableName),
     );
   }
 
@@ -106,7 +99,9 @@ class ArgsExpressionEvaluator extends ExpressionEvaluator {
 
   @override
   dynamic evalCallExpression(
-      CallExpression expression, Map<String, dynamic> context) {
+    CallExpression expression,
+    Map<String, dynamic> context,
+  ) {
     dynamic result;
     final callee = eval(expression.callee, context);
     final arguments =

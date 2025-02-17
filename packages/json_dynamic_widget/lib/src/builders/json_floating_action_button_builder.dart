@@ -5,9 +5,7 @@ part 'json_floating_action_button_builder.g.dart';
 /// Builder that can build an [FloatingActionButton] widget.
 @jsonWidget
 abstract class _JsonFloatingActionButtonBuilder extends JsonWidgetBuilder {
-  const _JsonFloatingActionButtonBuilder({
-    required super.args,
-  });
+  const _JsonFloatingActionButtonBuilder({required super.args});
 
   @JsonArgEncoder('heroTag')
   static String _encodeHeroTag(dynamic value) => value.toString();

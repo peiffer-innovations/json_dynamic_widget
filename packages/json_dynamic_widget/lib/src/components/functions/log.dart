@@ -13,48 +13,46 @@ class LogFunction {
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
-  }) =>
-      () {
-        Level level;
+  }) => () {
+    Level level;
 
-        final message = args![0];
+    final message = args![0];
 
-        final levelArg =
-            (args.length >= 2 ? args[1] : '').toString().toLowerCase();
-        switch (levelArg) {
-          case 'fine':
-            level = Level.FINE;
-            break;
+    final levelArg = (args.length >= 2 ? args[1] : '').toString().toLowerCase();
+    switch (levelArg) {
+      case 'fine':
+        level = Level.FINE;
+        break;
 
-          case 'finer':
-            level = Level.FINER;
-            break;
+      case 'finer':
+        level = Level.FINER;
+        break;
 
-          case 'finest':
-            level = Level.FINEST;
-            break;
+      case 'finest':
+        level = Level.FINEST;
+        break;
 
-          case 'info':
-            level = Level.INFO;
-            break;
+      case 'info':
+        level = Level.INFO;
+        break;
 
-          case 'severe':
-            level = Level.SEVERE;
-            break;
+      case 'severe':
+        level = Level.SEVERE;
+        break;
 
-          case 'shout':
-            level = Level.SHOUT;
-            break;
+      case 'shout':
+        level = Level.SHOUT;
+        break;
 
-          case 'warning':
-            level = Level.WARNING;
-            break;
+      case 'warning':
+        level = Level.WARNING;
+        break;
 
-          default:
-            level = Level.FINEST;
-            break;
-        }
+      default:
+        level = Level.FINEST;
+        break;
+    }
 
-        _logger.log(level, '$message');
-      };
+    _logger.log(level, '$message');
+  };
 }

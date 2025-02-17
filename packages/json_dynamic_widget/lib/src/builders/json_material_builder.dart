@@ -5,9 +5,7 @@ part 'json_material_builder.g.dart';
 /// Builder that can build an [Material] widget.
 @jsonWidget
 abstract class _JsonMaterialBuilder extends JsonWidgetBuilder {
-  const _JsonMaterialBuilder({
-    required super.args,
-  });
+  const _JsonMaterialBuilder({required super.args});
 
   @override
   _Material buildCustom({
@@ -73,19 +71,11 @@ class _Material extends StatelessWidget {
       surfaceTintColor: surfaceTintColor,
       textStyle: textStyle,
       type: materialType,
-      child: padding == null
-          ? child
-          : Padding(
-              padding: padding!,
-              child: child,
-            ),
+      child: padding == null ? child : Padding(padding: padding!, child: child),
     );
 
     if (margin != null) {
-      result = Padding(
-        padding: margin!,
-        child: result,
-      );
+      result = Padding(padding: margin!, child: result);
     }
 
     return result;

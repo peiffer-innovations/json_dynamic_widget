@@ -8,8 +8,9 @@ void main() {
     expect(type, 'network_image');
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'src': 'http://github.com',
-      }) is JsonNetworkImageBuilder,
+            'src': 'http://github.com',
+          })
+          is JsonNetworkImageBuilder,
       true,
     );
   });

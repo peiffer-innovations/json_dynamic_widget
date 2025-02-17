@@ -12,9 +12,5 @@ class RemoveValueFunction {
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
-  }) =>
-      () => registry.removeValue(
-            args![0],
-            originator: null,
-          );
+  }) => () => registry.removeValue(args![0], originator: null);
 }

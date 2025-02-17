@@ -9,16 +9,11 @@ part 'json_cupertino_switch_builder.g.dart';
 /// Builder that can build an [CupertinoSwitch] widget.
 @jsonWidget
 abstract class _JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
-  const _JsonCupertinoSwitchBuilder({
-    required super.args,
-  });
+  const _JsonCupertinoSwitchBuilder({required super.args});
 
   @JsonArgDecoder('validators')
-  Validator? _decodeValidators({required dynamic value}) => value == null
-      ? null
-      : Validator.fromDynamic(
-          {'validators': value},
-        );
+  Validator? _decodeValidators({required dynamic value}) =>
+      value == null ? null : Validator.fromDynamic({'validators': value});
 
   @override
   _CupertinoSwitch buildCustom({
@@ -91,54 +86,57 @@ class _CupertinoSwitchState extends State<_CupertinoSwitch> {
       initialValue: widget.value,
       onSaved: widget.onSaved,
       restorationId: widget.restorationId,
-      validator: widget.validators == null
-          ? null
-          : (value) {
-              final error = widget.validators!.validate(
-                label: widget.label ?? '',
-                value: value?.toString(),
-              );
-
-              if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                widget.data.jsonWidgetRegistry.setValue(
-                  '${widget.data.jsonWidgetId}.error',
-                  error ?? '',
-                  originator: widget.data.jsonWidgetId,
+      validator:
+          widget.validators == null
+              ? null
+              : (value) {
+                final error = widget.validators!.validate(
+                  label: widget.label ?? '',
+                  value: value?.toString(),
                 );
-              }
 
-              return error;
-            },
-      builder: (FormFieldState state) => MergeSemantics(
-        child: Semantics(
-          label: widget.label ?? '',
-          child: CupertinoSwitch(
-            activeTrackColor: widget.activeColor,
-            dragStartBehavior:
-                widget.dragStartBehavior ?? DragStartBehavior.start,
-            onChanged: widget.enabled != true
-                ? null
-                : (value) {
-                    if (widget.onChanged != null) {
-                      widget.onChanged!(value);
-                    }
+                if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                  widget.data.jsonWidgetRegistry.setValue(
+                    '${widget.data.jsonWidgetId}.error',
+                    error ?? '',
+                    originator: widget.data.jsonWidgetId,
+                  );
+                }
 
-                    state.didChange(value);
+                return error;
+              },
+      builder:
+          (FormFieldState state) => MergeSemantics(
+            child: Semantics(
+              label: widget.label ?? '',
+              child: CupertinoSwitch(
+                activeTrackColor: widget.activeColor,
+                dragStartBehavior:
+                    widget.dragStartBehavior ?? DragStartBehavior.start,
+                onChanged:
+                    widget.enabled != true
+                        ? null
+                        : (value) {
+                          if (widget.onChanged != null) {
+                            widget.onChanged!(value);
+                          }
 
-                    if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                      widget.data.jsonWidgetRegistry.setValue(
-                        widget.data.jsonWidgetId,
-                        value,
-                        originator: widget.data.jsonWidgetId,
-                      );
-                    }
-                  },
-            thumbColor: widget.thumbColor,
-            inactiveTrackColor: widget.trackColor,
-            value: state.value,
+                          state.didChange(value);
+
+                          if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                            widget.data.jsonWidgetRegistry.setValue(
+                              widget.data.jsonWidgetId,
+                              value,
+                              originator: widget.data.jsonWidgetId,
+                            );
+                          }
+                        },
+                thumbColor: widget.thumbColor,
+                inactiveTrackColor: widget.trackColor,
+                value: state.value,
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 }

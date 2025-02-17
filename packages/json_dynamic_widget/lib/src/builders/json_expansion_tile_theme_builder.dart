@@ -5,9 +5,7 @@ part 'json_expansion_tile_theme_builder.g.dart';
 /// Builder that can build a [ExpansionTileTheme] widget.
 @jsonWidget
 abstract class _JsonExpansionTileThemeBuilder extends JsonWidgetBuilder {
-  const _JsonExpansionTileThemeBuilder({
-    required super.args,
-  });
+  const _JsonExpansionTileThemeBuilder({required super.args});
 
   @override
   ExpansionTileTheme buildCustom({

@@ -5,9 +5,7 @@ part 'json_safe_area_builder.g.dart';
 /// Builder that can build an [SafeArea] widget.
 @jsonWidget
 abstract class _JsonSafeAreaBuilder extends JsonWidgetBuilder {
-  const _JsonSafeAreaBuilder({
-    required super.args,
-  });
+  const _JsonSafeAreaBuilder({required super.args});
 
   @override
   SafeArea buildCustom({

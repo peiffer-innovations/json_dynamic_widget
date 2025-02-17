@@ -26,8 +26,9 @@ class IterableArgProcessor implements ArgProcessor {
       processedArgs.add(processedArg.value);
 
       if (calculateListenVariables) {
-        resultListenVariables
-            .addAll(processedArg.jsonWidgetListenVariables.toList());
+        resultListenVariables.addAll(
+          processedArg.jsonWidgetListenVariables.toList(),
+        );
       }
     }
     return ProcessedArg(

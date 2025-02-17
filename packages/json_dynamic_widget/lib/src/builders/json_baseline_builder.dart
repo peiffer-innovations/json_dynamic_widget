@@ -5,9 +5,7 @@ part 'json_baseline_builder.g.dart';
 /// Builder that can build a [Baseline] widget.
 @jsonWidget
 abstract class _JsonBaselineBuilder extends JsonWidgetBuilder {
-  const _JsonBaselineBuilder({
-    required super.args,
-  });
+  const _JsonBaselineBuilder({required super.args});
 
   @override
   Baseline buildCustom({

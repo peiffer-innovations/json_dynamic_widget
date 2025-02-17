@@ -5,9 +5,7 @@ part 'json_aspect_ratio_builder.g.dart';
 /// Builder that can build an [AspectRatio] widget.
 @jsonWidget
 abstract class _JsonAspectRatioBuilder extends JsonWidgetBuilder {
-  const _JsonAspectRatioBuilder({
-    required super.args,
-  });
+  const _JsonAspectRatioBuilder({required super.args});
 
   @override
   AspectRatio buildCustom({

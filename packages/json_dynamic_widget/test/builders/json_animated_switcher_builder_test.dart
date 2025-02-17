@@ -7,16 +7,17 @@ void main() {
 
     expect(type, 'animated_switcher');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'child': JsonWidgetData(
-            jsonWidgetBuilder: () =>
-                JsonWidgetRegistry.instance.getWidgetBuilder('center')({}),
-            jsonWidgetType: type,
-          ),
-          'duration': 1000,
-        },
-      ) is JsonAnimatedSwitcherBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
+            'child': JsonWidgetData(
+              jsonWidgetBuilder:
+                  () => JsonWidgetRegistry.instance.getWidgetBuilder('center')(
+                    {},
+                  ),
+              jsonWidgetType: type,
+            ),
+            'duration': 1000,
+          })
+          is JsonAnimatedSwitcherBuilder,
       true,
     );
   });

@@ -7,9 +7,7 @@ part 'json_scaffold_builder.g.dart';
 /// Builder that can build an [Scaffold] widget.
 @jsonWidget
 abstract class _JsonScaffoldBuilder extends JsonWidgetBuilder {
-  const _JsonScaffoldBuilder({
-    required super.args,
-  });
+  const _JsonScaffoldBuilder({required super.args});
 
   @override
   Scaffold buildCustom({

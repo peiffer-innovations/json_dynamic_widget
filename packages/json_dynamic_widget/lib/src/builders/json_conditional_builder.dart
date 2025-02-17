@@ -9,9 +9,7 @@ part 'json_conditional_builder.g.dart';
 /// widgets based on the result from the [conditional].
 @jsonWidget
 abstract class _JsonConditionalBuilder extends JsonWidgetBuilder {
-  const _JsonConditionalBuilder({
-    required super.args,
-  });
+  const _JsonConditionalBuilder({required super.args});
 
   @JsonArgDecoder('conditional')
   Conditional _decodeConditiona({required dynamic value}) =>
@@ -55,10 +53,7 @@ class _ConditionalState extends State<_Conditional> {
   late JsonWidgetData _data;
   StreamSubscription<WidgetValueChanged>? _subscription;
 
-  static void _appendKeys(
-    Conditional conditional,
-    Set<String> keys,
-  ) {
+  static void _appendKeys(Conditional conditional, Set<String> keys) {
     conditional.values?.forEach((key, _) => keys.add(key));
     conditional.conditions?.forEach(
       (conditional) => _appendKeys(conditional, keys),

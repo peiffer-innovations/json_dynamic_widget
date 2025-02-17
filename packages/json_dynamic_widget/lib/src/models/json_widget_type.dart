@@ -2,10 +2,7 @@ import 'package:meta/meta.dart';
 
 @immutable
 class JsonWidgetType {
-  const JsonWidgetType(
-    this.code, {
-    this.skipDeepArgs,
-  });
+  const JsonWidgetType(this.code, {this.skipDeepArgs});
 
   final String code;
   final Set<String>? skipDeepArgs;

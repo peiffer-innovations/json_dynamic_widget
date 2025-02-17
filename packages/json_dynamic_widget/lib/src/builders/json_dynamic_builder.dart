@@ -62,10 +62,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     dynamic map, {
     JsonWidgetRegistry? registry,
   }) {
-    final result = maybeFromDynamic(
-      map,
-      registry: registry,
-    );
+    final result = maybeFromDynamic(map, registry: registry);
 
     if (result == null) {
       throw Exception(
@@ -100,10 +97,7 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     JsonDynamicBuilder? result;
     if (map != null) {
       if (map is String) {
-        map = yaon.parse(
-          map,
-          normalize: true,
-        );
+        map = yaon.parse(map, normalize: true);
       }
 
       registry ??= JsonWidgetRegistry.instance;
@@ -115,9 +109,9 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
           args: map,
           childTemplate: json.encode(dynamicArgs['childTemplate'] ?? {}),
           builderType: dynamicArgs['builderType'],
-          initState: List.from(dynamicArgs['initState'] ?? []).map(
-            (values) => Map<String, dynamic>.from(values),
-          ),
+          initState: List.from(
+            dynamicArgs['initState'] ?? [],
+          ).map((values) => Map<String, dynamic>.from(values)),
         );
       }
     }
@@ -143,20 +137,12 @@ class JsonDynamicBuilder extends JsonWidgetBuilder {
     final args = Map.from(data.jsonWidgetArgs);
     args.remove('dynamic');
     args['children'] = [];
-    final map = {
-      'id': data.jsonWidgetId,
-      'type': builderType,
-      'args': args,
-    };
+    final map = {'id': data.jsonWidgetId, 'type': builderType, 'args': args};
 
     if (data.jsonWidgetRegistry.getValue(data.jsonWidgetId) == null) {
       data.jsonWidgetRegistry.setValue(
         data.jsonWidgetId,
-        initState
-            .map(
-              (values) => DynamicValuesFactory.create(values),
-            )
-            .toList(),
+        initState.map((values) => DynamicValuesFactory.create(values)).toList(),
       );
     }
 
@@ -227,9 +213,7 @@ class _DynamicWidgetState extends State<_DynamicWidget> {
     final newChildren = <JsonWidgetData>[];
     if (childrenValues.isNotEmpty) {
       childrenValues
-          .map(
-            (values) => Interpolation().eval(widget.childTemplate, values),
-          )
+          .map((values) => Interpolation().eval(widget.childTemplate, values))
           .map(
             (childJson) => JsonWidgetData.fromDynamic(
               json.decode(childJson),
@@ -261,9 +245,7 @@ class DynamicSchema {
     r'$children': -1,
     'title': 'Dynamic',
     'oneOf': [
-      {
-        'type': 'null',
-      },
+      {'type': 'null'},
       {
         'type': 'object',
         'additionalProperties': true,
@@ -273,28 +255,20 @@ class DynamicSchema {
             'additionalProperties': false,
             'properties': {
               'builderType': SchemaHelper.stringSchema,
-              'childTemplate': {
-                'type': 'object',
-                'additionalProperties': true,
-              },
+              'childTemplate': {'type': 'object', 'additionalProperties': true},
               'initState': {
                 'oneOf': [
-                  {
-                    'type': 'null',
-                  },
+                  {'type': 'null'},
                   {
                     'type': 'array',
-                    'items': {
-                      'type': 'object',
-                      'additionalProperties': true,
-                    }
-                  }
-                ]
-              }
-            }
-          }
+                    'items': {'type': 'object', 'additionalProperties': true},
+                  },
+                ],
+              },
+            },
+          },
         },
-      }
+      },
     ],
   };
 }

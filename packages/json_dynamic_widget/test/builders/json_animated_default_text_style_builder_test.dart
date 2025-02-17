@@ -7,14 +7,11 @@ void main() {
 
     expect(type, 'animated_default_text_style');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'duration': 1000,
-          'style': {
-            'color': '#FFF',
-          }
-        },
-      ) is JsonAnimatedDefaultTextStyleBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
+            'duration': 1000,
+            'style': {'color': '#FFF'},
+          })
+          is JsonAnimatedDefaultTextStyleBuilder,
       true,
     );
   });

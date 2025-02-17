@@ -5,9 +5,7 @@ part 'json_card_theme_builder.g.dart';
 /// Builder that can build a [CardTheme] widget.
 @jsonWidget
 abstract class _JsonCardThemeBuilder extends JsonWidgetBuilder {
-  const _JsonCardThemeBuilder({
-    required super.args,
-  });
+  const _JsonCardThemeBuilder({required super.args});
 
   @override
   CardTheme buildCustom({

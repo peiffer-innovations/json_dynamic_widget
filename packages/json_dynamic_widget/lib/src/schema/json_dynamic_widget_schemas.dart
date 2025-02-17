@@ -137,42 +137,23 @@ class JsonWidgetDataSchema {
         'https://pub.dev/documentation/json_dynamic_widget/latest/json_dynamic_widget/JsonWidgetData-class.html',
     'title': 'JsonWidgetData',
     'oneOf': [
-      {
-        'type': 'string',
-      },
+      {'type': 'string'},
       {
         'type': 'object',
         'additionalProperties': false,
-        'required': [
-          'type',
-        ],
+        'required': ['type'],
         'properties': {
-          'args': {
-            'type': 'object',
-            'additionalProperties': true,
-          },
+          'args': {'type': 'object', 'additionalProperties': true},
           'child': SchemaHelper.anySchema,
           'children': {
             'anyOf': [
-              {
-                'type': 'string',
-              },
-              {
-                'type': 'array',
-                'items': SchemaHelper.anySchema,
-              },
+              {'type': 'string'},
+              {'type': 'array', 'items': SchemaHelper.anySchema},
             ],
           },
-          'id': {
-            'type': 'string',
-          },
-          'type': {
-            'type': 'string',
-          },
-          'listen': {
-            'type': 'array',
-            'items': SchemaHelper.stringSchema,
-          },
+          'id': {'type': 'string'},
+          'type': {'type': 'string'},
+          'listen': {'type': 'array', 'items': SchemaHelper.stringSchema},
         },
       },
     ],

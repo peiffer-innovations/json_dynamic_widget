@@ -16,7 +16,8 @@ class ProcessedArg {
 
     if (other is ProcessedArg) {
       result = true;
-      result = result &&
+      result =
+          result &&
           jsonWidgetListenVariables.toString() ==
               other.jsonWidgetListenVariables.toString();
       result = result && value?.toString() == other.value?.toString();

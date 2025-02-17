@@ -5,9 +5,7 @@ part 'json_icon_theme_builder.g.dart';
 /// Builder that can build a [IconTheme] widget.
 @jsonWidget
 abstract class _JsonIconThemeBuilder extends JsonWidgetBuilder {
-  const _JsonIconThemeBuilder({
-    required super.args,
-  });
+  const _JsonIconThemeBuilder({required super.args});
 
   @override
   IconTheme buildCustom({

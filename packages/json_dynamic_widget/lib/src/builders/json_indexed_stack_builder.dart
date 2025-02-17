@@ -5,9 +5,7 @@ part 'json_indexed_stack_builder.g.dart';
 /// Builder that can build an [IndexedStack] widget.
 @jsonWidget
 abstract class _JsonIndexedStackBuilder extends JsonWidgetBuilder {
-  const _JsonIndexedStackBuilder({
-    required super.args,
-  });
+  const _JsonIndexedStackBuilder({required super.args});
 
   @override
   IndexedStack buildCustom({

@@ -7,9 +7,7 @@ part 'json_save_context_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSaveContextBuilder extends JsonWidgetBuilder {
-  const _JsonSaveContextBuilder({
-    required super.args,
-  });
+  const _JsonSaveContextBuilder({required super.args});
 
   @override
   @JsonArgAlias(alias: 'key', name: 'varName')
@@ -52,18 +50,18 @@ class _SaveContextState extends State<_SaveContext> {
 
   @override
   Widget build(BuildContext context) => Builder(
-        builder: (BuildContext context) {
-          widget.data.jsonWidgetRegistry.setValue(
-            widget.varName,
-            context,
-            originator: widget.varName,
-          );
-          return widget.child?.build(
-                context: context,
-                childBuilder: widget.childBuilder,
-                registry: widget.data.jsonWidgetRegistry,
-              ) ??
-              const SizedBox();
-        },
+    builder: (BuildContext context) {
+      widget.data.jsonWidgetRegistry.setValue(
+        widget.varName,
+        context,
+        originator: widget.varName,
       );
+      return widget.child?.build(
+            context: context,
+            childBuilder: widget.childBuilder,
+            registry: widget.data.jsonWidgetRegistry,
+          ) ??
+          const SizedBox();
+    },
+  );
 }

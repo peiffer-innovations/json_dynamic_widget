@@ -20,9 +20,7 @@ class JsonWidgetBuilderContainer {
   /// The builder that will create the [JsonWidgetBuilder] from JSON.
   final JsonWidgetBuilderBuilder _builder;
 
-  JsonWidgetBuilderBuilder get builder => (
-        dynamic map, {
-        JsonWidgetRegistry? registry,
-      }) =>
+  JsonWidgetBuilderBuilder get builder =>
+      (dynamic map, {JsonWidgetRegistry? registry}) =>
           _builder(map, registry: registry);
 }

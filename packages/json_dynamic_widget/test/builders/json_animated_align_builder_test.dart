@@ -7,12 +7,11 @@ void main() {
 
     expect(type, 'animated_align');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'alignment': 'bottomLeft',
-          'duration': 1000,
-        },
-      ) is JsonAnimatedAlignBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
+            'alignment': 'bottomLeft',
+            'duration': 1000,
+          })
+          is JsonAnimatedAlignBuilder,
       true,
     );
   });

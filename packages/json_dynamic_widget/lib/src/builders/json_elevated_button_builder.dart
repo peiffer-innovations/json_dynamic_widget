@@ -5,9 +5,7 @@ part 'json_elevated_button_builder.g.dart';
 /// Builder that can build an [ElevatedButton] widget.
 @jsonWidget
 abstract class _JsonElevatedButtonBuilder extends JsonWidgetBuilder {
-  const _JsonElevatedButtonBuilder({
-    required super.args,
-  });
+  const _JsonElevatedButtonBuilder({required super.args});
 
   @override
   ElevatedButton buildCustom({

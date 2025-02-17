@@ -20,7 +20,7 @@ class MapArgProcessor implements ArgProcessor {
   /// one are used.
   final List<ArgProcessor> _keyProcessors = [
     ExpressionArgProcessor(),
-    RawArgProcessor()
+    RawArgProcessor(),
   ];
 
   @override
@@ -43,18 +43,26 @@ class MapArgProcessor implements ArgProcessor {
       // not process the args yet.  We should wait until the actual
       // JsonWidgetData gets built.
       return ProcessedArg(
-          value: arg, jsonWidgetListenVariables: resultListenVariables);
+        value: arg,
+        jsonWidgetListenVariables: resultListenVariables,
+      );
     }
 
     for (var key in mapArg.keys) {
-      final processedKeyArg =
-          _processKey(registry, key, jsonWidgetListenVariables);
-      final processedValueArg =
-          registry.processArgs(mapArg[key], jsonWidgetListenVariables);
+      final processedKeyArg = _processKey(
+        registry,
+        key,
+        jsonWidgetListenVariables,
+      );
+      final processedValueArg = registry.processArgs(
+        mapArg[key],
+        jsonWidgetListenVariables,
+      );
       processedMapArg[processedKeyArg.value] = processedValueArg.value;
       if (calculateListenVariables) {
-        resultListenVariables
-            .addAll(processedKeyArg.jsonWidgetListenVariables.toList());
+        resultListenVariables.addAll(
+          processedKeyArg.jsonWidgetListenVariables.toList(),
+        );
         resultListenVariables.addAll(
           processedValueArg.jsonWidgetListenVariables.toList(),
         );

@@ -5,9 +5,7 @@ part 'json_directionality_builder.g.dart';
 /// Builder that can build an [Directionality] widget.
 @jsonWidget
 abstract class _JsonDirectionalityBuilder extends JsonWidgetBuilder {
-  const _JsonDirectionalityBuilder({
-    required super.args,
-  });
+  const _JsonDirectionalityBuilder({required super.args});
 
   @override
   Directionality buildCustom({

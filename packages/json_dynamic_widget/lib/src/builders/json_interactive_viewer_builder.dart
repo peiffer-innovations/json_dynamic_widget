@@ -7,14 +7,10 @@ part 'json_interactive_viewer_builder.g.dart';
 /// Builder that can build an [InteractiveViewer] widget.
 @jsonWidget
 abstract class _JsonInteractiveViewerBuilder extends JsonWidgetBuilder {
-  const _JsonInteractiveViewerBuilder({
-    required super.args,
-  });
+  const _JsonInteractiveViewerBuilder({required super.args});
 
   @JsonArgDecoder('interactionEndFrictionCoefficient')
-  double _decodeInteractionEndFrictionCoefficient({
-    required dynamic value,
-  }) =>
+  double _decodeInteractionEndFrictionCoefficient({required dynamic value}) =>
       JsonClass.maybeParseDouble(value) ?? 0.0000135;
 
   @JsonDefaultParam('interactionEndFrictionCoefficient', '0.0000135')

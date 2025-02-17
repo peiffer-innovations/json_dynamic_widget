@@ -13,9 +13,9 @@ class JsonWidgetData extends JsonClass {
     String? jsonWidgetId,
     JsonWidgetRegistry? jsonWidgetRegistry,
     required this.jsonWidgetType,
-  })  : jsonWidgetListenVariables = jsonWidgetListenVariables ?? <String>{},
-        jsonWidgetId = jsonWidgetId ?? const Uuid().v4(),
-        jsonWidgetRegistry = jsonWidgetRegistry ?? JsonWidgetRegistry.instance;
+  }) : jsonWidgetListenVariables = jsonWidgetListenVariables ?? <String>{},
+       jsonWidgetId = jsonWidgetId ?? const Uuid().v4(),
+       jsonWidgetRegistry = jsonWidgetRegistry ?? JsonWidgetRegistry.instance;
 
   static final Logger _logger = Logger('JsonWidgetData');
 
@@ -94,11 +94,12 @@ class JsonWidgetData extends JsonClass {
     } else if (map != null) {
       try {
         final type = map['type'];
-        final timer = ExecutionWatch(
-          group: 'JsonWidgetData.fromDynamic',
-          name: type,
-          precision: TimerPrecision.microsecond,
-        ).start();
+        final timer =
+            ExecutionWatch(
+              group: 'JsonWidgetData.fromDynamic',
+              name: type,
+              precision: TimerPrecision.microsecond,
+            ).start();
         try {
           if (type is! String) {
             throw HandledJsonWidgetException(
@@ -124,10 +125,7 @@ class JsonWidgetData extends JsonClass {
           result = JsonWidgetData(
             jsonWidgetArgs: map['args'] ?? {},
             jsonWidgetBuilder: () {
-              return builder(
-                args,
-                registry: registry,
-              );
+              return builder(args, registry: registry);
             },
             jsonWidgetListenVariables: jsonWidgetListenVariables,
             jsonWidgetId: map['id'],
@@ -146,10 +144,7 @@ class JsonWidgetData extends JsonClass {
           errorValue = const JsonEncoder.withIndent('  ').convert(errorValue);
         }
         if (e is AssertionError) {
-          throw HandledJsonWidgetException(
-            e,
-            data: errorValue,
-          );
+          throw HandledJsonWidgetException(e, data: errorValue);
         } else {
           _logger.severe(
             '''
@@ -188,10 +183,7 @@ $errorValue
 
       result = <JsonWidgetData>[];
       for (var map in list) {
-        result.add(fromDynamic(
-          map,
-          registry: registry,
-        ));
+        result.add(fromDynamic(map, registry: registry));
       }
     }
 
@@ -234,17 +226,17 @@ $errorValue
     String? jsonWidgetId,
     JsonWidgetRegistry? jsonWidgetRegistry,
     String? jsonWidgetType,
-  }) =>
-      JsonWidgetData(
-        jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
-        jsonWidgetBuilder: jsonWidgetBuilder as JsonWidgetBuilder Function()? ??
-            this.jsonWidgetBuilder,
-        jsonWidgetListenVariables:
-            jsonWidgetListenVariables ?? this.jsonWidgetListenVariables,
-        jsonWidgetId: jsonWidgetId ?? this.jsonWidgetId,
-        jsonWidgetRegistry: jsonWidgetRegistry ?? this.jsonWidgetRegistry,
-        jsonWidgetType: jsonWidgetType ?? this.jsonWidgetType,
-      );
+  }) => JsonWidgetData(
+    jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
+    jsonWidgetBuilder:
+        jsonWidgetBuilder as JsonWidgetBuilder Function()? ??
+        this.jsonWidgetBuilder,
+    jsonWidgetListenVariables:
+        jsonWidgetListenVariables ?? this.jsonWidgetListenVariables,
+    jsonWidgetId: jsonWidgetId ?? this.jsonWidgetId,
+    jsonWidgetRegistry: jsonWidgetRegistry ?? this.jsonWidgetRegistry,
+    jsonWidgetType: jsonWidgetType ?? this.jsonWidgetType,
+  );
 
   @override
   Map<String, dynamic> toJson() {
@@ -255,12 +247,14 @@ $errorValue
       // Skips the id if it's a valid (auto generated) UUID to avoid spamming
       // the emitted JSON
       'id': Uuid.isValidUUID(fromString: jsonWidgetId) ? null : jsonWidgetId,
-      'listen': jsonWidgetListenVariables.isEmpty
-          ? null
-          : List<String>.from(jsonWidgetListenVariables),
-      'args': jsonWidgetArgs is JsonClass
-          ? jsonWidgetArgs.toJson()
-          : jsonWidgetArgs,
+      'listen':
+          jsonWidgetListenVariables.isEmpty
+              ? null
+              : List<String>.from(jsonWidgetListenVariables),
+      'args':
+          jsonWidgetArgs is JsonClass
+              ? jsonWidgetArgs.toJson()
+              : jsonWidgetArgs,
     });
   }
 }

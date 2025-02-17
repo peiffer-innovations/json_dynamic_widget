@@ -7,9 +7,8 @@ void main() {
 
     expect(type, 'text');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'text': 'foo',
-      }) is JsonTextBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({'text': 'foo'})
+          is JsonTextBuilder,
       true,
     );
   });

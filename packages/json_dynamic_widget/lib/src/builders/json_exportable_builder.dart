@@ -5,9 +5,7 @@ part 'json_exportable_builder.g.dart';
 /// Builder that can build an [Expanded] widget.
 @jsonWidget
 abstract class _JsonExportableBuilder extends JsonWidgetBuilder {
-  const _JsonExportableBuilder({
-    required super.args,
-  });
+  const _JsonExportableBuilder({required super.args});
 
   @override
   JsonExportable buildCustom({
@@ -19,10 +17,7 @@ abstract class _JsonExportableBuilder extends JsonWidgetBuilder {
 }
 
 class JsonExportable extends StatelessWidget {
-  const JsonExportable({
-    required this.child,
-    super.key,
-  });
+  const JsonExportable({required this.child, super.key});
 
   final JsonWidgetData child;
 

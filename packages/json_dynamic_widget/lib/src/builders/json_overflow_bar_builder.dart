@@ -5,9 +5,7 @@ part 'json_overflow_bar_builder.g.dart';
 /// Builder that can build a [OverflowBar] widget.
 @jsonWidget
 abstract class _JsonOverflowBarBuilder extends JsonWidgetBuilder {
-  const _JsonOverflowBarBuilder({
-    required super.args,
-  });
+  const _JsonOverflowBarBuilder({required super.args});
 
   @override
   OverflowBar buildCustom({

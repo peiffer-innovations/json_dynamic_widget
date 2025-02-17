@@ -7,11 +7,8 @@ void main() {
 
     expect(type, 'animated_size');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'duration': 1000,
-        },
-      ) is JsonAnimatedSizeBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({'duration': 1000})
+          is JsonAnimatedSizeBuilder,
       true,
     );
   });

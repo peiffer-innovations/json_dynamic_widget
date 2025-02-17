@@ -7,9 +7,7 @@ part 'json_switch_builder.g.dart';
 /// Builder that can build an [Switch] widget.
 @jsonWidget
 abstract class _JsonSwitchBuilder extends JsonWidgetBuilder {
-  const _JsonSwitchBuilder({
-    required super.args,
-  });
+  const _JsonSwitchBuilder({required super.args});
 
   /// Builds the widget to render to the tree.  If the [data] object has a
   /// non-empty `id` associated with it and the [enabled] property is [true]
@@ -114,70 +112,73 @@ class _SwitchState extends State<_Switch> {
       enabled: widget.enabled,
       initialValue: widget.value,
       key: widget.key,
-      validator: widget.validator == null
-          ? null
-          : (value) {
-              final error = widget.validator!.validate(
-                label: widget.label ?? '',
-                value: value?.toString(),
-              );
-
-              if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                widget.data.jsonWidgetRegistry.setValue(
-                  '${widget.data.jsonWidgetId}.error',
-                  error ?? '',
-                  originator: '${widget.data.jsonWidgetId}.error',
+      validator:
+          widget.validator == null
+              ? null
+              : (value) {
+                final error = widget.validator!.validate(
+                  label: widget.label ?? '',
+                  value: value?.toString(),
                 );
-              }
 
-              return error;
-            },
+                if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                  widget.data.jsonWidgetRegistry.setValue(
+                    '${widget.data.jsonWidgetId}.error',
+                    error ?? '',
+                    originator: '${widget.data.jsonWidgetId}.error',
+                  );
+                }
+
+                return error;
+              },
       onSaved: widget.onSaved,
-      builder: (FormFieldState state) => MergeSemantics(
-        child: Semantics(
-          label: widget.label ?? '',
-          child: Switch(
-            activeColor: widget.activeColor,
-            activeThumbImage: widget.activeThumbImage,
-            activeTrackColor: widget.activeTrackColor,
-            autofocus: widget.autofocus,
-            dragStartBehavior: widget.dragStartBehavior,
-            focusColor: widget.focusColor,
-            focusNode: widget.focusNode,
-            hoverColor: widget.hoverColor,
-            inactiveThumbColor: widget.inactiveThumbColor,
-            inactiveThumbImage: widget.inactiveThumbImage,
-            inactiveTrackColor: widget.inactiveTrackColor,
-            materialTapTargetSize: widget.materialTapTargetSize,
-            mouseCursor: widget.mouseCursor,
-            onActiveThumbImageError: widget.onActiveThumbImageError,
-            onChanged: widget.enabled != true
-                ? null
-                : (value) {
-                    if (widget.onChanged != null) {
-                      widget.onChanged!(value);
-                    }
+      builder:
+          (FormFieldState state) => MergeSemantics(
+            child: Semantics(
+              label: widget.label ?? '',
+              child: Switch(
+                activeColor: widget.activeColor,
+                activeThumbImage: widget.activeThumbImage,
+                activeTrackColor: widget.activeTrackColor,
+                autofocus: widget.autofocus,
+                dragStartBehavior: widget.dragStartBehavior,
+                focusColor: widget.focusColor,
+                focusNode: widget.focusNode,
+                hoverColor: widget.hoverColor,
+                inactiveThumbColor: widget.inactiveThumbColor,
+                inactiveThumbImage: widget.inactiveThumbImage,
+                inactiveTrackColor: widget.inactiveTrackColor,
+                materialTapTargetSize: widget.materialTapTargetSize,
+                mouseCursor: widget.mouseCursor,
+                onActiveThumbImageError: widget.onActiveThumbImageError,
+                onChanged:
+                    widget.enabled != true
+                        ? null
+                        : (value) {
+                          if (widget.onChanged != null) {
+                            widget.onChanged!(value);
+                          }
 
-                    state.didChange(value);
+                          state.didChange(value);
 
-                    if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                      widget.data.jsonWidgetRegistry.setValue(
-                        widget.data.jsonWidgetId,
-                        value,
-                        originator: widget.data.jsonWidgetId,
-                      );
-                    }
-                  },
-            onInactiveThumbImageError: widget.onInactiveThumbImageError,
-            overlayColor: widget.overlayColor,
-            splashRadius: widget.splashRadius,
-            thumbColor: widget.thumbColor,
-            thumbIcon: widget.thumbIcon,
-            trackColor: widget.trackColor,
-            value: state.value,
+                          if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                            widget.data.jsonWidgetRegistry.setValue(
+                              widget.data.jsonWidgetId,
+                              value,
+                              originator: widget.data.jsonWidgetId,
+                            );
+                          }
+                        },
+                onInactiveThumbImageError: widget.onInactiveThumbImageError,
+                overlayColor: widget.overlayColor,
+                splashRadius: widget.splashRadius,
+                thumbColor: widget.thumbColor,
+                thumbIcon: widget.thumbIcon,
+                trackColor: widget.trackColor,
+                value: state.value,
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 }

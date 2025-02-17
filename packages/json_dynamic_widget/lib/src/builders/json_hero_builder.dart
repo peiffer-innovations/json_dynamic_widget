@@ -5,9 +5,7 @@ part 'json_hero_builder.g.dart';
 /// Builder that can build an [Hero] widget.
 @jsonWidget
 abstract class _JsonHeroBuilder extends JsonWidgetBuilder {
-  const _JsonHeroBuilder({
-    required super.args,
-  });
+  const _JsonHeroBuilder({required super.args});
 
   @JsonDefaultParam('tag', "'(default)'")
   @override

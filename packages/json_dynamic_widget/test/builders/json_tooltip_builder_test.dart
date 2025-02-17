@@ -7,9 +7,8 @@ void main() {
 
     expect(type, 'tooltip');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'message': 'foo',
-      }) is JsonTooltipBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({'message': 'foo'})
+          is JsonTooltipBuilder,
       true,
     );
   });

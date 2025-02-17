@@ -7,9 +7,8 @@ void main() {
 
     expect(type, 'padding');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'padding': '16.0',
-      }) is JsonPaddingBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({'padding': '16.0'})
+          is JsonPaddingBuilder,
       true,
     );
   });

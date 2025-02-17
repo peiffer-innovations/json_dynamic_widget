@@ -4,11 +4,7 @@ import 'package:flutter/material.dart';
 
 @immutable
 class HandledJsonWidgetException implements Exception {
-  const HandledJsonWidgetException(
-    this.cause, {
-    this.stackTrace,
-    this.data,
-  });
+  const HandledJsonWidgetException(this.cause, {this.stackTrace, this.data});
 
   final dynamic cause;
   final dynamic data;
@@ -23,9 +19,11 @@ class HandledJsonWidgetException implements Exception {
       buf.writeln(cause.toString());
     }
     if (data != null) {
-      buf.writeln((data is Map || data is List)
-          ? const JsonEncoder.withIndent('  ').convert(data)
-          : data.toString());
+      buf.writeln(
+        (data is Map || data is List)
+            ? const JsonEncoder.withIndent('  ').convert(data)
+            : data.toString(),
+      );
     }
     if (stackTrace != null) {
       buf.writeln(stackTrace.toString());

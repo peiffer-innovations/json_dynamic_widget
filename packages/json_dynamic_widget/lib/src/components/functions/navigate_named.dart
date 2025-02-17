@@ -20,8 +20,8 @@ class NavigateNamedFunction {
     assert(registry.navigatorKey != null);
 
     return () => registry.navigatorKey!.currentState!.pushNamed(
-          args![0],
-          arguments: args.length >= 2 ? args[1] : null,
-        );
+      args![0],
+      arguments: args.length >= 2 ? args[1] : null,
+    );
   }
 }

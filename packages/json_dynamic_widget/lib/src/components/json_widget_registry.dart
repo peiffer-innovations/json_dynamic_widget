@@ -38,30 +38,30 @@ class JsonWidgetRegistry {
     this.onBuildWidgetFailed,
     JsonWidgetRegistry? parent,
     Map<String, dynamic>? values,
-  })  : debugLabel = (parent != null ? '${parent.debugLabel}.' : '') +
-            (debugLabel ?? 'child_${++childCount}'),
-        disableValidation = !SchemaValidator.enabled,
-        _parent = parent {
+  }) : debugLabel =
+           (parent != null ? '${parent.debugLabel}.' : '') +
+           (debugLabel ?? 'child_${++childCount}'),
+       disableValidation = !SchemaValidator.enabled,
+       _parent = parent {
     _logger = Logger('REGISTRY ${this.debugLabel}');
     final cache = SchemaCache();
-    cache.addSchema(
-      JsonWidgetDataSchema.id,
-      JsonWidgetDataSchema.schema,
-    );
+    cache.addSchema(JsonWidgetDataSchema.id, JsonWidgetDataSchema.schema);
     if (!overrideInternalBuilders) {
       DefaultRegistrar.registerDefaults(registry: this);
     }
     _builders.addAll({if (builders != null) ...builders});
     _functions.addAll({
       if (!overrideInternalFunctions) ...JsonWidgetInternalFunctions.defaults(),
-      if (functions != null) ...functions
+      if (functions != null) ...functions,
     });
     _values.addAll(values ?? {});
-    _parentDisposeStreamSubscription =
-        parent?.disposeStream.listen((_) => dispose());
+    _parentDisposeStreamSubscription = parent?.disposeStream.listen(
+      (_) => dispose(),
+    );
     _argProcessors = argProcessors ?? ArgProcessors.defaults;
-    _parentValueStreamSubscription = parent?.valueStream
-        .listen((event) => _valueStreamController?.add(event));
+    _parentValueStreamSubscription = parent?.valueStream.listen(
+      (event) => _valueStreamController?.add(event),
+    );
   }
 
   static final JsonWidgetRegistry instance = JsonWidgetRegistry(
@@ -79,12 +79,11 @@ class JsonWidgetRegistry {
     JsonWidgetData data,
     dynamic error,
     StackTrace? stackTrace,
-  })? onBuildWidgetFailed;
+  })?
+  onBuildWidgetFailed;
 
   final _functions = <String, JsonWidgetFunction>{};
-  final _internalValues = <String, dynamic>{}..addAll(
-      CurvesValues.values,
-    );
+  final _internalValues = <String, dynamic>{}..addAll(CurvesValues.values);
   final JsonWidgetRegistry? _parent;
   final _values = <String?, dynamic>{};
 
@@ -121,11 +120,8 @@ class JsonWidgetRegistry {
 
   /// Returns an unmodifiable reference to the internal set of values.
   Map<String, dynamic> get values => Map.unmodifiable(
-        Map.from(_values)
-          ..addAll(
-            _parent?.values ?? const <String, dynamic>{},
-          ),
-      );
+    Map.from(_values)..addAll(_parent?.values ?? const <String, dynamic>{}),
+  );
 
   /// Returns the [Stream] that an element can listen to in order to be notified
   /// when a value has changed.
@@ -138,11 +134,7 @@ class JsonWidgetRegistry {
 
     for (var element in keys) {
       _valueStreamController?.add(
-        WidgetValueChanged(
-          id: element,
-          originator: null,
-          value: null,
-        ),
+        WidgetValueChanged(id: element, originator: null, value: null),
       );
     }
   }
@@ -157,17 +149,16 @@ class JsonWidgetRegistry {
     List<ArgProcessor>? argProcessors,
     JsonWidgetRegistry? parent,
     Map<String, dynamic>? values,
-  }) =>
-      JsonWidgetRegistry(
-        builders: builders ?? Map.from(_builders),
-        debugLabel: debugLabel ?? this.debugLabel,
-        disableValidation: disableValidation ?? this.disableValidation,
-        functions: functions ?? _functions,
-        navigatorKey: navigatorKey ?? this.navigatorKey,
-        parent: parent ?? this,
-        argProcessors: argProcessors ?? _argProcessors,
-        values: values ?? Map.from(_values),
-      );
+  }) => JsonWidgetRegistry(
+    builders: builders ?? Map.from(_builders),
+    debugLabel: debugLabel ?? this.debugLabel,
+    disableValidation: disableValidation ?? this.disableValidation,
+    functions: functions ?? _functions,
+    navigatorKey: navigatorKey ?? this.navigatorKey,
+    parent: parent ?? this,
+    argProcessors: argProcessors ?? _argProcessors,
+    values: values ?? Map.from(_values),
+  );
 
   /// Disposes the registry.
   void dispose() {
@@ -218,10 +209,7 @@ class JsonWidgetRegistry {
   /// custom dynamic function using the [key], and if none is found, this will
   /// then check the internal functions.  If no function can be found in either
   /// collection, this will throw an [Exception].
-  dynamic execute(
-    String? key,
-    Iterable<dynamic>? args,
-  ) {
+  dynamic execute(String? key, Iterable<dynamic>? args) {
     final fun = _functions[key!];
     if (fun == null) {
       if (_parent == null) {
@@ -233,10 +221,7 @@ class JsonWidgetRegistry {
       }
     }
 
-    return fun(
-      args: args as List<dynamic>?,
-      registry: this,
-    );
+    return fun(args: args as List<dynamic>?, registry: this);
   }
 
   /// Returns the builder for the requested [type].  This will first search the
@@ -267,7 +252,9 @@ class JsonWidgetRegistry {
   /// first supported one. In case of not finding any processor
   /// [RawArgProcessor]is used instead.
   ProcessedArg processArgs(
-      dynamic args, Set<String>? jsonWidgetListenVariables) {
+    dynamic args,
+    Set<String>? jsonWidgetListenVariables,
+  ) {
     return _argProcessors
         .firstWhere(
           (parser) => parser.support(args),
@@ -286,25 +273,20 @@ class JsonWidgetRegistry {
   void registerCustomBuilder(
     String type,
     JsonWidgetBuilderContainer container,
-  ) =>
-      _builders[type] = container;
+  ) => _builders[type] = container;
 
   /// Registers the custom builders.  This is a convenience method that calls
   /// [registerCustomBuilder] for each entry in [containers].
   void registerCustomBuilders(
     Map<String, JsonWidgetBuilderContainer> containers,
-  ) =>
-      containers.forEach((key, value) => registerCustomBuilder(key, value));
+  ) => containers.forEach((key, value) => registerCustomBuilder(key, value));
 
   /// Registers the [key] as function name with the registry to be used in
   /// function bindings.  Functions registered by the application take
   /// precidence over built in registered functions.  This allows the
   /// application the ability to provide custom functions even for built in
   /// [key]'s.
-  void registerFunction(
-    String key,
-    JsonWidgetFunction fun,
-  ) {
+  void registerFunction(String key, JsonWidgetFunction fun) {
     assert(key.isNotEmpty == true);
 
     _functions[key] = fun;
@@ -329,20 +311,15 @@ class JsonWidgetRegistry {
   /// This accepts an optional [originator] to allow widgets that remove values
   /// to know when the stream fires if they are responding to their own event or
   /// not.
-  dynamic removeValue(
-    String key, {
-    String? originator,
-  }) {
+  dynamic removeValue(String key, {String? originator}) {
     assert(key.isNotEmpty == true);
 
     final hasKey = _values.containsKey(key);
     final result = _values.remove(key);
     if (hasKey == true) {
-      _valueStreamController?.add(WidgetValueChanged(
-        id: key,
-        originator: originator,
-        value: null,
-      ));
+      _valueStreamController?.add(
+        WidgetValueChanged(id: key, originator: originator, value: null),
+      );
     }
 
     return result;
@@ -358,17 +335,10 @@ class JsonWidgetRegistry {
   /// This accepts an optional [originator] to allow widgets that set values to
   /// know when the stream fires if they are responding to their own event or
   /// not.
-  void setValue(
-    String key,
-    dynamic value, {
-    String? originator,
-  }) {
+  void setValue(String key, dynamic value, {String? originator}) {
     assert(key.isNotEmpty == true);
     if (value == null) {
-      removeValue(
-        key,
-        originator: originator,
-      );
+      removeValue(key, originator: originator);
     } else {
       final current = _values[key];
 
@@ -381,11 +351,9 @@ class JsonWidgetRegistry {
           '[setValue]: [$key] = [${value?.toString().substring(0, min(80, value?.toString().length ?? 0))}]',
         );
         _values[key] = value;
-        _valueStreamController?.add(WidgetValueChanged(
-          id: key,
-          originator: originator,
-          value: value,
-        ));
+        _valueStreamController?.add(
+          WidgetValueChanged(id: key, originator: originator, value: value),
+        );
       }
     }
   }
@@ -423,10 +391,11 @@ class JsonWidgetRegistry {
         final container = _builders[type];
         final schemaId = container?.schemaId;
         if (schemaId != null) {
-          final timer = ExecutionWatch(
-            group: 'JsonWidgetRegistry.validateBuilderSchema',
-            name: schemaId,
-          ).start();
+          final timer =
+              ExecutionWatch(
+                group: 'JsonWidgetRegistry.validateBuilderSchema',
+                name: schemaId,
+              ).start();
           try {
             result = SchemaValidator.validate(
               throwException: true,

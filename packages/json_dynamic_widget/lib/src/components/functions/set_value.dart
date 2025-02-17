@@ -14,10 +14,5 @@ class SetValueFunction {
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
-  }) =>
-      () => registry.setValue(
-            args![0],
-            args[1],
-            originator: null,
-          );
+  }) => () => registry.setValue(args![0], args[1], originator: null);
 }

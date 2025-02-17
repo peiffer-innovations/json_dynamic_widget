@@ -8,11 +8,9 @@ void main() {
     expect(type, 'fractional_translation');
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'translation': {
-          'dx': 0.0,
-          'dy': 0.0,
-        }
-      }) is JsonFractionalTranslationBuilder,
+            'translation': {'dx': 0.0, 'dy': 0.0},
+          })
+          is JsonFractionalTranslationBuilder,
       true,
     );
   });

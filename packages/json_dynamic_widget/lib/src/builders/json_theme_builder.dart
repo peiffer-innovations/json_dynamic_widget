@@ -5,9 +5,7 @@ part 'json_theme_builder.g.dart';
 /// Builder that can build an [Theme] widget.
 @jsonWidget
 abstract class _JsonThemeBuilder extends JsonWidgetBuilder {
-  const _JsonThemeBuilder({
-    required super.args,
-  });
+  const _JsonThemeBuilder({required super.args});
 
   @override
   Theme buildCustom({

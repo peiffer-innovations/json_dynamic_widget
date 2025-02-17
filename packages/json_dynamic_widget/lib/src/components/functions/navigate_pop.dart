@@ -20,7 +20,7 @@ class NavigatePopFunction {
     assert(registry.navigatorKey != null);
 
     return () => registry.navigatorKey!.currentState!.pop(
-          args?.isNotEmpty == true ? args![0] : null,
-        );
+      args?.isNotEmpty == true ? args![0] : null,
+    );
   }
 }

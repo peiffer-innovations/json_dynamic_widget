@@ -5,9 +5,7 @@ part 'json_visibility_builder.g.dart';
 /// Builder that can build an [Tooltip] widget.
 @jsonWidget
 abstract class _JsonVisibilityBuilder extends JsonWidgetBuilder {
-  const _JsonVisibilityBuilder({
-    required super.args,
-  });
+  const _JsonVisibilityBuilder({required super.args});
 
   @override
   _Visibility buildCustom({
@@ -52,7 +50,8 @@ class _Visibility extends StatelessWidget {
       maintainSemantics: maintainSemantics,
       maintainSize: maintainSize,
       maintainState: maintainState,
-      replacement: replacement?.build(
+      replacement:
+          replacement?.build(
             context: context,
             childBuilder: childBuilder,
             registry: data.jsonWidgetRegistry,

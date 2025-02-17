@@ -7,9 +7,8 @@ void main() {
 
     expect(type, 'hero');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'tag': 'tag',
-      }) is JsonHeroBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({'tag': 'tag'})
+          is JsonHeroBuilder,
       true,
     );
   });

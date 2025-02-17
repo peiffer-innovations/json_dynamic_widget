@@ -7,12 +7,11 @@ void main() {
 
     expect(type, 'animated_padding');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'duration': 1000,
-          'padding': EdgeInsets.zero,
-        },
-      ) is JsonAnimatedPaddingBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
+            'duration': 1000,
+            'padding': EdgeInsets.zero,
+          })
+          is JsonAnimatedPaddingBuilder,
       true,
     );
   });

@@ -14,16 +14,15 @@ class DynamicFunction {
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
-  }) =>
-      () {
-        if (args != null) {
-          args
-              .map((key) => registry.getValue(key))
-              .map((json) => _executeFunctions(Map<String, dynamic>.from(json)))
-              .map((json) => DynamicOperation.fromJson(json))
-              .forEach((json) => _execute(json, registry));
-        }
-      };
+  }) => () {
+    if (args != null) {
+      args
+          .map((key) => registry.getValue(key))
+          .map((json) => _executeFunctions(Map<String, dynamic>.from(json)))
+          .map((json) => DynamicOperation.fromJson(json))
+          .forEach((json) => _execute(json, registry));
+    }
+  };
 
   static void _execute(
     final DynamicOperation dynamicOperation,
@@ -37,23 +36,18 @@ class DynamicFunction {
     );
     final index = dynamicOperation.findIndex(childrenData);
     dynamicOperation.execute(childrenData, index);
-    registry.setValue(
-      dynamicOperation.builder,
-      childrenData,
-      originator: null,
-    );
+    registry.setValue(dynamicOperation.builder, childrenData, originator: null);
   }
 
   static Map<String, dynamic> _executeFunctions(
-      final Map<String, dynamic> json) {
+    final Map<String, dynamic> json,
+  ) {
     for (var key in json.keys) {
       var value = json[key];
       if (value is Function) {
         value = value();
       } else if (value is Map) {
-        value = _executeFunctions(
-          Map<String, dynamic>.from(value),
-        );
+        value = _executeFunctions(Map<String, dynamic>.from(value));
       }
       json[key] = value;
     }
@@ -67,9 +61,7 @@ class AddDynamicOperation extends DynamicOperation {
     required super.builder,
     super.target = targetDefault,
     required Map<String, dynamic> values,
-  }) : super(
-          values: DynamicValuesFactory.create(values),
-        );
+  }) : super(values: DynamicValuesFactory.create(values));
 
   static const targetDefault = {'index': -1};
 
@@ -94,9 +86,9 @@ abstract class DynamicOperation extends JsonClass {
     final type = DynamicOperationType.values.firstWhere(
       (e) => e.name!.toLowerCase() == json[typeKey].toString().toLowerCase(),
     );
-    final values = Map<String, dynamic>.from(json[valuesKey] ?? {}).map(
-      (key, value) => MapEntry(key, value is Function ? value() : value),
-    );
+    final values = Map<String, dynamic>.from(
+      json[valuesKey] ?? {},
+    ).map((key, value) => MapEntry(key, value is Function ? value() : value));
     final target = Map<String, dynamic>.from(json[targetKey]);
     switch (type) {
       case DynamicOperationType.add:
@@ -162,8 +154,9 @@ abstract class DynamicOperation extends JsonClass {
     }
 
     index = childrenData.indexWhere(
-      (childData) => target.entries.every((entry) =>
-          jsonEncode(entry.value) == jsonEncode(childData[entry.key])),
+      (childData) => target.entries.every(
+        (entry) => jsonEncode(entry.value) == jsonEncode(childData[entry.key]),
+      ),
     );
     return index;
   }

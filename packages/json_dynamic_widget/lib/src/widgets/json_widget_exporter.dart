@@ -9,28 +9,20 @@ import 'package:yaml_writer/yaml_writer.dart';
 /// cannot decode the particular object, it should return `null`.
 typedef JsonTypeEncoder = dynamic Function(Object);
 
-enum ReverseEncodingMode {
-  json,
-  yaml,
-}
+enum ReverseEncodingMode { json, yaml }
 
 class JsonWidgetExporter extends StatefulWidget {
-  const JsonWidgetExporter({
-    required this.child,
-    super.key,
-  });
+  const JsonWidgetExporter({required this.child, super.key});
 
   final JsonExportable child;
 
   static JsonWidgetExporterData? of(BuildContext context) {
     final result = maybeOf(context);
     if (result == null) {
-      throw FlutterError(
-        '''
+      throw FlutterError('''
 JsonWidgetExporter operation requested with a context that does not include a
 JsonWidgetExporter.  The context used to process JSON widget data must be a
-widget that is a descendant of a JsonWidgetExporter widget.''',
-      );
+widget that is a descendant of a JsonWidgetExporter widget.''');
     }
 
     return result;
@@ -69,27 +61,24 @@ class JsonWidgetExporterData extends State<JsonWidgetExporter> {
     String encode(dynamic data) {
       String encoded;
 
-      final jsonEncoder = JsonEncoder.withIndent(
-        indent,
-        (object) {
-          dynamic output;
+      final jsonEncoder = JsonEncoder.withIndent(indent, (object) {
+        dynamic output;
 
-          for (var e in encoders) {
-            output = e(object);
+        for (var e in encoders) {
+          output = e(object);
 
-            if (output != null) {
-              _logger.info('Found given encoder for object: [$object].');
-              break;
-            }
+          if (output != null) {
+            _logger.info('Found given encoder for object: [$object].');
+            break;
           }
+        }
 
-          if (output == null) {
-            _logger.warning('Unable to encode object: [$object]');
-            output = r'${null}';
-          }
-          return output;
-        },
-      );
+        if (output == null) {
+          _logger.warning('Unable to encode object: [$object]');
+          output = r'${null}';
+        }
+        return output;
+      });
       switch (mode) {
         case ReverseEncodingMode.json:
           encoded = jsonEncoder.convert(data);
@@ -97,9 +86,9 @@ class JsonWidgetExporterData extends State<JsonWidgetExporter> {
 
         case ReverseEncodingMode.yaml:
           final lines = YamlWriter(
-            allowUnquotedStrings: true,
-            indentSize: max(indent.length, 2),
-          )
+                allowUnquotedStrings: true,
+                indentSize: max(indent.length, 2),
+              )
               .convert(
                 // This is a bit of a hack.  The YAML writer doesn't support passing
                 // in custom object encoders.  So to prevent this from failing, use
@@ -138,18 +127,16 @@ class JsonWidgetExporterData extends State<JsonWidgetExporter> {
             },
       );
     } catch (e, stack) {
-      result = encode(
-        {
-          'type': 'error',
-          'args': {
-            'exception': '''
+      result = encode({
+        'type': 'error',
+        'args': {
+          'exception': '''
 An error occurred when trying to encode the widgets into JSON.
 $e
 $stack
-'''
-          }
+''',
         },
-      );
+      });
     }
 
     return result;

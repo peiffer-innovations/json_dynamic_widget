@@ -10,9 +10,7 @@ part 'json_radio_builder.g.dart';
 /// no two widgets can share the same overall id.
 @jsonWidget
 abstract class _JsonRadioBuilder extends JsonWidgetBuilder {
-  const _JsonRadioBuilder({
-    required super.args,
-  });
+  const _JsonRadioBuilder({required super.args});
 
   @override
   _Radio buildCustom({
@@ -87,15 +85,13 @@ class _RadioState extends State<_Radio> {
     _subscriptions.add(
       widget.data.jsonWidgetRegistry.valueStream
           .where((event) => event.id == widget.id)
-          .listen(
-        (event) {
-          if (mounted == true) {
-            _globalKey.currentState!.didChange(
-              widget.data.jsonWidgetRegistry.getValue(widget.id),
-            );
-          }
-        },
-      ),
+          .listen((event) {
+            if (mounted == true) {
+              _globalKey.currentState!.didChange(
+                widget.data.jsonWidgetRegistry.getValue(widget.id),
+              );
+            }
+          }),
     );
   }
 
@@ -104,10 +100,7 @@ class _RadioState extends State<_Radio> {
     final id = widget.data.jsonWidgetArgs?['id']?.toString();
 
     if (id != null && id.isNotEmpty == true) {
-      widget.data.jsonWidgetRegistry.removeValue(
-        id,
-        originator: id,
-      );
+      widget.data.jsonWidgetRegistry.removeValue(id, originator: id);
     }
     for (var sub in _subscriptions) {
       sub.cancel();
@@ -125,62 +118,65 @@ class _RadioState extends State<_Radio> {
       initialValue: widget.groupValue,
       key: _globalKey,
       onSaved: widget.onSaved,
-      validator: widget.validator == null
-          ? null
-          : (value) {
-              final error = widget.validator!.validate(
-                label: widget.label ?? '',
-                value: value?.toString(),
-              );
-
-              if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                widget.data.jsonWidgetRegistry.setValue(
-                  '${widget.id}.error',
-                  error ?? '',
-                  originator: '${widget.id}.error',
+      validator:
+          widget.validator == null
+              ? null
+              : (value) {
+                final error = widget.validator!.validate(
+                  label: widget.label ?? '',
+                  value: value?.toString(),
                 );
-              }
 
-              return error;
-            },
-      builder: (FormFieldState state) => MergeSemantics(
-        child: Semantics(
-          label: widget.label ?? '',
-          child: Radio<dynamic>(
-            activeColor: widget.activeColor,
-            autofocus: widget.autofocus,
-            fillColor: widget.fillColor,
-            focusColor: widget.focusColor,
-            focusNode: widget.focusNode,
-            groupValue: state.value,
-            hoverColor: widget.hoverColor,
-            materialTapTargetSize: widget.materialTapTargetSize,
-            mouseCursor: widget.mouseCursor,
-            onChanged: widget.enabled != true
-                ? null
-                : (value) {
-                    if (widget.onChanged != null) {
-                      widget.onChanged!(value);
-                    }
+                if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                  widget.data.jsonWidgetRegistry.setValue(
+                    '${widget.id}.error',
+                    error ?? '',
+                    originator: '${widget.id}.error',
+                  );
+                }
 
-                    state.didChange(value);
+                return error;
+              },
+      builder:
+          (FormFieldState state) => MergeSemantics(
+            child: Semantics(
+              label: widget.label ?? '',
+              child: Radio<dynamic>(
+                activeColor: widget.activeColor,
+                autofocus: widget.autofocus,
+                fillColor: widget.fillColor,
+                focusColor: widget.focusColor,
+                focusNode: widget.focusNode,
+                groupValue: state.value,
+                hoverColor: widget.hoverColor,
+                materialTapTargetSize: widget.materialTapTargetSize,
+                mouseCursor: widget.mouseCursor,
+                onChanged:
+                    widget.enabled != true
+                        ? null
+                        : (value) {
+                          if (widget.onChanged != null) {
+                            widget.onChanged!(value);
+                          }
 
-                    if (widget.id?.isNotEmpty == true) {
-                      widget.data.jsonWidgetRegistry.setValue(
-                        widget.id!,
-                        value,
-                        originator: widget.id!,
-                      );
-                    }
-                  },
-            overlayColor: widget.overlayColor,
-            splashRadius: widget.splashRadius,
-            toggleable: widget.toggleable,
-            value: widget.value,
-            visualDensity: widget.visualDensity,
+                          state.didChange(value);
+
+                          if (widget.id?.isNotEmpty == true) {
+                            widget.data.jsonWidgetRegistry.setValue(
+                              widget.id!,
+                              value,
+                              originator: widget.id!,
+                            );
+                          }
+                        },
+                overlayColor: widget.overlayColor,
+                splashRadius: widget.splashRadius,
+                toggleable: widget.toggleable,
+                value: widget.value,
+                visualDensity: widget.visualDensity,
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 }

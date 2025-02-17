@@ -40,7 +40,9 @@ void main() {
     for (var i = 0; i < 5; i++) {
       expect(
         LengthFunction.body(
-            args: [list], registry: JsonWidgetRegistry.instance),
+          args: [list],
+          registry: JsonWidgetRegistry.instance,
+        ),
         i,
       );
       expect(
@@ -101,7 +103,9 @@ void main() {
 
     expect(
       LengthFunction.body(
-          args: ['abcdef'], registry: JsonWidgetRegistry.instance),
+        args: ['abcdef'],
+        registry: JsonWidgetRegistry.instance,
+      ),
       6,
     );
   });
@@ -109,7 +113,9 @@ void main() {
   test('length: other', () {
     try {
       LengthFunction.body(
-          args: [Object()], registry: JsonWidgetRegistry.instance);
+        args: [Object()],
+        registry: JsonWidgetRegistry.instance,
+      );
 
       fail('Expected exception');
     } catch (e) {

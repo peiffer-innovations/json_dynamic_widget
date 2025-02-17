@@ -6,9 +6,7 @@ part 'json_animated_container_builder.g.dart';
 /// See the [fromDynamic] for the format.
 @jsonWidget
 abstract class _JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
-  const _JsonAnimatedContainerBuilder({
-    required super.args,
-  });
+  const _JsonAnimatedContainerBuilder({required super.args});
   @JsonArgSchema('decoration')
   static Map<String, dynamic> _decorationSchema() => BoxDecorationSchema.schema;
 
@@ -26,17 +24,11 @@ abstract class _JsonAnimatedContainerBuilder extends JsonWidgetBuilder {
 
   @JsonArgDecoder('decoration')
   Decoration? _decodeDecoration({required dynamic value}) =>
-      ThemeDecoder.decodeBoxDecoration(
-        value,
-        validate: false,
-      );
+      ThemeDecoder.decodeBoxDecoration(value, validate: false);
 
   @JsonArgDecoder('foregroundDecoration')
   Decoration? _decodeForegroundDecoration({required dynamic value}) =>
-      ThemeDecoder.decodeBoxDecoration(
-        value,
-        validate: false,
-      );
+      ThemeDecoder.decodeBoxDecoration(value, validate: false);
 
   @override
   AnimatedContainer buildCustom({

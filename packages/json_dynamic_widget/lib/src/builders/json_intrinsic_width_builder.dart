@@ -5,9 +5,7 @@ part 'json_intrinsic_width_builder.g.dart';
 /// Builder that can build an [IntrinsicWidth] widget.
 @jsonWidget
 abstract class _JsonIntrinsicWidthBuilder extends JsonWidgetBuilder {
-  const _JsonIntrinsicWidthBuilder({
-    required super.args,
-  });
+  const _JsonIntrinsicWidthBuilder({required super.args});
 
   @override
   IntrinsicWidth buildCustom({

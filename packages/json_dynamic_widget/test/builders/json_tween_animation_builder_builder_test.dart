@@ -8,13 +8,12 @@ void main() {
     expect(type, 'tween_animation_builder');
 
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'builder': (context, val, child) => const SizedBox(),
-          'duration': 1000,
-          'tween': Tween(begin: 0, end: 0),
-        },
-      ) is JsonTweenAnimationBuilderBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
+            'builder': (context, val, child) => const SizedBox(),
+            'duration': 1000,
+            'tween': Tween(begin: 0, end: 0),
+          })
+          is JsonTweenAnimationBuilderBuilder,
       true,
     );
   });

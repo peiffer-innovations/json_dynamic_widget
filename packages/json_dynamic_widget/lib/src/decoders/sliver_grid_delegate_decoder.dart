@@ -51,12 +51,14 @@ $message
                 JsonClass.maybeParseDouble(delegate['childAspectRatio']) ?? 1.0,
             crossAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['crossAxisSpacing']) ?? 0.0,
-            mainAxisExtent:
-                JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
+            mainAxisExtent: JsonClass.maybeParseDouble(
+              delegate['mainAxisExtent'],
+            ),
             mainAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['mainAxisSpacing']) ?? 0.0,
-            maxCrossAxisExtent:
-                JsonClass.parseDouble(delegate['maxCrossAxisExtent']),
+            maxCrossAxisExtent: JsonClass.parseDouble(
+              delegate['maxCrossAxisExtent'],
+            ),
           );
           break;
 
@@ -67,8 +69,9 @@ $message
                 JsonClass.maybeParseDouble(delegate['childAspectRatio']) ?? 1.0,
             crossAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['crossAxisSpacing']) ?? 0.0,
-            mainAxisExtent:
-                JsonClass.maybeParseDouble(delegate['mainAxisExtent']),
+            mainAxisExtent: JsonClass.maybeParseDouble(
+              delegate['mainAxisExtent'],
+            ),
             mainAxisSpacing:
                 JsonClass.maybeParseDouble(delegate['mainAxisSpacing']) ?? 0.0,
           );

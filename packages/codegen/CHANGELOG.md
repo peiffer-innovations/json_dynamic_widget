@@ -1,3 +1,9 @@
+## [2.1.0] - February 17th, 2025
+
+* Support for analyzer 7.0.0
+* Fix for [Issue #357](https://github.com/peiffer-innovations/json_dynamic_widget/issues/357)
+
+
 ## [2.0.0+2] - January 14, 2025
 
 * Automated dependency updates

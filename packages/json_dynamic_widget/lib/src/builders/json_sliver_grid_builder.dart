@@ -5,9 +5,7 @@ part 'json_sliver_grid_builder.g.dart';
 /// Builder that can build an [SliverGrid] widget.
 @jsonWidget
 abstract class _JsonSliverGridBuilder extends JsonWidgetBuilder {
-  const _JsonSliverGridBuilder({
-    required super.args,
-  });
+  const _JsonSliverGridBuilder({required super.args});
 
   @override
   _SliverGrid buildCustom({

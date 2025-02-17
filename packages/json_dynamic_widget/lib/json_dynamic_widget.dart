@@ -1,3 +1,5 @@
+export 'dart:ui' show SemanticsRole;
+
 export 'package:child_builder/child_builder.dart';
 export 'package:dynamic_widget_annotation/dynamic_widget_annotation.dart';
 export 'package:flutter/material.dart';

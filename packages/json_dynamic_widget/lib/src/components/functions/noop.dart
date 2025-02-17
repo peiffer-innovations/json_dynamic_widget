@@ -12,6 +12,5 @@ class NoopFunction {
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
-  }) =>
-      () {};
+  }) => () {};
 }

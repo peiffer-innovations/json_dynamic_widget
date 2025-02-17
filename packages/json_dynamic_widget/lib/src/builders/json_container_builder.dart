@@ -5,9 +5,7 @@ part 'json_container_builder.g.dart';
 /// Builder that can build an [Container] widget.
 @jsonWidget
 abstract class _JsonContainerBuilder extends JsonWidgetBuilder {
-  const _JsonContainerBuilder({
-    required super.args,
-  });
+  const _JsonContainerBuilder({required super.args});
 
   @JsonArgSchema('decoration')
   static Map<String, dynamic> _decorationSchema() => BoxDecorationSchema.schema;
@@ -26,17 +24,11 @@ abstract class _JsonContainerBuilder extends JsonWidgetBuilder {
 
   @JsonArgDecoder('decoration')
   Decoration? _decodeDecoration({required dynamic value}) =>
-      ThemeDecoder.decodeBoxDecoration(
-        value,
-        validate: false,
-      );
+      ThemeDecoder.decodeBoxDecoration(value, validate: false);
 
   @JsonArgDecoder('foregroundDecoration')
   Decoration? _decodeForegroundDecoration({required dynamic value}) =>
-      ThemeDecoder.decodeBoxDecoration(
-        value,
-        validate: false,
-      );
+      ThemeDecoder.decodeBoxDecoration(value, validate: false);
 
   @override
   Container buildCustom({

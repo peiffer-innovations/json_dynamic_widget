@@ -6,9 +6,7 @@ part 'json_animated_positioned_directional_builder.g.dart';
 @jsonWidget
 abstract class _JsonAnimatedPositionedDirectionalBuilder
     extends JsonWidgetBuilder {
-  const _JsonAnimatedPositionedDirectionalBuilder({
-    required super.args,
-  });
+  const _JsonAnimatedPositionedDirectionalBuilder({required super.args});
 
   @override
   AnimatedPositionedDirectional buildCustom({

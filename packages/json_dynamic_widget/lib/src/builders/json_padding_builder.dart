@@ -5,9 +5,7 @@ part 'json_padding_builder.g.dart';
 /// Builder that can build an [Padding] widget.
 @jsonWidget
 abstract class _JsonPaddingBuilder extends JsonWidgetBuilder {
-  const _JsonPaddingBuilder({
-    required super.args,
-  });
+  const _JsonPaddingBuilder({required super.args});
 
   @override
   Padding buildCustom({

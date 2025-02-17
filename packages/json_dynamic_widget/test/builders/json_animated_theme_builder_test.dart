@@ -7,11 +7,8 @@ void main() {
 
     expect(type, 'animated_theme');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'data': {},
-        },
-      ) is JsonAnimatedThemeBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({'data': {}})
+          is JsonAnimatedThemeBuilder,
       true,
     );
   });

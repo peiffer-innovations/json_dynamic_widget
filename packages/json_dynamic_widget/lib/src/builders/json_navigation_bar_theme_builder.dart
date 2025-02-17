@@ -5,9 +5,7 @@ part 'json_navigation_bar_theme_builder.g.dart';
 /// Builder that can build an [NavigationBarTheme] widget.
 @jsonWidget
 abstract class _JsonNavigationBarThemeBuilder extends JsonWidgetBuilder {
-  const _JsonNavigationBarThemeBuilder({
-    required super.args,
-  });
+  const _JsonNavigationBarThemeBuilder({required super.args});
 
   @override
   NavigationBarTheme buildCustom({

@@ -8,8 +8,9 @@ void main() {
     expect(type, 'conditional');
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'conditional': {'values': {}}
-      }) is JsonConditionalBuilder,
+            'conditional': {'values': {}},
+          })
+          is JsonConditionalBuilder,
       true,
     );
   });

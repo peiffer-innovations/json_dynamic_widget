@@ -5,14 +5,13 @@ part 'json_checkbox_builder.g.dart';
 
 @jsonWidget
 abstract class _JsonCheckboxBuilder extends JsonWidgetBuilder {
-  const _JsonCheckboxBuilder({
-    required super.args,
-  });
+  const _JsonCheckboxBuilder({required super.args});
 
   @JsonArgDecoder('validator')
-  Validator? _decodeValidator({dynamic value}) => value is Map
-      ? Validator.fromDynamic({'validators': value['validators']})
-      : null;
+  Validator? _decodeValidator({dynamic value}) =>
+      value is Map
+          ? Validator.fromDynamic({'validators': value['validators']})
+          : null;
 
   @override
   _Checkbox buildCustom({
@@ -107,61 +106,64 @@ class _CheckboxState extends State<_Checkbox> {
       enabled: widget.enabled,
       initialValue: initialValue,
       onSaved: widget.onSaved,
-      validator: widget.validator == null
-          ? null
-          : (value) {
-              final error = widget.validator!.validate(
-                label: widget.label ?? '',
-                value: value?.toString(),
-              );
+      validator:
+          widget.validator == null
+              ? null
+              : (value) {
+                final error = widget.validator!.validate(
+                  label: widget.label ?? '',
+                  value: value?.toString(),
+                );
 
-              widget.data.jsonWidgetRegistry.setValue(
-                '${widget.data.jsonWidgetId}.error',
-                error ?? '',
-                originator: widget.data.jsonWidgetId,
-              );
+                widget.data.jsonWidgetRegistry.setValue(
+                  '${widget.data.jsonWidgetId}.error',
+                  error ?? '',
+                  originator: widget.data.jsonWidgetId,
+                );
 
-              return error;
-            },
-      builder: (FormFieldState state) => MergeSemantics(
-        child: Semantics(
-          label: widget.label ?? '',
-          child: Checkbox(
-            activeColor: widget.activeColor,
-            autofocus: widget.autofocus,
-            checkColor: widget.checkColor,
-            fillColor: widget.fillColor,
-            focusColor: widget.focusColor,
-            focusNode: widget.focusNode,
-            hoverColor: widget.hoverColor,
-            isError: widget.isError,
-            materialTapTargetSize: widget.materialTapTargetSize,
-            mouseCursor: widget.mouseCursor,
-            onChanged: widget.enabled != true
-                ? null
-                : (value) {
-                    if (widget.onChanged != null) {
-                      widget.onChanged!(value);
-                    }
+                return error;
+              },
+      builder:
+          (FormFieldState state) => MergeSemantics(
+            child: Semantics(
+              label: widget.label ?? '',
+              child: Checkbox(
+                activeColor: widget.activeColor,
+                autofocus: widget.autofocus,
+                checkColor: widget.checkColor,
+                fillColor: widget.fillColor,
+                focusColor: widget.focusColor,
+                focusNode: widget.focusNode,
+                hoverColor: widget.hoverColor,
+                isError: widget.isError,
+                materialTapTargetSize: widget.materialTapTargetSize,
+                mouseCursor: widget.mouseCursor,
+                onChanged:
+                    widget.enabled != true
+                        ? null
+                        : (value) {
+                          if (widget.onChanged != null) {
+                            widget.onChanged!(value);
+                          }
 
-                    state.didChange(value);
+                          state.didChange(value);
 
-                    widget.data.jsonWidgetRegistry.setValue(
-                      widget.data.jsonWidgetId,
-                      value,
-                      originator: widget.data.jsonWidgetId,
-                    );
-                  },
-            overlayColor: widget.overlayColor,
-            shape: widget.shape,
-            side: widget.side,
-            splashRadius: widget.splashRadius,
-            tristate: widget.tristate,
-            value: state.value,
-            visualDensity: widget.visualDensity,
+                          widget.data.jsonWidgetRegistry.setValue(
+                            widget.data.jsonWidgetId,
+                            value,
+                            originator: widget.data.jsonWidgetId,
+                          );
+                        },
+                overlayColor: widget.overlayColor,
+                shape: widget.shape,
+                side: widget.side,
+                splashRadius: widget.splashRadius,
+                tristate: widget.tristate,
+                value: state.value,
+                visualDensity: widget.visualDensity,
+              ),
+            ),
           ),
-        ),
-      ),
     );
   }
 }

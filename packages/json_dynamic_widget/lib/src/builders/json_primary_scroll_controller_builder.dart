@@ -5,9 +5,7 @@ part 'json_primary_scroll_controller_builder.g.dart';
 /// Builder that can build an [PrimaryScrollController] widget.
 @jsonWidget
 abstract class _JsonPrimaryScrollControllerBuilder extends JsonWidgetBuilder {
-  const _JsonPrimaryScrollControllerBuilder({
-    required super.args,
-  });
+  const _JsonPrimaryScrollControllerBuilder({required super.args});
 
   @JsonArgDecoder('automaticallyInheritForPlatforms')
   Set<TargetPlatform> _decodeAutomaticallyInheritForPlatforms({
@@ -38,7 +36,7 @@ class _PrimaryScrollController extends StatefulWidget {
     required this.scrollDirection,
   });
 
-/* COPIED FROM [PrimaryScrollController.automaticallyInheritForPlatforms]*/
+  /* COPIED FROM [PrimaryScrollController.automaticallyInheritForPlatforms]*/
   /// The [TargetPlatform]s this controller is configured for [ScrollView]s to
   /// automatically inherit.
   ///
@@ -52,7 +50,7 @@ class _PrimaryScrollController extends StatefulWidget {
   final JsonWidgetData child;
   final ChildWidgetBuilder? childBuilder;
 
-/* COPIED FROM [PrimaryScrollController.controller]*/
+  /* COPIED FROM [PrimaryScrollController.controller]*/
   /// The [ScrollController] associated with the subtree.
   ///
   /// See also:
@@ -61,7 +59,7 @@ class _PrimaryScrollController extends StatefulWidget {
   ///    scroll controller.
   final ScrollController? controller;
 
-/* COPIED FROM [PrimaryScrollController.scrollDirection]*/
+  /* COPIED FROM [PrimaryScrollController.scrollDirection]*/
   /// The [Axis] this controller is configured for [ScrollView]s to
   /// automatically inherit.
   ///

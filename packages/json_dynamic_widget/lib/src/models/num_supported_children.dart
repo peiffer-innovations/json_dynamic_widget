@@ -1,5 +1,1 @@
-enum NumSupportedChildren {
-  many,
-  one,
-  zero;
-}
+enum NumSupportedChildren { many, one, zero }

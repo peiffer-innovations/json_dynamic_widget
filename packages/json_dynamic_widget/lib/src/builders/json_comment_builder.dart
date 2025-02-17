@@ -6,9 +6,7 @@ part 'json_comment_builder.g.dart';
 /// tree for human readability.
 @jsonWidget
 abstract class _JsonCommentBuilder extends JsonWidgetBuilder {
-  const _JsonCommentBuilder({
-    required super.args,
-  });
+  const _JsonCommentBuilder({required super.args});
 
   @override
   _Comment buildCustom({
@@ -20,12 +18,7 @@ abstract class _JsonCommentBuilder extends JsonWidgetBuilder {
 }
 
 class _Comment extends StatelessWidget {
-  const _Comment({
-    this.child,
-    this.comment,
-    this.comments,
-    super.key,
-  });
+  const _Comment({this.child, this.comment, this.comments, super.key});
 
   final Widget? child;
 

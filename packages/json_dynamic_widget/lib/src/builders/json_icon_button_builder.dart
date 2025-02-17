@@ -5,9 +5,7 @@ part 'json_icon_button_builder.g.dart';
 /// Builder that can build an [IconButton] widget.
 @jsonWidget
 abstract class _JsonIconButtonBuilder extends JsonWidgetBuilder {
-  const _JsonIconButtonBuilder({
-    required super.args,
-  });
+  const _JsonIconButtonBuilder({required super.args});
 
   @override
   IconButton buildCustom({

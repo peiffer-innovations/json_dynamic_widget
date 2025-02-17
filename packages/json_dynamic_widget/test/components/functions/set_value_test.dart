@@ -9,11 +9,15 @@ void main() {
     expect(registry.getValue(key), null);
 
     registry.getFunction('set_value')!(
-        args: [key, 'value'], registry: registry)();
+      args: [key, 'value'],
+      registry: registry,
+    )();
     expect(registry.getValue(key), 'value');
 
     registry.getFunction('set_value')!(
-        args: [key, 'value2'], registry: registry)();
+      args: [key, 'value2'],
+      registry: registry,
+    )();
     expect(registry.getValue(key), 'value2');
   });
 }

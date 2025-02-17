@@ -8,9 +8,7 @@ void main() {
     expect(type, 'wrap');
 
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {},
-      ) is JsonWrapBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({}) is JsonWrapBuilder,
       true,
     );
   });

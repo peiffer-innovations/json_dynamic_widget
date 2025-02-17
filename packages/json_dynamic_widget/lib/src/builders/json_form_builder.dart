@@ -5,9 +5,7 @@ part 'json_form_builder.g.dart';
 /// Builder that can build an [Form] widget.
 @jsonWidget
 abstract class _JsonFormBuilder extends JsonWidgetBuilder {
-  const _JsonFormBuilder({
-    required super.args,
-  });
+  const _JsonFormBuilder({required super.args});
 
   /// If the `id` on the [data] object is non-empty, this will ensure a
   /// [GlobalKey<FormState>] is placed on the [JsonWidgetRegistry] using the
@@ -71,10 +69,10 @@ class _FormState extends State<_Form> {
 
   @override
   Widget build(BuildContext context) => Form(
-        autovalidateMode: widget.autovalidateMode,
-        canPop: widget.canPop,
-        key: _key,
-        onChanged: widget.onChanged,
-        child: widget.child ?? const SizedBox(),
-      );
+    autovalidateMode: widget.autovalidateMode,
+    canPop: widget.canPop,
+    key: _key,
+    onChanged: widget.onChanged,
+    child: widget.child ?? const SizedBox(),
+  );
 }

@@ -7,15 +7,14 @@ void main() {
 
     expect(type, 'animated_physical_model');
     expect(
-      JsonWidgetRegistry.instance.getWidgetBuilder(type)(
-        {
-          'color': '#FFF',
-          'duration': 1000,
-          'elevation': 0,
-          'shadowColor': '#000',
-          'shape': 'rectangle',
-        },
-      ) is JsonAnimatedPhysicalModelBuilder,
+      JsonWidgetRegistry.instance.getWidgetBuilder(type)({
+            'color': '#FFF',
+            'duration': 1000,
+            'elevation': 0,
+            'shadowColor': '#000',
+            'shape': 'rectangle',
+          })
+          is JsonAnimatedPhysicalModelBuilder,
       true,
     );
   });

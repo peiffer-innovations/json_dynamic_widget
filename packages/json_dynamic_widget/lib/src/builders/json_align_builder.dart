@@ -5,9 +5,7 @@ part 'json_align_builder.g.dart';
 /// Builder that can build an [Align] widget.
 @jsonWidget
 abstract class _JsonAlignBuilder extends JsonWidgetBuilder {
-  const _JsonAlignBuilder({
-    required super.args,
-  });
+  const _JsonAlignBuilder({required super.args});
 
   @override
   Align buildCustom({

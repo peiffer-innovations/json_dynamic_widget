@@ -7,9 +7,7 @@ part 'json_list_view_builder.g.dart';
 /// Builder that can build an [ListView] widget.
 @jsonWidget
 abstract class _JsonListViewBuilder extends JsonWidgetBuilder {
-  const _JsonListViewBuilder({
-    required super.args,
-  });
+  const _JsonListViewBuilder({required super.args});
 
   @override
   _ListView buildCustom({
@@ -81,7 +79,8 @@ class _ListView extends StatelessWidget {
       clipBehavior: model.clipBehavior,
       controller: model.controller,
       dragStartBehavior: model.dragStartBehavior,
-      findChildIndexCallback: findChildIndexCallback ??
+      findChildIndexCallback:
+          findChildIndexCallback ??
           (key) {
             int? result;
 

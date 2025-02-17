@@ -8,10 +8,9 @@ void main() {
     expect(type, 'decorated_box');
     expect(
       JsonWidgetRegistry.instance.getWidgetBuilder(type)({
-        'decoration': {
-          'shape': 'circle',
-        },
-      }) is JsonDecoratedBoxBuilder,
+            'decoration': {'shape': 'circle'},
+          })
+          is JsonDecoratedBoxBuilder,
       true,
     );
   });

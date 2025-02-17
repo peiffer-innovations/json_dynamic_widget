@@ -5,9 +5,7 @@ part 'json_sliver_padding_builder.g.dart';
 /// Builder that can build an [SliverPadding] widget.
 @jsonWidget
 abstract class _JsonSliverPaddingBuilder extends JsonWidgetBuilder {
-  const _JsonSliverPaddingBuilder({
-    required super.args,
-  });
+  const _JsonSliverPaddingBuilder({required super.args});
 
   @JsonArgAlias(alias: 'child', name: 'sliver')
   @override

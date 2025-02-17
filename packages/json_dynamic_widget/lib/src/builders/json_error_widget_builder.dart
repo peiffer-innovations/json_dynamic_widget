@@ -5,9 +5,7 @@ part 'json_error_widget_builder.g.dart';
 /// Builder that can build an [ErrorWidget] widget.
 @jsonWidget
 abstract class _JsonErrorWidgetBuilder extends JsonWidgetBuilder {
-  const _JsonErrorWidgetBuilder({
-    required super.args,
-  });
+  const _JsonErrorWidgetBuilder({required super.args});
 
   @JsonPositionedParam('exception')
   @override

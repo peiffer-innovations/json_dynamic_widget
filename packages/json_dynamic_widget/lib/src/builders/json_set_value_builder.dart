@@ -7,9 +7,7 @@ part 'json_set_value_builder.g.dart';
 /// built widget.
 @jsonWidget
 abstract class _JsonSetValueBuilder extends JsonWidgetBuilder {
-  const _JsonSetValueBuilder({
-    required super.args,
-  });
+  const _JsonSetValueBuilder({required super.args});
 
   @override
   _SetValue buildCustom({
@@ -49,29 +47,22 @@ class _SetValueState extends State<_SetValue> {
     super.initState();
 
     widget.values?.forEach(
-      (key, value) => widget.data.jsonWidgetRegistry.setValue(
-        key,
-        value,
-        originator: null,
-      ),
+      (key, value) =>
+          widget.data.jsonWidgetRegistry.setValue(key, value, originator: null),
     );
   }
 
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
-    oldWidget.values
-        ?.forEach((key, _) => oldWidget.data.jsonWidgetRegistry.removeValue(
-              key,
-              originator: null,
-            ));
+    oldWidget.values?.forEach(
+      (key, _) =>
+          oldWidget.data.jsonWidgetRegistry.removeValue(key, originator: null),
+    );
 
     widget.values?.forEach(
-      (key, value) => widget.data.jsonWidgetRegistry.setValue(
-        key,
-        value,
-        originator: null,
-      ),
+      (key, value) =>
+          widget.data.jsonWidgetRegistry.setValue(key, value, originator: null),
     );
   }
 
@@ -79,10 +70,8 @@ class _SetValueState extends State<_SetValue> {
   void dispose() {
     if (widget.cleanup) {
       widget.values?.forEach(
-        (key, _) => widget.data.jsonWidgetRegistry.removeValue(
-          key,
-          originator: null,
-        ),
+        (key, _) =>
+            widget.data.jsonWidgetRegistry.removeValue(key, originator: null),
       );
     }
 

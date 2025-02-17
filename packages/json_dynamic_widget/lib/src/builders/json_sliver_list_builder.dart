@@ -5,9 +5,7 @@ part 'json_sliver_list_builder.g.dart';
 /// Builder that can build an [SliverList] widget.
 @jsonWidget
 abstract class _JsonSliverListBuilder extends JsonWidgetBuilder {
-  const _JsonSliverListBuilder({
-    required super.args,
-  });
+  const _JsonSliverListBuilder({required super.args});
 
   @override
   _SliverList buildCustom({

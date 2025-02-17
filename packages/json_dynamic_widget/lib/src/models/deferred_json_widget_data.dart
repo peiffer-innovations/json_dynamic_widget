@@ -8,8 +8,8 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   DeferredJsonWidgetData({
     required String key,
     required JsonWidgetRegistry registry,
-  })  : _key = key,
-        _registry = registry;
+  }) : _key = key,
+       _registry = registry;
 
   final String _key;
   final JsonWidgetRegistry _registry;
@@ -56,15 +56,14 @@ class DeferredJsonWidgetData implements JsonWidgetData {
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     JsonWidgetRegistry? registry,
-  }) =>
-      data.build(
-        childBuilder: childBuilder,
-        context: context,
-        // Always ignore the passed in registry.  This is deferred explicitly
-        // because an ancestor widget or function wanted to pass down a custom
-        // registry to the children.
-        registry: jsonWidgetRegistry,
-      );
+  }) => data.build(
+    childBuilder: childBuilder,
+    context: context,
+    // Always ignore the passed in registry.  This is deferred explicitly
+    // because an ancestor widget or function wanted to pass down a custom
+    // registry to the children.
+    registry: jsonWidgetRegistry,
+  );
 
   @override
   JsonWidgetData copyWith({
@@ -74,17 +73,17 @@ class DeferredJsonWidgetData implements JsonWidgetData {
     String? jsonWidgetId,
     JsonWidgetRegistry? jsonWidgetRegistry,
     String? jsonWidgetType,
-  }) =>
-      JsonWidgetData(
-        jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
-        jsonWidgetBuilder: jsonWidgetBuilder as JsonWidgetBuilder Function()? ??
-            this.jsonWidgetBuilder,
-        jsonWidgetListenVariables:
-            jsonWidgetListenVariables ?? this.jsonWidgetListenVariables,
-        jsonWidgetId: jsonWidgetId ?? this.jsonWidgetId,
-        jsonWidgetRegistry: jsonWidgetRegistry ?? this.jsonWidgetRegistry,
-        jsonWidgetType: jsonWidgetType ?? this.jsonWidgetType,
-      );
+  }) => JsonWidgetData(
+    jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
+    jsonWidgetBuilder:
+        jsonWidgetBuilder as JsonWidgetBuilder Function()? ??
+        this.jsonWidgetBuilder,
+    jsonWidgetListenVariables:
+        jsonWidgetListenVariables ?? this.jsonWidgetListenVariables,
+    jsonWidgetId: jsonWidgetId ?? this.jsonWidgetId,
+    jsonWidgetRegistry: jsonWidgetRegistry ?? this.jsonWidgetRegistry,
+    jsonWidgetType: jsonWidgetType ?? this.jsonWidgetType,
+  );
 
   @override
   JsonWidgetRegistry get jsonWidgetRegistry => _registry;

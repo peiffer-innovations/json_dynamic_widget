@@ -5,24 +5,17 @@ part 'json_linear_progress_indicator_builder.g.dart';
 /// Builder that can build an [LinearProgressIndicator] widget.
 @jsonWidget
 abstract class _JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
-  const _JsonLinearProgressIndicatorBuilder({
-    required super.args,
-  });
+  const _JsonLinearProgressIndicatorBuilder({required super.args});
 
   @JsonArgDecoder('valueColor')
-  Animation<Color>? _decodeValueColor({
-    required dynamic value,
-  }) =>
+  Animation<Color>? _decodeValueColor({required dynamic value}) =>
       value == null
           ? null
           : value is Animation<Color>
-              ? value
-              : AlwaysStoppedAnimation(
-                  ThemeDecoder.decodeColor(
-                    value,
-                    validate: false,
-                  )!,
-                );
+          ? value
+          : AlwaysStoppedAnimation(
+            ThemeDecoder.decodeColor(value, validate: false)!,
+          );
 
   @override
   LinearProgressIndicator buildCustom({

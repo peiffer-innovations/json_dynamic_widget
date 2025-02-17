@@ -5,9 +5,7 @@ part 'json_semantics_builder.g.dart';
 /// Builder that can build an [Semantics] widget.
 @jsonWidget
 abstract class _JsonSemanticsBuilder extends JsonWidgetBuilder {
-  const _JsonSemanticsBuilder({
-    required super.args,
-  });
+  const _JsonSemanticsBuilder({required super.args});
 
   @JsonArgEncoder('sortKey')
   static Map<String, dynamic>? _encodeSortKey(SemanticsSortKey? value) =>
@@ -22,10 +20,7 @@ abstract class _JsonSemanticsBuilder extends JsonWidgetBuilder {
 
   @JsonArgDecoder('sortKey')
   OrdinalSortKey? _decodeSortKey({required dynamic value}) =>
-      ThemeDecoder.decodeOrdinalSortKey(
-        value,
-        validate: false,
-      );
+      ThemeDecoder.decodeOrdinalSortKey(value, validate: false);
 
   @JsonDefaultParam('sortKey', 'null')
   @override
