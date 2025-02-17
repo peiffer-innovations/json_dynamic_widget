@@ -1,4 +1,4 @@
-## [8.0.0] - February 17th, 2025
+## [9.0.0+1] - February 17th, 2025
 
 * Flutter 3.29
 * Support for Analyzer `>=6<8`
