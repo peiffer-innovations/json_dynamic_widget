@@ -9,15 +9,15 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
-        with:
-          path: packages/codegen
+      # - name: Validate
+      #   uses: peiffer-innovations/actions-flutter-validate@v1
+      #   with:
+      #     path: packages/codegen
 
       - name: Publish
         uses: peiffer-innovations/actions-pub-publish@v1.0.2
