@@ -1,2 +1,0 @@
-/Users/jpeiffer/git/peiffer-innovations/json_dynamic_widget/packages/json_dynamic_widget/example/android/app/.cxx/Debug/74lv24u5/x86/CMakeFiles/edit_cache.dir
-/Users/jpeiffer/git/peiffer-innovations/json_dynamic_widget/packages/json_dynamic_widget/example/android/app/.cxx/Debug/74lv24u5/x86/CMakeFiles/rebuild_cache.dir
