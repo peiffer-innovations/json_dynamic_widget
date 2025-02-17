@@ -5,9 +5,7 @@ part 'svg_builder.g.dart';
 
 @jsonWidget
 abstract class _SvgBuilder extends JsonWidgetBuilder {
-  const _SvgBuilder({
-    required super.args,
-  });
+  const _SvgBuilder({required super.args});
 
   @override
   _Svg buildCustom({
@@ -19,14 +17,9 @@ abstract class _SvgBuilder extends JsonWidgetBuilder {
 }
 
 class _Svg extends StatelessWidget {
-  const _Svg({
-    this.asset,
-    this.color,
-    this.height,
-    this.url,
-    this.width,
-  })  : assert(asset == null || url == null),
-        assert(asset != null || url != null);
+  const _Svg({this.asset, this.color, this.height, this.url, this.width})
+    : assert(asset == null || url == null),
+      assert(asset != null || url != null);
 
   final String? asset;
   final Color? color;
@@ -37,15 +30,7 @@ class _Svg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return asset != null
-        ? SvgPicture.asset(
-            asset!,
-            height: height,
-            width: width,
-          )
-        : SvgPicture.network(
-            url!,
-            height: height,
-            width: width,
-          );
+        ? SvgPicture.asset(asset!, height: height, width: width)
+        : SvgPicture.network(url!, height: height, width: width);
   }
 }

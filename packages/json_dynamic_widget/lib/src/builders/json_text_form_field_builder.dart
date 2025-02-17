@@ -92,7 +92,6 @@ class _TextFormField extends StatefulWidget {
     this.onTapOutside,
     this.readOnly = false,
     this.restorationId,
-    this.scribbleEnabled = true,
     this.scrollController,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.scrollPhysics,
@@ -105,6 +104,7 @@ class _TextFormField extends StatefulWidget {
     this.spellCheckConfiguration,
     this.strutStyle,
     this.style,
+    this.stylusHandwritingEnabled = true,
     this.textAlign = TextAlign.start,
     this.textAlignVertical,
     this.textCapitalization = TextCapitalization.none,
@@ -159,7 +159,6 @@ class _TextFormField extends StatefulWidget {
   final TapRegionCallback? onTapOutside;
   final bool readOnly;
   final String? restorationId;
-  final bool scribbleEnabled;
   final ScrollController? scrollController;
   final EdgeInsets scrollPadding;
   final ScrollPhysics? scrollPhysics;
@@ -172,6 +171,7 @@ class _TextFormField extends StatefulWidget {
   final SpellCheckConfiguration? spellCheckConfiguration;
   final StrutStyle? strutStyle;
   final TextStyle? style;
+  final bool stylusHandwritingEnabled;
   final TextAlign textAlign;
   final TextAlignVertical? textAlignVertical;
   final TextCapitalization textCapitalization;
@@ -292,7 +292,6 @@ class _TextFormFieldState extends State<_TextFormField> {
     onTapOutside: widget.onTapOutside,
     readOnly: widget.readOnly,
     restorationId: widget.restorationId,
-    scribbleEnabled: widget.scribbleEnabled,
     scrollController: widget.scrollController,
     scrollPadding: widget.scrollPadding,
     scrollPhysics: widget.scrollPhysics,
@@ -305,6 +304,7 @@ class _TextFormFieldState extends State<_TextFormField> {
     spellCheckConfiguration: widget.spellCheckConfiguration,
     strutStyle: widget.strutStyle,
     style: widget.style,
+    stylusHandwritingEnabled: widget.stylusHandwritingEnabled,
     textAlign: widget.textAlign,
     textAlignVertical: widget.textAlignVertical,
     textCapitalization: widget.textCapitalization,
