@@ -34,7 +34,7 @@ jobs:
         working-directory: packages/json_dynamic_widget/example
 
       - name: Validate
-        uses: peiffer-innovations/actions-flutter-validate@v1
+        uses: peiffer-innovations/actions-flutter-validate@v2
         with:
           path: packages/json_dynamic_widget
 
