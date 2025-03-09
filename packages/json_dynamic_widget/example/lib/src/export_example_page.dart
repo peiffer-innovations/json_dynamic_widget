@@ -1,9 +1,7 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 class ExportExamplePage extends StatefulWidget {
-  const ExportExamplePage({
-    super.key,
-  });
+  const ExportExamplePage({super.key});
 
   @override
   State createState() => _ExportExamplePageState();
@@ -26,10 +24,7 @@ class _ExportExamplePageState extends State<ExportExamplePage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.copy,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.copy, color: Colors.white),
             onPressed: () {
               final data = _exportKey.currentState!.export(
                 indent: '  ',
@@ -37,41 +32,28 @@ class _ExportExamplePageState extends State<ExportExamplePage> {
               );
               Clipboard.setData(ClipboardData(text: data));
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Copied to clipboard'),
-                ),
+                const SnackBar(content: Text('Copied to clipboard')),
               );
             },
           ),
         ],
         backgroundColor: Colors.black,
-        title: const Text(
-          'Exporter',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
+        title: const Text('Exporter', style: TextStyle(color: Colors.white)),
       ),
       body: JsonWidgetExporter(
         key: _exportKey,
         child: JsonExportable(
           child: JsonScaffold(
-            appBar: JsonAppBar(
-              title: JsonText('Example'),
-            ),
+            appBar: JsonAppBar(title: JsonText('Example')),
             body: JsonListView(
               children: [
                 for (var i = 0; i < _count; i++)
                   JsonListTile(
                     subtitle: JsonText(
-                      args: {
-                        'text': r'${i + 1}',
-                      },
+                      args: {'text': r'${i + 1}'},
                       registry: JsonWidgetRegistry(
                         parent: registry,
-                        values: {
-                          'i': i,
-                        },
+                        values: {'i': i},
                       ),
                       '${i + 1}',
                     ),
@@ -80,9 +62,7 @@ class _ExportExamplePageState extends State<ExportExamplePage> {
               ],
             ),
             floatingActionButton: JsonFloatingActionButton(
-              args: {
-                'onPressed': r'${increment()}',
-              },
+              args: {'onPressed': r'${increment()}'},
               registry: registry,
               onPressed: () => setState(() => _count++),
               child: JsonIcon(Icons.add),

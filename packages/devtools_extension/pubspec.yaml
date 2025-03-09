@@ -35,7 +35,7 @@ dependencies:
   devtools_app_shared: ^0.3.0
   devtools_extensions: ^0.3.0
   devtools_shared: ^11.2.0
-  json_dynamic_widget: ^8.0.0
+  json_dynamic_widget: ^9.0.0
   flutter_highlight: ^0.7.0
   highlight: ^0.7.0
   flutter_code_editor: ^0.3.0

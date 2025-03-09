@@ -48,28 +48,29 @@ void launch() async {
   ExampleRegistrar.registerDefaults(registry: registry);
 
   registry.registerFunction('navigatePage', ({args, required registry}) async {
-    final jsonStr =
-        await rootBundle.loadString('assets/pages/${args![0]}.json');
+    final jsonStr = await rootBundle.loadString(
+      'assets/pages/${args![0]}.json',
+    );
     final jsonData = json.decode(jsonStr);
     await navigatorKey.currentState!.push(
       MaterialPageRoute(
-        builder: (BuildContext context) => FullWidgetPage(
-          data: JsonWidgetData.fromDynamic(
-            jsonData,
-            registry: registry,
-          ),
-        ),
+        builder:
+            (BuildContext context) => FullWidgetPage(
+              data: JsonWidgetData.fromDynamic(jsonData, registry: registry),
+            ),
       ),
     );
   });
   registry.registerFunctions({
-    'getImageAsset': ({args, required registry}) =>
-        'assets/images/image${args![0]}.jpg',
+    'getImageAsset':
+        ({args, required registry}) => 'assets/images/image${args![0]}.jpg',
     'getImageId': ({args, required registry}) => 'image${args![0]}',
-    'getImageNavigator': ({args, required registry}) => () async {
+    'getImageNavigator':
+        ({args, required registry}) => () async {
           registry.setValue('index', args![0]);
-          final dataStr =
-              await rootBundle.loadString('assets/pages/image_page.json');
+          final dataStr = await rootBundle.loadString(
+            'assets/pages/image_page.json',
+          );
           final imagePageJson = Map.unmodifiable(json.decode(dataStr));
           final imgRegistry = JsonWidgetRegistry(
             debugLabel: 'ImagePage',
@@ -81,32 +82,37 @@ void launch() async {
 
           await navigatorKey.currentState!.push(
             MaterialPageRoute(
-              builder: (BuildContext context) => FullWidgetPage(
-                data: JsonWidgetData.fromDynamic(
-                  imagePageJson,
-                  registry: imgRegistry,
-                ),
-              ),
+              builder:
+                  (BuildContext context) => FullWidgetPage(
+                    data: JsonWidgetData.fromDynamic(
+                      imagePageJson,
+                      registry: imgRegistry,
+                    ),
+                  ),
             ),
           );
         },
     'noop': ({args, required registry}) => () {},
-    'validateForm': ({args, required registry}) => () {
+    'validateForm':
+        ({args, required registry}) => () {
           final BuildContext context = registry.getValue(args![0]);
 
           final valid = Form.of(context).validate();
           registry.setValue('form_validation', valid);
         },
-    'updateCustomTextStyle': ({args, required registry}) => () {
+    'updateCustomTextStyle':
+        ({args, required registry}) => () {
           registry.setValue(
             'customTextStyle',
-            const TextStyle(
-              color: Colors.black,
-            ),
+            const TextStyle(color: Colors.black),
           );
         },
-    'getCustomTweenBuilder': ({args, required registry}) =>
-        (BuildContext context, dynamic size, Widget? child) {
+    'getCustomTweenBuilder':
+        ({args, required registry}) => (
+          BuildContext context,
+          dynamic size,
+          Widget? child,
+        ) {
           return IconButton(
             icon: child!,
             iconSize: size,
@@ -120,11 +126,13 @@ void launch() async {
     'getCustomTween': ({args, required registry}) {
       return Tween<double>(begin: 0, end: args![0]);
     },
-    'setWidgetByKey': ({args, required registry}) => () {
+    'setWidgetByKey':
+        ({args, required registry}) => () {
           final replace = registry.getValue(args![1]);
           registry.setValue(args[0], replace);
         },
-    'simplePrintMessage': ({args, required registry}) => () {
+    'simplePrintMessage':
+        ({args, required registry}) => () {
           var message = 'This is a simple print message';
           if (args?.isEmpty == false) {
             for (var arg in args!) {
@@ -134,7 +142,8 @@ void launch() async {
           // ignore: avoid_print
           print(message);
         },
-    'negateBool': ({args, required registry}) => () {
+    'negateBool':
+        ({args, required registry}) => () {
           final bool value = registry.getValue(args![0]);
           registry.setValue(args[0], !value);
         },
@@ -142,12 +151,7 @@ void launch() async {
       const choices = ['First', 'Second', 'Third'];
       return (BuildContext context) {
         return choices
-            .map(
-              (choice) => PopupMenuItem(
-                value: choice,
-                child: Text(choice),
-              ),
-            )
+            .map((choice) => PopupMenuItem(value: choice, child: Text(choice)))
             .toList();
       };
     },
@@ -174,9 +178,7 @@ void launch() async {
 }
 
 class RootPage extends StatefulWidget {
-  const RootPage({
-    super.key,
-  });
+  const RootPage({super.key});
 
   @override
   State createState() => _RootPageState();
@@ -184,7 +186,8 @@ class RootPage extends StatefulWidget {
 
 class _RootPageState extends State<RootPage> {
   late final _pages = {
-    'widget to json': (context, _) async => Navigator.of(context).push(
+    'widget to json':
+        (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => const ExportExamplePage(),
           ),
@@ -234,28 +237,30 @@ class _RootPageState extends State<RootPage> {
     'issue_11': _onJsonPageSelected,
     'issue_20_list': _onJsonPageSelected,
     'issue_20_single': _onJsonPageSelected,
-    'issue_24': (context, _) async => Navigator.of(context).push(
+    'issue_24':
+        (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => const Issue24Page(),
           ),
         ),
     'issue_30': _onJsonPageSelected,
     'issue_109': _onJsonPageSelected,
-    'issue_219': (context, _) async => Navigator.of(context).push(
+    'issue_219':
+        (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => const Issue219Page(),
           ),
         ),
-    'issue_220': (context, _) async => Navigator.of(context).push(
+    'issue_220':
+        (context, _) async => Navigator.of(context).push(
           MaterialPageRoute(
             builder: (BuildContext context) => const Issue220Page(),
           ),
         ),
     'issue_289': _onJsonPageSelected,
-    'issue_356': (context, _) async => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (BuildContext context) => Issue356Page(),
-          ),
+    'issue_356':
+        (context, _) async => Navigator.of(context).push(
+          MaterialPageRoute(builder: (BuildContext context) => Issue356Page()),
         ),
     'layout_builder': _onJsonPageSelected,
     'length': _onJsonPageSelected,
@@ -295,11 +300,10 @@ class _RootPageState extends State<RootPage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => _TimerPage(),
-              ),
-            ),
+            onPressed:
+                () => Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (context) => _TimerPage())),
             icon: const Icon(Icons.timer),
           ),
         ],
@@ -307,27 +311,23 @@ class _RootPageState extends State<RootPage> {
       ),
       body: ListView.builder(
         itemCount: _pages.length,
-        itemBuilder: (BuildContext context, int index) => ListTile(
-          onTap: () {
-            setState(() => _visited.add(names[index]));
-            _pages[names[index]]!(context, names[index]);
-          },
-          title: Text(names[index]),
-          trailing: _visited.contains(names[index])
-              ? const Icon(
-                  Icons.check_circle,
-                  color: Colors.green,
-                )
-              : null,
-        ),
+        itemBuilder:
+            (BuildContext context, int index) => ListTile(
+              onTap: () {
+                setState(() => _visited.add(names[index]));
+                _pages[names[index]]!(context, names[index]);
+              },
+              title: Text(names[index]),
+              trailing:
+                  _visited.contains(names[index])
+                      ? const Icon(Icons.check_circle, color: Colors.green)
+                      : null,
+            ),
       ),
     );
   }
 
-  Future<void> _onJsonPageSelected(
-    BuildContext context,
-    String pageId,
-  ) =>
+  Future<void> _onJsonPageSelected(BuildContext context, String pageId) =>
       _onPageSelected(context, pageId, '.json');
 
   Future<void> _onPageSelected(
@@ -356,18 +356,13 @@ class _RootPageState extends State<RootPage> {
     if (mounted) {
       await nav.push(
         MaterialPageRoute(
-          builder: (BuildContext context) => FullWidgetPage(
-            data: data,
-          ),
+          builder: (BuildContext context) => FullWidgetPage(data: data),
         ),
       );
     }
   }
 
-  Future<void> _onYamlPageSelected(
-    BuildContext context,
-    String pageId,
-  ) =>
+  Future<void> _onYamlPageSelected(BuildContext context, String pageId) =>
       _onPageSelected(context, pageId, '.yaml');
 
   Future<void> _onUntestablePageSelected(
@@ -384,17 +379,13 @@ class _RootPageState extends State<RootPage> {
     // so it needs to be removed before we create the widget.
     dataJson.remove('_designCredit');
 
-    final data = JsonWidgetData.fromDynamic(
-      dataJson,
-      registry: registry,
-    );
+    final data = JsonWidgetData.fromDynamic(dataJson, registry: registry);
 
     if (mounted) {
       await nav.push(
         MaterialPageRoute(
-          builder: (BuildContext context) => UntestableFullWidgetPage(
-            data: data,
-          ),
+          builder:
+              (BuildContext context) => UntestableFullWidgetPage(data: data),
         ),
       );
     }
@@ -421,9 +412,7 @@ class _TimerPageState extends State<_TimerPage> {
     const encoder = JsonEncoder.withIndent('  ');
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Timers'),
-      ),
+      appBar: AppBar(title: const Text('Timers')),
       body: SizedBox.expand(
         child: SingleChildScrollView(
           controller: _controller,

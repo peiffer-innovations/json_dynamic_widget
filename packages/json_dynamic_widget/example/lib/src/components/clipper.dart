@@ -8,10 +8,7 @@ class Clipper extends CustomClipper<Path> {
     final path = Path();
     path.lineTo(0.0, size.height);
     path.arcToPoint(
-      Offset(
-        size.width,
-        size.height,
-      ),
+      Offset(size.width, size.height),
       radius: const Radius.elliptical(30.0, 10.0),
     );
     path.lineTo(size.width, 0);
