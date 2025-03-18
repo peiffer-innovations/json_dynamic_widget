@@ -1,7 +1,7 @@
 name: "json_dynamic_widget_example"
 description: "Example app for the JsonDynamicWidget library"
 publish_to: "none"
-version: "1.0.0+88"
+version: "1.0.0+89"
 
 environment:
   sdk: "^3.7.0"
@@ -28,7 +28,7 @@ dev_dependencies:
   flutter_test:
     sdk: "flutter"
   icons_launcher: "^3.0.1"
-  json_dynamic_widget_codegen: "^2.1.0+2"
+  json_dynamic_widget_codegen: "^2.1.0+3"
   yaml_writer: "^2.1.0"
 
 icons_launcher:
