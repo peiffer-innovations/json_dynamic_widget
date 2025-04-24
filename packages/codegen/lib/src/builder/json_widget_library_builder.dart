@@ -989,6 +989,11 @@ void _buildConstructorParams({
           (param) {
             final name = aliases[p.name] ?? p.name;
             final decoder = paramDecoders[name];
+            var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
+            if (defaultValueCode == 'const <Widget>[]') {
+              defaultValueCode = 'const <JsonWidgetData>[]';
+            }
+
             bool hasAnyRequiredParameter(MethodElement? me) {
               if (me == null) return false;
               return me.parameters.any((pe) {
@@ -1000,20 +1005,13 @@ void _buildConstructorParams({
 
             param.name = p.name;
             param.named = true;
-            param.required =
-                !paramDefaults.containsKey(name) &&
-                (p.isRequired || hasAnyRequiredParameter(decoder));
-
-            var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
-            if (defaultValueCode == 'const <Widget>[]') {
-              defaultValueCode = 'const <JsonWidgetData>[]';
-            }
-
             param.defaultTo = defaultValueCode == null ||
                     (!paramDefaults.containsKey(name) &&
                         paramDecoders.containsKey(name))
                 ? null
                 : Code(defaultValueCode);
+            param.required = param.defaultTo == null &&
+                (p.isRequired || hasAnyRequiredParameter(decoder));
             param.toThis = true;
           },
         ),
