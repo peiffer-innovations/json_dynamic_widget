@@ -1,3 +1,7 @@
+## [2.1.1] - April 23, 2025
+
+* Fix support for non-required parameters in builders
+
 ## [2.1.0+3] - March 11, 2025
 
 * Automated dependency updates

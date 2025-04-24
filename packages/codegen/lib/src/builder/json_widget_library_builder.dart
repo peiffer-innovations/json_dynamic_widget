@@ -988,10 +988,21 @@ void _buildConstructorParams({
         Parameter(
           (param) {
             final name = aliases[p.name] ?? p.name;
+            final decoder = paramDecoders[name];
+            bool hasAnyRequiredParameter(MethodElement? me) {
+              if (me == null) return false;
+              return me.parameters.any((pe) {
+                return pe.isPositional ||
+                    pe.isRequiredPositional ||
+                    pe.isRequiredNamed;
+              });
+            }
+
             param.name = p.name;
             param.named = true;
-            param.required = !paramDefaults.containsKey(name) &&
-                (p.isRequired || paramDecoders.containsKey(name));
+            param.required =
+                !paramDefaults.containsKey(name) &&
+                (p.isRequired || hasAnyRequiredParameter(decoder));
 
             var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
             if (defaultValueCode == 'const <Widget>[]') {
