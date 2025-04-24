@@ -789,6 +789,7 @@ ${buf.toString()}
     final modelCode = model.accept(emitter).toString();
 
     final properties = StringBuffer();
+    final requiredProperties = StringBuffer();
     final schema = Class((c) {
       final id =
           '$schemaBaseUrl/$packageName/${ReCase(widgetName!).snakeCase}.json';
@@ -808,6 +809,9 @@ ${buf.toString()}
           continue;
         }
         final name = aliases[param.displayName] ?? param.displayName;
+        if (param.isRequired) {
+          requiredProperties.write("'$name',");
+        }
         if (param.displayName != 'key') {
           final type = _withoutNullability(param.type.getDisplayString());
 
@@ -846,6 +850,9 @@ ${buf.toString()}
   'properties': {
     ${properties.toString()}
   },
+  'required': [
+    ${requiredProperties.toString()}
+  ],
 }
 ''',
         );
