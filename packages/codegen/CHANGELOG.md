@@ -1,3 +1,8 @@
+## [2.2.0] - May 4th, 2025
+
+* Pegged [analyzer depenendency to be <7.4](https://pub.dev/packages/analyzer/changelog#740) because Dart is preparing a breaking change (via deprecation) but hasn't bothered to update the [source_gen](https://pub.dev/packages/source_gen) package to absorb said breaking change yet so it breaks with no good way to fix the break, or ignore the warnings; which is rarely a great idea either.
+
+
 ## [2.1.0+3] - March 11, 2025
 
 * Automated dependency updates
