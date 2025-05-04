@@ -789,6 +789,7 @@ ${buf.toString()}
     final modelCode = model.accept(emitter).toString();
 
     final properties = StringBuffer();
+    final requiredProperties = StringBuffer();
     final schema = Class((c) {
       final id =
           '$schemaBaseUrl/$packageName/${ReCase(widgetName!).snakeCase}.json';
@@ -808,6 +809,9 @@ ${buf.toString()}
           continue;
         }
         final name = aliases[param.displayName] ?? param.displayName;
+        if (param.isRequired) {
+          requiredProperties.write("'$name',");
+        }
         if (param.displayName != 'key') {
           final type = _withoutNullability(param.type.getDisplayString());
 
@@ -846,6 +850,9 @@ ${buf.toString()}
   'properties': {
     ${properties.toString()}
   },
+  'required': [
+    ${requiredProperties.toString()}
+  ],
 }
 ''',
         );
@@ -988,21 +995,30 @@ void _buildConstructorParams({
         Parameter(
           (param) {
             final name = aliases[p.name] ?? p.name;
-            param.name = p.name;
-            param.named = true;
-            param.required = !paramDefaults.containsKey(name) &&
-                (p.isRequired || paramDecoders.containsKey(name));
-
+            final decoder = paramDecoders[name];
             var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
             if (defaultValueCode == 'const <Widget>[]') {
               defaultValueCode = 'const <JsonWidgetData>[]';
             }
 
+            bool hasAnyRequiredParameter(MethodElement? me) {
+              if (me == null) return false;
+              return me.parameters.any((pe) {
+                return pe.isPositional ||
+                    pe.isRequiredPositional ||
+                    pe.isRequiredNamed;
+              });
+            }
+
+            param.name = p.name;
+            param.named = true;
             param.defaultTo = defaultValueCode == null ||
                     (!paramDefaults.containsKey(name) &&
                         paramDecoders.containsKey(name))
                 ? null
                 : Code(defaultValueCode);
+            param.required = param.defaultTo == null &&
+                (p.isRequired || hasAnyRequiredParameter(decoder));
             param.toThis = true;
           },
         ),
