@@ -1,6 +1,10 @@
-## [2.1.1] - April 23, 2025
+## [2.2.1] - May 4th, 2025
 
 * Fix support for non-required parameters in builders
+
+## [2.2.0] - May 4th, 2025
+
+* Pegged [analyzer depenendency to be <7.4](https://pub.dev/packages/analyzer/changelog#740) because Dart is preparing a breaking change (via deprecation) but hasn't bothered to update the [source_gen](https://pub.dev/packages/source_gen) package to absorb said breaking change yet so it breaks generators with no good way to fix the break, or ignore the warnings; which is rarely a great idea either.
 
 ## [2.1.0+3] - March 11, 2025
 
