@@ -5,9 +5,7 @@ part 'dotted_border_builder.g.dart';
 
 @jsonWidget
 abstract class _DottedBorderBuilder extends JsonWidgetBuilder {
-  const _DottedBorderBuilder({
-    required super.args,
-  });
+  const _DottedBorderBuilder({required super.args});
 
   @JsonArgEncoder('borderType')
   static String _encodeBorderType(BorderType value) {
@@ -53,9 +51,7 @@ abstract class _DottedBorderBuilder extends JsonWidgetBuilder {
   }
 
   @JsonArgDecoder('borderType')
-  BorderType _decodeBorderType({
-    required value,
-  }) {
+  BorderType _decodeBorderType({required value}) {
     var result = BorderType.Circle;
 
     if (value is String) {
@@ -82,9 +78,7 @@ abstract class _DottedBorderBuilder extends JsonWidgetBuilder {
   }
 
   @JsonArgDecoder('strokeCap')
-  StrokeCap _decodeStrokeCap({
-    required value,
-  }) {
+  StrokeCap _decodeStrokeCap({required value}) {
     var result = StrokeCap.butt;
 
     if (value is String) {
