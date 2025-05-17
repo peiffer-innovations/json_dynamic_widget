@@ -9,10 +9,16 @@ class WidgetMetadata {
 
   List<WidgetInfo> get data {
     final result = List<WidgetInfo>.from(_cache);
-
     result.sort();
-
-    return result;
+    // I find the generated default_registrar.g.dart file will often have dupes 
+    // without this code to dedupe the widget list, not sure why !
+    // (for example, ..withAlign()..withAlign() etc repeated over and over
+    final mm = <String, WidgetInfo>{};
+    for (var x in result) {
+      if (!mm.containsKey(x.builder)) mm[x.builder] = x;
+    }
+    return mm.values.toList();
+    // return result;
   }
 
   void add({
