@@ -1,7 +1,7 @@
 name: "json_dynamic_widget_example"
 description: "Example app for the JsonDynamicWidget library"
 publish_to: "none"
-version: "1.0.0+90"
+version: "1.0.0+91"
 
 environment:
   sdk: "^3.7.0"
@@ -10,7 +10,7 @@ resolution: "workspace"
 dependencies:
   child_builder: "^2.0.2"
   desktop_window: "^0.4.2"
-  dotted_border: "^2.1.0"
+  dotted_border: "^3.0.1"
   execution_timer: "^1.1.0+13"
   flutter:
     sdk: "flutter"
