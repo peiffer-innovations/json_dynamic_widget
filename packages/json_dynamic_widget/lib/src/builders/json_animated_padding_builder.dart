@@ -12,6 +12,6 @@ abstract class _JsonAnimatedPaddingBuilder extends JsonWidgetBuilder {
     ChildWidgetBuilder? childBuilder,
     required BuildContext context,
     required JsonWidgetData data,
-    Key? key,
+    Key? key, //
   });
 }
