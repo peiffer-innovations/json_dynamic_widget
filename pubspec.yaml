@@ -7,5 +7,6 @@ environment:
 workspace:
   - packages/annotation
   - packages/codegen
+  - packages/devtools_extension
   - packages/json_dynamic_widget
   - packages/json_dynamic_widget/example

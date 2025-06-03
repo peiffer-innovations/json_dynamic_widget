@@ -24,14 +24,10 @@ class _DynamicWidgetState extends State<Issue24Page> {
             widgetJson,
             registry: registry,
           );
-          return widget.build(
-            context: context,
-          );
+          return widget.build(context: context);
         } else {
           return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
+            body: Center(child: CircularProgressIndicator()),
           );
         }
       },
