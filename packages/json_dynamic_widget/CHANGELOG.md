@@ -1,3 +1,8 @@
+## [10.0.0] - June 17th, 2025
+
+* Flutter 3.32
+
+
 ## [9.0.0+7] - May 6, 2025
 
 * Automated dependency updates
