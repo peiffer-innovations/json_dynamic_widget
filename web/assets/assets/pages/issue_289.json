@@ -23,25 +23,20 @@
           ]
         },
         "child": {
-          "type": "expanded",
+          "type": "dropdown_button_form_field",
+          "listen": [
+            "index"
+          ],
           "args": {
-            "child": {
-              "type": "dropdown_button_form_field",
-              "listen": [
-                "index"
-              ],
-              "args": {
-                "decoration": {
-                  "labelText": "Select Island"
-                },
-                "items": "${index}",
-                "validators": [
-                  {
-                    "type": "required"
-                  }
-                ]
+            "decoration": {
+              "labelText": "Select Island"
+            },
+            "items": "${index}",
+            "validators": [
+              {
+                "type": "required"
               }
-            }
+            ]
           }
         }
       }
