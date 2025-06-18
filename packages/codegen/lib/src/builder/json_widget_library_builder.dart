@@ -11,10 +11,7 @@ import 'package:source_gen/source_gen.dart';
 import 'package:yaon/yaon.dart';
 
 class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
-  static const kChildNames = <String>{
-    'child',
-    'children',
-  };
+  static const kChildNames = <String>{'child', 'children'};
 
   @override
   String generateForAnnotatedElement(
@@ -44,13 +41,12 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
     }
     final pubspec = yaon.parse(File('pubspec.yaml').readAsStringSync());
     final packageName = pubspec['name'].toString();
-    final schemaBaseUrl = pubspec['schema_url'] ??
+    final schemaBaseUrl =
+        pubspec['schema_url'] ??
         'https://peiffer-innovations.github.io/flutter_json_schemas/schemas';
     final name = element.name;
     if (name == null) {
-      throw Exception(
-        'Annotation found on unnamed location, cannot continue.',
-      );
+      throw Exception('Annotation found on unnamed location, cannot continue.');
     }
     if (!name.startsWith('_')) {
       throw Exception('Class must be private, but [$name] is not private.');
@@ -125,8 +121,9 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
     String? schemaName;
     final schemaNameAnnotation = schemaNameChecker.firstAnnotationOf(method);
     if (schemaNameAnnotation != null) {
-      schemaName =
-          ConstantReader(schemaNameAnnotation).read('name').stringValue;
+      schemaName = ConstantReader(
+        schemaNameAnnotation,
+      ).read('name').stringValue;
     }
 
     final positionedAnnotations = positionedChecker.annotationsOf(method);
@@ -162,13 +159,15 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
       final paramDecoderAnnotation = paramDecoderChecker.firstAnnotationOf(m);
       final schemaAnnotation = paramSchemaChecker.firstAnnotationOf(m);
       if (paramDecoderAnnotation != null) {
-        final param =
-            ConstantReader(paramDecoderAnnotation).read('param').stringValue;
+        final param = ConstantReader(
+          paramDecoderAnnotation,
+        ).read('param').stringValue;
         paramDecoders[param] = m;
       }
       if (paramEncoderAnnotation != null) {
-        final param =
-            ConstantReader(paramEncoderAnnotation).read('param').stringValue;
+        final param = ConstantReader(
+          paramEncoderAnnotation,
+        ).read('param').stringValue;
         paramEncoders[param] = m;
       }
 
@@ -178,8 +177,9 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
             'Encountered [JsonArgSchema] annotation on a non-static method named: [${m.displayName}].',
           );
         }
-        final param =
-            ConstantReader(schemaAnnotation).read('param').stringValue;
+        final param = ConstantReader(
+          schemaAnnotation,
+        ).read('param').stringValue;
         schemaDecoders[param] = m;
       }
     }
@@ -248,14 +248,16 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
         return result;
       });
 
-      c.fields.add(Field((f) {
-        f.name = 'kType';
-        f.static = true;
-        f.modifier = FieldModifier.constant;
-        f.assignment = Code(
-          "'${typeName ?? ReCase(widgetName!).snakeCase.replaceAll(RegExp(r'\<.*\>'), '')}'",
-        );
-      }));
+      c.fields.add(
+        Field((f) {
+          f.name = 'kType';
+          f.static = true;
+          f.modifier = FieldModifier.constant;
+          f.assignment = Code(
+            "'${typeName ?? ReCase(widgetName!).snakeCase.replaceAll(RegExp(r'\<.*\>'), '')}'",
+          );
+        }),
+      );
 
       // c.fields.add(Field((f) {
       //   f.name = 'args';
@@ -263,70 +265,80 @@ class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
       //   f.modifier = FieldModifier.final$;
       // }));
 
-      c.constructors.add(Constructor((con) {
-        con.constant = eCon != null && eCon.isConst;
-        constBuilder = con.constant;
+      c.constructors.add(
+        Constructor((con) {
+          con.constant = eCon != null && eCon.isConst;
+          constBuilder = con.constant;
 
-        con.optionalParameters.add(
-          Parameter(
-            (param) {
+          con.optionalParameters.add(
+            Parameter((param) {
               param.name = 'args';
               param.named = true;
               param.required = true;
               param.toSuper = true;
-            },
-          ),
-        );
+            }),
+          );
 
-        if (conHasRegistry) {
-          con.optionalParameters.add(Parameter((param) {
-            param.name = 'registry';
-            param.named = true;
-            param.required = true;
-            param.toSuper = true;
-          }));
-        }
-      }));
+          if (conHasRegistry) {
+            con.optionalParameters.add(
+              Parameter((param) {
+                param.name = 'registry';
+                param.named = true;
+                param.required = true;
+                param.toSuper = true;
+              }),
+            );
+          }
+        }),
+      );
 
-      c.methods.add(Method((m) {
-        m.docs.add('''
+      c.methods.add(
+        Method((m) {
+          m.docs.add('''
   /// Constant that can be referenced for the builder's type.''');
-        m.name = 'type';
-        m.annotations.add(const CodeExpression(Code('override')));
-        m.lambda = true;
-        m.type = MethodType.getter;
-        m.returns = const Reference('String');
-        m.body = const Code('kType');
-      }));
+          m.name = 'type';
+          m.annotations.add(const CodeExpression(Code('override')));
+          m.lambda = true;
+          m.type = MethodType.getter;
+          m.returns = const Reference('String');
+          m.body = const Code('kType');
+        }),
+      );
 
-      c.methods.add(Method((m) {
-        m.docs.add('''
+      c.methods.add(
+        Method((m) {
+          m.docs.add('''
   /// Static function that is capable of decoding the widget from a dynamic JSON
   /// or YAML set of values.''');
-        m.name = 'fromDynamic';
-        m.static = true;
-        m.requiredParameters.add(Parameter((p) {
-          p.name = 'map';
-          p.type = const Reference('dynamic');
-        }));
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'registry';
-          p.type = const Reference('JsonWidgetRegistry?');
-          p.named = true;
-          p.required = false;
-        }));
+          m.name = 'fromDynamic';
+          m.static = true;
+          m.requiredParameters.add(
+            Parameter((p) {
+              p.name = 'map';
+              p.type = const Reference('dynamic');
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'registry';
+              p.type = const Reference('JsonWidgetRegistry?');
+              p.named = true;
+              p.required = false;
+            }),
+          );
 
-        m.returns = Reference(c.name);
-        m.lambda = true;
+          m.returns = Reference(c.name);
+          m.lambda = true;
 
-        m.body = Code('''
+          m.body = Code('''
 ${c.name}(
   args: map,
   ${conHasRegistry ? 'registry: registry,' : ''}
 )
 
 ''');
-      }));
+        }),
+      );
 
       // c.methods.add(Method((m) {
       //   m.name = 'toJson';
@@ -336,42 +348,47 @@ ${c.name}(
       //   m.lambda = true;
       // }));
 
-//       c.methods.add(Method((m) {
-//         m.name = 'fromModel';
-//         m.static = true;
-//         m.docs.add('''
-//   /// Static function that will take a manually build model and build the widget
-//   /// for display.''');
+      //       c.methods.add(Method((m) {
+      //         m.name = 'fromModel';
+      //         m.static = true;
+      //         m.docs.add('''
+      //   /// Static function that will take a manually build model and build the widget
+      //   /// for display.''');
 
-//         m.returns = Reference('${c.name}');
-//         m.requiredParameters.add(Parameter((p) {
-//           p.type = Reference('${name.substring(1)}Model');
-//           p.name = 'model';
-//         }));
-//         m.body = Code('''
-// ${c.name}(args: model)
-// ''');
-//         m.lambda = true;
-//       }));
+      //         m.returns = Reference('${c.name}');
+      //         m.requiredParameters.add(Parameter((p) {
+      //           p.type = Reference('${name.substring(1)}Model');
+      //           p.name = 'model';
+      //         }));
+      //         m.body = Code('''
+      // ${c.name}(args: model)
+      // ''');
+      //         m.lambda = true;
+      //       }));
 
-      c.methods.add(Method((m) {
-        m.name = 'createModel';
-        m.annotations.add(const CodeExpression(Code('override')));
-        m.returns = Reference('${name.substring(1)}Model');
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'childBuilder';
-          p.named = true;
-          p.required = false;
-          p.type = const Reference('ChildWidgetBuilder?');
-        }));
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'data';
-          p.named = true;
-          p.required = true;
-          p.type = const Reference('JsonWidgetData');
-        }));
+      c.methods.add(
+        Method((m) {
+          m.name = 'createModel';
+          m.annotations.add(const CodeExpression(Code('override')));
+          m.returns = Reference('${name.substring(1)}Model');
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'childBuilder';
+              p.named = true;
+              p.required = false;
+              p.type = const Reference('ChildWidgetBuilder?');
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'data';
+              p.named = true;
+              p.required = true;
+              p.type = const Reference('JsonWidgetData');
+            }),
+          );
 
-        m.body = Code('''
+          m.body = Code('''
 final model = ${c.name}Model.fromDynamic(
   args,
   registry: data.jsonWidgetRegistry,
@@ -379,69 +396,79 @@ final model = ${c.name}Model.fromDynamic(
 
 return model;
 ''');
-      }));
+        }),
+      );
 
-      c.methods.add(Method((m) {
-        m.name = method!.name;
-        m.annotations.add(const CodeExpression(Code('override')));
-        m.returns = Reference(widget.getDisplayString());
+      c.methods.add(
+        Method((m) {
+          m.name = method!.name;
+          m.annotations.add(const CodeExpression(Code('override')));
+          m.returns = Reference(widget.getDisplayString());
 
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'childBuilder';
-          p.named = true;
-          p.required = false;
-          p.type = const Reference('ChildWidgetBuilder?');
-        }));
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'context';
-          p.named = true;
-          p.required = true;
-          p.type = const Reference('BuildContext');
-        }));
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'data';
-          p.named = true;
-          p.required = true;
-          p.type = const Reference('JsonWidgetData');
-        }));
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'key';
-          p.named = true;
-          p.required = false;
-          p.type = const Reference('Key?');
-        }));
-
-        final lines = <String>[];
-        final buf = StringBuffer();
-        for (var pos in positionedParams) {
-          // lines.add('model.$pos');
-          _buildCustomParamBuilder(
-            aliases: aliases,
-            buf: buf,
-            builderParamChecker: builderParamChecker,
-            positioned: true,
-            lines: lines,
-            param: params.firstWhere((p) => p.name == pos),
-            paramDecoders: paramDecoders,
-            positionedParams: positionedParams,
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'childBuilder';
+              p.named = true;
+              p.required = false;
+              p.type = const Reference('ChildWidgetBuilder?');
+            }),
           );
-        }
-        for (var param in params) {
-          if (!positionedParams.contains(param.name)) {
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'context';
+              p.named = true;
+              p.required = true;
+              p.type = const Reference('BuildContext');
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'data';
+              p.named = true;
+              p.required = true;
+              p.type = const Reference('JsonWidgetData');
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'key';
+              p.named = true;
+              p.required = false;
+              p.type = const Reference('Key?');
+            }),
+          );
+
+          final lines = <String>[];
+          final buf = StringBuffer();
+          for (var pos in positionedParams) {
+            // lines.add('model.$pos');
             _buildCustomParamBuilder(
               aliases: aliases,
               buf: buf,
               builderParamChecker: builderParamChecker,
-              positioned: false,
+              positioned: true,
               lines: lines,
-              param: param,
+              param: params.firstWhere((p) => p.name == pos),
               paramDecoders: paramDecoders,
               positionedParams: positionedParams,
             );
           }
-        }
+          for (var param in params) {
+            if (!positionedParams.contains(param.name)) {
+              _buildCustomParamBuilder(
+                aliases: aliases,
+                buf: buf,
+                builderParamChecker: builderParamChecker,
+                positioned: false,
+                lines: lines,
+                param: param,
+                paramDecoders: paramDecoders,
+                positionedParams: positionedParams,
+              );
+            }
+          }
 
-        m.body = Code('''
+          m.body = Code('''
 final model = createModel(
   childBuilder: childBuilder,
   data: data, 
@@ -452,7 +479,8 @@ return ${_withoutNullability(widget.getDisplayString())}(
   ${lines.join(',')}${lines.isNotEmpty ? ',' : ''}
 );
 ''');
-      }));
+        }),
+      );
     });
 
     final emitter = DartEmitter(useNullSafetySyntax: true);
@@ -461,45 +489,48 @@ return ${_withoutNullability(widget.getDisplayString())}(
     final jsonWidget = Class((c) {
       c.name = jsonWidgetName;
       c.extend = const Reference('JsonWidgetData');
-      c.constructors.add(Constructor((con) {
-        con.optionalParameters.add(Parameter((p) {
-          p.name = 'args';
-          p.required = false;
-          p.named = true;
-          p.type = const Reference('Map<String, dynamic>');
-          p.defaultTo = const Code('const {}');
-        }));
-        con.optionalParameters.add(Parameter((p) {
-          p.name = 'registry';
-          p.required = false;
-          p.named = true;
-          p.type = const Reference('JsonWidgetRegistry?');
-        }));
-        _buildConstructorParams(
-          aliases: aliases,
-          builderParamChecker: builderParamChecker,
-          con: con,
-          paramDecoders: paramDecoders,
-          paramDefaults: paramDefaults,
-          params: params,
-          positionedParams: positionedParams,
-        );
+      c.constructors.add(
+        Constructor((con) {
+          con.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'args';
+              p.required = false;
+              p.named = true;
+              p.type = const Reference('Map<String, dynamic>');
+              p.defaultTo = const Code('const {}');
+            }),
+          );
+          con.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'registry';
+              p.required = false;
+              p.named = true;
+              p.type = const Reference('JsonWidgetRegistry?');
+            }),
+          );
+          _buildConstructorParams(
+            aliases: aliases,
+            builderParamChecker: builderParamChecker,
+            con: con,
+            paramDecoders: paramDecoders,
+            paramDefaults: paramDefaults,
+            params: params,
+            positionedParams: positionedParams,
+          );
 
-        con.lambda = true;
+          con.lambda = true;
 
-        final modelLines = StringBuffer();
+          final modelLines = StringBuffer();
 
-        for (var p in params) {
-          final annotation = builderParamChecker.firstAnnotationOf(p);
-          if (annotation == null && p.name != 'key') {
-            modelLines.writeln(
-              "'${aliases[p.name] ?? p.name}': ${p.name},",
-            );
+          for (var p in params) {
+            final annotation = builderParamChecker.firstAnnotationOf(p);
+            if (annotation == null && p.name != 'key') {
+              modelLines.writeln("'${aliases[p.name] ?? p.name}': ${p.name},");
+            }
           }
-        }
 
-        con.initializers.add(Code(
-          '''
+          con.initializers.add(
+            Code('''
 super(
   jsonWidgetArgs: ${name.substring(1)}Model.fromDynamic({
       $modelLines
@@ -519,9 +550,10 @@ super(
   ),
   jsonWidgetType: ${name.substring(1)}.kType,
 )
-''',
-        ));
-      }));
+'''),
+          );
+        }),
+      );
 
       _buildClassFields(
         aliases: aliases,
@@ -533,32 +565,32 @@ super(
         widgetFieldDocs: widgetFieldDocs,
       );
 
-//       c.methods.add(Method((m) {
-//         m.annotations.add(const CodeExpression(Code('override')));
-//         m.name = 'build';
-//         m.returns = const Reference('Widget');
-//         m.requiredParameters.add(Parameter((p) {
-//           p.type = const Reference('BuildContext');
-//           p.name = 'context';
-//         }));
+      //       c.methods.add(Method((m) {
+      //         m.annotations.add(const CodeExpression(Code('override')));
+      //         m.name = 'build';
+      //         m.returns = const Reference('Widget');
+      //         m.requiredParameters.add(Parameter((p) {
+      //           p.type = const Reference('BuildContext');
+      //           p.name = 'context';
+      //         }));
 
-//         m.lambda = true;
+      //         m.lambda = true;
 
-//         final modelLines = StringBuffer();
+      //         final modelLines = StringBuffer();
 
-//         for (var p in params) {
-//           final annotation = builderParamChecker.firstAnnotationOf(p);
-//           if (annotation == null && p.name != 'key') {
-//             modelLines.writeln('${p.name}: ${p.name},');
-//           }
-//         }
+      //         for (var p in params) {
+      //           final annotation = builderParamChecker.firstAnnotationOf(p);
+      //           if (annotation == null && p.name != 'key') {
+      //             modelLines.writeln('${p.name}: ${p.name},');
+      //           }
+      //         }
 
-//         m.body = Code('''
-// ${name.substring(1)}.fromModel(model: ${name.substring(1)}Model(
-// $modelLines
-//         ),).build(context: context,)
-//         ''');
-//       }));
+      //         m.body = Code('''
+      // ${name.substring(1)}.fromModel(model: ${name.substring(1)}Model(
+      // $modelLines
+      //         ),).build(context: context,)
+      //         ''');
+      //       }));
     });
     final jsonWidgetCode = jsonWidget.accept(emitter).toString();
 
@@ -566,32 +598,33 @@ super(
       final docs = wConstructor.documentationComment;
       if (docs != null) {
         c.docs.add(
-            '  /* AUTOGENERATED FROM [${_withoutNullability(widget.getDisplayString())}]*/');
+          '  /* AUTOGENERATED FROM [${_withoutNullability(widget.getDisplayString())}]*/',
+        );
         c.docs.add(docs);
       }
       c.name = '${name.substring(1)}Model';
       c.extend = const Reference('JsonWidgetBuilderModel');
       c.constructors.add(
-        Constructor(
-          (con) {
-            con.constant = true;
+        Constructor((con) {
+          con.constant = true;
 
-            con.requiredParameters.add(Parameter((p) {
+          con.requiredParameters.add(
+            Parameter((p) {
               p.name = 'args';
               p.named = false;
               p.toSuper = true;
-            }));
+            }),
+          );
 
-            _buildConstructorParams(
-              aliases: aliases,
-              builderParamChecker: builderParamChecker,
-              con: con,
-              paramDecoders: paramDecoders,
-              paramDefaults: paramDefaults,
-              params: params,
-            );
-          },
-        ),
+          _buildConstructorParams(
+            aliases: aliases,
+            builderParamChecker: builderParamChecker,
+            con: con,
+            paramDecoders: paramDecoders,
+            paramDefaults: paramDefaults,
+            params: params,
+          );
+        }),
       );
 
       _buildClassFields(
@@ -605,40 +638,33 @@ super(
       );
 
       c.methods.add(
-        Method(
-          (m) {
-            m.static = true;
-            m.returns = Reference(c.name);
-            m.name = 'fromDynamic';
-            m.requiredParameters.add(
-              Parameter(
-                (p) {
-                  p.name = 'map';
-                  p.type = const Reference('dynamic');
-                  p.named = false;
-                },
-              ),
-            );
-            m.optionalParameters.add(
-              Parameter(
-                (p) {
-                  p.name = 'args';
-                  p.type = const Reference('Map<String, dynamic>');
-                  p.defaultTo = const Code('const {}');
-                  p.named = true;
-                },
-              ),
-            );
-            m.optionalParameters.add(
-              Parameter(
-                (p) {
-                  p.name = 'registry';
-                  p.type = const Reference('JsonWidgetRegistry?');
-                  p.named = true;
-                },
-              ),
-            );
-            m.body = Code('''
+        Method((m) {
+          m.static = true;
+          m.returns = Reference(c.name);
+          m.name = 'fromDynamic';
+          m.requiredParameters.add(
+            Parameter((p) {
+              p.name = 'map';
+              p.type = const Reference('dynamic');
+              p.named = false;
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'args';
+              p.type = const Reference('Map<String, dynamic>');
+              p.defaultTo = const Code('const {}');
+              p.named = true;
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'registry';
+              p.type = const Reference('JsonWidgetRegistry?');
+              p.named = true;
+            }),
+          );
+          m.body = Code('''
 final result = maybeFromDynamic(map, args: args, registry: registry,);
 
 if (result == null) {
@@ -647,64 +673,51 @@ if (result == null) {
 
 return result;
 ''');
-          },
-        ),
+        }),
       );
 
       c.methods.add(
-        Method(
-          (m) {
-            m.static = true;
-            m.returns = Reference('${c.name}?');
-            m.name = 'maybeFromDynamic';
-            m.requiredParameters.add(
-              Parameter(
-                (p) {
-                  p.name = 'map';
-                  p.type = const Reference('dynamic');
-                  p.named = false;
-                },
-              ),
-            );
-            m.optionalParameters.add(
-              Parameter(
-                (p) {
-                  p.name = 'args';
-                  p.type = const Reference('Map<String, dynamic>');
-                  p.defaultTo = const Code('const {}');
-                  p.named = true;
-                },
-              ),
-            );
-            m.optionalParameters.add(
-              Parameter(
-                (p) {
-                  p.name = 'registry';
-                  p.type = const Reference('JsonWidgetRegistry?');
-                  p.named = true;
-                },
-              ),
-            );
-            final lines = <String>[];
-            for (var param in params) {
-              final annotation = builderParamChecker.firstAnnotationOf(param);
-              if (annotation != null) {
-                // comes from the build method, not the data map.
-                continue;
-              }
-              if (param.name != 'key') {
-                lines.add('${param.name}: ${decode(
-                  element,
-                  param,
-                  aliases: aliases,
-                  defaults: paramDefaults,
-                  paramDecoders: paramDecoders.keys,
-                )}');
-              }
+        Method((m) {
+          m.static = true;
+          m.returns = Reference('${c.name}?');
+          m.name = 'maybeFromDynamic';
+          m.requiredParameters.add(
+            Parameter((p) {
+              p.name = 'map';
+              p.type = const Reference('dynamic');
+              p.named = false;
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'args';
+              p.type = const Reference('Map<String, dynamic>');
+              p.defaultTo = const Code('const {}');
+              p.named = true;
+            }),
+          );
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'registry';
+              p.type = const Reference('JsonWidgetRegistry?');
+              p.named = true;
+            }),
+          );
+          final lines = <String>[];
+          for (var param in params) {
+            final annotation = builderParamChecker.firstAnnotationOf(param);
+            if (annotation != null) {
+              // comes from the build method, not the data map.
+              continue;
             }
+            if (param.name != 'key') {
+              lines.add(
+                '${param.name}: ${decode(element, param, aliases: aliases, defaults: paramDefaults, paramDecoders: paramDecoders.keys)}',
+              );
+            }
+          }
 
-            m.body = Code(
-              '''
+          m.body = Code('''
 ${c.name}? result;
 
 if (map != null) {
@@ -725,56 +738,55 @@ if (map != null) {
           }
 
 return result;
-''',
-            );
-          },
-        ),
+''');
+        }),
       );
 
-      c.methods.add(Method((m) {
-        m.name = 'toJson';
-        m.annotations.add(const CodeExpression(Code('override')));
-        m.returns = const Reference('Map<String, dynamic>');
+      c.methods.add(
+        Method((m) {
+          m.name = 'toJson';
+          m.annotations.add(const CodeExpression(Code('override')));
+          m.returns = const Reference('Map<String, dynamic>');
 
-        final customEncoders = StringBuffer();
-        final buf = StringBuffer();
+          final customEncoders = StringBuffer();
+          final buf = StringBuffer();
 
-        for (var param in params) {
-          final annotation = builderParamChecker.firstAnnotationOf(param);
-          if (annotation != null) {
-            // comes from the build method, not the data map.
-            continue;
-          }
-          if (param.displayName != 'key') {
-            final name = aliases[param.name] ?? param.name;
-            final encoder = paramEncoders[name];
-
-            var defaultValueCode =
-                paramDefaults[name] ?? param.defaultValueCode;
-            if (defaultValueCode == 'const <Widget>[]') {
-              defaultValueCode = 'const <JsonWidgetData>[]';
+          for (var param in params) {
+            final annotation = builderParamChecker.firstAnnotationOf(param);
+            if (annotation != null) {
+              // comes from the build method, not the data map.
+              continue;
             }
-            if (encoder != null) {
-              customEncoders.write('''
+            if (param.displayName != 'key') {
+              final name = aliases[param.name] ?? param.name;
+              final encoder = paramEncoders[name];
+
+              var defaultValueCode =
+                  paramDefaults[name] ?? param.defaultValueCode;
+              if (defaultValueCode == 'const <Widget>[]') {
+                defaultValueCode = 'const <JsonWidgetData>[]';
+              }
+              if (encoder != null) {
+                customEncoders.write('''
 final ${name}Encoded = ${encoder.enclosingElement3.name}.${encoder.name}(${param.name});
 ''');
 
-              buf.write('''
+                buf.write('''
 '$name': ${defaultValueCode == null ? '' : '$defaultValueCode == $name ? null : '}${name}Encoded,
 ''');
-            } else {
-              final encoder = encode(
-                element,
-                param,
-                aliases: aliases,
-                defaults: paramDefaults,
-              );
+              } else {
+                final encoder = encode(
+                  element,
+                  param,
+                  aliases: aliases,
+                  defaults: paramDefaults,
+                );
 
-              buf.write(encoder);
+                buf.write(encoder);
+              }
             }
-          }
 
-          m.body = Code('''
+            m.body = Code('''
 ${customEncoders.toString()}
 
 return JsonClass.removeNull({
@@ -782,8 +794,9 @@ ${buf.toString()}
 ...args,
 });
 ''');
-        }
-      }));
+          }
+        }),
+      );
     });
 
     final modelCode = model.accept(emitter).toString();
@@ -829,18 +842,20 @@ ${buf.toString()}
           }
         }
       }
-      c.fields.add(Field((f) {
-        f.name = 'id';
-        f.modifier = FieldModifier.constant;
-        f.static = true;
-        f.assignment = Code("'$id'");
-      }));
-      c.fields.add(Field((f) {
-        f.name = 'schema';
-        f.modifier = FieldModifier.final$;
-        f.static = true;
-        f.assignment = Code(
-          '''
+      c.fields.add(
+        Field((f) {
+          f.name = 'id';
+          f.modifier = FieldModifier.constant;
+          f.static = true;
+          f.assignment = Code("'$id'");
+        }),
+      );
+      c.fields.add(
+        Field((f) {
+          f.name = 'schema';
+          f.modifier = FieldModifier.final$;
+          f.static = true;
+          f.assignment = Code('''
 <String, Object>{
   r'\$schema': 'http://json-schema.org/draft-07/schema#',
   r'\$id': id,
@@ -854,9 +869,9 @@ ${buf.toString()}
     ${requiredProperties.toString()}
   ],
 }
-''',
-        );
-      }));
+''');
+        }),
+      );
     });
 
     final schemaCode = schema.accept(emitter).toString();
@@ -910,7 +925,7 @@ void _buildClassFields({
       // comes from the build method, not the data map.
       continue;
     }
-    if (/*!kChildNames.containsKey(p.name) &&*/ p.name != 'key') {
+    if ( /*!kChildNames.containsKey(p.name) &&*/ p.name != 'key') {
       final method = paramDecoders[aliases[p.name] ?? p.name];
       var type = p.type.getDisplayString();
 
@@ -927,22 +942,18 @@ void _buildClassFields({
       }
 
       c.fields.add(
-        Field(
-          (f) {
-            final docs = widgetFieldDocs[p.name];
-            if (docs != null) {
-              f.docs.add(
-                '  /* AUTOGENERATED FROM [${_withoutNullability(widget.getDisplayString())}.${p.name}]*/',
-              );
-              f.docs.add(docs);
-            }
-            f.modifier = FieldModifier.final$;
-            f.name = p.name;
-            f.type = Reference(
-              method == null ? type : 'dynamic',
+        Field((f) {
+          final docs = widgetFieldDocs[p.name];
+          if (docs != null) {
+            f.docs.add(
+              '  /* AUTOGENERATED FROM [${_withoutNullability(widget.getDisplayString())}.${p.name}]*/',
             );
-          },
-        ),
+            f.docs.add(docs);
+          }
+          f.modifier = FieldModifier.final$;
+          f.name = p.name;
+          f.type = Reference(method == null ? type : 'dynamic');
+        }),
       );
     }
   }
@@ -960,26 +971,25 @@ void _buildConstructorParams({
   positionedParams?.forEach((paramName) {
     if (paramName != 'key') {
       con.requiredParameters.add(
-        Parameter(
-          (param) {
-            final name = aliases[paramName] ?? paramName;
-            final p = params.firstWhere((p) => p.name == paramName);
-            param.name = paramName;
-            param.named = false;
+        Parameter((param) {
+          final name = aliases[paramName] ?? paramName;
+          final p = params.firstWhere((p) => p.name == paramName);
+          param.name = paramName;
+          param.named = false;
 
-            var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
-            if (defaultValueCode == 'const <Widget>[]') {
-              defaultValueCode = 'const <JsonWidgetData>[]';
-            }
+          var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
+          if (defaultValueCode == 'const <Widget>[]') {
+            defaultValueCode = 'const <JsonWidgetData>[]';
+          }
 
-            param.defaultTo = defaultValueCode == null ||
-                    (!paramDefaults.containsKey(name) &&
-                        paramDecoders.containsKey(name))
-                ? null
-                : Code(defaultValueCode);
-            param.toThis = true;
-          },
-        ),
+          param.defaultTo =
+              defaultValueCode == null ||
+                  (!paramDefaults.containsKey(name) &&
+                      paramDecoders.containsKey(name))
+              ? null
+              : Code(defaultValueCode);
+          param.toThis = true;
+        }),
       );
     }
   });
@@ -990,38 +1000,38 @@ void _buildConstructorParams({
       continue;
     }
 
-    if (/*!kChildNames.containsKey(p.name) && */ p.name != 'key') {
+    if ( /*!kChildNames.containsKey(p.name) && */ p.name != 'key') {
       con.optionalParameters.add(
-        Parameter(
-          (param) {
-            final name = aliases[p.name] ?? p.name;
-            final decoder = paramDecoders[name];
-            var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
-            if (defaultValueCode == 'const <Widget>[]') {
-              defaultValueCode = 'const <JsonWidgetData>[]';
-            }
+        Parameter((param) {
+          final name = aliases[p.name] ?? p.name;
+          final decoder = paramDecoders[name];
+          var defaultValueCode = paramDefaults[name] ?? p.defaultValueCode;
+          if (defaultValueCode == 'const <Widget>[]') {
+            defaultValueCode = 'const <JsonWidgetData>[]';
+          }
 
-            bool hasAnyRequiredParameter(MethodElement? me) {
-              if (me == null) return false;
-              return me.parameters.any((pe) {
-                return pe.isPositional ||
-                    pe.isRequiredPositional ||
-                    pe.isRequiredNamed;
-              });
-            }
+          bool hasAnyRequiredParameter(MethodElement? me) {
+            if (me == null) return false;
+            return me.parameters.any((pe) {
+              return pe.isPositional ||
+                  pe.isRequiredPositional ||
+                  pe.isRequiredNamed;
+            });
+          }
 
-            param.name = p.name;
-            param.named = true;
-            param.defaultTo = defaultValueCode == null ||
-                    (!paramDefaults.containsKey(name) &&
-                        paramDecoders.containsKey(name))
-                ? null
-                : Code(defaultValueCode);
-            param.required = param.defaultTo == null &&
-                (p.isRequired || hasAnyRequiredParameter(decoder));
-            param.toThis = true;
-          },
-        ),
+          param.name = p.name;
+          param.named = true;
+          param.defaultTo =
+              defaultValueCode == null ||
+                  (!paramDefaults.containsKey(name) &&
+                      paramDecoders.containsKey(name))
+              ? null
+              : Code(defaultValueCode);
+          param.required =
+              param.defaultTo == null &&
+              (p.isRequired || hasAnyRequiredParameter(decoder));
+          param.toThis = true;
+        }),
       );
     }
   }
