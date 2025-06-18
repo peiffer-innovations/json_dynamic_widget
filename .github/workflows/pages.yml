@@ -49,7 +49,7 @@ jobs:
       - name: Web
         uses: peiffer-innovations/actions-flutter-deploy-pages@v1
         with:
-          build_flags: --no-tree-shake-icons
+          build_flags: --no-tree-shake-icons --wasm
           build_mode: release
           build_number: ${{ needs.build_number.outputs.buildnumber }}
           deploy_path: web

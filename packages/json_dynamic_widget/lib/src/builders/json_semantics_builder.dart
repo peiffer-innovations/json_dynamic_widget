@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 part 'json_semantics_builder.g.dart';

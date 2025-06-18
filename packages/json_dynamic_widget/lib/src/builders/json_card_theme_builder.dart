@@ -1,4 +1,5 @@
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
+import 'package:json_theme/json_theme.dart';
 
 part 'json_card_theme_builder.g.dart';
 

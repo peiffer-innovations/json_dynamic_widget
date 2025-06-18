@@ -1,6 +1,9 @@
-## [2.2.1] - May 4th, 2025
+## [3.0.0] - June 17th, 2025
 
+* Updated `flutter_lints` to `^6.0.0`.
+* Flutter 3.32
 * Fix support for non-required parameters in builders
+
 
 ## [2.2.0] - May 4th, 2025
 

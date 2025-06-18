@@ -1,10 +1,10 @@
 name: 'dynamic_widget_annotation'
 description: 'Annotations for the json_dynamic_widget library.'
 homepage: 'https://github.com/peiffer-innovations/json_dynamic_widget'
-version: '2.0.0'
+version: '3.0.0'
 
 environment:
-  sdk: '^3.7.0'
+  sdk: '^3.8.1'
 resolution: workspace
 
 analyzer:
@@ -16,7 +16,7 @@ dependencies:
   meta: '^1.12.0'
 
 dev_dependencies:
-  flutter_lints: '^5.0.0'
+  flutter_lints: '^6.0.0'
   test: '^1.25.0'
 
 permittedLicenses:

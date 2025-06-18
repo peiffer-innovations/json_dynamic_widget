@@ -8,10 +8,10 @@ export 'package:flutter/services.dart';
 export 'package:json_class/json_class.dart';
 export 'package:json_theme/json_theme.dart'
     hide
-        CardThemeSchema,
-        DialogThemeSchema,
+        CardThemeDataSchema,
+        DialogThemeDataSchema,
         InputDecorationThemeSchema,
-        TabBarThemeSchema;
+        TabBarThemeDataSchema;
 export 'package:uuid/uuid.dart';
 export 'package:yaon/yaon.dart';
 
