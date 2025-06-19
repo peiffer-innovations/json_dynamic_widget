@@ -19,11 +19,23 @@ class HandledJsonWidgetException implements Exception {
       buf.writeln(cause.toString());
     }
     if (data != null) {
-      buf.writeln(
-        (data is Map || data is List)
-            ? const JsonEncoder.withIndent('  ').convert(data)
-            : data.toString(),
-      );
+      try {
+        buf.writeln(
+          (data is Map || data is List)
+              ? JsonEncoder.withIndent('  ', (e) {
+                Object? result;
+                try {
+                  result = e.toJson();
+                } catch (_) {
+                  result = e.toString();
+                }
+                return result;
+              }).convert(data)
+              : data.toString(),
+        );
+      } catch (_) {
+        buf.writeln(data.toString());
+      }
     }
     if (stackTrace != null) {
       buf.writeln(stackTrace.toString());

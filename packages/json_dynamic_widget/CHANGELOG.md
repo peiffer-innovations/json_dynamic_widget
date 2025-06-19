@@ -1,3 +1,8 @@
+## [10.0.0] - June 18th, 2025
+
+* Fix for stringifying HandledJsonException when the Map contains non-JSON parsable values.
+
+
 ## [10.0.0] - June 17th, 2025
 
 * Flutter 3.32
