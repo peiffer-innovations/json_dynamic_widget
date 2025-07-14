@@ -1,3 +1,8 @@
+## [10.0.2] - July 14th, 2025
+
+* Fix for TextFormField.autofillHints typing
+
+
 ## [10.0.1] - June 18th, 2025
 
 * Fix for stringifying HandledJsonException when the Map contains non-JSON parsable values.
