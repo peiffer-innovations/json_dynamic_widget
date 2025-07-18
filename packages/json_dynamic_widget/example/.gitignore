@@ -29,6 +29,7 @@
 .pub-cache/
 .pub/
 /build/
+Podfile.lock
 
 # Web related
 
