@@ -1,3 +1,8 @@
+## [10.0.1+1] - July 29, 2025
+
+* Automated dependency updates
+
+
 ## [10.0.1] - June 18th, 2025
 
 * Fix for stringifying HandledJsonException when the Map contains non-JSON parsable values.
