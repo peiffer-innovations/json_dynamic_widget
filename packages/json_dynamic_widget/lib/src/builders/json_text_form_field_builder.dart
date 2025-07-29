@@ -32,6 +32,14 @@ abstract class _JsonTextFormFieldBuilder extends JsonWidgetBuilder {
       ) ??
       const InputDecoration();
 
+  @JsonArgDecoder('autofillHints')
+  Iterable<String>? _decodeAutofillHints({required dynamic value}) {
+    if (value is Iterable) {
+      return value.cast<String>();
+    }
+    return null;
+  }
+
   @JsonArgDecoder('validators')
   Validator? _decodeValidators({required dynamic value}) =>
       value == null ? null : Validator.fromDynamic({'validators': value});
