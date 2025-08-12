@@ -1,3 +1,8 @@
+## [10.0.2+1] - August 12, 2025
+
+* Automated dependency updates
+
+
 ## [10.0.2] - July 14th, 2025
 
 * Fix for TextFormField.autofillHints typing
