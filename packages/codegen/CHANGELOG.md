@@ -1,3 +1,8 @@
+## [3.0.0+1] - September 23, 2025
+
+* Automated dependency updates
+
+
 ## [3.0.0] - June 17th, 2025
 
 * Updated `flutter_lints` to `^6.0.0`.
