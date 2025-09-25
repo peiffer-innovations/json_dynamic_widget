@@ -29,6 +29,7 @@ dev_dependencies:
     sdk: 'flutter'
   icons_launcher: '^3.0.1'
   json_dynamic_widget_codegen: '^3.0.0'
+  json_serializable: ^6.9.5
   yaml_writer: '^2.1.0'
 
 icons_launcher:
