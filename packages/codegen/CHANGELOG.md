@@ -1,3 +1,8 @@
+## [3.1.0] - September 29th, 2025
+
+* Support parsing entities via `fromJsom` of `JsonSerializable`.
+
+
 ## [3.0.0] - June 17th, 2025
 
 * Updated `flutter_lints` to `^6.0.0`.
