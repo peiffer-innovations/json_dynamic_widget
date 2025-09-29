@@ -4,7 +4,9 @@ import 'package:source_gen/source_gen.dart';
 
 Builder widgetLibrary(BuilderOptions options) => SharedPartBuilder(
       [
-        JsonWidgetLibraryBuilder(),
+        JsonWidgetLibraryBuilder(
+          parseJsonSerializable: options.config['parse_json_serializable'] as bool? ?? false,
+        ),
       ],
       'widget',
     );

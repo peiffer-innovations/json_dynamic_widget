@@ -1,0 +1,6 @@
+targets:
+  $default:
+    builders:
+      json_dynamic_widget_codegen|widget_builder:
+        options:
+          parse_json_serializable: true

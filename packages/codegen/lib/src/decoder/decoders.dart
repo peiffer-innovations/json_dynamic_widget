@@ -213,6 +213,7 @@ String decode(
   required Map<String, String> aliases,
   required Map<String, String> defaults,
   required Iterable<String> paramDecoders,
+  bool parseJsonSerializable = false,
 }) {
   final name = aliases[element.name] ?? element.name;
   var defaultValueCode = defaults[name] ??
@@ -245,32 +246,36 @@ String decode(
     }
   }
 
-  final serializableElementType = element.type;
-  final serializableElement = serializableElementType.element3;
-  if (serializableElement is ClassElement2) {
-    if (serializableElement.constructors2.any((c) => c.name3 == 'fromJson')) {
-      final nullablePrefix = element.type.nullable
-          ? '$attr == null ? null : '
-          : '';
-      return '$nullablePrefix${serializableElement.name3}.fromJson($attr)';
-    } else if (serializableElementType is InterfaceType) {
-      if (serializableElementType.typeArguments.isNotEmpty) {
-        if (serializableElement.interfaces.any((interf) =>
-        interf.element3.name3 == 'Iterable')) {
-          final itemType = serializableElementType.typeArguments.first;
-          final itemSerializableElement = itemType.element3;
-          if (itemSerializableElement is ClassElement2 &&
-              itemSerializableElement.constructors2.any((c) =>
-              c.name3 ==
-                  'fromJson')) {
-            var mapTo = '';
-            if (serializableElementType.element3.name3 == 'List') {
-              mapTo = '.toList()';
-            } else if (serializableElementType.element3.name3 == 'Set') {
-              mapTo = '.toSet()';
+  if (parseJsonSerializable) {
+    final serializableElementType = element.type;
+    final serializableElement = serializableElementType.element3;
+    if (serializableElement is ClassElement2) {
+      if (serializableElement.constructors2.any((c) => c.name3 == 'fromJson')) {
+        final nullablePrefix = element.type.nullable
+            ? '$attr == null ? null : '
+            : '';
+        return '$nullablePrefix${serializableElement.name3}.fromJson($attr)';
+      } else if (serializableElementType is InterfaceType) {
+        if (serializableElementType.typeArguments.isNotEmpty) {
+          if (serializableElement.interfaces.any((interf) =>
+          interf.element3.name3 == 'Iterable')) {
+            final itemType = serializableElementType.typeArguments.first;
+            final itemSerializableElement = itemType.element3;
+            if (itemSerializableElement is ClassElement2 &&
+                itemSerializableElement.constructors2.any((c) =>
+                c.name3 ==
+                    'fromJson')) {
+              var mapTo = '';
+              if (serializableElementType.element3.name3 == 'List') {
+                mapTo = '.toList()';
+              } else if (serializableElementType.element3.name3 == 'Set') {
+                mapTo = '.toSet()';
+              }
+              final nullableOperator = element.type.nullable ? '?' : '';
+              return '$attr$nullableOperator.map<${itemSerializableElement
+                  .name3}>((e) => ${itemSerializableElement
+                  .name3}.fromJson(e))$mapTo';
             }
-            final nullableOperator = element.type.nullable ? '?' : '';
-            return '$attr$nullableOperator.map<${itemSerializableElement.name3}>((e) => ${itemSerializableElement.name3}.fromJson(e))$mapTo';
           }
         }
       }
