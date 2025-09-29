@@ -228,7 +228,7 @@ String decode(
     }
   }
   final attr = "map['$name']";
-  var result =
+  final result =
       "$attr${defaultValueCode == null ? '' : '?? $defaultValueCode'}";
 
   final typeStr = element.type.toNonNullableString();
