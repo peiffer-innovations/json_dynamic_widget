@@ -18,3 +18,18 @@ class Person {
 
   Map<String, dynamic> toJson() => _$PersonToJson(this);
 }
+
+
+@JsonEnum(alwaysCreate: true)
+enum PersonType {
+  @JsonValue('CALM')
+  calm,
+  @JsonValue('CURIOUS')
+  curious;
+
+  String toJson() => _$PersonTypeEnumMap[this]!;
+
+  factory PersonType.fromJson(String json) => _$PersonTypeEnumMap.entries
+      .singleWhere((element) => element.value == json)
+      .key;
+}

@@ -10,6 +10,8 @@ class TeamWidget extends StatelessWidget {
   final Set<Person> personSet;
   final int someNumber;
   final String someString;
+  final PersonType personType;
+  final PersonType? nullablePersonType;
 
   const TeamWidget({
     super.key,
@@ -20,6 +22,8 @@ class TeamWidget extends StatelessWidget {
     this.nullableDefaultPerson = const Person(firstName: 'Max'),
     required this.someNumber,
     required this.someString,
+    required this.personType,
+    this.nullablePersonType,
   });
 
   @override

@@ -249,11 +249,11 @@ String decode(
   if (parseJsonSerializable) {
     final serializableElementType = element.type;
     final serializableElement = serializableElementType.element3;
+    final nullablePrefix = element.type.nullable
+        ? '$attr == null ? null : '
+        : '';
     if (serializableElement is ClassElement2) {
       if (serializableElement.constructors2.any((c) => c.name3 == 'fromJson')) {
-        final nullablePrefix = element.type.nullable
-            ? '$attr == null ? null : '
-            : '';
         return '$nullablePrefix${serializableElement.name3}.fromJson($attr)';
       } else if (serializableElementType is InterfaceType) {
         if (serializableElementType.typeArguments.isNotEmpty) {
@@ -278,6 +278,10 @@ String decode(
             }
           }
         }
+      }
+    } else if (serializableElement is EnumElement2) {
+      if (serializableElement.constructors2.any((c) => c.name3 == 'fromJson')) {
+        return '$nullablePrefix${serializableElement.name3}.fromJson($attr)';
       }
     }
   }
