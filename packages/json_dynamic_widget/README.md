@@ -755,7 +755,7 @@ To make sure that `BooleanStringArgProcessor` will be used the best is to add it
 
 If defining entities by using the `@JsonSerializable()` annotation from
 the [json_serializable](https://pub.dev/packages/json_serializable) package or by providing a custom `fromJson` method,
-it is possible to have the code generator parse the entities from those method.
+it is possible to have the code generator parse the entities from this method.
 
 To enable json_serializable parsing, the `parse_json_serializable` option must be enabled in the `build.yaml` file in your root project folder:
 
