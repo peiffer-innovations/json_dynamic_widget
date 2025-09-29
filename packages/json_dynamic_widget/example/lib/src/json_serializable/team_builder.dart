@@ -6,8 +6,8 @@ import 'team_widget.dart';
 part 'team_builder.g.dart';
 
 @jsonWidget
-abstract class _PersonBuilder extends JsonWidgetBuilder {
-  const _PersonBuilder({required super.args});
+abstract class _TeamBuilder extends JsonWidgetBuilder {
+  const _TeamBuilder({required super.args});
 
   @override
   TeamWidget buildCustom({
