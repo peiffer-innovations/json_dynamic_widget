@@ -24,7 +24,7 @@ class MapArgProcessor implements ArgProcessor {
   ];
 
   @override
-  bool support(dynamic arg) => arg != null && arg is Map;
+  bool support(dynamic arg) => arg != null && arg is Map<String, dynamic>;
 
   @override
   ProcessedArg process(
@@ -32,10 +32,10 @@ class MapArgProcessor implements ArgProcessor {
     dynamic arg,
     Set<String>? jsonWidgetListenVariables,
   ) {
-    final mapArg = arg as Map;
+    final mapArg = arg as Map<String, dynamic>;
     final calculateListenVariables = jsonWidgetListenVariables == null;
     final resultListenVariables = jsonWidgetListenVariables ?? <String>{};
-    final processedMapArg = {};
+    final processedMapArg = <String, dynamic>{};
 
     if (_isJsonWidgetData(mapArg)) {
       // The entry has a "type" and one of: "child", "children", "args".  This
@@ -87,7 +87,7 @@ class MapArgProcessor implements ArgProcessor {
         .process(registry, key, jsonWidgetListenVariables);
   }
 
-  bool _isJsonWidgetData(Map mapArg) {
+  bool _isJsonWidgetData(Map<String, dynamic> mapArg) {
     return mapArg['type'] != null && mapArg['args'] != null;
   }
 }

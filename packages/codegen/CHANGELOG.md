@@ -1,3 +1,8 @@
+## [4.1.0] - September 29th, 2025
+
+* Support parsing entities via `fromJsom` of `JsonSerializable`.
+
+
 ## [4.0.0] - November 9th, 2025
 
 * Updated generaters to the latest version
