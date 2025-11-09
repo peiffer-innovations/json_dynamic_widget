@@ -17,6 +17,9 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   JsonWidgetData? _data;
 
   @override
+  bool get hasProvidedId => data.hasProvidedId;
+
+  @override
   JsonWidgetBuilder? get jsonWidgetArgs => data.jsonWidgetArgs;
 
   @override
@@ -74,6 +77,7 @@ class DeferredJsonWidgetData implements JsonWidgetData {
     JsonWidgetRegistry? jsonWidgetRegistry,
     String? jsonWidgetType,
   }) => JsonWidgetData(
+    hasProvidedId: hasProvidedId,
     jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
     jsonWidgetBuilder:
         jsonWidgetBuilder as JsonWidgetBuilder Function()? ??

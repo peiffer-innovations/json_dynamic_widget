@@ -2,9 +2,7 @@ import 'dart:convert';
 
 import 'package:meta/meta_meta.dart';
 
-const jsonWidget = JsonWidget(
-  autoRegister: true,
-);
+const jsonWidget = JsonWidget(autoRegister: true, requiresId: false);
 const jsonWidgetRegistrar = JsonWidgetRegistrar();
 
 /// An annotation to be placed on the building `buildCustom` function that can
@@ -14,10 +12,7 @@ const jsonWidgetRegistrar = JsonWidgetRegistrar();
 /// [SliverGrid] for consistency).
 @Target({TargetKind.method})
 class JsonArgAlias {
-  const JsonArgAlias({
-    required this.alias,
-    required this.name,
-  });
+  const JsonArgAlias({required this.alias, required this.name});
 
   final String alias;
   final String name;
@@ -94,10 +89,7 @@ class JsonBuilder {
 /// [String].
 @Target({TargetKind.method})
 class JsonDefaultParam {
-  const JsonDefaultParam(
-    this.name,
-    this.code,
-  );
+  const JsonDefaultParam(this.name, this.code);
 
   final String code;
   final String name;
@@ -135,6 +127,10 @@ class JsonSchemaName {
 /// The [autoRegister] can be set to `false` to skip adding the widget to the
 /// default registrar.
 ///
+/// When the [requiresId] is true, that informs the code generator that this
+/// particular widget needs a provided id to function correctly or else an error
+/// or unexpected behavior may be encountered.
+///
 /// The [type] can override the widget JSON type that is generated for the
 /// widget.  By default the type is a snake_case'd version of the Widget.  For
 /// example, `ListView` becomes `list_view`.  However, there may be times where
@@ -149,12 +145,14 @@ class JsonWidget {
   const JsonWidget({
     this.autoRegister = true,
     this.jsonWidget,
+    this.requiresId = false,
     this.type,
     this.widget,
   });
 
   final bool autoRegister;
   final String? jsonWidget;
+  final bool requiresId;
   final String? type;
   final String? widget;
 }

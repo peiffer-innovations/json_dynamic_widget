@@ -125,9 +125,9 @@
                                       "args": {
                                         "icon": {
                                           "codePoint": 61912,
-                                          "fontFamily": "MaterialIcons",
-                                          "size": 50
-                                        }
+                                          "fontFamily": "MaterialIcons"
+                                        },
+                                        "size": 50
                                       }
                                     },
                                     "onPressed": "${show_dialog('dialogContext', 'editDialogData{id}')}"
@@ -237,9 +237,9 @@
                                                                 "args": {
                                                                   "icon": {
                                                                     "codePoint": 57704,
-                                                                    "fontFamily": "MaterialIcons",
-                                                                    "size": 50
-                                                                  }
+                                                                    "fontFamily": "MaterialIcons"
+                                                                  },
+                                                                  "size": 50
                                                                 }
                                                               },
                                                               "onPressed": "${set_value('form_message','')}"

@@ -1,3 +1,8 @@
+## [3.0.1] - November 9th, 2025
+
+* Flutter 3.35
+
+
 ## [3.0.0] - June 17th, 2025
 
 * Upgraded `flutter_lints` to `^6.0.0`.

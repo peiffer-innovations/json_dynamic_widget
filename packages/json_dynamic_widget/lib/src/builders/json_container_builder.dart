@@ -16,19 +16,23 @@ abstract class _JsonContainerBuilder extends JsonWidgetBuilder {
 
   @JsonArgEncoder('decoration')
   static Map<String, dynamic>? _encodeDecoration(dynamic value) =>
-      value is BoxDecoration ? ThemeEncoder.encodeBoxDecoration(value) : null;
+      value is BoxDecoration
+      ? ThemeEncoder.instance.encodeBoxDecoration(value)
+      : null;
 
   @JsonArgEncoder('foregroundDecoration')
   static Map<String, dynamic>? _encodeForegroundDecoration(dynamic value) =>
-      value is BoxDecoration ? ThemeEncoder.encodeBoxDecoration(value) : null;
+      value is BoxDecoration
+      ? ThemeEncoder.instance.encodeBoxDecoration(value)
+      : null;
 
   @JsonArgDecoder('decoration')
   Decoration? _decodeDecoration({required dynamic value}) =>
-      ThemeDecoder.decodeBoxDecoration(value, validate: false);
+      ThemeDecoder.instance.decodeBoxDecoration(value, validate: false);
 
   @JsonArgDecoder('foregroundDecoration')
   Decoration? _decodeForegroundDecoration({required dynamic value}) =>
-      ThemeDecoder.decodeBoxDecoration(value, validate: false);
+      ThemeDecoder.instance.decodeBoxDecoration(value, validate: false);
 
   @override
   Container buildCustom({

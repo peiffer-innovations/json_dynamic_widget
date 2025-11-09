@@ -17,6 +17,7 @@
       "args": {
         "child": {
           "type": "text_form_field",
+          "id": "text_field",
           "args": {
             "expands": true,
             "maxLines": "${null}",

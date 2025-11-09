@@ -27,6 +27,7 @@
                   "children": [
                     {
                       "type": "switch",
+                      "id": "checked",
                       "args": {
                         "label": "Checked",
                         "value": true
@@ -48,6 +49,7 @@
                   "children": [
                     {
                       "type": "switch",
+                      "id": "not_checked",
                       "args": {
                         "label": "Not Checked",
                         "value": false
@@ -69,6 +71,7 @@
                   "children": [
                     {
                       "type": "switch",
+                      "id": "disabled",
                       "args": {
                         "enabled": false,
                         "label": "Disabled"

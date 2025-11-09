@@ -1,15 +1,13 @@
 import 'dart:convert';
 
-import 'package:analyzer/dart/element/element.dart';
+import 'package:json_dynamic_widget_codegen/src/model/param.dart';
 import 'package:json_theme/codegen.dart';
 
-typedef ParameterSchemaDecoder = String Function(ParameterElement element);
+typedef ParameterSchemaDecoder = String Function(Param element);
 
 const _kNumberArraySchema = {
   'anyOf': [
-    {
-      'type': 'string',
-    },
+    {'type': 'string'},
     {
       'type': 'array',
       'items': {'type': 'number'},
@@ -18,7 +16,7 @@ const _kNumberArraySchema = {
 };
 
 final kSchemaDecoders = <String, ParameterSchemaDecoder>{
-  'bool': (ParameterElement element) => 'SchemaHelper.boolSchema',
+  'bool': (element) => 'SchemaHelper.boolSchema',
   'double': (element) => 'SchemaHelper.numberSchema',
   'int': (element) => 'SchemaHelper.numberSchema',
   'List<double>': (element) => json.encode(_kNumberArraySchema),
@@ -41,5 +39,5 @@ final kSchemaDecoders = <String, ParameterSchemaDecoder>{
       (element) =>
           'SchemaHelper.objectSchema(${key.replaceAll('<', '').replaceAll('>', '')}Schema.id)',
     ),
-  )
+  ),
 };

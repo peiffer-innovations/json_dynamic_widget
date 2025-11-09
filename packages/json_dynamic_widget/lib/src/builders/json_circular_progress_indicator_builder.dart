@@ -13,14 +13,13 @@ abstract class _JsonCircularProgressIndicatorBuilder extends JsonWidgetBuilder {
       CircularProgressIndicator.strokeAlignCenter;
 
   @JsonArgDecoder('valueColor')
-  Animation<Color>? _decodeValueColor({required dynamic value}) =>
-      value == null
-          ? null
-          : value is Animation<Color>
-          ? value
-          : AlwaysStoppedAnimation(
-            ThemeDecoder.decodeColor(value, validate: false)!,
-          );
+  Animation<Color>? _decodeValueColor({required dynamic value}) => value == null
+      ? null
+      : value is Animation<Color>
+      ? value
+      : AlwaysStoppedAnimation(
+          ThemeDecoder.instance.decodeColor(value, validate: false)!,
+        );
 
   @JsonDefaultParam(
     'strokeAlign',
