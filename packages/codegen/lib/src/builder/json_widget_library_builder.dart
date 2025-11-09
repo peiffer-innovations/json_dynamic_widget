@@ -521,13 +521,11 @@ ${c.name}(
 
         final idBuf = StringBuffer();
         if (requiresId) {
-          assert(false, '');
-          idBuf.writeln("""
+          assert(false, """
 assert(data.hasProvidedId, '''
 The $typeStr requires an id to be provided within the JSON but no provided
 id was found.  This may lead to errors or unexpected results when running in
 release mode.
-''');
 """);
         }
 
