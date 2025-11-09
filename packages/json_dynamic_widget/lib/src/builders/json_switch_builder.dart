@@ -5,7 +5,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 part 'json_switch_builder.g.dart';
 
 /// Builder that can build an [Switch] widget.
-@jsonWidget
+@JsonWidget(requiresId: true)
 abstract class _JsonSwitchBuilder extends JsonWidgetBuilder {
   const _JsonSwitchBuilder({required super.args});
 
@@ -27,7 +27,7 @@ abstract class _JsonSwitchBuilder extends JsonWidgetBuilder {
 
 class _Switch extends StatefulWidget {
   const _Switch({
-    this.activeColor,
+    this.activeThumbColor,
     this.activeThumbImage,
     this.activeTrackColor,
     this.autofocus = false,
@@ -46,6 +46,7 @@ class _Switch extends StatefulWidget {
     this.mouseCursor,
     this.onActiveThumbImageError,
     this.onChanged,
+    this.onFocusChanged,
     this.onInactiveThumbImageError,
     this.onSaved,
     this.overlayColor,
@@ -53,12 +54,14 @@ class _Switch extends StatefulWidget {
     this.thumbColor,
     this.thumbIcon,
     this.trackColor,
+    this.trackOutlineColor,
+    this.trackOutlineWidth,
     this.validator,
     this.value = false,
     this.visualDensity,
   });
 
-  final Color? activeColor;
+  final Color? activeThumbColor;
   final ImageProvider<Object>? activeThumbImage;
   final Color? activeTrackColor;
   final bool autofocus;
@@ -77,6 +80,7 @@ class _Switch extends StatefulWidget {
   final MouseCursor? mouseCursor;
   final ImageErrorListener? onActiveThumbImageError;
   final ValueChanged<bool>? onChanged;
+  final ValueChanged<bool>? onFocusChanged;
   final ImageErrorListener? onInactiveThumbImageError;
   final ValueChanged<bool?>? onSaved;
   final WidgetStateProperty<Color?>? overlayColor;
@@ -84,6 +88,8 @@ class _Switch extends StatefulWidget {
   final WidgetStateProperty<Color?>? thumbColor;
   final WidgetStateProperty<Icon?>? thumbIcon;
   final WidgetStateProperty<Color?>? trackColor;
+  final WidgetStateProperty<Color?>? trackOutlineColor;
+  final WidgetStateProperty<double?>? trackOutlineWidth;
   final Validator? validator;
   final bool value;
   final VisualDensity? visualDensity;
@@ -112,73 +118,73 @@ class _SwitchState extends State<_Switch> {
       enabled: widget.enabled,
       initialValue: widget.value,
       key: widget.key,
-      validator:
-          widget.validator == null
-              ? null
-              : (value) {
-                final error = widget.validator!.validate(
-                  label: widget.label ?? '',
-                  value: value?.toString(),
+      validator: widget.validator == null
+          ? null
+          : (value) {
+              final error = widget.validator!.validate(
+                label: widget.label ?? '',
+                value: value?.toString(),
+              );
+
+              if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                widget.data.jsonWidgetRegistry.setValue(
+                  '${widget.data.jsonWidgetId}.error',
+                  error ?? '',
+                  originator: '${widget.data.jsonWidgetId}.error',
                 );
+              }
 
-                if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                  widget.data.jsonWidgetRegistry.setValue(
-                    '${widget.data.jsonWidgetId}.error',
-                    error ?? '',
-                    originator: '${widget.data.jsonWidgetId}.error',
-                  );
-                }
-
-                return error;
-              },
+              return error;
+            },
       onSaved: widget.onSaved,
-      builder:
-          (FormFieldState state) => MergeSemantics(
-            child: Semantics(
-              label: widget.label ?? '',
-              child: Switch(
-                activeColor: widget.activeColor,
-                activeThumbImage: widget.activeThumbImage,
-                activeTrackColor: widget.activeTrackColor,
-                autofocus: widget.autofocus,
-                dragStartBehavior: widget.dragStartBehavior,
-                focusColor: widget.focusColor,
-                focusNode: widget.focusNode,
-                hoverColor: widget.hoverColor,
-                inactiveThumbColor: widget.inactiveThumbColor,
-                inactiveThumbImage: widget.inactiveThumbImage,
-                inactiveTrackColor: widget.inactiveTrackColor,
-                materialTapTargetSize: widget.materialTapTargetSize,
-                mouseCursor: widget.mouseCursor,
-                onActiveThumbImageError: widget.onActiveThumbImageError,
-                onChanged:
-                    widget.enabled != true
-                        ? null
-                        : (value) {
-                          if (widget.onChanged != null) {
-                            widget.onChanged!(value);
-                          }
+      builder: (FormFieldState state) => MergeSemantics(
+        child: Semantics(
+          label: widget.label ?? '',
+          child: Switch(
+            activeThumbColor: widget.activeThumbColor,
+            activeThumbImage: widget.activeThumbImage,
+            activeTrackColor: widget.activeTrackColor,
+            autofocus: widget.autofocus,
+            dragStartBehavior: widget.dragStartBehavior,
+            focusColor: widget.focusColor,
+            focusNode: widget.focusNode,
+            hoverColor: widget.hoverColor,
+            inactiveThumbColor: widget.inactiveThumbColor,
+            inactiveThumbImage: widget.inactiveThumbImage,
+            inactiveTrackColor: widget.inactiveTrackColor,
+            materialTapTargetSize: widget.materialTapTargetSize,
+            mouseCursor: widget.mouseCursor,
+            onActiveThumbImageError: widget.onActiveThumbImageError,
+            onChanged: widget.enabled != true
+                ? null
+                : (value) {
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(value);
+                    }
 
-                          state.didChange(value);
+                    state.didChange(value);
 
-                          if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                            widget.data.jsonWidgetRegistry.setValue(
-                              widget.data.jsonWidgetId,
-                              value,
-                              originator: widget.data.jsonWidgetId,
-                            );
-                          }
-                        },
-                onInactiveThumbImageError: widget.onInactiveThumbImageError,
-                overlayColor: widget.overlayColor,
-                splashRadius: widget.splashRadius,
-                thumbColor: widget.thumbColor,
-                thumbIcon: widget.thumbIcon,
-                trackColor: widget.trackColor,
-                value: state.value,
-              ),
-            ),
+                    if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                      widget.data.jsonWidgetRegistry.setValue(
+                        widget.data.jsonWidgetId,
+                        value,
+                        originator: widget.data.jsonWidgetId,
+                      );
+                    }
+                  },
+            onFocusChange: widget.onFocusChanged,
+            onInactiveThumbImageError: widget.onInactiveThumbImageError,
+            overlayColor: widget.overlayColor,
+            splashRadius: widget.splashRadius,
+            thumbColor: widget.thumbColor,
+            thumbIcon: widget.thumbIcon,
+            trackColor: widget.trackColor,
+            trackOutlineColor: widget.trackOutlineColor,
+            trackOutlineWidth: widget.trackOutlineWidth,
+            value: state.value,
           ),
+        ),
+      ),
     );
   }
 }

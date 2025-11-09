@@ -5,7 +5,7 @@ part 'json_measured_builder.g.dart';
 
 /// Builder that can build a widget that measures itself and writes the
 /// measurements to the [JsonWidgetRegistry]'s values.
-@jsonWidget
+@JsonWidget(requiresId: true)
 abstract class _JsonMeasuredBuilder extends JsonWidgetBuilder {
   const _JsonMeasuredBuilder({required super.args});
 

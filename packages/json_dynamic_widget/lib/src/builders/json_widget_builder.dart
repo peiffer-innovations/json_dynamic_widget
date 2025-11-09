@@ -162,7 +162,8 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
     _data = widget.data;
 
     _subscription = widget.data.jsonWidgetRegistry.valueStream.listen((event) {
-      if (_data.jsonWidgetListenVariables.contains(event.id) == true) {
+      if (_data.jsonWidgetListenVariables.contains(event.id) == true &&
+          event.originator != _data.jsonWidgetId) {
         // _data = _data.recreate();
         if (mounted == true) {
           setState(() {});
@@ -196,7 +197,8 @@ class _JsonWidgetStatefulState extends State<_JsonWidgetStateful> {
     } catch (e, stack) {
       result = SingleChildScrollView(
         child: ErrorWidget.withDetails(
-          message: '''
+          message:
+              '''
 $e
 $stack
 ''',

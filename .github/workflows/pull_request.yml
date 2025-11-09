@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   pull_request:
     branches: [main]
+    types: [opened, reopened, synchronize]
 
 jobs:
   build:
@@ -29,4 +30,3 @@ jobs:
         with:
           generate_code: true
           path: packages/json_dynamic_widget
-

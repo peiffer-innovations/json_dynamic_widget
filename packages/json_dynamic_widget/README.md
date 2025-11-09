@@ -128,30 +128,30 @@ class JsonColumnBuilder extends JsonWidgetBuilder {
 
     if (map != null) {
       result = JsonColumnBuilder(
-        crossAxisAlignment: ThemeDecoder.decodeCrossAxisAlignment(
+        crossAxisAlignment: ThemeDecoder.instance.decodeCrossAxisAlignment(
               map['crossAxisAlignment'],
               validate: false,
             ) ??
             CrossAxisAlignment.center,
-        mainAxisAlignment: ThemeDecoder.decodeMainAxisAlignment(
+        mainAxisAlignment: ThemeDecoder.instance.decodeMainAxisAlignment(
               map['mainAxisAlignment'],
               validate: false,
             ) ??
             MainAxisAlignment.start,
-        mainAxisSize: ThemeDecoder.decodeMainAxisSize(
+        mainAxisSize: ThemeDecoder.instance.decodeMainAxisSize(
               map['mainAxisSize'],
               validate: false,
             ) ??
             MainAxisSize.max,
-        textBaseline: ThemeDecoder.decodeTextBaseline(
+        textBaseline: ThemeDecoder.instance.decodeTextBaseline(
           map['textBaseline'],
           validate: false,
         ),
-        textDirection: ThemeDecoder.decodeTextDirection(
+        textDirection: ThemeDecoder.instance.decodeTextDirection(
           map['textDirection'],
           validate: false,
         ),
-        verticalDirection: ThemeDecoder.decodeVerticalDirection(
+        verticalDirection: ThemeDecoder.instance.decodeVerticalDirection(
               map['verticalDirection'],
               validate: false,
             ) ??

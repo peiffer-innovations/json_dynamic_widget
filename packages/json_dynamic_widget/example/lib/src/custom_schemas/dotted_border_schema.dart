@@ -1,4 +1,4 @@
-import 'package:json_theme/json_theme_schemas.dart';
+import 'package:json_theme/json_theme.dart';
 
 class DottedBorderSchema {
   static const id = 'https://your-url-here.com/schemas/dotted_border';

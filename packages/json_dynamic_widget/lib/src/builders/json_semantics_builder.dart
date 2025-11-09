@@ -11,18 +11,13 @@ abstract class _JsonSemanticsBuilder extends JsonWidgetBuilder {
 
   @JsonArgEncoder('sortKey')
   static Map<String, dynamic>? _encodeSortKey(SemanticsSortKey? value) =>
-      value is OrdinalSortKey ? ThemeEncoder.encodeOrdinalSortKey(value) : null;
-
-  @JsonArgSchema('sortKey')
-  static Map<String, dynamic> _inputDecorationSchema() {
-    final schema = OrdinalSortKeySchema.schema;
-    SchemaCache().addSchema(OrdinalSortKeySchema.id, schema);
-    return SchemaHelper.objectSchema(OrdinalSortKeySchema.id);
-  }
+      value is OrdinalSortKey
+      ? ThemeEncoder.instance.encodeOrdinalSortKey(value)
+      : null;
 
   @JsonArgDecoder('sortKey')
   OrdinalSortKey? _decodeSortKey({required dynamic value}) =>
-      ThemeDecoder.decodeOrdinalSortKey(value, validate: false);
+      ThemeDecoder.instance.decodeOrdinalSortKey(value, validate: false);
 
   @JsonDefaultParam('sortKey', 'null')
   @override

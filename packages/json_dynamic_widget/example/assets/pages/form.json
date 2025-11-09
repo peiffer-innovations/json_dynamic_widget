@@ -103,9 +103,9 @@
                                                                       "args": {
                                                                         "icon": {
                                                                           "codePoint": 57704,
-                                                                          "fontFamily": "MaterialIcons",
-                                                                          "size": 50
-                                                                        }
+                                                                          "fontFamily": "MaterialIcons"
+                                                                        },
+                                                                        "size": 20
                                                                       }
                                                                     },
                                                                     "onPressed": "${set_value('first_name','')}"
@@ -152,9 +152,9 @@
                                                                   "args": {
                                                                     "icon": {
                                                                       "codePoint": 57704,
-                                                                      "fontFamily": "MaterialIcons",
-                                                                      "size": 50
-                                                                    }
+                                                                      "fontFamily": "MaterialIcons"
+                                                                    },
+                                                                    "size": 20
                                                                   }
                                                                 },
                                                                 "onPressed": "${set_value('last_name','')}"
@@ -196,9 +196,9 @@
                                                     "args": {
                                                       "icon": {
                                                         "codePoint": 57704,
-                                                        "fontFamily": "MaterialIcons",
-                                                        "size": 50
-                                                      }
+                                                        "fontFamily": "MaterialIcons"
+                                                      },
+                                                      "size": 20
                                                     }
                                                   },
                                                   "onPressed": "${set_value('email_address','')}"

@@ -73,7 +73,7 @@
                             }
                           },
                           {
-                            "type": "button_bar",
+                            "type": "overflow_bar",
                             "args": {
                               "children": [
                                 {

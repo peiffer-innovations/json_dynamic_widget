@@ -1,90 +1,77 @@
 type: scaffold
-args: 
-  appBar: 
+args:
+  appBar:
     type: 'app_bar'
-    args: 
-      title: 
+    args:
+      title:
         type: text
-        args: 
+        args:
           text: CupertinoSwitch
 
-  body: 
+  body:
     type: center
-    args: 
-      child: 
+    args:
+      child:
         type: column
-        args: 
+        args:
           mainAxisSize: min
-          children: 
-            - 
-              type: row
-              args: 
+          children:
+            - type: row
+              args:
                 mainAxisSize: min
-                children: 
-                  - 
-                    type: 'cupertino_switch'
-                    args: 
+                children:
+                  - type: 'cupertino_switch'
+                    id: checked
+                    args:
                       label: Checked
                       value: true
-                  - 
-                    type: text
-                    args: 
+                  - type: text
+                    args:
                       text: Checked
 
-            - 
-              type: row
-              args: 
+            - type: row
+              args:
                 mainAxisSize: min
-                children: 
-                  - 
-                    type: 'cupertino_switch'
-                    args: 
+                children:
+                  - type: 'cupertino_switch'
+                    id: not_checked
+                    args:
                       label: Not Checked
                       value: false
-                  - 
-                    type: text
-                    args: 
+                  - type: text
+                    args:
                       text: Not Checked
 
-            - 
-              type: row
-              args: 
+            - type: row
+              args:
                 mainAxisSize: min
-                children: 
-                  - 
-                    type: 'cupertino_switch'
-                    args: 
+                children:
+                  - type: 'cupertino_switch'
+                    id: disabled
+                    args:
                       enabled: false
                       label: Disabled
-                  - 
-                    type: text
-                    args: 
+                  - type: text
+                    args:
                       text: Disabled
 
-            - 
-              type: column
-              args: 
+            - type: column
+              args:
                 mainAxisSize: min
-                children: 
-                  - 
-                    type: 'cupertino_switch'
+                children:
+                  - type: 'cupertino_switch'
                     id: 'example_switch'
-                  - 
-                    type: conditional
-                    args: 
-                      conditional: 
-                        values: 
+                  - type: conditional
+                    args:
+                      conditional:
+                        values:
                           example_switch: true
 
-                      onFalse: 
+                      onFalse:
                         type: text
-                        args: 
+                        args:
                           text: Not Checked
-                      onTrue: 
+                      onTrue:
                         type: text
-                        args: 
+                        args:
                           text: 'Checked!'
-
-
-
-
