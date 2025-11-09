@@ -35,12 +35,6 @@ dependency_overrides:
     path: ../../annotation
   json_dynamic_widget_codegen:
     path: ../../codegen
-  json_theme_annotation:
-    path: ../../../../json_theme/packages/annotation
-  json_theme_codegen:
-    path: ../../../../json_theme/packages/codegen
-  json_theme:
-    path: ../../../../json_theme/packages/json_theme
 
 icons_launcher:
   image_path: 'assets-src/icon.png'

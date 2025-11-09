@@ -32,8 +32,9 @@ dependencies:
   yaon: '^1.1.4+10'
 
 dev_dependencies:
-  build_runner: '2.7.2'
-  # build_runner: '^2.10.1'
+  # When debugging is needed
+  # build_runner: '2.7.2'
+  build_runner: '^2.10.1'
   code_builder: '^4.10.1'
   flutter_lints: '^6.0.0'
   flutter_test:
@@ -41,12 +42,6 @@ dev_dependencies:
   json_dynamic_widget_codegen: '^4.0.0'
 
 dependency_overrides:
-  json_theme:
-    path: ../../../json_theme/packages/json_theme
-  json_theme_annotation:
-    path: ../../../json_theme/packages/annotation
-  json_theme_codegen:
-    path: ../../../json_theme/packages/codegen
   test_api: '^0.7.6'
 
 permittedLicenses:
