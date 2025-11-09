@@ -1,4 +1,4 @@
-## [3.0.1] - October 29th, 2025
+## [3.0.1] - November 9th, 2025
 
 * Flutter 3.35
 

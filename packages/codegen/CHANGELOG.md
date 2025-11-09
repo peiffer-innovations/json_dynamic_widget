@@ -1,4 +1,4 @@
-## [4.0.0] - October 29th, 2025
+## [4.0.0] - November 9th, 2025
 
 * Updated generaters to the latest version
 * Flutter 3.35
