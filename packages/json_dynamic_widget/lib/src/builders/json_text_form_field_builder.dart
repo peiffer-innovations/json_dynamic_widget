@@ -6,7 +6,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 
 part 'json_text_form_field_builder.g.dart';
 
-@jsonWidget
+@JsonWidget(requiresId: true)
 abstract class _JsonTextFormFieldBuilder extends JsonWidgetBuilder {
   const _JsonTextFormFieldBuilder({required super.args});
 
@@ -66,6 +66,7 @@ class _TextFormField extends StatefulWidget {
     this.contextMenuBuilder,
     required this.controller,
     this.cursorColor,
+    this.cursorErrorColor,
     this.cursorHeight,
     this.cursorOpacityAnimates,
     this.cursorRadius,
@@ -78,6 +79,11 @@ class _TextFormField extends StatefulWidget {
     this.enableSuggestions = true,
     this.enabled,
     this.expands = false,
+    this.errorBuilder,
+    this.forceErrorText,
+    this.groupId = EditableText,
+    this.hintLocales,
+    this.ignorePointers,
     this.focusNode,
     this.initialValue,
     this.inputFormatters,
@@ -97,12 +103,16 @@ class _TextFormField extends StatefulWidget {
     this.onFieldSubmitted,
     this.onSaved,
     this.onTap,
+    this.onTapAlwaysCalled = false,
     this.onTapOutside,
+    this.onTapUpOutside,
     this.readOnly = false,
     this.restorationId,
     this.scrollController,
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.scrollPhysics,
+    this.selectAllOnFocus,
+    this.statesController,
     this.selectionControls,
     this.selectionHeightStyle = BoxHeightStyle.tight,
     this.selectionWidthStyle = BoxWidthStyle.tight,
@@ -133,6 +143,7 @@ class _TextFormField extends StatefulWidget {
   final EditableTextContextMenuBuilder? contextMenuBuilder;
   final TextEditingController? controller;
   final Color? cursorColor;
+  final Color? cursorErrorColor;
   final double? cursorHeight;
   final bool? cursorOpacityAnimates;
   final Radius? cursorRadius;
@@ -144,8 +155,13 @@ class _TextFormField extends StatefulWidget {
   final bool? enableInteractiveSelection;
   final bool enableSuggestions;
   final bool? enabled;
+  final Widget Function(BuildContext, String)? errorBuilder;
   final bool expands;
   final FocusNode? focusNode;
+  final String? forceErrorText;
+  final Object groupId;
+  final List<Locale>? hintLocales;
+  final bool? ignorePointers;
   final String? initialValue;
   final List<TextInputFormatter>? inputFormatters;
   final Brightness? keyboardAppearance;
@@ -164,12 +180,15 @@ class _TextFormField extends StatefulWidget {
   final ValueChanged<String>? onFieldSubmitted;
   final FormFieldSetter<String>? onSaved;
   final VoidCallback? onTap;
+  final bool onTapAlwaysCalled;
   final TapRegionCallback? onTapOutside;
+  final void Function(PointerUpEvent)? onTapUpOutside;
   final bool readOnly;
   final String? restorationId;
   final ScrollController? scrollController;
   final EdgeInsets scrollPadding;
   final ScrollPhysics? scrollPhysics;
+  final bool? selectAllOnFocus;
   final TextSelectionControls? selectionControls;
   final BoxHeightStyle selectionHeightStyle;
   final BoxWidthStyle selectionWidthStyle;
@@ -177,6 +196,7 @@ class _TextFormField extends StatefulWidget {
   final SmartDashesType? smartDashesType;
   final SmartQuotesType? smartQuotesType;
   final SpellCheckConfiguration? spellCheckConfiguration;
+  final WidgetStatesController? statesController;
   final StrutStyle? strutStyle;
   final TextStyle? style;
   final bool stylusHandwritingEnabled;
@@ -260,6 +280,7 @@ class _TextFormFieldState extends State<_TextFormField> {
     contextMenuBuilder: widget.contextMenuBuilder,
     controller: _controller,
     cursorColor: widget.cursorColor,
+    cursorErrorColor: widget.cursorErrorColor,
     cursorHeight: widget.cursorHeight,
     cursorOpacityAnimates: widget.cursorOpacityAnimates,
     cursorRadius: widget.cursorRadius,
@@ -270,8 +291,13 @@ class _TextFormFieldState extends State<_TextFormField> {
     enableInteractiveSelection: widget.enableInteractiveSelection,
     enableSuggestions: widget.enableSuggestions,
     enabled: widget.enabled,
+    errorBuilder: widget.errorBuilder,
     expands: widget.expands,
     focusNode: widget.focusNode,
+    forceErrorText: widget.forceErrorText,
+    groupId: widget.groupId,
+    hintLocales: widget.hintLocales,
+    ignorePointers: widget.ignorePointers,
     // initialValue: <controller is required, so this can never be set>,
     inputFormatters: widget.inputFormatters,
     keyboardAppearance: widget.keyboardAppearance,
@@ -285,24 +311,26 @@ class _TextFormFieldState extends State<_TextFormField> {
     obscuringCharacter: widget.obscuringCharacter,
     obscureText: widget.obscureText,
     onAppPrivateCommand: widget.onAppPrivateCommand,
-    onChanged:
-        widget.enabled != true
-            ? null
-            : (value) {
-              if (widget.onChanged != null) {
-                widget.onChanged!(value);
-              }
-            },
+    onChanged: widget.enabled != true
+        ? null
+        : (value) {
+            if (widget.onChanged != null) {
+              widget.onChanged!(value);
+            }
+          },
     onEditingComplete: widget.onEditingComplete,
     onFieldSubmitted: widget.onFieldSubmitted,
     onSaved: widget.onSaved,
     onTap: widget.onTap,
+    onTapAlwaysCalled: widget.onTapAlwaysCalled,
     onTapOutside: widget.onTapOutside,
+    onTapUpOutside: widget.onTapUpOutside,
     readOnly: widget.readOnly,
     restorationId: widget.restorationId,
     scrollController: widget.scrollController,
     scrollPadding: widget.scrollPadding,
     scrollPhysics: widget.scrollPhysics,
+    selectAllOnFocus: widget.selectAllOnFocus,
     selectionControls: widget.selectionControls,
     selectionHeightStyle: widget.selectionHeightStyle,
     selectionWidthStyle: widget.selectionWidthStyle,
@@ -310,6 +338,7 @@ class _TextFormFieldState extends State<_TextFormField> {
     smartDashesType: widget.smartDashesType,
     smartQuotesType: widget.smartQuotesType,
     spellCheckConfiguration: widget.spellCheckConfiguration,
+    statesController: widget.statesController,
     strutStyle: widget.strutStyle,
     style: widget.style,
     stylusHandwritingEnabled: widget.stylusHandwritingEnabled,
@@ -320,22 +349,21 @@ class _TextFormFieldState extends State<_TextFormField> {
     textInputAction: widget.textInputAction,
     // @deprecated toolbarOptions
     undoController: widget.undoController,
-    validator:
-        widget.validators == null
-            ? null
-            : (value) {
-              final error = widget.validators!.validate(
-                label: widget.decoration?.labelText ?? '',
-                value: value?.toString(),
-              );
+    validator: widget.validators == null
+        ? null
+        : (value) {
+            final error = widget.validators!.validate(
+              label: widget.decoration?.labelText ?? '',
+              value: value?.toString(),
+            );
 
-              widget.data.jsonWidgetRegistry.setValue(
-                '${widget.data.jsonWidgetId}.error',
-                error ?? '',
-                originator: widget.data.jsonWidgetId,
-              );
+            widget.data.jsonWidgetRegistry.setValue(
+              '${widget.data.jsonWidgetId}.error',
+              error ?? '',
+              originator: widget.data.jsonWidgetId,
+            );
 
-              return error;
-            },
+            return error;
+          },
   );
 }

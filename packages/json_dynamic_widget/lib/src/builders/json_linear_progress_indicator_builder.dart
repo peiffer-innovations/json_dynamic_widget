@@ -8,14 +8,13 @@ abstract class _JsonLinearProgressIndicatorBuilder extends JsonWidgetBuilder {
   const _JsonLinearProgressIndicatorBuilder({required super.args});
 
   @JsonArgDecoder('valueColor')
-  Animation<Color>? _decodeValueColor({required dynamic value}) =>
-      value == null
-          ? null
-          : value is Animation<Color>
-          ? value
-          : AlwaysStoppedAnimation(
-            ThemeDecoder.decodeColor(value, validate: false)!,
-          );
+  Animation<Color>? _decodeValueColor({required dynamic value}) => value == null
+      ? null
+      : value is Animation<Color>
+      ? value
+      : AlwaysStoppedAnimation(
+          ThemeDecoder.instance.decodeColor(value, validate: false)!,
+        );
 
   @override
   LinearProgressIndicator buildCustom({

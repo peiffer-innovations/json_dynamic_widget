@@ -73,8 +73,11 @@ class InputDecorationDecoder {
     if (map != null) {
       result = InputDecoration(
         alignLabelWithHint: JsonClass.maybeParseBool(map['alignLabelWithHint']),
-        border: ThemeDecoder.decodeInputBorder(map['border'], validate: false),
-        contentPadding: ThemeDecoder.decodeEdgeInsetsGeometry(
+        border: ThemeDecoder.instance.decodeInputBorder(
+          map['border'],
+          validate: false,
+        ),
+        contentPadding: ThemeDecoder.instance.decodeEdgeInsetsGeometry(
           map['contentPadding'],
           validate: false,
         ),
@@ -82,61 +85,65 @@ class InputDecorationDecoder {
           map['counter'],
           registry: registry,
         )?.build(childBuilder: childBuilder, context: context),
-        counterStyle: ThemeDecoder.decodeTextStyle(
+        counterStyle: ThemeDecoder.instance.decodeTextStyle(
           map['counterStyle'],
           validate: false,
         ),
         counterText: map['counterText'],
-        disabledBorder: ThemeDecoder.decodeInputBorder(
+        disabledBorder: ThemeDecoder.instance.decodeInputBorder(
           map['disabledBorder'],
           validate: false,
         ),
         enabled: JsonClass.parseBool(map['enabled'], whenNull: true),
-        enabledBorder: ThemeDecoder.decodeInputBorder(
+        enabledBorder: ThemeDecoder.instance.decodeInputBorder(
           map['enabledBorder'],
           validate: false,
         ),
-        errorBorder: ThemeDecoder.decodeInputBorder(
+        errorBorder: ThemeDecoder.instance.decodeInputBorder(
           map['errorBorder'],
           validate: false,
         ),
         errorMaxLines: JsonClass.maybeParseInt(map['errorMaxLines']),
-        errorStyle: ThemeDecoder.decodeTextStyle(
+        errorStyle: ThemeDecoder.instance.decodeTextStyle(
           map['errorStyle'],
           validate: false,
         ),
         errorText: map['errorText'],
-        fillColor: ThemeDecoder.decodeColor(map['fillColor'], validate: false),
-        filled: JsonClass.maybeParseBool(map['filled']),
-        floatingLabelBehavior: ThemeDecoder.decodeFloatingLabelBehavior(
-          map['floatingLabelBehavior'],
+        fillColor: ThemeDecoder.instance.decodeColor(
+          map['fillColor'],
           validate: false,
         ),
-        focusColor: ThemeDecoder.decodeColor(
+        filled: JsonClass.maybeParseBool(map['filled']),
+        floatingLabelBehavior: ThemeDecoder.instance
+            .decodeFloatingLabelBehavior(
+              map['floatingLabelBehavior'],
+              validate: false,
+            ),
+        focusColor: ThemeDecoder.instance.decodeColor(
           map['focusColor'],
           validate: false,
         ),
-        focusedBorder: ThemeDecoder.decodeInputBorder(
+        focusedBorder: ThemeDecoder.instance.decodeInputBorder(
           map['focusedBorder'],
           validate: false,
         ),
-        focusedErrorBorder: ThemeDecoder.decodeInputBorder(
+        focusedErrorBorder: ThemeDecoder.instance.decodeInputBorder(
           map['focusedErrorBorder'],
           validate: false,
         ),
         helperMaxLines: JsonClass.maybeParseInt(map['helperMaxLines']),
-        helperStyle: ThemeDecoder.decodeTextStyle(
+        helperStyle: ThemeDecoder.instance.decodeTextStyle(
           map['helperStyle'],
           validate: false,
         ),
         helperText: map['helperText'],
         hintMaxLines: JsonClass.maybeParseInt(map['hintMaxLines']),
-        hintStyle: ThemeDecoder.decodeTextStyle(
+        hintStyle: ThemeDecoder.instance.decodeTextStyle(
           map['hintStyle'],
           validate: false,
         ),
         hintText: map['hintText'],
-        hoverColor: ThemeDecoder.decodeColor(
+        hoverColor: ThemeDecoder.instance.decodeColor(
           map['hoverColor'],
           validate: false,
         ),
@@ -145,7 +152,7 @@ class InputDecorationDecoder {
           registry: registry,
         )?.build(childBuilder: childBuilder, context: context),
         isDense: JsonClass.maybeParseBool(map['isDense']),
-        labelStyle: ThemeDecoder.decodeTextStyle(
+        labelStyle: ThemeDecoder.instance.decodeTextStyle(
           map['labelStyle'],
           validate: false,
         ),
@@ -158,11 +165,11 @@ class InputDecorationDecoder {
           map['prefixIcon'],
           registry: registry,
         )?.build(childBuilder: childBuilder, context: context),
-        prefixIconConstraints: ThemeDecoder.decodeBoxConstraints(
+        prefixIconConstraints: ThemeDecoder.instance.decodeBoxConstraints(
           map['prefixIconConstraints'],
           validate: false,
         ),
-        prefixStyle: ThemeDecoder.decodeTextStyle(
+        prefixStyle: ThemeDecoder.instance.decodeTextStyle(
           map['prefixStyle'],
           validate: false,
         ),
@@ -176,11 +183,11 @@ class InputDecorationDecoder {
           map['suffixIcon'],
           registry: registry,
         )?.build(childBuilder: childBuilder, context: context),
-        suffixIconConstraints: ThemeDecoder.decodeBoxConstraints(
+        suffixIconConstraints: ThemeDecoder.instance.decodeBoxConstraints(
           map['suffixIconConstraints'],
           validate: false,
         ),
-        suffixStyle: ThemeDecoder.decodeTextStyle(
+        suffixStyle: ThemeDecoder.instance.decodeTextStyle(
           map['suffixStyle'],
           validate: false,
         ),

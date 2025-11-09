@@ -27,6 +27,7 @@
                   "children": [
                     {
                       "type": "checkbox",
+                      "id": "checked",
                       "args": {
                         "label": "Checked",
                         "value": true
@@ -48,6 +49,7 @@
                   "children": [
                     {
                       "type": "checkbox",
+                      "id": "not_checked",
                       "args": {
                         "label": "Not Checked",
                         "value": false
@@ -69,6 +71,7 @@
                   "children": [
                     {
                       "type": "checkbox",
+                      "id": "disabled",
                       "args": {
                         "enabled": false,
                         "label": "Disabled"
@@ -90,6 +93,7 @@
                   "children": [
                     {
                       "type": "checkbox",
+                      "id": "on_changed",
                       "args": {
                         "label": "OnChanged example",
                         "onChanged": "${setBooleanValue('changedValue')}"

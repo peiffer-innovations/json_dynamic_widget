@@ -19,53 +19,48 @@
           "radioGroupValue": "radioValue1"
         },
         "child": {
-          "type": "column",
+          "type": "radio_group",
+          "id": "radioGroupValue",
           "args": {
-            "crossAxisAlignment": "start",
-            "children": [
-              {
-                "type": "text",
-                "listen": [
-                  "radioGroupValue"
-                ],
-                "args": {
-                  "text": "${'Selected radio group value: ' + radioGroupValue ?? ''}"
-                }
-              },
-              {
-                "type": "radio",
-                "listen": [
-                  "radioGroupValue"
-                ],
-                "args": {
-                  "groupValue": "${radioGroupValue}",
-                  "id": "radioGroupValue",
-                  "value": "radioValue1"
-                }
-              },
-              {
-                "type": "radio",
-                "listen": [
-                  "radioGroupValue"
-                ],
-                "args": {
-                  "groupValue": "${radioGroupValue}",
-                  "id": "radioGroupValue",
-                  "value": "radioValue2"
-                }
-              },
-              {
-                "type": "radio",
-                "listen": [
-                  "radioGroupValue"
-                ],
-                "args": {
-                  "groupValue": "${radioGroupValue}",
-                  "id": "radioGroupValue",
-                  "value": "radioValue3"
-                }
+            "groupValue": "${radioGroupValue}",
+            "child": {
+              "type": "column",
+              "args": {
+                "crossAxisAlignment": "start",
+                "children": [
+                  {
+                    "type": "text",
+                    "listen": [
+                      "radioGroupValue"
+                    ],
+                    "args": {
+                      "text": "${'Selected radio group value: ' + radioGroupValue ?? ''}"
+                    }
+                  },
+                  {
+                    "type": "radio",
+                    "id": "radioValue1",
+                    "args": {
+                      "value": "radioValue1"
+                    }
+                  },
+                  {
+                    "type": "radio",
+                    "id": "radioValue2",
+                    "args": {
+                      "value": "radioValue2"
+                    }
+                  },
+                  {
+                    "type": "radio",
+                    "id": "radioValue3",
+                    "args": {
+                      "value": "radioValue3"
+                    }
+                  }
+                ]
               }
-            ]
+            }
           }
         }
       }

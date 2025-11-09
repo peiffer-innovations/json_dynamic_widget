@@ -22,7 +22,7 @@ class JsonWidgetRegistrarBuilder
     final emitter = DartEmitter(useNullSafetySyntax: true);
     final widgets = WidgetMetadata().data;
 
-    const registrationChecker = TypeChecker.fromRuntime(JsonWidgetRegistration);
+    const registrationChecker = TypeChecker.typeNamed(JsonWidgetRegistration);
 
     final manualRegistrations = <String, WidgetInfo>{};
     MethodElement? registerMethod;
@@ -32,7 +32,7 @@ class JsonWidgetRegistrarBuilder
         registerMethod = m;
       }
       if (annotation != null) {
-        manualRegistrations[m.name] = WidgetInfo(
+        manualRegistrations[m.displayName] = WidgetInfo(
           autoRegister: true,
           builder: ConstantReader(annotation).read('builder').stringValue,
           constBuilder: false,
@@ -46,74 +46,87 @@ class JsonWidgetRegistrarBuilder
       c.name = name.substring(1);
       c.extend = Reference(name);
 
-      c.fields.add(Field((f) {
-        f.name = '_builders';
-        f.type = const Reference('Map<String, JsonWidgetBuilderContainer>');
-        f.assignment = const Code('<String, JsonWidgetBuilderContainer>{}');
-        f.modifier = FieldModifier.final$;
-      }));
-      c.fields.add(Field((f) {
-        f.name = '_schemas';
-        f.type = const Reference('Map<String, Map<String, Object>>');
-        f.assignment = const Code('<String, Map<String, Object>>{}');
-        f.modifier = FieldModifier.final$;
-      }));
+      c.fields.add(
+        Field((f) {
+          f.name = '_builders';
+          f.type = const Reference('Map<String, JsonWidgetBuilderContainer>');
+          f.assignment = const Code('<String, JsonWidgetBuilderContainer>{}');
+          f.modifier = FieldModifier.final$;
+        }),
+      );
+      c.fields.add(
+        Field((f) {
+          f.name = '_schemas';
+          f.type = const Reference('Map<String, Map<String, Object>>');
+          f.assignment = const Code('<String, Map<String, Object>>{}');
+          f.modifier = FieldModifier.final$;
+        }),
+      );
 
-      c.methods.add(Method((m) {
-        m.name = 'registerDefaults';
-        m.optionalParameters.add(Parameter((p) {
-          p.name = 'registry';
-          p.type = const Reference('JsonWidgetRegistry?');
-          p.named = true;
-          p.required = false;
-        }));
-        m.static = true;
-        m.returns = Reference(c.name);
+      c.methods.add(
+        Method((m) {
+          m.name = 'registerDefaults';
+          m.optionalParameters.add(
+            Parameter((p) {
+              p.name = 'registry';
+              p.type = const Reference('JsonWidgetRegistry?');
+              p.named = true;
+              p.required = false;
+            }),
+          );
+          m.static = true;
+          m.returns = Reference(c.name);
 
-        final buf = StringBuffer();
+          final buf = StringBuffer();
 
-        buf.writeln('registry ??= JsonWidgetRegistry.instance;');
+          buf.writeln('registry ??= JsonWidgetRegistry.instance;');
 
-        buf.writeln('return ${c.name}()');
-        final registrations = <String>[];
-        for (var entry in manualRegistrations.entries) {
-          registrations.add('..${entry.key}()');
-        }
-        for (var w in widgets) {
-          if (w.autoRegister) {
-            registrations.add('..with${w.widget}()');
+          buf.writeln('return ${c.name}()');
+          final registrations = <String>[];
+          for (var entry in manualRegistrations.entries) {
+            registrations.add('..${entry.key}()');
           }
-        }
+          for (var w in widgets) {
+            if (w.autoRegister) {
+              registrations.add('..with${w.widget}()');
+            }
+          }
 
-        registrations.sort();
-        buf.write(registrations.join('\n'));
-        buf.write('..register(registry);');
+          registrations.sort();
+          buf.write(registrations.join('\n'));
+          buf.write('..register(registry);');
 
-        m.body = Code(buf.toString());
-      }));
+          m.body = Code(buf.toString());
+        }),
+      );
 
-      c.methods.add(Method((m) {
-        m.name = 'schemas';
-        m.type = MethodType.getter;
-        m.returns = const Reference('Map<String, Map<String, Object>>');
-        m.lambda = true;
-        m.body = const Code('Map<String, Map<String, Object>>.from(_schemas)');
-      }));
+      c.methods.add(
+        Method((m) {
+          m.name = 'schemas';
+          m.type = MethodType.getter;
+          m.returns = const Reference('Map<String, Map<String, Object>>');
+          m.lambda = true;
+          m.body = const Code(
+            'Map<String, Map<String, Object>>.from(_schemas)',
+          );
+        }),
+      );
 
-      c.methods.add(Method((m) {
-        m.name = 'register';
-        m.requiredParameters.add(
-          Parameter((p) {
-            p.name = 'registry';
-            p.type = const Reference('JsonWidgetRegistry');
-            p.named = false;
-          }),
-        );
-        m.returns = const Reference('void');
-        if (registerMethod != null) {
-          m.annotations.add(const CodeExpression(Code('override')));
-        }
-        m.body = Code('''
+      c.methods.add(
+        Method((m) {
+          m.name = 'register';
+          m.requiredParameters.add(
+            Parameter((p) {
+              p.name = 'registry';
+              p.type = const Reference('JsonWidgetRegistry');
+              p.named = false;
+            }),
+          );
+          m.returns = const Reference('void');
+          if (registerMethod != null) {
+            m.annotations.add(const CodeExpression(Code('override')));
+          }
+          m.body = Code('''
 ${registerMethod == null ? '' : 'super.register(registry);'}
 for (var b in _builders.entries) {
   registry.registerCustomBuilder(b.key, b.value);
@@ -124,13 +137,15 @@ for (var s in _schemas.entries) {
   schemaCache.addSchema(s.key, s.value);
 }
 ''');
-      }));
+        }),
+      );
 
       for (var w in widgets) {
-        c.methods.add(Method((m) {
-          m.name = 'with${w.widget}';
-          m.returns = const Reference('void');
-          m.body = Code('''
+        c.methods.add(
+          Method((m) {
+            m.name = 'with${w.widget}';
+            m.returns = const Reference('void');
+            m.body = Code('''
 _builders[${w.builder}.kType] =
     const JsonWidgetBuilderContainer(
   builder: ${w.builder}.fromDynamic,
@@ -138,17 +153,19 @@ _builders[${w.builder}.kType] =
 );
 _schemas[${w.schema}.id] = ${w.schema}.schema;
 ''');
-        }));
+          }),
+        );
       }
 
       for (var entry in manualRegistrations.entries) {
-        c.methods.add(Method((m) {
-          m.name = entry.key;
-          m.annotations.add(const CodeExpression(Code('override')));
-          m.returns = const Reference('void');
+        c.methods.add(
+          Method((m) {
+            m.name = entry.key;
+            m.annotations.add(const CodeExpression(Code('override')));
+            m.returns = const Reference('void');
 
-          final w = entry.value;
-          m.body = Code('''
+            final w = entry.value;
+            m.body = Code('''
 _builders[${w.builder}.kType] =
     const JsonWidgetBuilderContainer(
   builder: ${w.builder}.fromDynamic,
@@ -156,7 +173,8 @@ _builders[${w.builder}.kType] =
 );
 _schemas[${w.schema}.id] = ${w.schema}.schema;
 ''');
-        }));
+          }),
+        );
       }
     });
 

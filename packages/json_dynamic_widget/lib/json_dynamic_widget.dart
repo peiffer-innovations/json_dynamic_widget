@@ -10,7 +10,7 @@ export 'package:json_theme/json_theme.dart'
     hide
         CardThemeDataSchema,
         DialogThemeDataSchema,
-        InputDecorationThemeSchema,
+        // InputDecorationThemeSchema,
         TabBarThemeDataSchema;
 export 'package:uuid/uuid.dart';
 export 'package:yaon/yaon.dart';

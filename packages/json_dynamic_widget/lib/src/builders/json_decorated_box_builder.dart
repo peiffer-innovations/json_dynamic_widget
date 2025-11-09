@@ -9,11 +9,11 @@ abstract class _JsonDecoratedBoxBuilder extends JsonWidgetBuilder {
 
   @JsonArgDecoder('decoration')
   Decoration _decodeDecoration({required dynamic value}) =>
-      ThemeDecoder.decodeBoxDecoration(value, validate: false)!;
+      ThemeDecoder.instance.decodeBoxDecoration(value, validate: false)!;
 
   @JsonArgDecoder('position')
   DecorationPosition _decodePosition({required dynamic value}) =>
-      ThemeDecoder.decodeDecorationPosition(value, validate: false) ??
+      ThemeDecoder.instance.decodeDecorationPosition(value, validate: false) ??
       DecorationPosition.background;
 
   @override

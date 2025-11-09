@@ -85,7 +85,8 @@
                                     "mainAxisSize": "min",
                                     "children": [
                                       {
-                                        "type": "checkbox"
+                                        "type": "checkbox",
+                                        "id": "checkbox"
                                       },
                                       {
                                         "type": "sized_box",
@@ -94,27 +95,32 @@
                                         }
                                       },
                                       {
-                                        "type": "row",
+                                        "type": "radio_group",
+                                        "id": "radioGroupValue",
                                         "args": {
-                                          "mainAxisAlignment": "spaceEvenly",
-                                          "children": [
-                                            {
-                                              "type": "radio",
-                                              "args": {
-                                                "groupValue": "false",
-                                                "id": "radio",
-                                                "value": true
-                                              }
-                                            },
-                                            {
-                                              "type": "radio",
-                                              "args": {
-                                                "groupValue": "false",
-                                                "id": "radio",
-                                                "value": false
-                                              }
+                                          "groupValue": "${radioGroupValue}",
+                                          "child": {
+                                            "type": "row",
+                                            "args": {
+                                              "mainAxisAlignment": "spaceEvenly",
+                                              "children": [
+                                                {
+                                                  "type": "radio",
+                                                  "id": "radio1",
+                                                  "args": {
+                                                    "value": true
+                                                  }
+                                                },
+                                                {
+                                                  "type": "radio",
+                                                  "id": "radio2",
+                                                  "args": {
+                                                    "value": false
+                                                  }
+                                                }
+                                              ]
                                             }
-                                          ]
+                                          }
                                         }
                                       },
                                       {

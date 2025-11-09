@@ -7,18 +7,21 @@ import 'package:logging/logging.dart';
 
 class JsonWidgetData extends JsonClass {
   JsonWidgetData({
+    bool? hasProvidedId,
     this.jsonWidgetArgs,
     required this.jsonWidgetBuilder,
     Set<String>? jsonWidgetListenVariables,
     String? jsonWidgetId,
     JsonWidgetRegistry? jsonWidgetRegistry,
     required this.jsonWidgetType,
-  }) : jsonWidgetListenVariables = jsonWidgetListenVariables ?? <String>{},
+  }) : hasProvidedId = hasProvidedId ?? jsonWidgetId != null,
+       jsonWidgetListenVariables = jsonWidgetListenVariables ?? <String>{},
        jsonWidgetId = jsonWidgetId ?? const Uuid().v4(),
        jsonWidgetRegistry = jsonWidgetRegistry ?? JsonWidgetRegistry.instance;
 
   static final Logger _logger = Logger('JsonWidgetData');
 
+  final bool hasProvidedId;
   final dynamic jsonWidgetArgs;
   final JsonWidgetBuilder Function() jsonWidgetBuilder;
   final String jsonWidgetType;
@@ -94,12 +97,11 @@ class JsonWidgetData extends JsonClass {
     } else if (map != null) {
       try {
         final type = map['type'];
-        final timer =
-            ExecutionWatch(
-              group: 'JsonWidgetData.fromDynamic',
-              name: type,
-              precision: TimerPrecision.microsecond,
-            ).start();
+        final timer = ExecutionWatch(
+          group: 'JsonWidgetData.fromDynamic',
+          name: type,
+          precision: TimerPrecision.microsecond,
+        ).start();
         try {
           if (type is! String) {
             throw HandledJsonWidgetException(
@@ -227,6 +229,7 @@ $errorValue
     JsonWidgetRegistry? jsonWidgetRegistry,
     String? jsonWidgetType,
   }) => JsonWidgetData(
+    hasProvidedId: hasProvidedId,
     jsonWidgetArgs: jsonWidgetArgs ?? this.jsonWidgetArgs,
     jsonWidgetBuilder:
         jsonWidgetBuilder as JsonWidgetBuilder Function()? ??
@@ -247,14 +250,12 @@ $errorValue
       // Skips the id if it's a valid (auto generated) UUID to avoid spamming
       // the emitted JSON
       'id': Uuid.isValidUUID(fromString: jsonWidgetId) ? null : jsonWidgetId,
-      'listen':
-          jsonWidgetListenVariables.isEmpty
-              ? null
-              : List<String>.from(jsonWidgetListenVariables),
-      'args':
-          jsonWidgetArgs is JsonClass
-              ? jsonWidgetArgs.toJson()
-              : jsonWidgetArgs,
+      'listen': jsonWidgetListenVariables.isEmpty
+          ? null
+          : List<String>.from(jsonWidgetListenVariables),
+      'args': jsonWidgetArgs is JsonClass
+          ? jsonWidgetArgs.toJson()
+          : jsonWidgetArgs,
     });
   }
 }

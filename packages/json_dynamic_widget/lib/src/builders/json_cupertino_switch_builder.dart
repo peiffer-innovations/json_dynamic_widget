@@ -7,7 +7,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 part 'json_cupertino_switch_builder.g.dart';
 
 /// Builder that can build an [CupertinoSwitch] widget.
-@jsonWidget
+@JsonWidget(requiresId: true)
 abstract class _JsonCupertinoSwitchBuilder extends JsonWidgetBuilder {
   const _JsonCupertinoSwitchBuilder({required super.args});
 
@@ -86,57 +86,54 @@ class _CupertinoSwitchState extends State<_CupertinoSwitch> {
       initialValue: widget.value,
       onSaved: widget.onSaved,
       restorationId: widget.restorationId,
-      validator:
-          widget.validators == null
-              ? null
-              : (value) {
-                final error = widget.validators!.validate(
-                  label: widget.label ?? '',
-                  value: value?.toString(),
+      validator: widget.validators == null
+          ? null
+          : (value) {
+              final error = widget.validators!.validate(
+                label: widget.label ?? '',
+                value: value?.toString(),
+              );
+
+              if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                widget.data.jsonWidgetRegistry.setValue(
+                  '${widget.data.jsonWidgetId}.error',
+                  error ?? '',
+                  originator: widget.data.jsonWidgetId,
                 );
+              }
 
-                if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                  widget.data.jsonWidgetRegistry.setValue(
-                    '${widget.data.jsonWidgetId}.error',
-                    error ?? '',
-                    originator: widget.data.jsonWidgetId,
-                  );
-                }
+              return error;
+            },
+      builder: (FormFieldState state) => MergeSemantics(
+        child: Semantics(
+          label: widget.label ?? '',
+          child: CupertinoSwitch(
+            activeTrackColor: widget.activeColor,
+            dragStartBehavior:
+                widget.dragStartBehavior ?? DragStartBehavior.start,
+            onChanged: widget.enabled != true
+                ? null
+                : (value) {
+                    if (widget.onChanged != null) {
+                      widget.onChanged!(value);
+                    }
 
-                return error;
-              },
-      builder:
-          (FormFieldState state) => MergeSemantics(
-            child: Semantics(
-              label: widget.label ?? '',
-              child: CupertinoSwitch(
-                activeTrackColor: widget.activeColor,
-                dragStartBehavior:
-                    widget.dragStartBehavior ?? DragStartBehavior.start,
-                onChanged:
-                    widget.enabled != true
-                        ? null
-                        : (value) {
-                          if (widget.onChanged != null) {
-                            widget.onChanged!(value);
-                          }
+                    state.didChange(value);
 
-                          state.didChange(value);
-
-                          if (widget.data.jsonWidgetId.isNotEmpty == true) {
-                            widget.data.jsonWidgetRegistry.setValue(
-                              widget.data.jsonWidgetId,
-                              value,
-                              originator: widget.data.jsonWidgetId,
-                            );
-                          }
-                        },
-                thumbColor: widget.thumbColor,
-                inactiveTrackColor: widget.trackColor,
-                value: state.value,
-              ),
-            ),
+                    if (widget.data.jsonWidgetId.isNotEmpty == true) {
+                      widget.data.jsonWidgetRegistry.setValue(
+                        widget.data.jsonWidgetId,
+                        value,
+                        originator: widget.data.jsonWidgetId,
+                      );
+                    }
+                  },
+            thumbColor: widget.thumbColor,
+            inactiveTrackColor: widget.trackColor,
+            value: state.value,
           ),
+        ),
+      ),
     );
   }
 }

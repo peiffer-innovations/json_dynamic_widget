@@ -3,7 +3,7 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 part 'json_layout_builder_builder.g.dart';
 
 /// Builder that can build an [LayoutBuilder] widget.
-@jsonWidget
+@JsonWidget(requiresId: true)
 abstract class _JsonLayoutBuilderBuilder extends JsonWidgetBuilder {
   const _JsonLayoutBuilderBuilder({required super.args});
 

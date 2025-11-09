@@ -9,7 +9,7 @@ abstract class _JsonRichTextBuilder extends JsonWidgetBuilder {
 
   @JsonArgDecoder('text')
   InlineSpan _decodeText({required dynamic value}) =>
-      ThemeDecoder.decodeTextSpan(value, validate: false)!;
+      ThemeDecoder.instance.decodeTextSpan(value, validate: false)!;
 
   @override
   RichText buildCustom({
