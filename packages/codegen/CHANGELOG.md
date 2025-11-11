@@ -1,3 +1,8 @@
+## [4.0.0+2] - November 11, 2025
+
+* Automated dependency updates
+
+
 ## [4.0.0] - November 9th, 2025
 
 * Updated generaters to the latest version
