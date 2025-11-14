@@ -1,3 +1,8 @@
+## [12.0.0] - November 13th, 2025
+
+* Flutter 3.38
+
+
 ## [11.0.0+1] - November 9th, 2025
 
 * Flutter 3.35
