@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
 
@@ -12,14 +14,31 @@ class ForEachFunction {
   static const key = 'for_each';
 
   static final _logger = Logger('for_each');
+  static int _uniqueKeyCounter = 0;
+
+  static String _nextUniqueKey() {
+    final timestamp = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
+    final counter = (_uniqueKeyCounter++).toRadixString(36);
+    return '${timestamp}_$counter';
+  }
+
+  static void _cleanupRegistryValues(
+    JsonWidgetRegistry registry,
+    Iterable<String> keys,
+  ) {
+    for (final key in keys) {
+      registry.removeValue(key, originator: null);
+    }
+  }
 
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
-    final iterable = args![0];
-    final template = '\${${args[1]}}';
+    final uniqueKey = _nextUniqueKey();
 
+    final iterable = args![0];
+    final templateObjectString = json.encode(registry.getValue(args[1]));
     var varName = 'value';
     var keyName = 'key';
     if (args.length >= 3) {
@@ -28,29 +47,104 @@ class ForEachFunction {
     if (args.length >= 4) {
       keyName = args[3];
     }
-
+    final placeholderPattern = RegExp(r'\$\{([^}]*)\}');
+    final varNamePattern = RegExp(r'\b' + RegExp.escape(varName) + r'\b');
+    final keyNamePattern = RegExp(r'\b' + RegExp.escape(keyName) + r'\b');
     final results = <JsonWidgetData>[];
     if (iterable is Iterable) {
       var index = 0;
       for (var value in iterable) {
-        final reg = JsonWidgetRegistry(
-          debugLabel: 'for_each_$index',
-          parent: registry,
-        );
         _logger.finest('[$index] [$value]');
-        reg.setValue(varName, value, originator: null);
-        reg.setValue(keyName, index++, originator: null);
+        final indexStr = index.toString();
+        final valueKey = '${varName}_${uniqueKey}_$indexStr';
+        final keyKey = '${keyName}_${uniqueKey}_$indexStr';
 
-        results.add(DeferredJsonWidgetData(key: template, registry: reg));
+        registry.setValue(
+          valueKey,
+          value,
+          originator: null,
+        );
+        registry.setValue(
+          keyKey,
+          index,
+          originator: null,
+        );
+
+        final replacedTemplate = templateObjectString.replaceAllMapped(
+          placeholderPattern,
+          (match) {
+            var inside = match.group(1)!;
+            inside = inside.replaceAllMapped(
+              varNamePattern,
+              (_) => valueKey,
+            );
+
+            inside = inside.replaceAllMapped(
+              keyNamePattern,
+              (_) => keyKey,
+            );
+
+            return '\${$inside}';
+          },
+        );
+
+        results.add(
+          DeferredJsonWidgetData(
+            key: json.decode(replacedTemplate),
+            registry: registry,
+            onResolved: () => _cleanupRegistryValues(
+              registry,
+              [valueKey, keyKey],
+            ),
+          ),
+        );
+        ++index;
       }
     } else if (iterable is Map) {
       for (var entry in iterable.entries) {
-        final reg = JsonWidgetRegistry(parent: registry);
         _logger.finest('[${entry.key}] [${entry.value}]');
-        reg.setValue(varName, entry.value, originator: null);
-        reg.setValue(keyName, entry.key, originator: null);
+        final valueKey = '${varName}_${uniqueKey}_${entry.key}';
+        final keyKey = '${keyName}_${uniqueKey}_${entry.key}';
 
-        results.add(DeferredJsonWidgetData(key: template, registry: reg));
+        registry.setValue(
+          valueKey,
+          entry.value,
+          originator: null,
+        );
+        registry.setValue(
+          keyKey,
+          entry.key,
+          originator: null,
+        );
+
+        final replacedTemplate = templateObjectString.replaceAllMapped(
+          placeholderPattern,
+          (match) {
+            var inside = match.group(1)!;
+            inside = inside.replaceAllMapped(
+              varNamePattern,
+              (_) => valueKey,
+            );
+
+            inside = inside.replaceAllMapped(
+              keyNamePattern,
+              (_) => keyKey,
+            );
+
+            return '\${$inside}';
+          },
+        );
+
+        results.add(
+          DeferredJsonWidgetData(
+            key: json.decode(replacedTemplate),
+            registry: registry,
+            onResolved: () => _cleanupRegistryValues(
+              registry,
+              [valueKey, keyKey],
+            ),
+          ),
+        );
       }
     }
 
