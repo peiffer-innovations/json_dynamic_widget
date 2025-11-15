@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 import 'package:logging/logging.dart';
-
-final _random = Random();
 
 /// The `for_each` function takes 2 to 4 arguments.
 ///
@@ -17,19 +14,28 @@ class ForEachFunction {
   static const key = 'for_each';
 
   static final _logger = Logger('for_each');
-  static String _random10Digits() {
-    final buffer = StringBuffer();
-    for (var i = 0; i < 10; i++) {
-      buffer.write(_random.nextInt(10)); // 0–9
+  static int _uniqueKeyCounter = 0;
+
+  static String _nextUniqueKey() {
+    final timestamp = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
+    final counter = (_uniqueKeyCounter++).toRadixString(36);
+    return '${timestamp}_$counter';
+  }
+
+  static void _cleanupRegistryValues(
+    JsonWidgetRegistry registry,
+    Iterable<String> keys,
+  ) {
+    for (final key in keys) {
+      registry.removeValue(key, originator: null);
     }
-    return buffer.toString();
   }
 
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
   }) {
-    final uniqueKey = _random10Digits();
+    final uniqueKey = _nextUniqueKey();
 
     final iterable = args![0];
     final templateObjectString = json.encode(registry.getValue(args[1]));
@@ -50,14 +56,16 @@ class ForEachFunction {
       for (var value in iterable) {
         _logger.finest('[$index] [$value]');
         final indexStr = index.toString();
+        final valueKey = '${varName}_${uniqueKey}_$indexStr';
+        final keyKey = '${keyName}_${uniqueKey}_$indexStr';
 
         registry.setValue(
-          '${varName}_${uniqueKey}_$indexStr',
+          valueKey,
           value,
           originator: null,
         );
         registry.setValue(
-          '${keyName}_${uniqueKey}_$indexStr',
+          keyKey,
           index,
           originator: null,
         );
@@ -68,12 +76,12 @@ class ForEachFunction {
             var inside = match.group(1)!;
             inside = inside.replaceAllMapped(
               varNamePattern,
-              (_) => '${varName}_${uniqueKey}_$indexStr',
+              (_) => valueKey,
             );
 
             inside = inside.replaceAllMapped(
               keyNamePattern,
-              (_) => '${keyName}_${uniqueKey}_$indexStr',
+              (_) => keyKey,
             );
 
             return '\${$inside}';
@@ -84,6 +92,10 @@ class ForEachFunction {
           DeferredJsonWidgetData(
             key: json.decode(replacedTemplate),
             registry: registry,
+            onResolved: () => _cleanupRegistryValues(
+              registry,
+              [valueKey, keyKey],
+            ),
           ),
         );
         ++index;
@@ -91,13 +103,16 @@ class ForEachFunction {
     } else if (iterable is Map) {
       for (var entry in iterable.entries) {
         _logger.finest('[${entry.key}] [${entry.value}]');
+        final valueKey = '${varName}_${uniqueKey}_${entry.key}';
+        final keyKey = '${keyName}_${uniqueKey}_${entry.key}';
+
         registry.setValue(
-          '${varName}_${uniqueKey}_${entry.key}',
+          valueKey,
           entry.value,
           originator: null,
         );
         registry.setValue(
-          '${keyName}_${uniqueKey}_${entry.key}',
+          keyKey,
           entry.key,
           originator: null,
         );
@@ -108,7 +123,7 @@ class ForEachFunction {
             var inside = match.group(1)!;
             inside = inside.replaceAllMapped(
               varNamePattern,
-              (_) => '${varName}_${uniqueKey}_${entry.key}',
+              (_) => valueKey,
             );
 
             final keyNamePattern = RegExp(
@@ -116,7 +131,7 @@ class ForEachFunction {
             );
             inside = inside.replaceAllMapped(
               keyNamePattern,
-              (_) => '${keyName}_${uniqueKey}_${entry.key}',
+              (_) => keyKey,
             );
 
             return '\${$inside}';
@@ -127,6 +142,10 @@ class ForEachFunction {
           DeferredJsonWidgetData(
             key: json.decode(replacedTemplate),
             registry: registry,
+            onResolved: () => _cleanupRegistryValues(
+              registry,
+              [valueKey, keyKey],
+            ),
           ),
         );
       }
