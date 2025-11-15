@@ -6,12 +6,12 @@ import 'package:json_dynamic_widget/json_dynamic_widget.dart';
 /// exist until after the first pass of the widget tree processing is completed.
 class DeferredJsonWidgetData implements JsonWidgetData {
   DeferredJsonWidgetData({
-    required String key,
+    required dynamic key,
     required JsonWidgetRegistry registry,
   }) : _key = key,
        _registry = registry;
 
-  final String _key;
+  final dynamic _key;
   final JsonWidgetRegistry _registry;
 
   JsonWidgetData? _data;
@@ -28,21 +28,9 @@ class DeferredJsonWidgetData implements JsonWidgetData {
   JsonWidgetData get data {
     var data = _data;
     if (data == null) {
-      var temp = _registry.processArgs(_key, null).value;
-
-      if (temp is! JsonWidgetData) {
-        temp = JsonWidgetData.maybeFromDynamic(
-          temp,
-          registry: jsonWidgetRegistry,
-        );
-      }
-      if (temp is! JsonWidgetData) {
-        throw Exception(
-          'Unable to find JsonWidgetData via [$_key] on the registry',
-        );
-      }
-
-      data = temp.copyWith(jsonWidgetRegistry: jsonWidgetRegistry);
+      data = JsonWidgetData.fromDynamic(
+        _key,
+      ).copyWith(jsonWidgetRegistry: jsonWidgetRegistry);
       _data = data;
     }
     return data;
