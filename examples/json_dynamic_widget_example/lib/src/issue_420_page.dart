@@ -15,7 +15,7 @@ class Issue420Page extends StatelessWidget {
               "type": "text",
               "args": {"text": "\${key}"},
             },
-            "onPressed": "\${set_value('myvalue','val:'+value['id'])}",
+            "onPressed": "\${set_value('myvalue','val:'+value['id'] + ' ' + value['id'])}",
           },
         },
         "myvalue": "INITIAL",
