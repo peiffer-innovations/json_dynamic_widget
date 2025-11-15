@@ -33,24 +33,19 @@ class ForEachFunction {
     if (iterable is Iterable) {
       var index = 0;
       for (var value in iterable) {
-        final reg = JsonWidgetRegistry(
-          debugLabel: 'for_each_$index',
-          parent: registry,
-        );
         _logger.finest('[$index] [$value]');
-        reg.setValue(varName, value, originator: null);
-        reg.setValue(keyName, index++, originator: null);
+        registry.setValue(varName, value, originator: null);
+        registry.setValue(keyName, index++, originator: null);
 
-        results.add(DeferredJsonWidgetData(key: template, registry: reg));
+        results.add(DeferredJsonWidgetData(key: template, registry: registry));
       }
     } else if (iterable is Map) {
       for (var entry in iterable.entries) {
-        final reg = JsonWidgetRegistry(parent: registry);
         _logger.finest('[${entry.key}] [${entry.value}]');
-        reg.setValue(varName, entry.value, originator: null);
-        reg.setValue(keyName, entry.key, originator: null);
+        registry.setValue(varName, entry.value, originator: null);
+        registry.setValue(keyName, entry.key, originator: null);
 
-        results.add(DeferredJsonWidgetData(key: template, registry: reg));
+        results.add(DeferredJsonWidgetData(key: template, registry: registry));
       }
     }
 
