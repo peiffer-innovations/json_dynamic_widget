@@ -1,3 +1,7 @@
+## [12.0.1] - November 15th, 2025
+
+* 'for_each' function now uses the existing registry instead of creating new instances. This ensures that variables set during iteration are accessible in the broader context and resolves issues related to variable scope during iteration.
+  
 ## [12.0.0] - November 13th, 2025
 
 * Flutter 3.38
