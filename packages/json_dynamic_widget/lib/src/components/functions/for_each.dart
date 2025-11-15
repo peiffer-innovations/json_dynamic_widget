@@ -126,9 +126,6 @@ class ForEachFunction {
               (_) => valueKey,
             );
 
-            final keyNamePattern = RegExp(
-              r'\b' + RegExp.escape(keyName) + r'\b',
-            );
             inside = inside.replaceAllMapped(
               keyNamePattern,
               (_) => keyKey,
