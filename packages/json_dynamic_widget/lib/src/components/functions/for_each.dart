@@ -15,6 +15,7 @@ class ForEachFunction {
 
   static final _logger = Logger('for_each');
   static int _uniqueKeyCounter = 0;
+  static final _wordChar = RegExp(r'\w');
 
   static String _nextUniqueKey() {
     final timestamp = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
@@ -48,8 +49,6 @@ class ForEachFunction {
       keyName = args[3];
     }
     final placeholderPattern = RegExp(r'\$\{([^}]*)\}');
-    final varNamePattern = RegExp(r'\b' + RegExp.escape(varName) + r'\b');
-    final keyNamePattern = RegExp(r'\b' + RegExp.escape(keyName) + r'\b');
     final results = <JsonWidgetData>[];
     if (iterable is Iterable) {
       var index = 0;
@@ -74,14 +73,12 @@ class ForEachFunction {
           placeholderPattern,
           (match) {
             var inside = match.group(1)!;
-            inside = inside.replaceAllMapped(
-              varNamePattern,
-              (_) => valueKey,
-            );
-
-            inside = inside.replaceAllMapped(
-              keyNamePattern,
-              (_) => keyKey,
+            inside = _replaceIdentifiersOutsideStringLiterals(
+              inside,
+              {
+                varName: valueKey,
+                keyName: keyKey,
+              },
             );
 
             return '\${$inside}';
@@ -121,14 +118,12 @@ class ForEachFunction {
           placeholderPattern,
           (match) {
             var inside = match.group(1)!;
-            inside = inside.replaceAllMapped(
-              varNamePattern,
-              (_) => valueKey,
-            );
-
-            inside = inside.replaceAllMapped(
-              keyNamePattern,
-              (_) => keyKey,
+            inside = _replaceIdentifiersOutsideStringLiterals(
+              inside,
+              {
+                varName: valueKey,
+                keyName: keyKey,
+              },
             );
 
             return '\${$inside}';
@@ -149,5 +144,75 @@ class ForEachFunction {
     }
 
     return results;
+  }
+
+  static String _replaceIdentifiersOutsideStringLiterals(
+    String input,
+    Map<String, String> replacements,
+  ) {
+    final buffer = StringBuffer();
+    String? quote;
+    var index = 0;
+
+    while (index < input.length) {
+      final char = input[index];
+
+      if (quote != null) {
+        buffer.write(char);
+        if (char == quote) {
+          var backslashCount = 0;
+          var backIndex = index - 1;
+          while (backIndex >= 0 && input[backIndex] == '\\') {
+            backslashCount++;
+            backIndex--;
+          }
+          if (backslashCount.isEven) {
+            quote = null;
+          }
+        }
+        index++;
+        continue;
+      }
+
+      if (char == '\'' || char == '"') {
+        quote = char;
+        buffer.write(char);
+        index++;
+        continue;
+      }
+
+      String? replacementValue;
+      int? replacementLength;
+      for (final entry in replacements.entries) {
+        final name = entry.key;
+        final length = name.length;
+        if (index + length > input.length) {
+          continue;
+        }
+        if (!input.startsWith(name, index)) {
+          continue;
+        }
+        final beforeOk =
+            index == 0 || !_wordChar.hasMatch(input[index - 1]);
+        final afterOk = index + length == input.length ||
+            !_wordChar.hasMatch(input[index + length]);
+        if (beforeOk && afterOk) {
+          replacementValue = entry.value;
+          replacementLength = length;
+          break;
+        }
+      }
+
+      if (replacementValue != null) {
+        buffer.write(replacementValue);
+        index += replacementLength!;
+        continue;
+      }
+
+      buffer.write(char);
+      index++;
+    }
+
+    return buffer.toString();
   }
 }

@@ -7,42 +7,51 @@ class Issue420Page extends StatelessWidget {
   final JsonWidgetData data = JsonWidgetData.fromDynamic({
     "type": "set_value",
     "args": {
-      "values": {
-        "template": {
-          "type": "elevated_button",
-          "args": {
-            "child": {
-              "type": "text",
-              "args": {"text": "\${key}"},
+        "cleanup":false,
+        "values": {
+            "template": {
+                "type": "elevated_button",
+                "args": {
+                    "child": {
+                        "type": "text",
+                        "args": {
+                            "text": "\${key}"
+                        }
+                    },
+                    "onPressed": "\${set_value('myvalue','value :'+value['id'])}"
+                }
             },
-            "onPressed": "\${set_value('myvalue','val:'+value['id'] + ' ' + value['id'])}",
-          },
+            "myvalue": "INITIAL",
+            "array": [
+                {"id": "1"},
+                {"id": "2"},
+                {"id": "3"}
+            ]
         },
-        "myvalue": "INITIAL",
-        "array": [
-          {"id": '1'},
-          {"id": '2'},
-          {"id": '3'},
-        ],
-      },
-      "child": {
-        "type": "column",
-        "args": {
-          "children": [
-            {
-              "type": "text",
-              "listen": ["myvalue"],
-              "args": {"text": "\${'value: ' + myvalue}"},
-            },
-            {
-              "type": "column",
-              "args": {"children": "\${for_each(array,'template')}"},
-            },
-          ],
-        },
-      },
-    },
-  });
+        "child": {
+            "type": "column",
+            "args": {
+                "children": [
+                    {
+                        "type": "text",
+                        "listen": [
+                            "myvalue"
+                        ],
+                        "args": {
+                            "text": "\${'value: ' + myvalue}"
+                        }
+                    },
+                    {
+                        "type": "column",
+                        "args": {
+                            "children": "\${for_each(array,'template')}"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+});
 
   @override
   Widget build(BuildContext context) {
