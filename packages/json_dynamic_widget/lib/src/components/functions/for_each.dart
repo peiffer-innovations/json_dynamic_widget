@@ -32,6 +32,46 @@ class ForEachFunction {
     }
   }
 
+  static JsonWidgetData _createDeferredWidget({
+    required String valueKey,
+    required String keyKey,
+    required dynamic value,
+    required dynamic key,
+    required String templateObjectString,
+    required String varName,
+    required String keyName,
+    required RegExp placeholderPattern,
+    required JsonWidgetRegistry registry,
+  }) {
+    registry.setValue(valueKey, value, originator: null);
+    registry.setValue(keyKey, key, originator: null);
+
+    final replacedTemplate = templateObjectString.replaceAllMapped(
+      placeholderPattern,
+      (match) {
+        var inside = match.group(1)!;
+        inside = _replaceIdentifiersOutsideStringLiterals(
+          inside,
+          {
+            varName: valueKey,
+            keyName: keyKey,
+          },
+        );
+
+        return '\${$inside}';
+      },
+    );
+
+    return DeferredJsonWidgetData(
+      key: json.decode(replacedTemplate),
+      registry: registry,
+      onResolved: () => _cleanupRegistryValues(
+        registry,
+        [valueKey, keyKey],
+      ),
+    );
+  }
+
   static dynamic _body({
     required List<dynamic>? args,
     required JsonWidgetRegistry registry,
@@ -58,41 +98,17 @@ class ForEachFunction {
         final valueKey = '${varName}_${uniqueKey}_$indexStr';
         final keyKey = '${keyName}_${uniqueKey}_$indexStr';
 
-        registry.setValue(
-          valueKey,
-          value,
-          originator: null,
-        );
-        registry.setValue(
-          keyKey,
-          index,
-          originator: null,
-        );
-
-        final replacedTemplate = templateObjectString.replaceAllMapped(
-          placeholderPattern,
-          (match) {
-            var inside = match.group(1)!;
-            inside = _replaceIdentifiersOutsideStringLiterals(
-              inside,
-              {
-                varName: valueKey,
-                keyName: keyKey,
-              },
-            );
-
-            return '\${$inside}';
-          },
-        );
-
         results.add(
-          DeferredJsonWidgetData(
-            key: json.decode(replacedTemplate),
+          _createDeferredWidget(
+            valueKey: valueKey,
+            keyKey: keyKey,
+            value: value,
+            key: index,
+            templateObjectString: templateObjectString,
+            varName: varName,
+            keyName: keyName,
+            placeholderPattern: placeholderPattern,
             registry: registry,
-            onResolved: () => _cleanupRegistryValues(
-              registry,
-              [valueKey, keyKey],
-            ),
           ),
         );
         ++index;
@@ -103,41 +119,17 @@ class ForEachFunction {
         final valueKey = '${varName}_${uniqueKey}_${entry.key}';
         final keyKey = '${keyName}_${uniqueKey}_${entry.key}';
 
-        registry.setValue(
-          valueKey,
-          entry.value,
-          originator: null,
-        );
-        registry.setValue(
-          keyKey,
-          entry.key,
-          originator: null,
-        );
-
-        final replacedTemplate = templateObjectString.replaceAllMapped(
-          placeholderPattern,
-          (match) {
-            var inside = match.group(1)!;
-            inside = _replaceIdentifiersOutsideStringLiterals(
-              inside,
-              {
-                varName: valueKey,
-                keyName: keyKey,
-              },
-            );
-
-            return '\${$inside}';
-          },
-        );
-
         results.add(
-          DeferredJsonWidgetData(
-            key: json.decode(replacedTemplate),
+          _createDeferredWidget(
+            valueKey: valueKey,
+            keyKey: keyKey,
+            value: entry.value,
+            key: entry.key,
+            templateObjectString: templateObjectString,
+            varName: varName,
+            keyName: keyName,
+            placeholderPattern: placeholderPattern,
             registry: registry,
-            onResolved: () => _cleanupRegistryValues(
-              registry,
-              [valueKey, keyKey],
-            ),
           ),
         );
       }

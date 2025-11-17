@@ -32,7 +32,8 @@ class DeferredJsonWidgetData implements JsonWidgetData {
     if (data == null) {
       data = JsonWidgetData.fromDynamic(
         _key,
-      ).copyWith(jsonWidgetRegistry: jsonWidgetRegistry);
+        registry: jsonWidgetRegistry
+      );
       _data = data;
     }
     return data;
@@ -53,10 +54,10 @@ class DeferredJsonWidgetData implements JsonWidgetData {
     final built = data.build(
       childBuilder: childBuilder,
       context: context,
+      registry: jsonWidgetRegistry,
       // Always ignore the passed in registry.  This is deferred explicitly
       // because an ancestor widget or function wanted to pass down a custom
       // registry to the children.
-      registry: jsonWidgetRegistry,
     );
 
     final onResolved = _onResolved;
