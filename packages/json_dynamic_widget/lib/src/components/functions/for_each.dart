@@ -40,25 +40,16 @@ class ForEachFunction {
     required String templateObjectString,
     required String varName,
     required String keyName,
-    required RegExp placeholderPattern,
     required JsonWidgetRegistry registry,
   }) {
     registry.setValue(valueKey, value, originator: null);
     registry.setValue(keyKey, key, originator: null);
 
-    final replacedTemplate = templateObjectString.replaceAllMapped(
-      placeholderPattern,
-      (match) {
-        var inside = match.group(1)!;
-        inside = _replaceIdentifiersOutsideStringLiterals(
-          inside,
-          {
-            varName: valueKey,
-            keyName: keyKey,
-          },
-        );
-
-        return '\${$inside}';
+    final replacedTemplate = _replacePlaceholders(
+      templateObjectString,
+      {
+        varName: valueKey,
+        keyName: keyKey,
       },
     );
 
@@ -88,7 +79,6 @@ class ForEachFunction {
     if (args.length >= 4) {
       keyName = args[3];
     }
-    final placeholderPattern = RegExp(r'\$\{([^}]*)\}');
     final results = <JsonWidgetData>[];
     if (iterable is Iterable) {
       var index = 0;
@@ -107,7 +97,6 @@ class ForEachFunction {
             templateObjectString: templateObjectString,
             varName: varName,
             keyName: keyName,
-            placeholderPattern: placeholderPattern,
             registry: registry,
           ),
         );
@@ -128,7 +117,6 @@ class ForEachFunction {
             templateObjectString: templateObjectString,
             varName: varName,
             keyName: keyName,
-            placeholderPattern: placeholderPattern,
             registry: registry,
           ),
         );
@@ -136,6 +124,80 @@ class ForEachFunction {
     }
 
     return results;
+  }
+
+  static String _replacePlaceholders(
+    String template,
+    Map<String, String> replacements,
+  ) {
+    final buffer = StringBuffer();
+    var index = 0;
+    var lastWriteIndex = 0;
+
+    while (index < template.length) {
+      if (template[index] == r'$' &&
+          index + 1 < template.length &&
+          template[index + 1] == '{') {
+        buffer.write(template.substring(lastWriteIndex, index));
+        var braceDepth = 1;
+        String? quote;
+        var innerIndex = index + 2;
+        while (innerIndex < template.length && braceDepth > 0) {
+          final char = template[innerIndex];
+          if (quote != null) {
+            if (char == quote) {
+              var backslashCount = 0;
+              var backIndex = innerIndex - 1;
+              while (backIndex >= 0 && template[backIndex] == '\\') {
+                backslashCount++;
+                backIndex--;
+              }
+              if (backslashCount.isEven) {
+                quote = null;
+              }
+            }
+            innerIndex++;
+            continue;
+          }
+
+          if (char == '\'' || char == '"') {
+            quote = char;
+          } else if (char == '{') {
+            braceDepth++;
+          } else if (char == '}') {
+            braceDepth--;
+            if (braceDepth == 0) {
+              final inside = template.substring(index + 2, innerIndex);
+              final replacedInside = _replaceIdentifiersOutsideStringLiterals(
+                inside,
+                replacements,
+              );
+              buffer.write('\${$replacedInside}');
+              innerIndex++;
+              break;
+            }
+          }
+          innerIndex++;
+        }
+
+        if (braceDepth == 0) {
+          index = innerIndex;
+          lastWriteIndex = index;
+          continue;
+        } else {
+          lastWriteIndex = index;
+          break;
+        }
+      }
+
+      index++;
+    }
+
+    if (lastWriteIndex < template.length) {
+      buffer.write(template.substring(lastWriteIndex));
+    }
+
+    return buffer.toString();
   }
 
   static String _replaceIdentifiersOutsideStringLiterals(
