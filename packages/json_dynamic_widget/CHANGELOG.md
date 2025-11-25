@@ -1,3 +1,8 @@
+## [12.0.0+2] - November 25, 2025
+
+* Automated dependency updates
+
+
 ## [12.0.0+1] - November 18, 2025
 
 * Automated dependency updates
