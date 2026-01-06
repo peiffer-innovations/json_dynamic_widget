@@ -1,7 +1,7 @@
 name: "json_dynamic_widget_codegen"
 description: "A library autogenerate JSON widget builders."
 homepage: "https://github.com/peiffer-innovations/json_dynamic_widget"
-version: "4.0.1+2"
+version: "4.0.1+3"
 
 environment:
   sdk: "^3.9.0"
@@ -15,7 +15,7 @@ analyzer:
 dependencies:
   analyzer: "^8.4.0"
   build: "^4.0.3"
-  code_builder: "^4.11.0"
+  code_builder: "^4.11.1"
   dynamic_widget_annotation: "^3.0.1"
   json_class: "^3.0.1"
   json_theme: "^11.0.0"
