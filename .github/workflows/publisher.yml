@@ -12,7 +12,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    
     steps:
       - uses: actions/checkout@v4
 
@@ -26,12 +25,6 @@ jobs:
           flutter packages get
           dart run build_runner build --delete-conflicting-outputs -v
         working-directory: packages/json_dynamic_widget
-
-      - name: Run Codegen Example
-        run: |
-          flutter packages get
-          dart run build_runner build --delete-conflicting-outputs -v
-        working-directory: packages/json_dynamic_widget/example
 
       - name: Validate
         uses: peiffer-innovations/actions-flutter-validate@v2

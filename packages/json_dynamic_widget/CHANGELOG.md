@@ -1,3 +1,33 @@
+## [12.0.0+5] - January 13, 2026
+
+* Automated dependency updates
+
+
+## [12.0.0+4] - January 6, 2026
+
+* Automated dependency updates
+
+
+## [12.0.0+3] - December 2, 2025
+
+* Automated dependency updates
+
+
+## [12.0.0+2] - November 25, 2025
+
+* Automated dependency updates
+
+
+## [12.0.0+1] - November 18, 2025
+
+* Automated dependency updates
+
+
+## [12.0.0] - November 13th, 2025
+
+* Flutter 3.38
+
+
 ## [11.0.0+1] - November 9th, 2025
 
 * Flutter 3.35
