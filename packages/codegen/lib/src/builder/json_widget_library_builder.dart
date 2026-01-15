@@ -13,8 +13,13 @@ import 'package:source_gen/source_gen.dart';
 import 'package:yaon/yaon.dart';
 
 class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
+  JsonWidgetLibraryBuilder({this.parseJsonSerializable = false});
+
   static const kChildNames = <String>{'child', 'children'};
 
+  /// If true, the builder will attempt to parse classes with a `fromJson` factory
+  /// mainly used in [json_serializable](https://pub.dev/packages/json_serializable).
+  final bool parseJsonSerializable;
   bool _isDebugMode = false;
 
   @override
@@ -871,7 +876,7 @@ return result;
             }
             if (param.displayName != 'key') {
               lines.add(
-                '${param.displayName}: ${decode(element, param, aliases: aliases, defaults: paramDefaults, paramDecoders: paramDecoders.keys)}',
+                '${param.displayName}: ${decode(element, param, aliases: aliases, defaults: paramDefaults, paramDecoders: paramDecoders.keys, parseJsonSerializable: parseJsonSerializable)}',
               );
             }
           }

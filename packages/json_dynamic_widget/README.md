@@ -28,6 +28,7 @@
     - [Built functions](#built-functions)
 - [Creating Custom Widgets](#creating-custom-widgets)
 - [Creating Custom Arg Processor](#creating-custom-arg-processor)
+- [Parse JsonSerializable Entities](#parse-jsonserializable-entities)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -749,3 +750,20 @@ By default `ArgProcessors.defaults` are used but there is a possibility to chang
 
 The arg processors are executed from the first to the last one in the list.
 To make sure that `BooleanStringArgProcessor` will be used the best is to add it as a first element of the list.
+
+## Parse JsonSerializable entities
+
+If defining entities by using the `@JsonSerializable()` annotation from
+the [json_serializable](https://pub.dev/packages/json_serializable) package or by providing a custom `fromJson` method,
+it is possible to have the code generator parse the entities from this method.
+
+To enable json_serializable parsing, the `parse_json_serializable` option must be enabled in the `build.yaml` file in your root project folder:
+
+```yaml
+targets:
+  $default:
+    builders:
+      json_dynamic_widget_codegen|widget_builder:
+        options:
+          parse_json_serializable: true
+```
