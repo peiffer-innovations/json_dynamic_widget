@@ -1,7 +1,6 @@
 import 'package:analyzer/dart/element/element.dart';
-import 'package:analyzer/dart/element/element2.dart';
 import 'package:analyzer/dart/element/type.dart';
-import 'package:json_dynamic_widget_codegen/src/extension/dart_type_extension.dart';
+import 'package:json_dynamic_widget_codegen/src/model/param.dart';
 import 'package:json_theme/codegen.dart';
 
 typedef ParameterDecoder =
@@ -177,7 +176,7 @@ String decode(
   }
   final attr = "map['$name']";
   final result =
-      "$attr${defaultValueCode == null ? '' : '?? $defaultValueCode'}";
+      "$attr${defaultValueCode == null ? '' : ' ?? $defaultValueCode'}";
 
   final typeStr = element.typeName.replaceAll('?', '');
 
@@ -196,40 +195,40 @@ String decode(
 
   if (parseJsonSerializable) {
     final serializableElementType = element.type;
-    final serializableElement = serializableElementType.element3;
-    final nullablePrefix = element.type.nullable
+    final serializableElement = serializableElementType.element;
+    final nullablePrefix = element.typeNullable
         ? '$attr == null ? null : '
         : '';
-    if (serializableElement is ClassElement2) {
-      if (serializableElement.constructors2.any((c) => c.name3 == 'fromJson')) {
-        return '$nullablePrefix${serializableElement.name3}.fromJson($attr)';
+    if (serializableElement is ClassElement) {
+      if (serializableElement.constructors.any((c) => c.name == 'fromJson')) {
+        return '$nullablePrefix${serializableElement.name}.fromJson($attr)';
       } else if (serializableElementType is InterfaceType) {
         if (serializableElementType.typeArguments.isNotEmpty) {
           if (serializableElement.interfaces.any((interf) =>
-          interf.element3.name3 == 'Iterable')) {
+          interf.element.name == 'Iterable')) {
             final itemType = serializableElementType.typeArguments.first;
-            final itemSerializableElement = itemType.element3;
-            if (itemSerializableElement is ClassElement2 &&
-                itemSerializableElement.constructors2.any((c) =>
-                c.name3 ==
+            final itemSerializableElement = itemType.element;
+            if (itemSerializableElement is ClassElement &&
+                itemSerializableElement.constructors.any((c) =>
+                c.name ==
                     'fromJson')) {
               var mapTo = '';
-              if (serializableElementType.element3.name3 == 'List') {
+              if (serializableElementType.element.name == 'List') {
                 mapTo = '.toList()';
-              } else if (serializableElementType.element3.name3 == 'Set') {
+              } else if (serializableElementType.element.name == 'Set') {
                 mapTo = '.toSet()';
               }
-              final nullableOperator = element.type.nullable ? '?' : '';
+              final nullableOperator = element.typeNullable ? '?' : '';
               return '$attr$nullableOperator.map<${itemSerializableElement
-                  .name3}>((e) => ${itemSerializableElement
-                  .name3}.fromJson(e))$mapTo';
+                  .name}>((e) => ${itemSerializableElement
+                  .name}.fromJson(e))$mapTo';
             }
           }
         }
       }
-    } else if (serializableElement is EnumElement2) {
-      if (serializableElement.constructors2.any((c) => c.name3 == 'fromJson')) {
-        return '$nullablePrefix${serializableElement.name3}.fromJson($attr)';
+    } else if (serializableElement is EnumElement) {
+      if (serializableElement.constructors.any((c) => c.name == 'fromJson')) {
+        return '$nullablePrefix${serializableElement.name}.fromJson($attr)';
       }
     }
   }

@@ -4,10 +4,6 @@ part 'person.g.dart';
 
 @JsonSerializable()
 class Person {
-  final String firstName, lastName;
-
-  final DateTime? dateOfBirth;
-
   const Person({
     required this.firstName,
     this.lastName = 'LastName',
@@ -15,6 +11,9 @@ class Person {
   });
 
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
+  final String firstName, lastName;
+
+  final DateTime? dateOfBirth;
 
   Map<String, dynamic> toJson() => _$PersonToJson(this);
 }
@@ -27,8 +26,8 @@ enum PersonType {
   curious,
   unknown;
 
-  String toJson() => _$PersonTypeEnumMap[this]!;
-
   factory PersonType.fromJson(String json) =>
       $enumDecode(_$PersonTypeEnumMap, json, unknownValue: PersonType.unknown);
+
+  String toJson() => _$PersonTypeEnumMap[this]!;
 }

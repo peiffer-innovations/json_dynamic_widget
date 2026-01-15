@@ -13,8 +13,7 @@ import 'package:source_gen/source_gen.dart';
 import 'package:yaon/yaon.dart';
 
 class JsonWidgetLibraryBuilder extends GeneratorForAnnotation<JsonWidget> {
-
-  const JsonWidgetLibraryBuilder({this.parseJsonSerializable = false});
+  JsonWidgetLibraryBuilder({this.parseJsonSerializable = false});
 
   static const kChildNames = <String>{'child', 'children'};
 
@@ -877,14 +876,7 @@ return result;
             }
             if (param.displayName != 'key') {
               lines.add(
-                '${param.name}: ${decode(
-                  element,
-                  param,
-                  aliases: aliases,
-                  defaults: paramDefaults,
-                  paramDecoders: paramDecoders.keys,
-                  parseJsonSerializable: parseJsonSerializable,
-                )}',
+                '${param.displayName}: ${decode(element, param, aliases: aliases, defaults: paramDefaults, paramDecoders: paramDecoders.keys, parseJsonSerializable: parseJsonSerializable)}',
               );
             }
           }
