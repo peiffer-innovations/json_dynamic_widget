@@ -1,6 +1,6 @@
 ## [4.1.0] - September 29th, 2025
 
-* Support parsing entities via `fromJsom` of `JsonSerializable`.
+* Support parsing entities via `fromJson` of `JsonSerializable`.
 
 
 ## [4.0.1+3] - January 6, 2026
