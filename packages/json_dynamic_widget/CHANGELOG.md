@@ -423,7 +423,6 @@ This is a huge release with several breaking changes.  It brings in the ability 
 
 * Automated dependency updates
 
->>>>>>> fabcc57c6772a1015dbb260dc2cb5a28bfade292:CHANGELOG.md
 
 ## [6.1.0] - July 17th, 2023
 
