@@ -1,3 +1,8 @@
+## [12.0.1] - January 15th, 2026
+
+* 'for_each' function now uses the existing registry instead of creating new instances. This ensures that variables set during iteration are accessible in the broader context and resolves issues related to variable scope during iteration.
+
+
 ## [12.0.0+5] - January 13, 2026
 
 * Automated dependency updates
@@ -17,7 +22,7 @@
 
 * Automated dependency updates
 
-
+  
 ## [12.0.0+1] - November 18, 2025
 
 * Automated dependency updates
@@ -418,7 +423,6 @@ This is a huge release with several breaking changes.  It brings in the ability 
 
 * Automated dependency updates
 
->>>>>>> fabcc57c6772a1015dbb260dc2cb5a28bfade292:CHANGELOG.md
 
 ## [6.1.0] - July 17th, 2023
 
