@@ -1,3 +1,8 @@
+## [12.0.0+9] - February 10, 2026
+
+* Automated dependency updates
+
+
 ## [12.0.0+8] - February 3, 2026
 
 * Automated dependency updates
